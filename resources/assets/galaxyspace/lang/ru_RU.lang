@@ -1,0 +1,335 @@
+achievement.miningcoppergc=Это мы уже видели...
+achievement.miningcoppergc.desc=Добудьте Медную руду.
+achievement.miningtingc=Здравствуй старый друг
+achievement.miningtingc.desc=Добудьте Оловянную руду.
+achievement.miningaluminiumgc=А это что такое?
+achievement.miningaluminiumgc.desc=Добудьте Алюминиевую руду.
+achievement.miningsilicongc=Кремень? Серьезно?
+achievement.miningsilicongc.desc=Добудьте Кремниевую руду.
+achievement.electricgc=Потоковая Энергия
+achievement.electricgc.desc=Создайте свой первый Алюминиевый провод.
+achievement.electric2gc=Первое Улучшение
+achievement.electric2gc.desc=Улучшите Алюминиевый провод.
+achievement.energycellgc=Складируем Энергию
+achievement.energycellgc.desc=Создайте Модуль "Хранилище энергии".
+achievement.coalgeneratorgc=Добытчик Энергии
+achievement.coalgeneratorgc.desc=Создайте Угольный Генератор.
+achievement.solargc=Солнечная Энергия
+achievement.solargc.desc=Создайте Основную солнечную панель
+achievement.circuitgc=Наноинженерия
+achievement.circuitgc.desc=Создайте Производитель микросхем.
+achievement.compressorgc=Вселеннское сжатие
+achievement.compressorgc.desc=Создайте Компрессор, используя Основую полупроводниковую пластину.
+achievement.fangc=И зачем эта безделушка?
+achievement.fangc.desc=Создайте Вентилятор.
+achievement.hdpgc=Идеальная пластина
+achievement.hdpgc.desc=Создайте Сверхпрочное Покрытие 1 уровня.
+achievement.furancegc=Электрическая Горячая штучка
+achievement.furancegc.desc=Создайте Электропечь.
+achievement.assemblygc=Это что-то из фантастики...
+achievement.assemblygc.desc=Создайте Сборочный Цех.
+achievement.nasagc=Ракетостроение
+achievement.nasagc.desc=Создайте Верстак NASA, чтобы сделать свою первую ракету!
+achievement.refinerygc=Переработка Черного Золота
+achievement.refinerygc.desc=Сделайте Очистительный завод, чтобы производить топливо для ракет.
+achievement.oilgc=Черное Золото
+achievement.oilgc.desc=Добудьте немного нефти вашим ведром.
+achievement.fuelgc=ОГНЕОПАСНО!
+achievement.fuelgc.desc=Перелейте топливо в ваше ведро и носите с собой.
+achievement.rocketgc=Почти в космосе!
+achievement.rocketgc.desc=Сделать ракету 1 уровня.
+achievement.moongc=Здесь ступала нога человека!
+achievement.moongc.desc=Приземлитесь на Луну!
+
+tile.MercuryGrunt.name=Грунт Меркурия
+tile.MercurySubGrunt.name=Подповерхностный Грунт Меркурия
+tile.MercuryCore.name=Основание Ядра Меркурия
+tile.MercuryLeadOre.name=Свинцовая Руда
+tile.MercuryIronOre.name=Железная Руда
+tile.MercuryNickelOre.name=Никелевая Руда
+
+tile.VenusGrunt.name=Грунт Венеры
+tile.VenusSubGrunt.name=Подповерхностный Грунт Венеры
+tile.VenusSulfurOre.name=Серная Руда
+tile.VenusDiamondOre.name=Алмазная Руда
+
+tile.LeadOre.name=Свинцовая Руда
+tile.DecoLead.name=Декоративный Свинцовый Блок
+
+tile.CeresGrunt.name=Грунт Цереры
+tile.CeresSubGrunt.name=Подповерхность Цереры
+tile.CeresGlowStone.name=Светокамень Цереры
+tile.CeresBricks.name=Кирпич Сокровищницы Цереры
+tile.CeresMeteoricIronOre.name=Руда Метеоритного Железа
+
+tile.PlutoGrunt.name=Грунт Плутона
+tile.PlutoSubGrunt.name=Подповерхность Плутона
+tile.PlutoStone.name=Камень Плутона
+tile.PlutoBricks.name=Кирпич Сокровищницы Плутона
+tile.PlutoGlowStone.name=Светокамень Плутона
+
+tile.MakemakeGrunt.name=Грунт Макемаке
+tile.MakemakeSubGrunt.name=Подповерхность Макемаке
+
+tile.PhobosRock.name=Грунт Фобоса
+tile.PhobosSecRock.name=Подповерхностный Грунт Фобоса
+tile.PhobosStone.name=Камень Фобоса
+tile.PhobosDeshOre.name=Руда Деш
+tile.PhobosCobaltumOre.name=Кобальтовая Руда
+
+tile.DeimosGrunt.name=Грунт Деймоса
+tile.DeimosSubGrunt.name=Подповерхностный Грунт Деймоса
+tile.DeimosOriharukonOre.name=Орихаруконовая Руда
+tile.DeimosTinOre.name=Оловянная Руда
+
+tile.IOGrunt.name=Поверхность Ио
+tile.IOStone.name=Камень Ио
+tile.IOAsh.name=Пепел Ио
+tile.IOBricks.name=Кирпич Сокровищницы Ио
+tile.IOGlowStone.name=Светокамень Ио
+tile.IOWolframiumOre.name=Вольфрамовая Руда
+tile.IOCopperOre.name=Медная Руда
+
+tile.EuropaRock.name=Блок Поверхности Европы
+tile.EuropaIce.name=Лед Европы
+tile.EuropaGeyzer.name=Гейзер Европы
+
+tile.GanymedeGrunt.name=Грунт Ганимеда
+tile.GanymedeSubGrunt.name=Подповерхностный Грунт Ганимеда
+tile.GanymedeMagnesiumOre.name=Магниевая Руда
+tile.GanymedeTitanuimOre.name=Ильменитовая Руда
+
+tile.CallistoGrunt.name=Поверхность Каллисто
+tile.CallistoSubgrunt.name=Подповерхность Каллисто
+
+tile.EnceladusSnow.name=Снег Энцелада
+tile.EnceladusGrunt.name=Грунт Энцелада
+tile.EnceladusBricks.name=Кирпич Сокровищницы Энцелада
+tile.EnceladusGlowStone.name=Светокамень Энцелада
+tile.Crystall.name=Неизвестный Кристалл
+
+tile.T4Chest.name=Сундук с Сокровищами 4-го уровня
+tile.T5Chest.name=Сундук с Сокровищами 5-го уровня
+tile.T6Chest.name=Сундук с Сокровищами 6-го уровня
+tile.T7Chest.name=Сундук с Сокровищами 7-го уровня
+tile.T8Chest.name=Сундук с Сокровищами 8-го уровня
+
+tile.TitanGrunt.name=Грунт Титана
+tile.TitanSubGrunt.name=Подповерхностный Грунт Титана
+tile.TitanStone.name=Камень Титана
+tile.Methane.name=Жидкий Метан
+
+tile.OberonGrunt.name=Грунт Оберона
+tile.OberonSubGrunt.name=Подповерхность Оберона
+tile.OberonStone.name=Камень Оберона
+tile.OberonAdamantiteOre.name=Адамантитовая Руда
+
+tile.ProteusGrunt.name=Грунт Протея
+tile.ProteusSubGrunt.name=Подповерхность Протея
+tile.ProteusStone.name=Камень Протея
+tile.ProteusBricks.name=Кирпич Сокровищницы Протея
+tile.ProteusGlowStone.name=Светокамень Протея
+tile.ProteusWolframiumOre.name=Вольфрамовая Руда
+tile.ProteusPlatinumOre.name=Платиновая Руда
+
+tile.TritonGrunt.name=Грунт Тритона
+tile.TritonSubGrunt.name=Подповерхность Тритона
+tile.TritonStone.name=Камень Тритона
+tile.TritonMithrilOre.name=Мифриловая Руда
+
+tile.ACentauriBbGrunt.name=Поверхность α Центавра Bb
+tile.ACentauriBbSubGrunt.name=Подповерхность α Центавра Bb
+
+tile.Barnarda2Grass.name=Блок Травы Барнарды C
+tile.Barnarda2Dirt.name=Блок Земли Барнарды C
+tile.Barnarda2Dandelion1.name=Растительность Барнарды C
+tile.Barnarda2Dandelion2.name=Растительность Барнарды C
+tile.Barnarda2Dandelion3.name=Растительность Барнарды C
+tile.Barnarda2Log.name=Дерево Барнарды C
+tile.Sapling_1.name=Саженец Дерева Барнарды C
+tile.Leaves_1.name=Листва Дерева Барнарды C
+tile.BarnardaEGrunt.name=Грунт Барнарды Е
+tile.BarnardaESubGrunt.name=Подповерхность Барнарды Е
+tile.CrystalB.name=Радужный Кристалл
+tile.BarnardaEOreIron.name=Железная Руда
+tile.BarnardaEOreGold.name=Золотая Руда
+tile.BarnardaFGrunt.name=Грунт Барнарды F
+tile.BarnardaFSubGrunt.name=Подповерхность Барнарды F
+tile.UnknowWater.name=Неизвестная Жидкость
+
+tile.BlockDecorateCopper.name=Декоративный Медный Блок
+tile.AssemblyMachine.name=Сборочный Цех
+
+item.SchematicTier4.name=Схема для верстака NASA
+item.SchematicTier5.name=Схема для верстака NASA
+item.SchematicTier6.name=Схема для верстака NASA
+item.SchematicTier7.name=Схема для верстака NASA
+item.SchematicTier8.name=Схема для верстака NASA
+
+item.Tier4Key.name=Ключ от подземелья 4-го уровня
+item.Tier5Key.name=Ключ от подземелья 5-го уровня
+item.Tier6Key.name=Ключ от подземелья 6-го уровня
+item.Tier7Key.name=Ключ от подземелья 7-го уровня
+item.Tier8Key.name=Ключ от подземелья 8-го уровня
+
+item.Tier4Rocket.t4Rocket.name=Ракета 4-го уровня
+item.Tier5Rocket.t5Rocket.name=Ракета 5-го уровня
+item.Tier6Rocket.t6Rocket.name=Ракета 6-го уровня
+item.Tier7Rocket.t7Rocket.name=Ракета 7-го уровня
+item.Tier8Rocket.t8Rocket.name=Ракета 8-го уровня
+
+
+item.HeavyDutyPlate4.name=Сверхпрочное покрытие
+item.HeavyDutyPlate5.name=Сверхпрочное покрытие
+item.HeavyDutyPlate6.name=Сверхпрочное покрытие
+item.HeavyDutyPlate7.name=Сверхпрочное покрытие
+item.HeavyDutyPlate8.name=Сверхпрочное покрытие
+
+
+item.LeadIngot.name=Свинцовый Слиток
+item.DuraluminIngot.name=Дюралюминиевый Слиток
+item.NickelIngot.name=Никелевый Слиток
+item.CobaltumIngot.name=Кобальтовый Слиток
+item.PlatinumIngot.name=Платиновый Слиток
+item.MagnesiumIngot.name=Магниевый Слиток
+item.WolframiumIngot.name=Вольфрамовый Слиток
+item.AdamantiteIngot.name=Адамантитовый Слиток
+item.MithrilIngot.name=Мифриловый Слиток
+item.OriharukonIngot.name=Орихаруконовый Слиток
+
+item.CompressedLead.name=Сжатый Свинец
+item.CompressedDuralumin.name=Сжатый Дюралюминий
+item.CompressedNickel.name=Сжатый Никель
+item.CompressedCobaltum.name=Сжатый Кобальт
+item.CompressedPlatinum.name=Сжатая Платина
+item.CompressedMagnesium.name=Сжатый Магний
+item.CompressedWolframium.name=Сжатый Вольфрам
+item.CompressedAdamantite.name=Сжатый Адамантит
+item.CompressedMithril.name=Сжатый Мифрил
+item.CompressedOriharukon.name=Сжатый Орихарукон
+item.CompressedCoal.name=Сжатый Уголь
+item.CompressedDualBronze.name=Сжатая Двойная Бронза
+item.CompressedDualAluminium.name=Сжатый Двойной Алюминий
+item.CompressedSDHD120.name=Сжатый Сплав "SDHD-120"
+item.UnknowCrystal.name=Осколок Неизвестного Кристалла
+item.Sulfur.name=Сера
+item.MethaneBucket.name=Ведро Метана
+item.ModuleSmallFuelCanister.name=Маленький Топливный Бак
+item.ModuleSmallCanister.name=Заготовка Топливного Бака
+item.ModuleLander.name=Посадочный Модуль 1-го уровня
+item.ModuleLander2.name=Посадочный Модуль 2-го уровня
+item.ModuleLander3.name=Посадочный Модуль 3-го уровня
+item.ThermalClothT2.name=Термоустройчивая Ткань
+item.thermalHelmT2.name=Теплоустойчивый Шлем
+item.thermalChestplateT2.name=Теплоустойчивая Кираса
+item.thermalLeggingsT2.name=Теплоустойчивые Поножи
+item.thermalBootsT2.name=Теплоустойчиввые Ботинки
+item.thermalBootsT2Gravity.name=Теплоустойчиввые Ботинки
+
+item.JetPack.name=Реактивный Электроранец
+item.lead_helmet.name=Свинцовый Шлем
+item.lead_plate.name=Свинцовый Нагрудник
+item.lead_leg.name=Свинцовые Поножи
+item.lead_boots.name=Свинцовые Ботинки
+item.plasmasword.name=Плазменный Меч
+item.plasmaaxe.name=Плазменный Топор
+item.plasmapickaxe.name=Плазменная Кирка
+item.plasmahoe.name=Плазменная Мотыга
+item.plasmashovel.name=Плазменная Лопата
+
+item.LeadBattery.name=Свинцовая Батарейка
+item.UnknowWaterBucket.name=Ведро Неизвестной Жидкости
+
+potion.radiation=Солнечная Радиация
+
+gui.schematic4.desc=Ракета 4-го уровня
+gui.schematic5.desc=Ракета 5-го уровня
+gui.schematic6.desc=Ракета 6-го уровня
+gui.schematic7.desc=Ракета 7-го уровня
+gui.schematic8.desc=Ракета 8-го уровня
+
+gui.hdp4.desc=4-ый уровень
+gui.hdp5.desc=5-ый уровень
+gui.hdp6.desc=6-ой уровень
+gui.hdp7.desc=7-ой уровень
+gui.hdp8.desc=8-ой уровень
+
+gui.thermal2.desc1=2-ой уровень
+gui.thermal2.desc2=Защищает от Солнечной Радиации.
+gui.thermal2.descGravity=Улучшение: "Усиленная Гравитация"
+
+gui.module.desc=Ракетный Модуль
+
+itemGroup.AddonsBlocks=GalaxySpace: Блоки
+itemGroup.AddonsItems=GalaxySpace: Предметы
+itemGroup.AddonsArmor=GalaxySpace: Броня
+
+entity.EvolvedColdBlaze.name=Эволюционировавший Замерший Ифрит
+entity.EvolvedBossBlaze.name=Эволюционировавший Босс Ифрит
+entity.EvolvedFireCreeper.name=Эволюционировавший Огненный Крипер
+entity.EvolvedBossGhast.name=Эволюционировавший Босс Гаст
+entity.EvolvedFireSpider.name=Эволюционировавший Огненный Паук
+entity.EvolvedFireSkeleton.name=Эволюционировавший Огненный Скелет
+entity.EvolvedCrystalBoss.name=Эволюционировавший Кристалльный Босс
+entity.EvolvedBossSlime.name=Эволюционировавший Босс Слизень
+entity.EvolvedEnderman.name=Эволюционировавший Странник Края
+entity.EvolvedBossWolf.name=Эволюционировавший Босс Волк
+entity.EvolvedGuardian.name=Эволюционировавший Страж Вод
+entity.Tentacles.name=Природное Щупальце
+entity.Crawler.name=Волнэскор
+
+entity.SpaceshipT4.name=Ракета 4-го уровня
+entity.SpaceshipT5.name=Ракета 5-го уровня
+entity.SpaceshipT6.name=Ракета 6-го уровня
+entity.SpaceshipT7.name=Ракета 7-го уровня
+entity.SpaceshipT8.name=Ракета 8-го уровня
+
+planet.Ceres=Церера
+moon.Phobos=Фобос
+moon.Deimos=Деймос
+moon.ioJupiter=Ио
+moon.Europa=Европа
+moon.Ganymed=Ганимед
+moon.Callisto=Каллисто
+moon.Mimas=Мимас
+moon.Enceladus=Энцелад
+moon.Tethys=Тефия
+moon.Dione=Диона
+moon.Rheya=Рея
+moon.Titan=Титан
+moon.Iapetus=Япет
+moon.Miranda=Миранда
+moon.Ariel=Ариель
+moon.Umbriel=Умбриэль
+moon.Titania=Титания
+moon.Oberon=Оберон
+moon.Proteus=Протей
+moon.Triton=Тритон
+planet.pluto=Плутон
+moon.Charon=Харон
+planet.kuiperbelt=Пояс Койпера
+planet.haumea=Хаумеа
+planet.makemake=Макемаке
+planet.eris=Эрида
+
+solarsystem.aCentauriSystem=Система α Центавра
+star.CentauriA=α Центавра А
+planet.CentauriB=α Центавра B
+planet.CentauriBb=α Центавра Bb
+planet.Proxima=Проксима Центавра
+
+solarsystem.BarnardsSystem=Система Барнарда
+star.Barnarda=Барнарда A
+planet.Barnarda1=Барнарда B
+planet.Barnarda2=Барнарда C
+planet.Barnarda3=Барнарда D
+planet.Barnarda4=Барнарда E
+planet.Barnarda5=Барнарда F
+planet.Barnarda6=Барнарда G
+planet.BarnardaAsteroids=Пояс Астероидов 
+
+solarsystem.VegaSystem=Система Вега
+star.Vega=Вега
+planet.Vega1=Вега 1
+planet.Vega2=Вега 2
+planet.VegaAsteroids=Пояс Астероидов

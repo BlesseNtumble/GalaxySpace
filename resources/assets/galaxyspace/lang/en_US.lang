@@ -1,0 +1,336 @@
+#English (US)
+# Dimensions
+achievement.miningcoppergc=This is what we have already seen...
+achievement.miningcoppergc.desc=Mining Copper ore.
+achievement.miningtingc=Hello old friend
+achievement.miningtingc.desc=Mining Tin ore.
+achievement.miningaluminiumgc=What's this?
+achievement.miningaluminiumgc.desc=Mining Aluminium ore.
+achievement.miningsilicongc=Silicon? Really?
+achievement.miningsilicongc.desc=Mining Silicon ore.
+achievement.electricgc=Stream Energy
+achievement.electricgc.desc=Create your first aluminum wire.
+achievement.electric2gc= First Improvement
+achievement.electric2gc.desc= Improving aluminum wire.
+achievement.energycellgc=Storage of Energy
+achievement.energycellgc.descCreate module "Energy Storage".
+achievement.coalgeneratorgc=Energy Miner
+achievement.coalgeneratorgc.desc=Create coal generator.
+achievement.solargc=Solar Energy
+achievement.solargc.desc=Create a basic solar panel.
+achievement.circuitgc=Nanoengineering
+achievement.circuitgc.desc=Create Circuit Fabricator.
+achievement.compressorgc=Universe compression
+achievement.compressorgc.desc=Create Compressor, using the basis of wafer.
+achievement.fangc= And why this bauble?
+achievement.fangc.desc=Create a Fan.
+achievement.hdpgc=Perfect plate
+achievement.hdpgc.desc=Create Heavy Duty Plate Tier 1.
+achievement.furancegc=Electric hot stuff
+achievement.furancegc.desc=Create a electic furnace.
+achievement.assemblygc=This is something from fantasy...
+achievement.assemblygc.desc=Creaty Assembly Machine.
+achievement.nasagc=Rocket manufacturing
+achievement.nasagc.desc=Create Workbench NASA, to make your first rocket!
+achievement.refinerygc=Recycling Black Gold
+achievement.refinerygc.desc=Make Refinery to produce fuel for rockets.
+achievement.oilgc=Black Gold
+achievement.oilgc.desc=Collect some oil to your bucket.
+achievement.fuelgc=FLAMMABLE!
+achievement.fuelgc.desc=Pour the oil into your bucket.
+achievement.rocketgc=Almost in space!
+achievement.rocketgc.desc=Create Rocket Tier 1.
+achievement.moongc=Where man has gone before!
+achievement.moongc.desc=Land on the Moon!
+
+tile.MercuryGrunt.name=Mercury Surface Grunt
+tile.MercurySubGrunt.name=Mercury Subsurface Grunt
+tile.MercuryCore.name=Mercury Core
+tile.MercuryLeadOre.name=Lead Ore
+tile.MercuryIronOre.name=Iron Ore
+tile.MercuryNickelOre.name=Nickel Ore
+
+tile.VenusGrunt.name=Venus Surface Grunt
+tile.VenusSubGrunt.name=Venus Subsurface Grunt
+tile.VenusSulfurOre.name=Sulfur Ore
+tile.VenusDiamondOre.name=Diamond Ore
+
+tile.LeadOre.name=Lead Ore
+tile.DecoLead.name=Decorate Lead Block
+
+tile.CeresGrunt.name=Ceres Surface Grunt
+tile.CeresSubGrunt.name=Ceres Subsurface Grunt
+tile.CeresGlowStone.name=Ceres Glowstone
+tile.CeresBricks.name=Ceres Dungeon Bricks
+tile.CeresMeteoricIronOre.name=Meteoric Iron Ore
+
+tile.PlutoGrunt.name=Pluto Surface Ice
+tile.PlutoSubGrunt.name=Pluto Subsurface Ice
+tile.PlutoStone.name=Pluto Stone
+tile.PlutoBricks.name=Pluto Dungeon Bricks
+tile.PlutoGlowStone.name=Pluto Glowstone
+
+tile.MakemakeGrunt.name=Makemake Surface Grunt
+tile.MakemakeSubGrunt.name=Makemake Subsurface Grunt
+
+tile.PhobosRock.name=Phobos Surface Grunt
+tile.PhobosSecRock.name=Phobos Subsurface Grunt
+tile.PhobosStone.name=Phobos Stone
+tile.PhobosDeshOre.name=Desh Ore
+tile.PhobosCobaltumOre.name=Cobaltum Ore
+
+tile.DeimosGrunt.name=Deimos Surface Grunt
+tile.DeimosSubGrunt.name=Deimos Subsurface Grunt
+tile.DeimosOriharukonOre.name=Oriharukon Ore
+tile.DeimosTinOre.name=Tin Ore
+
+tile.IOGrunt.name=Io Surface Grunt
+tile.IOStone.name=Io Stone
+tile.IOAsh.name=Io Ash
+tile.IOBricks.name=Io Dungeon Bricks
+tile.IOGlowStone.name=Io Glowstone
+tile.IOWolframiumOre.name=Wolframium Ore
+tile.IOCopperOre.name=Copper Ore
+
+tile.EuropaRock.name=Europa Block Surface
+tile.EuropaIce.name=Europa Ice
+tile.EuropaGeyzer.name=Europa Geysir
+
+tile.GanymedeGrunt.name=Ganymede Surface Grunt
+tile.GanymedeSubGrunt.name=Ganymede Subsurface Grunt
+tile.GanymedeMagnesiumOre.name=Magnesium Ore
+tile.GanymedeTitanuimOre.name=Ilmenite Ore
+
+tile.CallistoGrunt.name=Callisto Surface Grunt
+tile.CallistoSubgrunt.name=Callisto Subsurface Grunt
+
+tile.EnceladusSnow.name=Enceladus Ice
+tile.EnceladusGrunt.name=Enceladus Subsurface Grunt
+tile.EnceladusBricks.name=Enceladus Dungeon Bricks
+tile.EnceladusGlowStone.name=Enceladus Glowstone
+tile.Crystall.name=Unknow Crystal
+
+tile.T4Chest.name=Treasure Chest Tier 4
+tile.T5Chest.name=Treasure Chest Tier 5
+tile.T6Chest.name=Treasure Chest Tier 6
+tile.T7Chest.name=Treasure Chest Tier 7
+tile.T8Chest.name=Treasure Chest Tier 8
+
+tile.TitanGrunt.name=Titan Surface Grunt
+tile.TitanSubGrunt.name=Titan Subsurface Grunt
+tile.TitanStone.name=Titan Stone
+tile.Methane.name=Liquid Methane
+
+tile.OberonGrunt.name=Oberon Surface Grunt
+tile.OberonSubGrunt.name=Oberon Subsurface Grunt
+tile.OberonStone.name=Oberon Stone
+tile.OberonAdamantiteOre.name=Adamantite Ore
+
+tile.ProteusGrunt.name=Proteus Surface Grunt
+tile.ProteusSubGrunt.name=Proteus Subsurface Grunt
+tile.ProteusStone.name=Proteus Stone
+tile.ProteusBricks.name=Proteus Dungeon Bricks
+tile.ProteusGlowStone.name=Proteus Glowstone
+tile.ProteusWolframiumOre.name=Wolframium Ore
+tile.ProteusPlatinumOre.name=Platinum Ore
+
+tile.TritonGrunt.name=Triton Surface Grunt
+tile.TritonSubGrunt.name=Triton Subsurface Grunt
+tile.TritonStone.name=Triton Stone
+tile.TritonMithrilOre.name=Mithril Ore
+
+tile.ACentauriBbGrunt.name=α Centauri Bb Surface Grunt
+tile.ACentauriBbSubGrunt.name=α Centauri Bb Subsurface Grunt
+
+tile.Barnarda2Grass.name=Grass Barnarda C
+tile.Barnarda2Dirt.name=Dirt Barnarda C
+tile.Barnarda2Dandelion1.name=Dandelion Barnarda C
+tile.Barnarda2Dandelion2.name=Dandelion Barnarda C
+tile.Barnarda2Dandelion3.name=Dandelion Barnarda C
+tile.Barnarda2Log.name=Log Barnarda C
+tile.Sapling_1.name=Sapling Log Barnarda C
+tile.Leaves_1.name=Leaves Log Barnarda C
+tile.BarnardaEGrunt.name=Barnarda E Surface Grunt
+tile.BarnardaESubGrunt.name=Barnarda E Subsurface Grunt
+tile.CrystalB.name=Rainbow Crystal
+tile.BarnardaEOreIron.name=Iron Ore
+tile.BarnardaEOreGold.name=Gold Ore
+tile.BarnardaFGrunt.name=Barnarda F Surface Grunt
+tile.BarnardaFSubGrunt.name=Barnarda F Subsurface Grunt
+tile.UnknowWater.name=Unknow Liquid
+
+tile.BlockDecorateCopper.name=Decorate Copper Block
+
+tile.AssemblyMachine.name=Assembly Machine
+
+item.SchematicTier4.name=NASA Workbench Schematic
+item.SchematicTier5.name=NASA Workbench Schematic
+item.SchematicTier6.name=NASA Workbench Schematic
+item.SchematicTier7.name=NASA Workbench Schematic
+item.SchematicTier8.name=NASA Workbench Schematic
+
+item.Tier4Key.name=Tier 4 Dungeon Key
+item.Tier5Key.name=Tier 5 Dungeon Key
+item.Tier6Key.name=Tier 6 Dungeon Key
+item.Tier7Key.name=Tier 7 Dungeon Key
+item.Tier8Key.name=Tier 8 Dungeon Key
+
+item.Tier4Rocket.t4Rocket.name=Tier 4 Rocket 
+item.Tier5Rocket.t5Rocket.name=Tier 5 Rocket 
+item.Tier6Rocket.t6Rocket.name=Tier 6 Rocket 
+item.Tier7Rocket.t7Rocket.name=Tier 7 Rocket 
+item.Tier8Rocket.t8Rocket.name=Tier 8 Rocket
+
+item.HeavyDutyPlate4.name=Heavy Duty Plate
+item.HeavyDutyPlate5.name=Heavy Duty Plate
+item.HeavyDutyPlate6.name=Heavy Duty Plate
+item.HeavyDutyPlate7.name=Heavy Duty Plate
+item.HeavyDutyPlate8.name=Heavy Duty Plate
+
+item.JetPack.name=Electric Jetpack
+item.lead_helmet.name=Lead Helmet
+item.lead_plate.name=Lead Chestplate
+item.lead_leg.name=Lead Leggins
+item.lead_boots.name=Lead Boots
+item.plasmasword.name=Plasma Sword
+item.plasmaaxe.name=Plasma Axe
+item.plasmapickaxe.name=Plasma Pickaxe
+item.plasmahoe.name=Plasma Hoe
+item.plasmashovel.name=Plasma Shovel
+
+item.LeadIngot.name=Lead Ingot
+item.DuraluminIngot.name=Duralumin Ingot
+item.NickelIngot.name=Nickel Ingot
+item.CobaltumIngot.name=Cobaltum Ingot
+item.PlatinumIngot.name=Platinum Ingot
+item.MagnesiumIngot.name=Magnesium Ingot
+item.WolframiumIngot.name=Wolframium Ingot
+item.AdamantiteIngot.name=Adamantite Ingot
+item.MithrilIngot.name=Mithril Ingot
+item.OriharukonIngot.name=Oriharukon Ingot
+
+item.CompressedLead.name=Compressed Lead
+item.CompressedDuralumin.name=Compressed Duralumin
+item.CompressedNickel.name=Compressed Nickel
+item.CompressedCobaltum.name=Compressed Cobaltum
+item.CompressedPlatinum.name=Compressed Platinum
+item.CompressedMagnesium.name=Compressed Magnesium
+item.CompressedWolframium.name=Compressed Wolframium
+item.CompressedAdamantite.name=Compressed Adamantite
+item.CompressedMithril.name=Compressed Mithril
+item.CompressedOriharukon.name=Compressed Oriharukon
+item.CompressedCoal.name=Compressed Coal
+item.CompressedDualBronze.name=Compressed Dual Bronze
+item.CompressedDualAluminium.name=Compressed Dual Aluminium
+item.CompressedSDHD120.name=Compressed Alloy "SDHC-120"
+item.UnknowCrystal.name=Unknown Crystal Shard
+item.Sulfur.name=Sulfur
+item.MethaneBucket.name=Methane Bucket
+item.ModuleSmallFuelCanister.name=Small Fuel Canister
+item.ModuleSmallCanister.name=Blank Fuel Tank
+item.ModuleLander.name=Lander Tier 1
+item.ModuleLander2.name=Lander Tier 2
+item.ModuleLander3.name=Lander Tier 3
+item.ThermalClothT2.name=Thermal Cloth
+item.thermalHelmT2.name=Thermal Helmet
+item.thermalChestplateT2.name=Thermal Chestplate
+item.thermalLeggingsT2.name=Thermal Leggings
+item.thermalBootsT2.name=Thermal Boots
+item.thermalBootsT2Gravity.name=Thermal Boots
+
+item.LeadBattery.name=Lead Battery
+item.UnknowWaterBucket.name=Bucket Unknow Liquid
+
+potion.radiation=Solar Radiation
+
+gui.schematic4.desc=Rocket Tier 4
+gui.schematic5.desc=Rocket Tier 5
+gui.schematic6.desc=Rocket Tier 6
+gui.schematic7.desc=Rocket Tier 7
+gui.schematic8.desc=Rocket Tier 8
+
+gui.hdp4.desc=Tier 4
+gui.hdp5.desc=Tier 5
+gui.hdp6.desc=Tier 6
+gui.hdp7.desc=Tier 7
+gui.hdp8.desc=Tier 8
+
+gui.thermal2.desc1=Tier 2
+gui.thermal2.desc2=Protect from Solar Radiation.
+gui.thermal2.descGravity=Upgrade: "Reinforced Gravity"
+
+gui.module.desc=Rocket Module
+
+itemGroup.AddonsBlocks=GalaxySpace: Blocks
+itemGroup.AddonsItems=GalaxySpace: Items
+itemGroup.AddonsArmor=GalaxySpace: Armor
+
+entity.EvolvedColdBlaze.name=Evolved Cold Blaze
+entity.EvolvedBossBlaze.name=Evolved Boss Blaze
+entity.EvolvedFireCreeper.name=Evolved Fire Creeper
+entity.EvolvedBossGhast.name=Evolved Boss Ghast
+entity.EvolvedFireSpider.name=Evolved Fire Spider
+entity.EvolvedFireSkeleton.name=Evolved Fire Skeleton
+entity.EvolvedCrystalBoss.name=Evolved Crystal Boss
+entity.EvolvedBossSlime.name=Evolved Boss Slime
+entity.EvolvedEnderman.name=Evolved Enderman
+entity.EvolvedBossWolf.name=Evolved Boss Wolf
+entity.EvolvedGuardian.name=Evolved Water Guardian
+entity.Tentacles.name=Nature Tentacle
+entity.Crawler.name=Volneskor
+
+entity.SpaceshipT4.name=Tier 4 Rocket 
+entity.SpaceshipT5.name=Tier 5 Rocket 
+entity.SpaceshipT6.name=Tier 6 Rocket 
+entity.SpaceshipT7.name=Tier 7 Rocket 
+entity.SpaceshipT7.name=Tier 8 Rocket 
+
+planet.Ceres=Ceres
+moon.Phobos=Phobos
+moon.Deimos=Deimos
+moon.ioJupiter=Io
+moon.Europa=Europa
+moon.Ganymed=Ganymede
+moon.Callisto=Callisto
+moon.Mimas=Mimas
+moon.Enceladus=Enceladus
+moon.Tethys=Tethys
+moon.Dione=Dione
+moon.Rheya=Rheya
+moon.Titan=Titan
+moon.Iapetus=Iapetus
+moon.Miranda=Miranda
+moon.Ariel=Ariel
+moon.Umbriel=Umbriel
+moon.Titania=Titania
+moon.Oberon=Oberon
+moon.Proteus=Proteus
+moon.Triton=Triton
+planet.pluto=Pluto
+moon.Charon=Charon
+planet.kuiperbelt=Kuiper Belt
+planet.haumea=Haumea
+planet.makemake=Makemake
+planet.eris=Eris
+
+solarsystem.aCentauriSystem=α Centauri System
+star.CentauriA=α Centauri А
+planet.CentauriB=α Centauri B
+planet.CentauriBb=α Centauri Bb
+planet.Proxima=Proxima Centauri
+
+solarsystem.BarnardsSystem=Barnard's System
+star.Barnarda=Barnarda A
+planet.Barnarda1=Barnarda B
+planet.Barnarda2=Barnarda C
+planet.Barnarda3=Barnarda D
+planet.Barnarda4=Barnarda E
+planet.Barnarda5=Barnarda F
+planet.Barnarda6=Barnarda G
+planet.BarnardaAsteroids=Asteroids Belt
+
+solarsystem.VegaSystem=Vega System
+star.Vega=Vega
+planet.Vega1=Vega B
+planet.Vega2=Vega C
+planet.VegaAsteroids=Asteroids Belt
