@@ -1,0 +1,335 @@
+achievement.miningcoppergc=Das haben wir schon gesehen...
+achievement.miningcoppergc.desc=Baue Kupfererz ab
+achievement.miningtingc=Hallo, alter Freund
+achievement.miningtingc.desc=Baue Zinnerz ab
+achievement.miningaluminiumgc=Und was ist das hier?
+achievement.miningaluminiumgc.desc=Baue Aluminiumerz ab
+achievement.miningsilicongc=Silizium? Wirklich?
+achievement.miningsilicongc.desc=Добудьте Кремниевую руду.
+achievement.electricgc=Energieübertragung
+achievement.electricgc.desc=Baue dein erstes Aluminiumkabel
+achievement.electric2gc=Erste Verbesserung
+achievement.electric2gc.desc=Verbessere ein Aluminiumkabel
+achievement.energycellgc=Energiespeicher
+achievement.energycellgc.desc=Baue einen Energiespeicher
+achievement.coalgeneratorgc=Energieherstellung
+achievement.coalgeneratorgc.desc=Baue einen Kohlegenerator
+achievement.solargc=Solarenergie
+achievement.solargc.desc=Baue ein Basis-Solarmodul
+achievement.circuitgc=Nanotechnologie
+achievement.circuitgc.desc=Baue ein Schaltkreisfabrikator
+achievement.compressorgc=Galaktische Kompression
+achievement.compressorgc.desc=Baue einen Kompressor mit Hilfe eines Basis-Wafers
+achievement.fangc=Und wofür ist das gut?
+achievement.fangc.desc=Baue ein Ventilator
+achievement.hdpgc=Die perfekte Platte
+achievement.hdpgc.desc=Baue eine Robuste Platte der Stufe 1
+achievement.furancegc=Elektrische heiße Angelegenheit
+achievement.furancegc.desc=Baue einen Elektrischen Ofen
+achievement.assemblygc=Das ist etwas aus Science-Fiction
+achievement.assemblygc.desc=Baue eine Montagemachine
+achievement.nasagc=Raketenbau
+achievement.nasagc.desc=Baue eine Raketenwerkbank um deine erste Rakete zu bauen!
+achievement.refinerygc=Schwarzgoldverarbeitung
+achievement.refinerygc.desc=Baue eine Raffinerie, um Öl zu Treibstoff verarbeiten
+achievement.oilgc=Schwarzes Gold
+achievement.oilgc.desc=Sammle Öl mit einem Eimer
+achievement.fuelgc=BRANDGEFÄHRLICH!
+achievement.fuelgc.desc=Fülle einen Eimer mit Treibstoff
+achievement.rocketgc=Fast im Weltall!
+achievement.rocketgc.desc=Baue eine Rakete der Stufe 1
+achievement.moongc=Wo kein Mensch zuvor gewesen ist
+achievement.moongc.desc=Lande of dem Mond!
+
+tile.MercuryGrunt.name=Merkuroberflächengestein
+tile.MercurySubGrunt.name=Merkurunteroberflächengestein
+tile.MercuryCore.name=Merkur-Kernmaterial
+tile.MercuryLeadOre.name=Bleierz
+tile.MercuryIronOre.name=Eisenerz
+tile.MercuryNickelOre.name=Nickelerz
+
+tile.VenusGrunt.name=Venusoberflächengestein
+tile.VenusSubGrunt.name=Venusunteroberflächengestein
+tile.VenusSulfurOre.name=Schwefelerz
+tile.VenusDiamondOre.name=Diamanterz
+
+tile.LeadOre.name=Bleierz
+tile.DecoLead.name=Bleidekorationsblock
+
+tile.CeresGrunt.name=Ceresoberflächengestein
+tile.CeresSubGrunt.name=Ceresunteroberflächengestein
+tile.CeresGlowStone.name=Ceres-Glowstone
+tile.CeresBricks.name=Ceres-Dungeonziegel
+tile.CeresMeteoricIronOre.name=Meteoreisenerz
+
+tile.PlutoGrunt.name=Plutooberflächengestein
+tile.PlutoSubGrunt.name=Plutounteroberflächengestein
+tile.PlutoStone.name=Plutostein
+tile.PlutoBricks.name=Plutodungeonziegel
+tile.PlutoGlowStone.name=Pluto-Glowstone
+
+tile.MakemakeGrunt.name=Makemakeoberflächengestein
+tile.MakemakeSubGrunt.name=Makemakeunteroberflächengestein
+
+tile.PhobosRock.name=Phobosoberflächengestein
+tile.PhobosSecRock.name=Phobosunteroberflächengestein
+tile.PhobosStone.name=Phobosstein
+tile.PhobosDeshOre.name=Desh-Erz
+tile.PhobosCobaltumOre.name=Kobalt-Erz
+
+tile.DeimosGrunt.name=Deimosoberflächengestein
+tile.DeimosSubGrunt.name=Deimusunteroberflächengestein
+tile.DeimosOriharukonOre.name=Oriharukonerz
+tile.DeimosTinOre.name=Zinnerz
+
+tile.IOGrunt.name=Io-Oberflächengestein
+tile.IOStone.name=Io-Stein
+tile.IOAsh.name=Io-Asche
+tile.IOBricks.name=Io-Dungeonziegel
+tile.IOGlowStone.name=Io-Glowstone
+tile.IOWolframiumOre.name=Wolframerz
+tile.IOCopperOre.name=Kupfererz
+
+tile.EuropaRock.name=Europaoberflächenblock
+tile.EuropaIce.name=Europaeis
+tile.EuropaGeyzer.name=Europa-Geysir
+
+tile.GanymedeGrunt.name=Ganymedoberflächengestein
+tile.GanymedeSubGrunt.name=Ganymedunteroberflächengestein
+tile.GanymedeMagnesiumOre.name=Magnesiumerz
+tile.GanymedeTitanuimOre.name=Ilmeniterz
+
+tile.CallistoGrunt.name=Kallistooberflächengestein
+tile.CallistoSubgrunt.name=Kallistounteroberflächengestein
+
+tile.EnceladusSnow.name=Enceladusschnee
+tile.EnceladusGrunt.name=Enceladusoberflächengestein
+tile.EnceladusBricks.name=Enceladusdungeonziegel
+tile.EnceladusGlowStone.name=Enceladus-Glowstone
+tile.Crystall.name=Unbekannter Kristall
+
+tile.T4Chest.name=Schatztruhe Stufe 4
+tile.T5Chest.name=Schatztruhe Stufe 5
+tile.T6Chest.name=Schatztruhe Stufe 6
+tile.T7Chest.name=Schatztruhe Stufe 7
+tile.T8Chest.name=Schatztruhe Stufe 8
+
+tile.TitanGrunt.name=Titanoberflächengestein
+tile.TitanSubGrunt.name=Titanunteroberflächengestein
+tile.TitanStone.name=Titanstein
+tile.Methane.name=Flüssigmethan
+
+tile.OberonGrunt.name=Oberonoberflächengestein
+tile.OberonSubGrunt.name=Oberonunteroberflächengestein
+tile.OberonStone.name=Oberonstein
+tile.OberonAdamantiteOre.name=Adamantiterz
+
+tile.ProteusGrunt.name=Proteusoberflächengestein
+tile.ProteusSubGrunt.name=Proteusunteroberflächengestein
+tile.ProteusStone.name=Proteusstein
+tile.ProteusBricks.name=Proteusdungeonziegel
+tile.ProteusGlowStone.name=Proteus-Glowstone
+tile.ProteusWolframiumOre.name=Wolframerz
+tile.ProteusPlatinumOre.name=Platinerz
+
+tile.TritonGrunt.name=Tritonoberflächengestein
+tile.TritonSubGrunt.name=Tritonunteroberflächengestein
+tile.TritonStone.name=Tritonstein
+tile.TritonMithrilOre.name=Mithrilerz
+
+tile.ACentauriBbGrunt.name=α Centauri Bb Oberflächengestein
+tile.ACentauriBbSubGrunt.name=α Centauri Bb Unteroberflächengestein
+
+tile.Barnarda2Grass.name=Barnard C Grasblock
+tile.Barnarda2Dirt.name=Barnard C Erde
+tile.Barnarda2Dandelion1.name=Barnard C Pflanze
+tile.Barnarda2Dandelion2.name=Barnard C Pflanze
+tile.Barnarda2Dandelion3.name=Barnard C Pflanze
+tile.Barnarda2Log.name=Barnard C Holz
+tile.Sapling_1.name=Barnard C Setzling
+tile.Leaves_1.name=Barnard C Laub
+tile.BarnardaEGrunt.name=Barnard C Oberflächengestein
+tile.BarnardaESubGrunt.name=Barnard C Unteroberflächengestein
+tile.CrystalB.name=Regenbogenkristall
+tile.BarnardaEOreIron.name=Eisenerz
+tile.BarnardaEOreGold.name=Golderz
+tile.BarnardaFGrunt.name=Barnard F Oberflächengestein
+tile.BarnardaFSubGrunt.name=Barnard F Unteroberflächengestein
+tile.UnknowWater.name=Unbekannte Flüssigkeit
+
+tile.BlockDecorateCopper.name=Kupferdekorationsblock
+
+tile.AssemblyMachine.name=Montagemachine
+item.SchematicTier4.name=Bauplan für die Raketenwerkbank
+item.SchematicTier5.name=Bauplan für die Raketenwerkbank
+item.SchematicTier6.name=Bauplan für die Raketenwerkbank
+item.SchematicTier7.name=Bauplan für die Raketenwerkbank
+item.SchematicTier8.name=Bauplan für die Raketenwerkbank
+
+item.Tier4Key.name=Dungeonschlüssel (Stufe 4)
+item.Tier5Key.name=Dungeonschlüssel (Stufe 5)
+item.Tier6Key.name=Dungeonschlüssel (Stufe 6)
+item.Tier7Key.name=Dungeonschlüssel (Stufe 7)
+item.Tier8Key.name=Dungeonschlüssel (Stufe 8)
+
+item.Tier4Rocket.t4Rocket.name=Rakete (Stufe 4)
+item.Tier5Rocket.t5Rocket.name=Rakete (Stufe 5)
+item.Tier6Rocket.t6Rocket.name=Rakete (Stufe 6)
+item.Tier7Rocket.t7Rocket.name=Rakete (Stufe 7)
+item.Tier8Rocket.t8Rocket.name=Rakete (Stufe 8)
+
+
+item.HeavyDutyPlate4.name=Robuste Platte
+item.HeavyDutyPlate5.name=Robuste Platte
+item.HeavyDutyPlate6.name=Robuste Platte
+item.HeavyDutyPlate7.name=Robuste Platte
+item.HeavyDutyPlate8.name=Robuste Platte
+
+
+item.LeadIngot.name=Bleibarren
+item.DuraluminIngot.name=Duraluminium Barren
+item.NickelIngot.name=Nickelbarren
+item.CobaltumIngot.name=Kobaltbarren
+item.PlatinumIngot.name=Platinbarren
+item.MagnesiumIngot.name=Magnesiumbarren
+item.WolframiumIngot.name=Wolframbarren
+item.AdamantiteIngot.name=Adamantitbarren
+item.MithrilIngot.name=Mithrilbarren
+item.OriharukonIngot.name=Oriharukonbarren
+
+item.CompressedLead.name=Gepresstes Blei
+item.CompressedDuralumin.name=Gepresstes Duraluminium
+item.CompressedNickel.name=Gepresstes Nickel
+item.CompressedCobaltum.name=Gepresstes Kobalt
+item.CompressedPlatinum.name=Gepresstes Platin
+item.CompressedMagnesium.name=Gepresstes Magnesium
+item.CompressedWolframium.name=Gepresstes Wolfram
+item.CompressedAdamantite.name=Gepresstes Adamantit
+item.CompressedMithril.name=Gepresstes Mithril
+item.CompressedOriharukon.name=Gepresstes Oriharukon
+item.CompressedCoal.name=Gepresste Kohle
+item.CompressedDualBronze.name=Gepresste Dualbronze
+item.CompressedDualAluminium.name=Gepresstes Dualaluminium
+item.CompressedSDHD120.name=Gepresste Legierung "SDHD-120"
+item.UnknowCrystal.name=Unbekannter Kristallsplitter
+item.Sulfur.name=Schwefel
+item.MethaneBucket.name=Methaneimer
+item.ModuleSmallFuelCanister.name=Kleiner Treibstoffkanister
+item.ModuleSmallCanister.name=Kleiner Kanister
+item.ModuleLander.name=Landemodul (Stufe 1)
+item.ModuleLander2.name=Landemodul (Stufe 2)
+item.ModuleLander3.name=Landemodul (Stufe 3)
+item.ThermalClothT2.name=Thermalstoff
+item.thermalHelmT2.name=Thermalpolsterhelm
+item.thermalChestplateT2.name=Thermalpolsterbrustpanzer
+item.thermalLeggingsT2.name=Thermalpolsterbeinschutz
+item.thermalBootsT2.name=Thermalpolsterstiefel
+item.thermalBootsT2Gravity.name=Thermalpolsterstiefel
+
+item.JetPack.name=Jetpack
+item.lead_helmet.name=Bleihelm
+item.lead_plate.name=Bleibrustpanzer
+item.lead_leg.name=Bleibeinschutz
+item.lead_boots.name=Bleistiefel
+item.plasmasword.name=Plasmaschwert
+item.plasmaaxe.name=Plasmaaxt
+item.plasmapickaxe.name=Plasmaspitzhacke
+item.plasmahoe.name=Plasmahacke
+item.plasmashovel.name=Plasmaschaufel
+
+item.LeadBattery.name=Bleibatterie
+item.UnknowWaterBucket.name=Eimer mit unbekannter Flüssigkeit
+
+potion.radiation=Sonnenstrahlung
+
+gui.schematic4.desc=Rakete (Stufe 4)
+gui.schematic5.desc=Rakete (Stufe 5)
+gui.schematic6.desc=Rakete (Stufe 6)
+gui.schematic7.desc=Rakete (Stufe 7)
+gui.schematic8.desc=Rakete (Stufe 8)
+
+gui.hdp4.desc=Stufe 4
+gui.hdp5.desc=Stufe 5
+gui.hdp6.desc=Stufe 6 
+gui.hdp7.desc=Stufe 7
+gui.hdp8.desc=Stufe 8
+
+gui.thermal2.desc1=Stufe 2
+gui.thermal2.desc2=Schützt vor Sonnenstrahlung
+gui.thermal2.descGravity=Verbesserung: "Verstärkte Gravitation"
+
+gui.module.desc=Raketenmodul
+
+itemGroup.AddonsBlocks=GalaxySpace: Blöcke
+itemGroup.AddonsItems=GalaxySpace: Gegenstände
+itemGroup.AddonsArmor=GalaxySpace: Rüstung
+
+entity.EvolvedColdBlaze.name=Entwickelte Kältelohe
+entity.EvolvedBossBlaze.name=Entwickelter Lohen-Boss
+entity.EvolvedFireCreeper.name=Entwickelter Feuercreeper
+entity.EvolvedBossGhast.name=Entwickelter Ghastboss
+entity.EvolvedFireSpider.name=Entwickelte Feuerspinne
+entity.EvolvedFireSkeleton.name=Entwickeltes Feuerskelett
+entity.EvolvedCrystalBoss.name=Entwickelter Kristallboss
+entity.EvolvedBossSlime.name=Entwickelter Nacktschneckenboss
+entity.EvolvedEnderman.name=Entwickelter Enderman
+entity.EvolvedBossWolf.name=Entwickelter Wolfsboss
+entity.EvolvedGuardian.name=Entwickelter Wasserwächter
+entity.Tentacles.name=Naturtentakel
+entity.Crawler.name=Wolneskor
+
+entity.SpaceshipT4.name=Rakete (Stufe 4)
+entity.SpaceshipT5.name=Rakete (Stufe 5)
+entity.SpaceshipT6.name=Rakete (Stufe 6)
+entity.SpaceshipT7.name=Rakete (Stufe 7)
+entity.SpaceshipT8.name=Rakete (Stufe 8)
+
+planet.Ceres=Ceres
+moon.Phobos=Phobos
+moon.Deimos=Deimos
+moon.ioJupiter=Io
+moon.Europa=Europa
+moon.Ganymed=Ganymed
+moon.Callisto=Kallisto
+moon.Mimas=Mimas
+moon.Enceladus=Enceladus
+moon.Tethys=Tethys
+moon.Dione=Dione
+moon.Rheya=Rhea
+moon.Titan=Titan
+moon.Iapetus=Iapetus
+moon.Miranda=Miranda
+moon.Ariel=Ariel
+moon.Umbriel=Umbriel
+moon.Titania=Titania
+moon.Oberon=Oberon
+moon.Proteus=Proteus
+moon.Triton=Triton
+planet.pluto=Pluto
+moon.Charon=Charon
+planet.kuiperbelt=Kuipergürtel
+planet.haumea=Haumea
+planet.makemake=Makemake
+planet.eris=Eris
+
+solarsystem.aCentauriSystem=α Centauri-System
+star.CentauriA=α Centauri А
+planet.CentauriB=α Centauri B
+planet.CentauriBb=α Centauri Bb
+planet.Proxima=Proxima Centauri
+
+solarsystem.BarnardsSystem=Barnards System
+star.Barnarda=Barnard A
+planet.Barnarda1=Barnard B
+planet.Barnarda2=Barnard C
+planet.Barnarda3=Barnard D
+planet.Barnarda4=Barnard E
+planet.Barnarda5=Barnard F
+planet.Barnarda6=Barnard G
+planet.BarnardaAsteroids=Asteroidengürtel
+
+solarsystem.VegaSystem=Vega-System
+star.Vega=Vega
+planet.Vega1=Vega 1
+planet.Vega2=Vega 2
+planet.VegaAsteroids=Asteroidengürtel
