@@ -1,4 +1,4 @@
-﻿#Chinese (CN) made by Jrant
+#Simplified Chinese (CN) made by Jrant
 # Dimensions
 achievement.miningcoppergc=这就是我们已经看到的...
 achievement.miningcoppergc.desc=开采铜矿石
@@ -8,8 +8,8 @@ achievement.miningaluminiumgc=这是什么？
 achievement.miningaluminiumgc.desc=开采铝矿石
 achievement.miningsilicongc=硅？真的吗？
 achievement.miningsilicongc.desc=开采硅矿石
-achievement.leadarmorgc=Is not that dangerous? (Need Translate)
-achievement.leadarmorgc.desc=Create full Lead armor. (Need Translate)
+achievement.leadarmorgc=这不危险吗？
+achievement.leadarmorgc.desc=制作出整套铅制装备
 achievement.electricgc=能量在流动
 achievement.electricgc.desc=制作出第一个铝线。
 achievement.electric2gc= 第一个升级
@@ -18,8 +18,8 @@ achievement.energycellgc=能量储存
 achievement.energycellgc.desc=制作储能模块
 achievement.coalgeneratorgc=能源矿工
 achievement.coalgeneratorgc.desc=制作燃煤发电机
-achievement.geothermalgeneratorgs=Thermal Energy (Need Translate)
-achievement.geothermalgeneratorgs.desc=Create Geothermal Generator. (Need Translate)
+achievement.geothermalgeneratorgs=热能
+achievement.geothermalgeneratorgs.desc=制作一个岩浆发电机
 achievement.solargc=太阳能
 achievement.solargc.desc=制作出基础太阳能板。
 achievement.circuitgc=纳米工程学
@@ -30,8 +30,8 @@ achievement.fangc=为什么是这个小玩意？
 achievement.fangc.desc=制作一个风扇。
 achievement.hdpgc=完美的板材
 achievement.hdpgc.desc=制作1阶重型板
-achievement.hdp2gc=More perfect! (Need Translate)
-achievement.hdp2gc.desc=Create a Heavy Duty Plate Tier 2. (Need Translate)
+achievement.hdp2gc=更加完美！
+achievement.hdp2gc.desc=制作一个2阶重型版
 achievement.furancegc=电热
 achievement.furancegc.desc=制作一个电炉
 achievement.assemblygc=这绝对是幻想中的机器
@@ -48,16 +48,16 @@ achievement.rocketgcgc=几乎全在星空！
 achievement.rocketgcgc.desc=制作1阶火箭
 achievement.moongc=人类的一小步！
 achievement.moongc.desc=登陆月球！
-achievement.bossmoongc=And that's all what you can do? (Need Translate)
-achievement.bossmoongc.desc=Defeat the boss in the dungeon of the Moon. (Need Translate)
-achievement.fallingmetallgc=Space Jewel (Need Translate)
-achievement.fallingmetallgc.desc=Get the first piece of meteoric iron. (Need Translate)
-achievement.jetpackgc=Creative? What for? (Need Translate)
-achievement.jetpackgc.desc=Create a jetpack. (Need Translate)
-achievement.rocket2gc=It Better! (Need Translate)
-achievement.rocket2gc.desc=Create a Tier 2 Rocket. (Need Translate)
-achievement.marsgc=Project: Mars One! (Need Translate)
-achievement.marsgc.desc=Land on the Mars! (Need Translate)
+achievement.bossmoongc=你就这点能耐？
+achievement.bossmoongc.desc=击杀月球地牢BOSS
+achievement.fallingmetallgc=深空的赐予
+achievement.fallingmetallgc.desc=获得第一块陨铁
+achievement.jetpackgc=创造? 为了什么? 
+achievement.jetpackgc.desc=制作一个电动喷气背包
+achievement.rocket2gc=它更好！
+achievement.rocket2gc.desc=制作一个2阶火箭
+achievement.marsgc=大新闻：火星一号！
+achievement.marsgc.desc=登陆火星！
 
 tile.MercuryGrunt.name=水星地表岩石
 tile.MercurySubGrunt.name=水星地底岩石
@@ -79,7 +79,7 @@ tile.CeresSubGrunt.name=谷神星地底岩石
 tile.CeresGlowStone.name=谷神星萤石
 tile.CeresBricks.name=谷神星地牢砖
 tile.CeresMeteoricIronOre.name=谷神星陨铁矿石
-tile.CeresWeb.name=Ceres Web (Need Translate)
+tile.CeresWeb.name=谷神星网
 
 tile.PlutoGrunt.name=冥王星地表岩石
 tile.PlutoGrunt2.name=冥王星石头
@@ -90,7 +90,7 @@ tile.PlutoStone.name=冥王星石头
 tile.PlutoBricks.name=冥王星地牢砖
 tile.PlutoGlowStone.name=冥王星萤石
 
-tile.HaumeaGrunt.name=Haumea Surface Block (Need Translate)
+tile.HaumeaGrunt.name=妊神星石头
 
 tile.MakemakeGrunt.name=鸟神星地表岩石
 tile.MakemakeSubGrunt.name=鸟神星地底岩石
@@ -113,13 +113,13 @@ tile.IOBricks.name=木卫一地牢砖
 tile.IOGlowStone.name=木卫一萤石
 tile.IOWolframiumOre.name=木卫一钨矿石
 tile.IOCopperOre.name=木卫一铜矿石
-tile.IOWeb.name=Io Web (Need Translate)
-tile.IODualStone.name=Io Dual Block Surface (Need Translate)
+tile.IOWeb.name=木卫一网
+tile.IODualStone.name=木卫一灰烬石
 
 tile.EuropaRock.name=木卫二表面方块
 tile.EuropaIce.name=木卫二冰
 tile.EuropaGeyzer.name=木卫二间歇泉
-tile.EuropaUnderwaterGeyser.name=Underwater Europa Geyser (Need Translate)
+tile.EuropaUnderwaterGeyser.name=木卫二水下喷泉
 
 tile.GanymedeGrunt.name=木卫三地表岩石
 tile.GanymedeSubGrunt.name=木卫三地底岩石
@@ -167,8 +167,6 @@ tile.TritonMithrilOre.name=海卫一秘银矿石
 tile.ACentauriBbGrunt.name=南门二Bb地表岩石
 tile.ACentauriBbSubGrunt.name=南门二Bb地底岩石
 
-tile.HaumeaGrunt.name=妊神星石头
-
 tile.Barnarda2Grass.name=巴纳德C草方块
 tile.Barnarda2Dirt.name=巴纳德C泥土
 tile.Barnarda2Dandelion1.name=巴纳德C草
@@ -189,6 +187,7 @@ tile.UnknowWater.name=不明液体
 tile.BlockDecorateCopper.name=装饰铜块
 
 tile.AssemblyMachine.name=熔合机
+tile.GeothermalGenerator.name=岩浆发电机
 
 item.SchematicTier4.name=NASA工作台图纸
 item.SchematicTier5.name=NASA工作台图纸
@@ -287,14 +286,17 @@ gui.thermal2.desc2=保护你远离恒星的辐射。
 gui.thermal2.descGravity=升级：“重力强化”
 
 gui.module.desc=火箭模块
+gui.status.nolava.name=没有岩浆
+gui.message.lava.name=岩浆
 
 itemGroup.AddonsBlocks=星空|方块
 itemGroup.AddonsItems=星空|物品
 itemGroup.AddonsArmor=星空|装备
 
+entity.EvolvedBlaze.name=烈焰人(进化体)
 entity.EvolvedColdBlaze.name=寒冰烈焰人(进化体)
 entity.EvolvedBossBlaze.name=烈焰人之王(进化体)
-entity.EvolvedFireCreeper.name=火焰苦力怕(进化体)
+entity.EvolvedFireCreeper.name=火焰爬行者(进化体)
 entity.EvolvedBossGhast.name=恶魂之王(进化体)
 entity.EvolvedFireSpider.name=火焰蜘蛛(进化体)
 entity.EvolvedFireSkeleton.name=火焰骷髅(进化体)
