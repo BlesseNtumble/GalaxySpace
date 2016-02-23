@@ -6,6 +6,8 @@ achievement.miningaluminiumgc=А это что такое?
 achievement.miningaluminiumgc.desc=Добудьте Алюминиевую руду.
 achievement.miningsilicongc=Кремень? Серьезно?
 achievement.miningsilicongc.desc=Добудьте Кремниевую руду.
+achievement.leadarmorgc=А это не опасно?
+achievement.leadarmorgc.desc=Создайте весь Свинцовый доспех.
 achievement.electricgc=Потоковая Энергия
 achievement.electricgc.desc=Создайте свой первый Алюминиевый провод.
 achievement.electric2gc=Первое Улучшение
@@ -14,6 +16,8 @@ achievement.energycellgc=Складируем Энергию
 achievement.energycellgc.desc=Создайте Модуль "Хранилище энергии".
 achievement.coalgeneratorgc=Добытчик Энергии
 achievement.coalgeneratorgc.desc=Создайте Угольный Генератор.
+achievement.geothermalgeneratorgs=Тепловая Энергия
+achievement.geothermalgeneratorgs.desc=Создайте Геотермальный генератор.
 achievement.solargc=Солнечная Энергия
 achievement.solargc.desc=Создайте Основную солнечную панель
 achievement.circuitgc=Наноинженерия
@@ -24,6 +28,8 @@ achievement.fangc=И зачем эта безделушка?
 achievement.fangc.desc=Создайте Вентилятор.
 achievement.hdpgc=Идеальная пластина
 achievement.hdpgc.desc=Создайте Сверхпрочное Покрытие 1 уровня.
+achievement.hdp2gc=Еще идеальней!
+achievement.hdp2gc.desc=Создайте Сверхпрочное Покрытие 2 уровня.
 achievement.furancegc=Электрическая Горячая штучка
 achievement.furancegc.desc=Создайте Электропечь.
 achievement.assemblygc=Это что-то из фантастики...
@@ -40,6 +46,16 @@ achievement.rocketgc=Почти в космосе!
 achievement.rocketgc.desc=Сделать ракету 1 уровня.
 achievement.moongc=Здесь ступала нога человека!
 achievement.moongc.desc=Приземлитесь на Луну!
+achievement.bossmoongc=И это все, на что ты способен?
+achievement.bossmoongc.desc=Победить босса в подземелье Луны.
+achievement.fallingmetallgc=Космическая драгоценность
+achievement.fallingmetallgc.desc=Добыть первый кусочек метеоритного железа.
+achievement.jetpackgc=Креатив? А зачем?
+achievement.jetpackgc.desc=Создайте Реактивный ранец.
+achievement.rocket2gc=Она лучше!
+achievement.rocket2gc.desc=Сделать ракету 2 уровня.
+achievement.marsgc=Проект: Mars One!
+achievement.marsgc.desc=Приземлитесь на Марс!
 
 tile.MercuryGrunt.name=Грунт Меркурия
 tile.MercurySubGrunt.name=Подповерхностный Грунт Меркурия
@@ -61,12 +77,18 @@ tile.CeresSubGrunt.name=Подповерхность Цереры
 tile.CeresGlowStone.name=Светокамень Цереры
 tile.CeresBricks.name=Кирпич Сокровищницы Цереры
 tile.CeresMeteoricIronOre.name=Руда Метеоритного Железа
+tile.CeresWeb.name=Паутина Цереры
 
 tile.PlutoGrunt.name=Грунт Плутона
+tile.PlutoGrunt2.name=Грунт Плутона
+tile.PlutoGrunt3.name=Грунт Плутона
+tile.PlutoGrunt4.name=Грунт Плутона
 tile.PlutoSubGrunt.name=Подповерхность Плутона
 tile.PlutoStone.name=Камень Плутона
 tile.PlutoBricks.name=Кирпич Сокровищницы Плутона
 tile.PlutoGlowStone.name=Светокамень Плутона
+
+tile.HaumeaGrunt.name=Грунт Хаумеа
 
 tile.MakemakeGrunt.name=Грунт Макемаке
 tile.MakemakeSubGrunt.name=Подповерхность Макемаке
@@ -89,10 +111,13 @@ tile.IOBricks.name=Кирпич Сокровищницы Ио
 tile.IOGlowStone.name=Светокамень Ио
 tile.IOWolframiumOre.name=Вольфрамовая Руда
 tile.IOCopperOre.name=Медная Руда
+tile.IOWeb.name=Паутина Ио
+tile.IODualStone.name=Двойной Блок Поверхности Ио
 
 tile.EuropaRock.name=Блок Поверхности Европы
 tile.EuropaIce.name=Лед Европы
 tile.EuropaGeyzer.name=Гейзер Европы
+tile.EuropaUnderwaterGeyser.name=Подводный Гейдер Европы
 
 tile.GanymedeGrunt.name=Грунт Ганимеда
 tile.GanymedeSubGrunt.name=Подповерхностный Грунт Ганимеда
@@ -100,7 +125,7 @@ tile.GanymedeMagnesiumOre.name=Магниевая Руда
 tile.GanymedeTitanuimOre.name=Ильменитовая Руда
 
 tile.CallistoGrunt.name=Поверхность Каллисто
-tile.CallistoSubgrunt.name=Подповерхность Каллисто
+tile.CallistoSubGrunt.name=Подповерхность Каллисто
 
 tile.EnceladusSnow.name=Снег Энцелада
 tile.EnceladusGrunt.name=Грунт Энцелада
@@ -159,6 +184,7 @@ tile.UnknowWater.name=Неизвестная Жидкость
 
 tile.BlockDecorateCopper.name=Декоративный Медный Блок
 tile.AssemblyMachine.name=Сборочный Цех
+tile.GeothermalGenerator.name=Геотермальный Генератор
 
 item.SchematicTier4.name=Схема для верстака NASA
 item.SchematicTier5.name=Схема для верстака NASA
@@ -225,6 +251,10 @@ item.thermalChestplateT2.name=Теплоустойчивая Кираса
 item.thermalLeggingsT2.name=Теплоустойчивые Поножи
 item.thermalBootsT2.name=Теплоустойчиввые Ботинки
 item.thermalBootsT2Gravity.name=Теплоустойчиввые Ботинки
+item.RocketConeT2.name=Прочный головной обтекатель 2-го уровня
+item.RocketEngineT2.name=Прочный ракетный двигатель 2-го уровня
+item.RocketBoosterT2.name=Ускоритель 2-го уровня
+item.RocketStabilisatorT2.name=Прочный ракетный стабилизатор 2-го уровня
 
 item.JetPack.name=Реактивный Электроранец
 item.lead_helmet.name=Свинцовый Шлем
@@ -259,6 +289,8 @@ gui.thermal2.desc2=Защищает от Солнечной Радиации.
 gui.thermal2.descGravity=Улучшение: "Усиленная Гравитация"
 
 gui.module.desc=Ракетный Модуль
+gui.status.nolava.name=Нет Лавы
+gui.message.lava.name=Лава
 
 itemGroup.AddonsBlocks=GalaxySpace: Блоки
 itemGroup.AddonsItems=GalaxySpace: Предметы

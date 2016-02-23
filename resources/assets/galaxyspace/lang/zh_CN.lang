@@ -8,6 +8,8 @@ achievement.miningaluminiumgc=这是什么？
 achievement.miningaluminiumgc.desc=开采铝矿石
 achievement.miningsilicongc=硅？真的吗？
 achievement.miningsilicongc.desc=开采硅矿石
+achievement.leadarmorgc=Is not that dangerous? (Need Translate)
+achievement.leadarmorgc.desc=Create full Lead armor. (Need Translate)
 achievement.electricgc=能量在流动
 achievement.electricgc.desc=制作出第一个铝线。
 achievement.electric2gc= 第一个升级
@@ -16,6 +18,8 @@ achievement.energycellgc=能量储存
 achievement.energycellgc.desc=制作储能模块
 achievement.coalgeneratorgc=能源矿工
 achievement.coalgeneratorgc.desc=制作燃煤发电机
+achievement.geothermalgeneratorgs=Thermal Energy (Need Translate)
+achievement.geothermalgeneratorgs.desc=Create Geothermal Generator. (Need Translate)
 achievement.solargc=太阳能
 achievement.solargc.desc=制作出基础太阳能板。
 achievement.circuitgc=纳米工程学
@@ -26,6 +30,8 @@ achievement.fangc=为什么是这个小玩意？
 achievement.fangc.desc=制作一个风扇。
 achievement.hdpgc=完美的板材
 achievement.hdpgc.desc=制作1阶重型板
+achievement.hdp2gc=More perfect! (Need Translate)
+achievement.hdp2gc.desc=Create a Heavy Duty Plate Tier 2. (Need Translate)
 achievement.furancegc=电热
 achievement.furancegc.desc=制作一个电炉
 achievement.assemblygc=这绝对是幻想中的机器
@@ -42,6 +48,16 @@ achievement.rocketgcgc=几乎全在星空！
 achievement.rocketgcgc.desc=制作1阶火箭
 achievement.moongc=人类的一小步！
 achievement.moongc.desc=登陆月球！
+achievement.bossmoongc=And that's all what you can do? (Need Translate)
+achievement.bossmoongc.desc=Defeat the boss in the dungeon of the Moon. (Need Translate)
+achievement.fallingmetallgc=Space Jewel (Need Translate)
+achievement.fallingmetallgc.desc=Get the first piece of meteoric iron. (Need Translate)
+achievement.jetpackgc=Creative? What for? (Need Translate)
+achievement.jetpackgc.desc=Create a jetpack. (Need Translate)
+achievement.rocket2gc=It Better! (Need Translate)
+achievement.rocket2gc.desc=Create a Tier 2 Rocket. (Need Translate)
+achievement.marsgc=Project: Mars One! (Need Translate)
+achievement.marsgc.desc=Land on the Mars! (Need Translate)
 
 tile.MercuryGrunt.name=水星地表岩石
 tile.MercurySubGrunt.name=水星地底岩石
@@ -63,6 +79,7 @@ tile.CeresSubGrunt.name=谷神星地底岩石
 tile.CeresGlowStone.name=谷神星萤石
 tile.CeresBricks.name=谷神星地牢砖
 tile.CeresMeteoricIronOre.name=谷神星陨铁矿石
+tile.CeresWeb.name=Ceres Web (Need Translate)
 
 tile.PlutoGrunt.name=冥王星地表岩石
 tile.PlutoGrunt2.name=冥王星石头
@@ -72,6 +89,8 @@ tile.PlutoSubGrunt.name=冥王星地底岩石
 tile.PlutoStone.name=冥王星石头
 tile.PlutoBricks.name=冥王星地牢砖
 tile.PlutoGlowStone.name=冥王星萤石
+
+tile.HaumeaGrunt.name=Haumea Surface Block (Need Translate)
 
 tile.MakemakeGrunt.name=鸟神星地表岩石
 tile.MakemakeSubGrunt.name=鸟神星地底岩石
@@ -94,10 +113,13 @@ tile.IOBricks.name=木卫一地牢砖
 tile.IOGlowStone.name=木卫一萤石
 tile.IOWolframiumOre.name=木卫一钨矿石
 tile.IOCopperOre.name=木卫一铜矿石
+tile.IOWeb.name=Io Web (Need Translate)
+tile.IODualStone.name=Io Dual Block Surface (Need Translate)
 
 tile.EuropaRock.name=木卫二表面方块
 tile.EuropaIce.name=木卫二冰
 tile.EuropaGeyzer.name=木卫二间歇泉
+tile.EuropaUnderwaterGeyser.name=Underwater Europa Geyser (Need Translate)
 
 tile.GanymedeGrunt.name=木卫三地表岩石
 tile.GanymedeSubGrunt.name=木卫三地底岩石
@@ -105,7 +127,7 @@ tile.GanymedeMagnesiumOre.name=木卫三镁矿石
 tile.GanymedeTitanuimOre.name=木卫三钛铁矿石
 
 tile.CallistoGrunt.name=木卫四地表岩石
-tile.CallistoSubgrunt.name=木卫四地底岩石
+tile.CallistoSubGrunt.name=木卫四地底岩石
 
 tile.EnceladusSnow.name=土卫二冰
 tile.EnceladusGrunt.name=土卫二地底岩石

@@ -8,6 +8,8 @@ achievement.miningaluminiumgc=What's this?
 achievement.miningaluminiumgc.desc=Mine some Aluminium Ore.
 achievement.miningsilicongc=Silicon? Really?
 achievement.miningsilicongc.desc=Mine some Silicon Ore.
+achievement.leadarmorgc=Is not that dangerous?
+achievement.leadarmorgc.desc=Create full Lead armor.
 achievement.electricgc=Power conduction
 achievement.electricgc.desc=Create your first aluminum wire.
 achievement.electric2gc=First Improvement
@@ -16,6 +18,8 @@ achievement.energycellgc=Storage of Energy
 achievement.energycellgc.desc=Create an Energy Storage module.
 achievement.coalgeneratorgc=Energy Miner
 achievement.coalgeneratorgc.desc=Create a coal generator.
+achievement.geothermalgeneratorgs=Thermal Energy
+achievement.geothermalgeneratorgs.desc=Create Geothermal Generator.
 achievement.solargc=Solar Energy
 achievement.solargc.desc=Create a basic solar panel.
 achievement.circuitgc=Nanoengineering
@@ -26,6 +30,8 @@ achievement.fangc=And what is this for?
 achievement.fangc.desc=Create a Fan.
 achievement.hdpgc=Perfect plate
 achievement.hdpgc.desc=Create a Heavy Duty Plate Tier 1.
+achievement.hdp2gc=More perfect!
+achievement.hdp2gc.desc=Create a Heavy Duty Plate Tier 2.
 achievement.furancegc=Electric hot topic
 achievement.furancegc.desc=Create an Electic Furnace.
 achievement.assemblygc=This is something from science fiction...
@@ -42,36 +48,52 @@ achievement.rocketgc=Almost in space!
 achievement.rocketgc.desc=Create a Tier 1 Rocket.
 achievement.moongc=Where man has gone before!
 achievement.moongc.desc=Land on the Moon!
+achievement.bossmoongc=And that's all what you can do?
+achievement.bossmoongc.desc=Defeat the boss in the dungeon of the Moon.
+achievement.fallingmetallgc=Space Jewel
+achievement.fallingmetallgc.desc=Get the first piece of meteoric iron.
+achievement.jetpackgc=Creative? What for?
+achievement.jetpackgc.desc=Create a jetpack.
+achievement.rocket2gc=It Better!
+achievement.rocket2gc.desc=Create a Tier 2 Rocket.
+achievement.marsgc=Project: Mars One!
+achievement.marsgc.desc=Land on the Mars!
 
-tile.MercuryGround.name=Mercury Surface Block
-tile.MercurySubGround.name=Mercury Subsurface Block
+tile.MercuryGrunt.name=Mercury Surface Block
+tile.MercurySubGrunt.name=Mercury Subsurface Block
 tile.MercuryCore.name=Mercury Core
 tile.MercuryLeadOre.name=Lead Ore
 tile.MercuryIronOre.name=Iron Ore
 tile.MercuryNickelOre.name=Nickel Ore
 
-tile.VenusGround.name=Venus Surface Block
-tile.VenusSubGround.name=Venus Subsurface Block
+tile.VenusGrunt.name=Venus Surface Block
+tile.VenusSubGrunt.name=Venus Subsurface Block
 tile.VenusSulfurOre.name=Sulfur Ore
 tile.VenusDiamondOre.name=Diamond Ore
 
 tile.LeadOre.name=Lead Ore
 tile.DecoLead.name=Decorate Lead Block
 
-tile.CeresGround.name=Ceres Surface Block
-tile.CeresSubGround.name=Ceres Subsurface Block
+tile.CeresGrunt.name=Ceres Surface Block
+tile.CeresSubGrunt.name=Ceres Subsurface Block
 tile.CeresGlowStone.name=Ceres Glowstone
 tile.CeresBricks.name=Ceres Dungeon Bricks
 tile.CeresMeteoricIronOre.name=Meteoric Iron Ore
+tile.CeresWeb.name=Ceres Web
 
-tile.PlutoGround.name=Pluto Surface Ice
-tile.PlutoSubGround.name=Pluto Subsurface Ice
+tile.PlutoGrunt.name=Pluto Surface Ice
+tile.PlutoGrunt2.name=Pluto Surface Ice
+tile.PlutoGrunt3.name=Pluto Surface Ice
+tile.PlutoGrunt4.name=Pluto Surface Ice
+tile.PlutoSubGrunt.name=Pluto Subsurface Ice
 tile.PlutoStone.name=Pluto Stone
 tile.PlutoBricks.name=Pluto Dungeon Bricks
 tile.PlutoGlowStone.name=Pluto Glowstone
 
-tile.MakemakeGround.name=Makemake Surface Block
-tile.MakemakeSubGround.name=Makemake Subsurface Block
+tile.HaumeaGrunt.name=Haumea Surface Block
+
+tile.MakemakeGrunt.name=Makemake Surface Block
+tile.MakemakeSubGrunt.name=Makemake Subsurface Block
 
 tile.PhobosRock.name=Phobos Surface Block
 tile.PhobosSecRock.name=Phobos Subsurface Block
@@ -79,33 +101,36 @@ tile.PhobosStone.name=Phobos Stone
 tile.PhobosDeshOre.name=Desh Ore
 tile.PhobosCobaltumOre.name=Cobalt Ore
 
-tile.DeimosGround.name=Deimos Surface Block
-tile.DeimosSubGround.name=Deimos Subsurface Block
+tile.DeimosGrunt.name=Deimos Surface Block
+tile.DeimosSubGrunt.name=Deimos Subsurface Block
 tile.DeimosOriharukonOre.name=Oriharukon Ore
 tile.DeimosTinOre.name=Tin Ore
 
-tile.IOGround.name=Io Surface Block
+tile.IOGrunt.name=Io Surface Block
 tile.IOStone.name=Io Stone
 tile.IOAsh.name=Io Ash
 tile.IOBricks.name=Io Dungeon Bricks
 tile.IOGlowStone.name=Io Glowstone
 tile.IOWolframiumOre.name=Tungsten Ore
 tile.IOCopperOre.name=Copper Ore
+tile.IOWeb.name=Io Web
+tile.IODualStone.name=Io Dual Block Surface
 
 tile.EuropaRock.name=Europa Block Surface
 tile.EuropaIce.name=Europa Ice
 tile.EuropaGeyzer.name=Europa Geyser
+tile.EuropaUnderwaterGeyser.name=Underwater Europa Geyser
 
-tile.GanymedeGround.name=Ganymede Surface Block
-tile.GanymedeSubGround.name=Ganymede Subsurface Block
+tile.GanymedeGrunt.name=Ganymede Surface Block
+tile.GanymedeSubGrunt.name=Ganymede Subsurface Block
 tile.GanymedeMagnesiumOre.name=Magnesium Ore
 tile.GanymedeTitanuimOre.name=Ilmenite Ore
 
-tile.CallistoGround.name=Callisto Surface Block
-tile.CallistoSubGround.name=Callisto Subsurface Block
+tile.CallistoGrunt.name=Callisto Surface Block
+tile.CallistoSubGrunt.name=Callisto Subsurface Block
 
 tile.EnceladusSnow.name=Enceladus Ice
-tile.EnceladusGround.name=Enceladus Subsurface Block
+tile.EnceladusGrunt.name=Enceladus Subsurface Block
 tile.EnceladusBricks.name=Enceladus Dungeon Bricks
 tile.EnceladusGlowStone.name=Enceladus Glowstone
 tile.Crystall.name=Unknow Crystal
@@ -116,31 +141,31 @@ tile.T6Chest.name=Treasure Chest Tier 6
 tile.T7Chest.name=Treasure Chest Tier 7
 tile.T8Chest.name=Treasure Chest Tier 8
 
-tile.TitanGround.name=Titan Surface Block
-tile.TitanSubGround.name=Titan Subsurface Block
+tile.TitanGrunt.name=Titan Surface Block
+tile.TitanSubGrunt.name=Titan Subsurface Block
 tile.TitanStone.name=Titan Stone
 tile.Methane.name=Liquid Methane
 
-tile.OberonGround.name=Oberon Surface Block
-tile.OberonSubGround.name=Oberon Subsurface Block
+tile.OberonGrunt.name=Oberon Surface Block
+tile.OberonSubGrunt.name=Oberon Subsurface Block
 tile.OberonStone.name=Oberon Stone
 tile.OberonAdamantiteOre.name=Adamantite Ore
 
-tile.ProteusGround.name=Proteus Surface Block
-tile.ProteusSubGround.name=Proteus Subsurface Block
+tile.ProteusGrunt.name=Proteus Surface Block
+tile.ProteusSubGrunt.name=Proteus Subsurface Block
 tile.ProteusStone.name=Proteus Stone
 tile.ProteusBricks.name=Proteus Dungeon Bricks
 tile.ProteusGlowStone.name=Proteus Glowstone
 tile.ProteusWolframiumOre.name=Tungsten Ore
 tile.ProteusPlatinumOre.name=Platinum Ore
 
-tile.TritonGround.name=Triton Surface Block
-tile.TritonSubGround.name=Triton Subsurface Block
+tile.TritonGrunt.name=Triton Surface Block
+tile.TritonSubGrunt.name=Triton Subsurface Block
 tile.TritonStone.name=Triton Stone
 tile.TritonMithrilOre.name=Mithril Ore
 
-tile.ACentauriBbGround.name=α Centauri Bb Surface Block
-tile.ACentauriBbSubGround.name=α Centauri Bb Subsurface Block
+tile.ACentauriBbGrunt.name=α Centauri Bb Surface Block
+tile.ACentauriBbSubGrunt.name=α Centauri Bb Subsurface Block
 
 tile.Barnarda2Grass.name=Barnarda C Grass
 tile.Barnarda2Dirt.name=Barnarda C Dirt
@@ -150,13 +175,13 @@ tile.Barnarda2Dandelion3.name=Barnarda C Dandelion
 tile.Barnarda2Log.name=Barnarda C Log 
 tile.Sapling_1.name=Log Barnarda C Sapling 
 tile.Leaves_1.name=Barnarda C Leaves Log 
-tile.BarnardaEGround.name=Barnarda E Surface Block
-tile.BarnardaESubGround.name=Barnarda E Subsurface Block
+tile.BarnardaEGrunt.name=Barnarda E Surface Block
+tile.BarnardaESubGrunt.name=Barnarda E Subsurface Block
 tile.CrystalB.name=Rainbow Crystal
 tile.BarnardaEOreIron.name=Iron Ore
 tile.BarnardaEOreGold.name=Gold Ore
-tile.BarnardaFGround.name=Barnarda F Surface Block
-tile.BarnardaFSubGround.name=Barnarda F Subsurface Block
+tile.BarnardaFGrunt.name=Barnarda F Surface Block
+tile.BarnardaFSubGrunt.name=Barnarda F Subsurface Block
 tile.UnknowWater.name=Unknown Liquid
 
 tile.BlockDecorateCopper.name=Decorate Copper Block

@@ -5,7 +5,9 @@ achievement.miningtingc.desc=Baue Zinnerz ab
 achievement.miningaluminiumgc=Und was ist das hier?
 achievement.miningaluminiumgc.desc=Baue Aluminiumerz ab
 achievement.miningsilicongc=Silizium? Wirklich?
-achievement.miningsilicongc.desc=Добудьте Кремниевую руду.
+achievement.miningsilicongc.desc=Mine some Silicon Ore. (Need Translate)
+achievement.leadarmorgc=Is not that dangerous? (Need Translate)
+achievement.leadarmorgc.desc=Create full Lead armor. (Need Translate)
 achievement.electricgc=Energieübertragung
 achievement.electricgc.desc=Baue dein erstes Aluminiumkabel
 achievement.electric2gc=Erste Verbesserung
@@ -14,6 +16,8 @@ achievement.energycellgc=Energiespeicher
 achievement.energycellgc.desc=Baue einen Energiespeicher
 achievement.coalgeneratorgc=Energieherstellung
 achievement.coalgeneratorgc.desc=Baue einen Kohlegenerator
+achievement.geothermalgeneratorgs=Thermal Energy (Need Translate)
+achievement.geothermalgeneratorgs.desc=Create Geothermal Generator. (Need Translate)
 achievement.solargc=Solarenergie
 achievement.solargc.desc=Baue ein Basis-Solarmodul
 achievement.circuitgc=Nanotechnologie
@@ -24,6 +28,8 @@ achievement.fangc=Und wofür ist das gut?
 achievement.fangc.desc=Baue ein Ventilator
 achievement.hdpgc=Die perfekte Platte
 achievement.hdpgc.desc=Baue eine Robuste Platte der Stufe 1
+achievement.hdp2gc=More perfect! (Need Translate)
+achievement.hdp2gc.desc=Create a Heavy Duty Plate Tier 2. (Need Translate)
 achievement.furancegc=Elektrische heiße Angelegenheit
 achievement.furancegc.desc=Baue einen Elektrischen Ofen
 achievement.assemblygc=Das ist etwas aus Science-Fiction
@@ -40,6 +46,16 @@ achievement.rocketgc=Fast im Weltall!
 achievement.rocketgc.desc=Baue eine Rakete der Stufe 1
 achievement.moongc=Wo kein Mensch zuvor gewesen ist
 achievement.moongc.desc=Lande of dem Mond!
+achievement.bossmoongc=And that's all what you can do? (Need Translate)
+achievement.bossmoongc.desc=Defeat the boss in the dungeon of the Moon. (Need Translate)
+achievement.fallingmetallgc=Space Jewel (Need Translate)
+achievement.fallingmetallgc.desc=Get the first piece of meteoric iron. (Need Translate)
+achievement.jetpackgc=Creative? What for? (Need Translate)
+achievement.jetpackgc.desc=Create a jetpack. (Need Translate)
+achievement.rocket2gc=It Better! (Need Translate)
+achievement.rocket2gc.desc=Create a Tier 2 Rocket. (Need Translate)
+achievement.marsgc=Project: Mars One! (Need Translate)
+achievement.marsgc.desc=Land on the Mars! (Need Translate)
 
 tile.MercuryGrunt.name=Merkuroberflächengestein
 tile.MercurySubGrunt.name=Merkurunteroberflächengestein
@@ -61,12 +77,18 @@ tile.CeresSubGrunt.name=Ceresunteroberflächengestein
 tile.CeresGlowStone.name=Ceres-Glowstone
 tile.CeresBricks.name=Ceres-Dungeonziegel
 tile.CeresMeteoricIronOre.name=Meteoreisenerz
+tile.CeresWeb.name=Ceres Web (Need Translate)
 
 tile.PlutoGrunt.name=Plutooberflächengestein
+tile.PlutoGrunt2.name=Plutooberflächengestein
+tile.PlutoGrunt3.name=Plutooberflächengestein
+tile.PlutoGrunt4.name=Plutooberflächengestein
 tile.PlutoSubGrunt.name=Plutounteroberflächengestein
 tile.PlutoStone.name=Plutostein
 tile.PlutoBricks.name=Plutodungeonziegel
 tile.PlutoGlowStone.name=Pluto-Glowstone
+
+tile.HaumeaGrunt.name=Haumea Surface Block (Need Translate)
 
 tile.MakemakeGrunt.name=Makemakeoberflächengestein
 tile.MakemakeSubGrunt.name=Makemakeunteroberflächengestein
@@ -89,10 +111,13 @@ tile.IOBricks.name=Io-Dungeonziegel
 tile.IOGlowStone.name=Io-Glowstone
 tile.IOWolframiumOre.name=Wolframerz
 tile.IOCopperOre.name=Kupfererz
+tile.IOWeb.name=Io Web (Need Translate)
+tile.IODualStone.name=Io Dual Block Surface (Need Translate)
 
 tile.EuropaRock.name=Europaoberflächenblock
 tile.EuropaIce.name=Europaeis
 tile.EuropaGeyzer.name=Europa-Geysir
+tile.EuropaUnderwaterGeyser.name=Underwater Europa Geyser (Need Translate)
 
 tile.GanymedeGrunt.name=Ganymedoberflächengestein
 tile.GanymedeSubGrunt.name=Ganymedunteroberflächengestein
@@ -100,7 +125,7 @@ tile.GanymedeMagnesiumOre.name=Magnesiumerz
 tile.GanymedeTitanuimOre.name=Ilmeniterz
 
 tile.CallistoGrunt.name=Kallistooberflächengestein
-tile.CallistoSubgrunt.name=Kallistounteroberflächengestein
+tile.CallistoSubGrunt.name=Kallistounteroberflächengestein
 
 tile.EnceladusSnow.name=Enceladusschnee
 tile.EnceladusGrunt.name=Enceladusoberflächengestein
