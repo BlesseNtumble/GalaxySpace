@@ -116,7 +116,7 @@ tile.IOCopperOre.name=Copper Ore
 tile.IOWeb.name=Io Web
 tile.IODualStone.name=Io Dual Block Surface
 
-tile.EuropaRock.name=Europa Block Surface
+tile.EuropaGrunt.name=Europa Block Surface
 tile.EuropaIce.name=Europa Ice
 tile.EuropaGeyzer.name=Europa Geyser
 tile.EuropaUnderwaterGeyser.name=Underwater Europa Geyser
@@ -169,10 +169,11 @@ tile.ACentauriBbSubGrunt.name=α Centauri Bb Subsurface Block
 
 tile.Barnarda2Grass.name=Barnarda C Grass
 tile.Barnarda2Dirt.name=Barnarda C Dirt
-tile.Barnarda2Dandelion1.name=Barnarda C Dandelion 
-tile.Barnarda2Dandelion2.name=Barnarda C Dandelion 
+tile.Barnarda2Dandelions.Dandelion1.name=Barnarda C Dandelion 
+tile.Barnarda2Dandelions.Dandelion2.name=Barnarda C Dandelion 
 tile.Barnarda2Dandelion3.name=Barnarda C Dandelion 
 tile.Barnarda2Log.name=Barnarda C Log 
+tile.Barnarda2PlanksOak.name=Oak Planks from Barnarda C Log
 tile.Sapling_1.name=Log Barnarda C Sapling 
 tile.Leaves_1.name=Barnarda C Leaves Log 
 tile.BarnardaEGrunt.name=Barnarda E Surface Block
@@ -184,9 +185,15 @@ tile.BarnardaFGrunt.name=Barnarda F Surface Block
 tile.BarnardaFSubGrunt.name=Barnarda F Subsurface Block
 tile.UnknowWater.name=Unknown Liquid
 
+tile.VegaBGrunt.name=Vega B Surface Block
+tile.VegaBSubGrunt.name=Vega B Subsurface Block
+
 tile.BlockDecorateCopper.name=Decorate Copper Block
 
 tile.AssemblyMachine.name=Assembly Machine
+tile.GeothermalGenerator.name=Geothermal Generator
+tile.FuelGenerator.name=Fuel Generator
+tile.SolarWindPanel.name=Solar Wind Panel
 
 item.SchematicTier4.name=NASA Workbench Schematic
 item.SchematicTier5.name=NASA Workbench Schematic
@@ -222,6 +229,7 @@ item.plasmaaxe.name=Plasma Axe
 item.plasmapickaxe.name=Plasma Pickaxe
 item.plasmahoe.name=Plasma Hoe
 item.plasmashovel.name=Plasma Shovel
+item.QuantBow.name=Quant Bow
 
 item.LeadIngot.name=Lead Ingot
 item.DuraluminIngot.name=Duralumin Ingot
@@ -261,7 +269,12 @@ item.thermalHelmT2.name=Thermal Helmet
 item.thermalChestplateT2.name=Thermal Chestplate
 item.thermalLeggingsT2.name=Thermal Leggings
 item.thermalBootsT2.name=Thermal Boots
-item.thermalBootsT2Gravity.name=Thermal Boots
+item.RocketConeT2.name=Durable Nose Cone Tier 2
+item.RocketEngineT2.name=Durable Rocket Engine Tier 2
+item.RocketBoosterT2.name=Booster Tier 2
+item.RocketStabilisatorT2.name=Durable Rocket Vane Tier 2
+item.PartSolarFlares.name=Part Solar Flares
+item.SolarFlares.name=Solar Flares
 
 item.LeadBattery.name=Lead Battery
 item.UnknowWaterBucket.name=Bucket of Unknown Liquid
@@ -282,14 +295,20 @@ gui.hdp8.desc=Tier 8
 
 gui.thermal2.desc1=Tier 2
 gui.thermal2.desc2=Protection from Solar Radiation.
-gui.thermal2.descGravity=Upgrade: "Reinforced Gravity"
 
 gui.module.desc=Rocket Module
+gui.status.nolava.name=No Lava
+gui.message.lava.name=Lava
+gui.status.nofuelgenerator.name=No Fuel
+
+gui.quantbow.desc1=x1.5 Durability and x2 Damage!
+gui.quantbow.desc2=Fiery Arrows
 
 itemGroup.AddonsBlocks=GalaxySpace: Blocks
 itemGroup.AddonsItems=GalaxySpace: Items
 itemGroup.AddonsArmor=GalaxySpace: Armor
 
+entity.EvolvedBlaze.name=Evolved Blaze
 entity.EvolvedColdBlaze.name=Evolved Cold Blaze
 entity.EvolvedBossBlaze.name=Evolved Boss Blaze
 entity.EvolvedFireCreeper.name=Evolved Fire Creeper
@@ -359,3 +378,4 @@ star.Vega=Vega
 planet.Vega1=Vega B
 planet.Vega2=Vega C
 planet.VegaAsteroids=Asteroids Belt
+planet.VegaAsteroids2=Asteroids Belt

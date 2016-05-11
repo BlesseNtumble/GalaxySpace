@@ -116,7 +116,7 @@ tile.IOCopperOre.name=木卫一铜矿石
 tile.IOWeb.name=木卫一网
 tile.IODualStone.name=木卫一灰烬石
 
-tile.EuropaRock.name=木卫二表面方块
+tile.EuropaGrunt.name=木卫二表面方块
 tile.EuropaIce.name=木卫二冰
 tile.EuropaGeyzer.name=木卫二间歇泉
 tile.EuropaUnderwaterGeyser.name=木卫二水下喷泉
@@ -169,10 +169,11 @@ tile.ACentauriBbSubGrunt.name=南门二Bb地底岩石
 
 tile.Barnarda2Grass.name=巴纳德C草方块
 tile.Barnarda2Dirt.name=巴纳德C泥土
-tile.Barnarda2Dandelion1.name=巴纳德C草
-tile.Barnarda2Dandelion2.name=巴纳德C蒲公英
+tile.Barnarda2Dandelions.Dandelion1.name=巴纳德C草
+tile.Barnarda2Dandelions.Dandelion2.name=巴纳德C蒲公英
 tile.Barnarda2Dandelion3.name=巴纳德C灯笼花
 tile.Barnarda2Log.name=巴纳德C树木
+tile.Barnarda2PlanksOak.name=Oak Planks from Barnarda C Log
 tile.Sapling_1.name=巴纳德C树苗
 tile.Leaves_1.name=巴纳德C树叶
 tile.BarnardaEGrunt.name=巴纳德E地表岩石
@@ -184,10 +185,15 @@ tile.BarnardaFGrunt.name=巴纳德F地表岩石
 tile.BarnardaFSubGrunt.name=巴纳德F地底岩石
 tile.UnknowWater.name=不明液体
 
+tile.VegaBGrunt.name=Vega B Surface Block
+tile.VegaBSubGrunt.name=Vega B Subsurface Block
+
 tile.BlockDecorateCopper.name=装饰铜块
 
 tile.AssemblyMachine.name=熔合机
 tile.GeothermalGenerator.name=岩浆发电机
+tile.FuelGenerator.name=Fuel Generator
+tile.SolarWindPanel.name=Solar Wind Panel
 
 item.SchematicTier4.name=NASA工作台图纸
 item.SchematicTier5.name=NASA工作台图纸
@@ -223,6 +229,7 @@ item.plasmaaxe.name=等离子斧
 item.plasmapickaxe.name=等离子镐
 item.plasmahoe.name=等离子锄
 item.plasmashovel.name=等离子铲
+item.QuantBow.name=Quant Bow
 
 item.LeadIngot.name=铅锭
 item.DuraluminIngot.name=杜拉铝锭
@@ -262,7 +269,12 @@ item.thermalHelmT2.name=热力充能头盔
 item.thermalChestplateT2.name=热力充能胸甲
 item.thermalLeggingsT2.name=热力充能护腿
 item.thermalBootsT2.name=热力充能靴
-item.thermalBootsT2Gravity.name=热力充能靴
+item.RocketConeT2.name=Durable Nose Cone Tier 2
+item.RocketEngineT2.name=Durable Rocket Engine Tier 2
+item.RocketBoosterT2.name=Booster Tier 2
+item.RocketStabilisatorT2.name=Durable Rocket Vane Tier 2
+item.PartSolarFlares.name=Part Solar Flares
+item.SolarFlares.name=Solar Flares
 
 item.LeadBattery.name=铅电池
 item.UnknowWaterBucket.name=不明液体桶
@@ -283,11 +295,14 @@ gui.hdp8.desc=8阶
 
 gui.thermal2.desc1=2阶
 gui.thermal2.desc2=保护你远离恒星的辐射。
-gui.thermal2.descGravity=升级：“重力强化”
 
 gui.module.desc=火箭模块
 gui.status.nolava.name=没有岩浆
 gui.message.lava.name=岩浆
+gui.status.nofuelgenerator.name=No Fuel
+
+gui.quantbow.desc1=x1.5 Durability and x2 Damage!
+gui.quantbow.desc2=Fiery Arrows
 
 itemGroup.AddonsBlocks=星空|方块
 itemGroup.AddonsItems=星空|物品

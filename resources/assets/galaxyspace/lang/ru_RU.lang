@@ -114,7 +114,7 @@ tile.IOCopperOre.name=Медная Руда
 tile.IOWeb.name=Паутина Ио
 tile.IODualStone.name=Двойной Блок Поверхности Ио
 
-tile.EuropaRock.name=Блок Поверхности Европы
+tile.EuropaGrunt.name=Блок Поверхности Европы
 tile.EuropaIce.name=Лед Европы
 tile.EuropaGeyzer.name=Гейзер Европы
 tile.EuropaUnderwaterGeyser.name=Подводный Гейдер Европы
@@ -167,10 +167,11 @@ tile.ACentauriBbSubGrunt.name=Подповерхность α Центавра B
 
 tile.Barnarda2Grass.name=Блок Травы Барнарды C
 tile.Barnarda2Dirt.name=Блок Земли Барнарды C
-tile.Barnarda2Dandelion1.name=Растительность Барнарды C
-tile.Barnarda2Dandelion2.name=Растительность Барнарды C
+tile.Barnarda2Dandelions.Dandelion1.name=Растительность Барнарды C
+tile.Barnarda2Dandelions.Dandelion2.name=Растительность Барнарды C
 tile.Barnarda2Dandelion3.name=Растительность Барнарды C
 tile.Barnarda2Log.name=Дерево Барнарды C
+tile.Barnarda2PlanksOak.name=Дубовые Доски из Дерева Барнарды С
 tile.Sapling_1.name=Саженец Дерева Барнарды C
 tile.Leaves_1.name=Листва Дерева Барнарды C
 tile.BarnardaEGrunt.name=Грунт Барнарды Е
@@ -185,6 +186,11 @@ tile.UnknowWater.name=Неизвестная Жидкость
 tile.BlockDecorateCopper.name=Декоративный Медный Блок
 tile.AssemblyMachine.name=Сборочный Цех
 tile.GeothermalGenerator.name=Геотермальный Генератор
+tile.FuelGenerator.name=Топливный Генератор
+tile.SolarWindPanel.name=Панель Солнечного Ветра
+
+tile.VegaBGrunt.name=Поверхность Веги Б
+tile.VegaBSubGrunt.name=Подповерхность Веги B
 
 item.SchematicTier4.name=Схема для верстака NASA
 item.SchematicTier5.name=Схема для верстака NASA
@@ -249,12 +255,13 @@ item.ThermalClothT2.name=Термоустройчивая Ткань
 item.thermalHelmT2.name=Теплоустойчивый Шлем
 item.thermalChestplateT2.name=Теплоустойчивая Кираса
 item.thermalLeggingsT2.name=Теплоустойчивые Поножи
-item.thermalBootsT2.name=Теплоустойчиввые Ботинки
-item.thermalBootsT2Gravity.name=Теплоустойчиввые Ботинки
+item.thermalBootsT2.name=Теплоустойчивые Ботинки
 item.RocketConeT2.name=Прочный головной обтекатель 2-го уровня
 item.RocketEngineT2.name=Прочный ракетный двигатель 2-го уровня
 item.RocketBoosterT2.name=Ускоритель 2-го уровня
 item.RocketStabilisatorT2.name=Прочный ракетный стабилизатор 2-го уровня
+item.PartSolarFlares.name=Часть Солнечного Паруса
+item.SolarFlares.name=Солнечный Парус
 
 item.JetPack.name=Реактивный Электроранец
 item.lead_helmet.name=Свинцовый Шлем
@@ -266,6 +273,7 @@ item.plasmaaxe.name=Плазменный Топор
 item.plasmapickaxe.name=Плазменная Кирка
 item.plasmahoe.name=Плазменная Мотыга
 item.plasmashovel.name=Плазменная Лопата
+item.QuantBow.name=Квантовый Лук
 
 item.LeadBattery.name=Свинцовая Батарейка
 item.UnknowWaterBucket.name=Ведро Неизвестной Жидкости
@@ -286,16 +294,20 @@ gui.hdp8.desc=8-ой уровень
 
 gui.thermal2.desc1=2-ой уровень
 gui.thermal2.desc2=Защищает от Солнечной Радиации.
-gui.thermal2.descGravity=Улучшение: "Усиленная Гравитация"
 
 gui.module.desc=Ракетный Модуль
 gui.status.nolava.name=Нет Лавы
 gui.message.lava.name=Лава
+gui.status.nofuelgenerator.name=Нет Топлива
+
+gui.quantbow.desc1=Имеет х1.5 прочность. Урон х2.
+gui.quantbow.desc2=Зажигательные стрелы.
 
 itemGroup.AddonsBlocks=GalaxySpace: Блоки
 itemGroup.AddonsItems=GalaxySpace: Предметы
 itemGroup.AddonsArmor=GalaxySpace: Броня
 
+entity.EvolvedBlaze.name=Эволюционировавший Ифрит
 entity.EvolvedColdBlaze.name=Эволюционировавший Замерший Ифрит
 entity.EvolvedBossBlaze.name=Эволюционировавший Босс Ифрит
 entity.EvolvedFireCreeper.name=Эволюционировавший Огненный Крипер
@@ -362,6 +374,7 @@ planet.BarnardaAsteroids=Пояс Астероидов
 
 solarsystem.VegaSystem=Система Вега
 star.Vega=Вега
-planet.Vega1=Вега 1
-planet.Vega2=Вега 2
+planet.Vega1=Вега B
+planet.Vega2=Вега C
 planet.VegaAsteroids=Пояс Астероидов
+planet.VegaAsteroids2=Пояс Астероидов

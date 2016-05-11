@@ -114,7 +114,7 @@ tile.IOCopperOre.name=Kupfererz
 tile.IOWeb.name=Io Web (Need Translate)
 tile.IODualStone.name=Io Dual Block Surface (Need Translate)
 
-tile.EuropaRock.name=Europaoberflächenblock
+tile.EuropaGrunt.name=Europaoberflächenblock
 tile.EuropaIce.name=Europaeis
 tile.EuropaGeyzer.name=Europa-Geysir
 tile.EuropaUnderwaterGeyser.name=Underwater Europa Geyser (Need Translate)
@@ -167,10 +167,11 @@ tile.ACentauriBbSubGrunt.name=α Centauri Bb Unteroberflächengestein
 
 tile.Barnarda2Grass.name=Barnard C Grasblock
 tile.Barnarda2Dirt.name=Barnard C Erde
-tile.Barnarda2Dandelion1.name=Barnard C Pflanze
-tile.Barnarda2Dandelion2.name=Barnard C Pflanze
+tile.Barnarda2Dandelions.Dandelion1.name=Barnard C Pflanze
+tile.Barnarda2Dandelions.Dandelion2.name=Barnard C Pflanze
 tile.Barnarda2Dandelion3.name=Barnard C Pflanze
 tile.Barnarda2Log.name=Barnard C Holz
+tile.Barnarda2PlanksOak.name=Oak Planks from Barnarda C Log
 tile.Sapling_1.name=Barnard C Setzling
 tile.Leaves_1.name=Barnard C Laub
 tile.BarnardaEGrunt.name=Barnard C Oberflächengestein
@@ -182,9 +183,16 @@ tile.BarnardaFGrunt.name=Barnard F Oberflächengestein
 tile.BarnardaFSubGrunt.name=Barnard F Unteroberflächengestein
 tile.UnknowWater.name=Unbekannte Flüssigkeit
 
+tile.VegaBGrunt.name=Vega B Surface Block
+tile.VegaBSubGrunt.name=Vega B Subsurface Block
+
 tile.BlockDecorateCopper.name=Kupferdekorationsblock
 
 tile.AssemblyMachine.name=Montagemachine
+tile.GeothermalGenerator.name=Geothermal Generator
+tile.FuelGenerator.name=Fuel Generator
+tile.SolarWindPanel.name=Solar Wind Panel
+
 item.SchematicTier4.name=Bauplan für die Raketenwerkbank
 item.SchematicTier5.name=Bauplan für die Raketenwerkbank
 item.SchematicTier6.name=Bauplan für die Raketenwerkbank
@@ -250,6 +258,12 @@ item.thermalChestplateT2.name=Thermalpolsterbrustpanzer
 item.thermalLeggingsT2.name=Thermalpolsterbeinschutz
 item.thermalBootsT2.name=Thermalpolsterstiefel
 item.thermalBootsT2Gravity.name=Thermalpolsterstiefel
+item.RocketConeT2.name=Durable Nose Cone Tier 2
+item.RocketEngineT2.name=Durable Rocket Engine Tier 2
+item.RocketBoosterT2.name=Booster Tier 2
+item.RocketStabilisatorT2.name=Durable Rocket Vane Tier 2
+item.PartSolarFlares.name=Part Solar Flares
+item.SolarFlares.name=Solar Flares
 
 item.JetPack.name=Jetpack
 item.lead_helmet.name=Bleihelm
@@ -284,6 +298,12 @@ gui.thermal2.desc2=Schützt vor Sonnenstrahlung
 gui.thermal2.descGravity=Verbesserung: "Verstärkte Gravitation"
 
 gui.module.desc=Raketenmodul
+gui.status.nolava.name=No Lava
+gui.message.lava.name=Lava
+gui.status.nofuelgenerator.name=No Fuel
+
+gui.quantbow.desc1=x1.5 Durability and x2 Damage!
+gui.quantbow.desc2=Fiery Arrows
 
 itemGroup.AddonsBlocks=GalaxySpace: Blöcke
 itemGroup.AddonsItems=GalaxySpace: Gegenstände
@@ -355,6 +375,6 @@ planet.BarnardaAsteroids=Asteroidengürtel
 
 solarsystem.VegaSystem=Vega-System
 star.Vega=Vega
-planet.Vega1=Vega 1
-planet.Vega2=Vega 2
+planet.Vega1=Vega B
+planet.Vega2=Vega C
 planet.VegaAsteroids=Asteroidengürtel
