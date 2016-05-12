@@ -173,7 +173,7 @@ tile.Barnarda2Dandelions.Dandelion1.name=巴纳德C草
 tile.Barnarda2Dandelions.Dandelion2.name=巴纳德C蒲公英
 tile.Barnarda2Dandelion3.name=巴纳德C灯笼花
 tile.Barnarda2Log.name=巴纳德C树木
-tile.Barnarda2PlanksOak.name=Oak Planks from Barnarda C Log
+tile.Barnarda2PlanksOak.name=巴纳德C树木木板
 tile.Sapling_1.name=巴纳德C树苗
 tile.Leaves_1.name=巴纳德C树叶
 tile.BarnardaEGrunt.name=巴纳德E地表岩石
@@ -185,15 +185,15 @@ tile.BarnardaFGrunt.name=巴纳德F地表岩石
 tile.BarnardaFSubGrunt.name=巴纳德F地底岩石
 tile.UnknowWater.name=不明液体
 
-tile.VegaBGrunt.name=Vega B Surface Block
-tile.VegaBSubGrunt.name=Vega B Subsurface Block
+tile.VegaBGrunt.name=织女一B地表岩石
+tile.VegaBSubGrunt.name=织女一B地底岩石
 
 tile.BlockDecorateCopper.name=装饰铜块
 
 tile.AssemblyMachine.name=熔合机
 tile.GeothermalGenerator.name=岩浆发电机
-tile.FuelGenerator.name=Fuel Generator
-tile.SolarWindPanel.name=Solar Wind Panel
+tile.FuelGenerator.name=燃油发电机
+tile.SolarWindPanel.name=太阳风发电板
 
 item.SchematicTier4.name=NASA工作台图纸
 item.SchematicTier5.name=NASA工作台图纸
@@ -229,7 +229,7 @@ item.plasmaaxe.name=等离子斧
 item.plasmapickaxe.name=等离子镐
 item.plasmahoe.name=等离子锄
 item.plasmashovel.name=等离子铲
-item.QuantBow.name=Quant Bow
+item.QuantBow.name=量子弓
 
 item.LeadIngot.name=铅锭
 item.DuraluminIngot.name=杜拉铝锭
@@ -269,12 +269,12 @@ item.thermalHelmT2.name=热力充能头盔
 item.thermalChestplateT2.name=热力充能胸甲
 item.thermalLeggingsT2.name=热力充能护腿
 item.thermalBootsT2.name=热力充能靴
-item.RocketConeT2.name=Durable Nose Cone Tier 2
-item.RocketEngineT2.name=Durable Rocket Engine Tier 2
-item.RocketBoosterT2.name=Booster Tier 2
-item.RocketStabilisatorT2.name=Durable Rocket Vane Tier 2
-item.PartSolarFlares.name=Part Solar Flares
-item.SolarFlares.name=Solar Flares
+item.RocketConeT2.name=重型2阶鼻锥
+item.RocketEngineT2.name=重型2阶火箭引擎
+item.RocketBoosterT2.name=2阶助推器
+item.RocketStabilisatorT2.name=重型2阶火箭鳍
+item.PartSolarFlares.name=太阳风板(部分)
+item.SolarFlares.name=太阳风板
 
 item.LeadBattery.name=铅电池
 item.UnknowWaterBucket.name=不明液体桶
@@ -299,10 +299,10 @@ gui.thermal2.desc2=保护你远离恒星的辐射。
 gui.module.desc=火箭模块
 gui.status.nolava.name=没有岩浆
 gui.message.lava.name=岩浆
-gui.status.nofuelgenerator.name=No Fuel
+gui.status.nofuelgenerator.name=没有燃料
 
-gui.quantbow.desc1=x1.5 Durability and x2 Damage!
-gui.quantbow.desc2=Fiery Arrows
+gui.quantbow.desc1=1.5 倍耐久和 2 倍伤害！
+gui.quantbow.desc2=火矢
 
 itemGroup.AddonsBlocks=星空|方块
 itemGroup.AddonsItems=星空|物品
@@ -378,3 +378,4 @@ star.Vega=织女一
 planet.Vega1=织女一B
 planet.Vega2=织女一C
 planet.VegaAsteroids=织女星系小行星带
+planet.VegaAsteroids2=织女星系小行星带
