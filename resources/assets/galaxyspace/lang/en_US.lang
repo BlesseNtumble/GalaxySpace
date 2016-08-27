@@ -95,8 +95,8 @@ tile.HaumeaGrunt.name=Haumea Surface Block
 tile.MakemakeGrunt.name=Makemake Surface Block
 tile.MakemakeSubGrunt.name=Makemake Subsurface Block
 
-tile.PhobosRock.name=Phobos Surface Block
-tile.PhobosSecRock.name=Phobos Subsurface Block
+tile.PhobosGrunt.name=Phobos Surface Block
+tile.PhobosSubGrunt.name=Phobos Subsurface Block
 tile.PhobosStone.name=Phobos Stone
 tile.PhobosDeshOre.name=Desh Ore
 tile.PhobosCobaltumOre.name=Cobalt Ore
