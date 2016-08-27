@@ -78,6 +78,8 @@ tile.CeresGrunt.name=Ceres Surface Block
 tile.CeresSubGrunt.name=Ceres Subsurface Block
 tile.CeresGlowStone.name=Ceres Glowstone
 tile.CeresBricks.name=Ceres Dungeon Bricks
+tile.CeresDungFloor.name=Ceres Dungeon Floor
+tile.CeresDungTop.name=Ceres Dungeon Ceiling
 tile.CeresMeteoricIronOre.name=Meteoric Iron Ore
 tile.CeresWeb.name=Ceres Web
 
