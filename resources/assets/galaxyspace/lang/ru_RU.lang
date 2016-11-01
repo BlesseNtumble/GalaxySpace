@@ -57,6 +57,8 @@ achievement.rocket2gc.desc=Сделать ракету 2 уровня.
 achievement.marsgc=Проект: Mars One!
 achievement.marsgc.desc=Приземлитесь на Марс!
 
+menu.update=Обновить [Galaxy Space]!
+
 tile.MercuryGrunt.name=Грунт Меркурия
 tile.MercurySubGrunt.name=Подповерхностный Грунт Меркурия
 tile.MercuryCore.name=Основание Ядра Меркурия
@@ -71,6 +73,33 @@ tile.VenusDiamondOre.name=Алмазная Руда
 
 tile.LeadOre.name=Свинцовая Руда
 tile.DecoLead.name=Декоративный Свинцовый Блок
+tile.DecoAdamantite.name=Декоративный Адамантитовый Блок
+tile.DecoCobaltum.name=Декоративный Кобальтовый Блок
+tile.DecoMagnesium.name=Декоративный Магниевый Блок
+tile.DecoMithril.name=Декоративный Мифриловый Блок
+tile.DecoNickel.name=Декоративный Никелевый Блок
+tile.DecoOriharukon.name=Декоративный Орихаруконовый Блок
+tile.DecoPlatinum.name=Декоративный Платиновый Блок
+tile.DecoWolframium.name=Декоративный Вольфрамовый Блок
+tile.DecoCopper.name=Декоративный Медный Блок
+
+tile.FutureGlass_None.name=Футуристическое Стекло
+tile.FutureGlass_Black.name=Черное Футуристическое Стекло
+tile.FutureGlass_Red.name=Красное Футуристическое Стекло
+tile.FutureGlass_Green.name=Зеленое Футуристическое Стекло
+tile.FutureGlass_Brown.name=Коричневое Футуристическое Стекло
+tile.FutureGlass_Blue.name=Синее Футуристическое Стекло
+tile.FutureGlass_Purple.name=Фиолетовое Футуристическое Стекло
+tile.FutureGlass_Cyan.name=Бирюзовое Футуристическое Стекло
+tile.FutureGlass_Lightgray.name=Светло-серое Футуристическое Стекло
+tile.FutureGlass_Gray.name=Серое Футуристическое Стекло
+tile.FutureGlass_Pink.name=Розовое Футуристическое Стекло
+tile.FutureGlass_Lime.name=Лаймовое Футуристическое Стекло
+tile.FutureGlass_Yellow.name=Желтое Футуристическое Стекло
+tile.FutureGlass_Lightblue.name=Светло-синее Футуристическое Стекло
+tile.FutureGlass_Magneta.name=Пурпурное Футуристическое Стекло
+tile.FutureGlass_Orange.name=Оранжевое Футуристическое Стекло
+tile.FutureGlass_White.name=Белое Футуристическое Стекло
 
 tile.CeresGrunt.name=Грунт Цереры
 tile.CeresSubGrunt.name=Подповерхность Цереры
@@ -78,6 +107,8 @@ tile.CeresGlowStone.name=Светокамень Цереры
 tile.CeresBricks.name=Кирпич Сокровищницы Цереры
 tile.CeresMeteoricIronOre.name=Руда Метеоритного Железа
 tile.CeresWeb.name=Паутина Цереры
+tile.CeresDungFloor.name=Пол Сокровищницы Цереры
+tile.CeresDungTop.name=Потолок Сокровищницы Цереры
 
 tile.PlutoGrunt.name=Грунт Плутона
 tile.PlutoGrunt2.name=Грунт Плутона
@@ -93,8 +124,8 @@ tile.HaumeaGrunt.name=Грунт Хаумеа
 tile.MakemakeGrunt.name=Грунт Макемаке
 tile.MakemakeSubGrunt.name=Подповерхность Макемаке
 
-tile.PhobosRock.name=Грунт Фобоса
-tile.PhobosSecRock.name=Подповерхностный Грунт Фобоса
+tile.PhobosGrunt.name=Грунт Фобоса
+tile.PhobosSubGrunt.name=Подповерхностный Грунт Фобоса
 tile.PhobosStone.name=Камень Фобоса
 tile.PhobosDeshOre.name=Руда Деш
 tile.PhobosCobaltumOre.name=Кобальтовая Руда
@@ -113,6 +144,9 @@ tile.IOWolframiumOre.name=Вольфрамовая Руда
 tile.IOCopperOre.name=Медная Руда
 tile.IOWeb.name=Паутина Ио
 tile.IODualStone.name=Двойной Блок Поверхности Ио
+tile.IOSulfurOre.name=Серная Руда
+tile.IODungTop.name=Потолок Сокровищницы Ио
+tile.IODungFloor.name=Пол Сокровищницы Ио
 
 tile.EuropaGrunt.name=Блок Поверхности Европы
 tile.EuropaIce.name=Лед Европы
@@ -143,6 +177,11 @@ tile.TitanGrunt.name=Грунт Титана
 tile.TitanSubGrunt.name=Подповерхностный Грунт Титана
 tile.TitanStone.name=Камень Титана
 tile.Methane.name=Жидкий Метан
+
+tile.MirandaGrunt.name=Грунт Миранды
+tile.MirandaSubGrunt.name=Подповерхность Миранды
+tile.MirandaStone.name=Камень Миранды
+tile.MirandaIronOre.name=Железная Руда
 
 tile.OberonGrunt.name=Грунт Оберона
 tile.OberonSubGrunt.name=Подповерхность Оберона
@@ -182,15 +221,43 @@ tile.BarnardaEOreGold.name=Золотая Руда
 tile.BarnardaFGrunt.name=Грунт Барнарды F
 tile.BarnardaFSubGrunt.name=Подповерхность Барнарды F
 tile.UnknowWater.name=Неизвестная Жидкость
-
-tile.BlockDecorateCopper.name=Декоративный Медный Блок
-tile.AssemblyMachine.name=Сборочный Цех
-tile.GeothermalGenerator.name=Геотермальный Генератор
-tile.FuelGenerator.name=Топливный Генератор
-tile.SolarWindPanel.name=Панель Солнечного Ветра
+tile.Barnarda2Reed.Reed1.name=Растительность Барнарды C
+tile.Barnarda2Reed.Reed2.name=Растительность с плодами Барнарды C
 
 tile.VegaBGrunt.name=Поверхность Веги Б
 tile.VegaBSubGrunt.name=Подповерхность Веги B
+
+tile.TCetiEGrunt.name=Поверхность Тау Кита Е
+tile.TCetiESubGrunt.name=Подповерхность Тау Кита Е
+tile.TCetiEStone.name=Камень Тау Кита Е
+tile.TCetiEBlockDandelions.TCetiEDandelion1.name=Водоросли Тау Кита Е
+tile.TCetiEBlockDandelions.TCetiEDandelion2.name=Водоросли Тау Кита Е
+tile.TCetiEBlockDandelions.TCetiEDandelion3.name=Водоросли Тау Кита Е
+tile.TCetiEBlockDandelions.TCetiEDandelion4.name=Водоросли Тау Кита Е
+tile.TCetiEBlockDandelions.TCetiEDandelion5.name=Водоросли Тау Кита Е
+tile.TCetiEBlockDandelions.TCetiEDandelion6.name=Водоросли Тау Кита Е
+
+tile.AssemblyMachine.name=Сборочный Цех
+tile.AssemblyMachine.desc=Продвинутая версия компрессора. Сплавливает материалы высокочувствительным лазером. Один из основных механизмов аддона.
+tile.GeothermalGenerator.name=Геотермальный Генератор
+tile.GeothermalGenerator.desc=Геотермальный Генератор преобразовывает тепло лавы в энергию. Дешего и сердито.
+tile.FuelGenerator.name=Топливный Генератор
+tile.FuelGenerator.desc=Топливный Генератор потребляет топливо и вырабатывает неплохое кол-во энергии. Хороший вариант для топливных магнатов.
+tile.SolarWindPanel.name=Панель Солнечного Ветра
+tile.SolarWindPanel.desc=Преобразует солнечный ветер в энергию. Не работает на планетах с атмосферой.
+tile.ConverterSurface.name=Преобразователь Грунта
+tile.ConverterSurface.desc=Преобразует планетный грунт в блоки травы. Полезная машина для терраформирования планеты.
+tile.MachineFrame.name=Улучшенный Корпус Машин
+tile.StorageModuleT3_4.name=Улучшенный Энергетический Массив
+tile.OxygenStorageModuleT2_4.name=Улучшенное Хранилище Кислорода
+tile.SolarPanel.name=Гибридная Солнечная Панель
+tile.coefficient.desc=Коэффициент генерации
+
+tile.tier4chest.description=Сундуки с сокровищами 4-го уровня будут генерироватся на Церере. Доступны для открытия после победы над финальным боссом.
+tile.tier5chest.description=Сундуки с сокровищами 5-го уровня будут генерироватся на Ио. Доступны для открытия после победы над финальным боссом.
+tile.tier6chest.description=Сундуки с сокровищами 6-го уровня будут генерироватся на Энцеланде. Доступны для открытия после победы над финальным боссом.
+tile.tier7chest.description=Сундуки с сокровищами 7-го уровня будут генерироватся на Протее. Доступны для открытия после победы над финальным боссом.
+tile.tier8chest.description=Сундуки с сокровищами 8-го уровня будут генерироватся на Плутоне. Доступны для открытия после победы над финальным боссом.
 
 item.SchematicTier4.name=Схема для верстака NASA
 item.SchematicTier5.name=Схема для верстака NASA
@@ -262,21 +329,37 @@ item.RocketBoosterT2.name=Ускоритель 2-го уровня
 item.RocketStabilisatorT2.name=Прочный ракетный стабилизатор 2-го уровня
 item.PartSolarFlares.name=Часть Солнечного Паруса
 item.SolarFlares.name=Солнечный Парус
+item.LeadBattery.name=Свинцовая Батарейка
+item.UnknowWaterBucket.name=Ведро Неизвестной Жидкости
+item.BarnardaCStrawberry.name=Неизвестные Плоды
 
 item.JetPack.name=Реактивный Электроранец
 item.lead_helmet.name=Свинцовый Шлем
 item.lead_plate.name=Свинцовый Нагрудник
 item.lead_leg.name=Свинцовые Поножи
 item.lead_boots.name=Свинцовые Ботинки
+item.cobaltum_helmet.name=Кобальтовый Шлем
+item.cobaltum_plate.name=Кобальтовый Нагрудник
+item.cobaltum_leg.name=Кобальтовый Поножи
+item.cobaltum_boots.name=Кобальтовый Ботинки
 item.plasmasword.name=Плазменный Меч
 item.plasmaaxe.name=Плазменный Топор
 item.plasmapickaxe.name=Плазменная Кирка
 item.plasmahoe.name=Плазменная Мотыга
 item.plasmashovel.name=Плазменная Лопата
 item.QuantBow.name=Квантовый Лук
+item.spacesuit_helmet.name=Шлем Космического Костюма
+item.spacesuit_plate.name=Нагрудник Космического Костюма
+item.spacesuit_leg.name=Поножи Космического Костюма
+item.spacesuit_boots.name=Ботинки Космического Костюма
 
-item.LeadBattery.name=Свинцовая Батарейка
-item.UnknowWaterBucket.name=Ведро Неизвестной Жидкости
+item.CeresGlowstoneDust.name=Светопыль Цереры
+item.IoGlowstoneDust.name=Светопыль Ио
+item.EnceladusGlowstoneDust.name=Светопыль Энцелада
+item.ProteusGlowstoneDust.name=Светопыль Протея
+item.PlutoGlowstoneDust.name=Светопыль Плутона
+
+item.biofuelCanister.name=Канистра Биотоплива
 
 potion.radiation=Солнечная Радиация
 
@@ -294,14 +377,20 @@ gui.hdp8.desc=8-ой уровень
 
 gui.thermal2.desc1=2-ой уровень
 gui.thermal2.desc2=Защищает от Солнечной Радиации.
+gui.spacesuit.desc=Костюм высокой прочности. Стабилизирует атмосферное давление. Также шлем позволяет дольше находится под водой.
 
 gui.module.desc=Ракетный Модуль
 gui.status.nolava.name=Нет Лавы
 gui.message.lava.name=Лава
+gui.message.water.name=Вода
 gui.status.nofuelgenerator.name=Нет Топлива
+gui.warning.atmosphericPressure=Высокое атмосферное давление!
+gui.message.biofuel.name=Биотопливо
 
 gui.quantbow.desc1=Имеет х1.5 прочность. Урон х2.
 gui.quantbow.desc2=Зажигательные стрелы.
+
+gs.success.name=Актуальная версия Galaxy Space:
 
 itemGroup.AddonsBlocks=GalaxySpace: Блоки
 itemGroup.AddonsItems=GalaxySpace: Предметы
@@ -357,10 +446,12 @@ planet.makemake=Макемаке
 planet.eris=Эрида
 
 solarsystem.aCentauriSystem=Система α Центавра
+solarsystem.ProximaSystem=Система Проксима Центавра
 star.CentauriA=α Центавра А
+star.Proxima=Проксима Центавра
 planet.CentauriB=α Центавра B
 planet.CentauriBb=α Центавра Bb
-planet.Proxima=Проксима Центавра
+planet.ProximaB=Проксима Б
 
 solarsystem.BarnardsSystem=Система Барнарда
 star.Barnarda=Барнарда A
@@ -378,3 +469,13 @@ planet.Vega1=Вега B
 planet.Vega2=Вега C
 planet.VegaAsteroids=Пояс Астероидов
 planet.VegaAsteroids2=Пояс Астероидов
+
+solarsystem.TCetiSystem=Система Тау Кита
+star.TCetiA=Тау Кита А
+planet.TCetiB=Тау Кита В
+planet.TCetiC=Тау Кита C
+planet.TCetiD=Тау Кита D
+planet.TCetiE=Тау Кита Е
+planet.TCetiF=Тау Кита F
+planet.TCetiG=Тау Кита G
+planet.TCetiAsteroids=Пояс Астероидов 

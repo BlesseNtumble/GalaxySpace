@@ -59,6 +59,8 @@ achievement.rocket2gc.desc=Create a Tier 2 Rocket.
 achievement.marsgc=Project: Mars One!
 achievement.marsgc.desc=Land on the Mars!
 
+menu.update=Update [Galaxy Space]!
+
 tile.MercuryGrunt.name=Mercury Surface Block
 tile.MercurySubGrunt.name=Mercury Subsurface Block
 tile.MercuryCore.name=Mercury Core
@@ -73,6 +75,33 @@ tile.VenusDiamondOre.name=Diamond Ore
 
 tile.LeadOre.name=Lead Ore
 tile.DecoLead.name=Decorate Lead Block
+tile.DecoAdamantite.name=Decorate Adamantite Block
+tile.DecoCobaltum.name=Decorate Cobaltum Block
+tile.DecoMagnesium.name=Decorate Magnesium Block
+tile.DecoMithril.name=Decorate Mithril Block
+tile.DecoNickel.name=Decorate Nickel Block
+tile.DecoOriharukon.name=Decorate Oriharukon Block
+tile.DecoPlatinum.name=Decorate Platinum Block
+tile.DecoWolframium.name=Decorate Wolframium Block
+tile.DecoCopper.name=Decorate Copper Block
+
+tile.FutureGlass_None.name=Future Glass
+tile.FutureGlass_Black.name=Black Future Glass
+tile.FutureGlass_Red.name=Red Future Glass
+tile.FutureGlass_Green.name=Green Future Glass
+tile.FutureGlass_Brown.name=Brown Future Glass
+tile.FutureGlass_Blue.name=Blue Future Glass
+tile.FutureGlass_Purple.name=Purple Future Glass
+tile.FutureGlass_Cyan.name=Cyan Future Glass
+tile.FutureGlass_Lightgray.name=Lightgray Future Glass
+tile.FutureGlass_Gray.name=Gray Future Glass
+tile.FutureGlass_Pink.name=Pink Future Glass
+tile.FutureGlass_Lime.name=Lime Future Glass
+tile.FutureGlass_Yellow.name=Yellow Future Glass
+tile.FutureGlass_Lightblue.name=Lightblue Future Glass
+tile.FutureGlass_Magneta.name=Magneta Future Glass
+tile.FutureGlass_Orange.name=Orange Future Glass
+tile.FutureGlass_White.name=White Future Glass
 
 tile.CeresGrunt.name=Ceres Surface Block
 tile.CeresSubGrunt.name=Ceres Subsurface Block
@@ -82,6 +111,8 @@ tile.CeresDungFloor.name=Ceres Dungeon Floor
 tile.CeresDungTop.name=Ceres Dungeon Ceiling
 tile.CeresMeteoricIronOre.name=Meteoric Iron Ore
 tile.CeresWeb.name=Ceres Web
+tile.CeresDungFloor.name=Ceres Dungeon Floor
+tile.CeresDungTop.name=Ceres Dungeon Top
 
 tile.PlutoGrunt.name=Pluto Surface Ice
 tile.PlutoGrunt2.name=Pluto Surface Ice
@@ -117,6 +148,9 @@ tile.IOWolframiumOre.name=Tungsten Ore
 tile.IOCopperOre.name=Copper Ore
 tile.IOWeb.name=Io Web
 tile.IODualStone.name=Io Dual Block Surface
+tile.IOSulfurOre.name=Sulfur Ore
+tile.IODungTop.name=Io Dungeon Top
+tile.IODungFloor.name=Io Dungeon Floor
 
 tile.EuropaGrunt.name=Europa Block Surface
 tile.EuropaIce.name=Europa Ice
@@ -147,6 +181,11 @@ tile.TitanGrunt.name=Titan Surface Block
 tile.TitanSubGrunt.name=Titan Subsurface Block
 tile.TitanStone.name=Titan Stone
 tile.Methane.name=Liquid Methane
+
+tile.MirandaGrunt.name=Miranda Surface Block
+tile.MirandaSubGrunt.name=Miranda Subsurface Block
+tile.MirandaStone.name=Miranda Stone
+tile.MirandaIronOre.name=Iron Ore
 
 tile.OberonGrunt.name=Oberon Surface Block
 tile.OberonSubGrunt.name=Oberon Subsurface Block
@@ -186,16 +225,43 @@ tile.BarnardaEOreGold.name=Gold Ore
 tile.BarnardaFGrunt.name=Barnarda F Surface Block
 tile.BarnardaFSubGrunt.name=Barnarda F Subsurface Block
 tile.UnknowWater.name=Unknown Liquid
+tile.Barnarda2Reed.Reed1.name=Barnarda C Dandelion
+tile.Barnarda2Reed.Reed2.name=Barnarda C Dandelion with fruits
 
 tile.VegaBGrunt.name=Vega B Surface Block
 tile.VegaBSubGrunt.name=Vega B Subsurface Block
 
-tile.BlockDecorateCopper.name=Decorate Copper Block
+tile.TCetiEGrunt.name=T Ceti E Surface Block
+tile.TCetiESubGrunt.name=T Ceti E Subsurface Block
+tile.TCetiEStone.name=T Ceti E Stone Block
+tile.TCetiEBlockDandelions.TCetiEDandelion1.name=T Ceti E Seaweed
+tile.TCetiEBlockDandelions.TCetiEDandelion2.name=T Ceti E Seaweed
+tile.TCetiEBlockDandelions.TCetiEDandelion3.name=T Ceti E Seaweed
+tile.TCetiEBlockDandelions.TCetiEDandelion4.name=T Ceti E Seaweed
+tile.TCetiEBlockDandelions.TCetiEDandelion5.name=T Ceti E Seaweed
+tile.TCetiEBlockDandelions.TCetiEDandelion6.name=T Ceti E Seaweed
 
 tile.AssemblyMachine.name=Assembly Machine
+tile.AssemblyMachine.desc=The advanced version of the compressor. Seals material a highly sensitive laser. One of the major mechanisms addon.
 tile.GeothermalGenerator.name=Geothermal Generator
+tile.GeothermalGenerator.desc=Geothermal Generator transforms the heat lava into energy.
 tile.FuelGenerator.name=Fuel Generator
+tile.FuelGenerator.desc=Fuel Generator consumes fuel and produces a good number of energy. A good option for fuel magnates.
 tile.SolarWindPanel.name=Solar Wind Panel
+tile.SolarWindPanel.desc=It converts the solar wind into energy. It does not work on a planet's atmosphere.
+tile.ConverterSurface.name=Converter Surface
+tile.ConverterSurface.desc=Converts planetary ground in blocks of grass. Useful machine for terraforming the planet.
+tile.MachineFrame.name=Advanced Machine Frame
+tile.StorageModuleT3_4.name=Advanced Energy Cluster
+tile.OxygenStorageModuleT2_4.name=Advanced Oxygen Module
+tile.SolarPanel.name=Hybrid Solar Panel
+tile.coefficient.desc=Coefficient generation
+
+tile.tier4chest.description=Treasure Chests 4th tier will be generated at Ceres. Available to open after kill the final boss.
+tile.tier5chest.description=Treasure Chests 5th tier will be generated at Io. Available to open after kill the final boss.
+tile.tier6chest.description=Treasure Chests 6th tier will be generated at Enceladus. Available to open after kill the final boss.
+tile.tier7chest.description=Treasure Chests 7th tier will be generated at Proteus. Available to open after kill the final boss.
+tile.tier8chest.description=Treasure Chests 8th tier will be generated at Pluto. Available to open after kill the final boss.
 
 item.SchematicTier4.name=NASA Workbench Schematic
 item.SchematicTier5.name=NASA Workbench Schematic
@@ -226,12 +292,20 @@ item.lead_helmet.name=Lead Helmet
 item.lead_plate.name=Lead Chestplate
 item.lead_leg.name=Lead Leggins
 item.lead_boots.name=Lead Boots
+item.cobaltum_helmet.name=Cobaltum Helmet
+item.cobaltum_plate.name=Cobaltum Chestplate
+item.cobaltum_leg.name=Cobaltum Leggins
+item.cobaltum_boots.name=Cobaltum Boots
 item.plasmasword.name=Plasma Sword
 item.plasmaaxe.name=Plasma Axe
 item.plasmapickaxe.name=Plasma Pickaxe
 item.plasmahoe.name=Plasma Hoe
 item.plasmashovel.name=Plasma Shovel
 item.QuantBow.name=Quant Bow
+item.spacesuit_helmet.name=SpaceSuit Helmet
+item.spacesuit_plate.name=SpaceSuit Chestplate
+item.spacesuit_leg.name=SpaceSuit Leggins
+item.spacesuit_boots.name=SpaceSuit Boots
 
 item.LeadIngot.name=Lead Ingot
 item.DuraluminIngot.name=Duralumin Ingot
@@ -277,9 +351,17 @@ item.RocketBoosterT2.name=Booster Tier 2
 item.RocketStabilisatorT2.name=Durable Rocket Vane Tier 2
 item.PartSolarFlares.name=Part Solar Flares
 item.SolarFlares.name=Solar Flares
-
 item.LeadBattery.name=Lead Battery
 item.UnknowWaterBucket.name=Bucket of Unknown Liquid
+item.BarnardaCStrawberry.name=Unknow Fruits
+
+item.biofuelCanister.name=Biofuel Canister
+
+item.CeresGlowstoneDust.name=Ceres Glowstone Dust
+item.IoGlowstoneDust.name=Io Glowstone Dust
+item.EnceladusGlowstoneDust.name=Enceladus Glowstone Dust
+item.ProteusGlowstoneDust.name=Proteus Glowstone Dust
+item.PlutoGlowstoneDust.name=Pluto Glowstone Dust
 
 potion.radiation=Solar Radiation
 
@@ -297,14 +379,20 @@ gui.hdp8.desc=Tier 8
 
 gui.thermal2.desc1=Tier 2
 gui.thermal2.desc2=Protection from Solar Radiation.
+gui.spacesuit.desc=Suit high strength. It stabilizes atmospheric pressure. Also, the helmet allows for longer under water.
 
 gui.module.desc=Rocket Module
 gui.status.nolava.name=No Lava
 gui.message.lava.name=Lava
+gui.message.water.name=Water
 gui.status.nofuelgenerator.name=No Fuel
+gui.warning.atmosphericPressure=High atmospheric pressure!
+gui.message.biofuel.name=Biofuel
 
 gui.quantbow.desc1=x1.5 Durability and x2 Damage!
 gui.quantbow.desc2=Fiery Arrows
+
+gs.success.name=Actual version Galaxy Space:
 
 itemGroup.AddonsBlocks=GalaxySpace: Blocks
 itemGroup.AddonsItems=GalaxySpace: Items
@@ -329,7 +417,7 @@ entity.SpaceshipT4.name=Tier 4 Rocket
 entity.SpaceshipT5.name=Tier 5 Rocket 
 entity.SpaceshipT6.name=Tier 6 Rocket 
 entity.SpaceshipT7.name=Tier 7 Rocket 
-entity.SpaceshipT7.name=Tier 8 Rocket 
+entity.SpaceshipT8.name=Tier 8 Rocket 
 
 planet.Ceres=Ceres
 moon.Phobos=Phobos
@@ -360,10 +448,12 @@ planet.makemake=Makemake
 planet.eris=Eris
 
 solarsystem.aCentauriSystem=α Centauri System
+solarsystem.ProximaSystem=Proxima Centauri System
 star.CentauriA=α Centauri А
 planet.CentauriB=α Centauri B
 planet.CentauriBb=α Centauri Bb
-planet.Proxima=Proxima Centauri
+star.Proxima=Proxima Centauri
+planet.ProximaB=Proxima B
 
 solarsystem.BarnardsSystem=Barnard's System
 star.Barnarda=Barnarda A
@@ -381,3 +471,13 @@ planet.Vega1=Vega B
 planet.Vega2=Vega C
 planet.VegaAsteroids=Asteroids Belt
 planet.VegaAsteroids2=Asteroids Belt
+
+solarsystem.TCetiSystem=T Ceti System
+star.TCetiA=T Ceti A
+planet.TCetiB=T Ceti В
+planet.TCetiC=T Ceti C
+planet.TCetiD=T Ceti D
+planet.TCetiE=T Ceti Е
+planet.TCetiF=T Ceti F
+planet.TCetiG=T Ceti G
+planet.TCetiAsteroids=Asteroids Belt
