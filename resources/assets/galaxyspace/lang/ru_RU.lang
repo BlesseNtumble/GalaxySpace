@@ -83,6 +83,17 @@ tile.DecoPlatinum.name=Декоративный Платиновый Блок
 tile.DecoWolframium.name=Декоративный Вольфрамовый Блок
 tile.DecoCopper.name=Декоративный Медный Блок
 
+tile.Lead.name=Свинцовый Блок
+tile.Adamantite.name=Адамантитовый Блок
+tile.Cobalt.name=Кобальтовый Блок
+tile.Magnesium.name=Магниевый Блок
+tile.Mithril.name=Мифриловый Блок
+tile.Nickel.name=Никелевый Блок
+tile.Oriharukon.name=Орихаруконовый Блок
+tile.Platinum.name=Платиновый Блок
+tile.Wolframium.name=Вольфрамовый Блок
+tile.Copper.name=Медный Блок
+
 tile.FutureGlass_None.name=Футуристическое Стекло
 tile.FutureGlass_Black.name=Черное Футуристическое Стекло
 tile.FutureGlass_Red.name=Красное Футуристическое Стекло
@@ -223,6 +234,7 @@ tile.BarnardaFSubGrunt.name=Подповерхность Барнарды F
 tile.UnknowWater.name=Неизвестная Жидкость
 tile.Barnarda2Reed.Reed1.name=Растительность Барнарды C
 tile.Barnarda2Reed.Reed2.name=Растительность с плодами Барнарды C
+tile.Stalactites.name=Рудный Сталактит
 
 tile.VegaBGrunt.name=Поверхность Веги Б
 tile.VegaBSubGrunt.name=Подповерхность Веги B
@@ -249,9 +261,14 @@ tile.ConverterSurface.name=Преобразователь Грунта
 tile.ConverterSurface.desc=Преобразует планетный грунт в блоки травы. Полезная машина для терраформирования планеты.
 tile.MachineFrame.name=Улучшенный Корпус Машин
 tile.StorageModuleT3_4.name=Улучшенный Энергетический Массив
+tile.StorageModule.desc=Продвинутая версия Энергетического Кластера. Может содержать довольное большое количество энергии.
 tile.OxygenStorageModuleT2_4.name=Улучшенное Хранилище Кислорода
+tile.OxygenStorageModule.desc=Улучшенная версия Хранилища Кислорода. Может хранить в двое больше кислорода.
 tile.SolarPanel.name=Гибридная Солнечная Панель
+tile.SolarHybrid.desc=Покрытая золотом гибридная панель, вырабатывает в полтора раза больше энергии, чем Продвинутая панель.
 tile.coefficient.desc=Коэффициент генерации
+tile.GravitationModule_4.name=Гравитационный Механизм
+tile.GravitationModule.desc=Создает земную гравитацию в радиусе 8 блоков во все стороны.
 
 tile.tier4chest.description=Сундуки с сокровищами 4-го уровня будут генерироватся на Церере. Доступны для открытия после победы над финальным боссом.
 tile.tier5chest.description=Сундуки с сокровищами 5-го уровня будут генерироватся на Ио. Доступны для открытия после победы над финальным боссом.
@@ -353,13 +370,17 @@ item.spacesuit_plate.name=Нагрудник Космического Костю
 item.spacesuit_leg.name=Поножи Космического Костюма
 item.spacesuit_boots.name=Ботинки Космического Костюма
 
+item.spacesuit_helmetglasses.name=Сенсорные Очки Космического Костюма
+item.spacesuit_jetplate.name=Джетпак Космического Костюма
+item.spacesuit_gravityboots.name=Гравитационные Ботинки Космического Костюма
+
 item.CeresGlowstoneDust.name=Светопыль Цереры
 item.IoGlowstoneDust.name=Светопыль Ио
 item.EnceladusGlowstoneDust.name=Светопыль Энцелада
 item.ProteusGlowstoneDust.name=Светопыль Протея
 item.PlutoGlowstoneDust.name=Светопыль Плутона
 
-item.biofuelCanister.name=Канистра Биотоплива
+item.biofuelCanister.name=[WIP] Канистра Биотоплива
 
 potion.radiation=Солнечная Радиация
 
@@ -387,6 +408,57 @@ gui.status.nofuelgenerator.name=Нет Топлива
 gui.warning.atmosphericPressure=Высокое атмосферное давление!
 gui.message.biofuel.name=Биотопливо
 
+gui.info.brown.name=Коричневый
+gui.info.red.name=Красный
+gui.info.orange.name=Оранжевый
+gui.info.yellow.name=Желтый
+gui.info.white.name=Белый
+gui.info.lightblue.name=Светло-синий
+
+gui.info.dwarf.name=Карлик
+gui.info.subdwarf.name=Суб-Карлик
+
+gui.info.selena.name=Селена
+gui.info.desert.name=Пустыня
+gui.info.terra.name=Терра
+gui.info.gasgiant.name=Газовый Гигант
+gui.info.icegiant.name=Ледянной Гигант
+gui.info.iceworld.name=Ледянной Мир
+gui.info.asteroid.name=Астероид
+gui.info.oceanide.name=Океанида
+gui.info.titan.name=Титан
+
+gui.message.generalinformation=Главная Информация:
+gui.message.physicalparameters=Физические Параметры:
+gui.message.atmosphericparameters=Атмоферные Параметры:
+gui.message.type=Тип:
+gui.message.star=Звезда
+gui.message.planet=Планета
+gui.message.planets=Планет:
+gui.message.moon=Луна
+gui.message.satellite=Спутник
+gui.message.satellites=Спутников:
+gui.message.class=Класс:
+gui.message.gravity=Гравитация:
+gui.message.daylength=Сутки:
+gui.message.atmopressure=Атм. Давление:
+gui.message.temperature=Температура:
+gui.message.windspeed=Скорость Ветра:
+gui.message.breathableatmo=Обитаема:
+gui.message.solarradiation=Солнечная Радиация:
+gui.message.unknown=Неизвестно
+gui.message.traveltime=Время полета:
+
+gui.module.caninstall=Можно установить модули. Возьмите эту часть брони в руки и нажмите Shift+ПКМ.
+gui.module.installed=Установленные модули:
+gui.module.jetpack=Реактивный Ранец
+gui.message.jetpack=Необходимо иметь разряженный Реактивный Ранец в инвентаре!
+gui.module.sensor=Сенсор
+gui.message.sensor=Необходимо иметь Сенсорные Очки в инвентаре!
+gui.module.gravitymodule=Гравитационное поле
+gui.message.gravitymodule=Необходимо иметь два Сжатых Магния в инвентаре!
+
+gui.message.effectVisible.name=Видимость эффектов
 gui.quantbow.desc1=Имеет х1.5 прочность. Урон х2.
 gui.quantbow.desc2=Зажигательные стрелы.
 
