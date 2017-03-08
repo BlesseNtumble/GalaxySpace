@@ -88,6 +88,7 @@ tile.DecoCopper.name=Decorate Copper Block
 tile.Lead.name=Lead Block
 tile.Adamantite.name=Adamantite Block
 tile.Cobalt.name=Cobalt Block
+tile.Duralumin.name=Duralumin Block
 tile.Magnesium.name=Magnesium Block
 tile.Mithril.name=Mithril Block
 tile.Nickel.name=Nickel Block
@@ -163,6 +164,7 @@ tile.IODungFloor.name=Io Dungeon Floor
 
 tile.EuropaGrunt.name=Europa Block Surface
 tile.EuropaIce.name=Europa Ice
+tile.EuropaStone.name=Europa Stone
 tile.EuropaGeyzer.name=Europa Geyser
 tile.EuropaUnderwaterGeyser.name=Underwater Europa Geyser
 
