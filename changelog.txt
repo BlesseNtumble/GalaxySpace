@@ -1,5 +1,3 @@
-﻿#ru
-1. 99% предметов переведено на Метадату.
+﻿r.1. 99% предметов переведено на Метадату.
 
-#en
-1. 99% items transfer on Metadata.
+e.1. 99% items transfer on Metadata.
