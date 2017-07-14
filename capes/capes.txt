@@ -7,4 +7,3 @@ juh9870:capeRed
 FriendlyDevil:capeLightBlue
 KETZALCOATL:capeLightBlue
 Dixil:capeBlue
-_WhiteWarrior_:capeRed
