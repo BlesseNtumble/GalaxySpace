@@ -22,14 +22,14 @@ e.2. Fixed and added new features on galaxy map.
 e.3. Fixed description Space Suit.
 e.4. Fixed the number of ingots obtained during disassembly of the metal block.
 e.5. The fluids now freeze on the planets (or evaporate, depending on t *).
-e.6. Wind Turbine.
+e.6. Wind Turbine
 e.7. New model Solar Panel.
 e.8. Fixed rendering of the sky on the planets and added render on the Earth.
 e.9. Fixed biomes id.
 e.10. Changed craft rocket.
 e.11. Added Rocket Assembler.
 e.12. Added carapace of the Volneskor and craft armor and tools.
-e.13. Configurations of generators are made in a separate file.
+e.13. Configurations of generators are made in a separate file
 e.14. Added a sensor of solar radiation.
 e.15. Added config to disable dungeons.
 e.16. Added a new oxygen canisters.
