@@ -16,6 +16,7 @@ r.13. Конфигурации генераторов вынесены в отд
 r.14. Добавлен датчик Солнечной Радиации.
 r.15. Добавлен конфиг на отключение данжей.
 r.16. Добавлена новая канистра Кислорода
+r.17. Временно убраны данжи с Энцелада, Протея и Плутона.
 #en
 e.1. 99% items transfer on Metadata.
 e.2. Fixed and added new features on galaxy map.
@@ -33,3 +34,4 @@ e.13. Configurations of generators are made in a separate file
 e.14. Added a sensor of solar radiation.
 e.15. Added config to disable dungeons.
 e.16. Added a new oxygen canisters.
+e.17. Temporarily removed the dungeons from Enceladus, Proteus and Pluto.
