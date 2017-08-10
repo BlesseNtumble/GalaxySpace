@@ -1,37 +1,14 @@
 ///Changelog///
 #ru
-r.1. 99% предметов переведено на Метадату.
-r.2. Фикс и шаманизм над галактической карты.
-r.3. Фикс описания космического костюма.
-r.4. Исправлено кол-во слитков получаемых при разборке блока металла.
-r.5. Жидкости теперь замерзают на планетах (или испаряются. Зависит от t*)
-r.6. Ветровая турбина
-r.7. Новая модель солнечной панели
-r.8. Исправлен рендер неба на планетах и добавлен рендер на Земле
-r.9. Фикс биомов
-r.10. Изменен крафт ракет.
-r.11. Добавлен сборочный цех ракет.
-r.12. Добавлен хитин Волнескора и броня из него.
-r.13. Конфигурации генераторов вынесены в отдельный файл.
-r.14. Добавлен датчик Солнечной Радиации.
-r.15. Добавлен конфиг на отключение данжей.
-r.16. Добавлена новая канистра Кислорода
-r.17. Временно убраны данжи с Энцелада, Протея и Плутона.
+r.1. Фикс краша из-за замерзания блоков.
+r.2. Добавлен рецепт для Ветровой Турбины.
+r.3. В данжи на Цереру добавлены схемы частей ракет.
+r.4. Система Тау Кита временно отключена.
+r.5. Добавлено автоопределение класса планет на карте. (Работает с аддонами)
 #en
-e.1. 99% items transfer on Metadata.
-e.2. Fixed and added new features on galaxy map.
-e.3. Fixed description Space Suit.
-e.4. Fixed the number of ingots obtained during disassembly of the metal block.
-e.5. The fluids now freeze on the planets (or evaporate, depending on t *).
-e.6. Wind Turbine
-e.7. New model Solar Panel.
-e.8. Fixed rendering of the sky on the planets and added render on the Earth.
-e.9. Fixed biomes id.
-e.10. Changed craft rocket.
-e.11. Added Rocket Assembler.
-e.12. Added carapace of the Volneskor and craft armor and tools.
-e.13. Configurations of generators are made in a separate file
-e.14. Added a sensor of solar radiation.
-e.15. Added config to disable dungeons.
-e.16. Added a new oxygen canisters.
-e.17. Temporarily removed the dungeons from Enceladus, Proteus and Pluto.
+e.1. Fix crash due to freezing of blocks.
+e.2. Added recipe for Wind Turbine
+e.3. In dungeons on Ceres added schematic rockets parts.
+e.4. Thau Ceti system is temporarily disabled.
+e.5. Added autodetection of the class of planets on the map. (Works with addons).
+
