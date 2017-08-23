@@ -1,14 +1,15 @@
 ///Changelog///
 #ru
-r.1. Фикс краша из-за замерзания блоков.
-r.2. Добавлен рецепт для Ветровой Турбины.
-r.3. В данжи на Цереру добавлены схемы частей ракет.
-r.4. Система Тау Кита временно отключена.
-r.5. Добавлено автоопределение класса планет на карте. (Работает с аддонами)
+r.1. Фикс краша из-за джетпака.
+r.2. Фикс дюпа пластин через Сборочный Цех.
+r.3. Отключен рендер Млечного пути на небе (это был тестовый рендер).
+r.4. Добавлен конфиг на включение\выключение рендера Земного неба.
+r.5. Изменено расположение информации и окна создания станции на карте.
+r.6. Исправлен рендер кислородных баллонов.
 #en
-e.1. Fix crash due to freezing of blocks.
-e.2. Added recipe for Wind Turbine
-e.3. In dungeons on Ceres added schematic rockets parts.
-e.4. Thau Ceti system is temporarily disabled.
-e.5. Added autodetection of the class of planets on the map. (Works with addons).
-
+e.1. Fixed crash because of jetpack.
+e.2. Fixed dupe plates through the Assembly Machine
+e.3. The Milky Way renderer in the sky was disabled (it was a test render).
+e.4. Added config to enable / disable the rendering of the Earth's sky.
+e.5. The location of the information and the station creation window on the map have been changed.
+e.6. Fixed the rendering of oxygen ballons.
