@@ -1,15 +1,23 @@
 ///Changelog///
 #ru
-r.1. Фикс краша из-за джетпака.
-r.2. Фикс дюпа пластин через Сборочный Цех.
-r.3. Отключен рендер Млечного пути на небе (это был тестовый рендер).
-r.4. Добавлен конфиг на включение\выключение рендера Земного неба.
-r.5. Изменено расположение информации и окна создания станции на карте.
-r.6. Исправлен рендер кислородных баллонов.
+r.1. Исправлена кнопка “Создать” космической станции на карте.
+r.2. Добавлена двухрежимная кирка в данж на Ио.
+r.3. Изменена генерация Венеры.
+r.4. Испралены слоты Сборщика Ракет, в которые не клались элементы 7 ракеты.
+r.5. Удален вольфрам за неиспользованием.
+r.6. Изменена генерация Альфа Центавра Bb.
+r.7. Изменено небо на Альфа Центавра Bb.
+r.8. Посадка на Альфа Центавра Bb теперь производится в Лунном Ландере.
+r.9. Исправлена ошибка, из-за которой не открывался интерфейс машин на сервере.
+r.10. Добавлено несколько модулей в космический костюм.
 #en
-e.1. Fixed crash because of jetpack.
-e.2. Fixed dupe plates through the Assembly Machine
-e.3. The Milky Way renderer in the sky was disabled (it was a test render).
-e.4. Added config to enable / disable the rendering of the Earth's sky.
-e.5. The location of the information and the station creation window on the map have been changed.
-e.6. Fixed the rendering of oxygen ballons.
+e.1. Fixed button for create spacestation on galaxy map.
+e.2. Added two-mode pickaxe in dungeon on Io.
+e.3. Changed Venus worldgen.
+e.4. Fixed Rocket Assembler slots, in which tier 7 rocket elements were not put.
+e.5. Removed tungsten for not using.
+e.6. Changed aCentauri Bb worldgen.
+e.7. Changed sky on aCentauri Bb.
+e.8. Replaced Lander Ballons on Lander on aCentauri Bb.
+e.9. Fixed open GUI error on server. 
+e.10. Added several modules in the spacesuit.
