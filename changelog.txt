@@ -1,23 +1,39 @@
 ///Changelog///
 #ru
-r.1. Исправлена кнопка “Создать” космической станции на карте.
-r.2. Добавлена двухрежимная кирка в данж на Ио.
-r.3. Изменена генерация Венеры.
-r.4. Испралены слоты Сборщика Ракет, в которые не клались элементы 7 ракеты.
-r.5. Удален вольфрам за неиспользованием.
-r.6. Изменена генерация Альфа Центавра Bb.
-r.7. Изменено небо на Альфа Центавра Bb.
-r.8. Посадка на Альфа Центавра Bb теперь производится в Лунном Ландере.
-r.9. Исправлена ошибка, из-за которой не открывался интерфейс машин на сервере.
-r.10. Добавлено несколько модулей в космический костюм.
+r.1. Фикс краша на Венере, если игрок играет на сервере.
+r.2. Удалены оставшиеся рецепты на Вольфрам.
+r.3. Фикс расположения схем.
+r.4. Фикс краша на Плутоне.
+r.5. Новая система уровней у планет.
+r.6. Список звезд на Галактической карте при нажатии на текущую звезду.
+r.7. Убрана заморозка жидкостей и изчезновение листвы. Много жалоб.
+r.8. Небольшой фикс генерации aCentauriBb.
+r.9. Космический костюм теперь не разрушается если полностью разряжен.
+r.10. Небольшой фикс модулей космического костюма.
+r.11. Исправлены рецепты деталей ракет. 
+r.12. Добавлена ф-ция изменения радиуса в Гравитационном Модуле.
+r.13. Возвращена система Тау Кита. Тау Кита Е теперь океанида.
+r.14. Гравитация на Барнарде F теперь 200% от Земной.
+r.15. В Поясе Койпера теперь генерируются некоторые руды аддона.
+r.16. Добавлена ф-ция отключения времени перелета.
+r.17. 2D режим Галактической карты. (Включается в конфиге).
+r.18. Добавлен множитель времени перелета в конфиг.
 #en
-e.1. Fixed button for create spacestation on galaxy map.
-e.2. Added two-mode pickaxe in dungeon on Io.
-e.3. Changed Venus worldgen.
-e.4. Fixed Rocket Assembler slots, in which tier 7 rocket elements were not put.
-e.5. Removed tungsten for not using.
-e.6. Changed aCentauri Bb worldgen.
-e.7. Changed sky on aCentauri Bb.
-e.8. Replaced Lander Ballons on Lander on aCentauri Bb.
-e.9. Fixed open GUI error on server. 
-e.10. Added several modules in the spacesuit.
+e.1. Fixed crash on Venus, if player on server.
+e.2. Removed all recipes for Tungsten.
+e.3. Small fix schematics metadata.
+e.4. Fixed crash on Pluto.
+e.5. New system of tier at planet.
+e.6. Star list on Galaxy Map.
+e.7. Freezing blocks/liquid removed.
+e.8. Small fixed gen on aCentauriBb.
+e.9. Spacesuit now doesn't destroy if full discharged. 
+e.10. Small fix modules of spacesuit.
+e.11. Fixed recipes for rocket parts.
+e.12. Added function change radius in Gravity Module .
+e.13. T Ceti System returned. It now Oceanide .
+e.14. Gravity on Bardarda F now 200% from Earth.
+e.15. On Kuiper Belt added generation ores of addon. 
+e.16. Added config for disable time travel.
+e.17. 2D mode Galaxy Map. (Enable in config).
+e.18. Added multiplier time travel in config.
