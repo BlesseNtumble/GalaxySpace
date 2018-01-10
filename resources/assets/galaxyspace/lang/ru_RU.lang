@@ -162,7 +162,7 @@ tile.IODungFloor.name=Пол Сокровищницы Ио
 tile.EuropaGrunt.name=Блок Поверхности Европы
 tile.EuropaIce.name=Лед Европы
 tile.EuropaGeyzer.name=Гейзер Европы
-tile.EuropaUnderwaterGeyser.name=Подводный Гейдер Европы
+tile.EuropaUnderwaterGeyser.name=Подводный Гейзер Европы
 
 tile.GanymedeGrunt.name=Грунт Ганимеда
 tile.GanymedeSubGrunt.name=Подповерхностный Грунт Ганимеда
