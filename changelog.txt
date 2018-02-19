@@ -1,39 +1,35 @@
 ///Changelog///
 #ru
-r.1. Фикс краша на Венере, если игрок играет на сервере.
-r.2. Удалены оставшиеся рецепты на Вольфрам.
-r.3. Фикс расположения схем.
-r.4. Фикс краша на Плутоне.
-r.5. Новая система уровней у планет.
-r.6. Список звезд на Галактической карте при нажатии на текущую звезду.
-r.7. Убрана заморозка жидкостей и изчезновение листвы. Много жалоб.
-r.8. Небольшой фикс генерации aCentauriBb.
-r.9. Космический костюм теперь не разрушается если полностью разряжен.
-r.10. Небольшой фикс модулей космического костюма.
-r.11. Исправлены рецепты деталей ракет. 
-r.12. Добавлена ф-ция изменения радиуса в Гравитационном Модуле.
-r.13. Возвращена система Тау Кита. Тау Кита Е теперь океанида.
-r.14. Гравитация на Барнарде F теперь 200% от Земной.
-r.15. В Поясе Койпера теперь генерируются некоторые руды аддона.
-r.16. Добавлена ф-ция отключения времени перелета.
-r.17. 2D режим Галактической карты. (Включается в конфиге).
-r.18. Добавлен множитель времени перелета в конфиг.
+r.1. Гелий-3. Механизм-Переработчик материалов.
+r.2. В космосе нельзя есть обычную еду.
+r.3. Геотермальный Генератор и Топливный генератор объеденены.
+r.4. Дождь на Венере теперь наносит урон.
+r.5. Добавлен Жидкостный Экстактор.
+r.6. Возвращена и доработана система заморозки\испарения жидкости.
+r.7. Добавлен Термоядерный Реактор.
+r.8. Добавлен Жидкостный Резервуар.
+r.9. Добавлена ф-ция торговли для лунных жителей. Добавлены сапфиры.
+r.10. Добавлено включение\отключение сенсорных очков в шлеме.
+r.11. Заменена модель Реактивного Ранца.
+r.12. Добавлен минерал Доломит и Доломитовая пыль, аналогичная костной муке.
+r.13. Добавлена переработка Марсианского грунта в Гематит, который переплавляется в железо.
+r.14. Сера теперь перерабатывается в порох. Рецепт временный.
+r.15. Отключено давление и солнечная радиация в кислородном пузыре. Временно.
+r.16. На Марс добавлены руды.
 #en
-e.1. Fixed crash on Venus, if player on server.
-e.2. Removed all recipes for Tungsten.
-e.3. Small fix schematics metadata.
-e.4. Fixed crash on Pluto.
-e.5. New system of tier at planet.
-e.6. Star list on Galaxy Map.
-e.7. Freezing blocks/liquid removed.
-e.8. Small fixed gen on aCentauriBb.
-e.9. Spacesuit now doesn't destroy if full discharged. 
-e.10. Small fix modules of spacesuit.
-e.11. Fixed recipes for rocket parts.
-e.12. Added function change radius in Gravity Module .
-e.13. T Ceti System returned. It now Oceanide .
-e.14. Gravity on Bardarda F now 200% from Earth.
-e.15. On Kuiper Belt added generation ores of addon. 
-e.16. Added config for disable time travel.
-e.17. 2D mode Galaxy Map. (Enable in config).
-e.18. Added multiplier time travel in config.
+e.1. Heluim-3. New machine: Universal Recycler.
+e.2. In space can't eat ordinary food.
+e.3. The Geothermal Generator and the Fuel Generator are combined.
+e.4. Rain on Venus now deals damage
+e.5. Added Liquid Extractor.
+e.6. The system for freezing / evaporating the liquid is returned and refined.
+e.7. Added Thermonuclear Reactor.
+e.8. Added Liquid Tank.
+e.9. Alien Villager now can trade with player.
+e.10. Added the on/off of sensory glasses in the helmet.
+e.11. Replaced the model of the Jetpack.
+e.12. Added a mineral Dolomite and Dolomite dust, similar to bone meal.
+e.13. The processing of the Martian soil into Hematite is added, which is remelted into iron.
+e.14. Sulfur is now processed in gunpowder. The recipe is temporary.
+e.15. Disable pressure and solar radiation in the oxygen bubble. Temporarily.
+e.16. Ores are added to Mars.
