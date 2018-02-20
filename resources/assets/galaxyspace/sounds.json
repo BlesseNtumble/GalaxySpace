@@ -1,0 +1,19 @@
+{
+  "galaxyspace.musicSpace": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "music/gf_ap",
+        "stream": true
+      },
+	  {
+        "name": "music/nm_ap",
+        "stream": true
+      },
+	  {
+        "name": "music/reunion",
+        "stream": true
+      }
+    ]
+  }
+}
