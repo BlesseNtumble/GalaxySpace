@@ -16,6 +16,7 @@ r.13. Добавлена переработка Марсианского гру�
 r.14. Сера теперь перерабатывается в порох. Рецепт временный.
 r.15. Отключено давление и солнечная радиация в кислородном пузыре. Временно.
 r.16. На Марс добавлены руды.
+r.17. Временно убраны: Барнарда, Тау Кита, Вега и многие спутники планет Сол. системы.
 #en
 e.1. Heluim-3. New machine: Universal Recycler.
 e.2. In space can't eat ordinary food.
@@ -33,3 +34,4 @@ e.13. The processing of the Martian soil into Hematite is added, which is remelt
 e.14. Sulfur is now processed in gunpowder. The recipe is temporary.
 e.15. Disable pressure and solar radiation in the oxygen bubble. Temporarily.
 e.16. Ores are added to Mars.
+e.17. Removed Barnarda System, TCeti System, Vega System and many solar system moons.
