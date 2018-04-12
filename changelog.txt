@@ -1,35 +1,33 @@
 ///Changelog///
 #ru
-r.1. Гелий-3. Универсальный Переработчик.
-r.2. В космосе нельзя есть обычную еду.
-r.3. Геотермальный Генератор и Топливный генератор объеденены.
-r.4. Дождь на Венере теперь наносит урон.
-r.5. Добавлен Жидкостный Экстактор.
-r.6. Возвращена и доработана система заморозки\испарения жидкости.
-r.7. Добавлен Термоядерный Реактор.
-r.8. Добавлен Жидкостный Резервуар.
-r.9. Добавлена ф-ция торговли для лунных жителей. Добавлены сапфиры.
-r.10. Добавлено включение\отключение сенсорных очков в шлеме.
-r.11. Заменена модель Реактивного Ранца.
-r.12. Добавлен минерал Доломит и Доломитовая пыль, аналогичная костной муке.
-r.13. Добавлена переработка Марсианского грунта в Гематит, который переплавляется в железо.
-r.14. Сера теперь перерабатывается в порох. Рецепт временный.
-r.15. Отключено давление и солнечная радиация в кислородном пузыре. Временно.
-r.16. На Марс добавлены руды.
+r.1. Исправлены рецепты Марисанских руд для печки.
+r.2. Исправлен бинд кнопки описания предметов.
+r.3. Добавлен конфиг на биом Space Beach Biome.
+r.4. Возвращена ракета 4 уровня и ее компоненты.
+r.5. Возвращены плазменные инструменты.
+r.6. Фикс работы аддона на сервере.
+r.7. Небольшой фикс краша при открытии карты.
+r.8. Исправлен некорректный крафт космического нагрудника.
+r.9. Исправлено отсутствие изображений у Серы и Неизвестного кристалла. 
+r.10. Возвращен Меркурий.
+r.11. Изменена система Солнечной радиации. Добавлен антирадиационный препарат.
+r.12. Возвращен Плутон. Из пород Плутона можно добывать воду или метан.
+r.13. Добавлено отображение спутников планеты на Галактической карте.
+r.14. Возвращена Каллисто.
+r.15. Добавлена кнопка вкл\выкл реактивного ранца в космическом нагруднике.
 #en
-e.1. Heluim-3. New machine: Universal Recycler.
-e.2. In space can't eat ordinary food.
-e.3. The Geothermal Generator and the Fuel Generator are combined.
-e.4. Rain on Venus now deals damage
-e.5. Added Liquid Extractor.
-e.6. The system for freezing / evaporating the liquid is returned and refined.
-e.7. Added Thermonuclear Reactor.
-e.8. Added Liquid Tank.
-e.9. Alien Villager now can trade with player.
-e.10. Added the on/off of sensory glasses in the helmet.
-e.11. Replaced the model of the Jetpack.
-e.12. Added a mineral Dolomite and Dolomite dust, similar to bone meal.
-e.13. The processing of the Martian soil into Hematite is added, which is remelted into iron.
-e.14. Sulfur is now processed in gunpowder. The recipe is temporary.
-e.15. Disable pressure and solar radiation in the oxygen bubble. Temporarily.
-e.16. Ores are added to Mars.
+e.1. The recipes of the Marisan ores for the stove have been fixed.
+e.2. Fixed bind button description of items.
+e.3. Added config on biome Space Beach Biome
+e.4. Rocket Tier 4 and its components are returned.
+e.5. Plasma tools are returned.
+e.6. Fix the work of the addon on the server.
+e.7. A small fixed crash when opening a galaxy map.
+e.8. Fixed an incorrect craft of the spacesuit chestplate
+e.9. Fixed missed images in Sulfur and Unknown crystal.
+e.10. Mercury is returned.
+e.11. The system of solar radiation has been changed. Added antiradiation drug.
+e.12. Pluto is returned. From the rocks of Pluto you can get water or methane
+e.13. Added mapping of the planet's satellites on the Galactic map.
+e.14. Returned by Callisto.
+e.15. Added a button on / off the jetpack in the spacesuit chestplate.
