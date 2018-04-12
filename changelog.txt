@@ -1,14 +1,35 @@
 ///Changelog///
 #ru
-r.1. Фикс краша из-за замерзания блоков.
-r.2. Добавлен рецепт для Ветровой Турбины.
-r.3. В данжи на Цереру добавлены схемы частей ракет.
-r.4. Система Тау Кита временно отключена.
-r.5. Добавлено автоопределение класса планет на карте. (Работает с аддонами)
+r.1. Гелий-3. Универсальный Переработчик.
+r.2. В космосе нельзя есть обычную еду.
+r.3. Геотермальный Генератор и Топливный генератор объеденены.
+r.4. Дождь на Венере теперь наносит урон.
+r.5. Добавлен Жидкостный Экстактор.
+r.6. Возвращена и доработана система заморозки\испарения жидкости.
+r.7. Добавлен Термоядерный Реактор.
+r.8. Добавлен Жидкостный Резервуар.
+r.9. Добавлена ф-ция торговли для лунных жителей. Добавлены сапфиры.
+r.10. Добавлено включение\отключение сенсорных очков в шлеме.
+r.11. Заменена модель Реактивного Ранца.
+r.12. Добавлен минерал Доломит и Доломитовая пыль, аналогичная костной муке.
+r.13. Добавлена переработка Марсианского грунта в Гематит, который переплавляется в железо.
+r.14. Сера теперь перерабатывается в порох. Рецепт временный.
+r.15. Отключено давление и солнечная радиация в кислородном пузыре. Временно.
+r.16. На Марс добавлены руды.
 #en
-e.1. Fix crash due to freezing of blocks.
-e.2. Added recipe for Wind Turbine
-e.3. In dungeons on Ceres added schematic rockets parts.
-e.4. Thau Ceti system is temporarily disabled.
-e.5. Added autodetection of the class of planets on the map. (Works with addons).
-
+e.1. Heluim-3. New machine: Universal Recycler.
+e.2. In space can't eat ordinary food.
+e.3. The Geothermal Generator and the Fuel Generator are combined.
+e.4. Rain on Venus now deals damage
+e.5. Added Liquid Extractor.
+e.6. The system for freezing / evaporating the liquid is returned and refined.
+e.7. Added Thermonuclear Reactor.
+e.8. Added Liquid Tank.
+e.9. Alien Villager now can trade with player.
+e.10. Added the on/off of sensory glasses in the helmet.
+e.11. Replaced the model of the Jetpack.
+e.12. Added a mineral Dolomite and Dolomite dust, similar to bone meal.
+e.13. The processing of the Martian soil into Hematite is added, which is remelted into iron.
+e.14. Sulfur is now processed in gunpowder. The recipe is temporary.
+e.15. Disable pressure and solar radiation in the oxygen bubble. Temporarily.
+e.16. Ores are added to Mars.

@@ -1,0 +1,16 @@
+[
+{
+  "modid": "galaxyspace",
+  "name": "Galaxy Space",
+  "description": "Addon for Galacticraft3",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2412548-1-7-10-galaxy-space-addon-for-galacticraft-3",
+  "updateUrl": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2412548-1-7-10-galaxy-space-addon-for-galacticraft-3",
+  "authorList": ["Galaxy Space"],
+  "credits": "Galaxy Space",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

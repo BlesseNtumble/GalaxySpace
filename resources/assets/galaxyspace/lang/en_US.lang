@@ -1,5 +1,7 @@
 #English (US)
-# Dimensions
+|/////////////////////////////////////////|
+#||||||||||||||Achievements||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 achievement.miningcoppergc=This is what we have already seen...
 achievement.miningcoppergc.desc=Mine some Copper Ore.
 achievement.miningtingc=Hello old friend
@@ -61,6 +63,15 @@ achievement.marsgc.desc=Land on the Mars!
 
 menu.update=Update Galaxy Space!
 
+|/////////////////////////////////////////|
+#||||||||||||||||||Blocks||||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+tile.MercurySurface.name=Mercury Surface Rock
+tile.MercurySubSurface.name=Mercury Subsurface Rock
+tile.MercuryStone.name=Mercury Stone
+tile.MercuryIronOre.name=Iron Ore
+tile.MercuryNickelOre.name=Nickel Ore
+
 tile.VenusGrunt.name=Venus Surface Rock
 tile.VenusSubGrunt.name=Venus Subsurface Rock
 tile.VenusSulfurOre.name=Sulfur Ore
@@ -106,6 +117,10 @@ tile.CeresSubGrunt.name=Ceres Subsurface Rock
 tile.CeresDolomiteOre.name=Dolomite Ore
 tile.CeresMeteoricIronOre.name=Meteoric Iron Ore
 
+tile.PlutoGrunt.name=Pluto Surface Grunt
+tile.PlutoSubGrunt.name=Pluto Subsurface Grunt
+tile.PlutoStone.name=Pluto Stone
+
 tile.PhobosGrunt.name=Phobos Surface Rock
 tile.PhobosSubGrunt.name=Phobos Subsurface Rock
 tile.PhobosStone.name=Phobos Stone
@@ -122,50 +137,43 @@ tile.GanymedeMagnesiumOre.name=Magnesium Ore
 tile.GanymedeTitanuimOre.name=Ilmenite Ore
 tile.GanymedeIce.name=Ganymede Ice
 
+tile.CallistoGrunt.name=Callisto Surface Rock
+tile.CallistoSubGrunt.name=Callisto Subsurface Rock
+
 tile.EnceladusSnow.name=Enceladus Ice
 tile.EnceladusGrunt.name=Enceladus Subsurface Rock
 tile.EnceladusCoalOre.name=Coal Ore
 tile.Crystall.name=Unknow Crystal
 
+|/////////////////////////////////////////|
+#||||||||||||Tile Description||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 tile.AssemblyMachine.name=Assembly Machine
 tile.AssemblyMachine.desc=The advanced version of the compressor. Seals materials with a highly sensitive laser.
-
 tile.FuelGenerator.name=Fuel Generator
 tile.FuelGenerator.desc=Fuel Generator consumes fuel and produces a good amount of energy. A good option for fuel magnates.
-
 tile.SolarWindPanel.name=Solar Wind Panel
 tile.SolarWindPanel.desc=It converts the solar wind into energy. It does not work on a planet's atmosphere.
-
 tile.ConverterSurface.name=Surface Converter
 tile.ConverterSurface.desc=Converts planetary ground into blocks of grass. Useful machine for terraforming planets.
-
 tile.StorageModuleT3_4.name=Advanced Energy Cluster
 tile.StorageModule.desc=The advanced version of the Energy Cluster. It may store a large amount of energy.
-
 tile.OxygenStorageModuleT2_4.name=Advanced Oxygen Module
 tile.OxygenStorageModule.desc=Improved version of Oxygen Storage. It can store twice as much oxygen.
-
 tile.SolarPanel.name=Hybrid Solar Panel
 tile.SolarHybrid.desc=Covered with gold hybrid panel, produces twice as much energy as the Advanced panel.
-
 tile.GravitationModule_4.name=Gravity Module
 tile.GravitationModule.desc=Creates Earth-like gravity within 8 blocks radius in all directions.
-
 tile.WindTurbine.name=Wind Turbine
 tile.WindTurbine.desc=Generate energy from wind streams. Light energy on planets with wind.
-
 tile.RocketAssembly.name=Rocket Assembly
 tile.RocketAssembly.desc=Collects rockets from components made in the NASA workbench.
-
 tile.Recycler.name=Universal Recycler
 tile.Recycler.desc=Recycles one resource in another. So, too, can recycle the material into a liquid.
-
 tile.LiquidExtractor.name=Liquid Extractor
 tile.LiquidExtractor.desc=Collects liquid under itself. Can receive heavy water when the module is installed.
-
 tile.ThermodynamicReactor.name=[WIP] Portable Thermodynamic Reactor
 tile.ThermodynamicReactor.desc=Portable Energy Generator.
-
 tile.FluidTank.name=Fluid Tank
 tile.FluidTank.desc=Can store a variety of fluids. Top entrance, bottom exit.
 
@@ -174,7 +182,14 @@ tile.MachineFrame.name=Advanced Machine Frame
 tile.coefficient.desc=Coefficient of generation
 tile.coefficientcraft.desc=Coefficient of speed craft
 
+|/////////////////////////////////////////|
+#|||||||||||||||||Items||||||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+
 item.Schematic.name=NASA Workbench Schematic
+item.HeavyDutyPlate.name=Heavy Duty Plate
+
+item.Tier4Rocket.t4Rocket.name=Tier 4 Rocket
 
 item.JetPack.name=Electric Jetpack
 
@@ -183,11 +198,22 @@ item.spacesuit_plate.name=SpaceSuit Chestplate
 item.spacesuit_leg.name=SpaceSuit Leggins
 item.spacesuit_boots.name=SpaceSuit Boots
 
+item.cobalt_helmet.name=Cobalt Helmet
+item.cobalt_plate.name=Cobalt Chestplate
+item.cobalt_leg.name=Cobalt Leggins
+item.cobalt_boots.name=Cobalt Boots
+
 item.cobalt_axe.name=Cobalt Axe
 item.cobalt_hoe.name=Cobalt Hoe
 item.cobalt_pickaxe.name=Cobalt Pickaxe
 item.cobalt_sword.name=Cobalt Sword
 item.cobalt_shovel.name=Cobalt Shovel
+
+item.plasmasword.name=Plasma Sword
+item.plasmaaxe.name=Plasma Axe
+item.plasmapickaxe.name=Plasma Pickaxe
+item.plasmahoe.name=Plasma Hoe
+item.plasmashovel.name=Plasma Shovel
 
 item.NickelIngot.name=Nickel Ingot
 item.CobaltumIngot.name=Cobalt Ingot
@@ -206,6 +232,8 @@ item.DolomiteMeal.name=Dolomite Meal
 item.Sapphire.name=Sapphire
 item.WaferModern.name=Modern Wafer
 item.Hematite.name=Hematite
+item.Antiradiation.name=Antiradiation Tablets
+
 item.heliumCanister.name=Helium Canister
 item.DetheriumBucket.name=Detherium Bucket
 item.ModuleSmallFuelCanister.name=Small Fuel Canister
@@ -219,17 +247,11 @@ item.thermalChestplateT2.name=Thermal Padding Chestplate
 item.thermalLeggingsT2.name=Thermal Padding Leggings
 item.thermalBootsT2.name=ThermalPadding  Boots
 
-item.RocketConeT2.name=Durable Nose Cone
-item.RocketBodyT2.name=Durable Rocket Body
-item.RocketEngineT2.name=Durable Rocket Engine
-item.RocketBoosterT2.name=Heavy Booster
-item.RocketStabilisatorT2.name=Durable Rocket Vane
-
-item.RocketConeT3.name=Durable Nose Cone
-item.RocketBodyT3.name=Durable Rocket Body
-item.RocketEngineT3.name=Durable Rocket Engine
-item.RocketBoosterT3.name=Heavy Booster
-item.RocketStabilisatorT3.name=Durable Rocket Vane
+item.RocketCone.name=Durable Nose Cone
+item.RocketBody.name=Durable Rocket Body
+item.RocketEngine.name=Durable Rocket Engine
+item.RocketBooster.name=Heavy Booster
+item.RocketStabilizer.name=Durable Rocket Vane
 
 item.PartSolarFlares.name=Solar Flare Module
 item.SolarFlares.name=Solar Flare
@@ -243,18 +265,30 @@ item.oxygentank_epp_t1.name=Environmental Protection Oxygen Tank
 item.IceBucket.name=Bucket with Ice
 item.ancient_pickaxe.name=Ancient Pickaxe
 
-potion.radiation=Solar Radiation
+|/////////////////////////////////////////|
+#||||||||||||||||||Fluids||||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 fluid.helium3=Helium-3
+fluid.hydrogen2=Heavy Water
+|/////////////////////////////////////////|
+#||||||||||||||||Potions|||||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+potion.radiation=Solar Radiation
+potion.antiradiation=Antiradiation Effect
 
+|/////////////////////////////////////////|
+#|||||||||||||||||GUI||||||||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 gui.schematic_oxtanks.desc=Oxygen EPP Tank
 
 gui.tier2.desc=Tier 2
 gui.tier3.desc=Tier 3
+gui.tier4.desc=Tier 4
 
-gui.thermal2.desc1=Keeps heat in conditions from -80 С to +80 С surface.
+gui.thermal2.desc1=Keeps heat in conditions from -80C to +80C surface.
 gui.bonemeal.desc=It seems that this item works similarly to bone meal.
 
-gui.spacesuit.desc=High strength suit. It stabilizes atmospheric pressure.
+gui.spacesuit.desc=High strength suit. It stabilizes atmospheric pressure and add protect from solar radiation.
 gui.spacesuit_helmet.desc=Helmet allows for longer under water.
 
 gui.module.desc=Rocket Module
@@ -263,11 +297,20 @@ gui.message.lava.name=Lava
 gui.message.water.name=Water
 gui.message.helium.name=Helium-3
 gui.status.nofuelgenerator.name=No Fuel
+gui.status.nowatergenerator.name=No Heavy Water
 gui.warning.atmosphericPressure=High atmospheric pressure!
 gui.warning.solarRadiation=High radiation level!
-gui.sensor.togglehelmet=Toggle Sensor: 
-
 gui.status.nowind.name=No Wind!
+gui.message.needfrequencyModule=Hey! I need have Frequency Module!
+
+keybind.togglehelmet.name=[GS] Toggle sensor lens in helmet 
+keybind.togglejetpack.name=[GS] Toggle jetpack
+gui.togglehelmet=Sensor Lens: 
+gui.togglejetpack=Jetpack: 
+
+|/////////////////////////////////////////|
+#|||||||||Celestial Bodies INFO||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 
 gui.info.brown.name=Brown
 gui.info.red.name=Red
@@ -377,14 +420,26 @@ gs.update.available=New version available!
 gs.update.download=Download
 gs.update.changelog=Changelog
 
+|/////////////////////////////////////////|
+#||||||||||||||Creative Tabs|||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+
 itemGroup.AddonsBlocks=GalaxySpace: Blocks
 itemGroup.AddonsItems=GalaxySpace: Items
 itemGroup.AddonsArmor=GalaxySpace: Armor
 itemGroup.AddonsRocket=GalaxySpace: Rockets
 
+|/////////////////////////////////////////|
+#||||||||||||||||Entities||||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+
 entity.EvolvedFireCreeper.name=Evolved Fire Creeper
 entity.EvolvedFireSpider.name=Evolved Fire Spider
 entity.EvolvedFireSkeleton.name=Evolved Fire Skeleton
+
+|/////////////////////////////////////////|
+#||||||||||||Celestial Bodies||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 
 planet.Ceres=Ceres
 moon.Phobos=Phobos
