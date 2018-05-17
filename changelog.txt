@@ -1,33 +1,41 @@
 ///Changelog///
 #ru
-r.1. Исправлены рецепты Марисанских руд для печки.
-r.2. Исправлен бинд кнопки описания предметов.
-r.3. Добавлен конфиг на биом Space Beach Biome.
-r.4. Возвращена ракета 4 уровня и ее компоненты.
-r.5. Возвращены плазменные инструменты.
-r.6. Фикс работы аддона на сервере.
-r.7. Небольшой фикс краша при открытии карты.
-r.8. Исправлен некорректный крафт космического нагрудника.
-r.9. Исправлено отсутствие изображений у Серы и Неизвестного кристалла. 
-r.10. Возвращен Меркурий.
-r.11. Изменена система Солнечной радиации. Добавлен антирадиационный препарат.
-r.12. Возвращен Плутон. Из пород Плутона можно добывать воду или метан.
-r.13. Добавлено отображение спутников планеты на Галактической карте.
-r.14. Возвращена Каллисто.
-r.15. Добавлена кнопка вкл\выкл реактивного ранца в космическом нагруднике.
+r.1. Небольшой фикс краша при открытии карты на сервере. 
+r.2. Исправлена загрузка Топливного генератора лавой через трубы.
+r.3. Фикс краша на сервере при установки модулей в костюм.
+r.4. Фикс грузовых ракет в измерениях аддона.
+r.5. Отлючен дебаг-инвентарь в Жидкостном Экстракторе.
+r.6. Увеличена частота генерации Сапфировой Руды на Луне.
+r.7. Исправлен крафт ракеты 2 уровня.
+r.8. Титан.
+r.9. Улучшенны жидкостные резервуары. Вращение, переливание в соседние.
+r.10. Добавлен конфиг на отключение регистрации OreDict для пластин GC.
+r.11. Возвращен Квантовый лук.
+r.12. Новая взлетная площадка 5х5.
+r.13. Ракета 5 уровня.
+r.14. Улучшенный Загрузчик Топлива.
+r.15. Новое топливо: Обогащенный гелием водород.
+r.16. Европа.
+r.17. Схемы на луне заменены на Коробку с 5 схемами.
+r.18. Жидкостный Сепаратор.
+r.19. Добавлен крафт Сапфиров в Переработчике. 10% шанс.
 #en
-e.1. The recipes of the Marisan ores for the stove have been fixed.
-e.2. Fixed bind button description of items.
-e.3. Added config on biome Space Beach Biome
-e.4. Rocket Tier 4 and its components are returned.
-e.5. Plasma tools are returned.
-e.6. Fix the work of the addon on the server.
-e.7. A small fixed crash when opening a galaxy map.
-e.8. Fixed an incorrect craft of the spacesuit chestplate
-e.9. Fixed missed images in Sulfur and Unknown crystal.
-e.10. Mercury is returned.
-e.11. The system of solar radiation has been changed. Added antiradiation drug.
-e.12. Pluto is returned. From the rocks of Pluto you can get water or methane
-e.13. Added mapping of the planet's satellites on the Galactic map.
-e.14. Returned by Callisto.
-e.15. Added a button on / off the jetpack in the spacesuit chestplate.
+e.1. A small fixed crash when opening a map on the server.
+e.2. Fixed loading fuel generator with lava through pipes.
+e.3. Fix the crash on the server when installing the modules in a suit.
+e.4. Fix the cargo rockets in the dimensions of the addon.
+e.5. Debug inventory is disabled in the Liquid Extractor.
+e.6. The frequency of generation of Sapphire ore on the Moon is increased.
+e.7. Fixed craft Tier 2 Rocket.
+e.8. Titan.
+e.9. Improved liquid tanks. Rotation, transfusion into neighboring.
+e.10. Added config for disabling OreDict registration for GC plates.
+e.11. Quantum bow returned.
+e.12. New landing pad 5х5.
+e.13. Tier 5 Rocket.
+e.14. Advanced Fuel Loader.
+e.15. New fuel: Helium enriched with hydrogen.
+e.16. Europa.
+e.17. Schemes on the moon are replaced with a Box with 5 schemes.
+e.18. Liquid Separator.
+e.19. Added Sapphire craft in Recycler. 10% chance
