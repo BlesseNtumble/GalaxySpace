@@ -1,41 +1,17 @@
 ///Changelog///
 #ru
-r.1. Небольшой фикс краша при открытии карты на сервере. 
-r.2. Исправлена загрузка Топливного генератора лавой через трубы.
-r.3. Фикс краша на сервере при установки модулей в костюм.
-r.4. Фикс грузовых ракет в измерениях аддона.
-r.5. Отлючен дебаг-инвентарь в Жидкостном Экстракторе.
-r.6. Увеличена частота генерации Сапфировой Руды на Луне.
-r.7. Исправлен крафт ракеты 2 уровня.
-r.8. Титан.
-r.9. Улучшенны жидкостные резервуары. Вращение, переливание в соседние.
-r.10. Добавлен конфиг на отключение регистрации OreDict для пластин GC.
-r.11. Возвращен Квантовый лук.
-r.12. Новая взлетная площадка 5х5.
-r.13. Ракета 5 уровня.
-r.14. Улучшенный Загрузчик Топлива.
-r.15. Новое топливо: Обогащенный гелием водород.
-r.16. Европа.
-r.17. Схемы на луне заменены на Коробку с 5 схемами.
-r.18. Жидкостный Сепаратор.
-r.19. Добавлен крафт Сапфиров в Переработчике. 10% шанс.
+r.1. Переведены коэффециенты генераторов в вещественные значения.
+r.2. Исправлено отображение космических станций.
+r.3. Исправлено отображения спутников на карте и пропадающего интерфейса.
+r.4. Возвращена Марсианская космическая станция.
+r.5. Исправлено название Ракеты 5 уровня.
+r.6. Исправлено краш на Астероидах и любых других тел с временем = 0.
+r.7. Добавлен конфиг на отключение HUD’a космического костюма.
 #en
-e.1. A small fixed crash when opening a map on the server.
-e.2. Fixed loading fuel generator with lava through pipes.
-e.3. Fix the crash on the server when installing the modules in a suit.
-e.4. Fix the cargo rockets in the dimensions of the addon.
-e.5. Debug inventory is disabled in the Liquid Extractor.
-e.6. The frequency of generation of Sapphire ore on the Moon is increased.
-e.7. Fixed craft Tier 2 Rocket.
-e.8. Titan.
-e.9. Improved liquid tanks. Rotation, transfusion into neighboring.
-e.10. Added config for disabling OreDict registration for GC plates.
-e.11. Quantum bow returned.
-e.12. New landing pad 5х5.
-e.13. Tier 5 Rocket.
-e.14. Advanced Fuel Loader.
-e.15. New fuel: Helium enriched with hydrogen.
-e.16. Europa.
-e.17. Schemes on the moon are replaced with a Box with 5 schemes.
-e.18. Liquid Separator.
-e.19. Added Sapphire craft in Recycler. 10% chance
+e.1. The coefficients of the generators are converted into real values.
+e.2. Fixed display of space stations.
+e.3. Fixed the mapping of satellites on the map and the missing interface.
+e.4. The Martian space station is returned.
+e.5. Fixed the name of the Tier 5 Rocket.
+e.6. Fixed the crash on asteroids and any other bodies with time = 0.
+e.7. Added config to disable HUD'a space suit.
