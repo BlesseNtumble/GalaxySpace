@@ -7,6 +7,7 @@ r.4. Возвращена Марсианская космическая стан
 r.5. Исправлено название Ракеты 5 уровня.
 r.6. Исправлено краш на Астероидах и любых других тел с временем = 0.
 r.7. Добавлен конфиг на отключение HUD’a космического костюма.
+r.8. Исправлена сепарация воды, теперь выдает жидкий кислород.
 #en
 e.1. The coefficients of the generators are converted into real values.
 e.2. Fixed display of space stations.
@@ -15,3 +16,4 @@ e.4. The Martian space station is returned.
 e.5. Fixed the name of the Tier 5 Rocket.
 e.6. Fixed the crash on asteroids and any other bodies with time = 0.
 e.7. Added config to disable HUD'a space suit.
+e.8. Fixed the separation of water, now gives out liquid oxygen.
