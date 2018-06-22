@@ -1,0 +1,33 @@
+{
+	"categories": 
+	[	
+		{
+			"name": "general",
+			"components": [
+				{
+					"img": "",
+					"background_img": "",
+					"name": "Start",
+					"text": "xuy"	
+				},
+				{
+					"img": "",
+					"background_img": "",
+					"name": "Start1",
+					"text": "xuy2"	
+				}					
+			]			
+		},
+		{
+			"name": "craft",
+			"components": [
+				{
+					"img": "",
+					"background_img": "",
+					"name": "StartCraft",
+					"text": "xuy1"	
+				}					
+			]		
+		}
+	]
+}

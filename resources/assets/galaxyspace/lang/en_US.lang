@@ -76,6 +76,7 @@ tile.VenusGrunt.name=Venus Surface Rock
 tile.VenusSubGrunt.name=Venus Subsurface Rock
 tile.VenusSulfurOre.name=Sulfur Ore
 tile.VenusDiamondOre.name=Diamond Ore
+tile.VenusVolcanicStone.name=Volcanic Stone
 
 tile.DecoCobaltum.name=Cobalt Decoration Block
 tile.DecoMagnesium.name=Magnesium Decoration Block
@@ -84,7 +85,8 @@ tile.DecoCopper.name=Copper Decoration Block
 
 tile.CobaltOre.name=Cobalt Ore
 tile.NickelOre.name=Nickel Ore
-
+tile.SurfaceIce.name=Surface Ice
+tile.SapphireOre.name=Sapphire Ore
 tile.SapphireMoonOre.name=Sapphire Ore
 
 tile.MarsOreDiamond.name=Diamond Ore
@@ -131,11 +133,19 @@ tile.IOAsh.name=Io Ash
 tile.IOCopperOre.name=Copper Ore
 tile.IOSulfurOre.name=Sulfur Ore
 
+tile.EuropaGrunt.name=Europa Surface Grunt
+tile.EuropaStone.name=Europa Stone
+tile.EuropaBrownIce.name=Europa Brown Ice
+tile.EuropaEmeraldOre.name=Emerald Ore
+tile.EuropaSiliconOre.name=Silicon Ore
+tile.EuropaAluminumOre.name=Aluminium Ore
+tile.EuropaGeyzer.name=Europa Surface Geyser
+tile.EuropaUnderwaterGeyser.name=Europa Geyser
+
 tile.GanymedeGrunt.name=Ganymede Surface Rock
 tile.GanymedeSubGrunt.name=Ganymede Subsurface Rock
 tile.GanymedeMagnesiumOre.name=Magnesium Ore
 tile.GanymedeTitanuimOre.name=Ilmenite Ore
-tile.GanymedeIce.name=Ganymede Ice
 
 tile.CallistoGrunt.name=Callisto Surface Rock
 tile.CallistoSubGrunt.name=Callisto Subsurface Rock
@@ -144,6 +154,16 @@ tile.EnceladusSnow.name=Enceladus Ice
 tile.EnceladusGrunt.name=Enceladus Subsurface Rock
 tile.EnceladusCoalOre.name=Coal Ore
 tile.Crystall.name=Unknow Crystal
+
+tile.TitanGrunt.name=Titan Surface Grunt
+tile.TitanSubGrunt.name=Titan Subsurface Grunt
+tile.TitanStone.name=Titan Stone
+
+tile.MirandaGrunt.name=Miranda Surface Grunt
+tile.MirandaSubGrunt.name=Miranda Subsurface Grunt
+tile.MirandaStone.name=Miranda Stone
+tile.MirandaIronOre.name=Iron Ore
+tile.MirandaDolomiteOre.name=Dolomite Ore
 
 |/////////////////////////////////////////|
 #||||||||||||Tile Description||||||||||||||
@@ -176,6 +196,17 @@ tile.ThermodynamicReactor.name=[WIP] Portable Thermodynamic Reactor
 tile.ThermodynamicReactor.desc=Portable Energy Generator.
 tile.FluidTank.name=Fluid Tank
 tile.FluidTank.desc=Can store a variety of fluids. Top entrance, bottom exit.
+tile.AdvFuelLoader.name=Advanced Fuel Loader
+tile.AdvFuelLoader.desc=Loads fuel into rocket above tier 5. Supports only a new landing pad 5x5.
+tile.AdvLandingPad.name=Advance Landing Pad
+tile.AdvLandingPad.desc=Advanced landing pad for rockets. Size 5x5.
+tile.HydroponicBase.name=Hydroponic Base
+tile.HydroponicBase.desc=Base block for Hydroponic Farm. Above install the farm block.
+tile.HydroponicFarm.name=Hydroponic Farm Block
+tile.HydroponicFarm.desc=Installed on top of the Hydroponic Base. It is necessary for the operation of the hydroponic farm. You can set up to 3 blocks up.
+
+tile.LiquidSeparator.name=Liquid Separator
+tile.LiquidSeparator.desc=Separates the liquid into its component parts or connects the parts together.
 
 tile.BaseMachineFrame.name=Based Machine Frame
 tile.MachineFrame.name=Advanced Machine Frame
@@ -190,6 +221,7 @@ item.Schematic.name=NASA Workbench Schematic
 item.HeavyDutyPlate.name=Heavy Duty Plate
 
 item.Tier4Rocket.t4Rocket.name=Tier 4 Rocket
+item.Tier5Rocket.t5Rocket.name=Tier 5 Rocket
 
 item.JetPack.name=Electric Jetpack
 
@@ -233,9 +265,9 @@ item.Sapphire.name=Sapphire
 item.WaferModern.name=Modern Wafer
 item.Hematite.name=Hematite
 item.Antiradiation.name=Antiradiation Tablets
+item.SchematicBox.name=Schematic Box
+item.VolcanicStone.name=Volcanic Shard
 
-item.heliumCanister.name=Helium Canister
-item.DetheriumBucket.name=Detherium Bucket
 item.ModuleSmallFuelCanister.name=Small Fuel Canister
 item.ModuleSmallCanister.name=Blank Fuel Tank
 item.ModuleLander.name=Lander Tier 1
@@ -245,7 +277,7 @@ item.ThermalClothT2.name=Thermal Cloth
 item.thermalHelmT2.name=Thermal Padding Helmet
 item.thermalChestplateT2.name=Thermal Padding Chestplate
 item.thermalLeggingsT2.name=Thermal Padding Leggings
-item.thermalBootsT2.name=ThermalPadding  Boots
+item.thermalBootsT2.name=ThermalPadding Boots
 
 item.RocketCone.name=Durable Nose Cone
 item.RocketBody.name=Durable Rocket Body
@@ -263,13 +295,20 @@ item.oxygentank_t6.name=Very Ultra Oxygen Tank
 item.oxygentank_epp_t1.name=Environmental Protection Oxygen Tank
 
 item.IceBucket.name=Bucket with Ice
+item.EthaneMethaneBucket.name=Bucket with Ethane-Methane Fluid
+item.heliumCanister.name=Helium Canister
+item.DetheriumBucket.name=Detherium Bucket
+item.HeliumHydrogenBucket.name=Bucket with Helium-Hydrogen Fluid
 item.ancient_pickaxe.name=Ancient Pickaxe
+item.QuantBow.name=Quant Bow
 
 |/////////////////////////////////////////|
 #||||||||||||||||||Fluids||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 fluid.helium3=Helium-3
 fluid.hydrogen2=Heavy Water
+fluid.heliumhydrogen=Helium-Hydrogen Fluid
+fluid.liquidethanemethane=Ethane-Methane Fluid
 |/////////////////////////////////////////|
 #||||||||||||||||Potions|||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
@@ -284,9 +323,13 @@ gui.schematic_oxtanks.desc=Oxygen EPP Tank
 gui.tier2.desc=Tier 2
 gui.tier3.desc=Tier 3
 gui.tier4.desc=Tier 4
+gui.tier5.desc=Tier 5
+
+gui.trade=Alien Trader
 
 gui.thermal2.desc1=Keeps heat in conditions from -80C to +80C surface.
 gui.bonemeal.desc=It seems that this item works similarly to bone meal.
+gui.schematicbox.desc=Contains basic schemes for rockets.
 
 gui.spacesuit.desc=High strength suit. It stabilizes atmospheric pressure and add protect from solar radiation.
 gui.spacesuit_helmet.desc=Helmet allows for longer under water.
@@ -302,6 +345,11 @@ gui.warning.atmosphericPressure=High atmospheric pressure!
 gui.warning.solarRadiation=High radiation level!
 gui.status.nowind.name=No Wind!
 gui.message.needfrequencyModule=Hey! I need have Frequency Module!
+gui.message.needoxygen=Is necessary oxygen to make action!
+gui.message.needoxygenthermal=Is necessary oxygen and thermal control to make action!
+gui.message.needoxygen.food=Is necessary oxygen to use earth food!
+gui.message.needoxygenthermal.food=Is necessary oxygen and thermal control to use earth food!
+gui.message.younothaveradiation=You not have Solar Radiaton!
 
 keybind.togglehelmet.name=[GS] Toggle sensor lens in helmet 
 keybind.togglejetpack.name=[GS] Toggle jetpack
@@ -363,6 +411,7 @@ gui.message.solarradiation=Solar Radiation:
 gui.message.solarenergy=Solar Mod:
 gui.message.unknown=Unknown
 gui.message.traveltime=Travel Time:
+gui.message.noatmosphere=No Atmosphere
 
 gui.message.yes=Yes
 gui.message.no=No
@@ -440,30 +489,31 @@ entity.EvolvedFireSkeleton.name=Evolved Fire Skeleton
 |/////////////////////////////////////////|
 #||||||||||||Celestial Bodies||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+satellite.spaceStation.mars=Mars Space Station
 
-planet.Ceres=Ceres
-moon.Phobos=Phobos
-moon.Deimos=Deimos
-moon.ioJupiter=Io
-moon.Europa=Europa
-moon.Ganymede=Ganymede
-moon.Callisto=Callisto
-moon.Mimas=Mimas
-moon.Enceladus=Enceladus
-moon.Tethys=Tethys
-moon.Dione=Dione
-moon.Rheya=Rheya
-moon.Titan=Titan
-moon.Iapetus=Iapetus
-moon.Miranda=Miranda
-moon.Ariel=Ariel
-moon.Umbriel=Umbriel
-moon.Titania=Titania
-moon.Oberon=Oberon
-moon.Proteus=Proteus
-moon.Triton=Triton
+planet.ceres=Ceres
+moon.phobos=Phobos
+moon.deimos=Deimos
+moon.io=Io
+moon.europa=Europa
+moon.ganymede=Ganymede
+moon.callisto=Callisto
+moon.mimas=Mimas
+moon.enceladus=Enceladus
+moon.tethys=Tethys
+moon.dione=Dione
+moon.rheya=Rheya
+moon.titan=Titan
+moon.iapetus=Iapetus
+moon.miranda=Miranda
+moon.ariel=Ariel
+moon.umbriel=Umbriel
+moon.titania=Titania
+moon.oberon=Oberon
+moon.proteus=Proteus
+moon.triton=Triton
 planet.pluto=Pluto
-moon.Charon=Charon
+moon.charon=Charon
 planet.kuiperbelt=Kuiper Belt
 planet.haumea=Haumea
 planet.makemake=Makemake
@@ -472,7 +522,7 @@ planet.deedee=DeeDee
 
 solarsystem.aCentauriSystem=α Centauri System
 solarsystem.ProximaSystem=Proxima Centauri System
-star.CentauriA=α Centauri А
+star.CentauriA=α Centauri A
 planet.CentauriB=α Centauri B
 star.Proxima=Proxima Centauri
 planet.ProximaB=Proxima B

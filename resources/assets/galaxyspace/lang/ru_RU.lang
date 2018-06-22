@@ -76,6 +76,7 @@ tile.VenusGrunt.name=Грунт Венеры
 tile.VenusSubGrunt.name=Подповерхностный Грунт Венеры
 tile.VenusSulfurOre.name=Серная Руда
 tile.VenusDiamondOre.name=Алмазная Руда
+tile.VenusVolcanicStone.name=Вулканический Камень
 
 tile.DecoCobaltum.name=Декоративный Кобальтовый Блок
 tile.DecoMagnesium.name=Декоративный Магниевый Блок
@@ -84,6 +85,8 @@ tile.DecoCopper.name=Декоративный Медный Блок
 
 tile.CobaltOre.name=Кобальтовая Руда
 tile.NickelOre.name=Никелевая Руда
+tile.SurfaceIce.name=Поверхностный Лед
+tile.SapphireOre.name=Сапфировая Руда
 tile.SapphireMoonOre.name=Сапфировая Руда
 
 tile.MarsOreDiamond.name=Алмазная Руда
@@ -130,11 +133,19 @@ tile.IOAsh.name=Пепел Ио
 tile.IOCopperOre.name=Медная Руда
 tile.IOSulfurOre.name=Серная Руда
 
+tile.EuropaGrunt.name=Поверхностный Грунт Европы
+tile.EuropaStone.name=Камень Европы
+tile.EuropaBrownIce.name=Бурый Лед Европы
+tile.EuropaEmeraldOre.name=Изумрудная Руда
+tile.EuropaSiliconOre.name=Кремниевая Руда
+tile.EuropaAluminumOre.name=Алюминиевая Руда
+tile.EuropaGeyzer.name=Гейзер Европы
+tile.EuropaUnderwaterGeyser.name=Гейзер Европы
+
 tile.GanymedeGrunt.name=Грунт Ганимеда
 tile.GanymedeSubGrunt.name=Подповерхностный Грунт Ганимеда
 tile.GanymedeMagnesiumOre.name=Магниевая Руда
 tile.GanymedeTitanuimOre.name=Ильменитовая Руда
-tile.GanymedeIce.name=Лед Ганимеда
 
 tile.CallistoGrunt.name=Поверхность Каллисто
 tile.CallistoSubGrunt.name=Подповерхность Каллисто
@@ -143,6 +154,16 @@ tile.EnceladusSnow.name=Снег Энцелада
 tile.EnceladusGrunt.name=Грунт Энцелада
 tile.EnceladusCoalOre.name=Угольная Руда
 tile.Crystall.name=Неизвестный Кристалл
+
+tile.TitanGrunt.name=Поверхностный Грунт Титана
+tile.TitanSubGrunt.name=Подповерхностный Грунт Титана
+tile.TitanStone.name=Камень Титана
+
+tile.MirandaGrunt.name=Поверхностный Грунт Миранды
+tile.MirandaSubGrunt.name=Подповерхностный Грунт Миранды
+tile.MirandaStone.name=Камень Миранды
+tile.MirandaIronOre.name=Железная Руда
+tile.MirandaDolomiteOre.name=Доломитовая Руда
 
 |/////////////////////////////////////////|
 #||||||||||||Tile Description||||||||||||||
@@ -178,6 +199,16 @@ tile.ThermodynamicReactor.name=[WIP] Портативный Темроядерн
 tile.ThermodynamicReactor.desc=Портативный Темроядерный Реактор.
 tile.FluidTank.name=Жидкостный Резервуар
 tile.FluidTank.desc=Может хранить различные жидкости. Сверху вход, снизу выход.
+tile.AdvFuelLoader.name=Улучшенный Загрузчик Топлива
+tile.AdvFuelLoader.desc=Загружает топливо в ракеты 5 уровня и выше. Поддерживает только новую взлетную площадку 5x5.
+tile.AdvLandingPad.name=Улучшенная Взлетная Площадка
+tile.AdvLandingPad.desc=Улучшенная взлетная площадка для ракет. Размер 5x5.
+tile.HydroponicBase.name=Основание Гидропонной Фермы
+tile.HydroponicBase.desc=Базовый блок для создания гидропонной фермы. Сверху устанавливаются блоки фермы.
+tile.HydroponicFarm.name=Стеклянный Блок Гидропонной Фермы
+tile.HydroponicFarm.desc=Устанавливается наверх основания или на другой блок фермы. Нужен для работы гидропонной фермы. Можно установить до 3 блоков вверх.
+tile.LiquidSeparator.name=Жидкостный Сепаратор
+tile.LiquidSeparator.desc=Разделяет жидкость на составные части или собирает воедино эти части.
 
 tile.BaseMachineFrame.name=Базовый Корпус Машин
 tile.MachineFrame.name=Улучшенный Корпус Машин
@@ -195,6 +226,7 @@ tile.tier8chest.description=Сундуки с сокровищами 8-го ур
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 
 item.Tier4Rocket.t4Rocket.name=Ракета 4-го уровня
+item.Tier5Rocket.t5Rocket.name=Ракета 5-го уровня
 
 item.Schematic.name=Схема для верстака NASA
 item.HeavyDutyPlate.name=Сверхпрочное покрытие
@@ -217,6 +249,8 @@ item.Sapphire.name=Сапфир
 item.WaferModern.name=Модернизированная Полупроводниковая Пластина
 item.Hematite.name=Гематит
 item.Antiradiation.name=Противорадиационные Таблетки
+item.SchematicBox.name=Коробка со Схемами
+item.VolcanicStone.name=Вулканический Осколок
 
 item.heliumCanister.name=Канистра Жидкого Гелия
 item.DetheriumBucket.name=Ведро Тяжелой Воды
@@ -247,6 +281,9 @@ item.RocketEngine.name=Прочный ракетный двигатель
 item.RocketBooster.name=Улучшенный Ускоритель
 item.RocketStabilizer.name=Прочный ракетный стабилизатор
 
+item.QuantBow.name=Квантовый Лук
+item.HeliumHydrogenBucket.name=Ведро с Обогащенным Водородом
+item.EthaneMethaneBucket.name=Ведро со смесью Этана-Метана
 |/////////////////////////////////////////|
 #||||||||||||Armors\Weapons||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
@@ -280,6 +317,8 @@ item.ancient_pickaxe.name=Древняя Кирка
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 fluid.helium3=Гелий-3
 fluid.hydrogen2=Тяжелая Вода
+fluid.heliumhydrogen=Обогащенный гелием Водород
+fluid.liquidethanemethane=Этано-Метановая смесь
 |/////////////////////////////////////////|
 #||||||||||||||||Potions|||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
@@ -293,13 +332,17 @@ potion.antiradiation=Антирадиационный Эффект
 
 gui.schematic_oxtanks.desc=EPP Канистра Кислорода
 
+gui.trade=Инопланетный Торговец
+
 gui.tier1.desc=1-ый уровень
 gui.tier2.desc=2-ой уровень
 gui.tier3.desc=3-ий уровень
 gui.tier4.desc=4-ый уровень
+gui.tier5.desc=5-ый уровень
 
 gui.thermal2.desc1=Сохраняет тепло в условиях от -80С до +80С поверхности.
 gui.bonemeal.desc=Кажется, что этот предмет работает аналогично костной муке.
+gui.schematicbox.desc=Содержит базовые схемы для ракет.
 
 gui.spacesuit.desc=Костюм высокой прочности. Стабилизирует атмосферное давление. Дает защиту от Солнечной радиации.
 gui.spacesuit_helmet.desc=Шлем позволяет дольше находится под водой.
@@ -311,10 +354,16 @@ gui.message.lava.name=Лава
 gui.message.water.name=Вода
 gui.message.helium.name=Гелий-3
 gui.message.needfrequencyModule=Я не понимаю их без Частотного модуля!
+gui.message.needoxygen=Нужен кислород, чтобы совершить действие!
+gui.message.needoxygenthermal=Нужен кислород и термальный контроль, чтобы совершить действие!
+gui.message.needoxygen.food=Нужен кислород, чтобы употребить земную еду!
+gui.message.needoxygenthermal.food=Нужен кислород и термальный контроль, чтобы употребить земную еду!
 gui.status.nofuelgenerator.name=Нет Топлива
 gui.status.nowatergenerator.name=Нет Тяжелой Воды
 gui.warning.atmosphericPressure=Высокое атмосферное давление!
 gui.warning.solarRadiation=Критический уровень облучения!
+gui.message.younothaveradiation=Вы не облучены солнечной радиацией!
+
 
 keybind.togglehelmet.name=[GS] Вкл\Выкл сенсорные очки в шлеме
 keybind.togglejetpack.name=[GS] Вкл\Выкл реактивный ранец  
@@ -375,6 +424,7 @@ gui.message.solarenergy=Модиф. Солнца:
 gui.message.windenergy=Модиф. Сол. Ветра:
 gui.message.unknown=Неизвестно
 gui.message.traveltime=Время полета:
+gui.message.noatmosphere=Нет атмосферы
 
 gui.message.yes=Да
 gui.message.no=Нет
@@ -448,34 +498,37 @@ itemGroup.AddonsRocket=GalaxySpace: Ракеты
 entity.EvolvedFireCreeper.name=Эволюционировавший Огненный Крипер
 entity.EvolvedFireSpider.name=Эволюционировавший Огненный Паук
 entity.EvolvedFireSkeleton.name=Эволюционировавший Огненный Скелет
+entity.EvolvedColdBlaze.name=Эволюционировавший Ледянной Ифрит
 
 |/////////////////////////////////////////|
 #||||||||||||Celestial Bodies||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 
-planet.Ceres=Церера
-moon.Phobos=Фобос
-moon.Deimos=Деймос
-moon.ioJupiter=Ио
-moon.Europa=Европа
-moon.Ganymede=Ганимед
-moon.Callisto=Каллисто
-moon.Mimas=Мимас
-moon.Enceladus=Энцелад
-moon.Tethys=Тефия
-moon.Dione=Диона
-moon.Rheya=Рея
-moon.Titan=Титан
-moon.Iapetus=Япет
-moon.Miranda=Миранда
-moon.Ariel=Ариель
-moon.Umbriel=Умбриэль
-moon.Titania=Титания
-moon.Oberon=Оберон
-moon.Proteus=Протей
-moon.Triton=Тритон
+satellite.spaceStation.mars=Космическая станция Марса
+
+planet.ceres=Церера
+moon.phobos=Фобос
+moon.deimos=Деймос
+moon.io=Ио
+moon.europa=Европа
+moon.ganymede=Ганимед
+moon.callisto=Каллисто
+moon.mimas=Мимас
+moon.enceladus=Энцелад
+moon.tethys=Тефия
+moon.dione=Диона
+moon.rheya=Рея
+moon.titan=Титан
+moon.iapetus=Япет
+moon.miranda=Миранда
+moon.ariel=Ариель
+moon.umbriel=Умбриэль
+moon.titania=Титания
+moon.oberon=Оберон
+moon.proteus=Протей
+moon.triton=Тритон
 planet.pluto=Плутон
-moon.Charon=Харон
+moon.charon=Харон
 planet.kuiperbelt=Пояс Койпера
 planet.haumea=Хаумеа
 planet.makemake=Макемаке
