@@ -1,19 +1,33 @@
 ///Changelog///
 #ru
-r.1. Переведены коэффециенты генераторов в вещественные значения.
-r.2. Исправлено отображение космических станций.
-r.3. Исправлено отображения спутников на карте и пропадающего интерфейса.
-r.4. Возвращена Марсианская космическая станция.
-r.5. Исправлено название Ракеты 5 уровня.
-r.6. Исправлено краш на Астероидах и любых других тел с временем = 0.
-r.7. Добавлен конфиг на отключение HUD’a космического костюма.
-r.8. Исправлена сепарация воды, теперь выдает жидкий кислород.
+r.1. Исправлено наложение солнечной радиации в уплотненной комнате.
+r.2. Исправлена кнопка полета при уровне ракеты ниже требуемого.
+r.3. Исправлен крафт ракетного корпуса 2 уровня.
+r.4. Исправлено 100% получение сапфиров в Переработчике.
+r.5. Радиация теперь повышается только на открытой местности.
+r.6. Исправлен дюп предметов через верстак NASA.
+r.7. Добавлена гидропонная ферма.
+r.8. Увеличен спаун Доломитовой руды на Церере.
+r.9. Миранда.
+r.10. Пояс Койпера.
+r.11. Убрана необходимость термального контроля для листвы на планетах с температурой +/- 80C.
+r.12. Переписан реактивный ранец.
+r.13. Ракета 6 уровня.
+r.14. Гейзеры Европы теперь подбрасывают вверх существ.
+r.15. Добавлено оповещение при попытки установить блок листвы в космосе.
 #en
-e.1. The coefficients of the generators are converted into real values.
-e.2. Fixed display of space stations.
-e.3. Fixed the mapping of satellites on the map and the missing interface.
-e.4. The Martian space station is returned.
-e.5. Fixed the name of the Tier 5 Rocket.
-e.6. Fixed the crash on asteroids and any other bodies with time = 0.
-e.7. Added config to disable HUD'a space suit.
-e.8. Fixed the separation of water, now gives out liquid oxygen.
+e.1. Imposing of solar radiation in the sealed room is corrected.
+e.2. The flight button at rocket tier below demanded is repaired.
+e.3. Craft of the rocket body tier 2 is corrected.
+e.4. 100% receiving sapphires in the Recycler are corrected.
+e.5. Radiation raises only on the open area now.
+e.6. It is corrected dupe items through a workbench of NASA.
+e.7. The hydroponic farm is added.
+e.8. It is increased spawn Dolomitic ore on Ceres.
+e.9. Miranda.
+e.10. Kuiper belt.
+e.11. Need of thermal control for leaves on planets with a temperature/-80C is removed.
+e.12. The jetpack is rewritten.
+e.13. Tier 6 Rocket.
+e.14. Geysers of Europe throw beings up now.
+e.15. The notification at attempt to install the leaves block in space is added.
