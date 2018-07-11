@@ -1,0 +1,8 @@
+{ 
+	"variants": { 
+		"type=deco_cobaltum": { "model": "galaxyspace:deco_cobaltum"}, 
+		"type=deco_magnesium": { "model": "galaxyspace:deco_magnesium"}, 
+		"type=deco_nickel": { "model": "galaxyspace:deco_nickel"}, 
+		"type=deco_copper": { "model": "galaxyspace:deco_copper"}
+	} 
+}

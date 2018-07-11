@@ -1,0 +1,6 @@
+{ 
+	"variants": { 
+		"type=callisto_grunt": { "model": "galaxyspace:callisto_grunt"}, 
+		"type=callisto_stone": { "model": "galaxyspace:callisto_stone"}
+	} 
+}

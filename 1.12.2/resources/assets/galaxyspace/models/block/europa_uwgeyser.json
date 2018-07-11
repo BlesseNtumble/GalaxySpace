@@ -1,0 +1,1 @@
+{ 	"parent": "block/cube_all",  	"textures": { 		"particle": "blocks/ice_packed",        "down": "blocks/ice_packed",        "up": "galaxyspace:blocks/solarsystem/europa/europa_uwgeyser",        "north": "blocks/ice_packed",        "east": "blocks/ice_packed",        "south": "blocks/ice_packed",        "west": "blocks/ice_packed"	}}

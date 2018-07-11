@@ -1,0 +1,8 @@
+{ 
+	"variants": { 
+		"type=ganymede_grunt": { "model": "galaxyspace:ganymede_grunt"}, 
+		"type=ganymede_stone": { "model": "galaxyspace:ganymede_stone"}, 
+		"type=ganymede_magnesium_ore": { "model": "galaxyspace:ganymede_magnesium_ore"}, 
+		"type=ganymede_titanium_ore": { "model": "galaxyspace:ganymede_titanium_ore"}
+	} 
+}

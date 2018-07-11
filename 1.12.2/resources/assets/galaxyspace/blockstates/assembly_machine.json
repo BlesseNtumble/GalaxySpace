@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "galaxyspace:assembly_machine" },
+        "facing=east":  { "model": "galaxyspace:assembly_machine", "y": 90 },
+        "facing=west":  { "model": "galaxyspace:assembly_machine", "y": 270 },
+        "facing=south": { "model": "galaxyspace:assembly_machine", "y": 180 }
+    }
+}

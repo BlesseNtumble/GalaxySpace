@@ -1,0 +1,8 @@
+{
+	 "variants": {
+        "facing=north": { "model": "galaxyspace:hydroponic_base" },
+        "facing=east":  { "model": "galaxyspace:hydroponic_base", "y": 90 },
+        "facing=west":  { "model": "galaxyspace:hydroponic_base", "y": 270 },
+        "facing=south": { "model": "galaxyspace:hydroponic_base", "y": 180 }
+    }
+}

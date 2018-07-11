@@ -1,0 +1,10 @@
+{ 
+	"variants": { 
+		"type=io_grunt": { "model": "galaxyspace:io_grunt"}, 
+		"type=io_stone": { "model": "galaxyspace:io_stone"}, 
+		"type=io_ash": { "model": "galaxyspace:io_ash"}, 
+		"type=io_copper_ore": { "model": "galaxyspace:io_copper_ore"}, 
+		"type=io_sulfur_ore": { "model": "galaxyspace:io_sulfur_ore"}, 
+		"type=null": { "model": "galaxyspace:null"}
+	} 
+}
