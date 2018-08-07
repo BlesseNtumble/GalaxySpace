@@ -356,6 +356,7 @@ gui.message.generalinformation=Главная Информация:
 gui.message.physicalparameters=Физические Параметры:
 gui.message.atmosphericparameters=Атмоферные Параметры:
 gui.message.atmosphericcomponents=Состав Атмосферы:
+gui.message.noatmosphere=Отсутствует атмосфера.
 gui.message.type=Тип:
 gui.message.star=Звезда
 gui.message.planet=Планета
