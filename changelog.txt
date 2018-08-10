@@ -26,7 +26,7 @@ e.5. Fixed the generation of a mushroom biome on the Earth.
 e.6. Added mechanism-bubble from solar radiation.
 e.7. Fixed a crash when installing the unit over the hydroponic farm.
 e.8. Added config to disable music from the addon.
-e.9. Added a pressure protection module for the Gravity Module.
+e.9. Added a pressure protection module for the Gravity Module
 e.10. The work of the jetpack has been improved.
 e.11. Replaced the texture of the Sun on Mercury.
 e.12. Advanced fuel loader now takes fuel GC3.
