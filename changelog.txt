@@ -1,33 +1,37 @@
 ///Changelog///
 #ru
-r.1. Исправлено наложение солнечной радиации в уплотненной комнате.
-r.2. Исправлена кнопка полета при уровне ракеты ниже требуемого.
-r.3. Исправлен крафт ракетного корпуса 2 уровня.
-r.4. Исправлено 100% получение сапфиров в Переработчике.
-r.5. Радиация теперь повышается только на открытой местности.
-r.6. Исправлен дюп предметов через верстак NASA.
-r.7. Добавлена гидропонная ферма.
-r.8. Увеличен спаун Доломитовой руды на Церере.
-r.9. Миранда.
-r.10. Пояс Койпера.
-r.11. Убрана необходимость термального контроля для листвы на планетах с температурой +/- 80C.
-r.12. Переписан реактивный ранец.
-r.13. Ракета 6 уровня.
-r.14. Гейзеры Европы теперь подбрасывают вверх существ.
-r.15. Добавлено оповещение при попытки установить блок листвы в космосе.
+r.1. Исправлен космический костюм.
+r.2. Исправлен дроп доломитовых кристаллов на Миранде.
+r.3. Исправлено отображение текстуры Кобальтовой брони на игроке.
+r.4. Изменено визуальное оформление границ у Гравитационного Модуля.
+r.5. Исправлена частая генерация грибного биома на Земле.
+r.6. Добавлен механизм-пузырь от солнечной радиации.
+r.7. Исправлен краш при установки блока над гидропонной фермой.
+r.8. Добавлен конфиг на отключение музыки из аддона.
+r.9. Добавлен модуль защиты от Давления для Гравитационного Модуля.
+r.10. Улучшена работа реактивного ранца.
+r.11. Заменена текстура Солнца на Меркурии.
+r.12. Улучшенный загрузчик топлива теперь принимает топливо GC3.
+r.13. Добавлена канистра с водородом.
+r.14. Жидкостный резервуар теперь работает с канистрами GC3.
+r.15. Тритон.
+r.16. Возвращен данж 4 уровня на Церере.
+r.17. Изменена система замены блоков в космосе, вызывающая падение tps.
 #en
-e.1. Imposing of solar radiation in the sealed room is corrected.
-e.2. The flight button at rocket tier below demanded is repaired.
-e.3. Craft of the rocket body tier 2 is corrected.
-e.4. 100% receiving sapphires in the Recycler are corrected.
-e.5. Radiation raises only on the open area now.
-e.6. It is corrected dupe items through a workbench of NASA.
-e.7. The hydroponic farm is added.
-e.8. It is increased spawn Dolomitic ore on Ceres.
-e.9. Miranda.
-e.10. Kuiper belt.
-e.11. Need of thermal control for leaves on planets with a temperature/-80C is removed.
-e.12. The jetpack is rewritten.
-e.13. Tier 6 Rocket.
-e.14. Geysers of Europe throw beings up now.
-e.15. The notification at attempt to install the leaves block in space is added.
+e.1. Fixed a space suit.
+e.2. Fixed a drop of dolomite crystals on Miranda.
+e.3. Fixed the display of the texture of Cobalt armor on the player.
+e.4. The visual design of the borders of the Gravity Module has been changed.
+e.5. Fixed the generation of a mushroom biome on the Earth.
+e.6. Added mechanism-bubble from solar radiation.
+e.7. Fixed a crash when installing the unit over the hydroponic farm.
+e.8. Added config to disable music from the addon.
+e.9. Added a pressure protection module for the Gravity Module.
+e.10. The work of the jetpack has been improved.
+e.11. Replaced the texture of the Sun on Mercury.
+e.12. Advanced fuel loader now takes fuel GC3.
+e.13. Added canister of hydrogen.
+r.14. The liquid tank is now running with canisters GC3.
+r.15. Triton.
+r.16. Returned to dungeon level 4 on Ceres.
+r.17. The modified system swap blocks in space that causes a drop in tps.
