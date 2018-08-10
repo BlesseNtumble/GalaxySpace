@@ -31,7 +31,7 @@ e.10. The work of the jetpack has been improved.
 e.11. Replaced the texture of the Sun on Mercury.
 e.12. Advanced fuel loader now takes fuel GC3.
 e.13. Added canister of hydrogen.
-r.14. The liquid tank is now running with canisters GC3.
-r.15. Triton.
-r.16. Returned to dungeon level 4 on Ceres.
-r.17. The modified system swap blocks in space that causes a drop in tps.
+e.14. The liquid tank is now running with canisters GC3.
+e.15. Triton.
+e.16. Returned to dungeon level 4 on Ceres.
+e.17. The modified system swap blocks in space that causes a drop in tps.
