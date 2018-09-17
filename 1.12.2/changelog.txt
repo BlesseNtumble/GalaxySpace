@@ -1,33 +1,33 @@
 ///Changelog///
 #ru
-r.1. Исправлено наложение солнечной радиации в уплотненной комнате.
-r.2. Исправлена кнопка полета при уровне ракеты ниже требуемого.
-r.3. Исправлен крафт ракетного корпуса 2 уровня.
-r.4. Исправлено 100% получение сапфиров в Переработчике.
-r.5. Радиация теперь повышается только на открытой местности.
-r.6. Исправлен дюп предметов через верстак NASA.
-r.7. Добавлена гидропонная ферма.
-r.8. Увеличен спаун Доломитовой руды на Церере.
-r.9. Миранда.
-r.10. Пояс Койпера.
-r.11. Убрана необходимость термального контроля для листвы на планетах с температурой +/- 80C.
-r.12. Переписан реактивный ранец.
-r.13. Ракета 6 уровня.
-r.14. Гейзеры Европы теперь подбрасывают вверх существ.
-r.15. Добавлено оповещение при попытки установить блок листвы в космосе.
+r.1. Исправлен дроп блоков с метадатой.
+r.2. Исправлен краш при полете на Луну\Марс.
+r.3. Исправлены крафты футуристических стекл, сжатых пластин и hdp.
+r.4. Добавлен данж на Церере.
+r.5. Добавлен Замерший Босс Ифрит.
+r.6. Добавлен Замерший Ифрит.
+r.7. Добавлен модуль Стабилизации для Гравитационного модуля.
+r.8. Добавлен Генератор Магнитного Поля.
+r.9. Исправлена замена канистры на ведро в Жидкостном Экстракторе.
+r.10. Добавлены OreDict для блоков.
+r.11. Добавлен конфиг на отключение музыки GS на планетах.
+r.12. Добавлено GUI для настройки аддона прямо в игре (кнопка Config в Mods). 
+r.13. Заменено небо на Меркурии, Луне, Астероидах и на Орбитальной Станции.
+r.14. Добавлен крафт Гидропонной Фермы.
+r.15. Пояс Койпера.
 #en
-e.1. Imposing of solar radiation in the sealed room is corrected.
-e.2. The flight button at rocket tier below demanded is repaired.
-e.3. Craft of the rocket body tier 2 is corrected.
-e.4. 100% receiving sapphires in the Recycler are corrected.
-e.5. Radiation raises only on the open area now.
-e.6. It is corrected dupe items through a workbench of NASA.
-e.7. The hydroponic farm is added.
-e.8. It is increased spawn Dolomitic ore on Ceres.
-e.9. Miranda.
-e.10. Kuiper belt.
-e.11. Need of thermal control for leaves on planets with a temperature/-80C is removed.
-e.12. The jetpack is rewritten.
-e.13. Tier 6 Rocket.
-e.14. Geysers of Europe throw beings up now.
-e.15. The notification at attempt to install the leaves block in space is added.
+e.1. Fixed drop blocks with metadata.
+e.2. Fixed crash when flying to the Moon\Mars.
+e.3. Fixed crafts futuristic glass, compressed plates and hdp.
+e.4. Added dungeon on Ceres.
+e.5. Added Frozen Boss Blaze
+e.6. Added Frozen Blaze
+e.7. Added module "Stabilization" for the Gravity module
+e.8. Added Magnetic Field Generator.
+e.9. Fixed replacement of cans in a bucket in the Liquid Extractor.
+e.10. Added OreDict for blocks.
+e.11. Added config to turn off the music GS on the planet.
+e.12. Added GUI for configuring the addon in game (the button Config in Mods). 
+e.13. Replaced the sky on Mercury, the Moon, Asteroids and a space Station.
+e.14. Added craft for Hydroponic Farm.
+e.15. Kuiper belt.
