@@ -1,37 +1,31 @@
 ///Changelog///
 #ru
-r.1. Исправлен космический костюм.
-r.2. Исправлен дроп доломитовых кристаллов на Миранде.
-r.3. Исправлено отображение текстуры Кобальтовой брони на игроке.
-r.4. Изменено визуальное оформление границ у Гравитационного Модуля.
-r.5. Исправлена частая генерация грибного биома на Земле.
-r.6. Добавлен механизм-пузырь от солнечной радиации.
-r.7. Исправлен краш при установки блока над гидропонной фермой.
-r.8. Добавлен конфиг на отключение музыки из аддона.
-r.9. Добавлен модуль защиты от Давления для Гравитационного Модуля.
-r.10. Улучшена работа реактивного ранца.
-r.11. Заменена текстура Солнца на Меркурии.
-r.12. Улучшенный загрузчик топлива теперь принимает топливо GC3.
-r.13. Добавлена канистра с водородом.
-r.14. Жидкостный резервуар теперь работает с канистрами GC3.
-r.15. Тритон.
-r.16. Возвращен данж 4 уровня на Церере.
-r.17. Изменена система замены блоков в космосе, вызывающая падение tps.
+r.1. Фикс подключения AE2 шин к Сборочному Цеху.
+r.2. Обнуление прогресса гидропонной фермы при изменении слота.
+r.3. Исправлена замена канистры на ведро в Жидкостном Сепараторе.
+r.4. Исправлена замена канистры на ведро в Жидкостном Экстракторе.
+r.5. Исправлен краш при надетом реактивном ранце.
+r.6. Фикс краша на Поясе Койпера.
+r.7. Добавлен конфиг на отключение рендера атмосфер у планет на небе.
+r.8. Исправлен конфликт с модом Doggy Talents.	
+r.9. Исправлен кол-во сапфиров при раскрафте блока.
+r.10. Исправлен конфликт с модом Hats.
+r.11. Исправлена ошибка, из-за которой радиация была на Венере.
+r.12. Исправлен дюп жидкостей через Жидкостный Резервуар.
+r.13. Исправлен дюп через интерфейс Универсального Переработчика.
+r.14. Изменены текстуры Ио.
 #en
-e.1. Fixed a space suit.
-e.2. Fixed a drop of dolomite crystals on Miranda.
-e.3. Fixed the display of the texture of Cobalt armor on the player.
-e.4. The visual design of the borders of the Gravity Module has been changed.
-e.5. Fixed the generation of a mushroom biome on the Earth.
-e.6. Added mechanism-bubble from solar radiation.
-e.7. Fixed a crash when installing the unit over the hydroponic farm.
-e.8. Added config to disable music from the addon.
-e.9. Added a pressure protection module for the Gravity Module
-e.10. The work of the jetpack has been improved.
-e.11. Replaced the texture of the Sun on Mercury.
-e.12. Advanced fuel loader now takes fuel GC3.
-e.13. Added canister of hydrogen.
-e.14. The liquid tank is now running with canisters GC3.
-e.15. Triton.
-e.16. Returned to dungeon level 4 on Ceres.
-e.17. The modified system swap blocks in space that causes a drop in tps.
+e.1. Fixed connection AE2 bus to the Assembler.
+e.2. Reset progress hydroponic farm if you change the slot.
+e.3. Fixed replacement of cans in a bucket in the Liquid Separator.
+e.4. Fixed replacement of cans in a bucket in the Liquid Extractor.
+e.5. Fixed crash when wearing the jetpack.
+e.6. Fixed crash in the Kuiper Belt.
+e.7. Added config to disable the rendering of the atmospheres of the planets in the sky.
+e.8. Fixed conflict with mod Doggy Talents.
+e.9. Fixed number of sapphires in uncraft block.
+e.10. Fixed conflict with mod Hats.
+e.11. Fixed an issue where the radiation was on Venus.
+e.12. Fixed dupe of liquid through the Liquid Extractor.
+e.13. Fixed dup through an interface of a Universal Recycler.
+e.14. Changed texture IO.
