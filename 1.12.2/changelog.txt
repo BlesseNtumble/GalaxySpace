@@ -1,33 +1,33 @@
 ///Changelog///
 #ru
-r.1. Исправлен дроп блоков с метадатой.
-r.2. Исправлен краш при полете на Луну\Марс.
-r.3. Исправлены крафты футуристических стекл, сжатых пластин и hdp.
-r.4. Добавлен данж на Церере.
-r.5. Добавлен Замерший Босс Ифрит.
-r.6. Добавлен Замерший Ифрит.
-r.7. Добавлен модуль Стабилизации для Гравитационного модуля.
-r.8. Добавлен Генератор Магнитного Поля.
-r.9. Исправлена замена канистры на ведро в Жидкостном Экстракторе.
-r.10. Добавлены OreDict для блоков.
-r.11. Добавлен конфиг на отключение музыки GS на планетах.
-r.12. Добавлено GUI для настройки аддона прямо в игре (кнопка Config в Mods). 
-r.13. Заменено небо на Меркурии, Луне, Астероидах и на Орбитальной Станции.
-r.14. Добавлен крафт Гидропонной Фермы.
-r.15. Пояс Койпера.
+r.1. Добавлен кристалл на Энцелад.
+r.2. Добавлен прототип контроллера щита. Добывается на Церере.
+r.3. Переписан алгоритм гравитационного механизма.
+r.4. Добавлено ограничение зоны для посадки. (GC конфиг)
+r.5. Добавлены солнечные панели в 1 полублок.
+r.6. Добавлены кобальтовая броня\инструенты.
+r.7. На Меркурий добавлены магний, лава, магма блоки.
+r.8. Фикс краша при установленном BuildCraft.
+r.9. Фикс отображения кирпича сокровищницы в инвентаре.
+r.10. Добавлена генерация угля на Энцелад.
+r.11. Отключено замерзание воды и изчезновение листвы на Луне.
+r.12. Добавлен Jetpack.
+r.13. На Пояс Койпера добавлены залежи угля.
+r.14. Исправлен краш при установленном Immersive Engineering.
+r.15. Фикс рендера Сатурна на его спутниках.
 #en
-e.1. Fixed drop blocks with metadata.
-e.2. Fixed crash when flying to the Moon\Mars.
-e.3. Fixed crafts futuristic glass, compressed plates and hdp.
-e.4. Added dungeon on Ceres.
-e.5. Added Frozen Boss Blaze
-e.6. Added Frozen Blaze
-e.7. Added module "Stabilization" for the Gravity module
-e.8. Added Magnetic Field Generator.
-e.9. Fixed replacement of cans in a bucket in the Liquid Extractor.
-e.10. Added OreDict for blocks.
-e.11. Added config to turn off the music GS on the planet.
-e.12. Added GUI for configuring the addon in game (the button Config in Mods). 
-e.13. Replaced the sky on Mercury, the Moon, Asteroids and a space Station.
-e.14. Added craft for Hydroponic Farm.
-e.15. Kuiper belt.
+e.1. Added Enceladus crystal.
+e.2. Added prototype controller shield on Ceres Dungeon.
+e.3. New algorithm for gravity module
+e.4. Added zone for landing. (GC Config).
+e.5. Added solar panels 1 half block.
+e.6. Added cobalt armor\tools.
+e.7. On Mercury added magnesium ore, lava, magma blocks.
+e.8. Fixed crash with BuildCraft.
+e.9. Fixed dungeon bricks render in inventory.
+e.10. Added gen coal ore on Enceladus.
+e.11. Added jetpack.
+e.12. Added coal ore on Kuiper Belt.
+e.13. Fixed crash with Immersive Engineering.
+e.14. Disable freeze water and destroy leaves on Moon.
+e.15. Fixed render Saturn on him moons.
