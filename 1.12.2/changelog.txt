@@ -1,33 +1,27 @@
 ///Changelog///
 #ru
-r.1. Добавлен кристалл на Энцелад.
-r.2. Добавлен прототип контроллера щита. Добывается на Церере.
-r.3. Переписан алгоритм гравитационного механизма.
-r.4. Добавлено ограничение зоны для посадки. (GC конфиг)
-r.5. Добавлены солнечные панели в 1 полублок.
-r.6. Добавлены кобальтовая броня\инструенты.
-r.7. На Меркурий добавлены магний, лава, магма блоки.
-r.8. Фикс краша при установленном BuildCraft.
-r.9. Фикс отображения кирпича сокровищницы в инвентаре.
-r.10. Добавлена генерация угля на Энцелад.
-r.11. Отключено замерзание воды и изчезновение листвы на Луне.
-r.12. Добавлен Jetpack.
-r.13. На Пояс Койпера добавлены залежи угля.
-r.14. Исправлен краш при установленном Immersive Engineering.
-r.15. Фикс рендера Сатурна на его спутниках.
+r.1. Предметы теперь заряжаются в энергохранителях из других модов.
+r.2. Скоректированна продолжительность суток на планетах\спутниках.
+r.3. Миранда.
+r.4. Исправлен Ракетный цех.
+r.5. Ракета 5 уровня.
+r.6. Теперь держа ракету в руках, накладывается эффект медлительности.
+r.7. Временный контроллер щита теперь разрушается только в коррозийной атмосфере. 
+r.8. Топливный генератор теперь может потреблять нефть.
+r.9. Добавлен конфиг для определения брони от радиации и давления.
+r.10. Экстренный портативный телепорт. Пока только для креатива.
+r.11. Добавлена отсутсвующая генерация руд на Церере.
+r.12. Добавлен модуль "Реактивный Ранец" в космический костюм.
 #en
-e.1. Added Enceladus crystal.
-e.2. Added prototype controller shield on Ceres Dungeon.
-e.3. New algorithm for gravity module
-e.4. Added zone for landing. (GC Config).
-e.5. Added solar panels 1 half block.
-e.6. Added cobalt armor\tools.
-e.7. On Mercury added magnesium ore, lava, magma blocks.
-e.8. Fixed crash with BuildCraft.
-e.9. Fixed dungeon bricks render in inventory.
-e.10. Added gen coal ore on Enceladus.
-e.11. Added jetpack.
-e.12. Added coal ore on Kuiper Belt.
-e.13. Fixed crash with Immersive Engineering.
-e.14. Disable freeze water and destroy leaves on Moon.
-e.15. Fixed render Saturn on him moons.
+e.1. Items are now charged in energy modules from other mods.
+e.2. The adjusted duration of the day on the planets / moons.
+e.3. Miranda.
+e.4. Fixed Rocket Assembler. 
+e.5. Rocket Tier 5.
+e.6. Now holding the rocket in hand, the effect of slowness is superimposed.
+e.7. The temporary shield controller now destroyed only in a corrosive atmosphere.
+e.8. The fuel generator can now consume oil.
+e.9. Added config to determine armor from radiation and pressure.
+e.10. Emergency portable teleport. So far, only for creative mode.
+e.11. Added missing ore generation at Ceres.
+e.11. Added module "Jetpack" in space suit.
