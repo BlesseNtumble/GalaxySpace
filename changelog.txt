@@ -1,31 +1,39 @@
 ///Changelog///
 #ru
-r.1. Фикс подключения AE2 шин к Сборочному Цеху.
-r.2. Обнуление прогресса гидропонной фермы при изменении слота.
-r.3. Исправлена замена канистры на ведро в Жидкостном Сепараторе.
-r.4. Исправлена замена канистры на ведро в Жидкостном Экстракторе.
-r.5. Исправлен краш при надетом реактивном ранце.
-r.6. Фикс краша на Поясе Койпера.
-r.7. Добавлен конфиг на отключение рендера атмосфер у планет на небе.
-r.8. Исправлен конфликт с модом Doggy Talents.	
-r.9. Исправлен кол-во сапфиров при раскрафте блока.
-r.10. Исправлен конфликт с модом Hats.
-r.11. Исправлена ошибка, из-за которой радиация была на Венере.
-r.12. Исправлен дюп жидкостей через Жидкостный Резервуар.
-r.13. Исправлен дюп через интерфейс Универсального Переработчика.
-r.14. Изменены текстуры Ио.
+r.1. Фикс описания ракеты 6 уровня.
+r.2. Фикс дюпа жидкости в резервуаре через капсулы IC2.
+r.3. Переписан код гравитационного механизма.
+r.4. Backport карты с 1.12.2.
+r.5. Локализованы названия механизмов в рецептах NEI.
+r.6. Обновлен zh_CN.lang файл.
+r.7. Древний Меч.
+r.8. Добавлен крафт генератора магнитного поля.
+r.9. Добавлены слота для побочных продуктов в гидропонную ферму.
+r.10. Увеличен расход топлива в ракетах в зависимости от дальности.
+r.11. Древняя Реликвия.
+r.12. Фикс пропадания рендера кирпичей из данжей.
+r.13. Добавлены лавовые и серные гейзеры на Ио.
+r.14. Добавлена серная кислота, совместимая с Mekanism.
+r.15. Добавлен данж на Ио.
+r.16. Стол для модификаций.
+r.17. Добавлен конфиг для сторонней брони от радиации и давления.
+r.18. Поксима Б
 #en
-e.1. Fixed connection AE2 bus to the Assembler.
-e.2. Reset progress hydroponic farm if you change the slot.
-e.3. Fixed replacement of cans in a bucket in the Liquid Separator.
-e.4. Fixed replacement of cans in a bucket in the Liquid Extractor.
-e.5. Fixed crash when wearing the jetpack.
-e.6. Fixed crash in the Kuiper Belt.
-e.7. Added config to disable the rendering of the atmospheres of the planets in the sky.
-e.8. Fixed conflict with mod Doggy Talents.
-e.9. Fixed number of sapphires in uncraft block.
-e.10. Fixed conflict with mod Hats.
-e.11. Fixed an issue where the radiation was on Venus.
-e.12. Fixed dupe of liquid through the Liquid Extractor.
-e.13. Fixed dup through an interface of a Universal Recycler.
-e.14. Changed texture IO.
+e.1. Fixed Rocket 6 description.
+e.2. Fixed dupe liquid in Fluid Tank. 
+e.3. Rewrited gravity module code
+e.4. Backport galaxy map from 1.12.2.
+e.5. Localized mechanism name in NEI.
+e.6. Update zn_CH.lang.
+e.7. Added Ancient Sword.
+e.8. Added craft for Magnetic Field Generator.
+e.9. Added slots for by-products to the hydroponic farm.
+e.10. Increased fuel consumption in rockets, depending on the range
+e.11. Added Ancient Relic.
+e.12. Fixed render dungeon bricks.
+e.13. Added lava and sulfur geysers on Io.
+e.14. Added sulfur acid compatible with Mekanism.
+e.15. Added dungeon on Io.
+e.16. Added Modification Table
+e.17. Added config to determine armor from radiation and pressure
+e.18. Proxima B
