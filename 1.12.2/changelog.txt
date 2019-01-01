@@ -1,27 +1,27 @@
 ///Changelog///
 #ru
-r.1. Предметы теперь заряжаются в энергохранителях из других модов.
-r.2. Скоректированна продолжительность суток на планетах\спутниках.
-r.3. Миранда.
-r.4. Исправлен Ракетный цех.
-r.5. Ракета 5 уровня.
-r.6. Теперь держа ракету в руках, накладывается эффект медлительности.
-r.7. Временный контроллер щита теперь разрушается только в коррозийной атмосфере. 
-r.8. Топливный генератор теперь может потреблять нефть.
-r.9. Добавлен конфиг для определения брони от радиации и давления.
-r.10. Экстренный портативный телепорт. Пока только для креатива.
-r.11. Добавлена отсутсвующая генерация руд на Церере.
-r.12. Добавлен модуль "Реактивный Ранец" в космический костюм.
+r.1. Гейзеры лавы и серы на Ио. Серные озера.
+r.2. Жидкостный Сепаратор.
+r.3. Фикс краша на сервере.
+r.4. Модификационный стол.
+r.5. Модули для космического костюма.
+r.6. Ракета 6 уровня.
+r.7. Проксима Б. 
+r.8. Упрощен крафт ракеты 2 уровня.
+r.9. Увеличен объем батареек. Упрощен крафт базового машинного корпуса.
+r.10. Добавлен конфиг на отключение улучшенной системы перелетов.
+r.11. Добавлен крафт EPP канистры в JEI.
+r.12. В данж Цереры добавлен экстренный телепорт.
 #en
-e.1. Items are now charged in energy modules from other mods.
-e.2. The adjusted duration of the day on the planets / moons.
-e.3. Miranda.
-e.4. Fixed Rocket Assembler. 
-e.5. Rocket Tier 5.
-e.6. Now holding the rocket in hand, the effect of slowness is superimposed.
-e.7. The temporary shield controller now destroyed only in a corrosive atmosphere.
-e.8. The fuel generator can now consume oil.
-e.9. Added config to determine armor from radiation and pressure.
-e.10. Emergency portable teleport. So far, only for creative mode.
-e.11. Added missing ore generation at Ceres.
-e.11. Added module "Jetpack" in space suit.
+e.1. Lava and Sulfur geyser on Io. Sulfur lakes.
+e.2. Liquid Separator.
+e.3. Fixed crash on server.
+e.4. Modification Table
+e.5. Modules for Spacesuit.
+e.6. Proxima B.
+e.7. Rocket Tier 6.
+e.8. Simplified craft rocket tier 2.
+e.9. Increased battery capacity. Simplified craft base machine frame
+e.10. Added config for enable/disable new tier system.
+e.11. Added craft EPP Oxygen Canister in JEI.
+e.11. In Ceres dungeon added Emergency Teleport.
