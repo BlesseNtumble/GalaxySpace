@@ -1,27 +1,23 @@
 ///Changelog///
 #ru
-r.1. Гейзеры лавы и серы на Ио. Серные озера.
-r.2. Жидкостный Сепаратор.
-r.3. Фикс краша на сервере.
-r.4. Модификационный стол.
-r.5. Модули для космического костюма.
-r.6. Ракета 6 уровня.
-r.7. Проксима Б. 
-r.8. Упрощен крафт ракеты 2 уровня.
-r.9. Увеличен объем батареек. Упрощен крафт базового машинного корпуса.
-r.10. Добавлен конфиг на отключение улучшенной системы перелетов.
-r.11. Добавлен крафт EPP канистры в JEI.
-r.12. В данж Цереры добавлен экстренный телепорт.
+r.1. Исправлен крафт сжатого угля.
+r.2. Исправлен крафт ракеты 3 уровня.
+r.3. Исправлен краш на Европе.
+r.4. Подправлена генерация лута в данже на Марсе.
+r.5. Исправлен вход энергии у Жидкостного Экстрактора.
+r.6. Увеличено кол-во получаемых газов в сепараторе при переработки воды.
+r.7. Добавлен Сжигатель Газов. 
+r.8. Переписан код Универсального Переработчика.
+r.9. Добавлен конфиг на отключение системы солнечной радиации.
+r.10. Улучшенное хранилище кислорода.
 #en
-e.1. Lava and Sulfur geyser on Io. Sulfur lakes.
-e.2. Liquid Separator.
-e.3. Fixed crash on server.
-e.4. Modification Table
-e.5. Modules for Spacesuit.
-e.6. Proxima B.
-e.7. Rocket Tier 6.
-e.8. Simplified craft rocket tier 2.
-e.9. Increased battery capacity. Simplified craft base machine frame
-e.10. Added config for enable/disable new tier system.
-e.11. Added craft EPP Oxygen Canister in JEI.
-e.11. In Ceres dungeon added Emergency Teleport.
+e.1. Fixed craft compressed coal.
+e.2. Fixed craft rocket tier 3.
+e.3. Fixed crash on Europa.
+e.4. Fixed generate loot in dungeon on Mars.
+e.5. Fixed input energy in Liquid Extractor.
+e.6. Increased the number of gases in the separator for water processing.
+e.7. Added Gas Burner.
+e.8. Rewrited and fixed Universal Recycler.
+e.9. Added config for disable Solar Radiation system.
+e.10. Added Advanced Oxygen Storage Module
