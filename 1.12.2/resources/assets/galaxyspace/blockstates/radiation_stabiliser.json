@@ -1,0 +1,8 @@
+{
+	"variants": {
+        "facing=north": { "model": "galaxyspace:radiation_stabiliser" },
+        "facing=east":  { "model": "galaxyspace:radiation_stabiliser", "y": 90 },
+        "facing=west":  { "model": "galaxyspace:radiation_stabiliser", "y": 270 },
+        "facing=south": { "model": "galaxyspace:radiation_stabiliser", "y": 180 }
+    }
+}

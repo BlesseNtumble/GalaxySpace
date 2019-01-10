@@ -1,14 +1,14 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "modid": "galaxyspace",
+  "name": "GalaxySpace",
+  "description": "Addon for Galacticraft3",
+  "version": "2.0.1 STABLE",
+  "mcversion": "1.12.2",
+  "url": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2412548-1-7-10-galaxy-space-addon-for-galacticraft-3",
+  "updateUrl": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2412548-1-7-10-galaxy-space-addon-for-galacticraft-3",
+  "authorList": ["BlesseNtumble"],
+  "credits": "Galaxy Space Team", 
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

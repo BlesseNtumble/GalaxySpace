@@ -1,0 +1,9 @@
+{ 
+	"variants": { 
+		"type=miranda_grunt": { "model": "galaxyspace:miranda_grunt"}, 
+		"type=miranda_subgrunt": { "model": "galaxyspace:miranda_subgrunt"}, 
+		"type=miranda_stone": { "model": "galaxyspace:miranda_stone"}, 
+		"type=miranda_iron_ore": { "model": "galaxyspace:miranda_iron_ore"}, 
+		"type=miranda_dolomite_ore": { "model": "galaxyspace:miranda_dolomite_ore"}
+	} 
+}

@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "galaxyspace:blocks/proximasystem/proxima_b/tree_2_side"
+    }
+}

@@ -1,0 +1,7 @@
+{ 
+	"parent": "galaxyspace:block/dungeon_bricks", 
+ 	"textures": { 
+		"side" : "galaxyspace:blocks/solarsystem/ceres/ceres_bricks",
+		"overlay": "galaxyspace:blocks/solarsystem/ceres/ceres_bricks_layer"
+	}	
+}

@@ -1,0 +1,15 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "type": {
+           "advanced_rocket_pad":     { "model": "galaxyspace:advanced_landing_pad_model" },
+		   "advanced_rocket_pad_1":     { "model": "galaxyspace:advanced_landing_pad_model_1" }
+        },
+		
+		"rendertype": {
+            "0": { },
+			"1": { }
+		},
+        "inventory": [{ "model": "galacticraftcore:block_multi_model" }]
+    }
+}
