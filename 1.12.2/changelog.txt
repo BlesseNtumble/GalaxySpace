@@ -1,23 +1,29 @@
 ///Changelog///
 #ru
-r.1. Исправлен крафт сжатого угля.
-r.2. Исправлен крафт ракеты 3 уровня.
-r.3. Исправлен краш на Европе.
-r.4. Подправлена генерация лута в данже на Марсе.
-r.5. Исправлен вход энергии у Жидкостного Экстрактора.
-r.6. Увеличено кол-во получаемых газов в сепараторе при переработки воды.
-r.7. Добавлен Сжигатель Газов. 
-r.8. Переписан код Универсального Переработчика.
-r.9. Добавлен конфиг на отключение системы солнечной радиации.
-r.10. Улучшенное хранилище кислорода.
+r.1. Исправлено наложение цвета травы на всех биомах.
+r.2. Добавлена вариация двигателей у ракет. (Сейчас лишь для 6 и лишь субсветовой.)
+r.3. Изменен GUI у Модификационного Стола.
+r.4. Добавлена Панель Солнечного Ветра.
+r.5. Исправлена ошибка с кнопкой Shift после надетого костюма.
+r.6. Реколор Титана.
+r.7. Исправлен урон от солнечной радиации.
+r.8. Исправлена зарядка EPP канистр в ислородной зоне.
+r.9. Добавлена улучшенная взлетная площадка.
+r.10. Исправлено искажение блоков сокровищницы при Optifine.
+r.11. Добавлена генерация нефти на Проксиме Б.
+r.12. Улучшен HUD для космического костюма.
+r.13. Коррозийная атмосфера теперь разряжает космический костюм.
 #en
-e.1. Fixed craft compressed coal.
-e.2. Fixed craft rocket tier 3.
-e.3. Fixed crash on Europa.
-e.4. Fixed generate loot in dungeon on Mars.
-e.5. Fixed input energy in Liquid Extractor.
-e.6. Increased the number of gases in the separator for water processing.
-e.7. Added Gas Burner.
-e.8. Rewrited and fixed Universal Recycler.
-e.9. Added config for disable Solar Radiation system.
-e.10. Added Advanced Oxygen Storage Module
+e.1. Fixed grass color overlay on all biomes.
+e.2. Added variation of engines for rockets. (Now only for 6 and only sublight.)
+e.3. Changed GUI at the Modification Table.
+e.4. Added Solar Wind Panel.
+e.5. Fixed a bug with the Shift button after wearing a space suit.
+e.6. Recolor Titan.
+e.7. Fixed damage from solar radiation.
+e.8. Fixed charging EPP canisters in the siege zone
+e.9. Added advanced landing pad.
+e.10. Fixed distortion of blocks of the treasury at Optifine.
+e.11. Added oil generation on Proxima B.
+e.12. Improved HUD for a space suit.
+e.13. The corrosive atmosphere now discharges the space suit.
