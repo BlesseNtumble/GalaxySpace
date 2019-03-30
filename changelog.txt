@@ -1,9 +1,37 @@
 ///Changelog///
 #ru
-r.1. Фикс краша в Модификационном Столе при использовании Shift.
-r.2. Добавлено оповещение в лог о неправильно настроеном конфиге для брони от радиации и давления.
-r.3. Добавлено совмещение с MatterOverdrive. Андроид игнорирует солнечную радиацию и урон от давления.
+r.1. Исправлен дроп с Урановой руды.
+r.2. Высокий шаг теперь выключается при снятых ботинках костюма.
+r.3. Добавлена поддержка конфига GC на ограничение планеты.
+r.4. Исправлен краш на Проксиме Б на сервере.
+r.5. HUD для космического костюма.
+r.6. Исправлено потребление энергии в Гравитационном Механизме.
+r.7. Переписан код Универсального Переработчика (backport from 1.12.2).
+r.8. Добавлен модуль очков откровения из Thaumcraft в шлем костюма.
+r.9. Добавлено ограничение кол-ва модулей в костюме.
+r.10. Галактическая карта теперь корректно работает в краю\аду.
+r.11. Исправлена кривая текстура Венеры в небе на Меркурии.
+r.12. Увеличен спаун Сапфировой Руды.
+r.13. Добавлена поддержка метадаты в конфиг брони от радиации и давления.
+r.14. Добавлено несколько товаров лунным жителям.
+r.15. Упрощен крафт ракеты 2 уровня.
+r.16. Теперь можно ломать блоки с едой в руке.
+r.17. Добавлены новые батарейки.
 #en
-e.1. Fixed crash in the Modification Table using Shift.
-e.2. Added notification to the log about incorrectly configured config for armor from radiation and pressure.
-e.3. Added compability with MatterOverdrive. Android ignores solar radiation and pressure damage.
+e.1. Fixed a drop from Uranium ore
+e.2. The high step is now turned off when the suit boots are removed.
+e.3. Added support for the GC config to limit the planet.
+e.4. Fixed crash on Proxime B on the server.
+e.5. HUD for a space suit.
+e.6. Fixed energy consumption in the Gravitational Mechanism.
+e.7. Rewritten Universal Recycler code (backport from 1.12.2).
+e.8. Added a thaumic vision module from Thaumcraft to a suit helmet.
+e.9. Added limiting the number of modules in a suit.
+e.10. The galactic map now works correctly in the end\hell.
+e.11. Fixed the texture of Venus in the sky on Mercury.
+e.12. Increased sapphire ore spawn.
+e.13. Added metadata support to the radiation and pressure armor config.
+e.14. Added a few items to lunar residents.
+e.15. Simplified craft rocket tier 2.
+e.16. Now you can break the blocks with food in hand.
+e.17. Added new batteries.
