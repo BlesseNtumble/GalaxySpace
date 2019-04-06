@@ -1,29 +1,33 @@
 ///Changelog///
 #ru
-r.1. Исправлено наложение цвета травы на всех биомах.
-r.2. Добавлена вариация двигателей у ракет. (Сейчас лишь для 6 и лишь субсветовой.)
-r.3. Изменен GUI у Модификационного Стола.
-r.4. Добавлена Панель Солнечного Ветра.
-r.5. Исправлена ошибка с кнопкой Shift после надетого костюма.
-r.6. Реколор Титана.
-r.7. Исправлен урон от солнечной радиации.
-r.8. Исправлена зарядка EPP канистр в ислородной зоне.
-r.9. Добавлена улучшенная взлетная площадка.
-r.10. Исправлено искажение блоков сокровищницы при Optifine.
-r.11. Добавлена генерация нефти на Проксиме Б.
-r.12. Улучшен HUD для космического костюма.
-r.13. Коррозийная атмосфера теперь разряжает космический костюм.
+r.1. Исправлен дроп с блоков руды на Ио.
+r.2. Исправлено отображение жидкостей в Универсальном Переработчике.
+r.3. Исправлен краш из-за канистры гелия-3 в Универсальном Переработчике.
+r.4. Радиация теперь не повышается в Посадочном Модуле.
+r.5. Исправлен краш на Проксиме Б.
+r.6. Упрощена система атмосферного давления.
+r.7. Исправлен краш сервера при атаке Ифрита-босса.
+r.8. Поверхность Цереры и Меркурия теперь можно терраформировать.
+r.9. Увеличен объем топлива в ракете 6 уровня.
+r.10. В левой руке еда теперь тоже проверяется.
+r.11. Батарейка теперь вставляется в костюм.
+r.12. Задана статичная кнопка (Shift) для подробной информации у предметов.
+r.13. Небольшой фикс крафта ракеты 2 уровня.
+r.14. Исправлена ссылка кнопки для обновления аддона.
+r.15. Исправлен краш при нажатии Shift по слоту в Гравитационном модуле.
 #en
-e.1. Fixed grass color overlay on all biomes.
-e.2. Added variation of engines for rockets. (Now only for 6 and only sublight.)
-e.3. Changed GUI at the Modification Table.
-e.4. Added Solar Wind Panel.
-e.5. Fixed a bug with the Shift button after wearing a space suit.
-e.6. Recolor Titan.
-e.7. Fixed damage from solar radiation.
-e.8. Fixed charging EPP canisters in the siege zone
-e.9. Added advanced landing pad.
-e.10. Fixed distortion of blocks of the treasury at Optifine.
-e.11. Added oil generation on Proxima B.
-e.12. Improved HUD for a space suit.
-e.13. The corrosive atmosphere now discharges the space suit.
+e.1. Fixed a drop from ore blocks on Io.
+e.2. Fixed display of liquids in the Universal Recycler.
+e.3. Fixed crash due to the helium-3 canister in the Universal Recycler.
+e.4. Radiation no longer increases in Landing Module
+e.5. Fixed crash on Proxima B.
+e.6. Simplified atmospheric pressure system.
+e.7. Fixed crash of the server during the attack of Blaze-boss.
+e.8. Increased fuel volume in rocket tier 6.
+e.9. In the left hand food is now also checked.
+e.10. The module "battery" is now inserted in the suit.
+e.11. Set a static button (Shift) for detailed information on items.
+e.12. A small fix crafting rocket 2 levels.
+e.13. The surface of Ceres and Mercury can now be terraformed.
+e.14. Fixed link button to update add-on.
+e.15. Fixed crash when pressing Shift on the slot in the Gravity module.
