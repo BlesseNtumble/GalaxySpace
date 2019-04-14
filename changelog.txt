@@ -1,11 +1,9 @@
 ///Changelog///
 #ru
-r.1. Исправлен краш в окне настроек управления.
-r.2. Исправлен крафт ракет в Ракетном Цеху.
-r.3. Исправлен краш в окне торговли с лунными жителями.
-r.4. Скорректировано описание Сверхпрочного покрытия.
+r.1. Исправлен краш при просмотре NEI рецептов Переработчика.
+r.2. Исправлен краш при работе Универсального Переработчика.
+r.3. Исправлено отображение энергии в некоторых механизмах.
 #en
-e.1. Fixed crash in the control settings gui.
-e.2. Fixed rocket craft in Rocket Assembly.
-e.3. Fixed crash in Moon Villager trade gui.
-e.4. Corrected description Heavy Duty Plate
+e.1. Fixed crash when viewing the NEI recipe of the Recycler.
+e.2. Fixed crash when running Universal Recycler.
+e.3. Fixed display of energy in some mechanisms.
