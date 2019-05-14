@@ -1,33 +1,29 @@
 ///Changelog///
 #ru
-r.1. Исправлен дроп с блоков руды на Ио.
-r.2. Исправлено отображение жидкостей в Универсальном Переработчике.
-r.3. Исправлен краш из-за канистры гелия-3 в Универсальном Переработчике.
-r.4. Радиация теперь не повышается в Посадочном Модуле.
-r.5. Исправлен краш на Проксиме Б.
-r.6. Упрощена система атмосферного давления.
-r.7. Исправлен краш сервера при атаке Ифрита-босса.
-r.8. Поверхность Цереры и Меркурия теперь можно терраформировать.
-r.9. Увеличен объем топлива в ракете 6 уровня.
-r.10. В левой руке еда теперь тоже проверяется.
-r.11. Батарейка теперь вставляется в костюм.
-r.12. Задана статичная кнопка (Shift) для подробной информации у предметов.
-r.13. Небольшой фикс крафта ракеты 2 уровня.
-r.14. Исправлена ссылка кнопки для обновления аддона.
-r.15. Исправлен краш при нажатии Shift по слоту в Гравитационном модуле.
+r.1. Исправлена невозможность потреблять консервы в открытом космосе.
+r.2. Исправлено освещение моделей ракет, гидропонной фермы, сол. панели.
+r.3. Добавлен конфиг для краткого рендера HUD’a космического костюма.
+r.4. Добавлен Улучшенный Электрический Компрессор.
+r.5. Добавлен Улучшенный Производитель Микросхем.
+r.6. Исправлено отсутсвие субсветого двигателя в ракете после посадки.
+r.7. Исправлена ошибка, приводящая к потери мира из-за Кислородного Модуля.
+r.8. Топливный Генератор теперь генерирует разное кол-во энергии в зависимости от топлива.
+r.9. Переделана Миранда.
+r.10. Добавлены рецепты для руд на некоторых планетах\спутниках.
+r.11. Добавлена zn_CN локализация.
+r.12. Исправлен конфиг для сторонней брони.
+r.13. На Марс добавлены новые руды.
 #en
-e.1. Fixed a drop from ore blocks on Io.
-e.2. Fixed display of liquids in the Universal Recycler.
-e.3. Fixed crash due to the helium-3 canister in the Universal Recycler.
-e.4. Radiation no longer increases in Landing Module
-e.5. Fixed crash on Proxima B.
-e.6. Simplified atmospheric pressure system.
-e.7. Fixed crash of the server during the attack of Blaze-boss.
-e.8. Increased fuel volume in rocket tier 6.
-e.9. In the left hand food is now also checked.
-e.10. The module "battery" is now inserted in the suit.
-e.11. Set a static button (Shift) for detailed information on items.
-e.12. A small fix crafting rocket 2 levels.
-e.13. The surface of Ceres and Mercury can now be terraformed.
-e.14. Fixed link button to update add-on.
-e.15. Fixed crash when pressing Shift on the slot in the Gravity module.
+e.1. Fixed the inability to consume canned food in outer space
+e.2. Fixed lighting models of rockets, hydroponic farm, solar panels.
+e.3. Added config for a small HUD space suit render.
+e.4. Added Advanced Electric Compressor.
+e.5. Added Advanced Circuit Fabricator.
+e.6. Fixed the lack of sub-light engine in the rocket after landing.
+e.7. Fixed a bug that leads to the loss of the world due to the Oxygen Module
+e.8. Fuel Generator now generates a different amount of energy depending on the fuel.
+e.9. Reworked Miranda.
+e.10. Added recipes for ores on some planets / moons.
+e.11. Added zn_CN localization.
+e.12. Fixed config for custom armor.
+e.13. New ores have been added to Mars.
