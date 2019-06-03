@@ -1,0 +1,283 @@
+package galaxyspace.systems.SolarSystem.planets.overworld.models;
+
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.entity.Entity;
+
+public class ModelWindTurbine extends ModelBase
+{
+	public ModelRenderer rotor;
+	public ModelRenderer shape1;
+	public ModelRenderer rotorChild;
+	public ModelRenderer rotorChild_1;
+	public ModelRenderer rotorChild_2;
+	public ModelRenderer rotorChild_3;
+	public ModelRenderer rotorChild_4;
+	public ModelRenderer rotorChild_5;
+	public ModelRenderer rotorChild_6;
+	public ModelRenderer rotorChild_7;
+	public ModelRenderer rotorChild_8;
+	public ModelRenderer rotorChild_9;
+	public ModelRenderer rotorChild_10;
+	public ModelRenderer rotorChild_11;
+	public ModelRenderer rotorChild_12;
+	public ModelRenderer shape1Child;
+	public ModelRenderer shape1Child_1;
+	public ModelRenderer shape1Child_2;
+	public ModelRenderer shape1Child_3;
+	public ModelRenderer shape1Child_4;
+	public ModelRenderer shape1Child_5;
+	public ModelRenderer shape1Child_6;
+	public ModelRenderer shape1Child_7;
+	public ModelRenderer shape1Child_8;
+	public ModelRenderer shape1Child_9;
+	public ModelRenderer shape1Child_10;
+	public ModelRenderer shape1Child_11;
+	public ModelRenderer shape1Child_12;
+	public ModelRenderer shape1Child_13;
+	public ModelRenderer shape1Child_14;
+	public ModelRenderer shape1Child_15;
+	public ModelRenderer shape1Child_16;
+	public ModelRenderer shape1Child_17;
+	public ModelRenderer shape1Child_18;
+	public ModelRenderer shape1Child_19;
+	public ModelRenderer shape1Child_20;
+	public ModelRenderer shape1Child_21;
+	public ModelRenderer shape1Child_22;
+	public ModelRenderer shape1Child_23;
+	public ModelRenderer shape1Child_24;
+	public ModelRenderer shape1Child_25;
+	public ModelRenderer shape1Child_26;
+
+	public ModelWindTurbine() {
+		this.textureWidth = 128;
+		this.textureHeight = 64;
+		this.shape1Child_17 = new ModelRenderer(this, 0, 0);
+		this.shape1Child_17.setRotationPoint(2.4000000953674316F, -38.400001525878906F, 2.5F);
+		this.shape1Child_17.addBox(0.0F, 0.0F, 0.0F, 4, 12, 1, 0.0F);
+		this.setRotateAngle(shape1Child_17, 1.5707963705062866F, 0.0F, 0.7853981852531433F);
+		this.shape1Child_11 = new ModelRenderer(this, 0, 0);
+		this.shape1Child_11.setRotationPoint(2.4000000953674316F, -43.5F, 2.5F);
+		this.shape1Child_11.addBox(0.0F, 0.0F, 0.0F, 5, 12, 1, 0.0F);
+		this.setRotateAngle(shape1Child_11, 1.5707963705062866F, 0.0F, 1.5707963705062866F);
+		this.rotorChild_7 = new ModelRenderer(this, 13, 29);
+		this.rotorChild_7.setRotationPoint(14.100000381469727F, 24.0F, 1.0F);
+		this.rotorChild_7.addBox(0.0F, 0.0F, 0.0F, 5, 1, 1, 0.0F);
+		this.setRotateAngle(rotorChild_7, 0.0F, 0.0F, -1.832595705986023F);
+		this.shape1Child_10 = new ModelRenderer(this, 0, 0);
+		this.shape1Child_10.setRotationPoint(9.600000381469727F, -46.400001525878906F, 13.300000190734863F);
+		this.shape1Child_10.addBox(0.0F, 0.0F, 0.20000000298023224F, 5, 10, 1, 0.0F);
+		this.setRotateAngle(shape1Child_10, 0.0F, 0.0F, 0.7853981852531433F);
+		this.shape1 = new ModelRenderer(this, 12, 1);
+		this.shape1.setRotationPoint(-7.900000095367432F, 41.0F, -8.199999809265137F);
+		this.shape1.addBox(0.0F, 0.0F, -0.10000000149011612F, 16, 2, 16, 0.0F);
+		this.rotorChild_1 = new ModelRenderer(this, 14, 28);
+		this.rotorChild_1.setRotationPoint(15.300000190734863F, -17.700000762939453F, 1.0F);
+		this.rotorChild_1.addBox(0.0F, 0.0F, 0.0F, 4, 2, 1, 0.0F);
+		this.setRotateAngle(rotorChild_1, 0.0F, 0.0F, 2.094395160675049F);
+		this.shape1Child_18 = new ModelRenderer(this, 0, 0);
+		this.shape1Child_18.setRotationPoint(5.400000095367432F, -35.599998474121094F, 2.5F);
+		this.shape1Child_18.addBox(0.0F, 0.0F, 0.0F, 5, 12, 1, 0.0F);
+		this.setRotateAngle(shape1Child_18, 1.5707963705062866F, 0.0F, 0.0F);
+		this.shape1Child_24 = new ModelRenderer(this, 0, 0);
+		this.shape1Child_24.setRotationPoint(9.800000190734863F, -39.0F, 12.600000381469727F);
+		this.shape1Child_24.addBox(0.0F, 0.0F, 0.0F, 4, 40, 1, 0.0F);
+		this.setRotateAngle(shape1Child_24, 0.0F, 0.7853981852531433F, 0.0F);
+		this.shape1Child_16 = new ModelRenderer(this, 0, 0);
+		this.shape1Child_16.setRotationPoint(12.399999618530273F, -39.0F, 10.399999618530273F);
+		this.shape1Child_16.addBox(0.0F, 0.0F, 0.0F, 5, 40, 1, 0.0F);
+		this.setRotateAngle(shape1Child_16, 0.0F, 1.5707963705062866F, 0.0F);
+		this.shape1Child_4 = new ModelRenderer(this, 0, 0);
+		this.shape1Child_4.setRotationPoint(2.5F, -42.900001525878906F, 2.299999952316284F);
+		this.shape1Child_4.addBox(0.0F, 0.0F, 0.20000000298023224F, 5, 10, 1, 0.0F);
+		this.setRotateAngle(shape1Child_4, 0.0F, 0.0F, -0.7853981852531433F);
+		this.rotorChild_11 = new ModelRenderer(this, 12, 29);
+		this.rotorChild_11.setRotationPoint(13.800000190734863F, 24.5F, 1.0F);
+		this.rotorChild_11.addBox(0.0F, 0.0F, 0.0F, 5, 1, 1, 0.0F);
+		this.setRotateAngle(rotorChild_11, 0.0F, 0.0F, -2.356194496154785F);
+		this.rotorChild_4 = new ModelRenderer(this, 13, 29);
+		this.rotorChild_4.setRotationPoint(15.100000381469727F, -18.799999237060547F, 1.0F);
+		this.rotorChild_4.addBox(0.0F, 0.0F, 0.0F, 5, 1, 1, 0.0F);
+		this.setRotateAngle(rotorChild_4, 0.0F, 0.0F, 2.356194496154785F);
+		this.shape1Child_26 = new ModelRenderer(this, 0, 0);
+		this.shape1Child_26.setRotationPoint(9.800000190734863F, -45.70000076293945F, 2.5F);
+		this.shape1Child_26.addBox(0.0F, 0.0F, 0.0F, 4, 12, 1, 0.0F);
+		this.setRotateAngle(shape1Child_26, 1.5707963705062866F, 0.0F, 0.7853981852531433F);
+		this.rotorChild_8 = new ModelRenderer(this, 14, 28);
+		this.rotorChild_8.setRotationPoint(-19.299999237060547F, 2.0F, 1.0F);
+		this.rotorChild_8.addBox(0.0F, 0.0F, 0.0F, 4, 2, 1, 0.0F);
+		this.shape1Child_2 = new ModelRenderer(this, 0, 0);
+		this.shape1Child_2.setRotationPoint(12.399999618530273F, -43.5F, 2.5F);
+		this.shape1Child_2.addBox(0.0F, 0.0F, 0.0F, 5, 12, 1, 0.0F);
+		this.setRotateAngle(shape1Child_2, 1.5707963705062866F, 0.0F, 1.5707963705062866F);
+		this.shape1Child_3 = new ModelRenderer(this, 0, 0);
+		this.shape1Child_3.setRotationPoint(10.5F, -39.0F, 2.5F);
+		this.shape1Child_3.addBox(0.0F, 0.0F, 0.0F, 4, 40, 1, 0.0F);
+		this.setRotateAngle(shape1Child_3, 0.0F, -0.7853981852531433F, 0.0F);
+		this.shape1Child = new ModelRenderer(this, 0, 0);
+		this.shape1Child.setRotationPoint(9.600000381469727F, -46.400001525878906F, 2.299999952316284F);
+		this.shape1Child.addBox(0.0F, 0.0F, 0.20000000298023224F, 5, 10, 1, 0.0F);
+		this.setRotateAngle(shape1Child, 0.0F, 0.0F, 0.7853981852531433F);
+		this.rotorChild_10 = new ModelRenderer(this, 12, 29);
+		this.rotorChild_10.setRotationPoint(-20.5F, 2.299999952316284F, 1.0F);
+		this.rotorChild_10.addBox(0.0F, 0.0F, 0.0F, 5, 1, 1, 0.0F);
+		this.setRotateAngle(rotorChild_10, 0.0F, 0.0F, -0.2617993950843811F);
+		this.shape1Child_15 = new ModelRenderer(this, 12, 22);
+		this.shape1Child_15.setRotationPoint(10.0F, -43.0F, 15.100000381469727F);
+		this.shape1Child_15.addBox(0.0F, 0.0F, 0.0F, 4, 4, 1, 0.0F);
+		this.setRotateAngle(shape1Child_15, 0.0F, 0.0F, 1.5707963705062866F);
+		this.rotorChild = new ModelRenderer(this, 12, 27);
+		this.rotorChild.setRotationPoint(10.300000190734863F, 21.0F, 1.0F);
+		this.rotorChild.addBox(0.0F, 0.0F, 0.0F, 20, 4, 1, 0.0F);
+		this.setRotateAngle(rotorChild, 0.0F, 0.0F, -2.094395160675049F);
+		this.rotorChild_12 = new ModelRenderer(this, 14, 28);
+		this.rotorChild_12.setRotationPoint(13.100000381469727F, 23.799999237060547F, 1.0F);
+		this.rotorChild_12.addBox(0.0F, 0.0F, 0.0F, 4, 2, 1, 0.0F);
+		this.setRotateAngle(rotorChild_12, 0.0F, 0.0F, -2.094395160675049F);
+		this.shape1Child_20 = new ModelRenderer(this, 12, 22);
+		this.shape1Child_20.setRotationPoint(9.0F, -42.0F, 15.600000381469727F);
+		this.shape1Child_20.addBox(0.0F, 0.0F, 0.0F, 2, 2, 3, 0.0F);
+		this.setRotateAngle(shape1Child_20, 0.0F, 0.0F, 1.5707963705062866F);
+		this.rotorChild_9 = new ModelRenderer(this, 12, 23);
+		this.rotorChild_9.setRotationPoint(4.400000095367432F, 1.5F, 1.7000000476837158F);
+		this.rotorChild_9.addBox(0.0F, 0.0F, 0.0F, 3, 3, 1, 0.0F);
+		this.setRotateAngle(rotorChild_9, 0.0F, 0.0F, 1.5707963705062866F);
+		this.shape1Child_8 = new ModelRenderer(this, 0, 0);
+		this.shape1Child_8.setRotationPoint(2.5F, -42.900001525878906F, 13.300000190734863F);
+		this.shape1Child_8.addBox(0.0F, 0.0F, 0.20000000298023224F, 5, 10, 1, 0.0F);
+		this.setRotateAngle(shape1Child_8, 0.0F, 0.0F, -0.7853981852531433F);
+		this.shape1Child_23 = new ModelRenderer(this, 0, 0);
+		this.shape1Child_23.setRotationPoint(5.400000095367432F, -39.0F, 2.5F);
+		this.shape1Child_23.addBox(0.0F, 0.0F, 0.0F, 5, 40, 1, 0.0F);
+		this.shape1Child_13 = new ModelRenderer(this, 0, 0);
+		this.shape1Child_13.setRotationPoint(2.5F, -39.0F, 10.300000190734863F);
+		this.shape1Child_13.addBox(0.0F, 0.0F, 0.0F, 5, 40, 1, 0.0F);
+		this.setRotateAngle(shape1Child_13, 0.0F, 1.5707963705062866F, 0.0F);
+		this.rotorChild_2 = new ModelRenderer(this, 12, 27);
+		this.rotorChild_2.setRotationPoint(14.300000190734863F, -14.0F, 1.0F);
+		this.rotorChild_2.addBox(0.0F, 0.0F, 0.0F, 20, 4, 1, 0.0F);
+		this.setRotateAngle(rotorChild_2, 0.0F, 0.0F, 2.094395160675049F);
+		this.shape1Child_12 = new ModelRenderer(this, 0, 0);
+		this.shape1Child_12.setRotationPoint(10.600000381469727F, -35.599998474121094F, 2.5F);
+		this.shape1Child_12.addBox(0.0F, 0.0F, 0.0F, 4, 12, 1, 0.0F);
+		this.setRotateAngle(shape1Child_12, 1.5707963705062866F, 0.0F, -0.7853981852531433F);
+		this.shape1Child_25 = new ModelRenderer(this, 0, 0);
+		this.shape1Child_25.setRotationPoint(5.400000095367432F, -45.400001525878906F, 2.5F);
+		this.shape1Child_25.addBox(0.0F, 0.0F, 0.0F, 5, 12, 1, 0.0F);
+		this.setRotateAngle(shape1Child_25, 1.5707963705062866F, 0.0F, 0.0F);
+		this.shape1Child_9 = new ModelRenderer(this, 0, 0);
+		this.shape1Child_9.setRotationPoint(13.199999809265137F, -43.5F, 13.5F);
+		this.shape1Child_9.addBox(0.0F, 0.0F, 0.0F, 5, 10, 1, 0.0F);
+		this.setRotateAngle(shape1Child_9, 0.0F, 0.0F, 1.5707963705062866F);
+		this.shape1Child_6 = new ModelRenderer(this, 0, 0);
+		this.shape1Child_6.setRotationPoint(3.200000047683716F, -42.900001525878906F, 2.5F);
+		this.shape1Child_6.addBox(0.0F, 0.0F, 0.0F, 4, 12, 1, 0.0F);
+		this.setRotateAngle(shape1Child_6, 1.5707963705062866F, 0.0F, -0.7853981852531433F);
+		this.rotorChild_5 = new ModelRenderer(this, 13, 29);
+		this.rotorChild_5.setRotationPoint(-20.299999237060547F, 2.700000047683716F, 1.0F);
+		this.rotorChild_5.addBox(0.0F, 0.0F, 0.0F, 5, 1, 1, 0.0F);
+		this.setRotateAngle(rotorChild_5, 0.0F, 0.0F, 0.2617993950843811F);
+		this.shape1Child_22 = new ModelRenderer(this, 12, 20);
+		this.shape1Child_22.setRotationPoint(11.0F, -44.0F, 14.300000190734863F);
+		this.shape1Child_22.addBox(0.0F, 0.0F, 0.0F, 6, 6, 1, 0.0F);
+		this.setRotateAngle(shape1Child_22, 0.0F, 0.0F, 1.5707963705062866F);
+		this.rotorChild_6 = new ModelRenderer(this, 12, 27);
+		this.rotorChild_6.setRotationPoint(-15.699999809265137F, 1.0F, 1.0F);
+		this.rotorChild_6.addBox(0.0F, 0.0F, 0.0F, 20, 4, 1, 0.0F);
+		this.shape1Child_7 = new ModelRenderer(this, 0, 0);
+		this.shape1Child_7.setRotationPoint(5.300000190734863F, -46.0F, 13.300000190734863F);
+		this.shape1Child_7.addBox(0.0F, 0.0F, 0.20000000298023224F, 5, 10, 1, 0.0F);
+		this.shape1Child_1 = new ModelRenderer(this, 0, 0);
+		this.shape1Child_1.setRotationPoint(3.200000047683716F, -39.0F, 9.699999809265137F);
+		this.shape1Child_1.addBox(0.0F, 0.0F, 0.0F, 4, 40, 1, 0.0F);
+		this.setRotateAngle(shape1Child_1, 0.0F, -0.7853981852531433F, 0.0F);
+		this.rotorChild_3 = new ModelRenderer(this, 12, 29);
+		this.rotorChild_3.setRotationPoint(15.600000381469727F, -18.799999237060547F, 1.0F);
+		this.rotorChild_3.addBox(0.0F, 0.0F, 0.0F, 5, 1, 1, 0.0F);
+		this.setRotateAngle(rotorChild_3, 0.0F, 0.0F, 1.832595705986023F);
+		this.rotor = new ModelRenderer(this, 12, 19);
+		this.rotor.setRotationPoint(3.0F, -3.05F, 10.2F);
+		this.rotor.addBox(0.0F, 0.0F, 0.1F, 6, 6, 2, 0.0F);
+		this.setRotateAngle(rotor, 0.0F, 0.0F, 1.5707963267948966F);
+		this.shape1Child_14 = new ModelRenderer(this, 0, 0);
+		this.shape1Child_14.setRotationPoint(5.400000095367432F, -39.0F, 12.300000190734863F);
+		this.shape1Child_14.addBox(0.0F, 0.0F, 0.0F, 5, 40, 1, 0.0F);
+		this.shape1Child_5 = new ModelRenderer(this, 0, 0);
+		this.shape1Child_5.setRotationPoint(13.199999809265137F, -43.5F, 2.5F);
+		this.shape1Child_5.addBox(0.0F, 0.0F, 0.0F, 5, 10, 1, 0.0F);
+		this.setRotateAngle(shape1Child_5, 0.0F, 0.0F, 1.5707963705062866F);
+		this.shape1Child_19 = new ModelRenderer(this, 0, 0);
+		this.shape1Child_19.setRotationPoint(2.5F, -39.0F, 5.300000190734863F);
+		this.shape1Child_19.addBox(0.0F, 0.0F, 0.0F, 4, 40, 1, 0.0F);
+		this.setRotateAngle(shape1Child_19, 0.0F, 0.7853981852531433F, 0.0F);
+		this.shape1Child_21 = new ModelRenderer(this, 0, 0);
+		this.shape1Child_21.setRotationPoint(5.300000190734863F, -46.099998474121094F, 2.5F);
+		this.shape1Child_21.addBox(0.0F, 0.0F, 0.0F, 5, 10, 1, 0.0F);
+		this.shape1.addChild(this.shape1Child_17);
+		this.shape1.addChild(this.shape1Child_11);
+		this.rotor.addChild(this.rotorChild_7);
+		this.shape1.addChild(this.shape1Child_10);
+		this.rotor.addChild(this.rotorChild_1);
+		this.shape1.addChild(this.shape1Child_18);
+		this.shape1.addChild(this.shape1Child_24);
+		this.shape1.addChild(this.shape1Child_16);
+		this.shape1.addChild(this.shape1Child_4);
+		this.rotor.addChild(this.rotorChild_11);
+		this.rotor.addChild(this.rotorChild_4);
+		this.shape1.addChild(this.shape1Child_26);
+		this.rotor.addChild(this.rotorChild_8);
+		this.shape1.addChild(this.shape1Child_2);
+		this.shape1.addChild(this.shape1Child_3);
+		this.shape1.addChild(this.shape1Child);
+		this.rotor.addChild(this.rotorChild_10);
+		this.shape1.addChild(this.shape1Child_15);
+		this.rotor.addChild(this.rotorChild);
+		this.rotor.addChild(this.rotorChild_12);
+		this.shape1.addChild(this.shape1Child_20);
+		this.rotor.addChild(this.rotorChild_9);
+		this.shape1.addChild(this.shape1Child_8);
+		this.shape1.addChild(this.shape1Child_23);
+		this.shape1.addChild(this.shape1Child_13);
+		this.rotor.addChild(this.rotorChild_2);
+		this.shape1.addChild(this.shape1Child_12);
+		this.shape1.addChild(this.shape1Child_25);
+		this.shape1.addChild(this.shape1Child_9);
+		this.shape1.addChild(this.shape1Child_6);
+		this.rotor.addChild(this.rotorChild_5);
+		this.shape1.addChild(this.shape1Child_22);
+		this.rotor.addChild(this.rotorChild_6);
+		this.shape1.addChild(this.shape1Child_7);
+		this.shape1.addChild(this.shape1Child_1);
+		this.rotor.addChild(this.rotorChild_3);
+		this.shape1.addChild(this.shape1Child_14);
+		this.shape1.addChild(this.shape1Child_5);
+		this.shape1.addChild(this.shape1Child_19);
+		this.shape1.addChild(this.shape1Child_21);
+	}
+
+	@Override
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+		this.shape1.render(f5);
+		this.rotor.render(f5);
+	}
+
+	/**
+	 * This is a helper function from Tabula to set the rotation of model parts
+	 */
+	public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
+	        modelRenderer.rotateAngleX = x;
+	        modelRenderer.rotateAngleY = y;
+	        modelRenderer.rotateAngleZ = z;
+	}
+	    
+    public void renderPole(float f5)
+    {
+    	this.shape1.render(f5);
+    }
+    
+    public void renderFlares(float f5)
+    {
+    	this.rotor.render(f5);
+    }
+    
+}

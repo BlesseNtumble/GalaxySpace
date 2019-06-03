@@ -1,0 +1,107 @@
+package galaxyspace.systems.SolarSystem.moons.miranda.dimension.sky;
+
+import org.lwjgl.opengl.GL11;
+
+import asmodeuscore.core.astronomy.sky.SkyProviderBase;
+import galaxyspace.GalaxySpace;
+import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import micdoodle8.mods.galacticraft.core.Constants;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.client.FMLClientHandler;
+
+public class SkyProviderMiranda extends SkyProviderBase
+{
+
+	private static final ResourceLocation uranusTexture = new ResourceLocation(Constants.ASSET_PREFIX, "textures/gui/celestialbodies/uranus.png");
+	private static final ResourceLocation uranusRingTexture = new ResourceLocation(Constants.ASSET_PREFIX, "textures/gui/celestialbodies/uranus_rings.png");
+		  
+	@Override
+	protected void rendererSky(Tessellator tessellator, BufferBuilder worldRenderer, float f10, float ticks) {
+		
+		GL11.glPopMatrix();
+		GL11.glPushMatrix();
+		
+		f10 = 40.0F;
+		//GL11.glScalef(0.6F, 0.6F, 0.6F);
+		GL11.glRotatef(100.0F, 1.0F, 0.0F, 0.0F);
+        //GL11.glRotatef(-75F, 1.0F, 0.0F, 0.0F);
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.uranusTexture);
+		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+		worldRenderer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
+		worldRenderer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
+		worldRenderer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
+		worldRenderer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
+		tessellator.draw();   
+		
+		float f = 0.9F;
+		this.renderAtmo(tessellator, 0.0F, 0.0F, f10 - 6, new Vector3(120 / 255.0F * f, 160 / 255.0F * f, 180 / 255.0F * f));
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		
+		GL11.glPopMatrix();
+        GL11.glPushMatrix();
+        GL11.glEnable(GL11.GL_ALPHA_TEST);        
+        //GL11.glEnable(GL11.GL_BLEND);
+        
+		f10 = 107.0F;
+		GL11.glScalef(0.5F, 0.8F, 0.8F);
+        GL11.glRotatef(100.0F, 1.0F, 0.0F, 0.0F);
+        GL11.glTranslatef(80, 0, 13);
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.uranusRingTexture);
+		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+		worldRenderer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
+		worldRenderer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
+		worldRenderer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
+		worldRenderer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
+		tessellator.draw();      
+
+		GL11.glDisable(GL11.GL_ALPHA_TEST);
+        //GL11.glDisable(GL11.GL_BLEND);
+
+		
+		
+	}
+
+	@Override
+	protected boolean enableBaseImages() {
+		return true;
+	}
+
+	@Override
+	protected float sunSize() {
+		return 3.5F;
+	}
+
+	@Override
+	protected boolean enableStar() {
+		return true;
+	}
+
+	@Override
+	protected ResourceLocation sunImage() {
+		return new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/celestialbodies/sun_blank.png");
+	}
+
+	@Override
+	protected int modeLight() {
+		return 0;
+	}
+
+	@Override
+	protected Vector3 colorSunAura() {
+		return new Vector3(150, 150, 150);
+	}
+
+	@Override
+	protected Vector3 getAtmosphereColor() {
+		return null;
+	}
+	
+	@Override
+	public boolean enableSmoothRender() {return true;}
+
+}
