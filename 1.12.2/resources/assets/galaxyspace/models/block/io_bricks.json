@@ -1,7 +1,0 @@
-{ 
-	"parent": "galaxyspace:block/dungeon_bricks", 
- 	"textures": { 
-		"side" : "galaxyspace:blocks/solarsystem/io/io_bricks",
-		"overlay": "galaxyspace:blocks/solarsystem/io/io_bricks_layer"
-	}	
-}

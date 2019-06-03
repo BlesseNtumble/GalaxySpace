@@ -1,8 +1,0 @@
-{
- "variants": {
-        "facing=north": { "model": "galaxyspace:modern_solarpanel" },
-        "facing=east":  { "model": "galaxyspace:modern_solarpanel", "y": 90 },
-        "facing=west":  { "model": "galaxyspace:modern_solarpanel", "y": 270 },
-        "facing=south": { "model": "galaxyspace:modern_solarpanel", "y": 180 }
-    }
-}

@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "galaxyspace:universal_recycler" },
-        "facing=east":  { "model": "galaxyspace:universal_recycler", "y": 90 },
-        "facing=west":  { "model": "galaxyspace:universal_recycler", "y": 270 },
-        "facing=south": { "model": "galaxyspace:universal_recycler", "y": 180 }
-    }
-}

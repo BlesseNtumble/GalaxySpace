@@ -1,7 +1,0 @@
-{ 
-	"variants": { 
-		"type=enceladus_snow": { "model": "galaxyspace:enceladus_snow"}, 
-		"type=enceladus_grunt": { "model": "galaxyspace:enceladus_grunt"}, 
-		"type=enceladus_coal_ore": { "model": "galaxyspace:enceladus_coal_ore"}
-	} 
-}

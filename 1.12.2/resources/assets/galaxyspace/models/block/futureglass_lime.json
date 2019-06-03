@@ -1,4 +1,0 @@
-{ 
-	"parent": "block/cube_all", 
- 	"textures": { "all" : "galaxyspace:blocks/overworld/blockfutureglass/futureglass_lime"}
-}

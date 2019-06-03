@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "galaxyspace:rocket_assembler" },
-        "facing=east":  { "model": "galaxyspace:rocket_assembler", "y": 90 },
-        "facing=west":  { "model": "galaxyspace:rocket_assembler", "y": 270 },
-        "facing=south": { "model": "galaxyspace:rocket_assembler", "y": 180 }
-    }
-}

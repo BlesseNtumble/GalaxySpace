@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "normal": { "model": "galaxyspace:advanced_landing_pad_model" },
-        "type=rocket_pad": { "model": "galaxyspace:advanced_landing_pad_model" }
-    }
-}

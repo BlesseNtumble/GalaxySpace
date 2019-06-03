@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "galaxyspace:modification_table" },
-        "facing=east":  { "model": "galaxyspace:modification_table", "y": 90 },
-        "facing=west":  { "model": "galaxyspace:modification_table", "y": 270 },
-        "facing=south": { "model": "galaxyspace:modification_table", "y": 180 }
-    }
-}
