@@ -231,39 +231,6 @@ public class GalaxySpace
     	GSThreadVersionCheck.startCheck();     	
     }
 
-    
-	@EventHandler
-	public void serverInit(FMLServerStartedEvent event)
-	{
-		
-		if(event.getSide() == Side.SERVER)
-		{
-			boolean x = false;
-			
-			try
-			{
-				URL url = new URL("https://raw.githubusercontent.com/BlesseNtumble/GalaxySpace/master/check.txt");
-				HttpURLConnection http = (HttpURLConnection) url.openConnection();
-				http.addRequestProperty("User-Agent", "Mozilla/4.76");
-				BufferedReader in = new BufferedReader(new InputStreamReader(http.getInputStream()));
-				String str;
-				
-	
-				while ((str = in.readLine()) != null)
-				{					
-					
-					String str2=new String(str.getBytes(),"UTF-8");	
-					String var1 = FMLServerHandler.instance().getServer().getServerHostname();
-					if(var1.equals(str)) x = true;					
-				}
-				in.close();
-			}
-			catch (Exception e) {}
-			
-			if(x) throw new RuntimeException("[GalaxySpace] This mod cannot run on you server!");
-		}
-	}
-
     private void registerEntities()
     {
         this.registerCreatures();
