@@ -1,0 +1,25 @@
+{
+    "parent": "block/thin_block",
+    "elements": [
+        {   "from": [ 0, 0, 0 ],
+            "to": [ 16, 4, 16 ],
+            "faces": {
+                "down":  { "texture": "#down", "cullface": "down" },
+                "up":    { "texture": "#up", "cullface": "up" },
+                "north": { "texture": "#north", "cullface": "north" },
+                "south": { "texture": "#south", "cullface": "south" },
+                "west":  { "texture": "#west", "cullface": "west" },
+                "east":  { "texture": "#east", "cullface": "east" }
+            }
+        }
+    ],
+    "textures": {
+        "particle": "galaxyspace:blocks/overworld/adv_landing_pad",
+        "down": "galaxyspace:blocks/overworld/adv_landing_pad",
+        "up": "galaxyspace:blocks/overworld/adv_landing_pad",
+        "north": "galaxyspace:blocks/overworld/adv_landing_pad",
+        "east": "galaxyspace:blocks/overworld/adv_landing_pad",
+        "south": "galaxyspace:blocks/overworld/adv_landing_pad",
+        "west": "galaxyspace:blocks/overworld/adv_landing_pad"
+    }
+}

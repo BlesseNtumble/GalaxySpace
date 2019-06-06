@@ -1,0 +1,8 @@
+{
+	"variants": {
+        "facing=north": { "model": "galaxyspace:solarwind_panel" },
+        "facing=east":  { "model": "galaxyspace:solarwind_panel", "y": 90 },
+        "facing=west":  { "model": "galaxyspace:solarwind_panel", "y": 270 },
+        "facing=south": { "model": "galaxyspace:solarwind_panel", "y": 180 }
+    }
+}

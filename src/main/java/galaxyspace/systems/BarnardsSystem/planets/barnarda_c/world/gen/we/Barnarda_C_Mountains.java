@@ -41,7 +41,7 @@ public class Barnarda_C_Mountains extends WE_Biome {
 		WE_SnowGen snowGen = new WE_SnowGen();
 		snowGen.snowPoint       = 120;
 		snowGen.randomSnowPoint = 8;
-		snowGen.snowBlock       = Blocks.SNOW_LAYER;
+		snowGen.snowBlock       = Blocks.SNOW;
 		snowGen.snowBlockMeta   = 0;
 		snowGen.iceBlock        = Blocks.ICE ;
 		snowGen.freezeMaterial  = Material.WATER;

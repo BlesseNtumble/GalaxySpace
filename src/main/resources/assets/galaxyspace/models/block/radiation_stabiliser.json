@@ -1,0 +1,12 @@
+{ 
+	"parent": "block/cube",
+    "textures": {
+        "particle": "galacticraftcore:blocks/machine",
+        "down": "galacticraftcore:blocks/machine",
+        "up": "galacticraftcore:blocks/machine",
+        "north": "galacticraftcore:blocks/machine_input",
+        "east": "galaxyspace:blocks/overworld/radiation_stabiliser",		
+        "south": "galacticraftcore:blocks/machine",
+        "west": "galaxyspace:blocks/overworld/radiation_stabiliser"
+    }
+}

@@ -1,0 +1,6 @@
+{ 
+	"variants": { 
+		"type=ceres_bricks": { "model": "galaxyspace:ceres_bricks"},
+		"type=io_bricks": { "model": "galaxyspace:io_bricks"}
+	} 
+}

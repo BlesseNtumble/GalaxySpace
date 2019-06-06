@@ -7,14 +7,14 @@ import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.Biome;
 
-public class Barnarda_C_Plains  extends WE_Biome {
+public class Barnarda_C_Plains extends WE_Biome {
 	
 	public Barnarda_C_Plains(double min, double max) {
 		super(new BiomeProperties("barnarda_c_plains"));
 				
 		biomeMinValueOnMap      =  	min;
 		biomeMaxValueOnMap      =   max;
-		biomePersistence        =   1.6D;
+		biomePersistence        =   1.4D;
 		biomeNumberOfOctaves    =      4;
 		biomeScaleX             = 280.0D;
 		biomeScaleY             =   1.7D;

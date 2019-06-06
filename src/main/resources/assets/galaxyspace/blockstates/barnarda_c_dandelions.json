@@ -1,0 +1,12 @@
+{ 
+	"variants": { 
+		"type=barnarda_c_tall_grass": { "model": "galaxyspace:barnarda/barnarda_c_tall_grass"},
+		"type=barnarda_c_hopper_flower": { "model": "galaxyspace:barnarda/barnarda_c_hopper_flower"},
+		"type=barnarda_c_green_fern": { "model": "galaxyspace:barnarda/barnarda_c_green_fern"},
+		"type=barnarda_c_red_fern": { "model": "galaxyspace:barnarda/barnarda_c_red_fern"},
+		"type=barnarda_c_light_balls": { "model": "galaxyspace:barnarda/barnarda_c_light_balls"},
+		"type=barnarda_c_leaves_balls": { "model": "galaxyspace:barnarda/barnarda_c_leaves_balls"},
+		"type=barnarda_c_desert_down": { "model": "galaxyspace:barnarda/barnarda_c_desert_down"},
+		"type=barnarda_c_desert_up": { "model": "galaxyspace:barnarda/barnarda_c_desert_up"}
+	} 
+}

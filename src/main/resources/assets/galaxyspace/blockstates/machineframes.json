@@ -1,0 +1,7 @@
+{ 
+	"variants": { 
+		"type=basic_frame": { "model": "galaxyspace:basic_frame"}, 
+		"type=advance_frame": { "model": "galaxyspace:advance_frame"}, 
+		"type=modern_frame": { "model": "galaxyspace:modern_frame"}
+	} 
+}

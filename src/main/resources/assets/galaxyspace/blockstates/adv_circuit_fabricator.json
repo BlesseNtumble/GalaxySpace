@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "galaxyspace:adv_circuit_fabricator" },
+        "facing=east":  { "model": "galaxyspace:adv_circuit_fabricator", "y": 90 },
+        "facing=west":  { "model": "galaxyspace:adv_circuit_fabricator", "y": 270 },
+        "facing=south": { "model": "galaxyspace:adv_circuit_fabricator", "y": 180 }
+    }
+}

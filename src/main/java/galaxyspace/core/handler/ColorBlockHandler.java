@@ -30,7 +30,7 @@ public class ColorBlockHandler {
 	
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
-	public void registerBlockColourHandlers(final ColorHandlerEvent.Block event) {
+	public void registerBlockColourHandlers(ColorHandlerEvent.Block event) {
 		final BlockColors blockColors = event.getBlockColors();
 
 		// Use the grass colour of the biome or the default grass colour
@@ -87,7 +87,7 @@ public class ColorBlockHandler {
 
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
-	public void registerItemColourHandlers(final ColorHandlerEvent.Item event) {
+	public void registerItemColourHandlers(ColorHandlerEvent.Item event) {
 		final BlockColors blockColors = event.getBlockColors();
 		final ItemColors itemColors = event.getItemColors();
 

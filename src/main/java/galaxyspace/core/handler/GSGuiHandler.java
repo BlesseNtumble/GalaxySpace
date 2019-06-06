@@ -14,6 +14,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiModernSolarPanel
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiModernStorageModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiModificationTable;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiOxygenStorageModule;
+import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiPlanetShield;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiRadiationStabiliser;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiRocketAssembler;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiUniversalRecycler;
@@ -30,12 +31,14 @@ import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerMode
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerModernStorageModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerModificationTable;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerOxygenStorageModule;
+import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerPlanetShield;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerRadiationStabiliser;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerRocketAssembler;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerUniversalRecycler;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerWindGenerator;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvCircuitFabricator;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvElectricCompressor;
+import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvOxygenStorageModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAssembler;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityFuelGenerator;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitationModule;
@@ -45,7 +48,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityLiquidSe
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityModernSolarPanel;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityModernStorageModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityModificationTable;
-import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvOxygenStorageModule;
+import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityPlanetShield;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityRadiationStabiliser;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityRocketAssembler;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityUniversalRecycler;
@@ -123,6 +126,9 @@ public class GSGuiHandler implements IGuiHandler{
         	else if (tile instanceof TileEntityRadiationStabiliser)
         		return new ContainerRadiationStabiliser(player.inventory, (TileEntityRadiationStabiliser) tile);
         	
+        	else if (tile instanceof TileEntityPlanetShield)
+        		return new ContainerPlanetShield(player.inventory, (TileEntityPlanetShield) tile);
+        	
         	else if (tile instanceof TileEntityModernStorageModule)
         		return new ContainerModernStorageModule(player.inventory, (TileEntityModernStorageModule) tile);
         	
@@ -198,6 +204,9 @@ public class GSGuiHandler implements IGuiHandler{
         	
         	else if (tile instanceof TileEntityRadiationStabiliser)            
         		return new GuiRadiationStabiliser(player.inventory, (TileEntityRadiationStabiliser) tile);
+        	
+        	else if (tile instanceof TileEntityPlanetShield)            
+        		return new GuiPlanetShield(player.inventory, (TileEntityPlanetShield) tile);        	
         	
         	else if (tile instanceof TileEntityModernStorageModule)            
         		return new GuiModernStorageModule(player.inventory, (TileEntityModernStorageModule) tile);

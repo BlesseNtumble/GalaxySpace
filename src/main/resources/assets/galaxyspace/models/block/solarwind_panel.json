@@ -1,0 +1,12 @@
+{ 
+	"parent": "block/cube",
+    "textures": {
+        "particle": "galacticraftcore:blocks/machine",
+        "down": "galacticraftcore:blocks/machine",
+        "up": "galaxyspace:blocks/overworld/solarwind_top",
+        "north": "galacticraftcore:blocks/machine_output",
+        "east": "galaxyspace:blocks/overworld/solarwind_side",		
+        "south": "galacticraftcore:blocks/machine",
+        "west": "galaxyspace:blocks/overworld/solarwind_side"
+    }
+}

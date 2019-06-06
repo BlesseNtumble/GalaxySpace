@@ -1,0 +1,486 @@
+#Russian (RU)
+menu.update=Обновить [Galaxy Space]!
+#|/////////////////////////////////////////|
+#||||||||||||||||Advancement||||||||||||||||
+#|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+
+#|/////////////////////////////////////////|
+#||||||||||||||||||Blocks|||||||||||||||||||
+#|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+
+tile.mercury_surface.name=Грунт Меркурия
+tile.mercury_subsurface.name=Подповерхностный Грунт Меркурия
+tile.mercury_stone.name=Камень Меркурия
+tile.mercury_iron_ore.name=Железная Руда
+tile.mercury_nickel_ore.name=Никелевая Руда
+tile.mercury_magnesium_ore.name=Магниевая Руда
+
+tile.deco_cobaltum.name=Декоративный Кобальтовый Блок
+tile.deco_magnesium.name=Декоративный Магниевый Блок
+tile.deco_nickel.name=Декоративный Никелевый Блок
+tile.deco_copper.name=Декоративный Медный Блок
+tile.cobalt_block.name=Кобальтовый Блок
+tile.nickel_block.name=Никелевый Блок
+tile.magnesium_block.name=Магниевый Блок
+
+tile.cobaltum_ore.name=Кобальтовая Руда
+tile.nickel_ore.name=Никелевая Руда
+tile.uranium_ore.name=Урановая Руда
+
+tile.surface_ice.name=Поверхностный Лед
+
+tile.futureglass_none.name=Футуристическое Стекло
+tile.futureglass_black.name=Черное Футуристическое Стекло
+tile.futureglass_red.name=Красное Футуристическое Стекло
+tile.futureglass_green.name=Зеленое Футуристическое Стекло
+tile.futureglass_brown.name=Коричневое Футуристическое Стекло
+tile.futureglass_blue.name=Синее Футуристическое Стекло
+tile.futureglass_purple.name=Фиолетовое Футуристическое Стекло
+tile.futureglass_cyan.name=Бирюзовое Футуристическое Стекло
+tile.futureglass_lightgray.name=Светло-серое Футуристическое Стекло
+tile.futureglass_gray.name=Серое Футуристическое Стекло
+tile.futureglass_pink.name=Розовое Футуристическое Стекло
+tile.futureglass_lime.name=Лаймовое Футуристическое Стекло
+tile.futureglass_yellow.name=Желтое Футуристическое Стекло
+tile.futureglass_lightblue.name=Светло-синее Футуристическое Стекло
+tile.futureglass_magneta.name=Пурпурное Футуристическое Стекло
+tile.futureglass_orange.name=Оранжевое Футуристическое Стекло
+tile.futureglass_white.name=Белое Футуристическое Стекло
+
+tile.mars_diamond.name=Алмазная Руда
+tile.mars_gold.name=Золотая Руда
+tile.mars_coal.name=Угольная Руда
+tile.mars_redstone.name=Руда Красного Камня
+tile.mars_silicon.name=Кремниевая Руда
+tile.mars_aluminum.name=Алюминиевая Руда
+
+tile.ceres_grunt.name=Грунт Цереры
+tile.ceres_subgrunt.name=Подповерхность Цереры
+tile.ceres_meteoriciron_ore.name=Руда Метеоритного Железа
+tile.ceres_dolomite_ore.name=Доломитовая Руда
+tile.ceres_dungeon_top.name=Потолок Подземелья Цереры
+tile.ceres_dungeon_floor.name=Пол Подземелья Цереры
+
+tile.pluto_grunt.name=Грунт Плутона
+tile.pluto_subgrunt.name=Подповерхность Плутона
+tile.pluto_stone.name=Камень Плутона
+
+tile.io_grunt.name=Поверхность Ио
+tile.io_stone.name=Камень Ио
+tile.io_ash.name=Пепел Ио
+tile.io_copper_ore.name=Медная Руда
+tile.io_sulfur_ore.name=Серная Руда
+tile.io_volcanic_ore.name=Вулканическая Руда
+tile.io_lava_geyser.name=Лавовый Гейзер Ио
+tile.io_sulfur_geyser.name=Серный Гейзер Ио
+tile.io_top.name=Потолок Подземелья Ио
+tile.io_floor.name=Пол Подземелья Ио
+
+tile.europa_grunt.name=Поверхностный Лед Европы
+tile.europa_stone.name=Камень Европы
+tile.europa_brown_ice.name=Бурый Лед Европы
+tile.europa_emerald_ore.name=Изумрудная Руда
+tile.europa_silicon_ore.name=Кремниевая Руда
+tile.europa_aluminum_ore.name=Алюминиевая Руда
+tile.europa_geyser.name=Гейзер Европы
+tile.europa_uwgeyser.name=Гейзер Европы
+
+tile.ganymede_grunt.name=Грунт Ганимеда
+tile.ganymede_stone.name=Камень Ганимеда
+tile.ganymede_magnesium_ore.name=Магниевая Руда
+tile.ganymede_titanium_ore.name=Ильменитовая Руда
+
+tile.callisto_grunt.name=Поверхность Каллисто
+tile.callisto_stone.name=Камень Каллисто
+
+tile.enceladus_snow.name=Снег Энцелада
+tile.enceladus_grunt.name=Грунт Энцелада
+tile.enceladus_coal_ore.name=Угольная Руда
+tile.enceladus_crystal.name=Неизвестный Кристалл
+
+tile.titan_grunt.name=Поверхность Титана
+tile.titan_subgrunt.name=Подповерхность Титана
+tile.titan_stone.name=Камень Титана
+
+tile.miranda_grunt.name=Поверхность Миранды
+tile.miranda_subgrunt.name=Подповерхность Миранды
+tile.miranda_stone.name=Камень Миранды
+tile.miranda_ice.name=Лед Миранды
+tile.miranda_iron_ore.name=Железная Руда
+tile.miranda_dolomite_ore.name=Доломитовая Руда
+tile.miranda_diamond_ore.name=Алмазная Руда
+tile.miranda_quartz_ore.name=Кварцевая Руда
+tile.miranda_cobalt_ore.name=Кобальтовая Руда
+tile.miranda_nickel_ore.name=Никелевая Руда
+
+tile.proxima_b_surface.name=Поверность Проксимы Б
+tile.proxima_b_subsurface.name=Подповерхность Проксимы Б
+tile.proxima_b_stone.name=Камень Проксимы Б
+tile.proxima_b_ice_surface.name=Замершая Поверность Проксимы Б
+tile.proxima_b_ash_rock.name=Пепельный Гравий Проксимы Б
+tile.proxima_b_gold_ore.name=Золотая Руда
+tile.proxima_b_tin_ore.name=Оловянная Руда
+tile.proxima_b_copper_ore.name=Медная Руда
+tile.proxima_b_coal_ore.name=Угольная Руда
+tile.proxima_b_silicon_ore.name=Кремниевая Руда
+tile.proxima_b_diamon_ore.name=Алмазная Руда
+tile.proxima_b_log_1.name=Сгоревшее Дерево
+tile.proxima_b_log_2.name=Замершее Дерево
+#|/////////////////////////////////////////|
+#||||||||||||Tile Description|||||||||||||||
+#|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+
+tile.assembly_machine.name=Сборочный Цех
+tile.assembly_machine.desc=Измененная версия компрессора. Производит сплав материалов высокочувствительным лазером.
+tile.fuel_generator.name=Топливный Генератор
+tile.fuel_generator.desc=Топливный Генератор потребляет топливо или лаву и вырабатывает неплохое кол-во энергии. Хороший вариант для топливных магнатов.
+tile.modern_solarpanel.name=Гибридная Солнечная Панель
+tile.modern_solarpanel.desc=Покрытая золотом гибридная панель, вырабатывает в полтора раза больше энергии, чем продвинутая панель.
+tile.gravitation_module.name=Гравитационный Механизм
+tile.gravitation_module.desc=Создает земную гравитацию в указанном радиусе вокруг себя.
+tile.wind_generator.name=Ветровая Турбина
+tile.wind_generator.desc=Генерирует энергию из потоков ветра.
+tile.rocket_assembler.name=Ракетный Цех
+tile.rocket_assembler.desc=Собирает готовые ракеты из частей, сделанных на верстаке NASA.
+tile.universal_recycler.name=Универсальный Переработчик
+tile.universal_recycler.desc=Перерабатывает один ресурс в другой. Также может переработать ресурс в жидкость.
+tile.liquid_extractor.name=Жидкостный Экстрактор 
+tile.liquid_extractor.desc=Собирает жидкость под собой.
+tile.hydroponic_base.name=Основание Гидропонной Фермы
+tile.hydroponic_base.desc=Базовый блок для создания гидропонной фермы. Сверху устанавливаются блоки фермы.
+tile.hydroponic_farm.name=Стеклянный Блок Гидропонной Фермы
+tile.hydroponic_farm.desc=Устанавливается наверх основания или на другой блок фермы. Нужен для работы гидропонной фермы. Можно установить до 3 блоков вверх.
+tile.radiation_stabiliser.name=Генератор Магнитного Поля
+tile.radiation_stabiliser.desc=Создает поле, которое защищает от солнечной радиации. Поддерживает модуль для расширения радиуса действия.
+tile.port_nuclear_reactor.name=[WIP] Портативный Ядерный Реактор
+tile.port_nuclear_reactor.desc=Продвинутый генератор энергии, работающий на уране. При работе необходимо охлаждение реактора с помощью воды или азота.
+tile.panel_controller.name=Контроллер Мини-панелей
+tile.panel_controller.desc=Принимает энергию от рядом стоящих солнечных мини-панелей. Можно посмотреть зону захвата с помощью Shift + ПКМ по блоку.
+tile.single_solarpanel.name=Солнечная Мини-панель
+tile.single_solarpanel.desc=Одиночный вариант солнечной панели. Для работы необходим Контроллер Мини-панелей.
+tile.modern_single_solarpanel.name=Модернизированная Солнечная Мини-панель
+tile.modern_single_solarpanel.desc=Улучшенный вариант мини-панели. Вырабатывает больше энергии. Для работы необходим Контроллер Мини-панелей.
+tile.modern_storage_module.name=Улучшенный Энергетический Массив
+tile.modern_storage_module.desc=Модернизированная версия Энергетического Массива. Вмещает довольно большой объем энергии.
+tile.liquid_separator.name=Жидкостный Сепаратор
+tile.liquid_separator.desc=Разделяет жидкость на составные части или собирает воедино эти части.
+tile.modification_table.name=Модификационный Стол
+tile.modification_table.desc=Позволяет устанавливать модули в Космический Костюм.
+tile.gas_burner.name=Сжигатель Газов
+tile.gas_burner.desc=Сжигает поставляемый газ трубами.
+tile.oxygen_storage_module_1.name=Кислородный Массив
+tile.oxygen_storage_module_1.desc=Улучшенная версия Хранилища Кислорода. Может хранить в 4 раза больше кислорода.
+tile.solarwind_panel.name=Солнечный Парус
+tile.solarwind_panel.desc=Преобразует солнечный ветер в энергию. Не работает на планетах с атмосферой.
+tile.advanced_landing_pad.name=Улучшенная Взлетная Площадка
+tile.advanced_landing_pad.desc=Улучшенная взлетная площадка для ракет. Размер 5x5.
+tile.adv_circuit_fabricator.name=Улучшенный Производитель Микросхем
+tile.adv_circuit_fabricator.desc=Улучшенная версия производителя микросхем. Эффективен вдвое. Поддерживает модули.
+tile.adv_electric_compressor.name=Улучшенный Электрический Компрессор
+tile.adv_electric_compressor.desc=Улучшенная версия электрического компрессора. Эффективен вдвое. Поддерживает модули.
+tile.planet_shield.name=Планетарный Щит
+tile.planet_shield.desc=Защищает зону от падающих метеоритов.
+
+tile.basic_frame.name=Базовый Корпус Машин
+tile.advance_frame.name=Улучшенный Корпус Машин
+tile.modern_frame.name=Модернизированный Корпус Машин
+tile.coefficient.desc=Коэффициент генерации
+tile.coefficientcraft.desc=Коэффициент скорости создания
+
+tile.ceres_bricks.name=Кирпич Сокровищницы Цереры
+tile.io_bricks.name=[WIP] Кирпич Сокровищницы Ио
+
+tile.treasure_t4.name=Сундук с Сокровищами 4-го уровня
+tile.treasure_t4.desc=Сундуки с сокровищами 4-го уровня будут генерироватся в подземельях Цереры. Доступны для открытия после победы над финальным боссом.
+
+#|/////////////////////////////////////////|
+#|||||||||||||||||Items|||||||||||||||||||||
+#|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+
+item.rocket_tier_4.name=Ракета 4-го уровня
+item.rocket_tier_5.name=Ракета 5-го уровня
+item.rocket_tier_6.name=Ракета 6-го уровня
+
+item.schematics.name=Схема для верстака NASA
+item.hdp.name=Сверхпрочное покрытие
+item.dungeon_keys.name=Ключ от подземелья
+
+item.nickel.name=Никелевый Слиток
+item.cobaltum.name=Кобальтовый Слиток
+item.magnesium.name=Магниевый Слиток
+item.uranium.name=Урановый Слиток
+
+item.compressed_nickel.name=Сжатый Никель
+item.compressed_cobaltum.name=Сжатый Кобальт
+item.compressed_magnesium.name=Сжатый Магний
+item.compressed_coal.name=Сжатый Уголь
+item.compressed_sdhd120.name=Сжатый Сплав "SDHD-120"
+item.unknow_crystal.name=Осколок Неизвестного Кристалла
+item.sulfur.name=Сера
+item.module_electrolyse.name=Модуль "Электролиз"
+item.dolomite_crystal.name=Доломитовый Кристалл
+item.dolomite_meal.name=Доломитовая Пыль
+item.wafer_modern.name=Модернизированная Полупроводниковая Пластина
+item.hematite.name=Гематит
+item.antiradiation_tablets.name=Противорадиационные Таблетки
+item.schematic_box.name=Коробка со Схемами
+item.module_base.name=Заготовка Модуля
+item.volcanic_stone.name=Вулканический Осколок
+item.meteoric_iron_fragments.name=Фрагменты Метеоритного Железа
+item.uranium_fragments.name=Уран
+item.temp_shield_control.name=Прототип Контроллера Щита
+item.ice_bucket.name=Ведро со льдом
+item.emergency_portable_teleport.name=Экстренный Телепорт
+item.guide_book.name=[WIP] Инфо-планшет
+item.advanced_emergency_kit.name=Улучшенный Космический Самоспасатель
+
+item.module_expander.name=Модуль "Расширение"
+item.module_stabiliser.name=Модуль "Стабилизация"
+item.module_speed.name=Модуль "Скорость"
+item.module_energy.name=Модуль "Энергия"
+
+item.module_small_fuelcanister.name=Маленький Топливный Бак
+item.module_smallcanister.name=Заготовка Топливного Бака
+item.module_lander_1.name=Посадочный Модуль 1-го уровня
+item.module_lander_2.name=Посадочный Модуль 2-го уровня
+item.module_lander_3.name=Посадочный Модуль 3-го уровня
+item.ion_engine.name=[WIP] Ионный Двигатель
+item.plasma_engine.name=[WIP] Плазменный Двигатель
+item.sublight_engine.name=Суб-световой Двигатель
+item.blackhole_engine.name=[WIP]Подпространственный Двигатель
+
+item.part_solarflares.name=Часть Солнечного Паруса
+item.solarflares.name=Солнечный Парус
+
+item.oxygen_tank_4.name=Улучшенная Большая Канистра Кислорода
+item.oxygen_tank_5.name=Максимальная Канистра Кислорода
+item.oxygen_tank_6.name=Улучшенная Максимальная Канистра Кислорода
+item.oxygen_tank_epp_1.name=EPP Канистра Кислорода
+
+item.rocket_cone.name=Прочный головной обтекатель
+item.rocket_body.name=Прочный ракетный корпус
+item.rocket_engine.name=Прочный ракетный двигатель
+item.rocket_booster.name=Улучшенный Ускоритель
+item.rocket_stabiliser.name=Прочный ракетный стабилизатор
+
+item.advanced_battery.name=Улучшенная Батарейка
+item.modern_battery.name=Модернизированная Батарейка
+item.extra_battery.name=Объемная Батарейка
+item.ultimate_battery.name=Превосходная Батарейка
+
+item.hydrogen_canister.name=Канистра Водорода
+item.ethane_canister.name=Канистра Этана
+item.em_canister.name=Канистра Этано-Метановой Смеси
+item.helium_canister.name=Канистра Гелия-3
+#|/////////////////////////////////////////|
+#|||||||||||||Armors\Weapons||||||||||||||||
+#|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+item.jetpack.name=Реактивный Электроранец
+
+item.space_suit_head.name=Шлем Космического Костюма
+item.space_suit_chest.name=Нагрудник Космического Костюма
+item.space_suit_legs.name=Поножи Космического Костюма
+item.space_suit_feet.name=Ботинки Космического Костюма
+
+item.cobalt_helmet.name=Кобальтовый Шлем
+item.cobalt_chest.name=Кобальтовая Кираса
+item.cobalt_legs.name=Кобальтовые Поножи
+item.cobalt_boots.name=Кобальтовые Ботинки
+
+item.cobalt_axe.name=Кобальтовый Топор
+item.cobalt_hoe.name=Кобальтовая Мотыга
+item.cobalt_pickaxe.name=Кобальтовая Кирка
+item.cobalt_sword.name=Кобальтовый Меч
+item.cobalt_spade.name=Кобальтовая Лопата
+|/////////////////////////////////////////|
+#||||||||||||||||||Fluids||||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+fluid.helium3=Гелий-3
+fluid.ethane=Этан
+fluid.liquidethanemethane=Жидкий Этано-Метан
+fluid.heliumhydrogen=Обогащенный Гелием Водород
+|/////////////////////////////////////////|
+#||||||||||||||||Potions|||||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+potion.antiradiation=Антирадиационный Эффект
+
+#|/////////////////////////////////////////|
+#||||||||||||||||||GUI||||||||||||||||||||||
+#|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+
+gui.schematic_oxtanks.desc=EPP Канистра Кислорода
+
+gui.tier1.desc=1-ый уровень
+gui.tier2.desc=2-ой уровень
+gui.tier3.desc=3-ий уровень
+gui.tier4.desc=4-ый уровень
+gui.tier5.desc=5-ый уровень
+gui.tier6.desc=6-ый уровень
+
+gui.bonemeal.desc=Кажется, что этот предмет работает аналогично костной муке.
+gui.schematic_box.desc=Содержит базовые схемы для ракет. Используйте ПКМ, держа коробку в руке, чтобы открыть ее.
+
+gui.spacesuit.desc=Костюм высокой прочности. Стабилизирует атмосферное давление. Дает защиту от Солнечной радиации.
+gui.spacesuit_helmet.desc=Шлем позволяет дольше находится под водой.
+
+gui.module_expander.desc=Слот для модуля "Расширение". Увеличивает радиус действия магнитного поля.
+gui.module_pressure.desc=Слот для модуля "Стабилизация". Создает защитный слой, который стабилизирует атмосферное давление.
+gui.temp_shield_control.desc=Защищает от коррозии атмосферы, но разрушается через некоторое время работы.
+gui.emergency_portable_teleport.desc=Эвакуирует игрока к приязанной точке. Срабатывает при HP < 6. Shift+ПКМ по телепорту привязывает точку, по любому блоку - вкл/выкл.
+
+gui.module.desc=Ракетный Модуль
+
+gui.status.nolava.name=Нет Лавы
+gui.message.lava.name=Лава
+gui.message.water.name=Вода
+gui.message.helium.name=Гелий-3
+gui.status.nofuelgenerator.name=Нет Топлива
+gui.message.active_pressure_shield.name=Активен щит от атм. давления.
+
+gui.message.needoxygen=Нужно наличие кислорода для этого действия!
+gui.message.needoxygenthermal=Is necessary oxygen and thermal control to make action!
+gui.message.needoxygen.food=Нужен кислород, чтобы есть земную еду. Либо можно воспользоваться консервированной едой.
+gui.message.needoxygenthermal.food=Is necessary oxygen and thermal control to use earth food!
+
+gui.message.effect_visible.name=Отобразить границу
+
+gui.status.nowind.name=Нет ветра!
+gui.status.nowater.name=Нет воды
+gui.gravity.radius.name=Радиус действия:
+gui.charge=Заряд:
+gui.not_attached.desc=Не привязан
+gui.attached.desc=Привязан к точке:
+gui.enabled.desc=Включен
+gui.message.now_noshield=Контроллер щита разрушился!
+
+gui.message.noradiation=У вас нет солнечной радиации! Это хорошо!
+gui.message.emergency_teleport=Экстренный телепорт успешно использован. Координаты точки:
+gui.message.can_find_in_dungeon=Можно найти в подземельях.
+
+gui.message.need_advanced_lp.desc=Можно поставить только на Улучшенную Взлетную Площадку.
+gui.message.engine_type.name=Тип двигателя:
+
+gui.tank.passive_oxygen_regen.desc1=Пассивная генерация кислорода,
+gui.tank.passive_oxygen_regen.desc2=если игрок находится в пригодной сфере (Пузырь, Уплотненная комната).
+
+gs.success.name=Актуальная версия:
+gs.update.available=Доступна новая версия!
+gs.update.download=Скачать
+gs.update.changelog=Changelog
+
+#|/////////////////////////////////////////|
+#||||||||||||||||||Modules||||||||||||||||||
+#|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+
+gui.module.caninstall=Можно установить модули в Модификационном Столе.
+gui.module.list=Список модулей:
+gui.module.available_modules=Доступно модулей:
+
+gui.module.sensor=Сенсорные Очки
+gui.module.sensor.desc=Инкоструированные сенсорные очки в шлем. Сканируют область вокруг игрока и отображают руду на экране. Также подсвечивают монстров.
+gui.module.nightvision=Ночное Зрение
+gui.module.nightvision.desc=Позволяет видеть в темноте. Полезно для исследований темных мест, и при отсутсвии факелов.
+gui.module.jetpack=Реактивный Электроранец
+gui.module.jetpack.desc=Инконструированный реактивный ранец. Позволяет вам порхать как бабочка, пока не закончится заряд в нагруднике.
+gui.module.speed=Ускорители бега
+gui.module.speed.desc=Установка ускорителей позволила незначительно увеличить скорость бега. Теперь вы еще быстрее сможете убежать от противника!
+gui.module.gravity=Гравитационная сила
+gui.module.gravity.desc=Прослойка магниевых пластин, как оказалось, дала эффект притяжения. Адаптация на планетах теперь значительно лучше!
+gui.module.stepassist=Увеличенный шаг
+gui.module.stepassist.desc=Казалось бы, что установка слизнего шарика ни к чему не приведет... Но теперь вы сможете бегать по блокам, слово бегаете по лестнице!
+gui.module.jump=Высокий прыжок
+gui.module.jump.desc=Установка поршней была одной из удачных идей. Теперь ваш прыжок в 2 раза выше обычного!
+gui.module.energy=Улучшенные Энергоносители
+gui.module.energy.desc=Увеличивает максимальный запас энергии в 2 раза.
+
+gui.module.sublight_engine=Суб-световой двигатель
+gui.module.sublight_engine.desc=Двигатель нового поколения. Позоляет покинуть пределы текущей звездной системы.
+
+gui.message.forrbiden_modules.name=Несовместимо с:
+gui.module.active=Активный модуль
+gui.module.passive=Пассивный модуль
+gui.module.empty_slot=Пустой слот. Положите предмет в слот.
+
+#|/////////////////////////////////////////|
+#|||||||||||||||Creative Tabs|||||||||||||||
+#|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+
+item_group.galaxyspace_blocks=GalaxySpace: Блоки
+item_group.galaxyspace_items=GalaxySpace: Предметы
+item_group.galaxyspace_armor=GalaxySpace: Броня
+item_group.galaxyspace_rocket=GalaxySpace: Ракеты
+
+#|/////////////////////////////////////////|
+#|||||||||||||||||Entities||||||||||||||||||
+#|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+entity.evolved_boss_blaze.name=Эволюционировавший Босс Ледянной Ифрит
+entity.evolved_coldblaze.name=Эволюционировавший Ледянной Ифрит
+
+#|/////////////////////////////////////////|
+#|||||||||||||Celestial Bodies||||||||||||||
+#|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+
+planet.ceres=Церера
+moon.phobos=Фобос
+moon.deimos=Деймос
+moon.io=Ио
+moon.europa=Европа
+moon.ganymede=Ганимед
+moon.callisto=Каллисто
+moon.mimas=Мимас
+moon.enceladus=Энцелад
+moon.tethys=Тефия
+moon.dione=Диона
+moon.rheya=Рея
+moon.titan=Титан
+moon.iapetus=Япет
+moon.miranda=Миранда
+moon.ariel=Ариель
+moon.umbriel=Умбриэль
+moon.titania=Титания
+moon.oberon=Оберон
+moon.proteus=Протей
+moon.triton=Тритон
+planet.pluto=Плутон
+moon.charon=Харон
+planet.kuiperbelt=Пояс Койпера
+
+solarsystem.acentauri=a Центавра
+star.centauri_a=a Центавра A
+planet.centauri_b=a Центавра B
+
+solarsystem.proxima=Проксима Центавра
+star.proxima=Проксима Центавра
+planet.proxima_b=Проксима B
+
+solarsystem.barnards=Барнарда
+star.barnarda_a=Барнарда А
+planet.barnarda_b=Барнарда B
+planet.barnarda_c=Барнарда C
+planet.barnarda_d=Барнарда D
+planet.barnarda_e=Барнарда E
+moon.barnarda_b1=Барнарда B1
+moon.barnarda_c1=Барнарда C1
+moon.barnarda_c2=Барнарда C2
+
+#|/////////////////////////////////////////|
+#|||||||||||||||||||Book||||||||||||||||||||
+#|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+book.button.back.name=Назад
+
+book.category.general.name=Главное
+book.category.bodies.name=Небесные тела
+book.category.blocks.name=Блоки
+book.category.items.name=Предметы
+book.category.mechanics.name=Механика
+
+book.page.about_addon.name=Об аддоне Galaxy Space
+book.page.about_addon.text=Galaxy Space - это аддон для мода Galacticraft, добавляющий внушительное количество внутриигрового контента. !nРазработка аддона ведется уже более 4 лет, внося все больше и больше игрового контента. !n!nВсе звездные системы сделаны на основе реальных данных и максимально приближены к реальности на сколько позволяет движок Minecraft. Упор аддона идет также в сторону реализма. 
+book.page.actual_update.name=Актуальная версия аддона
+
+book.page.solar_radiation.name=Солнечная радиация
+book.page.solar_radiation.text=Солнечная радиация - отрицательный эффект, который постепенно убивает игрока. !nКогда шкала радиации пересекает !c_rкрасную !c_wграницу, активируется эффект. !nЕсли игрок находится в убежище или под землей, то радиация не накапливается и уменьшается, если шкала пересекла !c_rкрасную !c_wграницу. !nСнять оставшуюся радиацию можно с помощью !c_gАнтирадиационных таблеток.!c_w!nЗащитится от радиации можно надев !c_oКосмический Костюм !c_wили находясь внутри купола от !c_oГенератора Магнитного Поля.  
+book.page.atmosphere_pressure.name=Атмосферное давление
+book.page.atmosphere_pressure.text=Атмосферное давление является одной из главных проблем колонизации планет с атмосферой. !nПри !c_rбольшом !c_wатмосферном давлении у игрока проявляются различные эффекты, такие как: тошнота, слепота и медлительность. !nПри !c_oвысоком !c_wатмосферном давлении, игрок начинает терять свое здоровье. !nЕсли шкала давления !c_yмаксимальная!c_w - игрока ждет мгновенная смерть. !nЗащитится от давления можно надев !c_oКосмический Костюм !c_wили находясь внутри границ !c_oГравитационного Механизма.
+book.page.temp_on_planet.name=Влияние температуры
+book.page.temp_on_planet.text=Теперь температура в космосе действительно играет важную роль. !nВы больше не сможете посадить растения на открытом пространстве, ведь иначе они моментально погибнут. Вам теперь необходимо позаботится о изоляции ваших ферм от вредноносной среды, путем герметизации вашей базы. !n!nТак-же вы можете принимать только !c_gконсервированную еду !c_wна открытом пространстве. !nЖидкость, разлитая на открытом пространстве попросту замерзает в лед (или испаряется. Зависит от температуры планеты).

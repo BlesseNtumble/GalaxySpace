@@ -1,0 +1,8 @@
+{
+	"variants": {
+        "check_decay=false,decayable=true,type=barnarda_c_leaves_1": { "model": "galaxyspace:barnarda/barnarda_c_pink_leaves" },
+		"check_decay=false,decayable=false,type=barnarda_c_leaves_1": { "model": "galaxyspace:barnarda/barnarda_c_pink_leaves" },
+		"check_decay=true,decayable=true,type=barnarda_c_leaves_1": { "model": "galaxyspace:barnarda/barnarda_c_pink_leaves" },
+		"check_decay=true,decayable=false,type=barnarda_c_leaves_1": { "model": "galaxyspace:barnarda/barnarda_c_pink_leaves" }
+	}
+}

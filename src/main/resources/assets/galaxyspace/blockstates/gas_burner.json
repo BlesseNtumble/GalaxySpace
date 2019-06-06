@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "galaxyspace:gas_burner" },
+        "facing=east":  { "model": "galaxyspace:gas_burner", "y": 90 },
+        "facing=west":  { "model": "galaxyspace:gas_burner", "y": 270 },
+        "facing=south": { "model": "galaxyspace:gas_burner", "y": 180 }
+    }
+}

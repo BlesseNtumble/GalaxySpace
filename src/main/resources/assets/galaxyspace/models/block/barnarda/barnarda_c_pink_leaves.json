@@ -1,0 +1,6 @@
+{
+    "parent": "block/leaves",
+    "textures": {
+        "all": "galaxyspace:blocks/barnardssystem/barnarda_c/pink_leaves"
+    }
+}

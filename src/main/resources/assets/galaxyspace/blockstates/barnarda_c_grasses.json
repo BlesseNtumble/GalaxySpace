@@ -1,0 +1,6 @@
+{ 
+	"variants": { 
+		"type=barnarda_c_grass": { "model": "galaxyspace:barnarda/barnarda_c_grass"}, 
+		"type=barnarda_c_grass_1": { "model": "galaxyspace:barnarda/barnarda_c_grass_1"}
+	} 
+}

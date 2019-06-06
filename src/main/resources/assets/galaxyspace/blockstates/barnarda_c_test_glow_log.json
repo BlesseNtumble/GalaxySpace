@@ -1,0 +1,9 @@
+{
+
+    "variants": {
+        "axis=y": { "model": "galaxyspace:barnarda/barnarda_c_log_1_model" },
+        "axis=z": { "model": "galaxyspace:barnarda/barnarda_c_log_1_model", "x": 90 },
+        "axis=x": { "model": "galaxyspace:barnarda/barnarda_c_log_1_model", "x": 90, "y": 90 },
+        "axis=none": { "model": "galaxyspace:barnarda/barnarda_c_log_1_bark_model" }
+    }
+}

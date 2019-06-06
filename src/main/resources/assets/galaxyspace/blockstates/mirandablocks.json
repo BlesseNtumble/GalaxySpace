@@ -1,0 +1,20 @@
+{ 
+	"variants": { 
+		"type=miranda_grunt": { "model": "galaxyspace:miranda_grunt"}, 
+		"type=miranda_subgrunt": { "model": "galaxyspace:miranda_subgrunt"}, 
+		"type=miranda_stone": { "model": "galaxyspace:miranda_stone"}, 
+		"type=miranda_iron_ore": { "model": "galaxyspace:miranda_iron_ore"}, 
+		"type=miranda_dolomite_ore": { "model": "galaxyspace:miranda_dolomite_ore"},
+		"type=miranda_diamond_ore": { "model": "galaxyspace:miranda_diamond_ore"},
+		"type=miranda_quartz_ore": { "model": "galaxyspace:miranda_quartz_ore"},
+		"type=miranda_cobalt_ore": { "model": "galaxyspace:miranda_cobalt_ore"},
+		"type=miranda_nickel_ore": { "model": "galaxyspace:miranda_nickel_ore"},
+		"type=miranda_grunt_2": { "model": "galaxyspace:miranda_grunt_2"},
+		"type=miranda_grunt_3": { "model": "galaxyspace:miranda_grunt_3"},
+		"type=miranda_subgrunt_2": { "model": "galaxyspace:miranda_subgrunt_2"},
+		"type=miranda_subgrunt_3": { "model": "galaxyspace:miranda_subgrunt_3"},
+		"type=miranda_stone_2": { "model": "galaxyspace:miranda_stone_2"},
+		"type=miranda_stone_3": { "model": "galaxyspace:miranda_stone_3"},
+		"type=miranda_ice": { "model": "galaxyspace:miranda_ice"}
+	} 
+}

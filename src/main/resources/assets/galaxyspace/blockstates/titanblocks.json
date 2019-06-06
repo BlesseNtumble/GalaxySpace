@@ -1,0 +1,7 @@
+{ 
+	"variants": { 
+		"type=titan_grunt": { "model": "galaxyspace:titan_grunt"}, 
+		"type=titan_subgrunt": { "model": "galaxyspace:titan_subgrunt"}, 
+		"type=titan_stone": { "model": "galaxyspace:titan_stone"}
+	} 
+}

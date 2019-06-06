@@ -1,0 +1,10 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+    "custom": { "flip-v": true },
+    "model": "galaxyspace:hydroponic_farm.obj"
+	},
+	"variants": {
+		"normal": { }
+	}
+}

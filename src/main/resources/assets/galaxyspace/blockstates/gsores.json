@@ -1,0 +1,7 @@
+{ 
+	"variants": { 
+		"type=cobaltum_ore": { "model": "galaxyspace:cobaltum_ore"}, 
+		"type=nickel_ore": { "model": "galaxyspace:nickel_ore"},
+		"type=uranium_ore": { "model": "galaxyspace:uranium_ore"}
+	} 
+}

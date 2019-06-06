@@ -1,0 +1,10 @@
+{ 
+	"variants": { 
+		"type=mars_diamond": { "model": "galaxyspace:mars_diamond"}, 
+		"type=mars_gold": { "model": "galaxyspace:mars_gold"}, 
+		"type=mars_coal": { "model": "galaxyspace:mars_coal"}, 
+		"type=mars_redstone": { "model": "galaxyspace:mars_redstone"}, 
+		"type=mars_silicon": { "model": "galaxyspace:mars_silicon"}, 
+		"type=mars_aluminum": { "model": "galaxyspace:mars_aluminum"}
+	} 
+}

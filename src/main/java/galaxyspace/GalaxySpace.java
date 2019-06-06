@@ -166,7 +166,7 @@ public class GalaxySpace
     	GSPotions.initialize();
 
     	proxy.preload(event);		
-		proxy.register_event(new GSEventHandler());		
+    	proxy.register_event(new GSEventHandler());		
 
 		for(IBodies list : bodies)
 		{

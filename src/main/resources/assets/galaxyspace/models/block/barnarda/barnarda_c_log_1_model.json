@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "galaxyspace:blocks/barnardssystem/barnarda_c/log_oak_top",
+        "side": "galaxyspace:blocks/barnardssystem/barnarda_c/log_oak_side"
+    }
+}

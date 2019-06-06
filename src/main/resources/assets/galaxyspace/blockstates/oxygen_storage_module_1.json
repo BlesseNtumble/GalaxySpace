@@ -1,0 +1,43 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"particle": "galacticraftplanets:blocks/machine",
+			"down": "galacticraftplanets:blocks/machine",
+			"up": "galacticraftplanets:blocks/machine",
+			"north": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_0",
+			"east": "galacticraftplanets:blocks/machine_oxygen_input",
+			"south": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_0",
+			"west": "galacticraftplanets:blocks/machine_oxygen_output"
+		}
+	},
+
+    "variants": {
+		"facing" : {
+			"north": { "model": "galaxyspace:oxygen_storage_module_1" },
+			"east":  { "model": "galaxyspace:oxygen_storage_module_1", "y": 90 },
+			"west":  { "model": "galaxyspace:oxygen_storage_module_1", "y": 270 },
+			"south": { "model": "galaxyspace:oxygen_storage_module_1", "y": 180 }
+		},        
+		
+		"fill_value" : {
+            "0": { },
+            "1": { "textures": { "north": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_1", "south": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_1"}},
+            "2": { "textures": { "north": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_2", "south": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_1"}},
+            "3": { "textures": { "north": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_3", "south": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_3"}},
+            "4": { "textures": { "north": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_4", "south": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_4"}},
+            "5": { "textures": { "north": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_5", "south": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_5"}},
+            "6": { "textures": { "north": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_6", "south": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_6"}},
+            "7": { "textures": { "north": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_7", "south": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_7"}},
+            "8": { "textures": { "north": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_8", "south": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_8"}},
+            "9": { "textures": { "north": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_9", "south": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_9"}},
+            "10": { "textures": { "north": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_10", "south": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_10"}},
+            "11": { "textures": { "north": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_11", "south": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_11"}},
+            "12": { "textures": { "north": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_12", "south": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_12"}},
+            "13": { "textures": { "north": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_13", "south": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_13"}},
+            "14": { "textures": { "north": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_14", "south": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_14"}},
+            "15": { "textures": { "north": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_15", "south": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_15"}},
+            "16": { "textures": { "north": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_16", "south": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_16"}}
+		}
+    }
+}

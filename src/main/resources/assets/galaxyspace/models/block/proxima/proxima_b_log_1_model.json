@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "galaxyspace:blocks/proximasystem/proxima_b/tree_1_top",
+        "side": "galaxyspace:blocks/proximasystem/proxima_b/tree_1_side"
+    }
+}

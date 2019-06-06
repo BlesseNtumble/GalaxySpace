@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "galaxyspace:liquid_extractor" },
+        "facing=east":  { "model": "galaxyspace:liquid_extractor", "y": 90 },
+        "facing=west":  { "model": "galaxyspace:liquid_extractor", "y": 270 },
+        "facing=south": { "model": "galaxyspace:liquid_extractor", "y": 180 }
+    }
+}

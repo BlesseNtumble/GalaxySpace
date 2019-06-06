@@ -1,0 +1,9 @@
+{
+
+    "variants": {
+        "axis=y": { "model": "galaxyspace:proxima/proxima_b_log_2_model" },
+        "axis=z": { "model": "galaxyspace:proxima/proxima_b_log_2_model", "x": 90 },
+        "axis=x": { "model": "galaxyspace:proxima/proxima_b_log_2_model", "x": 90, "y": 90 },
+        "axis=none": { "model": "galaxyspace:proxima/proxima_b_log_2_bark_model" }
+    }
+}

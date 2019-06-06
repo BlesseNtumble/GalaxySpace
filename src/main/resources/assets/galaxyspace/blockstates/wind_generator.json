@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "galaxyspace:wind_generator" },
+        "facing=east":  { "model": "galaxyspace:wind_generator", "y": 90 },
+        "facing=west":  { "model": "galaxyspace:wind_generator", "y": 270 },
+        "facing=south": { "model": "galaxyspace:wind_generator", "y": 180 }
+    }
+}

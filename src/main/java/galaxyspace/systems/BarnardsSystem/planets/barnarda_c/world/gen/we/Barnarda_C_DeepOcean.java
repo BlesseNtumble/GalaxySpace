@@ -8,7 +8,7 @@ import net.minecraft.init.Blocks;
 public class Barnarda_C_DeepOcean extends WE_Biome {
 
 	public Barnarda_C_DeepOcean(double min, double max) {
-		super(new BiomeProperties("proxima_b_deepocean"));
+		super(new BiomeProperties("barnarda_b_deepocean"));
 		
 		biomeMinValueOnMap      =   min;
 		biomeMaxValueOnMap      =   max;

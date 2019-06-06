@@ -1,0 +1,12 @@
+{ 
+	"parent": "block/cube_all",  
+	"textures": { 
+		"particle": "galaxyspace:blocks/solarsystem/europa/europa_grunt",
+        "down": "galaxyspace:blocks/solarsystem/europa/europa_grunt",
+        "up": "galaxyspace:blocks/solarsystem/europa/europa_geyser",
+        "north": "galaxyspace:blocks/solarsystem/europa/europa_grunt",
+        "east": "galaxyspace:blocks/solarsystem/europa/europa_grunt",
+        "south": "galaxyspace:blocks/solarsystem/europa/europa_grunt",
+        "west": "galaxyspace:blocks/solarsystem/europa/europa_grunt"
+	}
+}

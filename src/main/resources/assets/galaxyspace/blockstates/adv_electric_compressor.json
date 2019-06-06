@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "galaxyspace:adv_electric_compressor" },
+        "facing=east":  { "model": "galaxyspace:adv_electric_compressor", "y": 90 },
+        "facing=west":  { "model": "galaxyspace:adv_electric_compressor", "y": 270 },
+        "facing=south": { "model": "galaxyspace:adv_electric_compressor", "y": 180 }
+    }
+}

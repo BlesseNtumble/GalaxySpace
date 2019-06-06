@@ -70,7 +70,7 @@ public class BiomeDecoratorBarnarda_C extends BiomeDecoratorSpace
     			}
 			}
 			
-			for(int i = 0; i < 35; i++){
+			for(int i = 0; i < 45; i++){
 				randPosX = this.posX + this.rand.nextInt(16) + 8;
 				randPosZ = this.posZ + this.rand.nextInt(16) + 8;
 				pos = this.currentWorld.getHeight(new BlockPos(randPosX, 0, randPosZ));

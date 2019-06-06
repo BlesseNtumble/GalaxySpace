@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "galaxyspace:planet_shield" },
+        "facing=east":  { "model": "galaxyspace:planet_shield", "y": 90 },
+        "facing=west":  { "model": "galaxyspace:planet_shield", "y": 270 },
+        "facing=south": { "model": "galaxyspace:planet_shield", "y": 180 }
+    }
+}

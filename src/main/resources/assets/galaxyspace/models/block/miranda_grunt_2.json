@@ -1,0 +1,4 @@
+{ 
+	"parent": "block/cube_all", 
+ 	"textures": { "all" : "galaxyspace:blocks/solarsystem/miranda/miranda_grunt_2"}
+}

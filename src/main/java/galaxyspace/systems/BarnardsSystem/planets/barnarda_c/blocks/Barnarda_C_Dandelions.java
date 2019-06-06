@@ -3,6 +3,8 @@ package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks;
 import java.util.List;
 import java.util.Random;
 
+import galaxyspace.GalaxySpace;
+import galaxyspace.systems.BarnardsSystem.core.registers.blocks.BRBlocks;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
@@ -74,10 +76,22 @@ public class Barnarda_C_Dandelions extends BlockBush implements IGrowable, IShea
     {
 		if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.DESERT_UP))
 		{
-			if(world.getBlockState(pos.down()) == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.DESERT_DOWN))
-				return true;
+			return world.getBlockState(pos.down()) == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.DESERT_DOWN);
 		}
-        return super.canBlockStay(world, pos, state);
+		if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.DESERT_DOWN))
+		{
+			return world.getBlockState(pos.down()) == BRBlocks.BARNARDA_C_BLOCKS.getDefaultState().withProperty(Barnarda_C_Blocks.BASIC_TYPE, Barnarda_C_Blocks.EnumBlockBarnardaC.SAND);				
+		}
+		
+		return super.canBlockStay(world, pos, state);
+    }
+	
+	@Override
+	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+    {		
+        IBlockState soil = worldIn.getBlockState(pos.down());
+        
+        return true;
     }
 	
 	@Override

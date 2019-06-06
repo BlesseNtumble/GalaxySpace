@@ -1,0 +1,12 @@
+{ 
+	"parent": "block/cube",
+    "textures": {
+        "particle": "galaxyspace:blocks/solarsystem/io/io_ash",
+        "down": "galaxyspace:blocks/solarsystem/io/io_ash",
+        "up": "galaxyspace:blocks/solarsystem/io/io_lava_geyser",
+        "north": "galaxyspace:blocks/solarsystem/io/io_ash",
+        "east": "galaxyspace:blocks/solarsystem/io/io_ash",
+        "south": "galaxyspace:blocks/solarsystem/io/io_ash",
+        "west": "galaxyspace:blocks/solarsystem/io/io_ash"
+    }
+}

@@ -11,6 +11,7 @@ import galaxyspace.api.IBodiesHandler;
 import galaxyspace.core.proxy.ClientProxy;
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigCore;
+import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigDimensions;
 import galaxyspace.systems.BarnardsSystem.core.events.BREventHandler;
 import galaxyspace.systems.BarnardsSystem.core.registers.blocks.BRBlocks;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Blocks.EnumBlockBarnardaC;
@@ -44,6 +45,7 @@ public class BarnardsSystemBodies implements IBodies {
 	public void preInitialization(FMLPreInitializationEvent event) 
 	{
 		new BRConfigCore(new File(event.getModConfigurationDirectory(), "GalaxySpace/barnards/core.conf"));		
+		new BRConfigDimensions(new File(event.getModConfigurationDirectory(), "GalaxySpace/barnards/dimensions.conf"));		
 	}
 	
 	@Override
@@ -52,18 +54,17 @@ public class BarnardsSystemBodies implements IBodies {
 		BarnardsSystem = BodiesHelper.registerSolarSystem(GalaxySpace.ASSET_PREFIX, "barnards", Galaxies.MILKYWAY.getName(), new Vector3(1.0F, -2.0F, 0.0F), "barnarda_a", 0.8F);
 		Barnarda_B = (Planet) BodiesHelper.registerPlanet(BarnardsSystem, "barnarda_b", GalaxySpace.ASSET_PREFIX, null, -1, 6, (float) Math.PI, 1.5F, 0.5F, 3.9F);
 			Barnarda_B1 = (Moon) BodiesHelper.registerMoon(Barnarda_B, "barnarda_b1", GalaxySpace.ASSET_PREFIX, null, -1, 6, (float) Math.PI / 2, 1.0F, 14.75F, 105.5F).setRingColorRGB(1.0F, 0.0F, 0.0F);
-		Barnarda_C = (Planet) BodiesHelper.registerPlanet(BarnardsSystem, "barnarda_c", GalaxySpace.ASSET_PREFIX, WorldProviderBarnarda_C_WE.class, -1100, 6, (float) Math.PI * 2, 1.0F, 0.75F, 6.9F).setRingColorRGB(0.0F, 1.0F, 0.0F).setAtmosphere(new AtmosphereInfo(true, true, false, 0.0F, 1.0F, 1.0F));		
+		Barnarda_C = (Planet) BodiesHelper.registerPlanet(BarnardsSystem, "barnarda_c", GalaxySpace.ASSET_PREFIX, WorldProviderBarnarda_C_WE.class, BRConfigDimensions.dimensionIDBarnardaC, 6, (float) Math.PI * 2, 1.0F, 0.75F, 6.9F).setRingColorRGB(0.0F, 1.0F, 0.0F).setAtmosphere(new AtmosphereInfo(true, true, false, 0.0F, 1.0F, 1.0F));		
 			Barnarda_C1 = (Moon) BodiesHelper.registerMoon(Barnarda_C, "barnarda_c1", GalaxySpace.ASSET_PREFIX, null, -1, 6, (float) Math.PI / 2, 1.0F, 10.75F, 25.5F);
 			Barnarda_C2 = (Moon) BodiesHelper.registerMoon(Barnarda_C, "barnarda_c2", GalaxySpace.ASSET_PREFIX, null, -1, 6, (float) Math.PI / 2, 1.0F, 19.75F, 30.5F);
 		Barnarda_D = (Planet) BodiesHelper.registerPlanet(BarnardsSystem, "barnarda_d", GalaxySpace.ASSET_PREFIX, null, -1, 6, (float) Math.PI / 2, 1.0F, 1.25F, 105.9F).setRelativeDistanceFromCenter(new ScalableDistance(1.25F, 1.0F)).setRingColorRGB(1.0F, 0.0F, 0.0F);
 		Barnarda_E = (Planet) BodiesHelper.registerPlanet(BarnardsSystem, "barnarda_e", GalaxySpace.ASSET_PREFIX, null, -1, 6, (float) Math.PI, 1.0F, 1.75F, 15.9F);
 			
-		GalaxySpace.proxy.register_event(new BREventHandler());
+		GalaxySpace.proxy.register_event(new BREventHandler());		
 		
-		//if(BRConfigCore.enableBarnardsSystems) {
-			BRBlocks.initialize();
-			registrycelestial();
-	    	registryteleport();
+		BRBlocks.initialize();
+		registrycelestial();
+	    registryteleport();
 	}
 
 	@Override
@@ -72,9 +73,8 @@ public class BarnardsSystemBodies implements IBodies {
 	}
 
 	@Override
-	public void postInit(FMLPostInitializationEvent event) {
-		//if(BRConfigCore.enableBarnardsSystems) 
-			GSDimensions.BARNARDA_C = WorldUtil.getDimensionTypeById(-1100);
+	public void postInit(FMLPostInitializationEvent event) {		
+		GSDimensions.BARNARDA_C = WorldUtil.getDimensionTypeById(BRConfigDimensions.dimensionIDBarnardaC);
 	}
 
 	private static void registrycelestial()
@@ -96,7 +96,7 @@ public class BarnardsSystemBodies implements IBodies {
 	
 	private static void registryteleport()
 	{
-		//GalacticraftRegistry.registerTeleportType(WorldProviderBarnarda_C_WE.class, new TeleportTypeBarnarda_C());		
+		GalacticraftRegistry.registerTeleportType(WorldProviderBarnarda_C_WE.class, new TeleportTypeBarnarda_C());		
 	}
 	
 	@Override
@@ -106,8 +106,6 @@ public class BarnardsSystemBodies implements IBodies {
 			
 			for (EnumBlockBarnardaC blockBasic : EnumBlockBarnardaC.values())        
 				ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, BRBlocks.BARNARDA_C_BLOCKS, blockBasic.getMeta(), "barnarda/" + blockBasic.getName());
-			
-
 			
 			for (EnumBlockDandelions blockBasic : EnumBlockDandelions.values()) {       
 				//if(blockBasic.getName() != null) name[blockBasic.getMeta()] = blockBasic.getName();

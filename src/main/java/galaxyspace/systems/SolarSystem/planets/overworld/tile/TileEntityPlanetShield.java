@@ -35,10 +35,13 @@ public class TileEntityPlanetShield extends TileBaseElectricBlockWithInventory i
 
 	public float bubbleSize;
 	public static HashSet<BlockVec3Dim> loadedTiles = new HashSet<>();
-	private NonNullList<ItemStack> stacks = NonNullList.withSize(1, ItemStack.EMPTY);
+	private NonNullList<ItemStack> stacks = NonNullList.withSize(6, ItemStack.EMPTY);
 	
 	@NetworkedField(targetSide = Side.CLIENT)
     public boolean shouldRenderBubble = true;
+	
+	private int energy_boost, range_boost;
+	private boolean stability;
 	
 	public TileEntityPlanetShield()
     {
@@ -183,31 +186,60 @@ public class TileEntityPlanetShield extends TileBaseElectricBlockWithInventory i
     	
     	if (!this.world.isRemote)
         {
+    		this.range_boost = 0;
+    		this.energy_boost = 0;
+    		this.stability = false;
+    		
+    		for(int i = 0; i <= 3; i++)
+        	{
+        		if(this.stacks.get(1 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 0)))
+        			this.range_boost++;
+        		if(this.stacks.get(1 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 3)))
+        			this.energy_boost++;
+        		if(this.stacks.get(1 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 1)))
+        			this.stability = true;
+        	}
+    		
             if (this.getEnergyStoredGC() > 0.0F && this.hasEnoughEnergyToRun && !this.disabled)
             {
-                this.bubbleSize = 30F;
+                this.bubbleSize += 0.1F;
             }
             else
             {
-                this.bubbleSize = 0F;
+                this.bubbleSize -= 0.5F;
             }
 
-            this.bubbleSize = Math.min(Math.max(this.bubbleSize, 0.0F), 30.0F);
             
+            this.bubbleSize = Math.min(Math.max(this.bubbleSize, 0.0F), 30.0F + (10.0F * range_boost));
+            this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 250 + (60 * this.range_boost) - (20 * this.energy_boost): 205 + (45 * this.range_boost) - (15 * this.energy_boost));
+
             BlockPos pos1 = new BlockPos(pos.getX() - bubbleSize, pos.getY(), pos.getZ() - bubbleSize);
             BlockPos pos2 = new BlockPos(pos.getX() + bubbleSize, pos.getY() + bubbleSize, pos.getZ() + bubbleSize);
             for(Entity entities : world.getEntitiesWithinAABB(EntityMeteor.class, new AxisAlignedBB(pos1, pos2)))
             {
             	
 				EntityMeteor meteor = (EntityMeteor) entities;
-				//GalaxySpace.debug("123");
+				
 				if (this.inBubble(meteor.lastTickPosX, meteor.lastTickPosY, meteor.lastTickPosZ)) {
 					//this.shoot(meteor);
 					this.world.createExplosion(meteor, meteor.lastTickPosX, meteor.lastTickPosY, meteor.lastTickPosZ, 5, true);
-					if(world.rand.nextInt(3) == 0) 
-					{
-						this.world.spawnEntity(new EntityItem(world, meteor.lastTickPosX, meteor.lastTickPosY, meteor.lastTickPosZ, new ItemStack(GSItems.BASIC, 1 + world.rand.nextInt(3), 13)));
+					if(world.rand.nextInt(3) == 0) {
+						if(!stability) 
+						{
+							this.world.spawnEntity(new EntityItem(world, meteor.lastTickPosX, meteor.lastTickPosY, meteor.lastTickPosZ, new ItemStack(GSItems.BASIC, 1 + world.rand.nextInt(3), 13)));
+						}
+						else
+						{
+							if(this.stacks.get(5).isEmpty())
+								this.stacks.set(5, new ItemStack(GSItems.BASIC, 1 + world.rand.nextInt(3), 13));
+							else if(this.stacks.get(5).getCount() < 64)
+								this.stacks.get(5).grow(1 + world.rand.nextInt(3));
+							else
+								this.world.spawnEntity(new EntityItem(world, meteor.lastTickPosX, meteor.lastTickPosY, meteor.lastTickPosZ, new ItemStack(GSItems.BASIC, 1 + world.rand.nextInt(3), 13)));
+							
+						}
 					}
+					
 					meteor.setDead();
 					this.storage.extractEnergyGC(500F, false);
 				}
@@ -340,7 +372,7 @@ public class TileEntityPlanetShield extends TileBaseElectricBlockWithInventory i
     @Override
     public int getInventoryStackLimit()
     {
-        return 1;
+        return 64;
     }
     
     @Override
@@ -352,7 +384,7 @@ public class TileEntityPlanetShield extends TileBaseElectricBlockWithInventory i
     @Override
     public int[] getSlotsForFace(EnumFacing side)
     {
-        return new int[] { 0, 1 };
+        return new int[] { 0, 1, 5 };
     }
     
     @Override
@@ -376,10 +408,12 @@ public class TileEntityPlanetShield extends TileBaseElectricBlockWithInventory i
     {
         switch (slotID)
         {
-        case 0:
-            return ItemElectricBase.isElectricItemEmpty(itemstack);       
-        default:
-            return false;
+        	case 0:
+        		return ItemElectricBase.isElectricItemEmpty(itemstack);  
+        	case 5:
+        		return true;
+        	default:
+        		return false;
         }
     }
     

@@ -1,0 +1,10 @@
+{ 
+	"variants": { 
+		"type=mercury_surface": { "model": "galaxyspace:mercury_surface"}, 
+		"type=mercury_subsurface": { "model": "galaxyspace:mercury_subsurface"}, 
+		"type=mercury_stone": { "model": "galaxyspace:mercury_stone"}, 
+		"type=mercury_nickel_ore": { "model": "galaxyspace:mercury_nickel_ore"},
+		"type=mercury_iron_ore": { "model": "galaxyspace:mercury_iron_ore"},
+		"type=mercury_magnesium_ore": { "model": "galaxyspace:mercury_magnesium_ore"}
+	} 
+}
