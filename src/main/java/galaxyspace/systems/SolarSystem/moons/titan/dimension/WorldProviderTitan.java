@@ -261,15 +261,15 @@ public class WorldProviderTitan extends WorldProviderAdvancedSpace implements IP
 	@Override
 	public void weatherSounds(int j, Minecraft mc, World world, BlockPos blockpos, double xx, double yy, double zz,	Random random) {
 		if ((int) yy >= blockpos.getY() + 1 && world.getPrecipitationHeight(blockpos).getY() > blockpos.getY()) {
-			mc.world.playSound(xx, yy, zz, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.WEATHER, 0.025F, 0.6F + random.nextFloat() * 0.2F, false);
+			mc.world.playSound(xx, yy, zz, SoundEvents.WEATHER_RAIN_ABOVE, SoundCategory.WEATHER, 0.025F, 0.6F + random.nextFloat() * 0.2F, false);
 		} else {
-			mc.world.playSound(xx, yy, zz, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.WEATHER, 0.04F, 0.8F + random.nextFloat() * 0.06F + random.nextFloat() * 0.06F, false);
+			mc.world.playSound(xx, yy, zz, SoundEvents.WEATHER_RAIN, SoundCategory.WEATHER, 0.04F, 0.8F + random.nextFloat() * 0.06F + random.nextFloat() * 0.06F, false);
 		}
 	}
 
 	@Override
 	public int getSoundInterval(float rainStrength) {
-		return 80 - (int) (rainStrength * 88F);
+		return 80 - (int) (rainStrength * 8F);
 	}
 
 }

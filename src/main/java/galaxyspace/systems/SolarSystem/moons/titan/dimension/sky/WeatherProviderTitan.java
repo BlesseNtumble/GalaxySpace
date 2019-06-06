@@ -130,7 +130,7 @@ public class WeatherProviderTitan extends IRenderHandler
                         int index = indexZ + x - px + 16;
                         double dx = (double)this.rainXCoords[index] * 0.5D;
                         double dz = (double)this.rainYCoords[index] * 0.5D;
-                        double dy = -((double)(rendererUpdateCount + x * x * 3121 + x * 45238971 + z * z * 418711 + z * 13761 & 31) + (double)partialTicks) / 80.0D * (3.0D + this.random.nextDouble());
+                        double dy = -((double)(rendererUpdateCount + x * x * 3121 + x * 45238971 + z * z * 418711 + z * 13761 & 31) + (double)partialTicks) / 80.0D * (6.0D + this.random.nextDouble());
                         double yo = this.random.nextDouble() / 1.8D;
                         double xx = x + 0.5D - entity.posX;
                         double zz = z + 0.5D - entity.posZ;
