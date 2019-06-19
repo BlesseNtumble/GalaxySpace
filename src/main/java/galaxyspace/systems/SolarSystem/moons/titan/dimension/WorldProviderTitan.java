@@ -11,6 +11,7 @@ import asmodeuscore.api.dimension.IProviderFreeze;
 import asmodeuscore.core.astronomy.dimension.world.gen.WorldProviderAdvancedSpace;
 import galaxyspace.core.client.fx.ParticleRainCustom;
 import galaxyspace.core.util.GSDimensions;
+import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.SolarSystemBodies;
 import galaxyspace.systems.SolarSystem.moons.titan.dimension.sky.SkyProviderTitan;
 import galaxyspace.systems.SolarSystem.moons.titan.dimension.sky.WeatherProviderTitan;
@@ -24,6 +25,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
@@ -47,13 +49,11 @@ public class WorldProviderTitan extends WorldProviderAdvancedSpace implements IP
     }
 
 	@Override
-
 	public float getFallDamageModifier() {
 		return 0.16F;
 	}
 
 	@Override
-
 	public double getFuelUsageMultiplier() {
 		return 0.8;
 	}
@@ -61,8 +61,7 @@ public class WorldProviderTitan extends WorldProviderAdvancedSpace implements IP
 	@Override
 	public double getMeteorFrequency() {
 		return 0.0D;
-	}
- 
+	} 
 
     @Override
     public float getSoundVolReductionAmount() {
@@ -217,7 +216,7 @@ public class WorldProviderTitan extends WorldProviderAdvancedSpace implements IP
     @SideOnly(Side.CLIENT)
     public Particle getParticle(WorldClient world, double x, double y, double z)
     {
-        return new ParticleRainCustom(world, x, y + 0.1D, z, 0.0D, 0.0D, 0.0D, 1.0F, new Vector3(1F, 0.4F, 0.0F));
+        return new ParticleRainCustom(world, x, y + 0.1D, z, 0.0D, 0.0D, 0.0D, EnumParticleTypes.SMOKE_NORMAL.getParticleID(), 1.0F, new Vector3(1F, 0.4F, 0.0F));
     }
     
 	@Override
@@ -243,13 +242,12 @@ public class WorldProviderTitan extends WorldProviderAdvancedSpace implements IP
 
 	@Override
 	public float getFogDensity(int x, int y, int z) {		
-		return 0.6F;
+		return 0.5F;
 	}
 
 	@Override
 	public int getFogColor(int x, int y, int z) {
-		int color = 1 << 24 | 224 << 16 | 174 << 8 | 132;	
-	    return color - 16777216;
+		return GSUtils.getColor(224, 174, 132, 1);
 	}
 	
 	@Override

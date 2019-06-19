@@ -18,6 +18,7 @@ import galaxyspace.core.prefab.items.rockets.ItemTier6Rocket;
 import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.core.util.GSDamageSource;
+import galaxyspace.systems.SolarSystem.moons.titan.dimension.WorldProviderTitan;
 import galaxyspace.systems.SolarSystem.planets.kuiperbelt.dimension.WorldProviderKuiperBelt;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitationModule;
@@ -380,12 +381,12 @@ public class GSEventHandler {
 			//this.changeBlocks(world, player);
 			//this.throwMeteors(player);
 
-			/*
-			if(world.provider instanceof WorldProviderVenus && world.isRaining() && world.canBlockSeeTheSky((int)player.posX, (int)player.posY, (int)player.posZ))
+			
+			if(world.rand.nextInt(50) <= 10 && !this.getProtectArmor(player) && world.provider instanceof WorldProviderTitan && world.isRaining() && world.canBlockSeeSky(player.getPosition()))
 			{
 				player.attackEntityFrom(GSDamageSource.acid, 1.5F);
 			}
-			*/
+			
 			/*if (solar < 48 || world.provider instanceof WorldProviderMercury && player.posY <= 30)
 			{
 				player.removePotionEffect(GSPotions.radiation.id);

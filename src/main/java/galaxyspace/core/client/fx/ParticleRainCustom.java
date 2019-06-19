@@ -14,7 +14,7 @@ public class ParticleRainCustom extends Particle
 {
     float smokeParticleScale;
 
-    public ParticleRainCustom(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double motionX, double motionY, double motionZ, float scale, Vector3 color)
+    public ParticleRainCustom(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double motionX, double motionY, double motionZ, int particle, float scale, Vector3 color)
     {
         super(worldIn, xCoordIn, yCoordIn, zCoordIn, 0.0D, 0.0D, 0.0D);
         this.motionX *= 0.30000001192092896D;
@@ -31,7 +31,7 @@ public class ParticleRainCustom extends Particle
         this.particleMaxAge = (int)(8.0D / (Math.random() * 0.8D + 0.2D));
         //this.particleMaxAge = (int)((float)this.particleMaxAge * scale);
         this.canCollide = true;
-        this.setParticleTextureIndex(19 + this.rand.nextInt(4));
+        this.setParticleTextureIndex(particle);
         
     }
 
