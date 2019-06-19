@@ -7,8 +7,8 @@ import net.minecraft.init.Blocks;
 
 public class Barnarda_C_Ocean extends WE_Biome {
 
-	public Barnarda_C_Ocean(double min, double max) {
-		super(new BiomeProperties("barnarda_c_ocean"));
+	public Barnarda_C_Ocean(double min, double max, boolean frozen) {		
+		super(new BiomeProperties("barnarda_c_ocean" + (frozen ? "_frozen" : "")));
 		
 		biomeMinValueOnMap      =   min;
 		biomeMaxValueOnMap      =   max;
@@ -20,8 +20,7 @@ public class Barnarda_C_Ocean extends WE_Biome {
 		biomeInterpolateQuality =     65;
 		biomeBlockGrassColor    = 0x00FF00;
 		biomeBlockWaterColor 	= 0x11FF66;
-		
-		
+				
 		//-//
 		decorateChunkGen_List.clear();		
 		createChunkGen_InXZ_List.clear();
@@ -30,7 +29,11 @@ public class Barnarda_C_Ocean extends WE_Biome {
 		standardBiomeLayers.add(BRBlocks.BARNARDA_C_BLOCKS, (byte)0, BRBlocks.BARNARDA_C_BLOCKS, (byte)1, -256, 0,   -5, -1,  true);
 		standardBiomeLayers.add(BRBlocks.BARNARDA_C_BLOCKS, (byte)3, BRBlocks.BARNARDA_C_BLOCKS, (byte)0, -256, 0,   -1, -1,  true);
 		standardBiomeLayers.add(BRBlocks.BARNARDA_C_GRASS, (byte)0, BRBlocks.BARNARDA_C_BLOCKS, (byte)3, -256, 0, -256,  0, false);
-		standardBiomeLayers.add(Blocks.BEDROCK, (byte)0,                      0, 2,  0,  0, true);
+		
+		if(frozen)
+			standardBiomeLayers.add(Blocks.ICE, (byte)0, 		-256, 0,   -1, -1,  true);
+		
+		standardBiomeLayers.add(Blocks.BEDROCK, (byte)0,		0, 2,  0,  0, true);
 		createChunkGen_InXZ_List.add(standardBiomeLayers);
 	}
 }

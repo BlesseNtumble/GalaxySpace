@@ -24,11 +24,9 @@ import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnar
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Plains;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_River;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_SnowPlains;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_YellowPlains;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
-import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -191,7 +189,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProvider implements IPro
     
     @Override
     public IRenderHandler getCloudRenderer(){
-        return new CloudRenderer();
+        return super.getCloudRenderer();
     }
     
     @SideOnly(Side.CLIENT)
@@ -236,8 +234,8 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProvider implements IPro
 		cp.createChunkGen_InXYZ_List.clear(); 
 		cp.decorateChunkGen_List .clear(); 
 		
-		WE_Biome.setBiomeMap(cp, 1.8D, 4, 4500.0D, 0.4D);	
-		
+		WE_Biome.setBiomeMap(cp, 1.4D, 4, 8500.0D, 1.0D);	
+
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
 		terrainGenerator.worldStoneBlock = BRBlocks.BARNARDA_C_BLOCKS; 
 		terrainGenerator.worldStoneBlockMeta = 1;
@@ -245,44 +243,34 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProvider implements IPro
 		terrainGenerator.worldSeaGenBlock = Blocks.WATER;
 		terrainGenerator.worldSeaGenMaxY = 64;
 		cp.createChunkGen_List.add(terrainGenerator);
-
-		//WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_YellowPlains(-8.0D, -7.0D));
-		//WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(-6.5D, -7.0D));
-		//WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Beach(-6.0D, -6.5D, 1));
-		/*WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Dunes(-6.0D, -4.5D));	
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Beach(-4.5D, -4.0D, 1));	
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(-4.0D, -3.0D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_DeepOcean(-3.0D, -2.0D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(-2.0D, -1.0D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Beach(-1.0D, -0.8D, 2));	
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Plains(-0.8D, 0.6D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Forest(-0.8D, 3.5D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(3.5D, 3.8D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(3.8D, 4.0D, 100, 2.8D, 4));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_SnowPlains(4.0D, 7.0D, 160));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(7.0D, 8.0D, 180, 2.8D, 4));*/
 		
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_DeepOcean(-10.0D, -8.0D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(-8.0D, -7.0D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Beach(-7.0D, -6.5D, 1));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Plains(-6.5D, -5.0D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Forest(-5.0D, -3.5D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(-3.5D, -3.4D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Forest(-3.4D, -2.0D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-2.0D, -1.8D, 100, 2.8D, 4));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_SnowPlains(-1.8D, -1.0D, 160));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-1.0D, -0.8D, 180, 2.4D, 4));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Plains(-0.8D, 0.4D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(0.4D, 0.6D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Forest(0.6D, 2.0D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_DeepOcean(-2D, 2D));		
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(-1.9D, 1.9D, false));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Beach(-1.66D, 1.66D, 1));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Plains(-1.63D, 1.63D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Forest(-1.4D, 1.0D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(-1.38D, 0.98D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Forest(-1.18D, 0.5D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-1.08D, 0.4D, 100, 2.8D, 4));		
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-0.9D, 0.2D, 180, 2.4D, 4));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_SnowPlains(-0.7D, 0.05D, 160));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Dunes(-0.61D, 0.0D));
+		
+		/*WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_SnowPlains(-1.8D, -1.4D, 160));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-1.4D, -1.2D, 180, 2.4D, 4));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Plains(-1.2D, -0.4D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(-0.4D, -0.1D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Forest(-0.1D, 2.0D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Beach(2.0D, 2.2D, 2));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(2.2D, 3.2D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_DeepOcean(3.2D, 4.0D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(4.0D, 4.2D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(2.2D, 3.2D, false));
+	//	WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_DeepOcean(3.2D, 4.0D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(4.0D, 4.2D, false));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Beach(4.2D, 4.5D, 3));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Dunes(4.5D, 5.0D));	
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Beach(5.0D, 5.2D, 4));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(5.2D, 5.5D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(5.2D, 5.5D, false));
+		//5.5 - 6.5 - deep ocean
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(6.5D, 6.8D, true));*/
 		
 
 	}

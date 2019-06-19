@@ -9,6 +9,7 @@ import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigCore;
 import galaxyspace.systems.BarnardsSystem.core.registers.blocks.BRBlocks;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
@@ -54,7 +55,7 @@ public class ColorBlockHandler {
 				}
 				else return BiomeColorHelper.getGrassColorAtPos(blockAccess, pos);
 			}
-
+			
 			return ColorizerGrass.getGrassColor(0.5D, 1.0D);
 		};
 		
