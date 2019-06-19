@@ -78,6 +78,9 @@ public class GSConfigDimensions
     public static int idDimensionMarsOrbit;
     public static int idDimensionMarsOrbitStatic;
     
+    public static int idDimensionVenusOrbit;
+    public static int idDimensionVenusOrbitStatic;
+    
     
     public static void syncConfig(boolean load)
     {
@@ -228,6 +231,18 @@ public class GSConfigDimensions
             prop.setComment("WorldProvider ID for Static Mars Space Stations (advanced: do not change unless you have conflicts)");
             prop.setLanguageKey("gc.configgui.idDimensionMarsOrbitStatic").setRequiresMcRestart(true);
             idDimensionMarsOrbitStatic = prop.getInt();
+            propOrder.add(prop.getName());
+            
+            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "idDimensionVenusOrbit", -1128);
+            prop.setComment("WorldProvider ID for Venus Space Stations (advanced: do not change unless you have conflicts)");
+            prop.setLanguageKey("gc.configgui.idDimensionMarsOrbit").setRequiresMcRestart(true);
+            idDimensionVenusOrbit = prop.getInt();
+            propOrder.add(prop.getName());
+
+            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "idDimensionVenusOrbitStatic", -1129);
+            prop.setComment("WorldProvider ID for Static Venus Space Stations (advanced: do not change unless you have conflicts)");
+            prop.setLanguageKey("gc.configgui.idDimensionMarsOrbitStatic").setRequiresMcRestart(true);
+            idDimensionVenusOrbitStatic = prop.getInt();
             propOrder.add(prop.getName());
             
             //----------------------------------------------------------------------------------

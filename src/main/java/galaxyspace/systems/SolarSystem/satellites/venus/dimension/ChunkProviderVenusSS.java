@@ -1,10 +1,11 @@
-package galaxyspace.systems.SolarSystem.satellites.mars.dimension;
+package galaxyspace.systems.SolarSystem.satellites.venus.dimension;
 
 import java.util.List;
 import java.util.Random;
 
 import asmodeuscore.core.astronomy.dimension.world.gen.ACBiome;
 import galaxyspace.systems.SolarSystem.satellites.mars.world.gen.WorldGenSpaceStation;
+import galaxyspace.systems.SolarSystem.satellites.venus.world.gen.WorldGenVenusSS;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
 import micdoodle8.mods.galacticraft.api.world.ChunkProviderBase;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
@@ -20,13 +21,13 @@ import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 
-public class ChunkProviderMarsSS extends ChunkProviderBase
+public class ChunkProviderVenusSS extends ChunkProviderBase
 {
     private final Random rand;
 
     private final World world;
 
-    public ChunkProviderMarsSS(World par1World, long par2, boolean par4)
+    public ChunkProviderVenusSS(World par1World, long par2, boolean par4)
     {
         this.rand = new Random(par2);
         this.world = par1World;
@@ -73,7 +74,7 @@ public class ChunkProviderMarsSS extends ChunkProviderBase
                 ((IMultiBlock) var8).onCreate(this.world, pos);
             }
 
-            new WorldGenSpaceStation().generate(this.world, this.rand, new BlockPos(k - 10, 62, l - 3));
+            new WorldGenVenusSS().generate(this.world, this.rand, new BlockPos(k - 10, 62, l - 3));
         }
         BlockFalling.fallInstantly = false;
     }

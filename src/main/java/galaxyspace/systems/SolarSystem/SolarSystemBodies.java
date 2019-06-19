@@ -1,8 +1,10 @@
 package galaxyspace.systems.SolarSystem;
 
-import asmodeuscore.core.astronomy.BodiesHelper;
+import java.util.HashMap;
+
 import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
 import asmodeuscore.core.astronomy.BodiesData;
+import asmodeuscore.core.astronomy.BodiesHelper;
 import asmodeuscore.core.astronomy.dimension.world.OreGenerator;
 import asmodeuscore.core.astronomy.dimension.world.gen.ACBiome;
 import galaxyspace.GalaxySpace;
@@ -57,8 +59,11 @@ import galaxyspace.systems.SolarSystem.planets.overworld.schematics.SchematicFin
 import galaxyspace.systems.SolarSystem.planets.overworld.schematics.SchematicOxTank;
 import galaxyspace.systems.SolarSystem.planets.pluto.dimension.TeleportTypePluto;
 import galaxyspace.systems.SolarSystem.planets.pluto.dimension.WorldProviderPluto;
+import galaxyspace.systems.SolarSystem.satellites.venus.dimension.TeleportTypeVenusSS;
+import galaxyspace.systems.SolarSystem.satellites.venus.dimension.WorldProviderVenusSS;
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
+import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
 import micdoodle8.mods.galacticraft.api.galaxies.Moon;
 import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import micdoodle8.mods.galacticraft.api.galaxies.Satellite;
@@ -66,24 +71,28 @@ import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import micdoodle8.mods.galacticraft.api.item.EnumExtendedInventorySlot;
 import micdoodle8.mods.galacticraft.api.recipe.ISchematicPage;
 import micdoodle8.mods.galacticraft.api.recipe.SchematicRegistry;
+import micdoodle8.mods.galacticraft.api.recipe.SpaceStationRecipe;
 import micdoodle8.mods.galacticraft.api.world.AtmosphereInfo;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
+import micdoodle8.mods.galacticraft.api.world.SpaceStationType;
+import micdoodle8.mods.galacticraft.core.Constants;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
+import micdoodle8.mods.galacticraft.core.items.ItemBasic;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
-import micdoodle8.mods.galacticraft.core.world.gen.OreGenOtherMods;
-import micdoodle8.mods.galacticraft.core.world.gen.OreGenOtherMods.OreGenData;
+import micdoodle8.mods.galacticraft.core.world.gen.BiomeOrbit;
 import micdoodle8.mods.galacticraft.planets.asteroids.AsteroidsModule;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import micdoodle8.mods.galacticraft.planets.asteroids.schematic.SchematicTier3Rocket;
-import micdoodle8.mods.galacticraft.planets.mars.ConfigManagerMars;
 import micdoodle8.mods.galacticraft.planets.mars.MarsModule;
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import micdoodle8.mods.galacticraft.planets.mars.schematic.SchematicTier2Rocket;
+import micdoodle8.mods.galacticraft.planets.venus.ConfigManagerVenus;
 import micdoodle8.mods.galacticraft.planets.venus.VenusModule;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -224,7 +233,12 @@ public class SolarSystemBodies implements IBodies{
 		
 		charonPluto = (Moon) BodiesHelper.registerMoon(planetPluto, "charon", GalaxySpace.ASSET_PREFIX, null, -1, -1, (float) Math.PI / 2, 0.0017F, 15.0F, 50F);
 	
-		//marsSpaceStation = (Satellite) new Satellite("spacestation.mars").setParentBody(MarsModule.planetMars).setRelativeSize(0.2667F).setRelativeDistanceFromCenter(new CelestialBody.ScalableDistance(9F, 9F)).setRelativeOrbitTime(1 / 0.05F);
+		venusSpaceStation = (Satellite) new Satellite("spacestation.venus").setParentBody(VenusModule.planetVenus).setRelativeSize(0.2667F).setRelativeDistanceFromCenter(new CelestialBody.ScalableDistance(9F, 9F)).setRelativeOrbitTime(1 / 0.05F);
+		venusSpaceStation.setTierRequired(2);
+		venusSpaceStation.setBiomeInfo(BiomeOrbit.space);
+		venusSpaceStation.setBodyIcon(new ResourceLocation(Constants.ASSET_PREFIX, "textures/gui/celestialbodies/space_station.png"));
+		venusSpaceStation.setDimensionInfo(GSConfigDimensions.idDimensionVenusOrbit, GSConfigDimensions.idDimensionVenusOrbitStatic, WorldProviderVenusSS.class);
+		venusSpaceStation.setAtmosphere(new AtmosphereInfo(false, false, false, 0.0F, 0.6F, 0.02F));
 		//marsSpaceStation.setBiomeInfo(ACBiome.ACSpace);
 	}
 	
@@ -245,15 +259,7 @@ public class SolarSystemBodies implements IBodies{
 			GameRegistry.registerWorldGenerator(new OreGenerator(GSBlocks.OVERWORLD_ORES.getStateFromMeta(1), 6, 0, 45, 4, Blocks.STONE.getDefaultState(), 0), 1);
 		}	
 		// --------------------------------------------		
-	
-		//OreGenData ore = new OreGenData(GSBlocks.MARS_ORES, 0, 8, 40, 5, 16, ConfigManagerMars.dimensionIDMars);
-		//OreGenOtherMods.addOre(GSBlocks.MARS_ORES, 0, 1, 1, 0, false, ConfigManagerMars.dimensionIDMars);
-		
-		//OreGenOtherMods.data.forEach((s) -> GalaxySpace.debug(s.oreBlock + " | " + s.dimRestrict));
-		//marsSpaceStation.setDimensionInfo(GSConfigDimensions.idDimensionMarsOrbit, GSConfigDimensions.idDimensionMarsOrbitStatic, WorldProviderMarsSS.class).setTierRequired(2);
-		//marsSpaceStation.setBodyIcon(new ResourceLocation(Constants.ASSET_PREFIX, "textures/gui/celestialbodies/space_station.png"));
-		//marsSpaceStation.setAtmosphere(new AtmosphereInfo(false, false, false, 0.0F, 0.1F, 0.02F));
-	/*	if(GSConfigCore.enableOresGeneration) 
+/*	if(GSConfigCore.enableOresGeneration) 
 		{
 			// TODO Moon ----------------------------------
 			GameRegistry.registerWorldGenerator(new OreGenerator(GSBlocks.OVERWORLD_ORES.getStateFromMeta(2), 4, 0, 45, 4, GCBlocks.blockMoon.getStateFromMeta(4), ConfigManagerCore.idDimensionMoon), 4);
@@ -428,7 +434,7 @@ public class SolarSystemBodies implements IBodies{
 		
 
 		//if(GSConfigDimensions.enableMarsSS) GalaxyRegistry.registerSatellite(marsSpaceStation);
-		//if(GSConfigDimensions.enableVenusSS) GalaxyRegistry.registerSatellite(venusSpaceStation);
+		/*if(GSConfigDimensions.enableVenusSS)*/ GalaxyRegistry.registerSatellite(venusSpaceStation);
 
 	}
 	
@@ -472,12 +478,14 @@ public class SolarSystemBodies implements IBodies{
 			GalacticraftRegistry.registerProvider(GSConfigDimensions.dimensionIDMarsOrbitStatic, WorldProviderMarsSS.class, true, -41);
 		}
 		if(GSConfigDimensions.enableVenusSS)
-		{
-			GalacticraftRegistry.registerTeleportType(WorldProviderVenusSS.class, new TeleportTypeSS());
-			GalacticraftRegistry.registerProvider(GSConfigDimensions.dimensionIDVenusOrbit, WorldProviderVenusSS.class, false, -42);
-			GalacticraftRegistry.registerProvider(GSConfigDimensions.dimensionIDVenusOrbitStatic, WorldProviderVenusSS.class, true, -43);
-		}
-		*/
+		{*/
+			GalacticraftRegistry.registerTeleportType(WorldProviderVenusSS.class, new TeleportTypeVenusSS());
+			GalacticraftRegistry.registerDimension("Venus Space Station", "_venus_orbit", GSConfigDimensions.idDimensionVenusOrbit, WorldProviderVenusSS.class, false);
+			GalacticraftRegistry.registerDimension("Venus Space Station", "_venus_orbit", GSConfigDimensions.idDimensionVenusOrbitStatic, WorldProviderVenusSS.class, true);
+		
+			
+			//}
+		
 	}
 	
 	public void postInit(FMLPostInitializationEvent event)
@@ -499,7 +507,8 @@ public class SolarSystemBodies implements IBodies{
 		
 		GSDimensions.KUIPER_BELT = WorldUtil.getDimensionTypeById(GSConfigDimensions.dimensionIDKuiperBelt);
 		
-		//GSDimensions.MARS_SS = WorldUtil.getDimensionTypeById(GSConfigDimensions.idDimensionMarsOrbit);
+		GSDimensions.MARS_SS = WorldUtil.getDimensionTypeById(GSConfigDimensions.idDimensionMarsOrbit);
+		GSDimensions.VENUS_SS = WorldUtil.getDimensionTypeById(GSConfigDimensions.idDimensionVenusOrbit);
 		//CraftingRecipesMercury.loadRecipes();
 		//CraftingRecipesOverworld.loadRecipes();		
     	//CraftingRecipesMars.loadRecipes();
@@ -541,7 +550,7 @@ public class SolarSystemBodies implements IBodies{
     	CraftingRecipesMiranda.loadRecipes();
     	
     	registerRecipesWorkBench();
-    	/*
+    	
 		final HashMap<Object, Integer> spaceStationRequirements = new HashMap<Object, Integer>(6, 1.0F);
 		spaceStationRequirements.put("ingotTin", 32);
 		spaceStationRequirements.put("ingotCopper", 64);
@@ -549,9 +558,9 @@ public class SolarSystemBodies implements IBodies{
 		spaceStationRequirements.put(Items.IRON_INGOT, 24);
 		spaceStationRequirements.put(new ItemStack(GSItems.HDP, 1, 0), 10);
 		spaceStationRequirements.put(new ItemStack(GSItems.BASIC, 1, 6), 10);
-		GalacticraftRegistry.registerSpaceStation(new SpaceStationType(GSConfigDimensions.idDimensionMarsOrbit,
-				ConfigManagerMars.dimensionIDMars, new SpaceStationRecipe(spaceStationRequirements)));
-    	 */
+		GalacticraftRegistry.registerSpaceStation(new SpaceStationType(GSConfigDimensions.idDimensionVenusOrbit,
+				ConfigManagerVenus.dimensionIDVenus, new SpaceStationRecipe(spaceStationRequirements)));
+    	 
 	}
 
 	@Override
