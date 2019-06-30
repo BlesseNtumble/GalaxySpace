@@ -1,22 +1,30 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.recipes;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.core.registers.fluids.GSFluids;
 import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.util.GSRecipeUtil;
 import galaxyspace.systems.SolarSystem.moons.miranda.blocks.MirandaBlocks;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
+import galaxyspace.systems.SolarSystem.planets.overworld.recipes.schematic.SchematicBodyRecipe;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityFuelGenerator;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityHydroponicBase;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityLiquidExtractor;
 import micdoodle8.mods.galacticraft.api.recipe.CircuitFabricatorRecipes;
 import micdoodle8.mods.galacticraft.api.recipe.CompressorRecipes;
+import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCFluids;
 import micdoodle8.mods.galacticraft.core.GCItems;
+import micdoodle8.mods.galacticraft.core.recipe.NasaWorkbenchRecipe;
 import micdoodle8.mods.galacticraft.core.recipe.ShapedRecipeNBT;
+import micdoodle8.mods.galacticraft.core.tile.TileEntityDeconstructor;
 import micdoodle8.mods.galacticraft.core.util.RecipeUtil;
 import micdoodle8.mods.galacticraft.planets.asteroids.AsteroidsModule;
 import micdoodle8.mods.galacticraft.planets.asteroids.blocks.AsteroidBlocks;
@@ -272,11 +280,48 @@ r
 	   TileEntityHydroponicBase.addPlant(new ItemStack(Items.BEETROOT_SEEDS), new ItemStack(Items.BEETROOT), new ItemStack(Items.BEETROOT_SEEDS), 100, Blocks.BEETROOTS, 3, new boolean[] {false, true});
 	   
 	   TileEntityFuelGenerator.registerNewFuel(FluidRegistry.LAVA, 5, 0.6F);
-	   TileEntityFuelGenerator.registerNewFuel(GCFluids.fluidFuel, 50, 1.5F);
-	   TileEntityFuelGenerator.registerNewFuel(GCFluids.fluidOil, 20, 1.0F);
-	   TileEntityFuelGenerator.registerNewFuel(GSFluids.LiquidEthaneMethane, 50, 1.3F);
-	   TileEntityFuelGenerator.registerNewFuel(AsteroidsModule.fluidLiquidMethane, 150, 1.4F);
-	   TileEntityFuelGenerator.registerNewFuel(GSFluids.HeliumHydrogen, 250, 2.0F);
+	   TileEntityFuelGenerator.registerNewFuel(GCFluids.fluidFuel, 20, 1.5F);
+	   TileEntityFuelGenerator.registerNewFuel(GCFluids.fluidOil, 10, 1.0F);
+	   TileEntityFuelGenerator.registerNewFuel(GSFluids.LiquidEthaneMethane, 20, 1.3F);
+	   TileEntityFuelGenerator.registerNewFuel(AsteroidsModule.fluidLiquidMethane, 50, 1.4F);
+	   TileEntityFuelGenerator.registerNewFuel(GSFluids.HeliumHydrogen, 50, 2.0F);
+
+	   TileEntityDeconstructor.knownRecipes.addAll(GSRecipeUtil.getBodyRecipes());
+	   TileEntityDeconstructor.knownRecipes.addAll(GSRecipeUtil.getBoosterRecipes());
+	   TileEntityDeconstructor.knownRecipes.addAll(GSRecipeUtil.getConeRecipes());
+	   TileEntityDeconstructor.knownRecipes.addAll(GSRecipeUtil.getEngineRecipes());
+	   TileEntityDeconstructor.knownRecipes.addAll(GSRecipeUtil.getFinsRecipes());   
+
+	   
+	   for(int i = 1; i < 3; i++) {
+
+		   List<INasaWorkbenchRecipe> knownRecipes = new LinkedList<>();
+		   HashMap<Integer, ItemStack> input = new HashMap<Integer, ItemStack>();
+		   
+		   input.put(0, new ItemStack(GSItems.ROCKET_PARTS, 1, 5 * i));
+		   input.put(1, new ItemStack(GSItems.ROCKET_PARTS, 1, 6 * i));
+		   input.put(2, new ItemStack(GSItems.ROCKET_PARTS, 1, 7 * i));
+		   input.put(3, new ItemStack(GSItems.ROCKET_PARTS, 1, 8 * i));
+		   input.put(4, new ItemStack(GSItems.ROCKET_PARTS, 1, 9 * i));
+		   
+		   Item rocket = GSItems.ROCKET_TIER_4;
+		   if(i == 2) rocket = GSItems.ROCKET_TIER_5;
+		   if(i == 3) rocket = GSItems.ROCKET_TIER_6;
+		   for(int k = 0; k < 3; k++)
+			   knownRecipes.add(new NasaWorkbenchRecipe(new ItemStack(rocket, 1, k), input));		   
+
+		   TileEntityDeconstructor.addSalvage(new ItemStack(GSItems.ROCKET_PARTS, 1, 5 * i));
+		   TileEntityDeconstructor.addSalvage(new ItemStack(GSItems.ROCKET_PARTS, 1, 6 * i));
+		   TileEntityDeconstructor.addSalvage(new ItemStack(GSItems.ROCKET_PARTS, 1, 7 * i));
+		   TileEntityDeconstructor.addSalvage(new ItemStack(GSItems.ROCKET_PARTS, 1, 8 * i));
+		   TileEntityDeconstructor.addSalvage(new ItemStack(GSItems.ROCKET_PARTS, 1, 9 * i));
+		   TileEntityDeconstructor.knownRecipes.addAll(knownRecipes);
+	   }
+	  
+	   
+	   TileEntityDeconstructor.addSalvage(new ItemStack(GSItems.HDP, 1, 0));
+	   TileEntityDeconstructor.addSalvage(new ItemStack(GSItems.HDP, 1, 1));
+	   TileEntityDeconstructor.addSalvage(new ItemStack(GSItems.HDP, 1, 2));
 
    }
    
@@ -286,6 +331,5 @@ r
 	   RocketAssemblyRecipes.addShapelessRecipe(new ItemStack(rocket, 1, 1), new ItemStack(parts, 1, metafirstparts), new ItemStack(parts, 1, metafirstparts + 1), new ItemStack(parts, 1, metafirstparts + 1),	new ItemStack(parts, 1, metafirstparts + 2), new ItemStack(parts, 1, metafirstparts + 3), new ItemStack(parts, 1, metafirstparts + 3), new ItemStack(parts, 1, metafirstparts + 4),	new ItemStack(parts, 1, metafirstparts + 4), new ItemStack(Blocks.CHEST, 1, 0)); 
 	   RocketAssemblyRecipes.addShapelessRecipe(new ItemStack(rocket, 1, 2), new ItemStack(parts, 1, metafirstparts), new ItemStack(parts, 1, metafirstparts + 1), new ItemStack(parts, 1, metafirstparts + 1),	new ItemStack(parts, 1, metafirstparts + 2), new ItemStack(parts, 1, metafirstparts + 3), new ItemStack(parts, 1, metafirstparts + 3), new ItemStack(parts, 1, metafirstparts + 4), new ItemStack(parts, 1, metafirstparts + 4), new ItemStack(Blocks.CHEST, 1, 0), new ItemStack(Blocks.CHEST, 1, 0)); 
 	   RocketAssemblyRecipes.addShapelessRecipe(new ItemStack(rocket, 1, 3), new ItemStack(parts, 1, metafirstparts), new ItemStack(parts, 1, metafirstparts + 1), new ItemStack(parts, 1, metafirstparts + 1),	new ItemStack(parts, 1, metafirstparts + 2), new ItemStack(parts, 1, metafirstparts + 3), new ItemStack(parts, 1, metafirstparts + 3), new ItemStack(parts, 1, metafirstparts + 4), new ItemStack(parts, 1, metafirstparts + 4), new ItemStack(Blocks.CHEST, 1, 0), new ItemStack(Blocks.CHEST, 1, 0), new ItemStack(Blocks.CHEST, 1, 0)); 
-	 
    }
 }
