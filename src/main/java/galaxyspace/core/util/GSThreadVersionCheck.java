@@ -66,7 +66,7 @@ public class GSThreadVersionCheck extends Thread
 
 				while ((str = in.readLine()) != null)
 				{
-					if (str.contains("Version"))
+					if (str.contains("Version") && GSConfigCore.enableCheckVersion)
 					{
 						str = str.replace("Version=", "");
 						str2 = str.split("#");
@@ -85,20 +85,16 @@ public class GSThreadVersionCheck extends Thread
 
 							if (sideToCheck.equals(Side.CLIENT))
 							{
-								if (GSConfigCore.enableCheckVersion)
-								{
 									if(GSUtils.changelog.isEmpty())
 										GSUtils.start();
 									FMLClientHandler.instance().getClient().player.sendMessage(new TextComponentString(EnumColor.GREY + "New " + EnumColor.DARK_AQUA + GalaxySpace.NAME + EnumColor.GREY + " version available! v" + String.valueOf(remoteMajVer) + "." + String.valueOf(remoteMinVer) + "." +String.valueOf(remoteBuildVer) + EnumColor.DARK_BLUE + " http://micdoodle8.com/"));
 	
-								}
+								
 							}
 							else if (sideToCheck.equals(Side.SERVER))
 							{
-								if (GSConfigCore.enableCheckVersion)
-								{
-									GalaxySpace.info("New version available! v" + String.valueOf(remoteMajVer) + "." + String.valueOf(remoteMinVer) + "." + String.valueOf(remoteBuildVer) + " ");
-								}
+								GalaxySpace.info("New version available! v" + String.valueOf(remoteMajVer) + "." + String.valueOf(remoteMinVer) + "." + String.valueOf(remoteBuildVer) + " ");
+							
 							}
 						}
 					}
