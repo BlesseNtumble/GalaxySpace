@@ -1,8 +1,10 @@
 package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks;
 
 import java.util.List;
+import java.util.Random;
 
 import galaxyspace.core.util.GSCreativeTabs;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks.EnumType;
 import net.minecraft.block.SoundType;
@@ -10,6 +12,7 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -28,7 +31,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Barnarda_C_Leaves extends BlockLeaves {
 	public static final PropertyEnum<EnumBlockLeaves> BASIC_TYPE = PropertyEnum.create("type", EnumBlockLeaves.class);
-			
+	int[] surroundings;
+	
 	public Barnarda_C_Leaves() {
 		super();
 		this.setUnlocalizedName("barnarda_c_leaves");
@@ -48,6 +52,127 @@ public class Barnarda_C_Leaves extends BlockLeaves {
 		return new ItemStack(Item.getItemFromBlock(this), 1, this.getMetaFromState(state));
 	}
 	
+	@Override
+	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    {
+        if (!worldIn.isRemote)
+        {
+            if (((Boolean)state.getValue(CHECK_DECAY)).booleanValue() && ((Boolean)state.getValue(DECAYABLE)).booleanValue())
+            {
+                int i = 4;
+                int j = 5;
+                int k = pos.getX();
+                int l = pos.getY();
+                int i1 = pos.getZ();
+                int j1 = 32;
+                int k1 = 1024;
+                int l1 = 16;
+
+                int range = 6;
+                
+                if (this.surroundings == null)
+                {
+                    this.surroundings = new int[32768];
+                }
+
+                if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent decaying leaves from updating neighbors and loading unloaded chunks
+                if (worldIn.isAreaLoaded(pos, 6)) // Forge: extend range from 5 to 6 to account for neighbor checks in world.markAndNotifyBlock -> world.updateObservingBlocksAt
+                {
+                    BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+
+                    for (int i2 = -range; i2 <= range; ++i2)
+                    {
+                        for (int j2 = -range; j2 <= range; ++j2)
+                        {
+                            for (int k2 = -range; k2 <= range; ++k2)
+                            {
+                                IBlockState iblockstate = worldIn.getBlockState(blockpos$mutableblockpos.setPos(k + i2, l + j2, i1 + k2));
+                                Block block = iblockstate.getBlock();
+
+                                if (!block.canSustainLeaves(iblockstate, worldIn, blockpos$mutableblockpos.setPos(k + i2, l + j2, i1 + k2)))
+                                {
+                                    if (block.isLeaves(iblockstate, worldIn, blockpos$mutableblockpos.setPos(k + i2, l + j2, i1 + k2)))
+                                    {
+                                        this.surroundings[(i2 + 16) * 1024 + (j2 + 16) * 32 + k2 + 16] = -2;
+                                    }
+                                    else
+                                    {
+                                        this.surroundings[(i2 + 16) * 1024 + (j2 + 16) * 32 + k2 + 16] = -1;
+                                    }
+                                }
+                                else
+                                {
+                                    this.surroundings[(i2 + 16) * 1024 + (j2 + 16) * 32 + k2 + 16] = 0;
+                                }
+                            }
+                        }
+                    }
+
+                    for (int i3 = 1; i3 <= 4; ++i3)
+                    {
+                        for (int j3 = -range; j3 <= range; ++j3)
+                        {
+                            for (int k3 = -range; k3 <= range; ++k3)
+                            {
+                                for (int l3 = -range; l3 <= range; ++l3)
+                                {
+                                    if (this.surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16] == i3 - 1)
+                                    {
+                                        if (this.surroundings[(j3 + 16 - 1) * 1024 + (k3 + 16) * 32 + l3 + 16] == -2)
+                                        {
+                                            this.surroundings[(j3 + 16 - 1) * 1024 + (k3 + 16) * 32 + l3 + 16] = i3;
+                                        }
+
+                                        if (this.surroundings[(j3 + 16 + 1) * 1024 + (k3 + 16) * 32 + l3 + 16] == -2)
+                                        {
+                                            this.surroundings[(j3 + 16 + 1) * 1024 + (k3 + 16) * 32 + l3 + 16] = i3;
+                                        }
+
+                                        if (this.surroundings[(j3 + 16) * 1024 + (k3 + 16 - 1) * 32 + l3 + 16] == -2)
+                                        {
+                                            this.surroundings[(j3 + 16) * 1024 + (k3 + 16 - 1) * 32 + l3 + 16] = i3;
+                                        }
+
+                                        if (this.surroundings[(j3 + 16) * 1024 + (k3 + 16 + 1) * 32 + l3 + 16] == -2)
+                                        {
+                                            this.surroundings[(j3 + 16) * 1024 + (k3 + 16 + 1) * 32 + l3 + 16] = i3;
+                                        }
+
+                                        if (this.surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + (l3 + 16 - 1)] == -2)
+                                        {
+                                            this.surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + (l3 + 16 - 1)] = i3;
+                                        }
+
+                                        if (this.surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16 + 1] == -2)
+                                        {
+                                            this.surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16 + 1] = i3;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                int l2 = this.surroundings[16912];
+
+                if (l2 >= 0)
+                {
+                    worldIn.setBlockState(pos, state.withProperty(CHECK_DECAY, Boolean.valueOf(false)), 4);
+                }
+                else
+                {
+                    this.destroy(worldIn, pos);
+                }
+            }
+        }
+    }
+	
+	private void destroy(World worldIn, BlockPos pos) {
+		this.dropBlockAsItem(worldIn, pos, worldIn.getBlockState(pos), 0);
+		worldIn.setBlockToAir(pos);
+	}
+	 
 	@SideOnly(Side.CLIENT)
     @Override
     public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
@@ -60,18 +185,30 @@ public class Barnarda_C_Leaves extends BlockLeaves {
 	
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
-		return Blocks.LEAVES.isOpaqueCube(state);
-	}
+        return Blocks.LEAVES.isOpaqueCube(state);
+    }
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public BlockRenderLayer getBlockLayer() {
-		return Blocks.LEAVES.getBlockLayer();
+		return Minecraft.getMinecraft().gameSettings.fancyGraphics ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
 	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+    public void setGraphicsLevel(boolean fancy)
+    {
+        this.leavesFancy = fancy;
+    }
 	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockState state, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-		return !this.leavesFancy && blockAccess.getBlockState(pos.offset(side)).getBlock() == this ? false : super.shouldSideBeRendered(state, blockAccess, pos, side);
+		BlockPos neighborPos = pos.offset(side);
+	    if (isOpaqueCube(state) && blockAccess.getBlockState(neighborPos).getBlock() == this) {
+	    	return false;
+	    }
+	    return !blockAccess.getBlockState(neighborPos).doesSideBlockRendering(blockAccess, neighborPos, side.getOpposite());
 	}
 	
 	@Override
