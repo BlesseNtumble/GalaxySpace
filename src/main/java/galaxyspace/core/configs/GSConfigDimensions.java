@@ -74,6 +74,8 @@ public class GSConfigDimensions
     public static boolean enableMiranda;
     public static boolean enableProteus;
     public static boolean enableTriton;
+    
+    public static boolean enableVenusSpaceStation;
 
     public static int idDimensionMarsOrbit;
     public static int idDimensionMarsOrbitStatic;
@@ -235,13 +237,13 @@ public class GSConfigDimensions
             
             prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "idDimensionVenusOrbit", -1128);
             prop.setComment("WorldProvider ID for Venus Space Stations (advanced: do not change unless you have conflicts)");
-            prop.setLanguageKey("gc.configgui.idDimensionMarsOrbit").setRequiresMcRestart(true);
+            prop.setLanguageKey("gc.configgui.idDimensionVenusOrbit").setRequiresMcRestart(true);
             idDimensionVenusOrbit = prop.getInt();
             propOrder.add(prop.getName());
 
             prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "idDimensionVenusOrbitStatic", -1129);
             prop.setComment("WorldProvider ID for Static Venus Space Stations (advanced: do not change unless you have conflicts)");
-            prop.setLanguageKey("gc.configgui.idDimensionMarsOrbitStatic").setRequiresMcRestart(true);
+            prop.setLanguageKey("gc.configgui.idDimensionVenusOrbitStatic").setRequiresMcRestart(true);
             idDimensionVenusOrbitStatic = prop.getInt();
             propOrder.add(prop.getName());
             
@@ -342,10 +344,7 @@ public class GSConfigDimensions
             prop.setLanguageKey("gc.configgui.enableTitan").setRequiresMcRestart(true);
             enableTitan = prop.getBoolean(true);
             propOrder.add(prop.getName());
-            /*
-            config("Miranda", "Uranus Moon", enableMiranda);
-            enableMiranda = prop.getBoolean(true);
-            */
+
             prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableMiranda", true);
             prop.setComment("Enable/Disable Miranda (Uranus Moon)");
             prop.setLanguageKey("gc.configgui.enableMiranda").setRequiresMcRestart(true);
@@ -368,6 +367,12 @@ public class GSConfigDimensions
             prop.setComment("Enable/Disable Triton (Neptune Moon)");
             prop.setLanguageKey("gc.configgui.enableTriton").setRequiresMcRestart(true);
             enableTriton = prop.getBoolean(true);
+            propOrder.add(prop.getName());
+            
+            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableVenusSpaceStation", true);
+            prop.setComment("Enable/Disable Venus Space Station");
+            prop.setLanguageKey("gc.configgui.enableVenusSpaceStation").setRequiresMcRestart(true);
+            enableVenusSpaceStation = prop.getBoolean(true);
             propOrder.add(prop.getName());
                         
             config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
