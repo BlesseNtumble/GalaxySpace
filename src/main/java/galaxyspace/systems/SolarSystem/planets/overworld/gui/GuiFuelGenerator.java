@@ -69,10 +69,10 @@ public class GuiFuelGenerator extends GuiContainerGC
         {
             displayText = EnumColor.WHITE + GCCoreUtil.translate("gui.status.not_generating.name");
         }
-        else if (this.tileEntity.heatGJperTick < TileEntityFuelGenerator.MIN_GENERATE_GJ_PER_TICK)
+        /*else if (this.tileEntity.heatGJperTick < TileEntityFuelGenerator.MIN_GENERATE_GJ_PER_TICK)
         {
             displayText = EnumColor.WHITE + GCCoreUtil.translate("gui.status.hullheat.name") + ": " + (int) (this.tileEntity.heatGJperTick / TileEntityFuelGenerator.MIN_GENERATE_GJ_PER_TICK * 100) + "%";
-        }
+        }*/
         else
         {
             displayText = EnergyDisplayHelper.getEnergyDisplayS(this.tileEntity.heatGJperTick - TileEntityFuelGenerator.MIN_GENERATE_GJ_PER_TICK) + "/t";

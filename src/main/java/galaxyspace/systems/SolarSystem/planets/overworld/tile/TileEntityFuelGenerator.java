@@ -68,15 +68,6 @@ public class TileEntityFuelGenerator extends TileBaseUniversalElectricalSource i
 
     private float mod = 1.0F;
     private static List<Fuel> fuel = new ArrayList<Fuel>();
-    /*
-    static 
-    {
-    	fuel.add(new Fuel(FluidRegistry.LAVA, 2, 1.0F));
-    	fuel.add(new Fuel(GCFluids.fluidFuel, 100, 1.0F));
-    	fuel.add(new Fuel(GCFluids.fluidOil, 50, 1.0F));
-    	fuel.add(new Fuel(GSFluids.LiquidEthaneMethane, 50, 1.0F));
-    	fuel.add(new Fuel(AsteroidsModule.fluidLiquidMethane, 150, 1.0F));
-    }*/
             
     public static void registerNewFuel(Fluid fluid, int burn_time, float mod_energy)
     {

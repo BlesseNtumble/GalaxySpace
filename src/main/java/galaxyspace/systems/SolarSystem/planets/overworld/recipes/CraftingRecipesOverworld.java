@@ -280,8 +280,14 @@ r
 	   TileEntityHydroponicBase.addPlant(new ItemStack(Items.BEETROOT_SEEDS), new ItemStack(Items.BEETROOT), new ItemStack(Items.BEETROOT_SEEDS), 100, Blocks.BEETROOTS, 3, new boolean[] {false, true});
 	   
 	   TileEntityFuelGenerator.registerNewFuel(FluidRegistry.LAVA, 5, 0.6F);
-	   TileEntityFuelGenerator.registerNewFuel(GCFluids.fluidFuel, 20, 1.5F);
-	   TileEntityFuelGenerator.registerNewFuel(GCFluids.fluidOil, 10, 1.0F);
+	   
+	   FluidRegistry.getRegisteredFluids().forEach((name, fluid) -> {
+		   if(name.contains("fuel"))
+			   TileEntityFuelGenerator.registerNewFuel(fluid, 20, 1.5F); 
+		   if(name.contains("oil"))
+			   TileEntityFuelGenerator.registerNewFuel(fluid, 10, 1.0F);
+	   });	   
+		   
 	   TileEntityFuelGenerator.registerNewFuel(GSFluids.LiquidEthaneMethane, 20, 1.3F);
 	   TileEntityFuelGenerator.registerNewFuel(AsteroidsModule.fluidLiquidMethane, 50, 1.4F);
 	   TileEntityFuelGenerator.registerNewFuel(GSFluids.HeliumHydrogen, 50, 2.0F);
