@@ -213,7 +213,8 @@ public class ClientProxy extends CommonProxy{
 		            		continue;
 		            	}
 		            }
-	            	if(resource.getResourcePath().equals("barnarda_c_test_log")) {
+	            	
+	            	if(resource.getResourcePath().equals("barnarda_c_test_glow_log")) {
 	            		String top = "galaxyspace:blocks/barnardssystem/barnarda_c/log_oak_top";            		
 	            		event.getModelRegistry().putObject(resource, new BakedModelBrightFour(event.getModelRegistry().getObject(resource), "galaxyspace:blocks/barnardssystem/barnarda_c/log_oak_layer", top, 250, 1.0D));
 	            		continue;

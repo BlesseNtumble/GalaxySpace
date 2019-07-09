@@ -53,7 +53,7 @@ public class ColorBlockHandler {
 					
 					return WE_Biome.getBiomeAt(chunk, (long)pos.getX(), (long)pos.getZ()).biomeBlockGrassColor;
 				}
-				else return BiomeColorHelper.getGrassColorAtPos(blockAccess, pos);
+				else return ColorizerGrass.getGrassColor(0.5D, 1.0D);//BiomeColorHelper.getGrassColorAtPos(blockAccess, pos);
 			}
 			
 			return ColorizerGrass.getGrassColor(0.5D, 1.0D);

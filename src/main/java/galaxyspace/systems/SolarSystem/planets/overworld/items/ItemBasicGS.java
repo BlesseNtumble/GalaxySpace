@@ -58,7 +58,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
 		"module_base",				// 11
 		"volcanic_stone", 			// 12
 		"meteoric_iron_fragments",  // 13
-		"null", 					// 14
+		"blank_schematic", 			// 14
 		"uranium_fragments",		// 15
 		"temp_shield_control", 		// 16
 		"ice_bucket",				// 17		
