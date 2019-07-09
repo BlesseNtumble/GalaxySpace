@@ -14,13 +14,13 @@ public class Barnarda_C_YellowPlains extends WE_Biome {
 				
 		biomeMinValueOnMap      =  	min;
 		biomeMaxValueOnMap      =   max;
-		biomePersistence        =   1.4D;
+		biomePersistence        =   1.6D;
 		biomeNumberOfOctaves    =      4;
 		biomeScaleX             = 280.0D;
 		biomeScaleY             =   1.7D;
 		biomeSurfaceHeight      =     69;
 		biomeInterpolateQuality =     25;
-		biomeBlockGrassColor    = 0x88BB44;
+		biomeBlockGrassColor    = 0xCAB984;
 		biomeBlockWaterColor 	= 0x11FF66;
 		
 		//-//

@@ -2,6 +2,7 @@ package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we;
 
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
+import galaxyspace.core.prefab.world.gen.we.WE_LakesGen;
 import galaxyspace.systems.BarnardsSystem.core.registers.blocks.BRBlocks;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.init.Blocks;
@@ -35,5 +36,11 @@ public class Barnarda_C_Plains extends WE_Biome {
 		standardBiomeLayers.add(BRBlocks.BARNARDA_C_GRASS, (byte)0, BRBlocks.BARNARDA_C_BLOCKS, (byte)0, -256, 0, -256,  0, false);
 		standardBiomeLayers.add(Blocks.BEDROCK, (byte)0,                      0, 2,  0,  0, true);
 		createChunkGen_InXZ_List.add(standardBiomeLayers);
+		
+		WE_LakesGen lakes = new WE_LakesGen();
+		lakes.lakeBlock = Blocks.WATER.getDefaultState();
+		lakes.iceGen = false;
+		lakes.chunksForLake = 8;
+		decorateChunkGen_List.add(lakes);
 	}
 }

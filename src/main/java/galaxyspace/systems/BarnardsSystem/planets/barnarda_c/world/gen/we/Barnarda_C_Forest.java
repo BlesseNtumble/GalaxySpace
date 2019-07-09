@@ -2,6 +2,8 @@ package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we;
 
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_LakeGen;
+import galaxyspace.core.prefab.world.gen.we.WE_LakesGen;
 import galaxyspace.systems.BarnardsSystem.core.registers.blocks.BRBlocks;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.init.Blocks;
@@ -27,7 +29,7 @@ public class Barnarda_C_Forest extends WE_Biome {
 		decorateChunkGen_List.clear();		
 		createChunkGen_InXZ_List.clear();
 		
-		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 10, 1, 4));
+		//this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 10, 1, 4));
 		
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();
 		standardBiomeLayers.add(BRBlocks.BARNARDA_C_BLOCKS, (byte)3, BRBlocks.BARNARDA_C_BLOCKS, (byte)1, -256, 0,   -5, -1,  true);
@@ -36,6 +38,18 @@ public class Barnarda_C_Forest extends WE_Biome {
 		
 		standardBiomeLayers.add(Blocks.BEDROCK, (byte)0,                      0, 2,  0,  0, true);
 		createChunkGen_InXZ_List.add(standardBiomeLayers);
+		
+		WE_LakesGen lakes = new WE_LakesGen();
+		lakes.lakeBlock = Blocks.WATER.getDefaultState();
+		lakes.iceGen = false;
+		lakes.chunksForLake = 6;
+		decorateChunkGen_List.add(lakes);
+		
+		lakes = new WE_LakesGen();
+		lakes.lakeBlock = Blocks.LAVA.getDefaultState();
+		lakes.iceGen = false;
+		lakes.chunksForLake = 100;
+		decorateChunkGen_List.add(lakes);
 	}
 }
 

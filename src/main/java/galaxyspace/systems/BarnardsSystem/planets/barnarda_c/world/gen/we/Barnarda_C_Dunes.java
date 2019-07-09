@@ -18,7 +18,7 @@ public class Barnarda_C_Dunes extends WE_Biome {
 		biomeScaleX             = 280.0D;
 		biomeScaleY             =   1.7D;
 		biomeSurfaceHeight      =     72;
-		biomeInterpolateQuality =     20;
+		biomeInterpolateQuality =     15;
 		biomeBlockGrassColor    = 0x00FF00;
 		biomeBlockWaterColor 	= 0x11FF66;
 		
