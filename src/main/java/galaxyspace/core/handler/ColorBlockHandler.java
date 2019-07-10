@@ -6,7 +6,7 @@ import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProvider;
 import galaxyspace.GalaxySpace;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.dimension.WorldProviderProxima_B_WE;
 import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigCore;
-import galaxyspace.systems.BarnardsSystem.core.registers.blocks.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;

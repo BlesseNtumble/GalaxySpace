@@ -1,0 +1,12 @@
+{ 
+	"variants": { 
+		"moisture=0": { "model": "galaxyspace:barnarda/barnarda_c_farmland_dry" },
+        "moisture=1": { "model": "galaxyspace:barnarda/barnarda_c_farmland_dry" },
+        "moisture=2": { "model": "galaxyspace:barnarda/barnarda_c_farmland_dry" },
+        "moisture=3": { "model": "galaxyspace:barnarda/barnarda_c_farmland_dry" },
+        "moisture=4": { "model": "galaxyspace:barnarda/barnarda_c_farmland_dry" },
+        "moisture=5": { "model": "galaxyspace:barnarda/barnarda_c_farmland_dry" },
+        "moisture=6": { "model": "galaxyspace:barnarda/barnarda_c_farmland_dry" },
+        "moisture=7": { "model": "galaxyspace:barnarda/barnarda_c_farmland_moist" }
+	} 
+}
