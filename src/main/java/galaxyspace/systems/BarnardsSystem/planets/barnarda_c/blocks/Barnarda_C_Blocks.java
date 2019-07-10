@@ -38,7 +38,12 @@ public class Barnarda_C_Blocks  extends Block implements ISortableBlock, ITerraf
         super(Material.ROCK);
         this.setUnlocalizedName("barnarda_c_blocks");
         this.setSoundType(SoundType.STONE); 
-        this.setHarvestLevel("pickaxe", 2);
+        this.setHarvestLevel("pickaxe", 0, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.STONE));
+        this.setHarvestLevel("pickaxe", 0, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.COBBLESTONE));
+        this.setHarvestLevel("pickaxe", 0, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.STONE_BRICKS));
+        //this.setHarvestLevel("spade", 1, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.DIRT));
+        //this.setHarvestLevel("spade", 1, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.DIRT_1));
+        //this.setHarvestLevel("axe", 1, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.OAK_PLANKS));
     }
 
 	@Override
@@ -57,6 +62,26 @@ public class Barnarda_C_Blocks  extends Block implements ISortableBlock, ITerraf
     }
 	
 	@Override
+	public float getBlockHardness(IBlockState state, World world, BlockPos pos)
+    {
+		EnumBlockBarnardaC type = ((EnumBlockBarnardaC) state.getValue(BASIC_TYPE));
+		switch (type)
+        {
+			case DIRT: 
+			case DIRT_1:
+				return 0.6F;
+			case STONE: 
+			case COBBLESTONE:
+			case STONE_BRICKS:
+				return 1.0F;
+			case OAK_PLANKS:
+				return 0.5F;
+			default: return this.blockHardness;
+        }
+        
+    }
+	
+	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		return new ItemStack(Item.getItemFromBlock(this), 1, this.getMetaFromState(state));
 	}
@@ -68,28 +93,6 @@ public class Barnarda_C_Blocks  extends Block implements ISortableBlock, ITerraf
         for (EnumBlockBarnardaC blockBasic : EnumBlockBarnardaC.values())
         {
             list.add(new ItemStack(this, 1, blockBasic.getMeta()));
-        }
-    }
-	
-	@Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
-    {
-		EnumBlockBarnardaC type = ((EnumBlockBarnardaC) state.getValue(BASIC_TYPE));
-        switch (type)
-        {        	
-        	default:
-        		return Item.getItemFromBlock(this);
-        }
-    }
-	
-	@Override
-    public int damageDropped(IBlockState state)
-    {
-		EnumBlockBarnardaC type = ((EnumBlockBarnardaC) state.getValue(BASIC_TYPE));
-		switch (type)
-        {
-        	default:
-        		return getMetaFromState(state);
         }
     }
 	

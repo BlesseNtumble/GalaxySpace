@@ -62,20 +62,11 @@ public class ContainerFuelGenerator extends Container
 
             if (par1 != 0)
             {
-                if (var4.getItem() == GCItems.bucketFuel)
+                
+                if (!this.mergeItemStack(var4, 0, 1, false))
                 {
-                    if (!this.mergeItemStack(var4, 0, 1, false))
-                    {
-                    	return ItemStack.EMPTY;
-                    }
-                }
-                if (var4.getItem() == GCItems.fuelCanister && var4.getItemDamage() != 1001)
-                {
-                    if (!this.mergeItemStack(var4, 0, 1, false))
-                    {
-                    	return ItemStack.EMPTY;
-                    }
-                }
+                	return ItemStack.EMPTY;
+                }                             
                 else if (par1 >= 28)
                 {
                     if (!this.mergeItemStack(var4, 1, 28, false))

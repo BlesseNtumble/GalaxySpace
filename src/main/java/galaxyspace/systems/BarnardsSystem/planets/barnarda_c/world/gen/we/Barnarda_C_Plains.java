@@ -3,7 +3,7 @@ package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
 import galaxyspace.core.prefab.world.gen.we.WE_LakesGen;
-import galaxyspace.systems.BarnardsSystem.core.registers.blocks.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.Biome;

@@ -3,7 +3,7 @@ package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks;
 import java.util.Random;
 
 import galaxyspace.core.util.GSCreativeTabs;
-import galaxyspace.systems.BarnardsSystem.core.registers.blocks.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;

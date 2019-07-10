@@ -2,7 +2,7 @@ package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we;
 
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
-import galaxyspace.systems.BarnardsSystem.core.registers.blocks.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
 import net.minecraft.init.Blocks;
 
 public class Barnarda_C_DeepOcean extends WE_Biome {

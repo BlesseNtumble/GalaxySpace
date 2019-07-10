@@ -2,24 +2,28 @@ package galaxyspace.systems.BarnardsSystem;
 
 import java.io.File;
 
-import asmodeuscore.core.astronomy.BodiesHelper;
 import asmodeuscore.core.astronomy.BodiesData;
+import asmodeuscore.core.astronomy.BodiesHelper;
 import asmodeuscore.core.astronomy.BodiesHelper.Galaxies;
 import galaxyspace.GalaxySpace;
 import galaxyspace.api.IBodies;
 import galaxyspace.api.IBodiesHandler;
 import galaxyspace.core.proxy.ClientProxy;
 import galaxyspace.core.util.GSDimensions;
+import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigCore;
 import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigDimensions;
+import galaxyspace.systems.BarnardsSystem.core.events.BRClientEventHandler;
 import galaxyspace.systems.BarnardsSystem.core.events.BREventHandler;
-import galaxyspace.systems.BarnardsSystem.core.registers.blocks.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.core.registers.BRItems;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Blocks.EnumBlockBarnardaC;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Dandelions.EnumBlockDandelions;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Grass.EnumBlockGrass;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Leaves.EnumBlockLeaves;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.TeleportTypeBarnarda_C;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.WorldProviderBarnarda_C_WE;
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.items.ItemBasicBR;
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody.ScalableDistance;
 import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
@@ -29,10 +33,12 @@ import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.AtmosphereInfo;
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.relauncher.Side;
 
 @IBodiesHandler
 public class BarnardsSystemBodies implements IBodies {
@@ -60,9 +66,13 @@ public class BarnardsSystemBodies implements IBodies {
 		Barnarda_D = (Planet) BodiesHelper.registerPlanet(BarnardsSystem, "barnarda_d", GalaxySpace.ASSET_PREFIX, null, -1, 6, (float) Math.PI / 2, 1.0F, 1.25F, 105.9F).setRelativeDistanceFromCenter(new ScalableDistance(1.25F, 1.0F)).setRingColorRGB(1.0F, 0.0F, 0.0F);
 		Barnarda_E = (Planet) BodiesHelper.registerPlanet(BarnardsSystem, "barnarda_e", GalaxySpace.ASSET_PREFIX, null, -1, 6, (float) Math.PI, 1.0F, 1.75F, 15.9F);
 			
+		if(event.getSide() == Side.CLIENT)
+			GalaxySpace.proxy.register_event(new BRClientEventHandler());		
 		GalaxySpace.proxy.register_event(new BREventHandler());		
 		
 		BRBlocks.initialize();
+		BRItems.initialize();
+		
 		registrycelestial();
 	    registryteleport();
 	}
@@ -102,31 +112,38 @@ public class BarnardsSystemBodies implements IBodies {
 	@Override
 	public void registerRender() {
 	//	if(BRConfigCore.enableBarnardsSystems) {	
+		
+		for (EnumBlockBarnardaC blockBasic : EnumBlockBarnardaC.values())        
+			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, BRBlocks.BARNARDA_C_BLOCKS, blockBasic.getMeta(), "barnarda/" + blockBasic.getName());
+			
+		for (EnumBlockDandelions blockBasic : EnumBlockDandelions.values())       
+			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, BRBlocks.BARNARDA_C_DANDELIONS, blockBasic.getMeta(), "barnarda/" + blockBasic.getName());
+		
+			
+		//String[] name = new String[EnumBlockGrass.values().length];
+		for (EnumBlockGrass blockBasic : EnumBlockGrass.values()) {       
+			//if(blockBasic.getName() != null) name[blockBasic.getMeta()] = blockBasic.getName();
+	    	ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, BRBlocks.BARNARDA_C_GRASS, blockBasic.getMeta(), "barnarda/" + blockBasic.getName());
+		}
+			
+		for (EnumBlockLeaves blockBasic : EnumBlockLeaves.values())      
+	    	ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, BRBlocks.BARNARDA_C_LEAVES, blockBasic.getMeta(), "barnarda/" + blockBasic.getName());
 			
 			
-			for (EnumBlockBarnardaC blockBasic : EnumBlockBarnardaC.values())        
-				ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, BRBlocks.BARNARDA_C_BLOCKS, blockBasic.getMeta(), "barnarda/" + blockBasic.getName());
+		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "barnarda/",  BRBlocks.BARNARDA_C_FARMLAND);
+		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "barnarda/",  BRBlocks.BARNARDA_C_TEST_LOG);
+		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "barnarda/",  BRBlocks.BARNARDA_C_TEST_GLOW_LOG);
 			
-			for (EnumBlockDandelions blockBasic : EnumBlockDandelions.values()) {       
-				//if(blockBasic.getName() != null) name[blockBasic.getMeta()] = blockBasic.getName();
-	    		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, BRBlocks.BARNARDA_C_DANDELIONS, blockBasic.getMeta(), "barnarda/" + blockBasic.getName());
-			}
+		int i = 0;
+		for(String basic : ItemBasicBR.names)
+		{
+			if(basic.equals("null")) { i++; continue; }
+			ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, BRItems.BASIC, i++, "barnarda/basic/" + basic);
+		}
 			
-			String[] name = new String[EnumBlockGrass.values().length];
-			for (EnumBlockGrass blockBasic : EnumBlockGrass.values()) {       
-				if(blockBasic.getName() != null) name[blockBasic.getMeta()] = blockBasic.getName();
-	    		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, BRBlocks.BARNARDA_C_GRASS, blockBasic.getMeta(), "barnarda/" + blockBasic.getName());
-			}
-			
-			for (EnumBlockLeaves blockBasic : EnumBlockLeaves.values())      
-	    		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, BRBlocks.BARNARDA_C_LEAVES, blockBasic.getMeta(), "barnarda/" + blockBasic.getName());
-			
-			
-			//ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "barnarda/",  BRBlocks.BARNARDA_C_GRASS);
-			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "barnarda/",  BRBlocks.BARNARDA_C_TEST_LOG);
-			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "barnarda/",  BRBlocks.BARNARDA_C_TEST_GLOW_LOG);
-			
-			
+		if(GCCoreUtil.isDeobfuscated()) {
+			GSUtils.addItemMetadataJsonFiles(BRItems.BASIC, ItemBasicBR.names, "barnarda/basic/");
+		}
 			//if(GCCoreUtil.isDeobfuscated()) 
 				//GSUtils.addBlockMetadataJsonFiles(BRBlocks.BARNARDA_C_GRASS, name, Barnarda_C_Grass.BASIC_TYPE.getName(), "barnarda/");
 			
@@ -135,35 +152,34 @@ public class BarnardsSystemBodies implements IBodies {
 
 	@Override
 	public void registerVariant() {
-		//if(BRConfigCore.enableBarnardsSystems) {
-			String[] blocks = new String[EnumBlockBarnardaC.values().length];
-	    	for(int i = 0; i < blocks.length; i++)
-	    		blocks[i] = EnumBlockBarnardaC.byMetadata(i).getName(); 
+		String[] blocks = new String[EnumBlockBarnardaC.values().length];
+	    for(int i = 0; i < blocks.length; i++)
+	    	blocks[i] = EnumBlockBarnardaC.byMetadata(i).getName(); 
 	    	
-			ClientProxy.addVariant("barnarda_c_blocks", "barnarda/", blocks);			
-			//ClientProxy.addVariant("barnarda_c_grass", "barnarda/", "barnarda_c_grass");
-			ClientProxy.addVariant("barnarda_c_test_log", "barnarda/", "barnarda_c_test_log");
-			ClientProxy.addVariant("barnarda_c_test_glow_log", "barnarda/", "barnarda_c_test_log");
+		ClientProxy.addVariant("barnarda_c_blocks", "barnarda/", blocks);			
+		ClientProxy.addVariant("barnarda_c_test_log", "barnarda/", "barnarda_c_test_log");		
+		ClientProxy.addVariant("barnarda_c_test_glow_log", "barnarda/", "barnarda_c_test_glow_log");
+		ClientProxy.addVariant("barnarda_c_farmland", "barnarda/", "barnarda_c_farmland");
 			
-			blocks = new String[EnumBlockDandelions.values().length];
-	    	for(int i = 0; i < blocks.length; i++)
-	    		blocks[i] = EnumBlockDandelions.byMetadata(i).getName();
+		blocks = new String[EnumBlockDandelions.values().length];
+	    for(int i = 0; i < blocks.length; i++)
+	    	blocks[i] = EnumBlockDandelions.byMetadata(i).getName();
 	    	
-	    	ClientProxy.addVariant("barnarda_c_dandelions", "barnarda/", blocks);
+	    ClientProxy.addVariant("barnarda_c_dandelions", "barnarda/", blocks);
 	    	
-	    	blocks = new String[EnumBlockGrass.values().length];
-	    	for(int i = 0; i < blocks.length; i++)
-	    		blocks[i] = EnumBlockGrass.byMetadata(i).getName();
+	    blocks = new String[EnumBlockGrass.values().length];
+	    for(int i = 0; i < blocks.length; i++)
+	    	blocks[i] = EnumBlockGrass.byMetadata(i).getName();
 	    	
-	    	ClientProxy.addVariant("barnarda_c_grasses", "barnarda/", blocks);
+	    ClientProxy.addVariant("barnarda_c_grasses", "barnarda/", blocks);
 	    	
-	    	blocks = new String[EnumBlockLeaves.values().length];
-	    	for(int i = 0; i < blocks.length; i++)
-	    		blocks[i] = EnumBlockLeaves.byMetadata(i).getName();
+	    blocks = new String[EnumBlockLeaves.values().length];
+	    for(int i = 0; i < blocks.length; i++)
+	    	blocks[i] = EnumBlockLeaves.byMetadata(i).getName();
 	    	
-	    	ClientProxy.addVariant("barnarda_c_leaves", "barnarda/", blocks);
-		//}
-		
+	    ClientProxy.addVariant("barnarda_c_leaves", "barnarda/", blocks);
+
+	    //ModelLoader.setCustomStateMapper(BRBlocks.BARNARDA_C_REEDS, new StateMap.Builder().ignore(BlockLiquid.LEVEL).build());
 		
 	}
 	

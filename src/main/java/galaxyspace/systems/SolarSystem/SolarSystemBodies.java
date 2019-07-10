@@ -97,6 +97,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 
 @IBodiesHandler
 public class SolarSystemBodies implements IBodies{
@@ -232,7 +233,7 @@ public class SolarSystemBodies implements IBodies{
 		tritonNeptune = (Moon) BodiesHelper.registerMoon(planetNeptune, "triton", GalaxySpace.ASSET_PREFIX, null, -1, -1, (float) Math.PI / 2, 0.0017F, 25.0F, -200F);
 		
 		charonPluto = (Moon) BodiesHelper.registerMoon(planetPluto, "charon", GalaxySpace.ASSET_PREFIX, null, -1, -1, (float) Math.PI / 2, 0.0017F, 15.0F, 50F);
-	
+
 		venusSpaceStation = (Satellite) new Satellite("spacestation.venus").setParentBody(VenusModule.planetVenus).setRelativeSize(0.2667F).setRelativeDistanceFromCenter(new CelestialBody.ScalableDistance(9F, 9F)).setRelativeOrbitTime(1 / 0.05F);
 		venusSpaceStation.setTierRequired(2);
 		venusSpaceStation.setBiomeInfo(BiomeOrbit.space);
@@ -265,8 +266,7 @@ public class SolarSystemBodies implements IBodies{
 			GameRegistry.registerWorldGenerator(new OreGenerator(GSBlocks.OVERWORLD_ORES.getStateFromMeta(2), 4, 0, 45, 4, GCBlocks.blockMoon.getStateFromMeta(4), ConfigManagerCore.idDimensionMoon), 4);
 			// --------------------------------------------
 		}*/
-		
-    	registrycelestial();
+		registrycelestial();
     	registryteleport();    	
     	registerDungeonLoot();
     	
@@ -420,7 +420,7 @@ public class SolarSystemBodies implements IBodies{
 		
 		BodiesData unreachableData = new BodiesData(null, 0F, 0, 0, false);	
 		BodiesHelper.registerBody(oberonUranus, unreachableData, GSConfigCore.enableUnreachable);
-    	BodiesHelper.registerBody(proteusNeptune, unreachableData, GSConfigCore.enableUnreachable);
+		BodiesHelper.registerBody(proteusNeptune, unreachableData, GSConfigCore.enableUnreachable);
 		BodiesHelper.registerBody(tritonNeptune, unreachableData, GSConfigCore.enableUnreachable); 
 		BodiesHelper.registerBody(mimasSaturn, unreachableData, GSConfigCore.enableUnreachable); 	
 		BodiesHelper.registerBody(tethysSaturn, unreachableData, GSConfigCore.enableUnreachable); 	

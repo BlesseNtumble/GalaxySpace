@@ -413,11 +413,11 @@ public class GSEventHandler {
 				}
 			}
 			
-	        if (stats.getShieldControllerInSlot().isEmpty())
+	        /*if (stats.getShieldControllerInSlot().isEmpty())
 	        {
 	        	GCPlayerHandler.sendGearUpdatePacket(player, EnumModelPacketType.REMOVE, EnumExtendedInventorySlot.SHIELD_CONTROLLER);
 	        }
-	       	else if (stats.getShieldControllerInSlot().isItemEqual(new ItemStack(GSItems.BASIC, 1, 16)))
+	       	else*/ if (stats.getShieldControllerInSlot().isItemEqual(new ItemStack(GSItems.BASIC, 1, 16)))
 	        {
 	       		ItemStack shield = stats.getShieldControllerInSlot();
 	       		if (shield.hasTagCompound())
@@ -465,39 +465,19 @@ public class GSEventHandler {
 				{
 					int count = 150;
 					int air = player.getAir();
-					if(!inv.getStackInSlot(2).isEmpty())
+					for(int i = 2; i <= 3; i++)
 					{
-						if(inv.getStackInSlot(2).getItemDamage() != inv.getStackInSlot(2).getMaxDamage())
+						if(!inv.getStackInSlot(i).isEmpty() && inv.getStackInSlot(i).getItemDamage() != inv.getStackInSlot(i).getMaxDamage())
 						{
 							if(air < count)
 							{
 								player.setAir(air + count);
-								inv.getStackInSlot(2).setItemDamage(inv.getStackInSlot(2).getItemDamage() + 1);
+								inv.getStackInSlot(i).setItemDamage(inv.getStackInSlot(i).getItemDamage() + 1);
 							}
+							break;
 						}
-						else if(inv.getStackInSlot(2).isEmpty() && !inv.getStackInSlot(3).isEmpty())
-						{
-							if(inv.getStackInSlot(3).getItemDamage() != inv.getStackInSlot(3).getMaxDamage())
-							{
-								if(air < count)
-								{
-									player.setAir(air + count);
-									inv.getStackInSlot(3).setItemDamage(inv.getStackInSlot(3).getItemDamage() + 1);
-								}
-							}
-						}
-						if(!inv.getStackInSlot(2).isEmpty() && !inv.getStackInSlot(3).isEmpty())
-						{
-							if(inv.getStackInSlot(2).getItemDamage() == inv.getStackInSlot(2).getMaxDamage() && inv.getStackInSlot(3).getItemDamage() != inv.getStackInSlot(3).getMaxDamage())
-							{
-								if(air < count)
-								{
-									player.setAir(air + count);
-									inv.getStackInSlot(3).setItemDamage(inv.getStackInSlot(3).getItemDamage() + 1);
-								}
-							}
-						}
-					}
+							
+					}					
 		        }
 			}
 			
@@ -700,7 +680,7 @@ public class GSEventHandler {
 		return false;
 	}
 	
-	public static boolean inLaserBubble(World world, double avgX, double avgY, double avgZ)
+	public static boolean inShieldBubble(World world, double avgX, double avgY, double avgZ)
 	{
         for (final BlockVec3Dim blockVec : TileEntityPlanetShield.loadedTiles)
         {
@@ -716,52 +696,7 @@ public class GSEventHandler {
 
 		return false;
 	}
-	
-	/*
-	private void applyReverseWaterMovement(EntityLivingBase entity){
-
-		AxisAlignedBB par1AxisAlignedBB = entity.boundingBox.expand(0.0D, -0.4000000059604645D, 0.0D).contract(0.001D, 0.001D, 0.001D);
-
-		int i = MathHelper.floor_double(par1AxisAlignedBB.minX);
-		int j = MathHelper.floor_double(par1AxisAlignedBB.maxX + 1.0D);
-		int k = MathHelper.floor_double(par1AxisAlignedBB.minY);
-		int l = MathHelper.floor_double(par1AxisAlignedBB.maxY + 1.0D);
-		int i1 = MathHelper.floor_double(par1AxisAlignedBB.minZ);
-		int j1 = MathHelper.floor_double(par1AxisAlignedBB.maxZ + 1.0D);
-
-		if (!entity.worldObj.checkChunksExist(i, k, i1, j, l, j1)){
-			return;
-		}else{
-			boolean flag = false;
-			Vec3 vec3 = Vec3.createVectorHelper(0.0D, 0.0D, 0.0D);
-
-			for (int k1 = i; k1 < j; ++k1){
-				for (int l1 = k; l1 < l; ++l1){
-					for (int i2 = i1; i2 < j1; ++i2){
-						Block block = entity.worldObj.getBlock(k1, l1, i2);
-
-							if (block != null && block.getMaterial() == Material.water){
-									double d0 = l1 + 1 - BlockLiquid.getLiquidHeightPercent(entity.worldObj.getBlockMetadata(k1, l1, i2));
-	
-								if (l >= d0){
-									flag = true;
-									block.velocityToAddToEntity(entity.worldObj, k1, l1, i2, entity, vec3);
-								}							
-						}
-					}
-				}
-			}
-
-			if (vec3.lengthVector() > 0.0D && entity.isInWater()){
-				vec3 = vec3.normalize();
-				double d1 = -0.014D;
-				entity.motionX += vec3.xCoord * d1;
-				entity.motionY += vec3.yCoord * d1;
-				entity.motionZ += vec3.zCoord * d1;
-			}
-		}
-	}
-	*/
+		
 	public static boolean consumeItemStack(IInventory inventory, ItemStack stack) {
 		//GalaxySpace.debug(getAmount(inventory, stack) + "");
 		   if(getAmount(inventory, stack) >= stack.getCount()) {			   
