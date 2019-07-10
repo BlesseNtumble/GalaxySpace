@@ -7,6 +7,10 @@
 		"type=barnarda_c_light_balls": { "model": "galaxyspace:barnarda/barnarda_c_light_balls"},
 		"type=barnarda_c_leaves_balls": { "model": "galaxyspace:barnarda/barnarda_c_leaves_balls"},
 		"type=barnarda_c_desert_down": { "model": "galaxyspace:barnarda/barnarda_c_desert_down"},
-		"type=barnarda_c_desert_up": { "model": "galaxyspace:barnarda/barnarda_c_desert_up"}
+		"type=barnarda_c_desert_up": { "model": "galaxyspace:barnarda/barnarda_c_desert_up"},
+		"type=barnarda_c_yellow_grass_down": { "model": "galaxyspace:barnarda/barnarda_c_yellow_grass_down"},
+		"type=barnarda_c_yellow_grass_up": { "model": "galaxyspace:barnarda/barnarda_c_yellow_grass_up"},
+		"type=barnarda_c_reeds": { "model": "galaxyspace:barnarda/barnarda_c_reeds"},
+		"type=barnarda_c_reeds_fruits": { "model": "galaxyspace:barnarda/barnarda_c_reeds_fruits"}
 	} 
 }
