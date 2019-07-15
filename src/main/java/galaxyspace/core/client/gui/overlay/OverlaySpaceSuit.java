@@ -104,7 +104,6 @@ public class OverlaySpaceSuit extends Overlay {
 						mc.getRenderItem().renderItemOverlays(mc.fontRenderer, stack, xOffset - (i * 20) + 60, yOffset - 6);
 						RenderHelper.disableStandardItemLighting();
 						mc.fontRenderer.drawString(status + "[" + keys[3 - player.inventory.armorInventory.indexOf(stack)] + "] ", xOffset - (i * 20) + 62, yOffset + 10, 0xFFFFFF);
-						
 					}
 					else {
 						mc.getRenderItem().renderItemAndEffectIntoGUI(module, xOffset, yOffset - (i * 20));
