@@ -42,6 +42,7 @@ import galaxyspace.systems.SolarSystem.planets.mars.recipes.CraftingRecipesMars;
 import galaxyspace.systems.SolarSystem.planets.mercury.dimension.TeleportTypeMercury;
 import galaxyspace.systems.SolarSystem.planets.mercury.dimension.WorldProviderMercury;
 import galaxyspace.systems.SolarSystem.planets.mercury.recipes.CraftingRecipesMercury;
+import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockOres;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemSchematics;
 import galaxyspace.systems.SolarSystem.planets.overworld.recipes.CraftingRecipesOverworld;
 import galaxyspace.systems.SolarSystem.planets.overworld.recipes.schematic.SchematicBodyRecipe;
@@ -93,6 +94,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -256,8 +258,10 @@ public class SolarSystemBodies implements IBodies{
 		// --------------------------------------------
 		// TODO Overworld -----------------------------
 		if(GSConfigCore.enableOverworldOres) {
-			GameRegistry.registerWorldGenerator(new OreGenerator(GSBlocks.OVERWORLD_ORES.getStateFromMeta(0), 12, 0, 60, 5, Blocks.STONE.getDefaultState(), 0), 0);
-			GameRegistry.registerWorldGenerator(new OreGenerator(GSBlocks.OVERWORLD_ORES.getStateFromMeta(1), 6, 0, 45, 4, Blocks.STONE.getDefaultState(), 0), 1);
+			if(!Loader.isModLoaded("Tinkers' Construct"))
+				GameRegistry.registerWorldGenerator(new OreGenerator(GSBlocks.OVERWORLD_ORES.getDefaultState().withProperty(BlockOres.BASIC_TYPE, BlockOres.EnumBlockOres.COBALT), 12, 0, 60, 5, Blocks.STONE.getDefaultState(), 0), 0);
+			
+			GameRegistry.registerWorldGenerator(new OreGenerator(GSBlocks.OVERWORLD_ORES.getDefaultState().withProperty(BlockOres.BASIC_TYPE, BlockOres.EnumBlockOres.NICKEL), 6, 0, 45, 4, Blocks.STONE.getDefaultState(), 0), 1);
 		}	
 		// --------------------------------------------		
 /*	if(GSConfigCore.enableOresGeneration) 
