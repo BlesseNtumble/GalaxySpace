@@ -167,21 +167,6 @@ public class ItemBasicGS extends Item implements ISortableItem{
 		{			
 			return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
 		}
-		
-		if(stack.getItemDamage() == 15)
-		{
-			RayTraceResult raytraceresult = this.rayTrace(world, player, true);
-			if(raytraceresult == null)
-				return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
-			
-			BlockPos pos = raytraceresult.getBlockPos();
-			
-			GalaxySpace.debug(pos + "");
-			if(world.isAirBlock(pos.up()))
-				//new WorldGenTest(3).generate(world, world.rand, pos.up());
-				new WorldGenTree_BigJungle(Blocks.LOG.getDefaultState(), Blocks.LEAVES.getDefaultState(), world.rand.nextInt(3)).generate(world, world.rand, pos.up());
-		}
-		
 		else if(stack.getItemDamage() == 19)
 		{
 			player.openGui(GalaxySpace.MODID, GSConfigCore.guiIDGuideBook, world, 0, 0, 0);

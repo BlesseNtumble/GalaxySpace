@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 import codechicken.nei.client.render.WorldOverlayRenderer;
 import galaxyspace.GalaxySpace;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.core.registers.BRItems;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Blocks.EnumBlockBarnardaC;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
@@ -21,6 +22,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -123,6 +125,15 @@ public class Barnarda_C_Dandelions extends Block implements IGrowable, IShearabl
 	
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		
+		EnumBlockDandelions type = ((EnumBlockDandelions) state.getValue(BASIC_TYPE));
+		if(!world.isRemote) {	
+			if(type == EnumBlockDandelions.REEDS_FRUITS) {
+				world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(BRItems.BASIC, 1, 1)));
+				world.setBlockState(pos, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS), 3);
+				return true;	
+			}
+		}
 		return false;
 	}
 	
@@ -142,7 +153,7 @@ public class Barnarda_C_Dandelions extends Block implements IGrowable, IShearabl
 				while(world.getBlockState(pos.down(length)) == reed1 || world.getBlockState(pos.down(length)) == reed2) 
 					length++;
 						
-				if(length < 4 && rand.nextInt(50) == 0)
+				if(length < 4)
 					world.setBlockState(pos.up(), this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS), 3);
 			}
 			if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS))
@@ -250,7 +261,30 @@ public class Barnarda_C_Dandelions extends Block implements IGrowable, IShearabl
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) 
 	{
-		return Item.getItemFromBlock(this);
+		EnumBlockDandelions type = ((EnumBlockDandelions) state.getValue(BASIC_TYPE));
+		
+		switch(type)
+		{
+			case REEDS: 
+			case REEDS_FRUITS: 
+				return BRItems.BASIC;
+			default: return null;
+		}
+		
+	}
+	
+	@Override
+	public int damageDropped(IBlockState state) 
+	{
+		EnumBlockDandelions type = ((EnumBlockDandelions) state.getValue(BASIC_TYPE));
+		
+		switch(type)
+		{
+			case REEDS: 
+			case REEDS_FRUITS: 
+				return 0;
+			default: return 0;
+		}
 	}
 	
 	@Override

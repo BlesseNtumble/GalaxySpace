@@ -11,7 +11,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -66,7 +65,7 @@ public class Barnarda_C_Farmland extends BlockFarmland {
 			turnToDirt(worldIn, pos);
 		}
 
-		super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
+		//super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
 	}
 	 
 	protected static void turnToDirt(World p_190970_0_, BlockPos worldIn)

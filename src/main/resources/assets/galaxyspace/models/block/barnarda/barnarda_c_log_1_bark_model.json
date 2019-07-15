@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "galaxyspace:blocks/barnardssystem/barnarda_c/tree_1_side"
+        "all": "galaxyspace:blocks/barnardssystem/barnarda_c/log_oak_side"
     }
 }

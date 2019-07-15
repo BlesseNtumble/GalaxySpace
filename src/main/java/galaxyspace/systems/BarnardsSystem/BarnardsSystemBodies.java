@@ -181,6 +181,8 @@ public class BarnardsSystemBodies implements IBodies {
 
 	    //ModelLoader.setCustomStateMapper(BRBlocks.BARNARDA_C_REEDS, new StateMap.Builder().ignore(BlockLiquid.LEVEL).build());
 		
+
+	    ClientProxy.addVariant("br_basic", "barnarda/basic/", ItemBasicBR.names);
 	}
 	
 	@Override
