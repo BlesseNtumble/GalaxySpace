@@ -56,11 +56,17 @@ public class ColorBlockHandler {
 				else return ColorizerGrass.getGrassColor(0.5D, 1.0D);//BiomeColorHelper.getGrassColorAtPos(blockAccess, pos);
 			}
 			
-			return ColorizerGrass.getGrassColor(0.5D, 1.0D);
+			return 0x88BB44;//ColorizerGrass.getGrassColor(0.5D, 1.0D);
 		};
 		
-		if(BRConfigCore.enableBarnardsSystems)
-			blockColors.registerBlockColorHandler(grassColourHandler, Blocks.GRASS, BRBlocks.BARNARDA_C_GRASS);
+		final IBlockColor water_grassColourHandler = (state, blockAccess, pos, tintIndex) -> {
+			return 0x88CC44;
+		};
+		
+		if(BRConfigCore.enableBarnardsSystems) {
+			blockColors.registerBlockColorHandler(grassColourHandler, Blocks.GRASS, BRBlocks.BARNARDA_C_GRASS, BRBlocks.BARNARDA_C_WATER_GRASS);
+			blockColors.registerBlockColorHandler(water_grassColourHandler, BRBlocks.BARNARDA_C_WATER_GRASS);
+		}
 				
 		final IBlockColor waterColourHandler = (state, blockAccess, pos, tintIndex) -> {
 			if (blockAccess != null && pos != null) {				

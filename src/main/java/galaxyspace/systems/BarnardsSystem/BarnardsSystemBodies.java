@@ -131,6 +131,7 @@ public class BarnardsSystemBodies implements IBodies {
 			
 			
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "barnarda/",  BRBlocks.BARNARDA_C_FARMLAND);
+		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "barnarda/",  BRBlocks.BARNARDA_C_WATER_GRASS);
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "barnarda/",  BRBlocks.BARNARDA_C_TEST_LOG);
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "barnarda/",  BRBlocks.BARNARDA_C_TEST_GLOW_LOG);
 			
@@ -142,7 +143,8 @@ public class BarnardsSystemBodies implements IBodies {
 		}
 			
 		if(GCCoreUtil.isDeobfuscated()) {
-			GSUtils.addItemMetadataJsonFiles(BRItems.BASIC, ItemBasicBR.names, "barnarda/basic/");
+			//GSUtils.addBlockJsonFiles(BRBlocks.BARNARDA_C_WATER_GRASS, "barnarda/");
+			//GSUtils.addItemMetadataJsonFiles(BRItems.BASIC, ItemBasicBR.names, "barnarda/basic/");
 		}
 			//if(GCCoreUtil.isDeobfuscated()) 
 				//GSUtils.addBlockMetadataJsonFiles(BRBlocks.BARNARDA_C_GRASS, name, Barnarda_C_Grass.BASIC_TYPE.getName(), "barnarda/");
@@ -160,6 +162,7 @@ public class BarnardsSystemBodies implements IBodies {
 		ClientProxy.addVariant("barnarda_c_test_log", "barnarda/", "barnarda_c_test_log");		
 		ClientProxy.addVariant("barnarda_c_test_glow_log", "barnarda/", "barnarda_c_test_glow_log");
 		ClientProxy.addVariant("barnarda_c_farmland", "barnarda/", "barnarda_c_farmland");
+		ClientProxy.addVariant("barnarda_c_water_grass", "barnarda/", "barnarda_c_water_grass");
 			
 		blocks = new String[EnumBlockDandelions.values().length];
 	    for(int i = 0; i < blocks.length; i++)

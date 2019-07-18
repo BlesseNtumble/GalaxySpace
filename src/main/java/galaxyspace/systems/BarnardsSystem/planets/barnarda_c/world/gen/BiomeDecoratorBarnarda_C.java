@@ -1,6 +1,5 @@
 package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen;
 
-import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTree_BigJungle;
 import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTree_Forest;
 import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTree_Forest2;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
@@ -8,8 +7,6 @@ import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProvider;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_PerlinNoise;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProvider;
 import galaxyspace.GalaxySpace;
-import galaxyspace.systems.ACentauriSystem.core.registers.blocks.ACBlocks;
-import galaxyspace.systems.ACentauriSystem.planets.proxima_b.blocks.Proxima_B_Blocks;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Blocks;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Dandelions;
@@ -18,12 +15,14 @@ import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.WorldProv
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Forest;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Mountains;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Plains;
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Swampland;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_YellowPlains;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class BiomeDecoratorBarnarda_C extends BiomeDecoratorSpace
 {
@@ -35,7 +34,7 @@ public class BiomeDecoratorBarnarda_C extends BiomeDecoratorSpace
 
     @Override
     protected void decorate()
-    {
+    {    	    	
     	
     	int randPosX = this.posX + this.rand.nextInt(16) + 8;
 		int randPosZ = this.posZ + this.rand.nextInt(16) + 8;
@@ -44,13 +43,14 @@ public class BiomeDecoratorBarnarda_C extends BiomeDecoratorSpace
 		
 		WE_ChunkProvider chunk = ((WE_WorldProvider)this.getCurrentWorld().provider).chunk_provider;
 		
-		double scaleX = chunk.biomemapScaleX;
+		/*double scaleX = chunk.biomemapScaleX;
 		double persistance = chunk.biomemapPersistence;
 		GalaxySpace.debug("" + WE_PerlinNoise.PerlinNoise2D((this.getCurrentWorld().getSeed() * 11) ^ 6,
 				this.posX / scaleX, this.posZ / scaleX,
 				persistance, chunk.biomemapNumberOfOctaves)
 			* chunk.biomemapScaleY);
 		
+		*/
 		
 		if(getBiome(randPosX, randPosZ) instanceof Barnarda_C_Forest)
     	{
@@ -231,6 +231,87 @@ public class BiomeDecoratorBarnarda_C extends BiomeDecoratorSpace
 
 		    }
     	}
+	    
+	    if(getBiome(randPosX, randPosZ) instanceof Barnarda_C_Swampland)
+    	{
+	    	for(int i = 0; i < 5; i++){
+				randPosX = this.posX + this.rand.nextInt(16) + 8;
+				randPosZ = this.posZ + this.rand.nextInt(16) + 8;
+				pos = this.currentWorld.getHeight(new BlockPos(randPosX, 0, randPosZ));
+			   
+			
+		    	boolean cangen = true;
+				
+		  
+		    	while(!this.currentWorld.isBlockNormalCube(pos, true))
+		    	{
+		    		pos = pos.down();
+		    	}
+		    		
+				/*for(BlockPos pos1 : pos.getAllInBox(pos.add(-4, -1, -4), pos.add(4, -1, 4)))
+					if(!this.getCurrentWorld().isAirBlock(pos1) || this.getCurrentWorld().getBlockState(pos1) == BRBlocks.BARNARDA_C_TEST_LOG.getStateFromMeta(0)) 
+						cangen = false;
+					*/
+		    	if(!this.getCurrentWorld().isAreaLoaded(pos, 10, false))
+			    	if(cangen && (
+			    			this.getCurrentWorld().getBlockState(pos.down()) == BRBlocks.BARNARDA_C_GRASS.getDefaultState().withProperty(Barnarda_C_Grass.BASIC_TYPE, Barnarda_C_Grass.EnumBlockGrass.GRASS) 
+			    			|| this.getCurrentWorld().getBlockState(pos.down()) == BRBlocks.BARNARDA_C_BLOCKS.getDefaultState().withProperty(Barnarda_C_Blocks.BASIC_TYPE, Barnarda_C_Blocks.EnumBlockBarnardaC.DIRT) 
+			    			|| this.getCurrentWorld().getBlockState(pos.down()) == BRBlocks.BARNARDA_C_BLOCKS.getDefaultState().withProperty(Barnarda_C_Blocks.BASIC_TYPE, Barnarda_C_Blocks.EnumBlockBarnardaC.DIRT_1)) )
+			    	{
+			    		switch(rand.nextInt(2))
+						{
+							case 0:						
+								new WorldGenTree_Swampland(BRBlocks.BARNARDA_C_TEST_LOG.getStateFromMeta(0), BRBlocks.BARNARDA_C_LEAVES.getStateFromMeta(0), rand.nextInt(3)).generate(getCurrentWorld(), rand, pos);
+								break;
+							case 1:
+								new WorldGenTree_Swampland_2(BRBlocks.BARNARDA_C_TEST_LOG.getStateFromMeta(0), BRBlocks.BARNARDA_C_LEAVES.getStateFromMeta(0), rand.nextInt(3)).generate(getCurrentWorld(), rand, pos);
+								break;
+						}
+					}
+	    	}
+	    	
+	    	for(int i = 0; i < 16; i++){
+	    		for(int k = 0; k < 16; k++){
+					randPosX = this.posX + i + 8;
+					randPosZ = this.posZ + k + 8;
+					
+					pos = this.currentWorld.getTopSolidOrLiquidBlock(new BlockPos(randPosX, 0, randPosZ));
+					
+					if(this.getCurrentWorld().getBlockState(pos).getMaterial() == Material.WATER && this.rand.nextInt(2) == 0)
+					{
+						this.getCurrentWorld().setBlockState(pos.up(), BRBlocks.BARNARDA_C_WATER_GRASS.getDefaultState());
+					}
+	    		}
+			}
+				    	
+			for(int i = 0; i < 30; i++){
+        		randPosX = this.posX + this.rand.nextInt(16) + 8;
+    			//int randPosY = this.rand.nextInt(256);
+    			randPosZ = this.posZ + this.rand.nextInt(16) + 8;
+    			pos = this.currentWorld.getHeight(new BlockPos(randPosX, 0, randPosZ));
+    			
+    			boolean cangen = false;
+    			int range = 2;
+    			for(BlockPos pos1 : pos.getAllInBox(pos.add(-range, -range, -range), pos.add(range, range, range)))
+					if(this.getCurrentWorld().getBlockState(pos1).getMaterial() == Material.WATER) 
+						cangen = true;
+    			
+    			if(cangen && 
+    					(this.getCurrentWorld().getBlockState(pos.down()) == BRBlocks.BARNARDA_C_GRASS.getDefaultState().withProperty(Barnarda_C_Grass.BASIC_TYPE, Barnarda_C_Grass.EnumBlockGrass.GRASS) ||
+    					this.getCurrentWorld().getBlockState(pos.down()) == BRBlocks.BARNARDA_C_BLOCKS.getDefaultState().withProperty(Barnarda_C_Blocks.BASIC_TYPE, Barnarda_C_Blocks.EnumBlockBarnardaC.DIRT)))
+        		{
+    				if(rand.nextInt(15) == 0)
+    				{
+    					for(int size = 0; size < 2 + rand.nextInt(2); size++)
+    					{
+    						this.getCurrentWorld().setBlockState(pos.up(size), BRBlocks.BARNARDA_C_DANDELIONS.getDefaultState().withProperty(Barnarda_C_Dandelions.BASIC_TYPE, Barnarda_C_Dandelions.EnumBlockDandelions.REEDS));
+    					}
+    				}
+    				else
+    					this.getCurrentWorld().setBlockState(pos, BRBlocks.BARNARDA_C_DANDELIONS.getDefaultState().withProperty(Barnarda_C_Dandelions.BASIC_TYPE, Barnarda_C_Dandelions.EnumBlockDandelions.LIGHT_BALLS));
+    			}
+        	}
+	    }
     }
     
     @Override

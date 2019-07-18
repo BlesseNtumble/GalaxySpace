@@ -9,6 +9,7 @@ import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_G
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Leaves;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Logs;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Reeds;
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Water_Grass;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.items.ItemBlocksBarnarda_C;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.items.ItemBlocksBarnarda_C_Dandelions;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.items.ItemBlocksBarnarda_C_Grasses;
@@ -29,6 +30,7 @@ public class BRBlocks {
 	public static final Block BARNARDA_C_LEAVES = new Barnarda_C_Leaves();
 	//public static final Block BARNARDA_C_REEDS = new Barnarda_C_Reeds();
 	public static final Block BARNARDA_C_FARMLAND = new Barnarda_C_Farmland();
+	public static final Block BARNARDA_C_WATER_GRASS = new Barnarda_C_Water_Grass();
 	
 	public static void initialize() 
 	{	
@@ -39,6 +41,7 @@ public class BRBlocks {
 		registerBlock(BARNARDA_C_DANDELIONS, ItemBlocksBarnarda_C_Dandelions.class);
 		registerBlock(BARNARDA_C_LEAVES, ItemBlocksBarnarda_C_Leaves.class);
 		registerBlock(BARNARDA_C_FARMLAND, GSItemBlockDesc.class);
+		registerBlock(BARNARDA_C_WATER_GRASS, GSItemBlockDesc.class);
 	}
 	
 	public static void oreDictRegistration() 
