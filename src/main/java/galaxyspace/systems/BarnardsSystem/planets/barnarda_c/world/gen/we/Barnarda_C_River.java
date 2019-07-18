@@ -22,7 +22,7 @@ public class Barnarda_C_River extends WE_Biome {
 		biomeSurfaceHeight      =     50;
 		biomeInterpolateQuality =     30;
 		biomeBlockGrassColor    = 0x88BB44;
-		biomeBlockWaterColor 	= 0xFF0066;
+		biomeBlockWaterColor 	= 0x11FF66;
 		
 		//-//
 		decorateChunkGen_List.clear();		

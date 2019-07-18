@@ -19,8 +19,7 @@ public class Barnarda_C_DeepOcean extends WE_Biome {
 		biomeSurfaceHeight      =     35;
 		biomeInterpolateQuality =     65;
 		biomeBlockGrassColor    = 0x00FF00;
-		biomeBlockWaterColor 	= 0x44FFAA;
-		
+		biomeBlockWaterColor 	= 0x11FF66;		
 		
 		//-//
 		decorateChunkGen_List.clear();		

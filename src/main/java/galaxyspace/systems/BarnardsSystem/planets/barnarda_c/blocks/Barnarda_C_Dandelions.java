@@ -76,7 +76,7 @@ public class Barnarda_C_Dandelions extends Block implements IGrowable, IShearabl
 		switch (type)
         {						
 			default:
-				return Material.GRASS.getMaterialMapColor();
+				return Material.GROUND.getMaterialMapColor();
 		
         }
     }
@@ -109,6 +109,11 @@ public class Barnarda_C_Dandelions extends Block implements IGrowable, IShearabl
 	
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+		
+		EnumBlockDandelions type = ((EnumBlockDandelions) state.getValue(BASIC_TYPE));
+		if(type == EnumBlockDandelions.REEDS || type == EnumBlockDandelions.REEDS_FRUITS)
+			return new ItemStack(BRItems.BASIC, 1, 0);
+		
 		return new ItemStack(Item.getItemFromBlock(this), 1, this.getMetaFromState(state));
 	}
 	
@@ -134,6 +139,7 @@ public class Barnarda_C_Dandelions extends Block implements IGrowable, IShearabl
 				return true;	
 			}
 		}
+		
 		return false;
 	}
 	
@@ -197,7 +203,7 @@ public class Barnarda_C_Dandelions extends Block implements IGrowable, IShearabl
 		
 		if(state == this.getDefaultState().withProperty(BASIC_TYPE, type))
 		{
-			GalaxySpace.debug("123");
+			//GalaxySpace.debug("123");
 			boolean is_forriden = true;
 			for(IBlockState block : valide)
 				if(world.getBlockState(pos.down()) == block)
@@ -234,6 +240,12 @@ public class Barnarda_C_Dandelions extends Block implements IGrowable, IShearabl
 		if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.DESERT_UP))
 		{
 			world.destroyBlock(pos.down(), true);
+		}
+		
+		if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.DESERT_DOWN))
+		{
+			if(world.getBlockState(pos.up()) == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.DESERT_UP))
+				world.destroyBlock(pos.up(), true);
 		}
 		
 		if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.YELLOW_GRASS_UP))
