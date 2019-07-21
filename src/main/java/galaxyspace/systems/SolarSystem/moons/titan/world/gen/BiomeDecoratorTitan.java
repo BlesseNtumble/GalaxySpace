@@ -13,12 +13,18 @@ public class BiomeDecoratorTitan extends BiomeDecoratorSpace
 {
 
     private World currentWorld;
-    private WorldGenerator subgruntGen;
+    private WorldGenerator subgruntGen, sapphireOre, emeraldOre, diamondOre, coalOre, lapisOre, redstoneOre;
 
 
     public BiomeDecoratorTitan()
     {
         this.subgruntGen = new WorldGenMinableMeta(GSBlocks.TITAN_BLOCKS, 38, 1, true, GSBlocks.TITAN_BLOCKS, 0);
+        this.sapphireOre = new WorldGenMinableMeta(GSBlocks.TITAN_BLOCKS, 4, 3, true, GSBlocks.TITAN_BLOCKS, 2);
+        this.emeraldOre = new WorldGenMinableMeta(GSBlocks.TITAN_BLOCKS, 4, 4, true, GSBlocks.TITAN_BLOCKS, 2);
+        this.diamondOre = new WorldGenMinableMeta(GSBlocks.TITAN_BLOCKS, 6, 5, true, GSBlocks.TITAN_BLOCKS, 2);
+        this.coalOre = new WorldGenMinableMeta(GSBlocks.TITAN_BLOCKS, 16, 6, true, GSBlocks.TITAN_BLOCKS, 2);
+        this.lapisOre = new WorldGenMinableMeta(GSBlocks.TITAN_BLOCKS, 4, 7, true, GSBlocks.TITAN_BLOCKS, 2);
+        this.redstoneOre = new WorldGenMinableMeta(GSBlocks.TITAN_BLOCKS, 6, 8, true, GSBlocks.TITAN_BLOCKS, 2);
     }
 
     @Override
@@ -28,6 +34,13 @@ public class BiomeDecoratorTitan extends BiomeDecoratorSpace
 
     	}    
     	this.generateOre(25, subgruntGen, 0, 256);
+    	
+    	this.generateOre(6, sapphireOre, 0, 40);
+    	this.generateOre(4, emeraldOre, 0, 20);
+    	this.generateOre(6, diamondOre, 0, 20);
+    	this.generateOre(16, coalOre, 0, 90);
+    	this.generateOre(8, lapisOre, 0, 40);
+    	this.generateOre(10, redstoneOre, 0, 30);
     }
 
     @Override

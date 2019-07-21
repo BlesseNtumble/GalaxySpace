@@ -102,6 +102,12 @@ tile.enceladus_crystal.name=Unknow Crystal
 tile.titan_grunt.name=Titan Surface Grunt
 tile.titan_subgrunt.name=Titan Subsurface Grunt
 tile.titan_stone.name=Titan Stone
+tile.titan_sapphire_ore.name=Sapphire Ore
+tile.titan_emerald_ore.name=Emerald Ore
+tile.titan_diamond_ore.name=Diamond Ore
+tile.titan_coal_ore.name=Coal Ore
+tile.titan_lapis_ore.name=Lapis Ore
+tile.titan_redstone_ore.name=Redstone Ore
 
 tile.miranda_grunt.name=Miranda Surface Grunt
 tile.miranda_subgrunt.name=Miranda Subsurface Grunt

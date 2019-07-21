@@ -2,6 +2,12 @@
 	"variants": { 
 		"type=titan_grunt": { "model": "galaxyspace:titan_grunt"}, 
 		"type=titan_subgrunt": { "model": "galaxyspace:titan_subgrunt"}, 
-		"type=titan_stone": { "model": "galaxyspace:titan_stone"}
+		"type=titan_stone": { "model": "galaxyspace:titan_stone"},
+		"type=titan_sapphire_ore": {"model": "galaxyspace:titan_sapphire_ore"},
+		"type=titan_emerald_ore": {"model": "galaxyspace:titan_emerald_ore"},
+		"type=titan_diamond_ore": {"model": "galaxyspace:titan_diamond_ore"},
+		"type=titan_coal_ore": {"model": "galaxyspace:titan_coal_ore"},
+		"type=titan_lapis_ore": {"model": "galaxyspace:titan_lapis_ore"},
+		"type=titan_redstone_ore": {"model": "galaxyspace:titan_redstone_ore"}
 	} 
 }

@@ -101,6 +101,12 @@ tile.enceladus_crystal.name=Неизвестный Кристалл
 tile.titan_grunt.name=Поверхность Титана
 tile.titan_subgrunt.name=Подповерхность Титана
 tile.titan_stone.name=Камень Титана
+tile.titan_sapphire_ore.name=Сапфировая Руда
+tile.titan_emerald_ore.name=Изумудная Руда
+tile.titan_diamond_ore.name=Алмазная Руда
+tile.titan_coal_ore.name=Угольная Руда
+tile.titan_lapis_ore.name=Лазуритовая Руда
+tile.titan_redstone_ore.name=Руда Красного Камня
 
 tile.miranda_grunt.name=Поверхность Миранды
 tile.miranda_subgrunt.name=Подповерхность Миранды

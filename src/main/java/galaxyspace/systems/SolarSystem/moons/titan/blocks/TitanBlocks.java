@@ -1,5 +1,8 @@
 package galaxyspace.systems.SolarSystem.moons.titan.blocks;
 
+import java.util.Random;
+
+import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
 import net.minecraft.block.Block;
@@ -10,6 +13,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
@@ -48,9 +52,89 @@ public class TitanBlocks extends Block implements ISortableBlock{
 	}
 	
 	@Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
+		EnumTitanBlocks type = state.getValue(BASIC_TYPE);
+        switch (type)
+        {
+        	case TITAN_SAPPHIRE_ORE:
+        		return GCItems.itemBasicMoon;
+        	case TITAN_EMERALD_ORE:
+        		return Items.EMERALD;
+        	case TITAN_DIAMOND_ORE:
+        		return Items.DIAMOND;
+        	case TITAN_COAL_ORE:
+        		return Items.COAL;
+        	case TITAN_LAPIS_ORE:
+        		return Items.DYE;
+        	case TITAN_REDSTONE_ORE:
+        		return Items.REDSTONE;
+        	default:
+        		return Item.getItemFromBlock(this);
+        }
+    }
+
+    @Override
     public int damageDropped(IBlockState state)
     {
-		return getMetaFromState(state);        
+    	EnumTitanBlocks type = state.getValue(BASIC_TYPE);
+        switch (type)
+        {
+	        case TITAN_SAPPHIRE_ORE:
+	            return 2;
+	        case TITAN_EMERALD_ORE:
+	        case TITAN_DIAMOND_ORE:
+	        case TITAN_COAL_ORE:
+	        case TITAN_REDSTONE_ORE:
+	            return 0;
+	        case TITAN_LAPIS_ORE:
+	        	return 4;
+	        default:
+	            return getMetaFromState(state);
+        }
+    }
+
+    @Override
+    public int quantityDropped(IBlockState state, int fortune, Random random)
+    {
+        int bonus = 0;
+        int default_count = 0;
+
+        EnumTitanBlocks type = state.getValue(BASIC_TYPE);
+        
+        if (type == EnumTitanBlocks.TITAN_SAPPHIRE_ORE)
+        {
+            bonus = 2;
+        }
+       
+        if (type == EnumTitanBlocks.TITAN_LAPIS_ORE)
+        {
+            bonus = 2;
+            default_count = 8;
+        }
+        
+        if (type == EnumTitanBlocks.TITAN_REDSTONE_ORE)
+        {
+            bonus = 2;
+            default_count = 4;
+        }
+
+        
+        if (fortune > 0 && Item.getItemFromBlock(this) != this.getItemDropped(state, random, fortune))
+        {
+            int j = random.nextInt(fortune + 2) - 1;
+
+            if (j < 0)
+            {
+                j = 0;
+            }
+
+            return (this.quantityDropped(random) + default_count) * (j + 1) + bonus;
+        }
+        else
+        {
+            return this.quantityDropped(random) + default_count + random.nextInt(1 + bonus);
+        }
     }
 	
 	@Override
@@ -64,7 +148,13 @@ public class TitanBlocks extends Block implements ISortableBlock{
 	{
 		TITAN_GRUNT(0, "titan_grunt"),
 		TITAN_SUBGRUNT(1, "titan_subgrunt"),
-		TITAN_STONE(2, "titan_stone");
+		TITAN_STONE(2, "titan_stone"),
+		TITAN_SAPPHIRE_ORE(3, "titan_sapphire_ore"),
+		TITAN_EMERALD_ORE(4, "titan_emerald_ore"),
+		TITAN_DIAMOND_ORE(5, "titan_diamond_ore"),
+		TITAN_COAL_ORE(6, "titan_coal_ore"),
+		TITAN_LAPIS_ORE(7, "titan_lapis_ore"),
+		TITAN_REDSTONE_ORE(8, "titan_redstone_ore");
 
 		private final int meta;
 		private final String name;

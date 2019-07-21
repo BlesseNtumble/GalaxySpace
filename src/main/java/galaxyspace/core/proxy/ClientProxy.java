@@ -472,7 +472,12 @@ public class ClientProxy extends CommonProxy{
     	addVariant("ganymedeblocks", "", "ganymede_grunt", "ganymede_stone", "ganymede_magnesium_ore", "ganymede_titanium_ore");
     	addVariant("callistoblocks", "", "callisto_grunt", "callisto_stone");
     	addVariant("enceladusblocks", "", "enceladus_snow", "enceladus_grunt", "enceladus_coal_ore");
-    	addVariant("titanblocks", "", "titan_grunt", "titan_subgrunt", "titan_stone");
+    	
+    	blocks = new String[TitanBlocks.EnumTitanBlocks.values().length];
+    	for(int i = 0; i < blocks.length; i++)
+    		blocks[i] = TitanBlocks.EnumTitanBlocks.byMetadata(i).getName();
+    	
+    	addVariant("titanblocks", "", blocks);
     	
     	blocks = new String[MirandaBlocks.EnumMirandaBlocks.values().length];
     	for(int i = 0; i < blocks.length; i++)
