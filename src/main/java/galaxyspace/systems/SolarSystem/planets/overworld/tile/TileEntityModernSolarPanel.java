@@ -19,10 +19,8 @@ import micdoodle8.mods.galacticraft.core.blocks.BlockMulti;
 import micdoodle8.mods.galacticraft.core.blocks.BlockMulti.EnumBlockMultiType;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectricalSource;
-import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityMulti;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -41,7 +39,7 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TileEntityModernSolarPanel extends TileBaseUniversalElectricalSource implements IMultiBlock, IDisableableMachine, IInventoryDefaults, ISidedInventory, IConnector
+public class TileEntityModernSolarPanel extends TileBaseUniversalElectricalSource implements IMultiBlock, IDisableableMachine, ISidedInventory, IConnector
 {
     @NetworkedField(targetSide = Side.CLIENT)
     public int solarStrength = 0;
@@ -52,7 +50,6 @@ public class TileEntityModernSolarPanel extends TileBaseUniversalElectricalSourc
     public boolean disabled = false;
     @NetworkedField(targetSide = Side.CLIENT)
     public int disableCooldown = 0;
-    private NonNullList<ItemStack> stacks = NonNullList.withSize(2, ItemStack.EMPTY);
     public static final int MAX_GENERATE_WATTS = 450;
     @NetworkedField(targetSide = Side.CLIENT)
     public int generateWatts = 0;
@@ -66,10 +63,11 @@ public class TileEntityModernSolarPanel extends TileBaseUniversalElectricalSourc
      */
     public TileEntityModernSolarPanel()
     {
+    	super("tile.modern_solarpanel.name");
         this.storage.setMaxExtract(TileEntityModernSolarPanel.MAX_GENERATE_WATTS);
         this.storage.setMaxReceive(TileEntityModernSolarPanel.MAX_GENERATE_WATTS);
         this.storage.setCapacity(40000);
-           
+        this.inventory = NonNullList.withSize(2, ItemStack.EMPTY);
 
         this.initialised = true;
         this.tierGC = 1;
@@ -99,7 +97,7 @@ public class TileEntityModernSolarPanel extends TileBaseUniversalElectricalSourc
         if (!this.world.isRemote)
         {
 
-            this.recharge(this.stacks.get(0));
+            this.recharge(this.getInventory().get(0));
                        
             //this.storage.setCapacity(this.containingItems[1] != null ? 60000 : 40000);
             if (this.disableCooldown > 0)
@@ -338,8 +336,8 @@ public class TileEntityModernSolarPanel extends TileBaseUniversalElectricalSourc
         this.setDisabled(0, nbt.getBoolean("disabled"));
         this.disableCooldown = nbt.getInteger("disabledCooldown");
 
-        this.stacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt, this.stacks);
+        this.inventory = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(nbt, this.getInventory());
 
         this.initialised = false;
     }
@@ -354,7 +352,7 @@ public class TileEntityModernSolarPanel extends TileBaseUniversalElectricalSourc
         nbt.setInteger("disabledCooldown", this.disableCooldown);
         nbt.setBoolean("disabled", this.getDisabled(0));
 
-        ItemStackHelper.saveAllItems(nbt, this.stacks);
+        ItemStackHelper.saveAllItems(nbt, this.getInventory());
         
         return nbt;
     }
@@ -409,18 +407,6 @@ public class TileEntityModernSolarPanel extends TileBaseUniversalElectricalSourc
     }
 
     @Override
-    public boolean hasCustomName()
-    {
-        return true;
-    }
-    
-    @Override
-    public String getName()
-    {
-        return GCCoreUtil.translate("tile.modern_solarpanel.name");
-    }
-
-    @Override
     public void setDisabled(int index, boolean disabled)
     {
         if (this.disableCooldown == 0)
@@ -439,69 +425,6 @@ public class TileEntityModernSolarPanel extends TileBaseUniversalElectricalSourc
     public int getScaledElecticalLevel(int i)
     {
         return (int) Math.floor(this.getEnergyStoredGC() * i / this.getMaxEnergyStoredGC());
-    }
-
-    @Override
-    public int getSizeInventory()
-    {
-        return this.stacks.size();
-    }
-
-    @Override
-    public ItemStack getStackInSlot(int var1)
-    {
-        return this.stacks.get(var1);
-    }
-
-    @Override
-    public ItemStack decrStackSize(int index, int count)
-    {
-        ItemStack itemstack = ItemStackHelper.getAndSplit(this.stacks, index, count);
-
-        if (!itemstack.isEmpty())
-        {
-            this.markDirty();
-        }
-
-        return itemstack;
-    }
-
-    @Override
-    public ItemStack removeStackFromSlot(int index)
-    {
-        ItemStack oldstack = ItemStackHelper.getAndRemove(this.stacks, index);
-        if (!oldstack.isEmpty())
-        {
-        	this.markDirty();
-        }
-    	return oldstack;
-    }
-
-    @Override
-    public void setInventorySlotContents(int index, ItemStack stack)
-    {
-        this.stacks.set(index, stack);
-
-        if (stack.getCount() > this.getInventoryStackLimit())
-        {
-            stack.setCount(this.getInventoryStackLimit());
-        }
-
-        this.markDirty();
-    }
-    
-    @Override
-    public boolean isEmpty()
-    {
-        for (ItemStack itemstack : this.stacks)
-        {
-            if (!itemstack.isEmpty())
-            {
-                return false;
-            }
-        }
-
-        return true;
     }
     
     @Override

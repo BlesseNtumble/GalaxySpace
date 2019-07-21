@@ -15,8 +15,6 @@ import micdoodle8.mods.galacticraft.api.transmission.tile.IConnector;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import micdoodle8.mods.galacticraft.api.world.ISolarLevel;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectricalSource;
-import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,24 +31,23 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.WorldProviderHell;
 import net.minecraftforge.fml.relauncher.Side;
 
-public class TileEntityPanelController extends TileBaseUniversalElectricalSource implements ITileEffects, IDisableableMachine, IInventoryDefaults, ISidedInventory, IConnector{
+public class TileEntityPanelController extends TileBaseUniversalElectricalSource implements ITileEffects, IDisableableMachine, ISidedInventory, IConnector{
 
     public static final float MIN_GENERATE_GJ_PER_TICK = 1;
     
-	private NonNullList<ItemStack> stacks = NonNullList.withSize(1, ItemStack.EMPTY);
 	public Map<BlockPos, Integer> panels = new HashMap<BlockPos, Integer>();
 
 	@NetworkedField(targetSide = Side.CLIENT)
     public float heatGJperTick = 0;
 	
 	private boolean visible = false;
-	
-	
+		
 	public TileEntityPanelController()
     {
+		super("tile.panel_controller.name");
 		this.storage.setCapacity(5000);
 		this.storage.setMaxExtract(2000);
-		   
+		this.inventory = NonNullList.withSize(1, ItemStack.EMPTY);
     }
 	
 	@Override
@@ -231,80 +228,18 @@ public class TileEntityPanelController extends TileBaseUniversalElectricalSource
 		super.readFromNBT(par1NBTTagCompound);
 		NBTTagList var2 = par1NBTTagCompound.getTagList("Items", 10);
 
-		this.stacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-		ItemStackHelper.loadAllItems(par1NBTTagCompound, this.stacks);
+		this.inventory = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+		ItemStackHelper.loadAllItems(par1NBTTagCompound, this.getInventory());
 	}
 
 	@Override
     public NBTTagCompound writeToNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.writeToNBT(par1NBTTagCompound);
-        ItemStackHelper.saveAllItems(par1NBTTagCompound, this.stacks);        
+        ItemStackHelper.saveAllItems(par1NBTTagCompound, this.getInventory());        
         return par1NBTTagCompound;
     }
 	
-	@Override
-	public int getSizeInventory() {
-		return this.stacks.size();
-	}
-
-	@Override
-    public boolean isEmpty()
-    {
-        for (ItemStack itemstack : this.stacks)
-        {
-            if (!itemstack.isEmpty())
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-	@Override
-    public ItemStack getStackInSlot(int par1)
-    {
-        return this.stacks.get(par1);
-    }
-
-	@Override
-    public ItemStack decrStackSize(int index, int count)
-    {
-    	ItemStack itemstack = ItemStackHelper.getAndSplit(this.stacks, index, count);
-
-        if (!itemstack.isEmpty())
-        {
-            this.markDirty();
-        }
-
-        return itemstack;
-    }
-
-	@Override
-    public ItemStack removeStackFromSlot(int index)
-    {
-    	ItemStack oldstack = ItemStackHelper.getAndRemove(this.stacks, index);
-        if (!oldstack.isEmpty())
-        {
-        	this.markDirty();
-        }
-    	return oldstack;
-    }
-
-	@Override
-    public void setInventorySlotContents(int index, ItemStack stack)
-    {
-        this.stacks.set(index, stack);
-
-        if (stack.getCount() > this.getInventoryStackLimit())
-        {
-            stack.setCount(this.getInventoryStackLimit());
-        }
-
-        this.markDirty();
-    }
-
 	@Override
 	public int getInventoryStackLimit() {
 		return 64;
@@ -319,11 +254,6 @@ public class TileEntityPanelController extends TileBaseUniversalElectricalSource
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack) {
 		return false;
-	}
-
-	@Override
-	public String getName() {
-		return GCCoreUtil.translate("tile.panel_controller.name");
 	}
 
 	@Override

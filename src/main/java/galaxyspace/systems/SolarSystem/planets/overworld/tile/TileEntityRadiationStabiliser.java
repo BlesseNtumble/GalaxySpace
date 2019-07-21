@@ -31,14 +31,15 @@ public class TileEntityRadiationStabiliser extends TileBaseElectricBlockWithInve
 
 	public float bubbleSize;
 	public static HashSet<BlockVec3Dim> loadedTiles = new HashSet<>();
-	private NonNullList<ItemStack> stacks = NonNullList.withSize(2, ItemStack.EMPTY);
 	
 	@NetworkedField(targetSide = Side.CLIENT)
     public boolean shouldRenderBubble = true;
 	
 	public TileEntityRadiationStabiliser()
     {
+		super("tile.radiation_stabiliser.name");
         this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 90 : 45);
+        this.inventory = NonNullList.withSize(2, ItemStack.EMPTY);
     }
 	
 	@Override
@@ -188,9 +189,9 @@ public class TileEntityRadiationStabiliser extends TileBaseElectricBlockWithInve
                 this.bubbleSize -= 0.05F;
             }
 
-            this.storage.setMaxExtract(ConfigManagerCore.hardMode ? this.stacks.get(1).isEmpty() ? 90 : 150 : 45);
+            this.storage.setMaxExtract(ConfigManagerCore.hardMode ? this.getInventory().get(1).isEmpty() ? 90 : 150 : 45);
             
-            this.bubbleSize = Math.min(Math.max(this.bubbleSize, 0.0F), this.stacks.get(1).isEmpty() ? 10.0F : 20.0F);
+            this.bubbleSize = Math.min(Math.max(this.bubbleSize, 0.0F), this.getInventory().get(1).isEmpty() ? 10.0F : 20.0F);
         }
     }
     
@@ -208,10 +209,8 @@ public class TileEntityRadiationStabiliser extends TileBaseElectricBlockWithInve
         {
             this.bubbleSize = nbt.getFloat("bubbleSize");
         }
-//        this.hasValidBubble = nbt.getBoolean("hasValidBubble");
-
-        this.stacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt, this.stacks);
+        this.inventory = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(nbt, this.getInventory());
     }
 
     @Override
@@ -221,80 +220,10 @@ public class TileEntityRadiationStabiliser extends TileBaseElectricBlockWithInve
 
         nbt.setBoolean("bubbleVisible", this.shouldRenderBubble);
         nbt.setFloat("bubbleSize", this.bubbleSize);
-//        nbt.setBoolean("hasValidBubble", this.hasValidBubble);
-        ItemStackHelper.saveAllItems(nbt, this.stacks);
+        ItemStackHelper.saveAllItems(nbt, this.getInventory());
         return nbt;
     }
-    
-    @Override
-    public int getSizeInventory()
-    {
-        return this.stacks.size();
-    }
 
-    @Override
-    public ItemStack getStackInSlot(int var1)
-    {
-        return this.stacks.get(var1);
-    }
-    
-    @Override
-    public ItemStack decrStackSize(int index, int count)
-    {
-        ItemStack itemstack = ItemStackHelper.getAndSplit(this.stacks, index, count);
-
-        if (!itemstack.isEmpty())
-        {
-            this.markDirty();
-        }
-
-        return itemstack;
-    }
-    
-    @Override
-    public ItemStack removeStackFromSlot(int index)
-    {
-        ItemStack oldstack = ItemStackHelper.getAndRemove(this.stacks, index);
-        if (!oldstack.isEmpty())
-        {
-        	this.markDirty();
-        }
-    	return oldstack;
-    }
-    
-    @Override
-    public void setInventorySlotContents(int index, ItemStack stack)
-    {
-        this.stacks.set(index, stack);
-
-        if (stack.getCount() > this.getInventoryStackLimit())
-        {
-            stack.setCount(this.getInventoryStackLimit());
-        }
-
-        this.markDirty();
-    }
-
-    @Override
-    public boolean isEmpty()
-    {
-        for (ItemStack itemstack : this.stacks)
-        {
-            if (!itemstack.isEmpty())
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    @Override
-    public String getName()
-    {
-        return GCCoreUtil.translate("tile.radiation_stabiliser.name");
-    }
-    
     @Override
     public int getInventoryStackLimit()
     {
@@ -344,13 +273,7 @@ public class TileEntityRadiationStabiliser extends TileBaseElectricBlockWithInve
             return false;
         }
     }
-    
-    @Override
-    public boolean hasCustomName()
-    {
-        return true;
-    }
-    
+
     @Override
     public boolean isItemValidForSlot(int slotID, ItemStack itemstack)
     {
@@ -441,9 +364,5 @@ public class TileEntityRadiationStabiliser extends TileBaseElectricBlockWithInve
     {
         return new Vector3(0.45F, 0.0F, 0.1F);
     }
-    
-    @Override
-	protected NonNullList<ItemStack> getContainingItems() {
-		return this.stacks;
-	}
+
 }

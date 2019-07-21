@@ -6,10 +6,8 @@ import java.util.Set;
 
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockOxygenStorageModule;
 import micdoodle8.mods.galacticraft.api.item.IItemOxygenSupply;
-import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityOxygen;
 import micdoodle8.mods.galacticraft.core.util.FluidUtil;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
@@ -22,7 +20,7 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;	
 
-public class TileEntityAdvOxygenStorageModule extends TileEntityOxygen implements IInventoryDefaults, ISidedInventory{
+public class TileEntityAdvOxygenStorageModule extends TileEntityOxygen implements ISidedInventory{
 
 	public final Set<EntityPlayer> playersUsing = new HashSet<EntityPlayer>();
     public int scaledOxygenLevel;
@@ -30,20 +28,19 @@ public class TileEntityAdvOxygenStorageModule extends TileEntityOxygen implement
 
     public static final int OUTPUT_PER_TICK = 600;
     public static final int OXYGEN_CAPACITY = 240000;
-    private NonNullList<ItemStack> stacks = NonNullList.withSize(1, ItemStack.EMPTY);
+   // private NonNullList<ItemStack> stacks = NonNullList.withSize(1, ItemStack.EMPTY);
     
     public TileEntityAdvOxygenStorageModule()
     {
-    	super(OXYGEN_CAPACITY, 40);
-    	this.storage.setCapacity(0);
-        this.storage.setMaxExtract(0);
+    	this(1);
     }
     
     public TileEntityAdvOxygenStorageModule(int tier)
     {
-        super(OXYGEN_CAPACITY * tier, 40);
+        super("tile.oxygen_module_storage.name", OXYGEN_CAPACITY * tier, 40);
         this.storage.setCapacity(0);
         this.storage.setMaxExtract(0);
+        this.inventory = NonNullList.withSize(1, ItemStack.EMPTY);
     }
     
     @Override
@@ -83,15 +80,15 @@ public class TileEntityAdvOxygenStorageModule extends TileEntityOxygen implement
     {
         super.readFromNBT(nbt);
 
-        this.stacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt, this.stacks);
+        this.inventory = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(nbt, this.getInventory());
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
-        ItemStackHelper.saveAllItems(nbt, this.stacks);
+        ItemStackHelper.saveAllItems(nbt, this.getInventory());
         return nbt;
     }
 
@@ -155,19 +152,19 @@ public class TileEntityAdvOxygenStorageModule extends TileEntityOxygen implement
     @Override
     public int getSizeInventory()
     {
-        return this.stacks.size();
+        return this.getInventory().size();
     }
 
     @Override
     public ItemStack getStackInSlot(int var1)
     {
-        return this.stacks.get(var1);
+        return this.getInventory().get(var1);
     }
 
     @Override
     public ItemStack decrStackSize(int index, int count)
     {
-        ItemStack itemstack = ItemStackHelper.getAndSplit(this.stacks, index, count);
+        ItemStack itemstack = ItemStackHelper.getAndSplit(this.getInventory(), index, count);
 
         if (!itemstack.isEmpty())
         {
@@ -180,7 +177,7 @@ public class TileEntityAdvOxygenStorageModule extends TileEntityOxygen implement
     @Override
     public ItemStack removeStackFromSlot(int index)
     {
-        ItemStack oldstack = ItemStackHelper.getAndRemove(this.stacks, index);
+        ItemStack oldstack = ItemStackHelper.getAndRemove(this.getInventory(), index);
         if (!oldstack.isEmpty())
         {
         	this.markDirty();
@@ -191,7 +188,7 @@ public class TileEntityAdvOxygenStorageModule extends TileEntityOxygen implement
     @Override
     public void setInventorySlotContents(int index, ItemStack stack)
     {
-        this.stacks.set(index, stack);
+        this.getInventory().set(index, stack);
 
         if (stack.getCount() > this.getInventoryStackLimit())
         {
@@ -199,26 +196,6 @@ public class TileEntityAdvOxygenStorageModule extends TileEntityOxygen implement
         }
 
         this.markDirty();
-    }
-
-    @Override
-    public boolean isEmpty()
-    {
-        for (ItemStack itemstack : this.stacks)
-        {
-            if (!itemstack.isEmpty())
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    @Override
-    public String getName()
-    {
-        return GCCoreUtil.translate("tile.oxygen_module_storage.name");
     }
     
     @Override
@@ -231,12 +208,6 @@ public class TileEntityAdvOxygenStorageModule extends TileEntityOxygen implement
     public boolean isUsableByPlayer(EntityPlayer par1EntityPlayer)
     {
         return this.world.getTileEntity(this.getPos()) == this && par1EntityPlayer.getDistanceSq(this.getPos().getX() + 0.5D, this.getPos().getY() + 0.5D, this.getPos().getZ() + 0.5D) <= 64.0D;
-    }
-
-    @Override
-    public boolean hasCustomName()
-    {
-        return true;
     }
 
     @Override

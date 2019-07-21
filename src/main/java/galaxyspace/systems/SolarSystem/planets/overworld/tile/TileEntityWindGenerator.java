@@ -41,7 +41,7 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource implements IMultiBlock, IDisableableMachine, IInventoryDefaults, ISidedInventory, IConnector
+public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource implements IMultiBlock, IDisableableMachine, IConnector
 {
     @NetworkedField(targetSide = Side.CLIENT)
     public int solarStrength = 0;
@@ -52,7 +52,6 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
     public boolean disabled = false;
     @NetworkedField(targetSide = Side.CLIENT)
     public int disableCooldown = 0;
-    private NonNullList<ItemStack> stacks = NonNullList.withSize(1, ItemStack.EMPTY);
     public static final int MAX_GENERATE_WATTS = 450;
     @NetworkedField(targetSide = Side.CLIENT)
     public float generateWatts = 0;
@@ -60,15 +59,12 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
 
     private boolean initialised = false;
 
-
-
-    /*
-     * @param tier: 1 = Basic Solar  2 = Advanced Solar
-     */
     public TileEntityWindGenerator()
     {
+    	super("tile.wind_generator.name");
         this.storage.setMaxExtract(this.MAX_GENERATE_WATTS);
         this.storage.setMaxReceive(this.MAX_GENERATE_WATTS);
+        this.inventory = NonNullList.withSize(1, ItemStack.EMPTY);
     }
 
     @Override
@@ -80,7 +76,7 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
 
         if (!this.world.isRemote)
         {
-        	this.recharge(this.stacks.get(0));
+        	this.recharge(this.getInventory().get(0));
 
             if (this.disableCooldown > 0)
             {
@@ -255,8 +251,8 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
         this.setDisabled(0, nbt.getBoolean("disabled"));
         this.disableCooldown = nbt.getInteger("disabledCooldown");
 
-        this.stacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt, this.stacks);
+        this.inventory = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(nbt, this.getInventory());
 
         this.initialised = false;
     }
@@ -271,7 +267,7 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
         nbt.setInteger("disabledCooldown", this.disableCooldown);
         nbt.setBoolean("disabled", this.getDisabled(0));
 
-        ItemStackHelper.saveAllItems(nbt, this.stacks);
+        ItemStackHelper.saveAllItems(nbt, this.getInventory());
         
         return nbt;
     }
@@ -324,18 +320,6 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
     }
 
     @Override
-    public boolean hasCustomName()
-    {
-        return true;
-    }
-    
-    @Override
-    public String getName()
-    {
-        return GCCoreUtil.translate("tile.wind_generator.name");
-    }
-
-    @Override
     public void setDisabled(int index, boolean disabled)
     {
         if (this.disableCooldown == 0)
@@ -354,69 +338,6 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
     public int getScaledElecticalLevel(int i)
     {
         return (int) Math.floor(this.getEnergyStoredGC() * i / this.getMaxEnergyStoredGC());
-    }
-
-    @Override
-    public int getSizeInventory()
-    {
-        return this.stacks.size();
-    }
-
-    @Override
-    public ItemStack getStackInSlot(int var1)
-    {
-        return this.stacks.get(var1);
-    }
-
-    @Override
-    public ItemStack decrStackSize(int index, int count)
-    {
-        ItemStack itemstack = ItemStackHelper.getAndSplit(this.stacks, index, count);
-
-        if (!itemstack.isEmpty())
-        {
-            this.markDirty();
-        }
-
-        return itemstack;
-    }
-
-    @Override
-    public ItemStack removeStackFromSlot(int index)
-    {
-        ItemStack oldstack = ItemStackHelper.getAndRemove(this.stacks, index);
-        if (!oldstack.isEmpty())
-        {
-        	this.markDirty();
-        }
-    	return oldstack;
-    }
-
-    @Override
-    public void setInventorySlotContents(int index, ItemStack stack)
-    {
-        this.stacks.set(index, stack);
-
-        if (stack.getCount() > this.getInventoryStackLimit())
-        {
-            stack.setCount(this.getInventoryStackLimit());
-        }
-
-        this.markDirty();
-    }
-    
-    @Override
-    public boolean isEmpty()
-    {
-        for (ItemStack itemstack : this.stacks)
-        {
-            if (!itemstack.isEmpty())
-            {
-                return false;
-            }
-        }
-
-        return true;
     }
     
     @Override

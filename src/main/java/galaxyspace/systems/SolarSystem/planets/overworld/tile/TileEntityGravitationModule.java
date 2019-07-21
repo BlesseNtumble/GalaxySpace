@@ -15,10 +15,10 @@ import micdoodle8.mods.galacticraft.core.dimension.WorldProviderSpaceStation;
 import micdoodle8.mods.galacticraft.core.energy.tile.EnergyStorageTile;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseElectricBlockWithInventory;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -40,7 +40,6 @@ public class TileEntityGravitationModule extends TileBaseElectricBlockWithInvent
 	@NetworkedField(targetSide = Side.CLIENT)
 	public static int processTicks = 0;
 	
-	private NonNullList<ItemStack> stacks = NonNullList.withSize(2, ItemStack.EMPTY);
 	public static HashSet<BlockVec3Dim> loadedTiles = new HashSet();
 	
 	private int radius;
@@ -52,20 +51,13 @@ public class TileEntityGravitationModule extends TileBaseElectricBlockWithInvent
 	public boolean shouldRenderEffects = false;
 
 	public TileEntityGravitationModule() {
-		this(1);
-	}
 	
-	public TileEntityGravitationModule(int tier)
-    {
+		super("tile.gravitation_module.name");
         this.initialised = true;
-        if (tier == 1)
-        {
-        	this.radius = 4;
-        	this.storage.setCapacity(15000);
-            this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 60 : 45);
-            return;
-        }
-       
+		this.radius = 4;
+		this.storage.setCapacity(15000);
+		this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 60 : 45);
+		this.inventory = NonNullList.withSize(2, ItemStack.EMPTY);
     }
 	
 	@Override
@@ -260,7 +252,9 @@ public class TileEntityGravitationModule extends TileBaseElectricBlockWithInvent
         else
         	this.initialised = false;
         this.processTicks = par1NBTTagCompound.getInteger("smeltingTicks");
-        this.stacks = this.readStandardItemsFromNBT(par1NBTTagCompound);
+        
+        ItemStackHelper.loadAllItems(par1NBTTagCompound, this.getInventory());
+        
         
         if(par1NBTTagCompound.hasKey("gravityradius")) {
             int grav = par1NBTTagCompound.getInteger("gravityradius");
@@ -275,25 +269,14 @@ public class TileEntityGravitationModule extends TileBaseElectricBlockWithInvent
         	this.storage.setEnergyStored(EnergyStorageTile.STANDARD_CAPACITY);
     	super.writeToNBT(par1NBTTagCompound);
         par1NBTTagCompound.setInteger("smeltingTicks", this.processTicks);
-        this.writeStandardItemsToNBT(par1NBTTagCompound, this.stacks);
-      
         par1NBTTagCompound.setInteger("gravityradius", radius > 16 ? 16 : radius);
+        
+        ItemStackHelper.saveAllItems(par1NBTTagCompound, this.getInventory());
+        
         
 		return par1NBTTagCompound;
     }
-    
-    @Override
-    protected NonNullList<ItemStack> getContainingItems()
-    {
-        return this.stacks;
-    }
-    
-    @Override
-    public String getName()
-    {
-        return GCCoreUtil.translate("tile.gravitation_module.name");
-    }
-    
+
     @Override
     public boolean isItemValidForSlot(int slotID, ItemStack itemStack)
     {
@@ -359,5 +342,10 @@ public class TileEntityGravitationModule extends TileBaseElectricBlockWithInvent
 			return true;
 		
 		return false;
+	}
+
+	@Override
+	public int[] getSlotsForFace(EnumFacing side) {
+		return null;
 	}
 }

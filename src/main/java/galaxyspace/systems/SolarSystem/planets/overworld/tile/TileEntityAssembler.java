@@ -11,7 +11,6 @@ import micdoodle8.mods.galacticraft.api.recipe.ShapedRecipesGC;
 import micdoodle8.mods.galacticraft.api.recipe.ShapelessOreRecipeGC;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseElectricBlock;
-import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.inventory.PersistantInventoryCrafting;
 import micdoodle8.mods.galacticraft.core.network.IPacketReceiver;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
@@ -32,7 +31,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class TileEntityAssembler extends TileBaseElectricBlock implements IInventoryDefaults, ISidedInventory, IPacketReceiver
+public class TileEntityAssembler extends TileBaseElectricBlock implements ISidedInventory, IPacketReceiver
 {
     public static final int PROCESS_TIME_REQUIRED_BASE = 200;
     @NetworkedField(targetSide = Side.CLIENT)
@@ -41,16 +40,16 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements IInven
     public int processTicks = 0;
     private ItemStack producingStack = ItemStack.EMPTY;
     private static Random randnum = new Random();
-
-    private NonNullList<ItemStack> stacks = NonNullList.withSize(2 + 4, ItemStack.EMPTY);
-    
+  
     public PersistantInventoryCrafting testCraftMatrix = new PersistantInventoryCrafting();
     
     private int boost_speed, energy_boost;
 
     public TileEntityAssembler()
     {
+    	super("tile.assembly_machine.name");
         this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 90 : 75);
+        this.inventory = NonNullList.withSize(2 + 4, ItemStack.EMPTY);
         this.setTierGC(1);
     }
 
@@ -74,9 +73,9 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements IInven
                 	
                 	for(int i = 0; i <= 3; i++)
                 	{
-                		if(this.stacks.get(2 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 2)))
+                		if(this.getInventory().get(2 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 2)))
                 			this.boost_speed++;
-                		if(this.stacks.get(2 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 3)))
+                		if(this.getInventory().get(2 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 3)))
                 			this.energy_boost++;
                 	}
                 	
@@ -118,15 +117,15 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements IInven
         {
             return false;
         }
-        if (this.stacks.get(1).isEmpty())
+        if (this.getInventory().get(1).isEmpty())
         {
             return true;
         }
-        if (!this.stacks.get(1).isEmpty() && !this.stacks.get(1).isItemEqual(itemstack))
+        if (!this.getInventory().get(1).isEmpty() && !this.getInventory().get(1).isItemEqual(itemstack))
         {
             return false;
         }
-        int contents1 = this.stacks.get(1).getCount();
+        int contents1 = this.getInventory().get(1).getCount();
         int result = itemstack.getCount();
 
         result += contents1;
@@ -145,21 +144,21 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements IInven
         {
             ItemStack resultItemStack = this.producingStack;
 
-            if (this.stacks.get(slot).isEmpty())
+            if (this.getInventory().get(slot).isEmpty())
             {
-            	this.stacks.set(slot, resultItemStack);
+            	this.getInventory().set(slot, resultItemStack);
             }
-            else if (this.stacks.get(slot).isItemEqual(resultItemStack))
+            else if (this.getInventory().get(slot).isItemEqual(resultItemStack))
             {
-                if (this.stacks.get(slot).getCount() + resultItemStack.getCount() > resultItemStack.getMaxStackSize())
+                if (this.getInventory().get(slot).getCount() + resultItemStack.getCount() > resultItemStack.getMaxStackSize())
                 {
-                	resultItemStack.grow(this.stacks.get(slot).getCount() - resultItemStack.getMaxStackSize());
+                	resultItemStack.grow(this.getInventory().get(slot).getCount() - resultItemStack.getMaxStackSize());
                 	GCCoreUtil.spawnItem(this.world, this.getPos(), resultItemStack);
-                    this.stacks.get(slot).setCount(resultItemStack.getMaxStackSize());
+                    this.getInventory().get(slot).setCount(resultItemStack.getMaxStackSize());
                 }
                 else
                 {
-                	this.stacks.get(slot).grow(resultItemStack.getCount());
+                	this.getInventory().get(slot).grow(resultItemStack.getCount());
                 }
             }
 
@@ -185,7 +184,7 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements IInven
         super.readFromNBT(nbt);
         this.processTicks = nbt.getInteger("smeltingTicks");
         
-        this.stacks = NonNullList.withSize(this.getSizeInventory() - this.testCraftMatrix.getSizeInventory(), ItemStack.EMPTY);
+        this.inventory = NonNullList.withSize(this.getSizeInventory() - this.testCraftMatrix.getSizeInventory(), ItemStack.EMPTY);
         NBTTagList nbttaglist = nbt.getTagList("Items", 10);
         
         for (int i = 0; i < nbttaglist.tagCount(); ++i)
@@ -193,13 +192,13 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements IInven
             NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
             int j = nbttagcompound.getByte("Slot") & 255;
 
-            if (j >= 0 && j < this.stacks.size())
+            if (j >= 0 && j < this.getInventory().size())
             {
-                this.stacks.set(j, new ItemStack(nbttagcompound));
+                this.getInventory().set(j, new ItemStack(nbttagcompound));
             }
-            else if (j < this.stacks.size() + this.testCraftMatrix.getSizeInventory())
+            else if (j < this.getInventory().size() + this.testCraftMatrix.getSizeInventory())
             {
-                this.testCraftMatrix.setInventorySlotContents(j - this.stacks.size(), new ItemStack(nbttagcompound));
+                this.testCraftMatrix.setInventorySlotContents(j - this.getInventory().size(), new ItemStack(nbttagcompound));
             }
         }
 
@@ -214,13 +213,13 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements IInven
         NBTTagList var2 = new NBTTagList();
         int var3;
 
-        for (var3 = 0; var3 < this.stacks.size(); ++var3)
+        for (var3 = 0; var3 < this.getInventory().size(); ++var3)
         {
-            if (!this.stacks.get(var3).isEmpty())
+            if (!this.getInventory().get(var3).isEmpty())
             {
                 NBTTagCompound var4 = new NBTTagCompound();
                 var4.setByte("Slot", (byte) var3);
-                this.stacks.get(var3).writeToNBT(var4);
+                this.getInventory().get(var3).writeToNBT(var4);
                 var2.appendTag(var4);
             }
         }
@@ -230,7 +229,7 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements IInven
             if (this.testCraftMatrix.getStackInSlot(var3) != null)
             {
                 NBTTagCompound var4 = new NBTTagCompound();
-                var4.setByte("Slot", (byte) (var3 + this.stacks.size()));
+                var4.setByte("Slot", (byte) (var3 + this.getInventory().size()));
                 this.testCraftMatrix.getStackInSlot(var3).writeToNBT(var4);
                 var2.appendTag(var4);
             }
@@ -243,27 +242,27 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements IInven
     @Override
     public int getSizeInventory()
     {
-        return this.stacks.size() + this.testCraftMatrix.getSizeInventory();
+        return this.getInventory().size() + this.testCraftMatrix.getSizeInventory();
     }
 
   
     @Override
     public ItemStack getStackInSlot(int par1)
     {
-        if (par1 >= this.stacks.size())
+        if (par1 >= this.getInventory().size())
         {
-            return this.testCraftMatrix.getStackInSlot(par1 - this.stacks.size());
+            return this.testCraftMatrix.getStackInSlot(par1 - this.getInventory().size());
         }
 
-        return this.stacks.get(par1);
+        return this.getInventory().get(par1);
     }
 
     @Override
     public ItemStack decrStackSize(int par1, int par2)
     {
-        if (par1 >= this.stacks.size())
+        if (par1 >= this.getInventory().size())
         {
-            ItemStack result = this.testCraftMatrix.decrStackSize(par1 - this.stacks.size(), par2);
+            ItemStack result = this.testCraftMatrix.decrStackSize(par1 - this.getInventory().size(), par2);
             if (result != null)
             {
                 this.updateInput();
@@ -271,23 +270,23 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements IInven
             return result;
         }
 
-        if (!this.stacks.get(par1).isEmpty())
+        if (!this.getInventory().get(par1).isEmpty())
         {
             ItemStack var3;
 
-            if (this.stacks.get(par1).getCount() <= par2)
+            if (this.getInventory().get(par1).getCount() <= par2)
             {
-                var3 = this.stacks.get(par1);
-                this.stacks.set(par1, ItemStack.EMPTY);
+                var3 = this.getInventory().get(par1);
+                this.getInventory().set(par1, ItemStack.EMPTY);
                 return var3;
             }
             else
             {
-                var3 = this.stacks.get(par1).splitStack(par2);
+                var3 = this.getInventory().get(par1).splitStack(par2);
 
-                if (this.stacks.get(par1).isEmpty())
+                if (this.getInventory().get(par1).isEmpty())
                 {
-                    this.stacks.set(par1, ItemStack.EMPTY);
+                    this.getInventory().set(par1, ItemStack.EMPTY);
                 }
 
                 this.markDirty();
@@ -303,15 +302,15 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements IInven
     @Override
     public ItemStack removeStackFromSlot(int par1)
     {
-        if (par1 >= this.stacks.size())
+        if (par1 >= this.getInventory().size())
         {
-            return this.testCraftMatrix.removeStackFromSlot(par1 - this.stacks.size());
+            return this.testCraftMatrix.removeStackFromSlot(par1 - this.getInventory().size());
         }
 
-        if (!this.stacks.get(par1).isEmpty())
+        if (!this.getInventory().get(par1).isEmpty())
         {
-            ItemStack var2 = this.stacks.get(par1);
-            this.stacks.set(par1, ItemStack.EMPTY);
+            ItemStack var2 = this.getInventory().get(par1);
+            this.getInventory().set(par1, ItemStack.EMPTY);
             this.markDirty();
             return var2;
         }
@@ -324,14 +323,14 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements IInven
     @Override
     public void setInventorySlotContents(int par1, ItemStack stack)
     {
-        if (par1 >= this.stacks.size())
+        if (par1 >= this.getInventory().size())
         {
-            this.testCraftMatrix.setInventorySlotContents(par1 - this.stacks.size(), stack);
+            this.testCraftMatrix.setInventorySlotContents(par1 - this.getInventory().size(), stack);
             this.updateInput();
         }
         else
         {
-            this.stacks.set(par1, stack);
+            this.getInventory().set(par1, stack);
             
             if (!stack.isEmpty() && stack.getCount() > this.getInventoryStackLimit())
             {
@@ -339,12 +338,6 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements IInven
             }
         }
         this.markDirty();
-    }
-
-    @Override
-    public String getName()
-    {
-        return GCCoreUtil.translate("tile.assembly_machine.name");
     }
 
     @Override
@@ -357,20 +350,6 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements IInven
     public boolean isUsableByPlayer(EntityPlayer entityplayer)
     {
     	return this.world.getTileEntity(this.getPos()) == this && entityplayer.getDistanceSq(this.getPos().getX() + 0.5D, this.getPos().getY() + 0.5D, this.getPos().getZ() + 0.5D) <= 64.0D;
-    }
-
-    @Override
-    public boolean isEmpty()
-    {
-        for (ItemStack itemstack : this.stacks)
-        {
-            if (!itemstack.isEmpty())
-            {
-                return false;
-            }
-        }
-
-        return true;
     }
     
     @Override

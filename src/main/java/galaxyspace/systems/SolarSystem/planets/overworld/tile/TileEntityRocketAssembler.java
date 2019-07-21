@@ -42,14 +42,15 @@ public class TileEntityRocketAssembler extends TileBaseElectricBlockWithInventor
     private long ticks;
     private static Random rand = new Random();
 
-    private NonNullList<ItemStack> stacks = NonNullList.withSize(3 + 4, ItemStack.EMPTY);
     public RocketAssemblyInventory rocketCraftMatrix = new RocketAssemblyInventory();
     
     private int boost_speed, energy_boost;
     
     public TileEntityRocketAssembler()
     {
+    	super("tile.rocket_assembler.name");
         this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 90 : 75);
+        this.inventory = NonNullList.withSize(3 + 4, ItemStack.EMPTY);
         this.setTierGC(1);
     }
     
@@ -75,9 +76,9 @@ public class TileEntityRocketAssembler extends TileBaseElectricBlockWithInventor
                 	
                 	for(int i = 0; i <= 3; i++)
                 	{
-                		if(this.stacks.get(3 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 2)))
+                		if(this.getInventory().get(3 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 2)))
                 			this.boost_speed++;
-                		if(this.stacks.get(3 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 3)))
+                		if(this.getInventory().get(3 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 3)))
                 			this.energy_boost++;
                 	}
                 	
@@ -123,17 +124,17 @@ public class TileEntityRocketAssembler extends TileBaseElectricBlockWithInventor
         {        	
             return false;
         }
-        if (this.stacks.get(1).isEmpty())
+        if (this.getInventory().get(1).isEmpty())
         {
             return true;
         }
-        if (!this.stacks.get(1).isEmpty() && !this.stacks.get(1).isItemEqual(itemstack))
+        if (!this.getInventory().get(1).isEmpty() && !this.getInventory().get(1).isItemEqual(itemstack))
         {
             return false;
         }
               
         
-        int result = this.stacks.get(1).isEmpty() ? 0 : this.stacks.get(1).getCount() + itemstack.getCount();
+        int result = this.getInventory().get(1).isEmpty() ? 0 : this.getInventory().get(1).getCount() + itemstack.getCount();
         return result <= this.getInventoryStackLimit() && result <= itemstack.getMaxStackSize();
     }
 
@@ -149,12 +150,12 @@ public class TileEntityRocketAssembler extends TileBaseElectricBlockWithInventor
         {        	
             ItemStack resultItemStack = this.producingStack;
 
-            if(!this.stacks.get(2).isEmpty())
+            if(!this.getInventory().get(2).isEmpty())
             {
             	if(!resultItemStack.hasTagCompound()) 
             		resultItemStack.setTagCompound(new NBTTagCompound());
             	
-            	ItemStack engine = this.stacks.get(2);
+            	ItemStack engine = this.getInventory().get(2);
             	switch(engine.getItemDamage())
             	{
             		case 4: 
@@ -171,11 +172,11 @@ public class TileEntityRocketAssembler extends TileBaseElectricBlockWithInventor
             			break;
             	}
             	
-            	this.stacks.set(2, ItemStack.EMPTY);
+            	this.getInventory().set(2, ItemStack.EMPTY);
             }
-            if (this.stacks.get(slot).isEmpty())
+            if (this.getInventory().get(slot).isEmpty())
             {
-            	this.stacks.set(slot, resultItemStack);
+            	this.getInventory().set(slot, resultItemStack);
             }
                         
             /*
@@ -215,7 +216,7 @@ public class TileEntityRocketAssembler extends TileBaseElectricBlockWithInventor
         super.readFromNBT(nbt);
         this.processTicks = nbt.getInteger("smeltingTicks");
         
-        this.stacks = NonNullList.withSize(this.getSizeInventory() - this.rocketCraftMatrix.getSizeInventory(), ItemStack.EMPTY);
+        this.inventory = NonNullList.withSize(this.getSizeInventory() - this.rocketCraftMatrix.getSizeInventory(), ItemStack.EMPTY);
         NBTTagList nbttaglist = nbt.getTagList("Items", 10);
         
         for (int i = 0; i < nbttaglist.tagCount(); ++i)
@@ -223,13 +224,13 @@ public class TileEntityRocketAssembler extends TileBaseElectricBlockWithInventor
             NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
             int j = nbttagcompound.getByte("Slot") & 255;
 
-            if (j >= 0 && j < this.stacks.size())
+            if (j >= 0 && j < this.getInventory().size())
             {
-                this.stacks.set(j, new ItemStack(nbttagcompound));
+                this.getInventory().set(j, new ItemStack(nbttagcompound));
             }
-            else if (j < this.stacks.size() + this.rocketCraftMatrix.getSizeInventory())
+            else if (j < this.getInventory().size() + this.rocketCraftMatrix.getSizeInventory())
             {
-                this.rocketCraftMatrix.setInventorySlotContents(j - this.stacks.size(), new ItemStack(nbttagcompound));
+                this.rocketCraftMatrix.setInventorySlotContents(j - this.getInventory().size(), new ItemStack(nbttagcompound));
             }
         }
 
@@ -244,13 +245,13 @@ public class TileEntityRocketAssembler extends TileBaseElectricBlockWithInventor
         NBTTagList var2 = new NBTTagList();
         int var3;
 
-        for (var3 = 0; var3 < this.stacks.size(); ++var3)
+        for (var3 = 0; var3 < this.getInventory().size(); ++var3)
         {
-            if (!this.stacks.get(var3).isEmpty())
+            if (!this.getInventory().get(var3).isEmpty())
             {
                 NBTTagCompound var4 = new NBTTagCompound();
                 var4.setByte("Slot", (byte) var3);
-                this.stacks.get(var3).writeToNBT(var4);
+                this.getInventory().get(var3).writeToNBT(var4);
                 var2.appendTag(var4);
             }
         }
@@ -260,7 +261,7 @@ public class TileEntityRocketAssembler extends TileBaseElectricBlockWithInventor
             if (!this.rocketCraftMatrix.getStackInSlot(var3).isEmpty())
             {
                 NBTTagCompound var4 = new NBTTagCompound();
-                var4.setByte("Slot", (byte) (var3 + this.stacks.size()));
+                var4.setByte("Slot", (byte) (var3 + this.getInventory().size()));
                 this.rocketCraftMatrix.getStackInSlot(var3).writeToNBT(var4);
                 var2.appendTag(var4);
             }
@@ -273,26 +274,26 @@ public class TileEntityRocketAssembler extends TileBaseElectricBlockWithInventor
     @Override
     public int getSizeInventory()
     {
-        return this.stacks.size() + this.rocketCraftMatrix.getSizeInventory();
+        return this.getInventory().size() + this.rocketCraftMatrix.getSizeInventory();
     }
         
     @Override
     public ItemStack getStackInSlot(int par1)
     {
-        if (par1 >= this.stacks.size())
+        if (par1 >= this.getInventory().size())
         {
-            return this.rocketCraftMatrix.getStackInSlot(par1 - this.stacks.size());
+            return this.rocketCraftMatrix.getStackInSlot(par1 - this.getInventory().size());
         }
 
-        return this.stacks.get(par1);
+        return this.getInventory().get(par1);
     }
     
     @Override
     public ItemStack decrStackSize(int par1, int par2)
     {
-        if (par1 >= this.stacks.size())
+        if (par1 >= this.getInventory().size())
         {
-            ItemStack result = this.rocketCraftMatrix.decrStackSize(par1 - this.stacks.size(), par2);
+            ItemStack result = this.rocketCraftMatrix.decrStackSize(par1 - this.getInventory().size(), par2);
             if (!result.isEmpty())
             {
                 this.updateInput();
@@ -301,24 +302,24 @@ public class TileEntityRocketAssembler extends TileBaseElectricBlockWithInventor
             return result;
         }
 
-        if (!this.stacks.get(par1).isEmpty())
+        if (!this.getInventory().get(par1).isEmpty())
         {
             ItemStack var3;
 
-            if (this.stacks.get(par1).getCount() <= par2)
+            if (this.getInventory().get(par1).getCount() <= par2)
             {
-                var3 = this.stacks.get(par1);
-                this.stacks.set(par1, ItemStack.EMPTY);
+                var3 = this.getInventory().get(par1);
+                this.getInventory().set(par1, ItemStack.EMPTY);
                 this.markDirty();
                 return var3;
             }
             else
             {
-                var3 = this.stacks.get(par1).splitStack(par2);
+                var3 = this.getInventory().get(par1).splitStack(par2);
 
-                if (this.stacks.get(par1).isEmpty())
+                if (this.getInventory().get(par1).isEmpty())
                 {
-                    this.stacks.set(par1, ItemStack.EMPTY);
+                    this.getInventory().set(par1, ItemStack.EMPTY);
                 }
 
                 this.markDirty();
@@ -334,16 +335,16 @@ public class TileEntityRocketAssembler extends TileBaseElectricBlockWithInventor
     @Override
     public ItemStack removeStackFromSlot(int par1)
     {
-        if (par1 >= this.stacks.size())
+        if (par1 >= this.getInventory().size())
         {
         	this.markDirty();
-            return this.rocketCraftMatrix.removeStackFromSlot(par1 - this.stacks.size());
+            return this.rocketCraftMatrix.removeStackFromSlot(par1 - this.getInventory().size());
         }
 
-        if (!this.stacks.get(par1).isEmpty())
+        if (!this.getInventory().get(par1).isEmpty())
         {
-            ItemStack var2 = this.stacks.get(par1);
-            this.stacks.set(par1, ItemStack.EMPTY);
+            ItemStack var2 = this.getInventory().get(par1);
+            this.getInventory().set(par1, ItemStack.EMPTY);
             this.markDirty();
             return var2;
         }
@@ -356,14 +357,14 @@ public class TileEntityRocketAssembler extends TileBaseElectricBlockWithInventor
     @Override
     public void setInventorySlotContents(int par1, ItemStack stack)
     {
-        if (par1 >= this.stacks.size())
+        if (par1 >= this.getInventory().size())
         {
-            this.rocketCraftMatrix.setInventorySlotContents(par1 - this.stacks.size(), stack);
+            this.rocketCraftMatrix.setInventorySlotContents(par1 - this.getInventory().size(), stack);
             this.updateInput();
         }
         else
         {
-            this.stacks.set(par1, stack);
+            this.getInventory().set(par1, stack);
 
             if (!stack.isEmpty() && stack.getCount() > this.getInventoryStackLimit())
             {
@@ -371,12 +372,6 @@ public class TileEntityRocketAssembler extends TileBaseElectricBlockWithInventor
             }
         }
         this.markDirty();
-    }
-
-    @Override
-    public String getName()
-    {
-        return GCCoreUtil.translate("tile.rocket_assembler.name");
     }
 
     @Override
@@ -578,10 +573,5 @@ public class TileEntityRocketAssembler extends TileBaseElectricBlockWithInventor
 			return state.getValue(BlockRocketAssembler.FACING);
 		}
 		return EnumFacing.NORTH;
-	}
-
-	@Override
-	protected NonNullList<ItemStack> getContainingItems() {
-		return this.stacks;
 	}
 }

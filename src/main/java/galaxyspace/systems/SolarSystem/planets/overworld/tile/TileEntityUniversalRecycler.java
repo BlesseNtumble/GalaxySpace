@@ -1,12 +1,7 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.tile;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import javax.annotation.Nullable;
 
-import galaxyspace.GalaxySpace;
 import galaxyspace.core.registers.fluids.GSFluids;
 import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.core.util.GSUtils;
@@ -18,7 +13,6 @@ import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseElectricBlockWithInventory;
 import micdoodle8.mods.galacticraft.core.network.IPacketReceiver;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.wrappers.FluidHandlerWrapper;
 import micdoodle8.mods.galacticraft.core.wrappers.IFluidHandlerWrapper;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
@@ -55,14 +49,13 @@ public class TileEntityUniversalRecycler extends TileBaseElectricBlockWithInvent
     public FluidTank waterTank1 = new FluidTank(this.tankCapacity);
     @NetworkedField(targetSide = Side.CLIENT)
     public FluidTank waterTank2 = new FluidTank(this.tankCapacity);
-    
-    private NonNullList<ItemStack> stacks = NonNullList.withSize(5 + 4, ItemStack.EMPTY);
-
-    
+         
     public TileEntityUniversalRecycler()
     {
+    	super("tile.universal_recycler.name");
     	this.storage.setCapacity(20000);
         this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 90 : 75);
+        this.inventory = NonNullList.withSize(5 + 4, ItemStack.EMPTY);
         this.setTierGC(1);
     }
     
@@ -73,11 +66,11 @@ public class TileEntityUniversalRecycler extends TileBaseElectricBlockWithInvent
 
         if (!this.world.isRemote)
         {
-        	GSUtils.checkFluidTankTransfer(this.stacks, 2, this.waterTank);
+        	GSUtils.checkFluidTankTransfer(this.getInventory(), 2, this.waterTank);
         	
-        	if (!this.stacks.get(4).isEmpty())
+        	if (!this.getInventory().get(4).isEmpty())
             {
-            	 FluidStack liquid = FluidUtil.getFluidContained(this.stacks.get(4));
+            	 FluidStack liquid = FluidUtil.getFluidContained(this.getInventory().get(4));
             		
 	                if (liquid != null)
 	                {
@@ -89,19 +82,19 @@ public class TileEntityUniversalRecycler extends TileBaseElectricBlockWithInvent
 		                    {
 		                        this.waterTank.fill(new FluidStack(GSFluids.LiquidEthaneMethane, liquid.amount), true);
 		
-		                        if (micdoodle8.mods.galacticraft.core.util.FluidUtil.isBucket(this.stacks.get(4)) && micdoodle8.mods.galacticraft.core.util.FluidUtil.isFilledContainer(this.stacks.get(4)))
+		                        if (micdoodle8.mods.galacticraft.core.util.FluidUtil.isBucket(this.getInventory().get(4)) && micdoodle8.mods.galacticraft.core.util.FluidUtil.isFilledContainer(this.getInventory().get(4)))
 		                        {
-		                            final int amount = this.stacks.get(4).getCount();
+		                            final int amount = this.getInventory().get(4).getCount();
 		                            if (amount > 1) this.waterTank.fill(new FluidStack(GSFluids.LiquidEthaneMethane, (amount - 1) * Fluid.BUCKET_VOLUME), true);
-		                            this.stacks.set(4, new ItemStack(Items.BUCKET, amount));
+		                            this.getInventory().set(4, new ItemStack(Items.BUCKET, amount));
 		                        }
 		                        else
 		                        {
-		                        	this.stacks.get(4).shrink(1);
+		                        	this.getInventory().get(4).shrink(1);
 		
-		                            if (this.stacks.get(4).getCount() == 0)
+		                            if (this.getInventory().get(4).getCount() == 0)
 		                            {
-		                            	this.stacks.set(4, ItemStack.EMPTY);
+		                            	this.getInventory().set(4, ItemStack.EMPTY);
 		                            }
 		                        }
 		                    }
@@ -119,9 +112,9 @@ public class TileEntityUniversalRecycler extends TileBaseElectricBlockWithInvent
 
                 	for(int i = 0; i <= 3; i++)
                 	{
-                		if(this.stacks.get(4 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 2)))
+                		if(this.getInventory().get(4 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 2)))
                 			boost_speed++;
-                		if(this.stacks.get(4 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 3)))
+                		if(this.getInventory().get(4 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 3)))
                 			energy_boost++;
                 	}
                 	
@@ -162,13 +155,13 @@ public class TileEntityUniversalRecycler extends TileBaseElectricBlockWithInvent
     	//FluidStack fluid1 = RecyclerRecipes.recycling().getRecyclingFluid1(this.waterTank1.getFluid());
     	//if(fluid1 != null) GalaxySpace.debug(fluid1.getFluid().getName() + "");
     	
-    	if(this.stacks.get(1).isEmpty())
+    	if(this.getInventory().get(1).isEmpty())
     	{
     		return false;
     	}
     	else
     	{    		
-    		ItemStack input = this.stacks.get(1);
+    		ItemStack input = this.getInventory().get(1);
     		//Map<ItemStack, RecycleRecipe> recipes = RecyclerRecipes.recycling().getRecipes(); 
     		//for(Entry<ItemStack, RecycleRecipe> recipe : recipes.entrySet())
     		RecycleRecipe recipe = RecyclerRecipes.recycling().getRecipe(input);
@@ -187,11 +180,11 @@ public class TileEntityUniversalRecycler extends TileBaseElectricBlockWithInvent
     			
     			if(!recipe.getOutput().isEmpty())
     			{
-    				if (!this.stacks.get(3).isEmpty() && !this.stacks.get(3).isItemEqual(recipe.getOutput()))
+    				if (!this.getInventory().get(3).isEmpty() && !this.getInventory().get(3).isItemEqual(recipe.getOutput()))
     					return false;
     				
-    				int result = this.stacks.get(3).getCount() + recipe.getOutput().getCount();
-    				return result <= getInventoryStackLimit() && result <= this.stacks.get(3).getMaxStackSize();
+    				int result = this.getInventory().get(3).getCount() + recipe.getOutput().getCount();
+    				return result <= getInventoryStackLimit() && result <= this.getInventory().get(3).getMaxStackSize();
     			}
 
     		}
@@ -208,18 +201,8 @@ public class TileEntityUniversalRecycler extends TileBaseElectricBlockWithInvent
     	
         if (this.canProcess())
         {
-        	ItemStack input = this.stacks.get(1);
-    		//List<RecycleRecipe> recyclerecipes = RecyclerRecipes.recycling().getRecipes(); 
+        	ItemStack input = this.getInventory().get(1);
     		RecycleRecipe recipe = RecyclerRecipes.recycling().getRecipe(input);
-    		
-    		/*for(RecycleRecipe recipes : recyclerecipes)
-    		{
-    			if(recipes.getInput().isItemEqual(input))
-    			{
-    				recipe = recipes;
-    				break;
-    			}
-    		}*/
     		
     		if(recipe != null)
     		{
@@ -228,73 +211,33 @@ public class TileEntityUniversalRecycler extends TileBaseElectricBlockWithInvent
     				
     			if(!hasRand) 
     			{
-	    			if(this.stacks.get(3).isEmpty())
-	           			this.stacks.set(3, recipe.getOutput().copy());	 
-	    			else if(this.stacks.get(3).isItemEqual(recipe.getOutput()))
-	    				this.stacks.get(3).grow(recipe.getOutput().getCount());  
+	    			if(this.getInventory().get(3).isEmpty())
+	           			this.getInventory().set(3, recipe.getOutput().copy());	 
+	    			else if(this.getInventory().get(3).isItemEqual(recipe.getOutput()))
+	    				this.getInventory().get(3).grow(recipe.getOutput().getCount());  
     			}
 	    		else
 	    		{
-	    			if(this.stacks.get(3).isEmpty())
+	    			if(this.getInventory().get(3).isEmpty())
 	    			{
 	    				if(this.world.rand.nextInt(100) <= recipe.getChance()) 
-	    					this.stacks.set(3, recipe.getOutput().copy());	
+	    					this.getInventory().set(3, recipe.getOutput().copy());	
 	    			}
-	    			else if(this.stacks.get(3).isItemEqual(recipe.getOutput()))
+	    			else if(this.getInventory().get(3).isItemEqual(recipe.getOutput()))
 	    			{
 	    				if(this.world.rand.nextInt(100) <= recipe.getChance()) 
-	    					this.stacks.get(3).grow(recipe.getOutput().getCount());
+	    					this.getInventory().get(3).grow(recipe.getOutput().getCount());
 	    			}
 	    		}
     				
-    	        this.stacks.get(1).shrink(recipe.getInput().getCount());
-    	        
-    	        //if (this.stacks.get(1).getCount() <= 0)
-    	        	//this.stacks.set(1, ItemStack.EMPTY);
-    	        
+    	        this.getInventory().get(1).shrink(recipe.getInput().getCount());
+    	           	        
     	        if(recipe.getFluidStack() != null)
             		this.waterTank.fill(new FluidStack(recipe.getFluidStack().getFluid(), recipe.getFluidStack().amount > this.waterTank.getCapacity() ? this.waterTank.getCapacity() : recipe.getFluidStack().amount), true);           
             	
     			
     		}
-        /*	ItemStack first = RecyclerRecipes.recycling().getRecyclingSlot(this.stacks.get(1));        	
-        	ItemStack itemstack = RecyclerRecipes.recycling().getRecyclingResult(this.stacks.get(1));
-        	
-        	int count = RecyclerRecipes.recycling().getRecyclingCount(this.stacks.get(1));
-        	Fluid fluid = RecyclerRecipes.recycling().getRecyclingFluid(this.stacks.get(1));
-        	 
-        	if(itemstack != null)
-        	{    
-        		
-        		boolean rand = RecyclerRecipes.recycling().getRecyclingRand(first);
-        		int randChance = RecyclerRecipes.recycling().getRecyclingRandChance(first);
-        		
-	        	if (this.stacks.get(3).isEmpty())
-	        	{
-	        		GalaxySpace.debug("" + itemstack);
-	        		if(!rand) 
-	        			this.stacks.set(3, itemstack);	        		
-	        		else if(this.world.rand.nextInt(randChance) == 0) 
-	        			this.stacks.set(3, itemstack);	
-	        	}	            
-	            else if (this.stacks.get(3).getItem() == itemstack.getItem() && !rand)	 
-	            {
-	                if(!rand) 
-	                	this.stacks.get(3).grow(itemstack.getCount());       	
-	                else if(this.world.rand.nextInt(randChance) == 0) 
-	                	this.stacks.get(3).grow(itemstack.getCount());
-	            }
-	        }
-	        if(this.stacks.get(1).getCount() >= first.getCount())
-	        	this.stacks.get(1).shrink(first.getCount());
-	
-	        if (this.stacks.get(1).getCount() <= 0)
-	        	this.stacks.set(1, ItemStack.EMPTY);
 
-        	if(count > 0 && fluid != null)
-        		this.waterTank.fill(new FluidStack(fluid, count > this.waterTank.getCapacity() ? this.waterTank.getCapacity() : count), true);           
-        	
-        	*/
         	
         }        
         
@@ -306,7 +249,8 @@ public class TileEntityUniversalRecycler extends TileBaseElectricBlockWithInvent
         super.readFromNBT(par1NBTTagCompound);
         
         this.processTicks = par1NBTTagCompound.getInteger("smeltingTicks");
-        this.stacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        this.inventory = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(par1NBTTagCompound, this.getInventory());
         
         if (par1NBTTagCompound.hasKey("waterTank"))        
             this.waterTank.readFromNBT(par1NBTTagCompound.getCompoundTag("waterTank"));
@@ -324,7 +268,7 @@ public class TileEntityUniversalRecycler extends TileBaseElectricBlockWithInvent
     {
        	super.writeToNBT(par1NBTTagCompound);
         par1NBTTagCompound.setInteger("smeltingTicks", this.processTicks);
-        ItemStackHelper.saveAllItems(par1NBTTagCompound, this.stacks);
+        ItemStackHelper.saveAllItems(par1NBTTagCompound, this.getInventory());
        
         if (this.waterTank.getFluid() != null)        
             par1NBTTagCompound.setTag("waterTank", this.waterTank.writeToNBT(new NBTTagCompound()));
@@ -337,31 +281,7 @@ public class TileEntityUniversalRecycler extends TileBaseElectricBlockWithInvent
         
         return par1NBTTagCompound;
     }
-    
-    @Override
-    public boolean hasCustomName()
-    {
-        return true;
-    }
-    
-    @Override
-    public String getName()
-    {
-        return GCCoreUtil.translate("tile.universal_recycler.name");
-    }
-    
-    @Override
-    public int getSizeInventory()
-    {
-        return this.stacks.size();
-    }
-
-    @Override
-    public ItemStack getStackInSlot(int var1)
-    {
-        return this.stacks.get(var1);
-    }
-    
+           
     @Override
     public int[] getSlotsForFace(EnumFacing side)
     {
@@ -393,12 +313,6 @@ public class TileEntityUniversalRecycler extends TileBaseElectricBlockWithInvent
 
         return false;
     }
-
-
-	@Override
-	protected NonNullList<ItemStack> getContainingItems() {
-		return this.stacks;
-	}
 
 	@Override
 	public boolean shouldUseEnergy() {

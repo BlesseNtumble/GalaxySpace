@@ -10,8 +10,6 @@ import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
 import micdoodle8.mods.galacticraft.api.transmission.tile.IConnector;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectricalSource;
-import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
@@ -21,10 +19,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 
-public class TileEntityModernStorageModule extends TileBaseUniversalElectricalSource implements ISidedInventory, IInventoryDefaults, IConnector {
+public class TileEntityModernStorageModule extends TileBaseUniversalElectricalSource implements ISidedInventory, IConnector {
 	private final static float BASE_CAPACITY = 5000000;
-	private NonNullList<ItemStack> stacks = NonNullList.withSize(2, ItemStack.EMPTY);
-
+	
 	public final Set<EntityPlayer> playersUsing = new HashSet<EntityPlayer>();
 	public int scaledEnergyLevel;
 	public int lastScaledEnergyLevel;
@@ -35,17 +32,16 @@ public class TileEntityModernStorageModule extends TileBaseUniversalElectricalSo
 	    this(1);
 	}
 
-	/*
-	 * @param tier: 1 = Electric Furnace 2 = Electric Arc Furnace
-	 */
 	public TileEntityModernStorageModule(int tier) {
 
+		super("tile.modern_storage_module.name");
 		this.setTier(tier);
 	}
 
 	private void setTier(int tier) {
 		this.storage.setCapacity(BASE_CAPACITY + (BASE_CAPACITY * tier) / 10);
 		this.storage.setMaxExtract(1800 + (200 * tier));
+		this.inventory = NonNullList.withSize(2, ItemStack.EMPTY);
 		this.setTierGC(tier);
 	}
 
@@ -71,8 +67,8 @@ public class TileEntityModernStorageModule extends TileBaseUniversalElectricalSo
 		}
 
 		if (!this.world.isRemote) {
-			this.recharge(this.stacks.get(0));
-			this.discharge(this.stacks.get(1));
+			this.recharge(this.getInventory().get(0));
+			this.discharge(this.getInventory().get(1));
 		}
 
 		if (!this.world.isRemote) {
@@ -86,8 +82,8 @@ public class TileEntityModernStorageModule extends TileBaseUniversalElectricalSo
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		
-		this.stacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-		ItemStackHelper.loadAllItems(nbt, this.stacks);
+		this.inventory = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+		ItemStackHelper.loadAllItems(nbt, this.getInventory());
 
 	}
 
@@ -99,66 +95,9 @@ public class TileEntityModernStorageModule extends TileBaseUniversalElectricalSo
 
 		super.writeToNBT(nbt);
 
-		ItemStackHelper.saveAllItems(nbt, this.stacks);		
+		ItemStackHelper.saveAllItems(nbt, this.getInventory());		
 
 		return nbt;
-	}
-
-	@Override
-	public int getSizeInventory() {
-		return this.stacks.size();
-	}
-
-	@Override
-	public ItemStack getStackInSlot(int var1) {
-		return this.stacks.get(var1);
-	}
-
-	@Override
-	public ItemStack decrStackSize(int index, int count) {
-		ItemStack itemstack = ItemStackHelper.getAndSplit(this.stacks, index, count);
-
-		if (!itemstack.isEmpty()) {
-			this.markDirty();
-		}
-
-		return itemstack;
-	}
-
-	@Override
-	public ItemStack removeStackFromSlot(int index) {
-		ItemStack oldstack = ItemStackHelper.getAndRemove(this.stacks, index);
-		if (!oldstack.isEmpty()) {
-			this.markDirty();
-		}
-		return oldstack;
-	}
-
-	@Override
-	public void setInventorySlotContents(int index, ItemStack stack) {
-		this.stacks.set(index, stack);
-
-		if (stack.getCount() > this.getInventoryStackLimit()) {
-			stack.setCount(this.getInventoryStackLimit());
-		}
-
-		this.markDirty();
-	}
-
-	@Override
-	public boolean isEmpty() {
-		for (ItemStack itemstack : this.stacks) {
-			if (!itemstack.isEmpty()) {
-				return false;
-			}
-		}
-
-		return true;
-	}
-
-	@Override
-	public String getName() {
-		return GCCoreUtil.translate("tile.modern_storage_module.name");
 	}
 
 	@Override
@@ -182,12 +121,6 @@ public class TileEntityModernStorageModule extends TileBaseUniversalElectricalSo
 	public boolean isItemValidForSlot(int slotID, ItemStack itemstack) {
 		return ItemElectricBase.isElectricItem(itemstack.getItem());
 	}
-
-	// @Override
-	// public int[] getAccessibleSlotsFromSide(int slotID)
-	// {
-	// return new int[] { 0, 1 };
-	// }
 
 	@Override
 	public boolean canInsertItem(int slotID, ItemStack itemstack, EnumFacing side) {

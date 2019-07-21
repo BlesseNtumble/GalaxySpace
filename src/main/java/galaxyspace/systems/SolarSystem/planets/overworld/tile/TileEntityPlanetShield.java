@@ -3,7 +3,6 @@ package galaxyspace.systems.SolarSystem.planets.overworld.tile;
 import java.util.HashSet;
 import java.util.List;
 
-import galaxyspace.GalaxySpace;
 import galaxyspace.core.prefab.entities.EntityIceSpike;
 import galaxyspace.core.registers.items.GSItems;
 import io.netty.buffer.ByteBuf;
@@ -35,7 +34,6 @@ public class TileEntityPlanetShield extends TileBaseElectricBlockWithInventory i
 
 	public float bubbleSize;
 	public static HashSet<BlockVec3Dim> loadedTiles = new HashSet<>();
-	private NonNullList<ItemStack> stacks = NonNullList.withSize(6, ItemStack.EMPTY);
 	
 	@NetworkedField(targetSide = Side.CLIENT)
     public boolean shouldRenderBubble = true;
@@ -45,8 +43,10 @@ public class TileEntityPlanetShield extends TileBaseElectricBlockWithInventory i
 	
 	public TileEntityPlanetShield()
     {
+		super("tile.planet_shield.name");
 		this.storage.setCapacity(20000F);
         this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 250 : 205);
+        this.inventory = NonNullList.withSize(6, ItemStack.EMPTY);
     }
 	
 	@Override
@@ -192,11 +192,11 @@ public class TileEntityPlanetShield extends TileBaseElectricBlockWithInventory i
     		
     		for(int i = 0; i <= 3; i++)
         	{
-        		if(this.stacks.get(1 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 0)))
+        		if(this.getInventory().get(1 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 0)))
         			this.range_boost++;
-        		if(this.stacks.get(1 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 3)))
+        		if(this.getInventory().get(1 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 3)))
         			this.energy_boost++;
-        		if(this.stacks.get(1 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 1)))
+        		if(this.getInventory().get(1 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 1)))
         			this.stability = true;
         	}
     		
@@ -230,10 +230,10 @@ public class TileEntityPlanetShield extends TileBaseElectricBlockWithInventory i
 						}
 						else
 						{
-							if(this.stacks.get(5).isEmpty())
-								this.stacks.set(5, new ItemStack(GSItems.BASIC, 1 + world.rand.nextInt(3), 13));
-							else if(this.stacks.get(5).getCount() < 64)
-								this.stacks.get(5).grow(1 + world.rand.nextInt(3));
+							if(this.getInventory().get(5).isEmpty())
+								this.getInventory().set(5, new ItemStack(GSItems.BASIC, 1 + world.rand.nextInt(3), 13));
+							else if(this.getInventory().get(5).getCount() < 64)
+								this.getInventory().get(5).grow(1 + world.rand.nextInt(3));
 							else
 								this.world.spawnEntity(new EntityItem(world, meteor.lastTickPosX, meteor.lastTickPosY, meteor.lastTickPosZ, new ItemStack(GSItems.BASIC, 1 + world.rand.nextInt(3), 13)));
 							
@@ -282,10 +282,9 @@ public class TileEntityPlanetShield extends TileBaseElectricBlockWithInventory i
         {
             this.bubbleSize = nbt.getFloat("bubbleSize");
         }
-//        this.hasValidBubble = nbt.getBoolean("hasValidBubble");
 
-        this.stacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt, this.stacks);
+        this.inventory = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(nbt, this.getInventory());
     }
 
     @Override
@@ -295,80 +294,10 @@ public class TileEntityPlanetShield extends TileBaseElectricBlockWithInventory i
 
         nbt.setBoolean("bubbleVisible", this.shouldRenderBubble);
         nbt.setFloat("bubbleSize", this.bubbleSize);
-//        nbt.setBoolean("hasValidBubble", this.hasValidBubble);
-        ItemStackHelper.saveAllItems(nbt, this.stacks);
+        ItemStackHelper.saveAllItems(nbt, this.getInventory());
         return nbt;
     }
-    
-    @Override
-    public int getSizeInventory()
-    {
-        return this.stacks.size();
-    }
 
-    @Override
-    public ItemStack getStackInSlot(int var1)
-    {
-        return this.stacks.get(var1);
-    }
-    
-    @Override
-    public ItemStack decrStackSize(int index, int count)
-    {
-        ItemStack itemstack = ItemStackHelper.getAndSplit(this.stacks, index, count);
-
-        if (!itemstack.isEmpty())
-        {
-            this.markDirty();
-        }
-
-        return itemstack;
-    }
-    
-    @Override
-    public ItemStack removeStackFromSlot(int index)
-    {
-        ItemStack oldstack = ItemStackHelper.getAndRemove(this.stacks, index);
-        if (!oldstack.isEmpty())
-        {
-        	this.markDirty();
-        }
-    	return oldstack;
-    }
-    
-    @Override
-    public void setInventorySlotContents(int index, ItemStack stack)
-    {
-        this.stacks.set(index, stack);
-
-        if (stack.getCount() > this.getInventoryStackLimit())
-        {
-            stack.setCount(this.getInventoryStackLimit());
-        }
-
-        this.markDirty();
-    }
-
-    @Override
-    public boolean isEmpty()
-    {
-        for (ItemStack itemstack : this.stacks)
-        {
-            if (!itemstack.isEmpty())
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    @Override
-    public String getName()
-    {
-        return GCCoreUtil.translate("tile.planet_shield.name");
-    }
-    
     @Override
     public int getInventoryStackLimit()
     {
@@ -415,12 +344,6 @@ public class TileEntityPlanetShield extends TileBaseElectricBlockWithInventory i
         	default:
         		return false;
         }
-    }
-    
-    @Override
-    public boolean hasCustomName()
-    {
-        return true;
     }
     
     @Override
@@ -504,10 +427,6 @@ public class TileEntityPlanetShield extends TileBaseElectricBlockWithInventory i
     {
         return new Vector3(0.0F, 1.0F, 1.0F);
     }
-    
-    @Override
-	protected NonNullList<ItemStack> getContainingItems() {
-		return this.stacks;
-	}
+
     
 }

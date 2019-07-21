@@ -6,7 +6,6 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import galaxyspace.GalaxySpace;
 import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockHydroponicBase;
@@ -15,7 +14,6 @@ import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseElectricBlockWithInventory;
 import micdoodle8.mods.galacticraft.core.network.IPacketReceiver;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.wrappers.FluidHandlerWrapper;
 import micdoodle8.mods.galacticraft.core.wrappers.IFluidHandlerWrapper;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
@@ -23,6 +21,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -55,7 +54,7 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
     @NetworkedField(targetSide = Side.CLIENT)
 	public FluidTank waterTank = new FluidTank(this.tankCapacity);    
 
-    private NonNullList<ItemStack> stacks = NonNullList.withSize(20, ItemStack.EMPTY);
+    //private NonNullList<ItemStack> stacks = NonNullList.withSize(20, ItemStack.EMPTY);
     
     @NetworkedField(targetSide = Side.CLIENT)
     public int moduleLevel;	
@@ -71,7 +70,9 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
     
     public TileEntityHydroponicBase()
     {
+    	super("tile.hydroponic_base.name");
     	this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 60 : 45);
+    	this.inventory = NonNullList.withSize(20, ItemStack.EMPTY);
     	this.setTierGC(1);
     }
     ///////////////////////////////
@@ -153,9 +154,9 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
 		
 		if (!this.world.isRemote)
         {			
-			if (!this.stacks.get(1).isEmpty())
+			if (!this.getInventory().get(1).isEmpty())
             {
-				 FluidStack liquid = FluidUtil.getFluidContained(this.stacks.get(1));
+				 FluidStack liquid = FluidUtil.getFluidContained(this.getInventory().get(1));
             		
 	                if (liquid != null)
 	                {
@@ -166,34 +167,34 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
 		                    if (this.waterTank.getFluid() == null || this.waterTank.getFluid().amount + liquid.amount <= this.waterTank.getCapacity())
 		                    {
 		                        this.waterTank.fill(new FluidStack(FluidRegistry.WATER, liquid.amount), true);
-		                        ItemStack bucket = this.stacks.get(1);
+		                        ItemStack bucket = this.getInventory().get(1);
 		                        
-		                        if (bucket.getItem() != Items.WATER_BUCKET && micdoodle8.mods.galacticraft.core.util.FluidUtil.isBucket(this.stacks.get(1)) || micdoodle8.mods.galacticraft.core.util.FluidUtil.isFilledContainer(this.stacks.get(1)))
+		                        if (bucket.getItem() != Items.WATER_BUCKET && micdoodle8.mods.galacticraft.core.util.FluidUtil.isBucket(this.getInventory().get(1)) || micdoodle8.mods.galacticraft.core.util.FluidUtil.isFilledContainer(this.getInventory().get(1)))
 		                        {
-		                        	final int amount = this.stacks.get(1).getCount();
+		                        	final int amount = this.getInventory().get(1).getCount();
 		                            if (amount > 1) 
 		                            	this.waterTank.fill(new FluidStack(FluidRegistry.WATER, (amount - 1) * Fluid.BUCKET_VOLUME), true);
 		                            
 		                            else {
 		                            	IFluidHandlerItem handlerItem = net.minecraftforge.fluids.FluidUtil.getFluidHandler(bucket);
-		                            	this.stacks.set(1, new ItemStack(handlerItem.getContainer().getItem(), amount));
+		                            	this.getInventory().set(1, new ItemStack(handlerItem.getContainer().getItem(), amount));
 		                            }
 		                        }
 		                        if (bucket.getItem() == Items.WATER_BUCKET)
 		                        {
-		                        	final int amount = this.stacks.get(1).getCount();
+		                        	final int amount = this.getInventory().get(1).getCount();
 		                            if (amount > 1) 
 		                            	this.waterTank.fill(new FluidStack(FluidRegistry.WATER, (amount - 1) * Fluid.BUCKET_VOLUME), true);
 		             
-		                            this.stacks.set(1, new ItemStack(Items.BUCKET, amount));
+		                            this.getInventory().set(1, new ItemStack(Items.BUCKET, amount));
 		                        }
 		                        else
 		                        {
-		                        	this.stacks.get(1).shrink(1);
+		                        	this.getInventory().get(1).shrink(1);
 		                    		
-		                            if (this.stacks.get(1).getCount() == 0)
+		                            if (this.getInventory().get(1).getCount() == 0)
 		                            {
-		                            	this.stacks.set(1, ItemStack.EMPTY);
+		                            	this.getInventory().set(1, ItemStack.EMPTY);
 		                            }
 		                        }
 		                    }
@@ -220,15 +221,15 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
                         
                         this.waterTank.drain(1, true);
                         
-                        if(!this.stacks.get(8).isEmpty() 
-                        		&& (this.stacks.get(8).getItem() == Items.DYE && this.stacks.get(8).getItemDamage() == 15 
-                        		|| this.stacks.get(8).getItem() == GSItems.BASIC && this.stacks.get(8).getItemDamage() == 4))
+                        if(!this.getInventory().get(8).isEmpty() 
+                        		&& (this.getInventory().get(8).getItem() == Items.DYE && this.getInventory().get(8).getItemDamage() == 15 
+                        		|| this.getInventory().get(8).getItem() == GSItems.BASIC && this.getInventory().get(8).getItemDamage() == 4))
                         {
                         	
                         	if (this.processTicks % 100 == 0) {
                         		this.processTicks -= 2000;                        		
-                        		if(this.stacks.get(8).getCount() > 1) this.stacks.get(8).shrink(1);
-                        		else this.stacks.set(8, ItemStack.EMPTY);
+                        		if(this.getInventory().get(8).getCount() > 1) this.getInventory().get(8).shrink(1);
+                        		else this.getInventory().set(8, ItemStack.EMPTY);
                         	}
                         	
                         }
@@ -258,19 +259,19 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
 				
 		for(int i = 1; i <= this.getModuleLevel(); i++)
 		{
-			if(!this.stacks.get(i*2+1).isEmpty() 
-					&& this.stacks.get(i*2+1).getCount() >= 64 &&					
-					!this.stacks.get(i+8).isEmpty() 
-					&& this.stacks.get(i+8).getCount() >= 64) return false;
+			if(!this.getInventory().get(i*2+1).isEmpty() 
+					&& this.getInventory().get(i*2+1).getCount() >= 64 &&					
+					!this.getInventory().get(i+8).isEmpty() 
+					&& this.getInventory().get(i+8).getCount() >= 64) return false;
 			
-			if(this.stacks.get(i*2).isEmpty()) return false;
+			if(this.getInventory().get(i*2).isEmpty()) return false;
 
 			
-			ItemStack stack = this.stacks.get(i*2);
+			ItemStack stack = this.getInventory().get(i*2);
 			SeedData data = getSeedData(stack);
 			
 			if(data == null) return false;
-			if(!this.stacks.get(i*2+1).isEmpty() && this.stacks.get(i*2+1).getItem() != data.getProduct(false).getItem()) return false;
+			if(!this.getInventory().get(i*2+1).isEmpty() && this.getInventory().get(i*2+1).getItem() != data.getProduct(false).getItem()) return false;
 			
 			/*
 			if(!this.stacks.get(i*2).isEmpty() && this.stacks.get(i*2).getItem() != Items.WHEAT_SEEDS
@@ -293,7 +294,7 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
     	
     	
 		for(int i = 1; i <= this.getModuleLevel(); i++)
-			if(!this.stacks.get(i*2).isEmpty()) {
+			if(!this.getInventory().get(i*2).isEmpty()) {
 				
 				/*SeedData seed = null;
 				for(SeedData seeds : this.seeds)
@@ -306,35 +307,35 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
 				}*/
 				
 				Random rand = new Random();
-				SeedData seed = this.getSeedData(this.stacks.get(i*2));
+				SeedData seed = this.getSeedData(this.getInventory().get(i*2));
 				
-				if (seed != null && this.stacks.get(i*2).isItemEqual(seed.getSeed())) 
+				if (seed != null && this.getInventory().get(i*2).isItemEqual(seed.getSeed())) 
 				{
-					if(this.stacks.get(i*2+1).isEmpty()) {
+					if(this.getInventory().get(i*2+1).isEmpty()) {
 						ItemStack stack = seed.getProduct(false).copy();
 						stack.setCount(1 + (seed.hasRandCount[0] ? rand.nextInt(3) : 0));						
-						this.stacks.set(i*2+1, stack);						
+						this.getInventory().set(i*2+1, stack);						
 					}
 					else 
-						this.stacks.get(i*2+1).grow(1 + (seed.hasRandCount[0] ? rand.nextInt(3) : 0));
+						this.getInventory().get(i*2+1).grow(1 + (seed.hasRandCount[0] ? rand.nextInt(3) : 0));
 						
 					if(!seed.getProduct(true).isEmpty() && rand.nextInt(101 - seed.secondchance) == 0)
 					{
 						
-						if(this.stacks.get(i+8).isEmpty()) {
+						if(this.getInventory().get(i+8).isEmpty()) {
 							ItemStack stack = seed.getProduct(true).copy();
 							stack.setCount(1 + (seed.hasRandCount[1] ? rand.nextInt(3) : 0));
-							this.stacks.set(i+8, stack);
+							this.getInventory().set(i+8, stack);
 						}
 						else {
-							this.stacks.get(i+8).grow(1 + (seed.hasRandCount[1] ? rand.nextInt(3) : 0));		
+							this.getInventory().get(i+8).grow(1 + (seed.hasRandCount[1] ? rand.nextInt(3) : 0));		
 						}
 					}
 						
 				}	
 				
-				if(this.stacks.get(i*2).getCount() > 1) this.stacks.get(i*2).shrink(1);
-				else this.stacks.set(i*2, ItemStack.EMPTY);	
+				if(this.getInventory().get(i*2).getCount() > 1) this.getInventory().get(i*2).shrink(1);
+				else this.getInventory().set(i*2, ItemStack.EMPTY);	
 			}
 
     }
@@ -368,9 +369,9 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
 				if(farm != null) 
 				{
 					
-					if(!this.stacks.get(i * 2).isEmpty()) {
+					if(!this.getInventory().get(i * 2).isEmpty()) {
 						
-						SeedData data = getSeedData(this.stacks.get(i * 2));
+						SeedData data = getSeedData(this.getInventory().get(i * 2));
 						
 						if(data != null) {
 							int scale = processTicks > 0 ? (int) ((double) this.processTicks / (double) this.processTimeRequired * (int) data.getStages()) : (int) data.getStages();
@@ -396,8 +397,8 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
 				
 				if(i > this.getModuleLevel())
 				{
-					if(!this.stacks.get(i * 2).isEmpty()) {
-						this.stacks.set(i * 2, ItemStack.EMPTY);
+					if(!this.getInventory().get(i * 2).isEmpty()) {
+						this.getInventory().set(i * 2, ItemStack.EMPTY);
 					}
 				}
 			}
@@ -436,7 +437,8 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
         
         this.moduleLevel = par1NBTTagCompound.getInteger("moduleTier");
         this.processTicks = par1NBTTagCompound.getInteger("smeltingTicks");
-        this.stacks = this.readStandardItemsFromNBT(par1NBTTagCompound);
+        
+        ItemStackHelper.loadAllItems(par1NBTTagCompound, this.getInventory());
         
         
         if (par1NBTTagCompound.hasKey("waterTank"))
@@ -451,7 +453,8 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
     	super.writeToNBT(par1NBTTagCompound);
         par1NBTTagCompound.setInteger("smeltingTicks", this.processTicks);
         par1NBTTagCompound.setInteger("moduleTier", this.moduleLevel);
-        this.writeStandardItemsToNBT(par1NBTTagCompound, this.stacks);
+
+        ItemStackHelper.saveAllItems(par1NBTTagCompound, this.getInventory());
         
         if (this.waterTank.getFluid() != null)
         {
@@ -469,31 +472,7 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
     {
         this.moduleLevel = newTier;
     }
-    
-    @Override
-    public boolean hasCustomName()
-    {
-        return true;
-    }
-    
-    @Override
-    public String getName()
-    {
-        return GCCoreUtil.translate("tile.hydroponic_base.name");
-    }
-    
-    @Override
-    public int getSizeInventory()
-    {
-        return this.stacks.size();
-    }
-
-    @Override
-    public ItemStack getStackInSlot(int var1)
-    {
-        return this.stacks.get(var1);
-    }
-    
+      
     @Override
     public int[] getSlotsForFace(EnumFacing side)
     {
@@ -530,13 +509,8 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
 
         return false;
     }
-    
-    @Override
-	protected NonNullList<ItemStack> getContainingItems() {
-		return this.stacks;
-	}
 
-	@Override
+    @Override
 	public boolean shouldUseEnergy() {
 		return this.canProcess();
 	}

@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import galaxyspace.GalaxySpace;
 import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockLiquidExtractor;
@@ -15,7 +14,6 @@ import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseElectricBlockWithInventory;
 import micdoodle8.mods.galacticraft.core.network.IPacketReceiver;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.wrappers.FluidHandlerWrapper;
 import micdoodle8.mods.galacticraft.core.wrappers.IFluidHandlerWrapper;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
@@ -23,6 +21,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -53,7 +52,7 @@ public class TileEntityLiquidExtractor extends TileBaseElectricBlockWithInventor
     @NetworkedField(targetSide = Side.CLIENT)
     public FluidTank waterTank = new FluidTank(this.tankCapacity);
     
-    private NonNullList<ItemStack> stacks = NonNullList.withSize(3 + 4, ItemStack.EMPTY);
+   // private NonNullList<ItemStack> stacks = NonNullList.withSize(3 + 4, ItemStack.EMPTY);
     
     private static HashMap<Block, FluidStack> extractfluid = new HashMap();
     
@@ -62,12 +61,12 @@ public class TileEntityLiquidExtractor extends TileBaseElectricBlockWithInventor
     
     private List<BlockPos> blocks = new ArrayList<BlockPos>();
     private int number = 0;
-    // private int x = 0, y = 1, z = 0;
-    
-    
+       
     public TileEntityLiquidExtractor()
     {
+    	super("tile.liquid_extractor.name");
     	this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 60 : 45);
+    	this.inventory = NonNullList.withSize(3 + 4, ItemStack.EMPTY);
     	this.setTierGC(1);
     	
     	extractfluid.put(Blocks.ICE, new FluidStack(FluidRegistry.WATER, 100));
@@ -85,7 +84,7 @@ public class TileEntityLiquidExtractor extends TileBaseElectricBlockWithInventor
         if (!this.world.isRemote)
         {       	
         	range = 2;
-        	GSUtils.checkFluidTankTransfer(this.stacks, 1, this.waterTank);
+        	GSUtils.checkFluidTankTransfer(this.getInventory(), 1, this.waterTank);
         	
             if (this.canProcess())
             {            	
@@ -94,9 +93,9 @@ public class TileEntityLiquidExtractor extends TileBaseElectricBlockWithInventor
                  
                  for(int i = 0; i <= 3; i++)
              	{
-             		if(this.stacks.get(3 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 0)))
+             		if(this.getInventory().get(3 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 0)))
              			range += 2;
-             		if(this.stacks.get(3 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 3)))
+             		if(this.getInventory().get(3 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 3)))
              			energy_boost++;              		
              		
              	}
@@ -206,20 +205,7 @@ public class TileEntityLiquidExtractor extends TileBaseElectricBlockWithInventor
 			    	if(this.waterTank.getFluid().isFluidEqual(new FluidStack(FluidRegistry.lookupFluidForBlock(block), 0))) this.world.setBlockToAir(pos);
 				    return;
 			    } 
-			       
-			  /*  if(x < range) x++;
-	        	else {
-	        		x = -range;
-	        		z++;
-	        	}
-	        	
-	        	if(z > range) 
-	        	{
-	        		z = -range;   
-	        		//y++;
-	        	}
-	        	
-	        	if(y > 3) y = 1;*/
+			       			  
         	}
         	
         }
@@ -231,7 +217,7 @@ public class TileEntityLiquidExtractor extends TileBaseElectricBlockWithInventor
         super.readFromNBT(par1NBTTagCompound);
         
         this.processTicks = par1NBTTagCompound.getInteger("smeltingTicks");
-        this.stacks = this.readStandardItemsFromNBT(par1NBTTagCompound);
+        ItemStackHelper.loadAllItems(par1NBTTagCompound, this.getInventory());
         
         this.number = par1NBTTagCompound.getInteger("number");
         //this.z = par1NBTTagCompound.getInteger("posZ");
@@ -245,10 +231,9 @@ public class TileEntityLiquidExtractor extends TileBaseElectricBlockWithInventor
     {
     	super.writeToNBT(par1NBTTagCompound);
         par1NBTTagCompound.setInteger("smeltingTicks", this.processTicks);
-        this.writeStandardItemsToNBT(par1NBTTagCompound, this.stacks);
+        ItemStackHelper.saveAllItems(par1NBTTagCompound, this.getInventory());
         
         par1NBTTagCompound.setInteger("number", this.number);
-        //par1NBTTagCompound.setInteger("posZ", this.z);
 
         if (this.waterTank.getFluid() != null)
         {
@@ -268,23 +253,6 @@ public class TileEntityLiquidExtractor extends TileBaseElectricBlockWithInventor
         return EnumFacing.NORTH;
     }
 
-    @Override
-    public boolean hasCustomName()
-    {
-        return true;
-    }
-    
-    @Override
-    public String getName()
-    {
-        return GCCoreUtil.translate("tile.liquid_extractor.name");
-    }
-    
-    @Override
-    public int getSizeInventory()
-    {
-        return this.stacks.size();
-    }    
     
     @Override
     public int getInventoryStackLimit()
@@ -295,7 +263,7 @@ public class TileEntityLiquidExtractor extends TileBaseElectricBlockWithInventor
     @Override
     public ItemStack getStackInSlot(int var1)
     {
-        return this.stacks.get(var1);
+        return this.getInventory().get(var1);
     }
     
     @Override
@@ -329,13 +297,8 @@ public class TileEntityLiquidExtractor extends TileBaseElectricBlockWithInventor
 
         return false;
     }
-    
-    @Override
-	protected NonNullList<ItemStack> getContainingItems() {
-		return this.stacks;
-	}
 
-	@Override
+    @Override
 	public boolean shouldUseEnergy() {
 		return this.processTicks > 0;
 	}

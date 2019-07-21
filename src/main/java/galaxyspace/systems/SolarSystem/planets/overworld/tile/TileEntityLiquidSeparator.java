@@ -12,13 +12,13 @@ import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseElectricBlockWithIn
 import micdoodle8.mods.galacticraft.core.network.IPacketReceiver;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.galacticraft.core.util.FluidUtil;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.wrappers.FluidHandlerWrapper;
 import micdoodle8.mods.galacticraft.core.wrappers.IFluidHandlerWrapper;
 import micdoodle8.mods.galacticraft.planets.asteroids.AsteroidsModule;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -52,11 +52,10 @@ public class TileEntityLiquidSeparator extends TileBaseElectricBlockWithInventor
     @NetworkedField(targetSide = Side.CLIENT)
     public FluidTank waterTank2 = new FluidTank(this.tankCapacity);
     
-    private NonNullList<ItemStack> stacks = NonNullList.withSize(4 + 4, ItemStack.EMPTY);
-    
     @NetworkedField(targetSide = Side.CLIENT)
     public boolean reverse;
     
+    //TODO: NEED rewrite to class for add support custom recipe;
     public enum TankLiquids
     {
     	/*ETANEMETHANE(0, "liquidethanemethane", "methane", 5, "ethane", 1),
@@ -99,26 +98,9 @@ public class TileEntityLiquidSeparator extends TileBaseElectricBlockWithInventor
     
     public TileEntityLiquidSeparator()
     {
-        this(1);
-    }
-    
-    public TileEntityLiquidSeparator(int tier)
-    {
-        if (tier == 1)
-        {
-            this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 60 : 45);
-            return;
-        }
-
-        this.setTier2();
-    }
-    
-    private void setTier2()
-    {
-        this.storage.setCapacity(25000);
-        this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 90 : 60);
-        this.processTimeRequired = 100;
-        this.setTierGC(2);   	
+    	super("tile.liquid_separator.name");        
+        this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 60 : 45);
+        this.inventory = NonNullList.withSize(4 + 4, ItemStack.EMPTY);
     }
     
     @Override
@@ -129,31 +111,31 @@ public class TileEntityLiquidSeparator extends TileBaseElectricBlockWithInventor
         {
         	if(!this.getReverse())
         	{
-        		GSUtils.checkFluidTankTransfer(this.stacks, 1, this.waterTank2);
-        		GSUtils.checkFluidTankTransfer(this.stacks, 3, this.waterTank1);
+        		GSUtils.checkFluidTankTransfer(this.getInventory(), 1, this.waterTank2);
+        		GSUtils.checkFluidTankTransfer(this.getInventory(), 3, this.waterTank1);
 	        	
-	        	if (!this.stacks.get(2).isEmpty()) {
-	        		FluidStack liquid = FluidUtil.getFluidContained(this.stacks.get(2));
+	        	if (!this.getInventory().get(2).isEmpty()) {
+	        		FluidStack liquid = FluidUtil.getFluidContained(this.getInventory().get(2));
 					if (liquid != null) {						
-						FluidUtil.loadFromContainer(this.baseTank, liquid.getFluid(), this.stacks, 2, liquid.amount);
+						FluidUtil.loadFromContainer(this.baseTank, liquid.getFluid(), this.getInventory(), 2, liquid.amount);
 					}
 	        	}
         	}
         	else 
         	{
-        		GSUtils.checkFluidTankTransfer(this.stacks, 2, this.baseTank);
+        		GSUtils.checkFluidTankTransfer(this.getInventory(), 2, this.baseTank);
         		  
-        		if (!this.stacks.get(1).isEmpty()) {
-	        		FluidStack liquid = FluidUtil.getFluidContained(this.stacks.get(1));
+        		if (!this.getInventory().get(1).isEmpty()) {
+	        		FluidStack liquid = FluidUtil.getFluidContained(this.getInventory().get(1));
 					if (liquid != null) {						
-						FluidUtil.loadFromContainer(this.waterTank2, liquid.getFluid(), this.stacks, 1, liquid.amount);
+						FluidUtil.loadFromContainer(this.waterTank2, liquid.getFluid(), this.getInventory(), 1, liquid.amount);
 					}
 	        	}
         		
-        		if (!this.stacks.get(3).isEmpty()) {
-	        		FluidStack liquid = FluidUtil.getFluidContained(this.stacks.get(3));
+        		if (!this.getInventory().get(3).isEmpty()) {
+	        		FluidStack liquid = FluidUtil.getFluidContained(this.getInventory().get(3));
 					if (liquid != null) {						
-						FluidUtil.loadFromContainer(this.waterTank1, liquid.getFluid(), this.stacks, 3, liquid.amount);
+						FluidUtil.loadFromContainer(this.waterTank1, liquid.getFluid(), this.getInventory(), 3, liquid.amount);
 					}
 	        	}
         		
@@ -169,9 +151,9 @@ public class TileEntityLiquidSeparator extends TileBaseElectricBlockWithInventor
 
                 	for(int i = 0; i <= 3; i++)
                 	{
-                		if(this.stacks.get(4 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 2)))
+                		if(this.getInventory().get(4 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 2)))
                 			boost_speed++;
-                		if(this.stacks.get(4 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 3)))
+                		if(this.getInventory().get(4 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 3)))
                 			energy_boost++;
                 	}
                 	
@@ -293,7 +275,8 @@ public class TileEntityLiquidSeparator extends TileBaseElectricBlockWithInventor
         super.readFromNBT(par1NBTTagCompound);
         
         this.processTicks = par1NBTTagCompound.getInteger("smeltingTicks");
-        this.stacks = this.readStandardItemsFromNBT(par1NBTTagCompound);
+        ItemStackHelper.loadAllItems(par1NBTTagCompound, this.getInventory());
+        
         this.reverse = par1NBTTagCompound.getBoolean("reverse");
         
         if (par1NBTTagCompound.hasKey("baseTank"))        
@@ -309,7 +292,8 @@ public class TileEntityLiquidSeparator extends TileBaseElectricBlockWithInventor
     {
     	super.writeToNBT(par1NBTTagCompound);
         par1NBTTagCompound.setInteger("smeltingTicks", this.processTicks);
-        this.writeStandardItemsToNBT(par1NBTTagCompound, this.stacks);
+        ItemStackHelper.saveAllItems(par1NBTTagCompound, this.getInventory());
+        
         par1NBTTagCompound.setBoolean("reverse", this.reverse);
         
         if (this.baseTank.getFluid() != null)        
@@ -323,37 +307,14 @@ public class TileEntityLiquidSeparator extends TileBaseElectricBlockWithInventor
         
         return par1NBTTagCompound;
     }
-    
-    @Override
-    public boolean hasCustomName()
-    {
-        return true;
-    }
-    
-    @Override
-    public String getName()
-    {
-        return GCCoreUtil.translate("tile.liquid_separator.name");
-    }
-    
-    @Override
-    public int getSizeInventory()
-    {
-        return this.stacks.size();
-    }    
+
     
     @Override
     public int getInventoryStackLimit()
     {
         return 64;
     }
-    
-    @Override
-    public ItemStack getStackInSlot(int var1)
-    {
-        return this.stacks.get(var1);
-    }
-    
+
     @Override
     public int[] getSlotsForFace(EnumFacing side)
     {
@@ -385,11 +346,6 @@ public class TileEntityLiquidSeparator extends TileBaseElectricBlockWithInventor
 
         return false;
     }
-    
-    @Override
-	protected NonNullList<ItemStack> getContainingItems() {
-		return this.stacks;
-	}
     
     @Override
 	public boolean shouldUseEnergy() {

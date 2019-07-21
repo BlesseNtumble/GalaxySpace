@@ -2,29 +2,21 @@ package galaxyspace.systems.SolarSystem.planets.overworld.tile;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Nullable;
 
-import galaxyspace.GalaxySpace;
 import galaxyspace.core.configs.GSConfigEnergy;
 import galaxyspace.core.registers.blocks.GSBlocks;
-import galaxyspace.core.registers.fluids.GSFluids;
 import galaxyspace.systems.SolarSystem.moons.io.blocks.IoBlocks;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockFuelGenerator;
 import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
 import micdoodle8.mods.galacticraft.api.transmission.tile.IConnector;
-import micdoodle8.mods.galacticraft.core.GCFluids;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectricalSource;
-import micdoodle8.mods.galacticraft.core.inventory.IInventoryDefaults;
 import micdoodle8.mods.galacticraft.core.util.FluidUtil;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.wrappers.FluidHandlerWrapper;
 import micdoodle8.mods.galacticraft.core.wrappers.IFluidHandlerWrapper;
-import micdoodle8.mods.galacticraft.planets.asteroids.AsteroidsModule;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -46,7 +38,7 @@ import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 
-public class TileEntityFuelGenerator extends TileBaseUniversalElectricalSource implements IFluidHandlerWrapper, IInventoryDefaults, ISidedInventory, IConnector
+public class TileEntityFuelGenerator extends TileBaseUniversalElectricalSource implements IFluidHandlerWrapper, ISidedInventory, IConnector
 {
     public static final float MAX_GENERATE_GJ_PER_TICK = 81 * GSConfigEnergy.coefficientFuelGenerator;
     public static final float MIN_GENERATE_GJ_PER_TICK = 1;
@@ -64,8 +56,7 @@ public class TileEntityFuelGenerator extends TileBaseUniversalElectricalSource i
 
     @NetworkedField(targetSide = Side.CLIENT)
     public int itemCookTime = 0;
-    private NonNullList<ItemStack> stacks = NonNullList.withSize(1, ItemStack.EMPTY);
-
+   
     private float mod = 1.0F;
     private static List<Fuel> fuel = new ArrayList<Fuel>();
             
@@ -76,7 +67,9 @@ public class TileEntityFuelGenerator extends TileBaseUniversalElectricalSource i
     
     public TileEntityFuelGenerator()
     {
+    	super("tile.fuel_generator.name");
         this.storage.setMaxExtract(TileEntityFuelGenerator.MAX_GENERATE_GJ_PER_TICK - TileEntityFuelGenerator.MIN_GENERATE_GJ_PER_TICK);
+        this.inventory = NonNullList.withSize(1, ItemStack.EMPTY); 
     }
 
     public int getScaledFuelLevel(int i)
@@ -96,14 +89,14 @@ public class TileEntityFuelGenerator extends TileBaseUniversalElectricalSource i
 
         if (!this.world.isRemote)
         {	           
-        	final FluidStack liquid = FluidUtil.getFluidContained(this.stacks.get(0));
+        	final FluidStack liquid = FluidUtil.getFluidContained(this.getInventory().get(0));
             
         	for(Fuel fuel : fuel)
         	{
         		if (FluidUtil.isFluidStrict(liquid, fuel.getFluid().getName()))  {
         			
         			if(fuelTank.getFluid() == null || fuelTank.getFluid() != null && fuelTank.getFluid().getFluid().equals(liquid.getFluid()))
-        			FluidUtil.loadFromContainer(fuelTank, fuel.getFluid(), this.stacks, 0, liquid.amount);
+        			FluidUtil.loadFromContainer(fuelTank, fuel.getFluid(), this.getInventory(), 0, liquid.amount);
         		}
         	}
         	
@@ -186,8 +179,8 @@ public class TileEntityFuelGenerator extends TileBaseUniversalElectricalSource i
         this.heatGJperTick = par1NBTTagCompound.getInteger("generateRateInt");
         NBTTagList var2 = par1NBTTagCompound.getTagList("Items", 10);
         
-        this.stacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(par1NBTTagCompound, this.stacks);
+        this.inventory = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(par1NBTTagCompound, this.getInventory());
 
         
         if (par1NBTTagCompound.hasKey("fuelTank"))
@@ -211,7 +204,7 @@ public class TileEntityFuelGenerator extends TileBaseUniversalElectricalSource i
             par1NBTTagCompound.setTag("fuelTank", this.fuelTank.writeToNBT(new NBTTagCompound()));
         }
         
-        ItemStackHelper.saveAllItems(par1NBTTagCompound, this.stacks);        
+        ItemStackHelper.saveAllItems(par1NBTTagCompound, this.getInventory());        
         return par1NBTTagCompound;
         
         
@@ -220,19 +213,19 @@ public class TileEntityFuelGenerator extends TileBaseUniversalElectricalSource i
     @Override
     public int getSizeInventory()
     {
-        return this.stacks.size();
+        return this.getInventory().size();
     }
 
     @Override
     public ItemStack getStackInSlot(int par1)
     {
-        return this.stacks.get(par1);
+        return this.getInventory().get(par1);
     }
 
     @Override
     public ItemStack decrStackSize(int index, int count)
     {
-    	ItemStack itemstack = ItemStackHelper.getAndSplit(this.stacks, index, count);
+    	ItemStack itemstack = ItemStackHelper.getAndSplit(this.getInventory(), index, count);
 
         if (!itemstack.isEmpty())
         {
@@ -245,7 +238,7 @@ public class TileEntityFuelGenerator extends TileBaseUniversalElectricalSource i
     @Override
     public ItemStack removeStackFromSlot(int index)
     {
-    	ItemStack oldstack = ItemStackHelper.getAndRemove(this.stacks, index);
+    	ItemStack oldstack = ItemStackHelper.getAndRemove(this.getInventory(), index);
         if (!oldstack.isEmpty())
         {
         	this.markDirty();
@@ -256,7 +249,7 @@ public class TileEntityFuelGenerator extends TileBaseUniversalElectricalSource i
     @Override
     public void setInventorySlotContents(int index, ItemStack stack)
     {
-        this.stacks.set(index, stack);
+        this.getInventory().set(index, stack);
 
         if (stack.getCount() > this.getInventoryStackLimit())
         {
@@ -266,25 +259,6 @@ public class TileEntityFuelGenerator extends TileBaseUniversalElectricalSource i
         this.markDirty();
     }
 
-    @Override
-    public boolean isEmpty()
-    {
-        for (ItemStack itemstack : this.stacks)
-        {
-            if (!itemstack.isEmpty())
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-    
-    @Override
-    public String getName()
-    {
-        return GCCoreUtil.translate("tile.fuel_generator.name");
-    }
 
     @Override
     public int getInventoryStackLimit()
