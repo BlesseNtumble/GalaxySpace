@@ -7,6 +7,8 @@ import javax.annotation.Nullable;
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.util.GSCreativeTabs;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Dandelions;
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Grass;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Logs;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.WorldGenTree_Swampland;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.WorldGenTree_Swampland_2;
@@ -75,6 +77,23 @@ public class ItemBasicBR extends Item implements ISortableItem{
 		
 		BlockPos pos = raytraceresult.getBlockPos();
 		
+		if(itemstack.getItemDamage() == 0) {
+			if (raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK)
+            {
+				if (!world.isBlockModifiable(player, pos) || !player.canPlayerEdit(pos.offset(raytraceresult.sideHit), raytraceresult.sideHit, itemstack)) {
+					return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
+				}
+				
+				BlockPos blockpos1 = pos.up();
+				IBlockState iblockstate = world.getBlockState(pos);
+				
+				if(world.isAirBlock(blockpos1) && iblockstate == BRBlocks.BARNARDA_C_GRASS.getDefaultState().withProperty(Barnarda_C_Grass.BASIC_TYPE, Barnarda_C_Grass.EnumBlockGrass.GRASS))
+				{
+					world.setBlockState(blockpos1, BRBlocks.BARNARDA_C_DANDELIONS.getDefaultState().withProperty(Barnarda_C_Dandelions.BASIC_TYPE, Barnarda_C_Dandelions.EnumBlockDandelions.REEDS));
+					return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+				}
+            }
+		}
 		if(itemstack.getItemDamage() == 2) {
 			if (raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK)
             {
