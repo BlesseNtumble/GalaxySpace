@@ -39,7 +39,7 @@ public class TileEntityRadiationStabiliser extends TileBaseElectricBlockWithInve
     {
 		super("tile.radiation_stabiliser.name");
         this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 90 : 45);
-        this.inventory = NonNullList.withSize(2, ItemStack.EMPTY);
+        this.inventory = NonNullList.withSize(1 + 4, ItemStack.EMPTY);
     }
 	
 	@Override
@@ -180,6 +180,17 @@ public class TileEntityRadiationStabiliser extends TileBaseElectricBlockWithInve
     	
     	if (!this.world.isRemote)
         {
+    		
+    		int range_boost = 0, energy_boost = 0;
+    		
+    		for(int i = 0; i <= 3; i++)
+        	{
+        		if(this.getInventory().get(1 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 0)))
+        			range_boost++;
+        		if(this.getInventory().get(1 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 3)))
+        			energy_boost++;
+        	}
+    		
             if (this.getEnergyStoredGC() > 0.0F && this.hasEnoughEnergyToRun && !this.disabled)
             {
                 this.bubbleSize += 0.01F;
@@ -188,10 +199,10 @@ public class TileEntityRadiationStabiliser extends TileBaseElectricBlockWithInve
             {
                 this.bubbleSize -= 0.05F;
             }
-
-            this.storage.setMaxExtract(ConfigManagerCore.hardMode ? this.getInventory().get(1).isEmpty() ? 90 : 150 : 45);
             
-            this.bubbleSize = Math.min(Math.max(this.bubbleSize, 0.0F), this.getInventory().get(1).isEmpty() ? 10.0F : 20.0F);
+            this.bubbleSize = Math.min(Math.max(this.bubbleSize, 0.0F), 10.0F + (5.0F * range_boost));
+            this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 90 + (60 * range_boost) - (20 * energy_boost): 45 + (45 * range_boost) - (15 * energy_boost));
+
         }
     }
     

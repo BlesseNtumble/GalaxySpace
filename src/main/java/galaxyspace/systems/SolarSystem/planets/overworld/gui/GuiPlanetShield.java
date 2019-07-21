@@ -6,6 +6,8 @@ import java.util.List;
 import org.lwjgl.opengl.GL11;
 
 import galaxyspace.GalaxySpace;
+import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerPlanetShield;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityPlanetShield;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
@@ -22,6 +24,7 @@ import micdoodle8.mods.galacticraft.core.util.RedstoneUtil;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 public class GuiPlanetShield extends GuiContainerGC implements ICheckBoxCallback {
@@ -73,6 +76,14 @@ public class GuiPlanetShield extends GuiContainerGC implements ICheckBoxCallback
         desc.add(GCCoreUtil.translate("gui.planet_shield_stability_1.desc"));
         desc.add(GCCoreUtil.translate("gui.planet_shield_stability_2.desc"));
         this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 80, (this.height - this.ySize) / 2 + 16, 18, 18, desc, this.width, this.height, this));
+       
+        desc = new ArrayList<String>();
+        desc.add(EnumColor.BRIGHT_GREEN + GCCoreUtil.translate("gui.available_modules.desc"));
+        desc.add("");
+        desc.add("- " + new ItemStack(GSItems.UPGRADES, 1, 0).getDisplayName());
+        desc.add("- " + new ItemStack(GSItems.UPGRADES, 1, 1).getDisplayName());
+        desc.add("- " + new ItemStack(GSItems.UPGRADES, 1, 3).getDisplayName());
+        this.infoRegions.add(new GuiElementInfoRegion((this.width + this.xSize) / 2, (this.height - this.ySize) / 2 + 16, 18, 21 * 4, desc, this.width, this.height, this));
        
         this.buttonList.clear();
         
@@ -200,6 +211,7 @@ public class GuiPlanetShield extends GuiContainerGC implements ICheckBoxCallback
 		gen = "Bubble size: " + (int) this.tileEntity.bubbleSize + " blocks";
 		this.drawString(fontRenderer, gen, containerWidth + 30, containerHeight + 40 + fontRenderer.FONT_HEIGHT, 0xFFFFFF);
 		
+		if(GalaxySpace.debug) GSUtils.renderDebugGui(this, containerWidth, containerHeight);
     }
 	
 	@Override

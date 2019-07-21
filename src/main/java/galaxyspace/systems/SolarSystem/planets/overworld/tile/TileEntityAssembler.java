@@ -43,8 +43,6 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements ISided
   
     public PersistantInventoryCrafting testCraftMatrix = new PersistantInventoryCrafting();
     
-    private int boost_speed, energy_boost;
-
     public TileEntityAssembler()
     {
     	super("tile.assembly_machine.name");
@@ -68,19 +66,18 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements ISided
                 if (this.canCompress())
                 {
                 	//////////
-                	this.boost_speed = 0;
-                	this.energy_boost = 0;
+                	int boost_speed = 0, energy_boost = 0;
                 	
                 	for(int i = 0; i <= 3; i++)
                 	{
                 		if(this.getInventory().get(2 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 2)))
-                			this.boost_speed++;
+                			boost_speed++;
                 		if(this.getInventory().get(2 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 3)))
-                			this.energy_boost++;
+                			energy_boost++;
                 	}
                 	
-                    this.processTicks += 1 + this.boost_speed;
-                    this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 90 + (40 * this.boost_speed) - (20 * this.energy_boost): 75 + (35 * this.boost_speed) - (15 * this.energy_boost));
+                    this.processTicks += 1 + boost_speed;
+                    this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 90 + (40 * boost_speed) - (20 * energy_boost): 75 + (35 * boost_speed) - (15 * energy_boost));
                     /////////////
                     
                     this.processTimeRequired = TileEntityAssembler.PROCESS_TIME_REQUIRED_BASE * 2 / (1 + this.poweredByTierGC);

@@ -6,6 +6,7 @@ import java.util.List;
 import org.lwjgl.opengl.GL11;
 
 import galaxyspace.GalaxySpace;
+import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerOxygenStorageModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvOxygenStorageModule;
 import micdoodle8.mods.galacticraft.core.client.gui.container.GuiContainerGC;
@@ -75,5 +76,7 @@ public class GuiOxygenStorageModule extends GuiContainerGC
         // Foreground energy bar
         int scale = (int) ((double) this.tileEntity.getOxygenStored() / (double) this.tileEntity.getMaxOxygenStored() * 72);
         this.drawTexturedModalRect(containerWidth + 52, containerHeight + 52, 176, 0, scale, 3);
+    
+        if(GalaxySpace.debug) GSUtils.renderDebugGui(this, containerWidth, containerHeight);
     }
 }

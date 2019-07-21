@@ -6,6 +6,8 @@ import java.util.List;
 import org.lwjgl.opengl.GL11;
 
 import galaxyspace.GalaxySpace;
+import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerAdvElectricCompressor;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvElectricCompressor;
 import micdoodle8.mods.galacticraft.core.client.gui.container.GuiContainerGC;
@@ -14,6 +16,7 @@ import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -43,16 +46,24 @@ public class GuiAdvElectricCompressor extends GuiContainerGC
         this.electricInfoRegion.parentWidth = this.width;
         this.electricInfoRegion.parentHeight = this.height;
         this.infoRegions.add(this.electricInfoRegion);
-        List<String> batterySlotDesc = new ArrayList<String>();
-        batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.0"));
-        batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.1"));
-        this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 77, (this.height - this.ySize) / 2 + 93, 18, 18, batterySlotDesc, this.width, this.height, this));
+        List<String> desc = new ArrayList<String>();
+        desc.add(GCCoreUtil.translate("gui.battery_slot.desc.0"));
+        desc.add(GCCoreUtil.translate("gui.battery_slot.desc.1"));
+        this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 77, (this.height - this.ySize) / 2 + 93, 18, 18, desc, this.width, this.height, this));
         this.processInfoRegion.tooltipStrings = new ArrayList<String>();
         this.processInfoRegion.xPosition = (this.width - this.xSize) / 2 + 77;
         this.processInfoRegion.yPosition = (this.height - this.ySize) / 2 + 30;
         this.processInfoRegion.parentWidth = this.width;
         this.processInfoRegion.parentHeight = this.height;
         this.infoRegions.add(this.processInfoRegion);
+        
+        desc = new ArrayList<String>();
+        desc.add(EnumColor.BRIGHT_GREEN + GCCoreUtil.translate("gui.available_modules.desc"));
+        desc.add("");
+        desc.add("- " + new ItemStack(GSItems.UPGRADES, 1, 2).getDisplayName());
+        desc.add("- " + new ItemStack(GSItems.UPGRADES, 1, 3).getDisplayName());
+        this.infoRegions.add(new GuiElementInfoRegion((this.width + this.xSize) / 2, (this.height - this.ySize) / 2 + 16, 18, 21 * 4, desc, this.width, this.height, this));
+     
     }
 
     @Override
@@ -169,12 +180,6 @@ public class GuiAdvElectricCompressor extends GuiContainerGC
 	        //}
         }
         
-        if(GalaxySpace.debug)
-			for(int i = 0; i < this.inventorySlots.inventorySlots.size(); i++)
-			{
-				int x = this.inventorySlots.getSlot(i).xPos;
-				int y = this.inventorySlots.getSlot(i).yPos;
-				this.fontRenderer.drawString(EnumColor.WHITE + "" + this.inventorySlots.getSlot(i).getSlotIndex(), containerWidth + x + 5, containerHeight + y + 5, 4210752);
-			}
+        if(GalaxySpace.debug) GSUtils.renderDebugGui(this, containerWidth, containerHeight);
     }
 }

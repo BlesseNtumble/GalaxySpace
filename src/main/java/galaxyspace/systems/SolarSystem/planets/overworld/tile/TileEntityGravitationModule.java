@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import galaxyspace.api.tile.ITileEffects;
+import galaxyspace.core.registers.items.GSItems;
 import micdoodle8.mods.galacticraft.api.entity.IAntiGrav;
 import micdoodle8.mods.galacticraft.api.item.IArmorGravity;
 import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
@@ -57,7 +58,7 @@ public class TileEntityGravitationModule extends TileBaseElectricBlockWithInvent
 		this.radius = 4;
 		this.storage.setCapacity(15000);
 		this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 60 : 45);
-		this.inventory = NonNullList.withSize(2, ItemStack.EMPTY);
+		this.inventory = NonNullList.withSize(1 + 4, ItemStack.EMPTY);
     }
 	
 	@Override
@@ -113,7 +114,20 @@ public class TileEntityGravitationModule extends TileBaseElectricBlockWithInvent
 			this.world.notifyLightSet(this.getPos());
 		
 		if (this.canProcess() && !this.disabled) {
-			if (this.hasEnoughEnergyToRun) {				
+			if (this.hasEnoughEnergyToRun) {		
+				
+				int energy_boost = 0;
+        	   	
+        	   	//////////
+
+            	for(int i = 0; i <= 3; i++)
+            	{
+            		if(this.getInventory().get(1 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 3)))
+            			energy_boost++;
+            	}
+            	
+                this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 90 + 60 - (20 * energy_boost) : 75 + 55 - (15 * energy_boost));
+                          
 				if (this.processTicks == 0) {
 					this.processTicks = this.processTimeRequired;
 				} else {

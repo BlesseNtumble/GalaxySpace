@@ -9,6 +9,7 @@ import galaxyspace.GalaxySpace;
 import galaxyspace.core.network.packet.GSPacketSimple;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
 import galaxyspace.core.prefab.inventory.SlotUpgrades;
+import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerLiquidSeparator;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityLiquidSeparator;
@@ -20,6 +21,7 @@ import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -58,10 +60,10 @@ public class GuiLiquidSeparator extends GuiContainerGC
         this.electricInfoRegion.parentWidth = this.width;
         this.electricInfoRegion.parentHeight = this.height;
         this.infoRegions.add(this.electricInfoRegion);
-        List<String> batterySlotDesc = new ArrayList<String>();
-        batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.0"));
-        batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.1"));
-        this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 77, (this.height - this.ySize) / 2 + 93, 18, 18, batterySlotDesc, this.width, this.height, this));
+        List<String> desc = new ArrayList<String>();
+        desc.add(GCCoreUtil.translate("gui.battery_slot.desc.0"));
+        desc.add(GCCoreUtil.translate("gui.battery_slot.desc.1"));
+        this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 77, (this.height - this.ySize) / 2 + 93, 18, 18, desc, this.width, this.height, this));
         this.processInfoRegion.tooltipStrings = new ArrayList<String>();
         this.processInfoRegion.xPosition = (this.width - this.xSize) / 2 + 77;
         this.processInfoRegion.yPosition = (this.height - this.ySize) / 2 + 30;
@@ -80,22 +82,22 @@ public class GuiLiquidSeparator extends GuiContainerGC
         this.baseTankRegion.parentHeight = this.height;
         this.infoRegions.add(this.baseTankRegion);
         
-        List<String> fuelTankDesc = new ArrayList<String>();
+        baseTankDesc = new ArrayList<String>();
         int fuelLevel = this.tileEntity.waterTank1 != null && this.tileEntity.waterTank1.getFluid() != null ? this.tileEntity.waterTank1.getFluid().amount : 0;
         int fuelCapacity = this.tileEntity.waterTank1 != null ? this.tileEntity.waterTank1.getCapacity() : 0;
-        fuelTankDesc.add(EnumColor.YELLOW + GCCoreUtil.translate("gui.message.fuel.name") + ": " + fuelLevel + " / " + fuelCapacity);
-        this.water1TankRegion.tooltipStrings = fuelTankDesc;
+        baseTankDesc.add(EnumColor.YELLOW + GCCoreUtil.translate("gui.message.fuel.name") + ": " + fuelLevel + " / " + fuelCapacity);
+        this.water1TankRegion.tooltipStrings = baseTankDesc;
         this.water1TankRegion.xPosition = (this.width / 2 + this.xSize / 2) - 30;
         this.water1TankRegion.yPosition = (this.height - this.ySize) / 2 + 40;
         this.water1TankRegion.parentWidth = this.width;
         this.water1TankRegion.parentHeight = this.height;
         this.infoRegions.add(this.water1TankRegion);
         
-        List<String> fuel1TankDesc = new ArrayList<String>();
+        baseTankDesc = new ArrayList<String>();
         int fuel1Level = this.tileEntity.waterTank2 != null && this.tileEntity.waterTank2.getFluid() != null ? this.tileEntity.waterTank2.getFluid().amount : 0;
         int fuel1Capacity = this.tileEntity.waterTank2 != null ? this.tileEntity.waterTank2.getCapacity() : 0;
-        fuel1TankDesc.add(EnumColor.YELLOW + GCCoreUtil.translate("gui.message.fuel.name") + ": " + fuel1Level + " / " + fuel1Capacity);
-        this.water2TankRegion.tooltipStrings = fuel1TankDesc;
+        baseTankDesc.add(EnumColor.YELLOW + GCCoreUtil.translate("gui.message.fuel.name") + ": " + fuel1Level + " / " + fuel1Capacity);
+        this.water2TankRegion.tooltipStrings = baseTankDesc;
         this.water2TankRegion.xPosition = (this.width / 2) - 78;
         this.water2TankRegion.yPosition = (this.height - this.ySize) / 2 + 40;
         this.water2TankRegion.parentWidth = this.width;
@@ -111,6 +113,13 @@ public class GuiLiquidSeparator extends GuiContainerGC
 
         this.buttonList.add(reverseButton);
     
+        desc = new ArrayList<String>();
+        desc.add(EnumColor.BRIGHT_GREEN + GCCoreUtil.translate("gui.available_modules.desc"));
+        desc.add("");
+        desc.add("- " + new ItemStack(GSItems.UPGRADES, 1, 2).getDisplayName());
+        desc.add("- " + new ItemStack(GSItems.UPGRADES, 1, 3).getDisplayName());
+        this.infoRegions.add(new GuiElementInfoRegion((this.width + this.xSize) / 2, (this.height - this.ySize) / 2 + 16, 18, 21 * 4, desc, this.width, this.height, this));
+     
     }
 
     @Override
@@ -295,13 +304,8 @@ public class GuiLiquidSeparator extends GuiContainerGC
         int fuel1Capacity = this.tileEntity.waterTank2 != null ? this.tileEntity.waterTank2.getCapacity() : 0;
         if(fluid2 != null) fuel1TankDesc.add(EnumColor.YELLOW + this.tileEntity.waterTank2.getFluid().getLocalizedName() + ": " + fuel1Level + " / " + fuel1Capacity);       
         this.water2TankRegion.tooltipStrings = fuel1TankDesc;
-        /*
-        for(int i = 0; i < this.inventorySlots.inventorySlots.size(); i++)
-        {
-        	int x = this.inventorySlots.getSlot(i).xDisplayPosition;
-	        int y = this.inventorySlots.getSlot(i).yDisplayPosition;
-        	this.fontRendererObj.drawString(EnumColor.WHITE + "" + this.inventorySlots.getSlot(i).getSlotIndex(), containerWidth + x + 5, containerHeight + y + 5, 4210752);
-        }*/
+      
+        if(GalaxySpace.debug) GSUtils.renderDebugGui(this, containerWidth, containerHeight);
     }
     
     @Override

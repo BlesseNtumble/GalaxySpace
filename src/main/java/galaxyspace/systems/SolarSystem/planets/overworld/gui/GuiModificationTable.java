@@ -11,6 +11,7 @@ import galaxyspace.api.item.IModificationItem;
 import galaxyspace.core.network.packet.GSPacketSimple;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
 import galaxyspace.core.prefab.items.modules.ItemModule;
+import galaxyspace.core.util.GSUtils;
 import galaxyspace.core.util.GSUtils.Module_Type;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerModificationTable;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityModificationTable;
@@ -184,6 +185,8 @@ public class GuiModificationTable extends GuiContainerGC{
         {
         	this.fontRenderer.drawSplitString(GCCoreUtil.translate("gui.module.empty_slot"), containerWidth + 58, containerHeight + 60, 80, 0xFFFFFF);
         }
+        
+        if(GalaxySpace.debug) GSUtils.renderDebugGui(this, containerWidth, containerHeight);
     }
 	
 	@Override

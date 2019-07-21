@@ -1,6 +1,8 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.inventory;
 
+import galaxyspace.core.prefab.inventory.SlotUpgrades;
 import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemUpgrades;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitationModule;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
@@ -25,7 +27,11 @@ public class ContainerGravitationModule extends Container
          
         // Battery Slot
         this.addSlotToContainer(new SlotSpecific(tileEntity, 0, 78, 102, ItemElectricBase.class));
-        this.addSlotToContainer(new SlotSpecific(tileEntity, 1, 7, 20, new ItemStack(GSItems.UPGRADES, 1, 1)));
+        //this.addSlotToContainer(new SlotSpecific(tileEntity, 1, 7, 20, new ItemStack(GSItems.UPGRADES, 1, 1)));
+        
+        for(var3 = 0; var3 < 4; ++var3)        
+        	this.addSlotToContainer(new SlotUpgrades(tileEntity, 1 + var3, 177, 18 + (21 * var3), 1, ItemUpgrades.class));
+       
         
         for (var3 = 0; var3 < 3; ++var3)
         {

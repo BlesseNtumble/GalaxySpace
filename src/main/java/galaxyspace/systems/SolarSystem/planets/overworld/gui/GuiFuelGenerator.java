@@ -164,6 +164,7 @@ public class GuiFuelGenerator extends GuiContainerGC
         }
         this.fuelTankRegion.tooltipStrings = fuelTankDesc;
 
+        if(GalaxySpace.debug) GSUtils.renderDebugGui(this, containerWidth, containerHeight);
     }
     
     public void displayGauge(int xPos, int yPos, int scale, FluidStack fluid, int side /*0-left, 1-right*/)

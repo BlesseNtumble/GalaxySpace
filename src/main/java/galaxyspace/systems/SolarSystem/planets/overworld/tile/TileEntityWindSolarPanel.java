@@ -250,7 +250,7 @@ public class TileEntityWindSolarPanel extends TileBaseUniversalElectricalSource 
 
     public float getSolarBoost()
     {
-    	if(this.world.provider instanceof WorldProviderSurface) return 0.037F;
+    	if(this.world.provider instanceof WorldProviderSurface) return 0.007F;
         return (float) (this.world.provider instanceof IAdvancedSpace ? ((IAdvancedSpace) this.world.provider).getSolarWindMultiplier() : 1.0F);
     }
 

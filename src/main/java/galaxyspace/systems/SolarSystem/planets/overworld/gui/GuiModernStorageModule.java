@@ -3,6 +3,7 @@ package galaxyspace.systems.SolarSystem.planets.overworld.gui;
 import org.lwjgl.opengl.GL11;
 
 import galaxyspace.GalaxySpace;
+import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerModernStorageModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityModernStorageModule;
 import micdoodle8.mods.galacticraft.core.client.gui.container.GuiContainerGC;
@@ -71,5 +72,7 @@ public class GuiModernStorageModule extends GuiContainerGC
         // Foreground energy bar
         int scale = (int) ((this.tileEntity.getEnergyStoredGC() + 49) / this.tileEntity.getMaxEnergyStoredGC() * 72);
         this.drawTexturedModalRect(containerWidth + 87, containerHeight + 52, 176, 0, scale, 5);
+  
+        if(GalaxySpace.debug) GSUtils.renderDebugGui(this, containerWidth, containerHeight);
     }
 }

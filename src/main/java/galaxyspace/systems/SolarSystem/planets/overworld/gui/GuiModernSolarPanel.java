@@ -6,6 +6,7 @@ import java.util.List;
 import org.lwjgl.opengl.GL11;
 
 import galaxyspace.GalaxySpace;
+import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerModernSolarPanel;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityModernSolarPanel;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
@@ -153,6 +154,8 @@ public class GuiModernSolarPanel extends GuiContainerGC
         }
 
         this.drawTexturedModalRect(var5 + 97, var6 + 25, 187, 0, Math.min(this.solarPanel.getScaledElecticalLevel(54), 54), 7);
+    
+        if(GalaxySpace.debug) GSUtils.renderDebugGui(this, var5, var6);
     }
 }
 

@@ -1,6 +1,8 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.inventory;
 
+import galaxyspace.core.prefab.inventory.SlotUpgrades;
 import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemUpgrades;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityRadiationStabiliser;
 import micdoodle8.mods.galacticraft.api.item.IItemElectric;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
@@ -21,14 +23,15 @@ public class ContainerRadiationStabiliser extends Container
 
         // Battery Slot
         this.addSlotToContainer(new SlotSpecific(tileEntity, 0, 79, 101, ItemElectricBase.class));
-        this.addSlotToContainer(new SlotSpecific(tileEntity, 1, 80, 40, new ItemStack(GSItems.UPGRADES, 1, 0)).setMetadataSensitive());
         
         // Smelting result
         //this.addSlotToContainer(new SlotFurnace(par1InventoryPlayer.player, tileEntity, 1, 15, 36));
 
 
         int var3;
-
+        for(var3 = 0; var3 < 4; ++var3)        
+        	this.addSlotToContainer(new SlotUpgrades(tileEntity, 1 + var3, 177, 18 + (21 * var3), 1, ItemUpgrades.class));
+       
         for (var3 = 0; var3 < 3; ++var3)
         {
             for (int var4 = 0; var4 < 9; ++var4)

@@ -197,14 +197,8 @@ public class GuiHydroponicBase extends GuiContainerGC
 		        GL11.glPopMatrix();
 	        }
         }
-/*
-        for(int i = 0; i < this.inventorySlots.inventorySlots.size(); i++)
-        {
-        	int x = this.inventorySlots.getSlot(i).xPos;
-	        int y = this.inventorySlots.getSlot(i).yPos;
-        	this.fontRenderer.drawString(EnumColor.WHITE + "" + this.inventorySlots.getSlot(i).getSlotIndex(), containerWidth + x + (4), containerHeight + y + 5, 4210752);
-        }
-*/
+        
+        if(GalaxySpace.debug) GSUtils.renderDebugGui(this, containerWidth, containerHeight);
     }
 
 	

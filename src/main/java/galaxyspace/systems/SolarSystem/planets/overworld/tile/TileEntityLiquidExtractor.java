@@ -56,8 +56,6 @@ public class TileEntityLiquidExtractor extends TileBaseElectricBlockWithInventor
     
     private static HashMap<Block, FluidStack> extractfluid = new HashMap();
     
-    private int energy_boost;
-    private int range;
     
     private List<BlockPos> blocks = new ArrayList<BlockPos>();
     private int number = 0;
@@ -83,13 +81,13 @@ public class TileEntityLiquidExtractor extends TileBaseElectricBlockWithInventor
         super.update();
         if (!this.world.isRemote)
         {       	
-        	range = 2;
+        	int range = 2;
         	GSUtils.checkFluidTankTransfer(this.getInventory(), 1, this.waterTank);
         	
             if (this.canProcess())
             {            	
             
-            	 this.energy_boost = 0;
+            	 int energy_boost = 0;
                  
                  for(int i = 0; i <= 3; i++)
              	{
@@ -99,7 +97,7 @@ public class TileEntityLiquidExtractor extends TileBaseElectricBlockWithInventor
              			energy_boost++;              		
              		
              	}
-             	this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 60 - (20 * this.energy_boost) : 45 - (15 * this.energy_boost));
+             	this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 60 - (20 * energy_boost) : 45 - (15 * energy_boost));
              	    
              	
             	blocks.clear();

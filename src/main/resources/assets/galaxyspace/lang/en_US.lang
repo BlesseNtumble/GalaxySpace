@@ -187,8 +187,8 @@ tile.modification_table.desc=Allows you to install modules in a space suit.
 tile.gas_burner.name=Gas Burner
 tile.gas_burner.desc=Burns supplied gas.
 
-tile.oxygen_storage_module_1.name=Oxygen Storage Cluster
-tile.oxygen_storage_module_1.desc=Improved version of Oxygen Storage. It can store 4 times more oxygen.
+tile.oxygen_storage_module.name=Oxygen Storage Cluster
+tile.oxygen_storage_module.desc=Improved version of Oxygen Storage. It can store 4 times more oxygen.
 
 tile.solarwind_panel.name=Solarwind Panel
 tile.solarwind_panel.desc=Converts the solar wind into energy. Don't work on a planet's with atmosphere.

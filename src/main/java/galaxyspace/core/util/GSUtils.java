@@ -10,37 +10,30 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import asmodeuscore.core.astronomy.SpaceData.Engine_Type;
 import galaxyspace.GalaxySpace;
-import galaxyspace.core.prefab.items.modules.ItemModule;
 import galaxyspace.core.registers.fluids.GSFluids;
 import galaxyspace.core.registers.items.GSItems;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.modules.Gravity;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.modules.Nightvision;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.modules.SensorLens;
 import micdoodle8.mods.galacticraft.api.prefab.entity.EntityTieredRocket;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.GCFluids;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
+import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.FluidUtil;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionType;
-import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
@@ -637,5 +630,18 @@ public class GSUtils {
 		} catch (IOException ex) {
 			System.out.println(ex);
 		}
+	}
+	
+	public static void renderDebugGui(GuiContainer gui, int width, int height)
+	{
+		boolean enable = true;
+		
+		if(enable)
+			for(int i = 0; i < gui.inventorySlots.inventorySlots.size(); i++)
+			{
+				int x = gui.inventorySlots.getSlot(i).xPos;
+				int y = gui.inventorySlots.getSlot(i).yPos;
+				gui.mc.fontRenderer.drawString(EnumColor.WHITE + "" + gui.inventorySlots.getSlot(i).getSlotIndex(), width + x + 5, height + y + 5, 4210752);
+			}
 	}
 }

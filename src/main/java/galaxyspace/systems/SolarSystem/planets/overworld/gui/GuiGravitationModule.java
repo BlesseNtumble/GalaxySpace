@@ -10,6 +10,9 @@ import org.lwjgl.opengl.GL11;
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.network.packet.GSPacketSimple;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
+import galaxyspace.core.prefab.inventory.SlotUpgrades;
+import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerGravitationModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitationModule;
 import micdoodle8.mods.galacticraft.api.vector.BlockVec3;
@@ -29,6 +32,7 @@ import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -70,14 +74,15 @@ public class GuiGravitationModule extends GuiContainerGC implements ITextBoxCall
         this.electricInfoRegion.parentWidth = this.width;
         this.electricInfoRegion.parentHeight = this.height;
         this.infoRegions.add(this.electricInfoRegion);
-        List<String> batterySlotDesc = new ArrayList<String>();
-        batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.0"));
-        batterySlotDesc.add(GCCoreUtil.translate("gui.battery_slot.desc.1"));
-        this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 76, (this.height - this.ySize) / 2 + 98, 18, 18, batterySlotDesc, this.width, this.height, this));
+        List<String> desc = new ArrayList<String>();
+        desc.add(GCCoreUtil.translate("gui.battery_slot.desc.0"));
+        desc.add(GCCoreUtil.translate("gui.battery_slot.desc.1"));
+        this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 76, (this.height - this.ySize) / 2 + 98, 18, 18, desc, this.width, this.height, this));
    
-        batterySlotDesc = new ArrayList<String>();
-        batterySlotDesc.add(GCCoreUtil.translate("gui.module_pressure.desc"));
-        this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 6, (this.height - this.ySize) / 2 + 20, 18, 18, batterySlotDesc, this.width, this.height, this));
+        desc = new ArrayList<String>();
+        desc.add(GCCoreUtil.translate("gui.gravitation_module_stabilisation_1.desc"));
+        desc.add(GCCoreUtil.translate("gui.gravitation_module_stabilisation_2.desc"));
+        this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2, (this.height - this.ySize) / 2 + 12, 10, 10, desc, this.width, this.height, this));
    
         this.buttonList.clear();
         final int var5 = (this.width - this.xSize) / 2;
@@ -91,6 +96,14 @@ public class GuiGravitationModule extends GuiContainerGC implements ITextBoxCall
         
         this.strengthField = new GuiElementTextBox(FIELD_STRENGTH, this, var5 + 110, var6 + 41, 38, 18, "0", true, 2, true);
         this.addInputField(this.strengthField);
+        
+        desc = new ArrayList<String>();
+        desc.add(EnumColor.BRIGHT_GREEN + GCCoreUtil.translate("gui.available_modules.desc"));
+        desc.add("");
+        desc.add("- " + new ItemStack(GSItems.UPGRADES, 1, 1).getDisplayName());
+        desc.add("- " + new ItemStack(GSItems.UPGRADES, 1, 3).getDisplayName());
+        this.infoRegions.add(new GuiElementInfoRegion((this.width + this.xSize) / 2, (this.height - this.ySize) / 2 + 16, 18, 21 * 4, desc, this.width, this.height, this));
+     
     }
 
     /**
@@ -159,6 +172,8 @@ public class GuiGravitationModule extends GuiContainerGC implements ITextBoxCall
             this.drawTexturedModalRect(containerWidth + 59, containerHeight + 21, 176, 38, 69 - scale, 31);
         }
 */
+        //Info
+        this.drawTexturedModalRect(containerWidth, containerHeight + 12, 215, 7, 10, 10);  
         //Energy
         this.drawTexturedModalRect(containerWidth + 16, containerHeight + 102, 192, 47, 56, 9);
         this.drawTexturedModalRect(containerWidth + 4, containerHeight + 102, 192, 56, 11, 10);
@@ -194,9 +209,18 @@ public class GuiGravitationModule extends GuiContainerGC implements ITextBoxCall
 		        		break;
 		        	}	        	
 		        }
+		        
+		        if(this.inventorySlots.getSlot(i) instanceof SlotUpgrades)
+		        {
+	        		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+	        		this.drawTexturedModalRect(containerWidth + x - 2, containerHeight + y - 2, 213, 175, 20, 20);
+	        	}
+		        
 		        GL11.glPopMatrix();
 	        //}
         }
+        
+        if(GalaxySpace.debug) GSUtils.renderDebugGui(this, containerWidth, containerHeight);
      }
 
 	@Override

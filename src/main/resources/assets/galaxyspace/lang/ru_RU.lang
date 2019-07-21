@@ -168,8 +168,8 @@ tile.modification_table.name=Модификационный Стол
 tile.modification_table.desc=Позволяет устанавливать модули в Космический Костюм.
 tile.gas_burner.name=Сжигатель Газов
 tile.gas_burner.desc=Сжигает поставляемый газ трубами.
-tile.oxygen_storage_module_1.name=Кислородный Массив
-tile.oxygen_storage_module_1.desc=Улучшенная версия Хранилища Кислорода. Может хранить в 4 раза больше кислорода.
+tile.oxygen_storage_module.name=Кислородный Массив
+tile.oxygen_storage_module.desc=Улучшенная версия Хранилища Кислорода. Может хранить в 4 раза больше кислорода.
 tile.solarwind_panel.name=Солнечный Парус
 tile.solarwind_panel.desc=Преобразует солнечный ветер в энергию. Не работает на планетах с атмосферой.
 tile.advanced_landing_pad.name=Улучшенная Взлетная Площадка
@@ -320,11 +320,12 @@ gui.tier6.desc=6-ый уровень
 gui.bonemeal.desc=Кажется, что этот предмет работает аналогично костной муке.
 gui.schematic_box.desc=Содержит базовые схемы для ракет. Используйте ПКМ, держа коробку в руке, чтобы открыть ее.
 
+gui.gravitation_module_stabilisation_1.desc=Стабилизирует атмосферное давление,
+gui.gravitation_module_stabilisation_2.desc=если установлен модуль "Стабилизация".
+
 gui.spacesuit.desc=Костюм высокой прочности. Стабилизирует атмосферное давление. Дает защиту от Солнечной радиации.
 gui.spacesuit_helmet.desc=Шлем позволяет дольше находится под водой.
 
-gui.module_expander.desc=Слот для модуля "Расширение". Увеличивает радиус действия магнитного поля.
-gui.module_pressure.desc=Слот для модуля "Стабилизация". Создает защитный слой, который стабилизирует атмосферное давление.
 gui.temp_shield_control.desc=Защищает от коррозии атмосферы, но разрушается через некоторое время работы.
 gui.emergency_portable_teleport.desc=Эвакуирует игрока к приязанной точке. Срабатывает при HP < 6. Shift+ПКМ по телепорту привязывает точку, по любому блоку - вкл/выкл.
 

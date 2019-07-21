@@ -639,7 +639,7 @@ public class GSEventHandler {
 		return armor1 && armor2 && armor3 && armor4;
 	}
 		
-	public static boolean inGravityZone(World world, EntityPlayer player, boolean checkPressureModule)
+	public static boolean inGravityZone(World world, EntityPlayer player, boolean checkStabilisationModule)
 	{
 		
 		for (final BlockVec3Dim blockVec : TileEntityGravitationModule.loadedTiles)
@@ -654,8 +654,20 @@ public class GSEventHandler {
 					TileEntityGravitationModule gravity = (TileEntityGravitationModule)tile;
 					
 					if(!gravity.disabled && gravity.hasEnoughEnergyToRun && gravity.inGravityZone(world, player)) {
-						if(checkPressureModule && gravity.getStackInSlot(1) != null) return true;
-						if(!checkPressureModule) return true;	
+						if(!checkStabilisationModule) return true;
+						
+						if(checkStabilisationModule)
+						{
+							boolean check = false;
+							for(int i = 0; i < 4; i++)
+								if(gravity.getStackInSlot(i + 1).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 1)))
+								{
+									check = true;
+									break;
+								}
+							return check;
+						}
+							
 					}
             	}
             }
