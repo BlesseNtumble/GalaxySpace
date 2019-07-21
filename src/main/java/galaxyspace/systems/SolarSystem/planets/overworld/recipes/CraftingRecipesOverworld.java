@@ -108,7 +108,7 @@ public class CraftingRecipesOverworld {
 	   //RecipeUtil.addRecipe(new ItemStack(GSBlocks.AdvFuelLoader, 1, 0), new Object[] { "XZX", "ACA", "VBV", 'X', new ItemStack(GSItems.HeavyDutyPlates, 1, 0), 'Z', new ItemStack(GCItems.canister, 1, 0), 'C', new ItemStack(GSBlocks.MACHINE_FRAMES, 1, 2), 'B', new ItemStack(GCItems.oilCanister, 1, GCItems.oilCanister.getMaxDamage()), 'V', new ItemStack(GCBlocks.aluminumWire, 1, 1), 'A', new ItemStack(MarsBlocks.hydrogenPipe, 1, 0)});
 	  
 	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.HYDROPONIC_BASE, 1, 0), new Object[] { "ABC", "DED", "DFD", 'A', new ItemStack(GCItems.basicItem, 1, 20), 'B', new ItemStack(GCBlocks.fluidTank, 1, 0), 'C', new ItemStack(GCItems.oxygenConcentrator, 1, 0), 'D', plateSteel, 'E', new ItemStack(GSBlocks.MACHINE_FRAMES, 1, 0), 'F', new ItemStack(GCBlocks.aluminumWire, 1, 1)});
-	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.HYDROPONIC_FARM, 1, 0), new Object[] { "XXX", "XCX", "VBV", 'X', new ItemStack(Blocks.GLASS, 1, 0), 'B', new ItemStack(GSBlocks.MACHINE_FRAMES, 1, 0), 'C', new ItemStack(Blocks.DIRT, 1, 0), 'V', new ItemStack(GCBlocks.aluminumWire, 1, 1)});
+	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.HYDROPONIC_FARM, 1, 0), new Object[] { "XXX", "XCX", "VBV", 'X', new ItemStack(Blocks.GLASS, 1, 0), 'B', new ItemStack(GSBlocks.MACHINE_FRAMES, 1, 0), 'C', "dirt", 'V', new ItemStack(GCBlocks.aluminumWire, 1, 1)});
 
 	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.RADIATION_STABILISER, 1, 0), new Object[] { "XYX", "ZCZ", "XBX", 'X', new ItemStack(GSItems.BASIC, 1, 3), 'B', new ItemStack(GSItems.BASIC, 1, 5), 'C', new ItemStack(GSBlocks.MACHINE_FRAMES, 1, 0), 'Z', new ItemStack(GCBlocks.aluminumWire, 1, 1), 'Y', new ItemStack(GCBlocks.basicBlock, 1, 9)});
 	  
@@ -121,7 +121,6 @@ public class CraftingRecipesOverworld {
 	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.ADVANCED_ELECTRIC_COMPRESSOR, 1, 0), new Object[] { "XYX", "ZCZ", "XBX", 'X', plateDesh, 'B', new ItemStack(GSItems.BASIC, 1, 5), 'C', new ItemStack(GSBlocks.MACHINE_FRAMES, 1, 1), 'Z', new ItemStack(MarsItems.marsItemBasic, 1, 1), 'Y', new ItemStack(GCBlocks.machineBase2, 1, 0)});
 	   
 	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.PLANET_SHIELD, 1, 0), new Object[] { "XYX", "VCV", "ZZZ", 'V', new ItemStack(GCBlocks.aluminumWire, 1, 1), 'X', new ItemStack(MarsItems.marsItemBasic, 1, 6), 'C', new ItemStack(GSBlocks.MACHINE_FRAMES, 1, 2), 'Z', new ItemStack(GSItems.HDP, 1, 0), 'Y', new ItemStack(GSBlocks.GRAVITATION_MODULE, 1, 0)});
-	   
    }
 
    private static void addItemRecipes()

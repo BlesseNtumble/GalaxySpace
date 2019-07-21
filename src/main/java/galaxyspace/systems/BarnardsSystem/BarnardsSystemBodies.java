@@ -35,6 +35,8 @@ import micdoodle8.mods.galacticraft.api.world.AtmosphereInfo;
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
+import net.minecraft.item.Item;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -144,7 +146,7 @@ public class BarnardsSystemBodies implements IBodies {
 			
 		if(GCCoreUtil.isDeobfuscated()) {
 			//GSUtils.addBlockJsonFiles(BRBlocks.BARNARDA_C_WATER_GRASS, "barnarda/");
-			//GSUtils.addItemMetadataJsonFiles(BRItems.BASIC, ItemBasicBR.names, "barnarda/basic/");
+			GSUtils.addItemMetadataJsonFiles(BRItems.BASIC, ItemBasicBR.names, "barnarda/basic/");
 		}
 			//if(GCCoreUtil.isDeobfuscated()) 
 				//GSUtils.addBlockMetadataJsonFiles(BRBlocks.BARNARDA_C_GRASS, name, Barnarda_C_Grass.BASIC_TYPE.getName(), "barnarda/");
@@ -197,4 +199,10 @@ public class BarnardsSystemBodies implements IBodies {
 	public boolean canRegister() {
 		return BRConfigCore.enableBarnardsSystems;
 	}
+	
+	@Override
+	public void registerItems(RegistryEvent.Register<Item> event) {
+		BRBlocks.oreDictRegistration();
+	}
+	
 }

@@ -19,6 +19,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class BRBlocks {
 	
@@ -46,6 +48,8 @@ public class BRBlocks {
 	
 	public static void oreDictRegistration() 
 	{		
+		OreDictionary.registerOre("dirt", new ItemStack(BARNARDA_C_BLOCKS, 1, 0));
+		OreDictionary.registerOre("dirt", new ItemStack(BARNARDA_C_BLOCKS, 1, 3));
 	}
 	
 	public static void registerBlock(Block block, Class<? extends ItemBlock> itemClass)
