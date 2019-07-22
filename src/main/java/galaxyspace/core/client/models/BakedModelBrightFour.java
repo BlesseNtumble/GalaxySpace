@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import galaxyspace.GalaxySpace;
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Logs;
 import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -100,7 +101,7 @@ public class BakedModelBrightFour extends BakedModelDelegate {
         
         List<BakedQuad> quads = new ArrayList<BakedQuad>(12);
         
-        if(state.getValue(BlockRotatedPillar.AXIS) == EnumFacing.Axis.X)
+        if(state.getValue(Barnarda_C_Logs.LOG_AXIS) == Barnarda_C_Logs.EnumAxis.X)
 		{
         	//DOWN
         	quads.add(createQuad(state, new Vec3d(0.0D, 0.0D, 0.0D), new Vec3d(1.0D, 0.0D, 0.0D), new Vec3d(1.0D, 0.0D, 1.0D), new Vec3d(0.0D, 0.0D, 1.0D), this.base.getParticleTexture(), false, 0, new Vec3d(1.0D, 1.0D, 1.0D), 0));
@@ -132,7 +133,7 @@ public class BakedModelBrightFour extends BakedModelDelegate {
 			//quads.add(createQuad(state, new Vec3d(1.0D, 0.0D, 0.0D), new Vec3d(1.0D, 1.0D, 0.0D), new Vec3d(1.0D, 1.0D, 1.0D), new Vec3d(1.0D, 0.0D, 1.0D), sprite, true, this.bright, new Vec3d(this.alpha, this.alpha, this.alpha), 0));
 		
 		}
-        else if(state.getValue(BlockRotatedPillar.AXIS) == EnumFacing.Axis.Y)
+        else if(state.getValue(Barnarda_C_Logs.LOG_AXIS) == Barnarda_C_Logs.EnumAxis.Y)
 		{
         	quads.add(createQuad(state, new Vec3d(1.0D, 0.0D, 0.0D), new Vec3d(1.0D, 0.0D, 1.0D), new Vec3d(0.0D, 0.0D, 1.0D), new Vec3d(0.0D, 0.0D, 0.0D), this.sprite1, false, 0, new Vec3d(1.0D, 1.0D, 1.0D), 0));
 			quads.add(createQuad(state, new Vec3d(0.0D, 1.0D, 0.0D), new Vec3d(0.0D, 1.0D, 1.0D), new Vec3d(1.0D, 1.0D, 1.0D), new Vec3d(1.0D, 1.0D, 0.0D), this.sprite1, false, 0, new Vec3d(1.0D, 1.0D, 1.0D), 0));
@@ -151,7 +152,7 @@ public class BakedModelBrightFour extends BakedModelDelegate {
 			quads.add(createQuad(state, new Vec3d(1.0D, 0.0D, 0.0D), new Vec3d(1.0D, 1.0D, 0.0D), new Vec3d(1.0D, 1.0D, 1.0D), new Vec3d(1.0D, 0.0D, 1.0D), sprite, true, this.bright, new Vec3d(this.alpha, this.alpha, this.alpha), 0));
 		}
         
-        else if(state.getValue(BlockRotatedPillar.AXIS) == EnumFacing.Axis.Z)
+        else if(state.getValue(Barnarda_C_Logs.LOG_AXIS) == Barnarda_C_Logs.EnumAxis.Z)
 		{
         	//DOWN
         	quads.add(createQuad(state, new Vec3d(1.0D, 0.0D, 0.0D), new Vec3d(1.0D, 0.0D, 1.0D), new Vec3d(0.0D, 0.0D, 1.0D), new Vec3d(0.0D, 0.0D, 0.0D), this.base.getParticleTexture(), false, 0, new Vec3d(1.0D, 1.0D, 1.0D), 0));

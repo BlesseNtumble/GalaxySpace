@@ -1,0 +1,7 @@
+{ 
+	"parent": "galaxyspace:block/dungeon_bricks", 
+ 	"textures": { 
+		"side" : "galaxyspace:blocks/barnardssystem/barnarda_c/log_oak_side",
+		"overlay": "galaxyspace:blocks/barnardssystem/barnarda_c/log_oak_layer"
+	}	
+}
