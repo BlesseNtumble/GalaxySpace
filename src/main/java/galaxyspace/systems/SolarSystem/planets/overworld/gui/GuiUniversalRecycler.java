@@ -97,7 +97,7 @@ public class GuiUniversalRecycler extends GuiContainerGC
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-        this.fontRenderer.drawString(EnumColor.WHITE + this.tileEntity.getName(), 35, 0, 4210752);
+        this.fontRenderer.drawString(EnumColor.WHITE + this.tileEntity.getName(), 35, 1, 4210752);
         String displayText;
 
         if (this.tileEntity.processTicks > 0)
@@ -110,7 +110,7 @@ public class GuiUniversalRecycler extends GuiContainerGC
         }
 
         String str = EnumColor.WHITE + GCCoreUtil.translate("gui.message.status.name") + ": " + displayText;
-        this.fontRenderer.drawString(str, 132 - this.fontRenderer.getStringWidth(str) / 2, 104, 4210752);
+        this.fontRenderer.drawSplitString(str, 110, 100, 40, 4210752);
         this.fontRenderer.drawString(EnumColor.WHITE + GCCoreUtil.translate("container.inventory"), 15, this.ySize - 88, 4210752);
           
     }

@@ -20,7 +20,7 @@ public class UniversalRecyclerRecipeCategory implements IRecipeCategory<Universa
     private static final ResourceLocation guiTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/base_gui.png");
 
     @Nonnull
-    private final IDrawable background, arrow, fluid;
+    private final IDrawable background, arrow, fluid, fluid_foreground;
     
     @Nonnull
     private final IDrawable result;
@@ -33,12 +33,11 @@ public class UniversalRecyclerRecipeCategory implements IRecipeCategory<Universa
     	
         this.background = guiHelper.createDrawable(guiTexture, 0, 10, 170, 78);
         this.localizedName = GCCoreUtil.translate("tile.universal_recycler.name");
-        
         this.arrow = guiHelper.createDrawable(guiTexture, 192, 109, 36, 15);
        	this.fluid = guiHelper.createDrawable(guiTexture, 192, 66, 20, 42);      
+       	this.fluid_foreground = guiHelper.createDrawable(guiTexture, 212, 66, 20, 42);      
         
         this.result = guiHelper.createDrawable(guiTexture, 192, 26, 20, 20);
-
     }
 
     @Nonnull
@@ -69,8 +68,10 @@ public class UniversalRecyclerRecipeCategory implements IRecipeCategory<Universa
     	this.result.draw(mc, 89, 34);
     	
     	this.fluid.draw(mc, 145, 22);
+    	this.fluid_foreground.draw(mc, 145, 22);
     	
     	this.arrow.draw(mc, 50, 37);
+  
     }
     
     @Override
@@ -78,7 +79,7 @@ public class UniversalRecyclerRecipeCategory implements IRecipeCategory<Universa
     {
         IGuiItemStackGroup itemstacks = recipeLayout.getItemStacks();        
         IGuiFluidStackGroup fluidstacks = recipeLayout.getFluidStacks();
-            
+                    
         int xOffset = 5;
         int yOffset = 10;
         itemstacks.init(0, true, 35 + xOffset, 5 + yOffset);        
@@ -91,8 +92,9 @@ public class UniversalRecyclerRecipeCategory implements IRecipeCategory<Universa
         	fluidstacks.set(0, recipe.getFluidStack());
         }
         
+        
     }
-
+    
     @Override
     public String getModName()
     {

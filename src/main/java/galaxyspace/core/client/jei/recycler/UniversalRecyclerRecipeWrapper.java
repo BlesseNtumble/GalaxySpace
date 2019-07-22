@@ -4,6 +4,7 @@ import javax.annotation.Nonnull;
 
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeWrapper;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -41,4 +42,9 @@ public class UniversalRecyclerRecipeWrapper implements IRecipeWrapper
     {
     	return this.chance;
     }
+    
+    @Override
+    public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
+    	minecraft.fontRenderer.drawString("Chance: " + getChance() + "%", 66, 17, 0xFFFFFF);
+	}
 }
