@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import galaxyspace.core.configs.GSConfigCore;
+import galaxyspace.core.configs.GSConfigSchematics;
 import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.core.registers.fluids.GSFluids;
 import galaxyspace.core.registers.items.GSItems;
@@ -219,6 +220,16 @@ r
 
    private static void addAssembly() {
 	   
+	   if(GSConfigSchematics.enableDuplicateSchematic) {
+		   AssemblyRecipes.addShapelessRecipe(new ItemStack(GSItems.BASIC, 1, 14), "compressedMeteoricIron", new ItemStack(Items.DYE, 1, 0), "compressedMeteoricIron", new ItemStack(Items.DYE, 1, 5), new ItemStack(Items.PAPER, 1, 0), new ItemStack(Items.DYE, 1, 5), "compressedMeteoricIron", new ItemStack(Items.DYE, 1, 0), "compressedMeteoricIron");
+		  
+		   for(int i = 0; i < 6; i++)
+			   AssemblyRecipes.addShapelessRecipe(new ItemStack(GSItems.SCHEMATICS, 2, i), new ItemStack(GSItems.BASIC, 1, 14), new ItemStack(GSItems.SCHEMATICS, 1, i));
+	   }
+	   
+	   AssemblyRecipes.addShapelessRecipe(new ItemStack(GCItems.schematic, 2, 0), new ItemStack(GSItems.BASIC, 1, 14), new ItemStack(GCItems.schematic, 1, 0));
+	   AssemblyRecipes.addShapelessRecipe(new ItemStack(GCItems.schematic, 2, 1), new ItemStack(GSItems.BASIC, 1, 14), new ItemStack(GCItems.schematic, 1, 1));
+	  
 	   AssemblyRecipes.addShapelessRecipe(new ItemStack(GSItems.COMPRESSED_PLATES, 1, 4), "plateBronze", "plateCoal", "plateAluminum");
 	   AssemblyRecipes.addShapelessRecipe(new ItemStack(GSItems.BASIC, 1, 0), plateSteel, plateSteel, plateSteel, plateSteel, Blocks.GLASS_PANE, plateSteel, plateSteel, plateSteel, plateSteel);
 	   AssemblyRecipes.addShapelessRecipe(new ItemStack(GSItems.ROCKET_MODULES, 1, 3), new ItemStack(GSItems.COMPRESSED_PLATES, 1, 4), new ItemStack(GSItems.BASIC, 1, 0), new ItemStack(GSItems.COMPRESSED_PLATES, 1, 4));

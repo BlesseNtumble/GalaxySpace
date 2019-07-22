@@ -39,6 +39,8 @@ public class GSConfigSchematics
     public static int idSchematicFins = 15; 
     public static int idSchematicOxTank = 16;
     
+    public static boolean enableDuplicateSchematic;
+    
     public static void syncConfig(boolean load)
     {
         List<String> propOrder = new ArrayList<String>();
@@ -54,6 +56,12 @@ public class GSConfigSchematics
                     config.load();
                 }
             }
+            
+            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableDuplicateSchematic", true);
+            prop.setComment("Enable/Disable make duplicate schematic.");
+            prop.setLanguageKey("gc.configgui.enableDuplicateSchematic").setRequiresMcRestart(true);
+            enableDuplicateSchematic = prop.getBoolean(true);
+            propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_SCHEMATIC, "idSchematicCone", 11);
             prop.setComment("Schematic ID for Cone (Rocket Detail), must be unique.");

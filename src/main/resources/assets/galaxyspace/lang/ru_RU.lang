@@ -231,6 +231,7 @@ item.hematite.name=Гематит
 item.antiradiation_tablets.name=Противорадиационные Таблетки
 item.schematic_box.name=Коробка со Схемами
 item.module_base.name=Заготовка Модуля
+item.blank_schematic.name=Заготовка Схемы
 item.volcanic_stone.name=Вулканический Осколок
 item.meteoric_iron_fragments.name=Фрагменты Метеоритного Железа
 item.uranium_fragments.name=Уран

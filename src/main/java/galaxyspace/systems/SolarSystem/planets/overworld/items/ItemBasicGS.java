@@ -8,12 +8,14 @@ import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTr
 import asmodeuscore.core.utils.ACAttributePlayer;
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.configs.GSConfigCore;
+import galaxyspace.core.configs.GSConfigSchematics;
 import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.core.registers.potions.GSPotions;
 import galaxyspace.core.util.GSCreativeTabs;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.items.IClickableItem;
 import micdoodle8.mods.galacticraft.core.items.ISortableItem;
+import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryItem;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
@@ -102,6 +104,10 @@ public class ItemBasicGS extends Item implements ISortableItem{
 			list.add(GCCoreUtil.translate("gui.bonemeal.desc"));
 		else if (n == 10)
 			list.add(GCCoreUtil.translate("gui.schematic_box.desc"));
+		else if (n == 14 && !GSConfigSchematics.enableDuplicateSchematic)
+		{
+			list.add(EnumColor.DARK_RED + "Disabled in config.");
+		}
 		else if (n == 16)
 		{
 			int time = this.SHIELD_TIME;
