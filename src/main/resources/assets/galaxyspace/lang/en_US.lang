@@ -373,6 +373,7 @@ gui.message.water.name=Water
 gui.message.helium.name=Helium-3
 gui.status.nofuelgenerator.name=No Fuel
 gui.status.nowind.name=No Wind
+gui.status.wind.name=Wind
 gui.status.nowater.name=No Water
 gui.message.needfrequencyModule=Hey! I need have Frequency Module!
 gui.message.active_pressure_shield.name=Active shield from atm. pressure.
