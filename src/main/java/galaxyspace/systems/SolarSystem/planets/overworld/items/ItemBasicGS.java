@@ -18,7 +18,10 @@ import micdoodle8.mods.galacticraft.core.items.ISortableItem;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryItem;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
+import micdoodle8.mods.galacticraft.planets.asteroids.blocks.AsteroidBlocks;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
+import micdoodle8.mods.galacticraft.planets.asteroids.tile.TileEntityShortRangeTelepad;
+import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
@@ -28,6 +31,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
@@ -208,7 +212,36 @@ public class ItemBasicGS extends Item implements ISortableItem{
 			stack.shrink(1);
 			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
     	}
-		
+		else if(stack.getItemDamage() == 18)
+		{
+			if(!player.isSneaking())
+				return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
+			
+			if(!stack.hasTagCompound())				
+				stack.setTagCompound(new NBTTagCompound());
+			
+			RayTraceResult ray = player.rayTrace(5, player.ticksExisted);
+			Block block = world.getBlockState(ray.getBlockPos()).getBlock();
+			
+			if(block == AsteroidBlocks.shortRangeTelepad) 
+			{
+				TileEntityShortRangeTelepad tile = (TileEntityShortRangeTelepad) world.getTileEntity(ray.getBlockPos());
+				
+				if(tile.hasEnoughEnergyToRun && tile.addressValid) 
+				{
+					stack.getTagCompound().setIntArray("position", new int[] {ray.getBlockPos().getX(), ray.getBlockPos().getY(), ray.getBlockPos().getZ(), world.provider.getDimension()});		
+				}
+				else
+				{
+					player.sendMessage(new TextComponentString(TextFormatting.DARK_RED + GCCoreUtil.translate(("gui.message.invalid_teleport_conf"))));
+				}
+			}
+			else
+			{				
+				stack.getTagCompound().setBoolean("turnonoff", !stack.getTagCompound().getBoolean("turnonoff"));					
+			}
+			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
+		}		
 		else if(stack.getItemDamage() == 20)
     	{			
 			if (player instanceof EntityPlayerMP)

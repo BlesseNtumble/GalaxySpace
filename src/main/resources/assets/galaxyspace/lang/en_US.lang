@@ -382,7 +382,8 @@ gui.message.needoxygen=Oxygen is necessary to perform this action.
 gui.message.needoxygenthermal=Oxygen and thermal control is necessary to perform this action.
 gui.message.needoxygen.food=Oxygen is necessary to use earth food!
 gui.message.needoxygenandthermal.food=Oxygen and thermal control is necessary to use earth food!
-
+gui.message.invalid_teleport_conf=Invalid teleport configuration or no energy.
+ 
 gui.message.noradiation=You not have solar radiation! It's good!
 gui.message.emergency_teleport=Emergency teleport successfully used. Coordinates:
 gui.message.can_find_in_dungeon=Can find in dungeons.

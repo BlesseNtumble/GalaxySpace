@@ -30,7 +30,7 @@ public class ContainerLiquidExtractor extends Container
         this.addSlotToContainer(new SlotSpecific(tileEntity, 0, 79, 101, ItemElectricBase.class));
         this.addSlotToContainer(new SlotSpecific(tileEntity, 1, 80, 63, ItemOilCanister.class, ItemBucket.class));
        
-        this.addSlotToContainer(new SlotSpecific(tileEntity, 2, 10, 40, new ItemStack(GSItems.BASIC, 1, 11)));
+       // this.addSlotToContainer(new SlotSpecific(tileEntity, 2, 10, 40, new ItemStack(GSItems.BASIC, 1, 11)));
        
         // Smelting result
         //this.addSlotToContainer(new SlotFurnace(par1InventoryPlayer.player, tileEntity, 1, 15, 36));

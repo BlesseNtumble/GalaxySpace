@@ -40,7 +40,7 @@ public class Enceladus_Ravine extends WE_Biome {
 		mobs.add(new Biome.SpawnListEntry(EntityEvolvedColdBlaze.class, 10, 1, 4));
 		
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();
-		//standardBiomeLayers.add(Blocks.PACKED_ICE, (byte)0, GSBlocks.ENCELADUS_BLOCKS, (byte)1, -256, 0,   -10, -2,  true);
+		standardBiomeLayers.add(Blocks.PACKED_ICE, (byte)0, GSBlocks.ENCELADUS_BLOCKS, (byte)1, -256, 0,   -10, -2,  true);
 		standardBiomeLayers.add(GSBlocks.ENCELADUS_BLOCKS, (byte)0, Blocks.PACKED_ICE, (byte)0, -256, 0,   -2, -1,  true);
 		//standardBiomeLayers.add(GSBlocks.ENCELADUS_BLOCKS, (byte)1, GSBlocks.ENCELADUS_BLOCKS, (byte)2, -256, 0, -256,  0, false);
 		standardBiomeLayers.add(Blocks.BEDROCK, (byte)0,                                0, 2,  0,  0, true);

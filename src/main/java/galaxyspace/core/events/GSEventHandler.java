@@ -1,5 +1,8 @@
 package galaxyspace.core.events;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import asmodeuscore.api.dimension.IAdvancedSpace;
 import asmodeuscore.api.dimension.IProviderFreeze;
 import asmodeuscore.api.item.IItemPressurized;
@@ -31,7 +34,6 @@ import micdoodle8.mods.galacticraft.api.prefab.entity.EntityTieredRocket;
 import micdoodle8.mods.galacticraft.api.vector.BlockVec3Dim;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
-import micdoodle8.mods.galacticraft.core.dimension.WorldProviderMoon;
 import micdoodle8.mods.galacticraft.core.entities.EntityLanderBase;
 import micdoodle8.mods.galacticraft.core.entities.EntityMeteor;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler;
@@ -49,9 +51,8 @@ import micdoodle8.mods.galacticraft.planets.asteroids.tile.TileEntityShortRangeT
 import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import micdoodle8.mods.galacticraft.planets.mars.dimension.WorldProviderMars;
 import micdoodle8.mods.galacticraft.planets.mars.items.ItemTier2Rocket;
-import micdoodle8.mods.galacticraft.planets.venus.dimension.WorldProviderVenus;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -63,6 +64,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
@@ -83,83 +85,64 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class GSEventHandler {
 
-	/*
-	@SubscribeEvent
-	public void onEntityConstructing(EntityConstructing e)
-	{
-	    if (e.getEntity() instanceof EntityPlayer) {
-	        //((EntityPlayer) e.getEntity()).getAttributeMap().registerAttribute(GSAttributePlayer.OXTANKS_LEFT);
-	        //((EntityPlayer) e.getEntity()).getAttributeMap().registerAttribute(GSAttributePlayer.OXTANKS_RIGHT);
-	        //((EntityPlayer) e.getEntity()).getAttributeMap().registerAttribute(GSAttributePlayer.PRESSURE_PROTECT);
-	        //((EntityPlayer) e.getEntity()).getAttributeMap().registerAttribute(GSAttributePlayer.TOGGLE_HELMET);
-	        //((EntityPlayer) e.getEntity()).getAttributeMap().registerAttribute(GSAttributePlayer.TOGGLE_CHEST);
-	        //((EntityPlayer) e.getEntity()).getAttributeMap().registerAttribute(GSAttributePlayer.TOGGLE_LEGS);
-	        //((EntityPlayer) e.getEntity()).getAttributeMap().registerAttribute(GSAttributePlayer.TOGGLE_BOOTS);
-	    }
-	}*/
-
+	private static List<BlockToChange> block_to_change = new ArrayList();
+	private static List<ItemsToChange> items_to_change = new ArrayList();
+		
+	static {
+		OreDictionary.getOres("treeLeaves").forEach((ItemStack stack) -> items_to_change.add(new ItemsToChange(stack, Blocks.AIR.getDefaultState(), true)));
+		OreDictionary.getOres("treeSapling").forEach((ItemStack stack) -> items_to_change.add(new ItemsToChange(stack, Blocks.DEADBUSH.getDefaultState(), true)));
+		items_to_change.add(new ItemsToChange(new ItemStack(Items.WATER_BUCKET), Blocks.AIR.getDefaultState(), true));
+		
+		block_to_change.add(new BlockToChange(Blocks.WATER.getDefaultState(), Blocks.AIR.getDefaultState(), Blocks.ICE.getDefaultState(), 0.0F, true).setParticle("waterbubbles"));
+	}
+	
 	@SubscribeEvent
 	public void onFall(LivingFallEvent e) {
 		if (e.getEntityLiving() instanceof EntityPlayer) {
 			ItemStack chest = ((EntityPlayer) e.getEntityLiving()).getItemStackFromSlot(EntityEquipmentSlot.CHEST);
-			// if crashes with NPE - change to ```if (...) e.setCanceled(true)```
 			e.setCanceled(chest != null && chest.getItem() instanceof IJetpackArmor && ((IJetpackArmor) chest.getItem()).canFly(chest, (EntityPlayer) e.getEntityLiving()) && ((IJetpackArmor) chest.getItem()).isActivated(chest));
 		}
+		
 	}
 	
 	@SubscribeEvent 
 	public void onSetBlock(SetBlockEvent e) {
 		
-		if(!e.world.isRemote && e.world.provider instanceof IGalacticraftWorldProvider && (e.world.provider instanceof IProviderFreeze || e.world.provider instanceof WorldProviderMars || e.world.provider instanceof WorldProviderVenus))
+		if(!e.world.isRemote && e.world.provider instanceof IGalacticraftWorldProvider)
 		{
 			float thermal = ((IGalacticraftWorldProvider)e.world.provider).getThermalLevelModifier();
 			AxisAlignedBB bb = new AxisAlignedBB(e.pos.getX()-1,e.pos.getY()-1,e.pos.getZ()-1, e.pos.getX()+1,e.pos.getY()+2,e.pos.getZ()+1);
-					
-			if(e.world.provider instanceof IProviderFreeze ||  e.world.provider instanceof WorldProviderMars || e.world.provider instanceof WorldProviderVenus)
-			{
-				if(thermal >= 2.0)
-				{
-					if(e.block == Blocks.ICE.getDefaultState())
-					{
-						e.setCanceled(true);
-						e.world.setBlockState(e.pos, Blocks.WATER.getDefaultState());
-						GalaxySpace.proxy.spawnParticle("waterbubbles", new Vector3(e.pos.getX() + e.world.rand.nextDouble(), e.pos.getY() + 0.4D + e.world.rand.nextDouble(), e.pos.getZ() + e.world.rand.nextDouble()), new Vector3(0.0D, 0.001D, 0.0D), new Object [] { 10, 5, false, new Vector3(1.0F, 1.0F, 1.0F), 1.0D } );
-				    	
-					}
-				}
-			}
-			
-			if(e.block == Blocks.WATER.getDefaultState() && !OxygenUtil.isAABBInBreathableAirBlock(e.world, bb, true))
-			{
-				if (e.block.getMaterial().equals(Material.WATER) && e.world.isAirBlock(e.pos.up())) {				
-					if(thermal <= -1.0F || e.world.provider instanceof WorldProviderMoon) {
-						e.world.setBlockState(e.pos, Blocks.ICE.getDefaultState());						
-						e.setCanceled(true);						 
-					}
-					else if(thermal >= 2.0F) {
-						GalaxySpace.proxy.spawnParticle("waterbubbles", new Vector3(e.pos.getX() + e.world.rand.nextDouble(), e.pos.getY() + 0.4D + e.world.rand.nextDouble(), e.pos.getZ() + e.world.rand.nextDouble()), new Vector3(0.0D, 0.001D, 0.0D), new Object [] { 10, 5, false, new Vector3(1.0F, 1.0F, 1.0F), 1.0D } );
-						e.world.setBlockState(e.pos, Blocks.AIR.getDefaultState());
-						e.setCanceled(true);						
-					}
-				}
-				//e.setCanceled(true);
-			}
-			/*
-			if(!OxygenUtil.isAABBInBreathableAirBlock(e.world, bb, (thermal > 1.0F || thermal < -1.0F)) && !((IGalacticraftWorldProvider)e.world.provider).hasBreathableAtmosphere())
-			{
-				if(e.block.getBlock() instanceof BlockLeaves)
-				{
-					e.setCanceled(true);
-				}
 				
-				if(e.block.getBlock() instanceof BlockSapling || (e.block.getBlock() instanceof BlockBush && e.block.getBlock() != Blocks.DEADBUSH))
-				{
-					e.setCanceled(true);
-					e.world.setBlockState(e.pos, Blocks.DEADBUSH.getDefaultState());
+			for(BlockToChange block : block_to_change)
+			{			
+				if(block.only_gs_dim && !(e.world.provider instanceof IProviderFreeze))
+					continue;				
+				
+				if(block.need_check_temp) {
+					if((e.block == block.state || e.block.getMaterial() == block.state.getMaterial()) && !OxygenUtil.isAABBInBreathableAirBlock(e.world, bb, true))
+					{
+						if(thermal <= -1.0F)
+						{
+							e.world.setBlockState(e.pos, block.cold_replaced);
+							e.setCanceled(true);
+						}
+						else if(thermal >= 1.5F) {
+							e.world.setBlockState(e.pos, block.hot_replaced);
+							block.spawnParticleHotTemp(e.world, e.pos);
+							e.setCanceled(true);
+						}
+					}
 				}
-			}*/
+				else
+				{
+					e.world.setBlockState(e.pos, block.cold_replaced);
+					block.spawnParticleHotTemp(e.world, e.pos);
+					e.setCanceled(true);
+				}
+			}				
 		}
 	}
+	
 	
 	@SubscribeEvent
 	public void onInteract(PlayerInteractEvent.RightClickBlock event)
@@ -178,89 +161,59 @@ public class GSEventHandler {
 		final Block block = world.getBlockState(event.getPos()).getBlock();
 		ItemStack stack = event.getItemStack();
 		EntityPlayer player = event.getEntityPlayer();
-		
-		if(!world.isRemote)
-		{	
-				
+					
+		if(!world.isRemote && GSConfigCore.enableHardMode && player.capabilities.isCreativeMode)
+		{				
 			//ICE BUCKET
 			if(block == Blocks.ICE && stack.getItem() instanceof ItemBucket)
 			{				
 				stack.shrink(1);
 				player.inventory.addItemStackToInventory(new ItemStack(GSItems.BASIC, 1, 17));				
 				world.setBlockToAir(event.getPos());
-			}	
+			}						
 			
-			//EMERGENCY TELEPORT
-			if(player.isSneaking() && stack.isItemEqual(new ItemStack(GSItems.BASIC, 1, 18)))
-			{
-				if(!stack.hasTagCompound())				
-					stack.setTagCompound(new NBTTagCompound());
-				
-				if(block == AsteroidBlocks.shortRangeTelepad) 
-				{
-					TileEntityShortRangeTelepad tile = (TileEntityShortRangeTelepad) event.getWorld().getTileEntity(event.getPos());
-					
-					if(tile.hasEnoughEnergyToRun && tile.addressValid) 
-					{
-						stack.getTagCompound().setIntArray("position", new int[] {event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), event.getWorld().provider.getDimension()});		
-					}
-				}
-				else
-				{
-					
-					stack.getTagCompound().setBoolean("turnonoff", !stack.getTagCompound().getBoolean("turnonoff"));					
-				}
-			}
-			
-			if(world.provider instanceof IGalacticraftWorldProvider && !((IGalacticraftWorldProvider)world.provider).hasBreathableAtmosphere())
+			if(world.provider instanceof IGalacticraftWorldProvider)
 			{
 				AxisAlignedBB bb = new AxisAlignedBB(event.getPos().up());
-				boolean comfort = ((IGalacticraftWorldProvider)world.provider).getThermalLevelModifier() >= -1.0F;
-				boolean cold = ((IGalacticraftWorldProvider)world.provider).getThermalLevelModifier() < -1.0F;
-				
-				for(ItemStack ore : OreDictionary.getOres("treeLeaves"))
-					if(stack != null && stack.getItem().equals(ore.getItem()))
-					{
-						if(cold && !OxygenUtil.isAABBInBreathableAirBlock(world, bb, true))
-						{
-							player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.needoxygenthermal")));				   
-							event.setCanceled(true);
+				float thermal = ((IGalacticraftWorldProvider)world.provider).getThermalLevelModifier();
+
+				for(ItemsToChange ore : items_to_change)
+				{					
+					if(stack.getItem().equals(ore.itemstack.getItem()))
+					{		
+						if(ore.need_check_temp) {
+							if(thermal < -1.0F || thermal >= 1.5F && !OxygenUtil.isAABBInBreathableAirBlock(world, bb, true))
+							{
+								player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.needoxygenthermal")));				   
+								event.setCanceled(true);								
+							}
 						}
-						else if(comfort && !OxygenUtil.isAABBInBreathableAirBlock(world, bb, false))
-						{
+						else if(!OxygenUtil.isAABBInBreathableAirBlock(world, bb, false)) {
 							player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.needoxygen")));				   
-							event.setCanceled(true);
+							event.setCanceled(true);	
 						}
+						
+						if(ore.replaced != Blocks.AIR.getDefaultState())
+							if(world.getBlockState(event.getPos()).getBlock().isReplaceable(world, event.getPos()))
+								world.setBlockState(event.getPos(), ore.replaced);
+							else
+								world.setBlockState(event.getPos().up(), ore.replaced);
+						break;
 					}
-				
-				for(ItemStack ore : OreDictionary.getOres("treeSapling"))
-					if(stack != null && stack.getItem().equals(ore.getItem()))
-					{
-						if(cold && !OxygenUtil.isAABBInBreathableAirBlock(world, bb, true))
-						{
-							player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.needoxygenthermal")));				   
-							event.setCanceled(true);
-						}
-						else if(comfort && !OxygenUtil.isAABBInBreathableAirBlock(world, bb, false))
-						{
-							player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.needoxygen")));				   
-							event.setCanceled(true);
-						}
-					}
-				
-				if(stack != null && (stack.getItem().equals(Items.PUMPKIN_SEEDS) || stack.getItem().equals(Items.MELON_SEEDS) || stack.getItem().equals(Items.POTATO) || stack.getItem().equals(Items.CARROT) || stack.getItem().equals(Items.WHEAT_SEEDS)) && world.getBlockState(event.getPos()).getBlock() == Blocks.FARMLAND)
-				{
-					//float thermal = ((IGalacticraftWorldProvider)event.world.provider).getThermalLevelModifier();
-					
+				}
+			
+				if(stack.getItem() instanceof ItemSeeds && world.getBlockState(event.getPos()).getBlock() == Blocks.FARMLAND)
+				{					
 					if(!OxygenUtil.isAABBInBreathableAirBlock(world, bb, true))
 					{
 						player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.needoxygenthermal")));				   
-						//event.setCanceled(true);
+						event.setCanceled(true);
 					}						
 				}	
 			}				
 		}
 	}
+
 	
 	@SubscribeEvent
 	public void onEntityInteract(PlayerInteractEvent event)
@@ -268,25 +221,17 @@ public class GSEventHandler {
 		World world = event.getWorld();
 		if (world == null) {
 			return;
-		}
-				
+		}			
 		
-		EntityPlayer player = event.getEntityPlayer();
-					
-		ItemStack i = event.getItemStack();//player.getHeldItemMainhand();
-		//ItemStack j = player.getHeldItemOffhand();
+		EntityPlayer player = event.getEntityPlayer();					
+		ItemStack i = event.getItemStack();
 				
-		if(!world.isRemote && GalaxySpace.debug) {
+		if(!world.isRemote && GalaxySpace.debug) 
 			GalaxySpace.debug(Item.REGISTRY.getNameForObject(i.getItem()) + "");
-		}
+		
 		
 		if(!world.isRemote && GSConfigCore.enableHardMode && !player.capabilities.isCreativeMode)
-		{						
-			
-			if(GalaxySpace.debug)
-				GalaxySpace.debug(Item.REGISTRY.getNameForObject(i.getItem()) + "");
-			
-		
+		{	
 			if(world.provider instanceof IGalacticraftWorldProvider && !((IGalacticraftWorldProvider)world.provider).hasBreathableAtmosphere())
 			{
 				if(!OxygenUtil.isAABBInBreathableAirBlock(player, false) && checkFood(i))
@@ -826,4 +771,59 @@ public class GSEventHandler {
 	    }
 	 }
 
+	private static class BlockToChange
+	{
+		private IBlockState state, hot_replaced, cold_replaced;
+		private float temp;
+		private boolean need_check_temp, only_gs_dim = false;
+		private String particle_name = "";
+		
+		BlockToChange(IBlockState state, IBlockState hot_replaced, IBlockState cold_replaced, float temp, boolean need_check_temp)
+		{
+			this.state = state;
+			this.hot_replaced = hot_replaced;
+			this.cold_replaced = cold_replaced;
+			this.temp = temp;
+			this.need_check_temp = need_check_temp;
+		}
+				
+		public BlockToChange setParticle(String s)
+		{
+			this.particle_name = s;
+			return this;
+		}
+		
+		public BlockToChange setOnlyGSDim()
+		{
+			this.only_gs_dim = true;
+			return this;
+		}
+	
+		void spawnParticleHotTemp(World world, BlockPos pos)
+		{
+			if(!particle_name.isEmpty())
+				for(int i = 0; i < 5; i++)
+					GalaxySpace.proxy.spawnParticle(particle_name, new Vector3(pos.getX() + world.rand.nextDouble(), pos.getY() + 0.4D + world.rand.nextDouble(), pos.getZ() + world.rand.nextDouble()), new Vector3(0.0D, 0.001D, 0.0D), new Object [] { 10, 5, false, new Vector3(1.0F, 1.0F, 1.0F), 1.0D } );  	
+		}
+	}	
+	
+	private static class ItemsToChange
+	{
+		private ItemStack itemstack = ItemStack.EMPTY;
+		private IBlockState replaced;
+		private boolean need_check_temp, only_gs_dim = false;
+		
+		ItemsToChange(ItemStack stack, IBlockState placed, boolean need_check_temp)
+		{
+			this.itemstack = stack;
+			this.replaced = placed;
+			this.need_check_temp = need_check_temp;
+		}
+		
+		public ItemsToChange setOnlyGSDim()
+		{
+			this.only_gs_dim = true;
+			return this;
+		}
+	}
 }
