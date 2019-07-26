@@ -63,7 +63,7 @@ public class GuiHydroponicBase extends GuiContainerGC
     	String displayString = this.tileEntity.getName();
         this.fontRenderer.drawString(EnumColor.WHITE + displayString, this.xSize / 2 - this.fontRenderer.getStringWidth(displayString) / 2, -19, 4210752);
           	  
-        String status = this.tileEntity.waterTank.getFluidAmount() > 0 ? 100 - scale + "%" : EnumColor.RED + "gui.status.nowater.name";
+        String status = this.tileEntity.waterTank.getFluidAmount() > 0 ? 100 - scale + "%" : EnumColor.RED + GCCoreUtil.translate("gui.status.nowater.name");
         String displayText = EnumColor.WHITE + GCCoreUtil.translate("gui.message.status.name") + ": " + status;           
        
         this.fontRenderer.drawString(EnumColor.WHITE + displayText, 100, 123 + yOffset, 4210752);
