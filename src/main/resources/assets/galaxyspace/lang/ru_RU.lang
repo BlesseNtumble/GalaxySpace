@@ -484,10 +484,78 @@ book.category.blocks.name=Блоки
 book.category.items.name=Предметы
 book.category.mechanics.name=Механика
 
+#|/////////////////////////////////////////|
+#||||||||||||||||Book-General|||||||||||||||
+#|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 book.page.about_addon.name=Об аддоне Galaxy Space
 book.page.about_addon.text=Galaxy Space - это аддон для мода Galacticraft, добавляющий внушительное количество внутриигрового контента. !nРазработка аддона ведется уже более 4 лет, внося все больше и больше игрового контента. !n!nВсе звездные системы сделаны на основе реальных данных и максимально приближены к реальности на сколько позволяет движок Minecraft. Упор аддона идет также в сторону реализма. 
 book.page.actual_update.name=Актуальная версия аддона
 
+#|/////////////////////////////////////////|
+#||||||||||||Book-Celestial Bodies||||||||||
+#|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+book.page.solarsystem.sol.name=Солнце
+book.page.solarsystem.sol.asteroids=Астероиды
+book.page.solarsystem.sol.ceres=Церера
+book.page.solarsystem.sol.jupiter=Юпитер
+book.page.solarsystem.sol.callisto=Каллисто
+book.page.solarsystem.sol.europa=Европа
+book.page.solarsystem.sol.ganymede=Ганимед
+book.page.solarsystem.sol.io=Ио
+book.page.solarsystem.sol.kuiperbelt=Пояс Койпера
+book.page.solarsystem.sol.mars=Марс
+book.page.solarsystem.sol.deimos=Деймос
+book.page.solarsystem.sol.phobos=Фобос
+book.page.solarsystem.sol.mercury=Меркурий
+book.page.solarsystem.sol.neptune=Нептун
+book.page.solarsystem.sol.proteus=Протей
+book.page.solarsystem.sol.triton=Тритон
+book.page.solarsystem.sol.overworld=Земля
+book.page.solarsystem.sol.moon=Луна
+book.page.solarsystem.sol.pluto=Плутон
+book.page.solarsystem.sol.charon=Харон
+book.page.solarsystem.sol.saturn=Сатурн
+book.page.solarsystem.sol.dione=Диона
+book.page.solarsystem.sol.enceladus=Энцелад
+book.page.solarsystem.sol.iapetus=Япет
+book.page.solarsystem.sol.mimas=Мимас
+book.page.solarsystem.sol.rheya=Рея
+book.page.solarsystem.sol.tethys=Тефия
+book.page.solarsystem.sol.titan=Титан
+book.page.solarsystem.sol.uranus=Уран
+book.page.solarsystem.sol.ariel=Ариель
+book.page.solarsystem.sol.miranda=Миранда
+book.page.solarsystem.sol.oberon=Оберон
+book.page.solarsystem.sol.titania=Титания
+book.page.solarsystem.sol.umbriel=Умбриэль
+book.page.solarsystem.sol.venus=Венера
+book.page.solarsystem.proxima.name=Проксима
+book.page.solarsystem.proxima.proxima_b=Проксима B
+book.page.solarsystem.barnards.name=Барнарда
+book.page.solarsystem.barnards.barnarda_b=Барнарда B
+book.page.solarsystem.barnards.barnarda_b1=Барнарда B1
+book.page.solarsystem.barnards.barnarda_c=Барнарда C
+book.page.solarsystem.barnards.barnarda_c1=Барнарда C1
+book.page.solarsystem.barnards.barnarda_c2=Барнарда C2
+book.page.solarsystem.barnards.barnarda_d=Барнарда D
+book.page.solarsystem.barnards.barnarda_e=Барнарда E
+book.page.star.sol=Главная звезда: Солнце - желтый карлик
+book.page.solarsystem.asteroids=Пояс астероидов - это массивное скопление астероидов, вращающихся вокруг Солнца. Большинство астероидов содержат большое количество минералов.
+book.page.solarsystem.ceres=Церера - это карликовая планета в Поясе Астероидов. Она содержит большое количество метеорного железа и кристаллов доломита.
+book.page.solarsystem.jupiter=Юпитер - газовый гигант с каменными лунами, которые доступны для полёта.
+book.page.solarsystem.callisto=Каллисто - самая дальняя луна Юпитера.
+
+#|/////////////////////////////////////////|
+#|||||||||||||||Book-Blocks||||||||||||||
+#|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+book.page.assembly_machine.name=Сборочный Цех
+book.page.assembly_machine.text=Измененная версия компрессора. Производит сплав !nматериалов высокочувствительным лазером.
+book.page.fuel_generator.name=Топливный Генератор
+book.page.fuel_generator.text=Топливный Генератор потребляет топливо или лаву !nи вырабатывает неплохое кол-во энергии. !nХороший вариант для топливных магнатов.
+
+#|/////////////////////////////////////////|
+#|||||||||||||||Book-Mechanics||||||||||||||
+#|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 book.page.solar_radiation.name=Солнечная радиация
 book.page.solar_radiation.text=Солнечная радиация - отрицательный эффект, который постепенно убивает игрока. !nКогда шкала радиации пересекает !c_rкрасную !c_wграницу, активируется эффект. !nЕсли игрок находится в убежище или под землей, то радиация не накапливается и уменьшается, если шкала пересекла !c_rкрасную !c_wграницу. !nСнять оставшуюся радиацию можно с помощью !c_gАнтирадиационных таблеток.!c_w!nЗащитится от радиации можно надев !c_oКосмический Костюм !c_wили находясь внутри купола от !c_oГенератора Магнитного Поля.  
 book.page.atmosphere_pressure.name=Атмосферное давление
