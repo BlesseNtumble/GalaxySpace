@@ -349,6 +349,7 @@ gui.message.needoxygen=Нужно наличие кислорода для эт�
 gui.message.needoxygenthermal=Is necessary oxygen and thermal control to make action!
 gui.message.needoxygen.food=Нужен кислород, чтобы есть земную еду. Либо можно воспользоваться консервированной едой.
 gui.message.needoxygenthermal.food=Is necessary oxygen and thermal control to use earth food!
+gui.message.invalid_teleport_conf=Неправильная конфигурация, либо отсутсвует энергия.
 
 gui.message.effect_visible.name=Отобразить границу
 
