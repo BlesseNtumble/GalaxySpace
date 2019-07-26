@@ -242,7 +242,7 @@ public class WorldProviderTitan extends WorldProviderAdvancedSpace implements IP
 
 	@Override
 	public float getFogDensity(int x, int y, int z) {		
-		return 0.5F;
+		return 0.3F;
 	}
 
 	@Override
