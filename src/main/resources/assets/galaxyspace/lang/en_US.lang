@@ -516,11 +516,62 @@ book.page.actual_update.name=Actual Update
 #||||||||||||Book-Celestial Bodies||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 book.page.solarsystem.sol.name=Solar System
+book.page.solarsystem.sol.asteroids=Asteroids
+book.page.solarsystem.sol.ceres=Ceres
+book.page.solarsystem.sol.jupiter=Jupiter
+book.page.solarsystem.sol.callisto=Callisto
+book.page.solarsystem.sol.europa=Europa
+book.page.solarsystem.sol.ganymede=Ganymede
+book.page.solarsystem.sol.io=Io
+book.page.solarsystem.sol.kuiperbelt=Kuiper Belt
+book.page.solarsystem.sol.mars=Mars
+book.page.solarsystem.sol.deimos=Deimos
+book.page.solarsystem.sol.phobos=Phobos
+book.page.solarsystem.sol.mercury=Mercury
+book.page.solarsystem.sol.neptune=Neptune
+book.page.solarsystem.sol.proteus=Proteus
+book.page.solarsystem.sol.triton=Triton
+book.page.solarsystem.sol.overworld=Overworld
+book.page.solarsystem.sol.moon=Moon
+book.page.solarsystem.sol.pluto=Pluto
+book.page.solarsystem.sol.charon=Charon
+book.page.solarsystem.sol.saturn=Saturn
+book.page.solarsystem.sol.dione=Dione
+book.page.solarsystem.sol.enceladus=Enceladus
+book.page.solarsystem.sol.iapetus=Iapetus
+book.page.solarsystem.sol.mimas=Mimas
+book.page.solarsystem.sol.rheya=Rheya
+book.page.solarsystem.sol.tethys=Tethys
+book.page.solarsystem.sol.titan=Titan
+book.page.solarsystem.sol.uranus=Uranus
+book.page.solarsystem.sol.ariel=Ariel
+book.page.solarsystem.sol.miranda=Miranda
+book.page.solarsystem.sol.oberon=Oberon
+book.page.solarsystem.sol.titania=Titania
+book.page.solarsystem.sol.umbriel=Umbriel
+book.page.solarsystem.sol.venus=Venus
+book.page.solarsystem.proxima.name=Proxima Centauri
+book.page.solarsystem.proxima.proxima_b=Proxima B
+book.page.solarsystem.barnards.name=Barnard's System
+book.page.solarsystem.barnards.barnarda_b=Barnarda B
+book.page.solarsystem.barnards.barnarda_b1=Barnarda B1
+book.page.solarsystem.barnards.barnarda_c=Barnarda C
+book.page.solarsystem.barnards.barnarda_c1=Barnarda C1
+book.page.solarsystem.barnards.barnarda_c2=Barnarda C2
+book.page.solarsystem.barnards.barnarda_d=Barnarda D
+book.page.solarsystem.barnards.barnarda_e=Barnarda E
 book.page.star.sol=Main star: Sol - Yellow dwarf 
 book.page.solarsystem.asteroids=The asteroid belt is a massive cluster of asteroids orbiting the sun. Most asteroids contain a large amount of minerals.
 book.page.solarsystem.ceres=Ceres is a dwarf planet in the Asteroid Belt. It contains copious amounts of meteoric iron and dolomite crystals.
 book.page.solarsystem.jupiter=Jupiter - Gas giant with stone moons that are available to the reachable.
 book.page.solarsystem.callisto=Callisto - the farthest moon of Jupiter.
+#|/////////////////////////////////////////|
+#|||||||||||||||Book-Blocks||||||||||||||
+#|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+book.page.assembly_machine.name=Assembly Machine
+book.page.assembly_machine.text=The changed version of the compressor. !nSeals materials with a highly sensitive laser.
+book.page.fuel_generator.name=Fuel Generator
+book.page.fuel_generator.text=Fuel Generator consumes fuel and !nproduces a good amount of energy. !nA good option for fuel magnates.
 #|/////////////////////////////////////////|
 #|||||||||||||||Book-Mechanics||||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
