@@ -346,9 +346,9 @@ gui.status.nofuelgenerator.name=Нет Топлива
 gui.message.active_pressure_shield.name=Активен щит от атм. давления.
 
 gui.message.needoxygen=Нужно наличие кислорода для этого действия!
-gui.message.needoxygenthermal=Is necessary oxygen and thermal control to make action!
+gui.message.needoxygenthermal=Нужен кислород и терморегуляция для совершения действий!
 gui.message.needoxygen.food=Нужен кислород, чтобы есть земную еду. Либо можно воспользоваться консервированной едой.
-gui.message.needoxygenthermal.food=Is necessary oxygen and thermal control to use earth food!
+gui.message.needoxygenthermal.food=Нужен кислород и терморегуляция, чтобы использовать земную пищу!
 gui.message.invalid_teleport_conf=Неправильная конфигурация, либо отсутсвует энергия.
 
 gui.message.effect_visible.name=Отобразить границу
