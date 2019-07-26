@@ -353,6 +353,7 @@ gui.message.needoxygenthermal.food=Is necessary oxygen and thermal control to us
 gui.message.effect_visible.name=Отобразить границу
 
 gui.status.nowind.name=Нет ветра!
+gui.status.wind.name=Ветер
 gui.status.nowater.name=Нет воды
 gui.gravity.radius.name=Радиус действия:
 gui.charge=Заряд:
