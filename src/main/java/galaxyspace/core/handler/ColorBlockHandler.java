@@ -56,7 +56,7 @@ public class ColorBlockHandler {
 				else return ColorizerGrass.getGrassColor(0.5D, 1.0D);//BiomeColorHelper.getGrassColorAtPos(blockAccess, pos);
 			}
 			
-			return 0x88BB44;//ColorizerGrass.getGrassColor(0.5D, 1.0D);
+			return 0x89AC76;//ColorizerGrass.getGrassColor(0.5D, 1.0D);
 		};
 		
 		final IBlockColor water_grassColourHandler = (state, blockAccess, pos, tintIndex) -> {

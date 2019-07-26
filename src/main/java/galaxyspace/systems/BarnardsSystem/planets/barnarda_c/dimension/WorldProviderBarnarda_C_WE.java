@@ -275,7 +275,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProvider implements IPro
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Beach(-2.46D, 2.46D, 1));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Plains(-2.03D, 2.03D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(-1.8D, 1.8D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Forest(-1.2D, 1.2D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Forest(-1.6D, 1.6D));
 		//WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_YellowPlains(-1.1D, 1.1D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(-1.0D, 1.0D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Dunes(-0.95D, 0.95D));

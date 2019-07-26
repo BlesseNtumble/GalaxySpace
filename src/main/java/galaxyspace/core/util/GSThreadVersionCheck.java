@@ -78,7 +78,7 @@ public class GSThreadVersionCheck extends Thread
 							remoteBuildVer = Integer.parseInt(str2[2]);
 						}
 
-						if (remoteMajVer > GalaxySpace.major_version || remoteMajVer == GalaxySpace.major_version && remoteMinVer > GalaxySpace.minor_version || remoteMajVer == GalaxySpace.major_version && remoteMinVer == GalaxySpace.minor_version && remoteBuildVer > GalaxySpace.build_version)
+						if (remoteMajVer >= GalaxySpace.major_version && remoteMinVer >= GalaxySpace.minor_version && remoteBuildVer > GalaxySpace.build_version)
 						{
 							this.newversion = true;
 							Thread.sleep(5000);
