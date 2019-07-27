@@ -223,7 +223,7 @@ public class Page_Systems extends Page_WithScroll {
 					if(((IGalacticraftWorldProvider)dim).getGravity() == 0.0F) grav = 0.0F;
 					
 					infos.add(GCCoreUtil.translate("gui.message.daylength") + " " + ((WorldProviderSpace) gcdim).getDayLength() / 1000 + "h " + ((WorldProviderSpace) gcdim).getDayLength() % 1000 + "m");
-					infos.add("Distance from star: " + selected_body.getRelativeDistanceFromCenter().unScaledDistance);
+					infos.add(GCCoreUtil.translate("gui.message.distancefromstar") + " " + selected_body.getRelativeDistanceFromCenter().unScaledDistance);
 					infos.add(GCCoreUtil.translate("gui.message.gravity") + " " + (int)grav + "%");
 					infos.add(GCCoreUtil.translate("gui.message.temperature") + " " + gcdim.getThermalLevelModifier() * 40 + " C");
 					infos.add(GCCoreUtil.translate("gui.message.windspeed") + " " + gcdim.getWindLevel());					
@@ -251,7 +251,7 @@ public class Page_Systems extends Page_WithScroll {
 				
 				if(!selected_body.getReachable()) return;
 				
-				font.drawString("Resources:", x + 80 + maxX, y + 76 + (j * font.FONT_HEIGHT) + offsetY, 0xFFFFFF);
+				font.drawString(GCCoreUtil.translate("gui.message.resources") + " ", x + 80 + maxX, y + 76 + (j * font.FONT_HEIGHT) + offsetY, 0xFFFFFF);
 				
 				if(this.resources.containsKey(selected_body))
 				{
@@ -308,10 +308,10 @@ public class Page_Systems extends Page_WithScroll {
 					
 					String[] infos = new String[] 
 					{
-						"Gravity: " + gcdim.getGravity(),
-						"Thermal Level: " + gcdim.getThermalLevelModifier(),
-						"Wind Level: " + gcdim.getWindLevel(),
-						"Breathable Atmoshpere: " + gcdim.hasBreathableAtmosphere()
+						GCCoreUtil.translate("gui.message.gravity") + " " + gcdim.getGravity(),
+						GCCoreUtil.translate("gui.message.temperature") + " " + gcdim.getThermalLevelModifier() * 40 + " C",
+						GCCoreUtil.translate("gui.message.windspeed") + " " + gcdim.getWindLevel(),
+						GCCoreUtil.translate("gui.message.breathableatmo") + " " + gcdim.hasBreathableAtmosphere()
 					};
 					BodiesData data = BodiesHelper.getData().get(selected_moon);
 					if(data != null)
@@ -325,7 +325,7 @@ public class Page_Systems extends Page_WithScroll {
                 }
 				
 				if(!selected_moon.getReachable()) return;
-				font.drawString("Resources:", x + 80 + maxX, y + 126 + offsetY, 0xFFFFFF);
+				font.drawString(GCCoreUtil.translate("gui.message.resources"), x + 80 + maxX, y + 126 + offsetY, 0xFFFFFF);
 				
 				if(this.resources.containsKey(selected_moon))
 				{
