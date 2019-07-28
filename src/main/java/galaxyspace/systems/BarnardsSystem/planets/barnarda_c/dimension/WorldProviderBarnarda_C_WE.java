@@ -237,7 +237,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProvider implements IPro
 		cp.createChunkGen_InXYZ_List.clear(); 
 		cp.decorateChunkGen_List .clear(); 
 		
-		WE_Biome.setBiomeMap(cp, 1.2D, 4, 4800.0D, 1.0D);	
+		WE_Biome.setBiomeMap(cp, 1.2D, 4, 3800.0D, 1.0D);	
 
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
 		terrainGenerator.worldStoneBlock = BRBlocks.BARNARDA_C_BLOCKS; 

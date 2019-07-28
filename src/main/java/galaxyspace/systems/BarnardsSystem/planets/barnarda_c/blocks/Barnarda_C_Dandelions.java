@@ -10,6 +10,7 @@ import galaxyspace.GalaxySpace;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRItems;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Blocks.EnumBlockBarnardaC;
+import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockOres.EnumBlockOres;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
@@ -21,13 +22,16 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
@@ -67,6 +71,17 @@ public class Barnarda_C_Dandelions extends Block implements IGrowable, IShearabl
     {
         return NULL_AABB;
     }
+	
+	@Override
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+    {
+		if(getType(state) == EnumBlockDandelions.DESERT_DOWN)
+		{
+			if(entity instanceof EntityLivingBase)
+				entity.attackEntityFrom(DamageSource.CACTUS, 0.5F);
+		}
+    }
+
 	
 	@Override
 	public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos)
@@ -123,7 +138,10 @@ public class Barnarda_C_Dandelions extends Block implements IGrowable, IShearabl
     {
         for (EnumBlockDandelions blockBasic : EnumBlockDandelions.values())
         {
-        	if(!blockBasic.equals(blockBasic.DESERT_UP))
+        	if(!blockBasic.equals(blockBasic.DESERT_UP) 
+        			&& !blockBasic.equals(blockBasic.REEDS) 
+        			&& !blockBasic.equals(blockBasic.REEDS_FRUITS)
+        			&& !blockBasic.equals(blockBasic.YELLOW_GRASS_UP))
         		list.add(new ItemStack(this, 1, blockBasic.getMeta()));
         }
     }
@@ -196,6 +214,13 @@ public class Barnarda_C_Dandelions extends Block implements IGrowable, IShearabl
 				world.destroyBlock(pos, false);
 			}
 		}
+		
+		if(world.isAirBlock(pos.down()))
+		{
+			this.dropBlockAsItem(world, pos, world.getBlockState(pos), 0);
+			world.destroyBlock(pos, false);
+		}
+		
     }
 	
 	private void canPlaceAt(IBlockState state, World world, BlockPos pos, EnumBlockDandelions type, IBlockState... valide)
@@ -277,6 +302,8 @@ public class Barnarda_C_Dandelions extends Block implements IGrowable, IShearabl
 		
 		switch(type)
 		{
+			case GRASS:
+				return Items.WHEAT_SEEDS;
 			case REEDS: 
 			case REEDS_FRUITS: 
 				return BRItems.BASIC;
@@ -292,6 +319,8 @@ public class Barnarda_C_Dandelions extends Block implements IGrowable, IShearabl
 		
 		switch(type)
 		{
+			case GRASS:
+				return 0;
 			case REEDS: 
 			case REEDS_FRUITS: 
 				return 0;
@@ -346,6 +375,40 @@ public class Barnarda_C_Dandelions extends Block implements IGrowable, IShearabl
     {
         return BlockFaceShape.UNDEFINED;
     }
+	
+	@Override
+	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    {
+        Random rand = world instanceof World ? ((World)world).rand : RANDOM;
+
+        int count = quantityDropped(state, fortune, rand);
+        for (int i = 0; i < count; i++)
+        {
+            Item item = this.getItemDropped(state, rand, fortune);
+            if (item != Items.AIR)
+            {
+            	EnumBlockDandelions type = ((EnumBlockDandelions) state.getValue(BASIC_TYPE));
+            	
+            	switch (type)
+                {
+        			case GRASS: 
+        				if(rand.nextInt(100) >= 10) break;
+        				drops.add(new ItemStack(item, 1, this.damageDropped(state)));
+        				break;
+                	default:
+                		drops.add(new ItemStack(item, 1, this.damageDropped(state)));
+                		break;
+                }
+               
+            }
+        }
+    }
+	
+	private EnumBlockDandelions getType(IBlockState state)
+	{
+		return ((EnumBlockDandelions) state.getValue(BASIC_TYPE));
+	}
+	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////
 	public static enum EnumBlockDandelions implements IStringSerializable
     {

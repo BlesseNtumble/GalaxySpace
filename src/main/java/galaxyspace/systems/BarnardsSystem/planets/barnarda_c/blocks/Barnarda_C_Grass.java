@@ -152,10 +152,10 @@ public class Barnarda_C_Grass extends Block implements IGrowable{
                         {
                             IBlockState iblockstate1 = BRBlocks.BARNARDA_C_DANDELIONS.getDefaultState().withProperty(Barnarda_C_Dandelions.BASIC_TYPE, Barnarda_C_Dandelions.EnumBlockDandelions.GRASS);
 
-                        /*    if (((Barnarda_C_Dandelions) BRBlocks.BARNARDA_C_DANDELIONS).canBlockStay(worldIn, blockpos1, iblockstate1))
+                           if (((Barnarda_C_Dandelions) BRBlocks.BARNARDA_C_DANDELIONS).canPlaceBlockAt(worldIn, blockpos1))
                             {
                                 worldIn.setBlockState(blockpos1, iblockstate1, 3);
-                            }*/
+                            }
                         }
                     }
 
@@ -176,8 +176,8 @@ public class Barnarda_C_Grass extends Block implements IGrowable{
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////
 	public static enum EnumBlockGrass implements IStringSerializable {
-		GRASS(0, "barnarda_c_grass"), 
-		GRASS_2(1, "barnarda_c_grass_1");
+		GRASS(0, "barnarda_c_grass");
+		//GRASS_2(1, "barnarda_c_grass_1");
 
 		private final int meta;
 		private final String name;

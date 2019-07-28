@@ -125,7 +125,7 @@ public class GalaxySpaceJEI extends BlankModPlugin
        // registry.getRecipeTransferRegistry().addRecipeTransferHandler(new MagneticCraftingTransferInfo());
 
         this.addInformationPages(registry);
-        GCItems.hideItemsJEI(registry.getJeiHelpers().getIngredientBlacklist());
+        //GCItems.hideItemsJEI(registry.getJeiHelpers().getIngredientBlacklist());
 
     }
 

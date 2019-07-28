@@ -79,6 +79,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.terraingen.BiomeEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.oredict.OreDictionary;
@@ -104,7 +105,7 @@ public class GSEventHandler {
 		}
 		
 	}
-	
+
 	@SubscribeEvent 
 	public void onSetBlock(SetBlockEvent e) {
 		
@@ -162,7 +163,7 @@ public class GSEventHandler {
 		ItemStack stack = event.getItemStack();
 		EntityPlayer player = event.getEntityPlayer();
 					
-		if(!world.isRemote && GSConfigCore.enableHardMode && player.capabilities.isCreativeMode)
+		if(!world.isRemote && GSConfigCore.enableHardMode)
 		{				
 			//ICE BUCKET
 			if(block == Blocks.ICE && stack.getItem() instanceof ItemBucket)
