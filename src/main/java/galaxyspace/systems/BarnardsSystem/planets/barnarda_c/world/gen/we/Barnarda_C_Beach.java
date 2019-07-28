@@ -28,7 +28,7 @@ public class Barnarda_C_Beach extends WE_Biome {
 		
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();
 		standardBiomeLayers.add(Blocks.SANDSTONE, (byte)0, BRBlocks.BARNARDA_C_BLOCKS, (byte)1, -256, 0,   -4, -1,  true);
-		standardBiomeLayers.add(BRBlocks.BARNARDA_C_BLOCKS, (byte)2, Blocks.SANDSTONE, (byte)0, -256, 0, -256,  0, false);
+		standardBiomeLayers.add(BRBlocks.BARNARDA_C_FALLING_BLOCKS, (byte)0, Blocks.SANDSTONE, (byte)0, -256, 0, -256,  0, false);
 		standardBiomeLayers.add(Blocks.BEDROCK, (byte)0,                      0, 2,  0,  0, true);
 		createChunkGen_InXZ_List.add(standardBiomeLayers);
 	}

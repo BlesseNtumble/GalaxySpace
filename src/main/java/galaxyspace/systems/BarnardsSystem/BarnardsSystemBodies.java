@@ -17,13 +17,17 @@ import galaxyspace.systems.BarnardsSystem.core.events.BRClientEventHandler;
 import galaxyspace.systems.BarnardsSystem.core.events.BREventHandler;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRItems;
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Falling_Blocks;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Blocks.EnumBlockBarnardaC;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Dandelions.EnumBlockDandelions;
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Falling_Blocks.EnumFallingBlockBarnardaC;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Grass.EnumBlockGrass;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Leaves.EnumBlockLeaves;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.TeleportTypeBarnarda_C;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.WorldProviderBarnarda_C_WE;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.items.ItemBasicBR;
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.items.ItemFoodBR.BR_Food;
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.recipes.CraftingRecipesBarnarda_C;
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody.ScalableDistance;
 import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
@@ -117,7 +121,14 @@ public class BarnardsSystemBodies implements IBodies {
 		
 		for (EnumBlockBarnardaC blockBasic : EnumBlockBarnardaC.values())        
 			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, BRBlocks.BARNARDA_C_BLOCKS, blockBasic.getMeta(), "barnarda/" + blockBasic.getName());
-			
+		
+		//String[] name = new String[EnumFallingBlockBarnardaC.values().length];
+		for (EnumFallingBlockBarnardaC blockBasic : EnumFallingBlockBarnardaC.values()) {
+			//if(blockBasic.getName() != null) name[blockBasic.getMeta()] = blockBasic.getName();
+			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, BRBlocks.BARNARDA_C_FALLING_BLOCKS, blockBasic.getMeta(), "barnarda/" + blockBasic.getName());
+		}
+		//GSUtils.addBlockMetadataJsonFiles(BRBlocks.BARNARDA_C_FALLING_BLOCKS, name, Barnarda_C_Falling_Blocks.BASIC_TYPE.getName(), "barnarda/");
+		
 		for (EnumBlockDandelions blockBasic : EnumBlockDandelions.values())       
 			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, BRBlocks.BARNARDA_C_DANDELIONS, blockBasic.getMeta(), "barnarda/" + blockBasic.getName());
 		
@@ -127,15 +138,15 @@ public class BarnardsSystemBodies implements IBodies {
 			//if(blockBasic.getName() != null) name[blockBasic.getMeta()] = blockBasic.getName();
 	    	ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, BRBlocks.BARNARDA_C_GRASS, blockBasic.getMeta(), "barnarda/" + blockBasic.getName());
 		}
-			
+		
 		for (EnumBlockLeaves blockBasic : EnumBlockLeaves.values())      
 	    	ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, BRBlocks.BARNARDA_C_LEAVES, blockBasic.getMeta(), "barnarda/" + blockBasic.getName());
 			
 			
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "barnarda/",  BRBlocks.BARNARDA_C_FARMLAND);
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "barnarda/",  BRBlocks.BARNARDA_C_WATER_GRASS);
-		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "barnarda/",  BRBlocks.BARNARDA_C_TEST_LOG);
-		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "barnarda/",  BRBlocks.BARNARDA_C_TEST_GLOW_LOG);
+		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "barnarda/",  BRBlocks.BARNARDA_C_VIOLET_LOG);
+		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "barnarda/",  BRBlocks.BARNARDA_C_VIOLET_GLOW_LOG);
 			
 		int i = 0;
 		for(String basic : ItemBasicBR.names)
@@ -143,10 +154,13 @@ public class BarnardsSystemBodies implements IBodies {
 			if(basic.equals("null")) { i++; continue; }
 			ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, BRItems.BASIC, i++, "barnarda/basic/" + basic);
 		}
+		i = 0;	
+		for (BR_Food food : BR_Food.values())     
+			ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, BRItems.FOODS, i++, "barnarda/foods/" + food.getName());
 			
 		if(GCCoreUtil.isDeobfuscated()) {
 			//GSUtils.addBlockJsonFiles(BRBlocks.BARNARDA_C_WATER_GRASS, "barnarda/");
-			GSUtils.addItemMetadataJsonFiles(BRItems.BASIC, ItemBasicBR.names, "barnarda/basic/");
+			//GSUtils.addItemMetadataJsonFiles(BRItems.BASIC, ItemBasicBR.names, "barnarda/basic/");
 		}
 			//if(GCCoreUtil.isDeobfuscated()) 
 				//GSUtils.addBlockMetadataJsonFiles(BRBlocks.BARNARDA_C_GRASS, name, Barnarda_C_Grass.BASIC_TYPE.getName(), "barnarda/");
@@ -160,7 +174,14 @@ public class BarnardsSystemBodies implements IBodies {
 	    for(int i = 0; i < blocks.length; i++)
 	    	blocks[i] = EnumBlockBarnardaC.byMetadata(i).getName(); 
 	    	
-		ClientProxy.addVariant("barnarda_c_blocks", "barnarda/", blocks);			
+		ClientProxy.addVariant("barnarda_c_blocks", "barnarda/", blocks);		
+		
+		blocks = new String[EnumFallingBlockBarnardaC.values().length];
+	    for(int i = 0; i < blocks.length; i++)
+	    	blocks[i] = EnumFallingBlockBarnardaC.byMetadata(i).getName();
+	    	
+	    ClientProxy.addVariant("barnarda_c_falling_blocks", "barnarda/", blocks);
+	    
 		ClientProxy.addVariant("barnarda_c_test_log", "barnarda/", "barnarda_c_test_log");		
 		ClientProxy.addVariant("barnarda_c_test_glow_log", "barnarda/", "barnarda_c_test_glow_log");
 		ClientProxy.addVariant("barnarda_c_farmland", "barnarda/", "barnarda_c_farmland");
@@ -186,13 +207,18 @@ public class BarnardsSystemBodies implements IBodies {
 
 	    //ModelLoader.setCustomStateMapper(BRBlocks.BARNARDA_C_REEDS, new StateMap.Builder().ignore(BlockLiquid.LEVEL).build());
 		
-
 	    ClientProxy.addVariant("br_basic", "barnarda/basic/", ItemBasicBR.names);
+	    
+	    String[] foods = new String[BR_Food.values().length];
+	    for(int i = 0; i < foods.length; i++)
+	    	foods[i] = BR_Food.byMetadata(i).getName();
+	    ClientProxy.addVariant("br_foods", "barnarda/foods/", foods);	    
+	    
 	}
 	
 	@Override
 	public void registerRecipes() {
-		
+		CraftingRecipesBarnarda_C.loadRecipes();
 	}
 
 	@Override

@@ -1,0 +1,5 @@
+{ 
+	"variants": { 
+		"type=barnarda_c_sand": { "model": "galaxyspace:barnarda/barnarda_c_sand"}
+	} 
+}

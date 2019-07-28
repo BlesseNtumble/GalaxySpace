@@ -26,6 +26,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -37,28 +38,15 @@ public class Barnarda_C_Blocks  extends Block implements ISortableBlock, ITerraf
     {
         super(Material.ROCK);
         this.setUnlocalizedName("barnarda_c_blocks");
-        this.setSoundType(SoundType.STONE); 
+        this.setSoundType(SoundType.STONE);
         this.setHarvestLevel("pickaxe", 0, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.STONE));
         this.setHarvestLevel("pickaxe", 0, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.COBBLESTONE));
         this.setHarvestLevel("pickaxe", 0, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.STONE_BRICKS));
-        //this.setHarvestLevel("spade", 1, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.DIRT));
-        //this.setHarvestLevel("spade", 1, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.DIRT_1));
-        //this.setHarvestLevel("axe", 1, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.OAK_PLANKS));
-    }
-
-	@Override
-	public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos)
-    {		
-		EnumBlockBarnardaC type = ((EnumBlockBarnardaC) state.getValue(BASIC_TYPE));
-		
-		switch (type)
-        {
-			case DIRT: return Material.GRASS.getMaterialMapColor();
-			case SAND: return Material.SAND.getMaterialMapColor();
-			default:
-				return Material.ROCK.getMaterialMapColor();
-		
-        }
+        //this.setHarvestLevel("shovel", 0, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.DIRT));
+        //this.setHarvestLevel("shovel", 0, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.DIRT_1));
+        this.setHarvestLevel("pickaxe", 0, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.SANDSTONE));
+        this.setHarvestLevel("axe", 0, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.OAK_PLANKS));
+        
     }
 	
 	@Override
@@ -69,13 +57,15 @@ public class Barnarda_C_Blocks  extends Block implements ISortableBlock, ITerraf
         {
 			case DIRT: 
 			case DIRT_1:
-				return 0.6F;
+				return 0.2F;
+			case SANDSTONE:
+				return 1.0F;
 			case STONE: 
 			case COBBLESTONE:
 			case STONE_BRICKS:
 				return 1.0F;
 			case OAK_PLANKS:
-				return 0.5F;
+				return 1.5F;
 			default: return this.blockHardness;
         }
         
@@ -95,6 +85,12 @@ public class Barnarda_C_Blocks  extends Block implements ISortableBlock, ITerraf
             list.add(new ItemStack(this, 1, blockBasic.getMeta()));
         }
     }
+	
+	@Override
+	public int damageDropped(IBlockState state)
+	{
+		return this.getMetaFromState(state);
+	}
 	
 	@Override
 	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
@@ -135,16 +131,6 @@ public class Barnarda_C_Blocks  extends Block implements ISortableBlock, ITerraf
 		return false;
 	}
 	
-	public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, net.minecraftforge.common.IPlantable plantable)
-    {
-		EnumBlockBarnardaC type = ((EnumBlockBarnardaC) state.getValue(BASIC_TYPE));
-		switch (type)
-        {			
-        	default:
-        		return false;
-        }
-    }
-    
 	@SideOnly(Side.CLIENT)
 	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT_MIPPED;
@@ -154,24 +140,28 @@ public class Barnarda_C_Blocks  extends Block implements ISortableBlock, ITerraf
 	
 	public enum EnumBlockBarnardaC implements IStringSerializable
 	{		
-		DIRT(0, "barnarda_c_dirt"),
-		STONE(1, "barnarda_c_stone"),
-		SAND(2, "barnarda_c_sand"),
-		DIRT_1(3, "barnarda_c_dirt_1"),
-		COBBLESTONE(4, "barnarda_c_cobblestone"),
-		STONE_BRICKS(5, "barnarda_c_stone_bricks"),
-		OAK_PLANKS(6, "barnarda_c_oak_planks");
+		DIRT(0, "barnarda_c_dirt", Material.GROUND),
+		STONE(1, "barnarda_c_stone", Material.ROCK),
+		SANDSTONE(2, "barnarda_c_sandstone", Material.ROCK),
+		DIRT_1(3, "barnarda_c_dirt_1", Material.GROUND),
+		COBBLESTONE(4, "barnarda_c_cobblestone", Material.ROCK),
+		STONE_BRICKS(5, "barnarda_c_stone_bricks", Material.ROCK),
+		OAK_PLANKS(6, "barnarda_c_oak_planks", Material.WOOD);
 		
 		private final int meta;
 		private final String name;
+		private final Material material;
 		
-		private EnumBlockBarnardaC(int meta, String name)
+		private EnumBlockBarnardaC(int meta, String name, Material material)
 		{
 			this.meta = meta;
 			this.name = name;
+			this.material = material;
 		}
 	
-		public int getMeta() { return this.meta; }       
+		public int getMeta() { return this.meta; }   
+		
+		public Material getMaterial() { return this.material; } 
 		
 		public static EnumBlockBarnardaC byMetadata(int meta) { return values()[meta]; }
 	
@@ -190,6 +180,16 @@ public class Barnarda_C_Blocks  extends Block implements ISortableBlock, ITerraf
 	public int getMetaFromState(IBlockState state) {
 		return ((EnumBlockBarnardaC) state.getValue(BASIC_TYPE)).getMeta();
 	}	
+	
+	@Override
+	public Material getMaterial(IBlockState state) {
+		return ((EnumBlockBarnardaC) state.getValue(BASIC_TYPE)).getMaterial();
+	}
+	
+	@Override
+	public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {		
+		return ((EnumBlockBarnardaC) state.getValue(BASIC_TYPE)).getMaterial().getMaterialMapColor();
+    }
 	
 	@Override
 	protected BlockStateContainer createBlockState()

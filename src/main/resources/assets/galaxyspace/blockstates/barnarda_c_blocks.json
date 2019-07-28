@@ -2,7 +2,7 @@
 	"variants": { 	
 		"type=barnarda_c_dirt": { "model": "galaxyspace:barnarda/barnarda_c_dirt"}, 
 		"type=barnarda_c_stone": { "model": "galaxyspace:barnarda/barnarda_c_stone"}, 
-		"type=barnarda_c_sand": { "model": "galaxyspace:barnarda/barnarda_c_sand"},
+		"type=barnarda_c_sandstone": { "model": "galaxyspace:barnarda/barnarda_c_sandstone"},
 		"type=barnarda_c_dirt_1": { "model": "galaxyspace:barnarda/barnarda_c_dirt_1"},
 		"type=barnarda_c_cobblestone": { "model": "galaxyspace:barnarda/barnarda_c_cobblestone"}, 
 		"type=barnarda_c_stone_bricks": { "model": "galaxyspace:barnarda/barnarda_c_stone_bricks"},
