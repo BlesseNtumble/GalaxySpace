@@ -12,12 +12,14 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -56,6 +58,22 @@ public class Barnarda_C_Falling_Blocks extends BlockFalling implements ISortable
 	public EnumSortCategoryBlock getCategory(int meta) {
 		return EnumSortCategoryBlock.GENERAL;
 	}
+	
+	@Override
+	public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, net.minecraftforge.common.IPlantable plantable)	
+    {	
+		EnumFallingBlockBarnardaC type = ((EnumFallingBlockBarnardaC) state.getValue(BASIC_TYPE));	
+		EnumPlantType plantType = plantable.getPlantType(world, pos.offset(direction));
+
+		switch (type)	
+        {		
+			case SAND:
+				if(plantType == EnumPlantType.Desert) 
+					return true;
+        	default:	
+        		return false;	
+        }	
+    }
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
