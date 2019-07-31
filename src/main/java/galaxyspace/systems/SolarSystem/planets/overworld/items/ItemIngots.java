@@ -12,9 +12,9 @@ public class ItemIngots extends Item implements ISortableItem
 {
     public static String[] names = 
     { 
-    	"cobaltum",  	//0    	
-    	"magnesium",	//1
-    	"nickel"		//2
+    	"cobaltum_ingot",  	//0    	
+    	"magnesium_ingot",	//1
+    	"nickel_ingot"		//2
     };
 
     public ItemIngots()

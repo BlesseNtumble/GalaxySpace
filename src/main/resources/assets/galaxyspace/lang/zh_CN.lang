@@ -228,10 +228,10 @@ item.cobalt_pickaxe.name=钴鹤嘴锄
 item.cobalt_sword.name=钴剑
 item.cobalt_spade.name=钴铲
 
-item.nickel.name=镍锭
-item.cobaltum.name=钴锭
-item.magnesium.name=镁锭
-item.uranium.name=铀锭
+item.nickel_ingot.name=镍锭
+item.cobaltum_ingot.name=钴锭
+item.magnesium_ingot.name=镁锭
+item.uranium_ingot.name=铀锭
 
 item.compressed_nickel.name=致密镍板
 item.compressed_cobaltum.name=致密钴板

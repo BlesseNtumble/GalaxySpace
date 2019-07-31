@@ -255,10 +255,10 @@ item.cobalt_pickaxe.name=Cobalt Pickaxe
 item.cobalt_sword.name=Cobalt Sword
 item.cobalt_spade.name=Cobalt Spade
 
-item.nickel.name=Nickel Ingot
-item.cobaltum.name=Cobalt Ingot
-item.magnesium.name=Magnesium Ingot
-item.uranium.name=Uranium Ingot
+item.nickel_ingot.name=Nickel Ingot
+item.cobaltum_ingot.name=Cobalt Ingot
+item.magnesium_ingot.name=Magnesium Ingot
+item.uranium_ingot.name=Uranium Ingot
 
 item.compressed_nickel.name=Compressed Nickel
 item.compressed_cobaltum.name=Compressed Cobalt
@@ -516,62 +516,11 @@ book.page.actual_update.name=Actual Update
 #||||||||||||Book-Celestial Bodies||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 book.page.solarsystem.sol.name=Solar System
-book.page.solarsystem.sol.asteroids=Asteroids
-book.page.solarsystem.sol.ceres=Ceres
-book.page.solarsystem.sol.jupiter=Jupiter
-book.page.solarsystem.sol.callisto=Callisto
-book.page.solarsystem.sol.europa=Europa
-book.page.solarsystem.sol.ganymede=Ganymede
-book.page.solarsystem.sol.io=Io
-book.page.solarsystem.sol.kuiperbelt=Kuiper Belt
-book.page.solarsystem.sol.mars=Mars
-book.page.solarsystem.sol.deimos=Deimos
-book.page.solarsystem.sol.phobos=Phobos
-book.page.solarsystem.sol.mercury=Mercury
-book.page.solarsystem.sol.neptune=Neptune
-book.page.solarsystem.sol.proteus=Proteus
-book.page.solarsystem.sol.triton=Triton
-book.page.solarsystem.sol.overworld=Overworld
-book.page.solarsystem.sol.moon=Moon
-book.page.solarsystem.sol.pluto=Pluto
-book.page.solarsystem.sol.charon=Charon
-book.page.solarsystem.sol.saturn=Saturn
-book.page.solarsystem.sol.dione=Dione
-book.page.solarsystem.sol.enceladus=Enceladus
-book.page.solarsystem.sol.iapetus=Iapetus
-book.page.solarsystem.sol.mimas=Mimas
-book.page.solarsystem.sol.rheya=Rheya
-book.page.solarsystem.sol.tethys=Tethys
-book.page.solarsystem.sol.titan=Titan
-book.page.solarsystem.sol.uranus=Uranus
-book.page.solarsystem.sol.ariel=Ariel
-book.page.solarsystem.sol.miranda=Miranda
-book.page.solarsystem.sol.oberon=Oberon
-book.page.solarsystem.sol.titania=Titania
-book.page.solarsystem.sol.umbriel=Umbriel
-book.page.solarsystem.sol.venus=Venus
-book.page.solarsystem.proxima.name=Proxima Centauri
-book.page.solarsystem.proxima.proxima_b=Proxima B
-book.page.solarsystem.barnards.name=Barnard's System
-book.page.solarsystem.barnards.barnarda_b=Barnarda B
-book.page.solarsystem.barnards.barnarda_b1=Barnarda B1
-book.page.solarsystem.barnards.barnarda_c=Barnarda C
-book.page.solarsystem.barnards.barnarda_c1=Barnarda C1
-book.page.solarsystem.barnards.barnarda_c2=Barnarda C2
-book.page.solarsystem.barnards.barnarda_d=Barnarda D
-book.page.solarsystem.barnards.barnarda_e=Barnarda E
 book.page.star.sol=Main star: Sol - Yellow dwarf 
 book.page.solarsystem.asteroids=The asteroid belt is a massive cluster of asteroids orbiting the sun. Most asteroids contain a large amount of minerals.
 book.page.solarsystem.ceres=Ceres is a dwarf planet in the Asteroid Belt. It contains copious amounts of meteoric iron and dolomite crystals.
 book.page.solarsystem.jupiter=Jupiter - Gas giant with stone moons that are available to the reachable.
 book.page.solarsystem.callisto=Callisto - the farthest moon of Jupiter.
-#|/////////////////////////////////////////|
-#|||||||||||||||Book-Blocks||||||||||||||
-#|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-book.page.assembly_machine.name=Assembly Machine
-book.page.assembly_machine.text=The changed version of the compressor. !nSeals materials with a highly sensitive laser.
-book.page.fuel_generator.name=Fuel Generator
-book.page.fuel_generator.text=Fuel Generator consumes fuel and !nproduces a good amount of energy. !nA good option for fuel magnates.
 #|/////////////////////////////////////////|
 #|||||||||||||||Book-Mechanics||||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
@@ -579,5 +528,3 @@ book.page.solar_radiation.name=Solar Radiation
 book.page.solar_radiation.text=Solar Radiation - negative effect that gradually kills the player. !nWhen the radiation scale crosses the  !c_rred !c_wborder - effect is activated. !nIf a player is in a shelter or underground, the radiation does not accumulate and decreases, if the scale has crossed the !c_rred !c_wborder. !n!nRemove the remaining radiation by using !c_gAntiradiation tablets. !c_w!nProtect yourself from radiation by wearing a !c_oSpacesuit !c_wor being inside a bubble from a !c_oMagnetic Field Generator.  
 book.page.atmosphere_pressure.name=Atmosphere Pressure
 book.page.atmosphere_pressure.text=Atmospheric pressure is one of the main problems of the colonization of planets with the atmosphere. !nWith a !c_rlarge !c_watmospheric pressure, the player manifests various effects, such as: nausea, blindness and slowness. !n!nWith !c_ohigh !c_watmospheric pressure, the player begins to lose his health. !nIf the pressure scale is !c_ymaximal !c_w- the player is waiting for instant death. !nProtect yourself from radiation by wearing a !c_oSpacesuit !c_wor being inside a border from a !c_oGravity Module. 
-book.page.temp_on_planet.name=Temperature effect
-book.page.temp_on_planet.text=Now the temperature in space really plays an important role. !nYou can no longer plant plants in open space, otherwise they will die instantly. You now need to take care of isolating your farm from a harmful environment, by sealing your base. !n!nAlso, you can take only !c_gcanned food !c_win open space. Liquid spilled in open space simply freezes into ice (or evaporates. Depends on the temperature of the planet).
