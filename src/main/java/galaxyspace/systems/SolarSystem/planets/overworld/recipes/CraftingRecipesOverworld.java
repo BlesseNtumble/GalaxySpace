@@ -53,6 +53,7 @@ public class CraftingRecipesOverworld {
 	private static String plateBronze = GSConfigCore.enablePlateOreDict ? "plateBronze" : "compressedBronze";
 	private static String plateTin = GSConfigCore.enablePlateOreDict ? "plateTin" : "compressedTin";
 	private static String plateDesh = GSConfigCore.enablePlateOreDict ? "plateDesh" : "compressedDesh";
+	private static String plateAluminum = GSConfigCore.enablePlateOreDict ? "plateAluminum" : "compressedAluminum";
 	
 	public static void loadRecipes() {
 		addBlockRecipes();
@@ -230,7 +231,7 @@ r
 	   AssemblyRecipes.addShapelessRecipe(new ItemStack(GCItems.schematic, 2, 0), new ItemStack(GSItems.BASIC, 1, 14), new ItemStack(GCItems.schematic, 1, 0));
 	   AssemblyRecipes.addShapelessRecipe(new ItemStack(GCItems.schematic, 2, 1), new ItemStack(GSItems.BASIC, 1, 14), new ItemStack(GCItems.schematic, 1, 1));
 	  
-	   AssemblyRecipes.addShapelessRecipe(new ItemStack(GSItems.COMPRESSED_PLATES, 1, 4), "plateBronze", "plateCoal", "plateAluminum");
+	   AssemblyRecipes.addShapelessRecipe(new ItemStack(GSItems.COMPRESSED_PLATES, 1, 4), plateBronze, "plateCoal", plateAluminum);
 	   AssemblyRecipes.addShapelessRecipe(new ItemStack(GSItems.BASIC, 1, 0), plateSteel, plateSteel, plateSteel, plateSteel, Blocks.GLASS_PANE, plateSteel, plateSteel, plateSteel, plateSteel);
 	   AssemblyRecipes.addShapelessRecipe(new ItemStack(GSItems.ROCKET_MODULES, 1, 3), new ItemStack(GSItems.COMPRESSED_PLATES, 1, 4), new ItemStack(GSItems.BASIC, 1, 0), new ItemStack(GSItems.COMPRESSED_PLATES, 1, 4));
 	   
