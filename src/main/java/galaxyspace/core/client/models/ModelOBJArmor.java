@@ -1,5 +1,7 @@
 package galaxyspace.core.client.models;
 
+import java.util.UUID;
+
 import org.lwjgl.opengl.GL11;
 
 import micdoodle8.mods.galacticraft.api.item.IHoldableItem;
@@ -49,11 +51,11 @@ public abstract class ModelOBJArmor extends ModelBiped {
 				if (gearData != null) {
 					usingParachute = gearData.getParachute() != null;
 				} else {
-					String id = player.getGameProfile().getName();
+					UUID id = player.getGameProfile().getId();
 
 					if (!ClientProxyCore.gearDataRequests.contains(id)) {
 						GalacticraftCore.packetPipeline.sendToServer(new PacketSimple(
-								PacketSimple.EnumSimplePacket.S_REQUEST_GEAR_DATA, GCCoreUtil.getDimensionID(player.world), new Object[] { id }));
+								PacketSimple.EnumSimplePacket.S_REQUEST_GEAR_DATA1, GCCoreUtil.getDimensionID(player.world), new Object[] { id }));
 						ClientProxyCore.gearDataRequests.add(id);
 					}
 				}
