@@ -1,0 +1,17 @@
+{ 
+	"variants": { 
+		"type=coal_ore": { "model": "galaxyspace:barnarda/coal_ore"}, 
+		"type=iron_ore": { "model": "galaxyspace:barnarda/iron_ore"}, 
+		"type=gold_ore": { "model": "galaxyspace:barnarda/gold_ore"}, 
+		"type=redstone_ore": { "model": "galaxyspace:barnarda/redstone_ore"}, 
+		"type=lapis_ore": { "model": "galaxyspace:barnarda/lapis_ore"}, 
+		"type=diamond_ore": { "model": "galaxyspace:barnarda/diamond_ore"}, 
+		"type=silicon_ore": { "model": "galaxyspace:barnarda/silicon_ore"}, 
+		"type=copper_ore": { "model": "galaxyspace:barnarda/copper_ore"}, 
+		"type=tin_ore": { "model": "galaxyspace:barnarda/tin_ore"}, 
+		"type=aluminum_ore": { "model": "galaxyspace:barnarda/aluminum_ore"}, 
+		"type=quartz_ore": { "model": "galaxyspace:barnarda/quartz_ore"}, 
+		"type=cobaltum_ore": { "model": "galaxyspace:barnarda/cobaltum_ore"}, 
+		"type=nickel_ore": { "model": "galaxyspace:barnarda/nickel_ore"}
+	} 
+}

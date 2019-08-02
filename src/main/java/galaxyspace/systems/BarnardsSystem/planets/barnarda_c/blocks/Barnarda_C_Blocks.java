@@ -86,10 +86,20 @@ public class Barnarda_C_Blocks  extends Block implements ISortableBlock, ITerraf
         }
     }
 	
+	 @Override
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+		return Item.getItemFromBlock(this);
+	}
+	
 	@Override
 	public int damageDropped(IBlockState state)
 	{
-		return this.getMetaFromState(state);
+		EnumBlockBarnardaC type = ((EnumBlockBarnardaC) state.getValue(BASIC_TYPE));
+    	
+    	switch (type) {
+    		case STONE: return 4;
+			default: return this.getMetaFromState(state);
+    	}
 	}
 	
 	@Override

@@ -17,12 +17,13 @@ import galaxyspace.systems.BarnardsSystem.core.events.BRClientEventHandler;
 import galaxyspace.systems.BarnardsSystem.core.events.BREventHandler;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRItems;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Falling_Blocks;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Blocks.EnumBlockBarnardaC;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Dandelions.EnumBlockDandelions;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Falling_Blocks.EnumFallingBlockBarnardaC;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Grass.EnumBlockGrass;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Leaves.EnumBlockLeaves;
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Ores;
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Ores.EnumBlockBarnardaCOres;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.TeleportTypeBarnarda_C;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.WorldProviderBarnarda_C_WE;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.items.ItemBasicBR;
@@ -122,27 +123,27 @@ public class BarnardsSystemBodies implements IBodies {
 		for (EnumBlockBarnardaC blockBasic : EnumBlockBarnardaC.values())        
 			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, BRBlocks.BARNARDA_C_BLOCKS, blockBasic.getMeta(), "barnarda/" + blockBasic.getName());
 		
-		//String[] name = new String[EnumFallingBlockBarnardaC.values().length];
-		for (EnumFallingBlockBarnardaC blockBasic : EnumFallingBlockBarnardaC.values()) {
-			//if(blockBasic.getName() != null) name[blockBasic.getMeta()] = blockBasic.getName();
+		for (EnumFallingBlockBarnardaC blockBasic : EnumFallingBlockBarnardaC.values()) 
 			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, BRBlocks.BARNARDA_C_FALLING_BLOCKS, blockBasic.getMeta(), "barnarda/" + blockBasic.getName());
-		}
-		//GSUtils.addBlockMetadataJsonFiles(BRBlocks.BARNARDA_C_FALLING_BLOCKS, name, Barnarda_C_Falling_Blocks.BASIC_TYPE.getName(), "barnarda/");
 		
 		for (EnumBlockDandelions blockBasic : EnumBlockDandelions.values())       
 			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, BRBlocks.BARNARDA_C_DANDELIONS, blockBasic.getMeta(), "barnarda/" + blockBasic.getName());
 		
 			
-		//String[] name = new String[EnumBlockGrass.values().length];
-		for (EnumBlockGrass blockBasic : EnumBlockGrass.values()) {       
-			//if(blockBasic.getName() != null) name[blockBasic.getMeta()] = blockBasic.getName();
-	    	ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, BRBlocks.BARNARDA_C_GRASS, blockBasic.getMeta(), "barnarda/" + blockBasic.getName());
-		}
+		for (EnumBlockGrass blockBasic : EnumBlockGrass.values())        
+			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, BRBlocks.BARNARDA_C_GRASS, blockBasic.getMeta(), "barnarda/" + blockBasic.getName());
+		
 		
 		for (EnumBlockLeaves blockBasic : EnumBlockLeaves.values())      
 	    	ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, BRBlocks.BARNARDA_C_LEAVES, blockBasic.getMeta(), "barnarda/" + blockBasic.getName());
 			
-			
+		String[] name = new String[EnumBlockBarnardaCOres.values().length];
+		for (EnumBlockBarnardaCOres blockBasic : EnumBlockBarnardaCOres.values()) {
+			if(blockBasic.getName() != null) name[blockBasic.getMeta()] = blockBasic.getName();
+			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, BRBlocks.BARNARDA_C_ORES, blockBasic.getMeta(), "barnarda/" + blockBasic.getName());
+		}
+		GSUtils.addBlockMetadataJsonFiles(BRBlocks.BARNARDA_C_ORES, name, Barnarda_C_Ores.BASIC_TYPE.getName(), "barnarda/");
+					
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "barnarda/",  BRBlocks.BARNARDA_C_FARMLAND);
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "barnarda/",  BRBlocks.BARNARDA_C_WATER_GRASS);
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "barnarda/",  BRBlocks.BARNARDA_C_VIOLET_LOG);
@@ -204,6 +205,12 @@ public class BarnardsSystemBodies implements IBodies {
 	    	blocks[i] = EnumBlockLeaves.byMetadata(i).getName();
 	    	
 	    ClientProxy.addVariant("barnarda_c_leaves", "barnarda/", blocks);
+	    
+	    blocks = new String[EnumBlockBarnardaCOres.values().length];
+	    for(int i = 0; i < blocks.length; i++)
+	    	blocks[i] = EnumBlockBarnardaCOres.byMetadata(i).getName();
+	    	
+	    ClientProxy.addVariant("barnarda_c_ores", "barnarda/", blocks);
 
 	    //ModelLoader.setCustomStateMapper(BRBlocks.BARNARDA_C_REEDS, new StateMap.Builder().ignore(BlockLiquid.LEVEL).build());
 		
@@ -213,7 +220,7 @@ public class BarnardsSystemBodies implements IBodies {
 	    for(int i = 0; i < foods.length; i++)
 	    	foods[i] = BR_Food.byMetadata(i).getName();
 	    ClientProxy.addVariant("br_foods", "barnarda/foods/", foods);	    
-	    
+	   
 	}
 	
 	@Override
