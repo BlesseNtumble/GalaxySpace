@@ -1,18 +1,18 @@
 package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.google.common.base.Predicate;
+
 import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTree_Forest;
 import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTree_Forest2;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProvider;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_PerlinNoise;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProvider;
-import galaxyspace.GalaxySpace;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Blocks;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Dandelions;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Falling_Blocks;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Grass;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.WorldProviderBarnarda_C_WE;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Dunes;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Forest;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Mountains;
@@ -20,18 +20,38 @@ import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnar
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Swampland;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_YellowPlains;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
+import micdoodle8.mods.galacticraft.core.world.gen.WorldGenMinableMeta;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class BiomeDecoratorBarnarda_C extends BiomeDecoratorSpace
 {
     private World currentWorld;  
+    
+    private WorldGenerator dirtGen, coalGen, ironGen, goldGen, lapisGen, redstoneGen, diamondGen, siliconGen, copperGen, tinGen, aluminumGen, quartzGen, cobaltumGen, nickelGen;
    
     public BiomeDecoratorBarnarda_C()
     {
+    	dirtGen = new WorldGenMinableMeta(BRBlocks.BARNARDA_C_BLOCKS, 30, 0, true, BRBlocks.BARNARDA_C_BLOCKS, 1);
+    
+    	coalGen = new WorldGenMinableMeta(BRBlocks.BARNARDA_C_ORES, 15, 0, true, BRBlocks.BARNARDA_C_BLOCKS, 1);
+    	ironGen = new WorldGenMinableMeta(BRBlocks.BARNARDA_C_ORES, 6, 1, true, BRBlocks.BARNARDA_C_BLOCKS, 1);
+    	goldGen = new WorldGenMinableMeta(BRBlocks.BARNARDA_C_ORES, 6, 2, true, BRBlocks.BARNARDA_C_BLOCKS, 1);
+    	redstoneGen = new WorldGenMinableMeta(BRBlocks.BARNARDA_C_ORES, 6, 3, true, BRBlocks.BARNARDA_C_BLOCKS, 1);
+    	lapisGen = new WorldGenMinableMeta(BRBlocks.BARNARDA_C_ORES, 6, 4, true, BRBlocks.BARNARDA_C_BLOCKS, 1);
+    	diamondGen = new WorldGenMinableMeta(BRBlocks.BARNARDA_C_ORES, 6, 5, true, BRBlocks.BARNARDA_C_BLOCKS, 1);
+    	siliconGen = new WorldGenMinableMeta(BRBlocks.BARNARDA_C_ORES, 6, 6, true, BRBlocks.BARNARDA_C_BLOCKS, 1);
+    	copperGen = new WorldGenMinableMeta(BRBlocks.BARNARDA_C_ORES, 8, 7, true, BRBlocks.BARNARDA_C_BLOCKS, 1);
+    	tinGen = new WorldGenMinableMeta(BRBlocks.BARNARDA_C_ORES, 8, 8, true, BRBlocks.BARNARDA_C_BLOCKS, 1);
+    	aluminumGen = new WorldGenMinableMeta(BRBlocks.BARNARDA_C_ORES, 5, 9, true, BRBlocks.BARNARDA_C_BLOCKS, 1);
+    	quartzGen = new WorldGenMinableMeta(BRBlocks.BARNARDA_C_ORES, 4, 10, true, BRBlocks.BARNARDA_C_BLOCKS, 1);
+    	cobaltumGen = new WorldGenMinableMeta(BRBlocks.BARNARDA_C_ORES, 2, 11, true, BRBlocks.BARNARDA_C_BLOCKS, 1);
+    	nickelGen = new WorldGenMinableMeta(BRBlocks.BARNARDA_C_ORES, 4, 12, true, BRBlocks.BARNARDA_C_BLOCKS, 1);
     }
 
     @Override
@@ -43,7 +63,23 @@ public class BiomeDecoratorBarnarda_C extends BiomeDecoratorSpace
 		
 		BlockPos pos = this.currentWorld.getHeight(new BlockPos(randPosX, 0, randPosZ));
 		
-		WE_ChunkProvider chunk = ((WE_WorldProvider)this.getCurrentWorld().provider).chunk_provider;
+		this.generateOre(30, dirtGen, 5, 180);
+		
+		this.generateOre(20, coalGen, 5, 180);
+		this.generateOre(15, ironGen, 5, 180);
+		this.generateOre(10, goldGen, 5, 45);
+		this.generateOre(20, redstoneGen, 5, 25);
+		this.generateOre(4, lapisGen, 5, 40);
+		this.generateOre(8, diamondGen, 5, 15);
+		this.generateOre(8, siliconGen, 5, 40);
+		this.generateOre(20, copperGen, 5, 120);
+		this.generateOre(15, tinGen, 5, 120);
+		this.generateOre(10, aluminumGen, 5, 50);
+		this.generateOre(8, quartzGen, 5, 15);
+		this.generateOre(8, cobaltumGen, 5, 40);
+		this.generateOre(8, nickelGen, 5, 15);
+		
+	//	WE_ChunkProvider chunk = ((WE_WorldProvider)this.getCurrentWorld().provider).getChunkProvider();
 		
 		/*double scaleX = chunk.biomemapScaleX;
 		double persistance = chunk.biomemapPersistence;
@@ -53,7 +89,7 @@ public class BiomeDecoratorBarnarda_C extends BiomeDecoratorSpace
 			* chunk.biomemapScaleY);
 		
 		*/
-		
+
 		if(getBiome(randPosX, randPosZ) instanceof Barnarda_C_Forest)
     	{
     		for(int i = 0; i < 40; i++){
@@ -211,6 +247,25 @@ public class BiomeDecoratorBarnarda_C extends BiomeDecoratorSpace
 	    			this.getCurrentWorld().setBlockState(pos, Blocks.FLOWING_WATER.getDefaultState(), 3);
 	    		}			
 	    	}
+	    	
+	    	for(int i = 0; i < 40; i++){
+	    		randPosX = this.posX + this.rand.nextInt(16) + 8;
+	    		randPosZ = this.posZ + this.rand.nextInt(16) + 8;
+	    		pos = this.currentWorld.getHeight(new BlockPos(randPosX, 0, randPosZ));
+	    		
+	    		if(this.getCurrentWorld().isAreaLoaded(pos, 13, false))
+	    			new WorldGenMinable(BRBlocks.BARNARDA_C_BLOCKS.getDefaultState().withProperty(Barnarda_C_Blocks.BASIC_TYPE, Barnarda_C_Blocks.EnumBlockBarnardaC.STONE), 25, new BRStonePredicate()).generate(getCurrentWorld(), rand, pos);
+	    	}
+	    	
+	    	for(int y = 0; y < 10; y++) {
+        		randPosX = this.posX + this.rand.nextInt(16) + 8;    			
+    			randPosZ = this.posZ + this.rand.nextInt(16) + 8;
+    			pos = this.currentWorld.getHeight(new BlockPos(randPosX, 0, randPosZ));
+    			
+    			if(this.getCurrentWorld().getBlockState(pos.down()) == BRBlocks.BARNARDA_C_GRASS.getDefaultState().withProperty(Barnarda_C_Grass.BASIC_TYPE, Barnarda_C_Grass.EnumBlockGrass.GRASS))
+    				this.getCurrentWorld().setBlockState(pos, BRBlocks.BARNARDA_C_DANDELIONS.getDefaultState().withProperty(Barnarda_C_Dandelions.BASIC_TYPE, Barnarda_C_Dandelions.EnumBlockDandelions.GRASS));
+	    	}
+
     	}
 	    
 	    
@@ -365,7 +420,26 @@ public class BiomeDecoratorBarnarda_C extends BiomeDecoratorSpace
     
     private WE_Biome getBiome(int x, int z)
     {
-    	return WE_Biome.getBiomeAt(((WorldProviderBarnarda_C_WE)getCurrentWorld().provider).chunk, x, z);
+    	return WE_Biome.getBiomeAt(x, z);
     }
     
+    static class BRStonePredicate implements Predicate<IBlockState>
+    {
+    	List<IBlockState> states = new ArrayList<IBlockState>();
+        private BRStonePredicate() {
+        	states.add(BRBlocks.BARNARDA_C_GRASS.getDefaultState());
+        	states.add(BRBlocks.BARNARDA_C_BLOCKS.getDefaultState().withProperty(Barnarda_C_Blocks.BASIC_TYPE, Barnarda_C_Blocks.EnumBlockBarnardaC.DIRT));
+        	states.add(BRBlocks.BARNARDA_C_BLOCKS.getDefaultState().withProperty(Barnarda_C_Blocks.BASIC_TYPE, Barnarda_C_Blocks.EnumBlockBarnardaC.DIRT_1));
+        	states.add(BRBlocks.BARNARDA_C_BLOCKS.getDefaultState().withProperty(Barnarda_C_Blocks.BASIC_TYPE, Barnarda_C_Blocks.EnumBlockBarnardaC.STONE));
+        }
+
+        public boolean apply(IBlockState state)
+        {
+            if (state != null && states.contains(state))
+            {
+            	return true;
+            }           
+            return false;            
+        }
+    }
 }
