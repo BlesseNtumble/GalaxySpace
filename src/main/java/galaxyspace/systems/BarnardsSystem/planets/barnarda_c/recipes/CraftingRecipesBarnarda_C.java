@@ -19,6 +19,7 @@ public class CraftingRecipesBarnarda_C {
 	
 	private static void addBlockRecipes() {
 		 RecipeUtil.addRecipe(new ItemStack(BRBlocks.BARNARDA_C_BLOCKS, 1, 5), new Object[] { "XX", "XX", 'X', new ItemStack(BRBlocks.BARNARDA_C_BLOCKS, 1, 1)});
+		 RecipeUtil.addRecipe(new ItemStack(BRBlocks.BARNARDA_C_BLOCKS, 4, 6), new Object[] { "X", 'X', new ItemStack(BRBlocks.BARNARDA_C_VIOLET_LOG, 1, 0)});
 		  
 	}
 	
@@ -37,6 +38,8 @@ public class CraftingRecipesBarnarda_C {
 		
 		 GameRegistry.addSmelting(new ItemStack(BRBlocks.BARNARDA_C_FALLING_BLOCKS, 1, 0), new ItemStack(Blocks.GLASS, 1, 0), 1.0F);
 		 GameRegistry.addSmelting(new ItemStack(BRBlocks.BARNARDA_C_BLOCKS, 1, 4), new ItemStack(BRBlocks.BARNARDA_C_BLOCKS, 1, 1), 0.1F);
+		 
+		 GameRegistry.addSmelting(new ItemStack(BRBlocks.BARNARDA_C_VIOLET_LOG, 1, 0), new ItemStack(Items.COAL, 1, 1), 0.1F);
 		  
 	}
 }
