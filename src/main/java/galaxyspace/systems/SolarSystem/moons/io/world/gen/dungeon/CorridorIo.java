@@ -4,8 +4,6 @@ import java.lang.reflect.Constructor;
 import java.util.Random;
 
 import asmodeuscore.core.astronomy.dimension.world.gen.dungeons.standart.DungeonConfiguration;
-import galaxyspace.core.registers.blocks.GSBlocks;
-import galaxyspace.systems.SolarSystem.planets.ceres.blocks.CeresBlocks;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.blocks.BlockUnlitTorch;
 import net.minecraft.init.Blocks;

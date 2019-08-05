@@ -60,8 +60,6 @@ public class ChunkProviderBarnarda_C extends ChunkProviderSpaceLakes {
 	public int getCraterProbability() {	
 	    return 300;	
 	}
-	
-
 		
 	@Override
 	public double getHeightModifier() {	

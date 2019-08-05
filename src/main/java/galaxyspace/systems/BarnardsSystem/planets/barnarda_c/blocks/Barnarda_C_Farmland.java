@@ -4,9 +4,7 @@ import java.util.Random;
 
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockFarmland;
-import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

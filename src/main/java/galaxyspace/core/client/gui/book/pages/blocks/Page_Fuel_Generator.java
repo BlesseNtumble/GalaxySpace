@@ -6,7 +6,6 @@ import galaxyspace.core.client.gui.book.BookRegister.Recipe_Type;
 import galaxyspace.core.client.gui.book.pages.Page_WithCraftMatrix;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCItems;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;

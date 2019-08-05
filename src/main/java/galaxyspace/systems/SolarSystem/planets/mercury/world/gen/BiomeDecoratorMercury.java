@@ -16,7 +16,7 @@ public class BiomeDecoratorMercury extends BiomeDecoratorSpace
     private WorldGenerator nickelGen;
     private WorldGenerator magnesiumGen;
     private WorldGenerator magmaGen;
-
+   
     public BiomeDecoratorMercury()
     {
     	this.ironGen = new WorldGenMinableMeta(GSBlocks.MERCURY_BLOCKS, 5, 4, true, GSBlocks.MERCURY_BLOCKS, 2);
@@ -35,7 +35,6 @@ public class BiomeDecoratorMercury extends BiomeDecoratorSpace
     	}
     	
     	this.generateOre(18, magmaGen, 5, 25);
-
     }
 
     @Override

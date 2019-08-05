@@ -3,7 +3,6 @@ package galaxyspace.systems.SolarSystem.planets.overworld.items.modules;
 import galaxyspace.core.prefab.items.modules.ItemModule;
 import galaxyspace.core.util.GSUtils.Module_Type;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemSpaceSuit;
-import micdoodle8.mods.galacticraft.core.GCItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;

@@ -12,7 +12,6 @@ import galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics.In
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics.InventorySchematicFins;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics.InventorySchematicOxTank;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics.InventorySchematicTier2Rocket;
-import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
 import net.minecraft.item.ItemStack;
 

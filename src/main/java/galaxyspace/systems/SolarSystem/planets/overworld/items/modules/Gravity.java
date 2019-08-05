@@ -3,11 +3,8 @@ package galaxyspace.systems.SolarSystem.planets.overworld.items.modules;
 import galaxyspace.core.prefab.items.modules.ItemModule;
 import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.core.util.GSUtils.Module_Type;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemSpaceSuit;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
 public class Gravity extends ItemModule {
 

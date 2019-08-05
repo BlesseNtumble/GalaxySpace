@@ -3,7 +3,6 @@ package galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines;
 import asmodeuscore.api.item.IShiftDescription;
 import galaxyspace.GalaxySpace;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvCircuitFabricator;
-import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvElectricCompressor;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.blocks.BlockAdvancedTile;
 import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;

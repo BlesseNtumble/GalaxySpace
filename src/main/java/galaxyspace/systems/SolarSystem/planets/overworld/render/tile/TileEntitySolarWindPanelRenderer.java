@@ -6,7 +6,6 @@ import org.lwjgl.opengl.GL12;
 import galaxyspace.GalaxySpace;
 import galaxyspace.systems.SolarSystem.planets.overworld.models.ModelSolarWindPanel;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityWindSolarPanel;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
 

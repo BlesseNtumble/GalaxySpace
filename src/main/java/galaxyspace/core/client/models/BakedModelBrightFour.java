@@ -5,9 +5,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import galaxyspace.GalaxySpace;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Logs;
-import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;

@@ -10,7 +10,6 @@ import asmodeuscore.core.astronomy.dimension.world.gen.ACBiome;
 import asmodeuscore.core.astronomy.dimension.world.gen.ChunkProviderSpaceLakes;
 import asmodeuscore.core.astronomy.dimension.world.gen.MapGenCaves;
 import asmodeuscore.core.astronomy.dimension.world.gen.MapGenCaves.BlockGen;
-import asmodeuscore.core.astronomy.dimension.world.gen.ChunkProviderSpaceLakes.GenBlocks;
 import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.systems.SolarSystem.moons.miranda.blocks.MirandaBlocks;
 import galaxyspace.systems.SolarSystem.moons.miranda.world.gen.BiomeDecoratorMiranda;

@@ -1,12 +1,12 @@
 package galaxyspace.systems.SolarSystem.satellites.venus.world.gen;
 
+import java.util.Random;
+
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-
-import java.util.Random;
 
 public class WorldGenVenusSS extends WorldGenerator
 {

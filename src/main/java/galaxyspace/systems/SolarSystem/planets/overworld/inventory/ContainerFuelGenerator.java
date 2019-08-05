@@ -1,7 +1,6 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.inventory;
 
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityFuelGenerator;
-import micdoodle8.mods.galacticraft.core.GCItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;

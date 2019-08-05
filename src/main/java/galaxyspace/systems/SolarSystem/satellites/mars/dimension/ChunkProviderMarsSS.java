@@ -3,9 +3,7 @@ package galaxyspace.systems.SolarSystem.satellites.mars.dimension;
 import java.util.List;
 import java.util.Random;
 
-import asmodeuscore.core.astronomy.dimension.world.gen.ACBiome;
 import galaxyspace.systems.SolarSystem.satellites.mars.world.gen.WorldGenSpaceStation;
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
 import micdoodle8.mods.galacticraft.api.world.ChunkProviderBase;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;

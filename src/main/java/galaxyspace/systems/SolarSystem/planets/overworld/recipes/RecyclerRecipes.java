@@ -1,9 +1,7 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.recipes;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;

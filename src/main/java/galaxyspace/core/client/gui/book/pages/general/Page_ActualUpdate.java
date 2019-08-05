@@ -1,15 +1,9 @@
 package galaxyspace.core.client.gui.book.pages.general;
 
 import java.awt.Desktop;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 import asmodeuscore.core.astronomy.gui.book.Page_WithScroll;
 import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
@@ -17,12 +11,10 @@ import galaxyspace.GalaxySpace;
 import galaxyspace.api.IPage;
 import galaxyspace.core.util.GSThreadVersionCheck;
 import galaxyspace.core.util.GSUtils;
-import micdoodle8.mods.galacticraft.core.util.ClientUtil;
 import micdoodle8.mods.galacticraft.core.util.ColorUtil;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 

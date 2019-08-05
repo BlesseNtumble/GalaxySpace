@@ -3,11 +3,8 @@ package galaxyspace.core.client.gui.book.pages.mechanics;
 import asmodeuscore.api.IBookPage;
 import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
 import galaxyspace.api.IPage;
-import galaxyspace.core.util.GSUtils;
-import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 @IPage

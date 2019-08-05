@@ -1,14 +1,12 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.render.tile;
 
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
 
 import galaxyspace.GalaxySpace;
 import galaxyspace.systems.SolarSystem.planets.overworld.models.ModelWindTurbine;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityWindGenerator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;

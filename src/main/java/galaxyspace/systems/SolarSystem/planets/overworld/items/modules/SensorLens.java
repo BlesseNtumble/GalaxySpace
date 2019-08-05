@@ -3,10 +3,8 @@ package galaxyspace.systems.SolarSystem.planets.overworld.items.modules;
 import galaxyspace.core.prefab.items.modules.ItemModule;
 import galaxyspace.core.util.GSUtils.Module_Type;
 import micdoodle8.mods.galacticraft.core.GCItems;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
 public class SensorLens extends ItemModule {
 

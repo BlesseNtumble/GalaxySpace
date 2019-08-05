@@ -2,7 +2,6 @@ package galaxyspace.core.client.fx;
 
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.particle.Particle;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;

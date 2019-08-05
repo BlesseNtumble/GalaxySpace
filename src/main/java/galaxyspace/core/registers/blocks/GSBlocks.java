@@ -45,7 +45,6 @@ import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockGa
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockGravitationModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockHydroponicBase;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockHydroponicFarm;
-import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockPlanetShield;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockLiquidExtractor;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockLiquidSeparator;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockModernSolarPanel;
@@ -53,6 +52,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockMo
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockModificationTable;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockOxygenStorageModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockPanelController;
+import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockPlanetShield;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockRadiationStabiliser;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockRocketAssembler;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockSingleSolarPanel;

@@ -1,9 +1,7 @@
 package galaxyspace.systems.SolarSystem.moons.io.recipes;
 
 import galaxyspace.core.registers.blocks.GSBlocks;
-import galaxyspace.core.registers.items.GSItems;
 import micdoodle8.mods.galacticraft.core.GCItems;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 

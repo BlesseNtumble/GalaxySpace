@@ -1,6 +1,5 @@
 package galaxyspace.systems.SolarSystem.moons.titan.world.gen;
 
-import galaxyspace.GalaxySpace;
 import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.registers.blocks.GSBlocks;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;

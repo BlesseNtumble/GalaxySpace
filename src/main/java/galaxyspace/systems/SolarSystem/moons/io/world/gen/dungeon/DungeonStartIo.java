@@ -6,8 +6,6 @@ import java.util.Random;
 import com.google.common.collect.Lists;
 
 import asmodeuscore.core.astronomy.dimension.world.gen.dungeons.standart.DungeonConfiguration;
-import galaxyspace.GalaxySpace;
-import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;

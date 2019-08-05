@@ -8,7 +8,6 @@ import org.lwjgl.input.Keyboard;
 
 import asmodeuscore.api.item.IItemPressurized;
 import asmodeuscore.api.item.IItemRadiation;
-import galaxyspace.GalaxySpace;
 import galaxyspace.api.item.IJetpackArmor;
 import galaxyspace.api.item.IModificationItem;
 import galaxyspace.core.client.models.ModelOBJArmor;

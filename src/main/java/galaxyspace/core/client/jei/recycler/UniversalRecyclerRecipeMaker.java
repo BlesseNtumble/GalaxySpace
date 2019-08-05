@@ -2,12 +2,9 @@ package galaxyspace.core.client.jei.recycler;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map.Entry;
 
-import galaxyspace.GalaxySpace;
 import galaxyspace.systems.SolarSystem.planets.overworld.recipes.RecyclerRecipes;
 import galaxyspace.systems.SolarSystem.planets.overworld.recipes.RecyclerRecipes.RecycleRecipe;
-import net.minecraft.item.ItemStack;
 
 public class UniversalRecyclerRecipeMaker
 {

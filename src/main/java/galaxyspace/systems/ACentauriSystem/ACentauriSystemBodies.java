@@ -2,9 +2,9 @@ package galaxyspace.systems.ACentauriSystem;
 
 import java.io.File;
 
-import asmodeuscore.core.astronomy.BodiesHelper;
 import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
 import asmodeuscore.core.astronomy.BodiesData;
+import asmodeuscore.core.astronomy.BodiesHelper;
 import asmodeuscore.core.astronomy.BodiesHelper.Galaxies;
 import asmodeuscore.core.astronomy.dimension.world.gen.ACBiome;
 import galaxyspace.GalaxySpace;
@@ -34,7 +34,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.oredict.OreDictionary;
 
 @IBodiesHandler
 public class ACentauriSystemBodies implements IBodies {

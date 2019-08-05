@@ -1,7 +1,6 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.inventory;
 
 import galaxyspace.core.prefab.inventory.SlotUpgrades;
-import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemUpgrades;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityLiquidExtractor;
 import micdoodle8.mods.galacticraft.api.item.IItemElectric;

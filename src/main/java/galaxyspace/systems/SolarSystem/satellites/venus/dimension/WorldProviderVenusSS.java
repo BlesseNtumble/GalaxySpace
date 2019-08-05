@@ -1,8 +1,6 @@
 package galaxyspace.systems.SolarSystem.satellites.venus.dimension;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import asmodeuscore.core.astronomy.BodiesHelper;
 import galaxyspace.core.util.GSDimensions;
@@ -16,13 +14,11 @@ import micdoodle8.mods.galacticraft.api.world.IExitHeight;
 import micdoodle8.mods.galacticraft.api.world.IOrbitDimension;
 import micdoodle8.mods.galacticraft.api.world.ISolarLevel;
 import micdoodle8.mods.galacticraft.core.Constants;
-import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
 import micdoodle8.mods.galacticraft.core.dimension.WorldProviderSpaceStation;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.galacticraft.core.world.gen.dungeon.RoomTreasure;
 import micdoodle8.mods.galacticraft.planets.venus.VenusModule;
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;

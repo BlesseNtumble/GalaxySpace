@@ -10,7 +10,6 @@ import galaxyspace.core.util.GSCreativeTabs;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvLandingPad;
 import micdoodle8.mods.galacticraft.api.entity.IRocketType.EnumRocketType;
 import micdoodle8.mods.galacticraft.api.item.IHoldableItem;
-import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCFluids;
 import micdoodle8.mods.galacticraft.core.items.ISortableItem;
 import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore;

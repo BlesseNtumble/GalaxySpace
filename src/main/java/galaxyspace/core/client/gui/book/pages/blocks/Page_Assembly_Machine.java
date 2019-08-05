@@ -4,7 +4,6 @@ import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
 import galaxyspace.api.IPage;
 import galaxyspace.core.client.gui.book.BookRegister.Recipe_Type;
 import galaxyspace.core.client.gui.book.pages.Page_WithCraftMatrix;
-import galaxyspace.core.registers.items.GSItems;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;

@@ -3,7 +3,6 @@ package galaxyspace.systems.SolarSystem.moons.miranda.world.gen;
 import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.systems.SolarSystem.moons.miranda.blocks.MirandaBlocks;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.MapGenBaseMeta;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;

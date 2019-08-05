@@ -3,11 +3,9 @@ package galaxyspace.core.client.gui.book.pages.general;
 import org.lwjgl.opengl.GL11;
 
 import asmodeuscore.api.IBookPage;
-import asmodeuscore.core.astronomy.gui.book.Page_WithScroll;
 import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
 import galaxyspace.GalaxySpace;
 import galaxyspace.api.IPage;
-import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;

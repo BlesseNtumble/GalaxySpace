@@ -8,16 +8,13 @@ import java.util.Map;
 
 import org.lwjgl.opengl.GL11;
 
-import asmodeuscore.api.IBookPage;
 import asmodeuscore.api.dimension.IAdvancedSpace;
-import asmodeuscore.core.astronomy.BodiesHelper;
 import asmodeuscore.core.astronomy.BodiesData;
+import asmodeuscore.core.astronomy.BodiesHelper;
 import asmodeuscore.core.astronomy.gui.book.Page_WithScroll;
-import asmodeuscore.core.astronomy.gui.screen.NewGuiCelestialSelection;
 import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.registers.blocks.GSBlocks;
-import galaxyspace.core.registers.fluids.GSFluids;
 import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.systems.SolarSystem.SolarSystemBodies;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
@@ -50,7 +47,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldProvider;
-import net.minecraftforge.event.world.ChunkWatchEvent;
 
 public class Page_Systems extends Page_WithScroll {
 
