@@ -1,29 +1,39 @@
 ///Changelog///
 #ru
 r.1. Исправлена невозможность потреблять консервы в открытом космосе.
-r.2. Исправлено освещение моделей ракет, гидропонной фермы, сол. панели.
-r.3. Добавлен конфиг для краткого рендера HUD’a космического костюма.
-r.4. Добавлен Улучшенный Электрический Компрессор.
-r.5. Добавлен Улучшенный Производитель Микросхем.
-r.6. Исправлено отсутсвие субсветого двигателя в ракете после посадки.
-r.7. Исправлена ошибка, приводящая к потери мира из-за Кислородного Модуля.
-r.8. Топливный Генератор теперь генерирует разное кол-во энергии в зависимости от топлива.
-r.9. Переделана Миранда.
-r.10. Добавлены рецепты для руд на некоторых планетах\спутниках.
-r.11. Добавлена zn_CN локализация.
-r.12. Исправлен конфиг для сторонней брони.
-r.13. На Марс добавлены новые руды.
+r.2. Исправлен краш при полете на Миранду.
+r.3. Исправлена работа Универсального Переработчика. Добавлен показатель шанса.
+r.4. Добавлено GUI для Планетарного Щита.
+r.5. Добавлены слота модулей для Планетарного Щита.
+r.6. Преобразованна генерация Энцелада.
+r.7. Исправлен дождь на Титане.
+r.8. Добавлена космическая станция в атмосфере Венеры.
+r.9. Подправлена локализация.
+r.10. Временно отключены энтити для схем.
+r.11. Исправлено отключение кнопки обновления в главном меню.
+r.12. Генератору Магнитного Поля добавлены слота под модули.
+r.13. Добавлено описание слотам для модулей в каждом механизме.
+r.14. Добавлена возможность копировать схемы.
+r.15. Дуговая печь теперь плавит х2 руды аддона.
+r.16. Исправлен рецепт пластины SDHD-120 при выключенном enablePlateOreDict.
+r.17. Добавлена планета Барнарда С.
+r.18. Обновлен минимальный билд GC4 - 215.
 #en
-e.1. Fixed the inability to consume canned food in outer space
-e.2. Fixed lighting models of rockets, hydroponic farm, solar panels.
-e.3. Added config for a small HUD space suit render.
-e.4. Added Advanced Electric Compressor.
-e.5. Added Advanced Circuit Fabricator.
-e.6. Fixed the lack of sub-light engine in the rocket after landing.
-e.7. Fixed a bug that leads to the loss of the world due to the Oxygen Module
-e.8. Fuel Generator now generates a different amount of energy depending on the fuel.
-e.9. Reworked Miranda.
-e.10. Added recipes for ores on some planets / moons.
-e.11. Added zn_CN localization.
-e.12. Fixed config for custom armor.
-e.13. New ores have been added to Mars.
+e.1. Fixed the inability to consume canned food in outer space
+e.2. Fixed crash when try land to Miranda.
+e.3. The work of the Universal Recycler has been fixed. Chance indicator added.
+e.4. Added GUI for Planetary Shield.
+e.5. Added module slots for the Planetary Shield.
+e.6. Changed Enceladus generation.
+e.7. Fixed rain on Titan.
+e.8. A space station in the atmosphere of Venus has been added.
+e.9. Fixed localization.
+e.10. Entities for schematics are temporarily disabled.
+e.11. Fixed disabling the update button in the main menu.
+e.12. Added module slots for the Magnetic Field Generator.
+e.13. Added description for module slots in each mechanism.
+e.14. Added the ability to copy schemes.
+e.15. The arc furnace now melts x2 addon ore.
+e.16. Fixed SDHD-120 plate recipe with enablePlateOreDict turned off.
+e.17. Added breathable Barnarda C planet.
+e.18. Update minimum GC4 build - 215.
