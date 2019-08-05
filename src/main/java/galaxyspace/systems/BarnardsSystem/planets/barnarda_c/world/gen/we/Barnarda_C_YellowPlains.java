@@ -3,14 +3,12 @@ package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
-import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.init.Blocks;
-import net.minecraft.world.biome.Biome;
 
 public class Barnarda_C_YellowPlains extends WE_Biome {
 	
 	public Barnarda_C_YellowPlains(double min, double max) {
-		super(new BiomeProperties("barnarda_c_yellowplains"));
+		super(new BiomeProperties("barnarda_c_yellowplains"), new int[] {0xCAB984, 0x11FF66, 0x00FF00});
 				
 		biomeMinValueOnMap      =  	min;
 		biomeMaxValueOnMap      =   max;
@@ -20,8 +18,6 @@ public class Barnarda_C_YellowPlains extends WE_Biome {
 		biomeScaleY             =   1.7D;
 		biomeSurfaceHeight      =     69;
 		biomeInterpolateQuality =     25;
-		biomeBlockGrassColor    = 0xCAB984;
-		biomeBlockWaterColor 	= 0x11FF66;
 		
 		//-//
 		decorateChunkGen_List.clear();		

@@ -4,12 +4,11 @@ import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
 import net.minecraft.init.Blocks;
-import net.minecraft.world.biome.Biome.BiomeProperties;
 
 public class Barnarda_C_Dunes extends WE_Biome {
 
 	public Barnarda_C_Dunes(double min, double max) {
-		super(new BiomeProperties("barnarda_c_dunes"));
+		super(new BiomeProperties("barnarda_c_dunes"), new int[] {0x89AC76, 0x11FF66, 0x00FF00});
 		
 		biomeMinValueOnMap      =   min;
 		biomeMaxValueOnMap      =   max;
@@ -18,10 +17,7 @@ public class Barnarda_C_Dunes extends WE_Biome {
 		biomeScaleX             = 280.0D;
 		biomeScaleY             =   1.7D;
 		biomeSurfaceHeight      =     72;
-		biomeInterpolateQuality =     15;
-		biomeBlockGrassColor    = 0x00FF00;
-		biomeBlockWaterColor 	= 0x11FF66;
-		
+		biomeInterpolateQuality =     15;		
 		
 		//-//
 		decorateChunkGen_List.clear();		

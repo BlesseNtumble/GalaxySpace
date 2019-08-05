@@ -2,7 +2,6 @@ package galaxyspace.systems.SolarSystem.moons.enceladus.world.gen.we;
 
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_RavineGen;
 import galaxyspace.core.prefab.entities.EntityEvolvedColdBlaze;
 import galaxyspace.core.registers.blocks.GSBlocks;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedEnderman;
@@ -15,7 +14,7 @@ import net.minecraft.world.biome.Biome;
 public class Enceladus_Plains extends WE_Biome {
 	
 	public Enceladus_Plains() {
-		super(new BiomeProperties("enceladus_plains"));
+		super(new BiomeProperties("enceladus_plains"), new int[] {0xFFFFFF, 0xFFFFFF, 0x00FF00});
 				
 		biomeMinValueOnMap      =  	-0.4D;
 		biomeMaxValueOnMap      =   0.0D;
@@ -25,8 +24,6 @@ public class Enceladus_Plains extends WE_Biome {
 		biomeScaleY             =   1.7D;
 		biomeSurfaceHeight      =     80;
 		biomeInterpolateQuality =     15;
-		//biomeBlockGrassColor    = 0x00FF00;
-		//biomeBlockWaterColor 	= 0xEEDD44;
 		
 		//-//
 		decorateChunkGen_List.clear();		

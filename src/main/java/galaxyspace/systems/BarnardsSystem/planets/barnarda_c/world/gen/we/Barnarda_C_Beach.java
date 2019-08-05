@@ -8,7 +8,7 @@ import net.minecraft.init.Blocks;
 public class Barnarda_C_Beach extends WE_Biome {
 
 	public Barnarda_C_Beach(double min, double max, int tier) {
-		super(new BiomeProperties("barnarda_c_beach" + tier));
+		super(new BiomeProperties("barnarda_c_beach" + tier), new int[] {0x89AC76, 0x11FF66, 0x00FF00});
 		
 		biomeMinValueOnMap      =   min;
 		biomeMaxValueOnMap      =   max;
@@ -18,10 +18,7 @@ public class Barnarda_C_Beach extends WE_Biome {
 		biomeScaleY             =   1.7D;
 		biomeSurfaceHeight      =     68;
 		biomeInterpolateQuality =     20;
-		biomeBlockGrassColor    = 0x00FF00;
-		biomeBlockWaterColor 	= 0x11FF66;
-		
-		
+				
 		//-//
 		decorateChunkGen_List.clear();		
 		createChunkGen_InXZ_List.clear();

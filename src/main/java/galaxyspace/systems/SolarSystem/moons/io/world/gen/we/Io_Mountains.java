@@ -7,7 +7,7 @@ import net.minecraft.init.Blocks;
 
 public class Io_Mountains extends WE_Biome {
 	public Io_Mountains(int index, double min, double max, int y, int interpolate) {
-		super(new BiomeProperties("io_mountains_" + index));
+		super(new BiomeProperties("io_mountains_" + index), new int[] {0xFFFFFF, 0xFFFFFF, 0x00FF00});
 		
 		biomeMinValueOnMap      =  min;
 		biomeMaxValueOnMap      =  max;
@@ -17,7 +17,6 @@ public class Io_Mountains extends WE_Biome {
 		biomeScaleY             =   1.8D;
 		biomeSurfaceHeight      =    y;
 		biomeInterpolateQuality =    interpolate;
-		biomeBlockGrassColor    = 0x34c924;
 				
 		decorateChunkGen_List.clear();
 		createChunkGen_InXZ_List.clear();

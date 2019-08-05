@@ -8,7 +8,7 @@ import net.minecraft.init.Blocks;
 public class Proxima_B_Mountains extends WE_Biome {
 
 	public Proxima_B_Mountains() {
-		super(new BiomeProperties("proxima_b_mountains"));
+		super(new BiomeProperties("proxima_b_mountains"), new int[] {0x00FF00, 0xEEDD44, 0x00FF00});
 		
 		biomeMinValueOnMap      =   0.8D;
 		biomeMaxValueOnMap      =   1.4D;
@@ -18,8 +18,6 @@ public class Proxima_B_Mountains extends WE_Biome {
 		biomeScaleY             =   1.7D;
 		biomeSurfaceHeight      =     100;
 		biomeInterpolateQuality =     15;
-		biomeBlockGrassColor    = 0x00FF00;
-		biomeBlockWaterColor 	= 0xEEDD44;
 
 		//-//
 		decorateChunkGen_List.clear();		

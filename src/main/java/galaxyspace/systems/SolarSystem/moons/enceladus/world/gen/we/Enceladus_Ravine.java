@@ -10,12 +10,11 @@ import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSpider;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedZombie;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.BiomeProperties;
 
 public class Enceladus_Ravine extends WE_Biome {
 	
 	public Enceladus_Ravine() {
-		super(new BiomeProperties("enceladus_ravine"));
+		super(new BiomeProperties("enceladus_ravine"), new int[] {0xFFFFFF, 0xFFFFFF, 0x00FF00});
 				
 		biomeMinValueOnMap      =  	-4.0D;
 		biomeMaxValueOnMap      =   -4.4D;
@@ -25,8 +24,6 @@ public class Enceladus_Ravine extends WE_Biome {
 		biomeScaleY             =   1.7D;
 		biomeSurfaceHeight      =     60;
 		biomeInterpolateQuality =     5;
-		//biomeBlockGrassColor    = 0x00FF00;
-		//biomeBlockWaterColor 	= 0xEEDD44;
 		
 		//-//
 		decorateChunkGen_List.clear();		

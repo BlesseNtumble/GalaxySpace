@@ -10,12 +10,11 @@ import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSpider;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedZombie;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.BiomeProperties;
 
 public class Enceladus_Mountains extends WE_Biome {
 	
 	public Enceladus_Mountains() {
-		super(new BiomeProperties("enceladus_mountains"));
+		super(new BiomeProperties("enceladus_mountains"), new int[] {0xFFFFFF, 0xFFFFFF, 0x00FF00});
 				
 		biomeMinValueOnMap      =  	0.0D;
 		biomeMaxValueOnMap      =   2.0D;
@@ -25,8 +24,6 @@ public class Enceladus_Mountains extends WE_Biome {
 		biomeScaleY             =   1.7D;
 		biomeSurfaceHeight      =     120;
 		biomeInterpolateQuality =     2;
-		//biomeBlockGrassColor    = 0x00FF00;
-		//biomeBlockWaterColor 	= 0xEEDD44;
 		
 		//-//
 		decorateChunkGen_List.clear();		

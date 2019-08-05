@@ -8,7 +8,7 @@ import net.minecraft.init.Blocks;
 public class Io_Volcano extends WE_Biome {
 	
 	public Io_Volcano() {
-		super(new BiomeProperties("io_volcano"));
+		super(new BiomeProperties("io_volcano"), new int[] {0xFFFFFF, 0xFFFFFF, 0x00FF00});
 		
 		biomeMinValueOnMap      =   0.5D;
 		biomeMaxValueOnMap      =   1.0D;
@@ -18,7 +18,6 @@ public class Io_Volcano extends WE_Biome {
 		biomeScaleY             =   1.9D;
 		biomeSurfaceHeight      =     95;
 		biomeInterpolateQuality =     35;
-		biomeBlockGrassColor    = 0x34c924;
 				
 		decorateChunkGen_List.clear();
 		createChunkGen_InXZ_List.clear();

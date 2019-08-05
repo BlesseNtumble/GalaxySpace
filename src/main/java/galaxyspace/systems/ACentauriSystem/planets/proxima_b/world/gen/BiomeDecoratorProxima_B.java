@@ -51,7 +51,7 @@ public class BiomeDecoratorProxima_B extends BiomeDecoratorSpace
 		
 		BlockPos blockpos = new BlockPos(this.posX, 0, this.posZ);
 		
-    	if(WE_Biome.getBiomeAt(((WorldProviderProxima_B_WE)getCurrentWorld().provider).chunk, this.posX, this.posZ) instanceof Proxima_B_Ice_Plains)
+    	if(WE_Biome.getBiomeAt(this.posX, this.posZ) instanceof Proxima_B_Ice_Plains)
 	    {
     		
     		int randPosX = this.posX + this.rand.nextInt(16) + 8;
@@ -96,7 +96,7 @@ public class BiomeDecoratorProxima_B extends BiomeDecoratorSpace
 	    	}*/
 	    }
     	    	
-    	if(WE_Biome.getBiomeAt(((WorldProviderProxima_B_WE)getCurrentWorld().provider).chunk, this.posX, this.posZ) instanceof Proxima_B_Forest)
+    	if(WE_Biome.getBiomeAt(this.posX, this.posZ) instanceof Proxima_B_Forest)
     	{
     		
     		int randPosX = this.posX + this.rand.nextInt(16) + 8;

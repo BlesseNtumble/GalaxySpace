@@ -8,7 +8,7 @@ import net.minecraft.init.Blocks;
 public class Io_Plains extends WE_Biome{
 
 	public Io_Plains() {
-		super(new BiomeProperties("io_plains"));
+		super(new BiomeProperties("io_plains"), new int[] {0xFFFFFF, 0xFFFFFF, 0x00FF00});
 		
 		biomeMinValueOnMap      =   0.0D;
 		biomeMaxValueOnMap      =   1.4D;
@@ -18,7 +18,6 @@ public class Io_Plains extends WE_Biome{
 		biomeScaleY             =   1.7D;
 		biomeSurfaceHeight      =     80;
 		biomeInterpolateQuality =     25;
-		biomeBlockGrassColor    = 0xFF7515; //0x50c878
 		
 		decorateChunkGen_List.clear();
 		createChunkGen_InXZ_List.clear();

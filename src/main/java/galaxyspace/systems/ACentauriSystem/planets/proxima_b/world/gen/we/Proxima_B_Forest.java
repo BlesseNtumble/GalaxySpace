@@ -12,7 +12,7 @@ import net.minecraft.init.Blocks;
 public class Proxima_B_Forest extends WE_Biome {
 
 	public Proxima_B_Forest(WE_ChunkProvider chunk) {
-		super(new BiomeProperties("proxima_b_forest"));
+		super(new BiomeProperties("proxima_b_forest"), new int[] {0x00FF00, 0xEEDD44, 0x00FF00});
 		
 		biomeMinValueOnMap      =  	-0.2D;
 		biomeMaxValueOnMap      =   0.4D;
@@ -22,8 +22,6 @@ public class Proxima_B_Forest extends WE_Biome {
 		biomeScaleY             =   1.7D;
 		biomeSurfaceHeight      =     90;
 		biomeInterpolateQuality =     15;
-		biomeBlockGrassColor    = 0x00FF00;
-		biomeBlockWaterColor 	= 0xEEDD44;
 		
 		//-//
 		decorateChunkGen_List.clear();		

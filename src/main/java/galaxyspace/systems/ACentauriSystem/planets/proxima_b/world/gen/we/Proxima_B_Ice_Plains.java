@@ -8,7 +8,7 @@ import net.minecraft.init.Blocks;
 public class Proxima_B_Ice_Plains extends WE_Biome {
 
 	public Proxima_B_Ice_Plains() {
-		super(new BiomeProperties("proxima_b_ice_plains"));
+		super(new BiomeProperties("proxima_b_ice_plains"), new int[] {0x00FF00, 0xEEDD44, 0x00FF00});
 		
 		biomeMinValueOnMap      =   0.6D;
 		biomeMaxValueOnMap      =   1.0D;
@@ -18,8 +18,6 @@ public class Proxima_B_Ice_Plains extends WE_Biome {
 		biomeScaleY             =   1.7D;
 		biomeSurfaceHeight      =     68;
 		biomeInterpolateQuality =     15;
-		biomeBlockGrassColor    = 0x00FF00;
-		biomeBlockWaterColor 	= 0xEEDD44;
 
 		//-//
 		decorateChunkGen_List.clear();		

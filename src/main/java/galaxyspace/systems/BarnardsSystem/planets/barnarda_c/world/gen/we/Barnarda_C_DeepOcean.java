@@ -8,7 +8,7 @@ import net.minecraft.init.Blocks;
 public class Barnarda_C_DeepOcean extends WE_Biome {
 
 	public Barnarda_C_DeepOcean(double min, double max) {
-		super(new BiomeProperties("barnarda_b_deepocean"));
+		super(new BiomeProperties("barnarda_b_deepocean"), new int[] {0x89AC76, 0x11FF66, 0x00FF00});
 		
 		biomeMinValueOnMap      =   min;
 		biomeMaxValueOnMap      =   max;
@@ -17,9 +17,7 @@ public class Barnarda_C_DeepOcean extends WE_Biome {
 		biomeScaleX             = 280.0D;
 		biomeScaleY             =   1.7D;
 		biomeSurfaceHeight      =     35;
-		biomeInterpolateQuality =     65;
-		biomeBlockGrassColor    = 0x00FF00;
-		biomeBlockWaterColor 	= 0x11FF66;		
+		biomeInterpolateQuality =     65;	
 		
 		//-//
 		decorateChunkGen_List.clear();		

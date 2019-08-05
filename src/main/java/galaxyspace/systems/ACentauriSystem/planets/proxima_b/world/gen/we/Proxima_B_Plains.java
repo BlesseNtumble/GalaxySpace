@@ -10,7 +10,7 @@ import net.minecraft.world.biome.Biome;
 public class Proxima_B_Plains extends WE_Biome {
 	
 	public Proxima_B_Plains() {
-		super(new BiomeProperties("proxima_b_plains"));
+		super(new BiomeProperties("proxima_b_plains"), new int[] {0x00FF00, 0xEEDD44, 0x00FF00});
 				
 		biomeMinValueOnMap      =  	-0.4D;
 		biomeMaxValueOnMap      =   0.0D;
@@ -20,8 +20,6 @@ public class Proxima_B_Plains extends WE_Biome {
 		biomeScaleY             =   1.7D;
 		biomeSurfaceHeight      =     80;
 		biomeInterpolateQuality =     15;
-		biomeBlockGrassColor    = 0x00FF00;
-		biomeBlockWaterColor 	= 0xEEDD44;
 		
 		//-//
 		decorateChunkGen_List.clear();		

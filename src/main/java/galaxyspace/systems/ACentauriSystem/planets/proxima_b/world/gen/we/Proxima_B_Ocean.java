@@ -8,7 +8,7 @@ import net.minecraft.init.Blocks;
 public class Proxima_B_Ocean extends WE_Biome {
 
 	public Proxima_B_Ocean() {
-		super(new BiomeProperties("proxima_b_ocean"));
+		super(new BiomeProperties("proxima_b_ocean"), new int[] {0x00FF00, 0xEEDD44, 0x00FF00});
 		
 		biomeMinValueOnMap      =   -0.6D;
 		biomeMaxValueOnMap      =   -0.4D;
@@ -18,9 +18,6 @@ public class Proxima_B_Ocean extends WE_Biome {
 		biomeScaleY             =   1.7D;
 		biomeSurfaceHeight      =     55;
 		biomeInterpolateQuality =     15;
-		biomeBlockGrassColor    = 0x00FF00;
-		biomeBlockWaterColor 	= 0xEEDD44;
-		
 		
 		//-//
 		decorateChunkGen_List.clear();		

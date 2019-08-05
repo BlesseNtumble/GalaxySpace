@@ -12,7 +12,7 @@ import net.minecraft.world.biome.Biome;
 public class Barnarda_C_Mountains extends WE_Biome {
 	
 	public Barnarda_C_Mountains(double min, double max, int height, double per, int octaves) {
-		super(new BiomeProperties("barnarda_c_mountains_" + height));
+		super(new BiomeProperties("barnarda_c_mountains_" + height), new int[] {0x55BB44, 0x44FFAA, 0x00FF00});
 			
 		biomeMinValueOnMap      =  	   min;
 		biomeMaxValueOnMap      =      max;
@@ -22,14 +22,12 @@ public class Barnarda_C_Mountains extends WE_Biome {
 		biomeScaleY             =     1.7D;
 		biomeSurfaceHeight      =       height;
 		biomeInterpolateQuality =       35;
-		biomeBlockGrassColor    = 0x55BB44;
-		biomeBlockWaterColor 	= 0x44FFAA;
 		
 		//-//
 		decorateChunkGen_List.clear();		
 		createChunkGen_InXZ_List.clear();
 		
-		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 10, 1, 4));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 10, 1, 2));
 		
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();
 		standardBiomeLayers.add(BRBlocks.BARNARDA_C_BLOCKS, (byte)3, BRBlocks.BARNARDA_C_BLOCKS, (byte)1, -256, 0,   -5, -1,  true);
