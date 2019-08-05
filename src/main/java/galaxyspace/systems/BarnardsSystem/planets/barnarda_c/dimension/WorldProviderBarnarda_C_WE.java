@@ -27,7 +27,6 @@ import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnar
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_River;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_SnowPlains;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Swampland;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_YellowPlains;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
@@ -92,6 +91,13 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProvider implements IPro
     @Override 
     public Class<? extends BiomeProvider> getBiomeProviderClass() { 
     	return BiomeProviderBarnarda_C.class; 
+    }
+    
+    @Override 
+    @SideOnly(Side.CLIENT)
+    public float getCloudHeight()
+    {
+        return 180.0F;
     }
     
     @Nullable
