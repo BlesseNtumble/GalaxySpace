@@ -5,14 +5,11 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import codechicken.nei.client.render.WorldOverlayRenderer;
-import galaxyspace.GalaxySpace;
+import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTree_Forest;
+import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTree_Forest2;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRItems;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Blocks.EnumBlockBarnardaC;
-import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockOres.EnumBlockOres;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
@@ -26,7 +23,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -41,6 +37,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -166,28 +163,37 @@ public class Barnarda_C_Dandelions extends Block implements IGrowable, IShearabl
     {
 		if (!world.isAreaLoaded(pos, 1)) return; // Forge: prevent growing cactus from loading unloaded chunks with block update
 		
-		
-		if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS) || state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS_FRUITS))
-		{
-			if(world.isAirBlock(pos.up())) {
-				int length = 1;
-				IBlockState reed1 = this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS);
-				IBlockState reed2 = this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS_FRUITS);
-				
-				while(world.getBlockState(pos.down(length)) == reed1 || world.getBlockState(pos.down(length)) == reed2) 
-					length++;
-						
-				if(length < 4)
-					world.setBlockState(pos.up(), this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS), 3);
-			}
-			if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS))
-				if(rand.nextInt(40) == 0)
-				{
-					world.setBlockState(pos, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS_FRUITS), 3);
+		if (!world.isRemote)
+        {
+			if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS) || state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS_FRUITS))
+			{
+				if(world.isAirBlock(pos.up())) {
+					int length = 1;
+					IBlockState reed1 = this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS);
+					IBlockState reed2 = this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS_FRUITS);
+					
+					while(world.getBlockState(pos.down(length)) == reed1 || world.getBlockState(pos.down(length)) == reed2) 
+						length++;
+							
+					if(length < 4)
+						world.setBlockState(pos.up(), this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS), 3);
 				}
+				if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS))
+					if(rand.nextInt(40) == 0)
+					{
+						world.setBlockState(pos, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS_FRUITS), 3);
+					}
+				
+							
+			}
 			
-						
-		}
+			if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.VIOLET_TREE_SAPLING))
+			{
+				if (world.getLightFromNeighbors(pos.up()) >= 9 && rand.nextInt(7) == 0) {
+					this.grow(world, rand, pos, state);
+				}
+			}
+        }
     }	
 	
 	@Override
@@ -331,19 +337,54 @@ public class Barnarda_C_Dandelions extends Block implements IGrowable, IShearabl
 	@Override
 	public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
 
+		if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.VIOLET_TREE_SAPLING))		
+			return true;
+		
 		return false;
 	}
 
 	@Override
 	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
+		
+		if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.VIOLET_TREE_SAPLING))		
+			return true;		
+		
 		return false;
 	}
 
 	@Override
-	public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
+	public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
 		
+		if(rand.nextInt(7) == 0)
+        {
+            this.generateTree(world, pos, state, rand);
+        }
 	}
 
+	public void generateTree(World world, BlockPos pos, IBlockState state, Random rand)
+    {
+		if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(world, rand, pos)) return;
+		
+		WorldGenerator tree = new WorldGenTree_Forest(BRBlocks.BARNARDA_C_VIOLET_LOG.getStateFromMeta(0), BRBlocks.BARNARDA_C_LEAVES.getStateFromMeta(0), rand.nextInt(3));
+		WorldGenerator tree_2 = new WorldGenTree_Forest2(BRBlocks.BARNARDA_C_VIOLET_LOG.getStateFromMeta(0), BRBlocks.BARNARDA_C_LEAVES.getStateFromMeta(0), rand.nextInt(3));
+		
+		boolean check = true;
+		for(BlockPos poscheck : BlockPos.getAllInBox(pos.add(-5, 2, -5), pos.add(5, 10, 5)))
+		{
+			if(!world.isAirBlock(poscheck))
+				check = false;
+		}
+		
+		if(check)
+		{
+			if(rand.nextInt(2) == 0)
+				tree.generate(world, rand, pos);
+			else
+				tree_2.generate(world, rand, pos);
+		}
+    }
+	
+	
 	@Override
 	public boolean isShearable(ItemStack item, IBlockAccess world, BlockPos pos) {
 		return false;
@@ -395,6 +436,11 @@ public class Barnarda_C_Dandelions extends Block implements IGrowable, IShearabl
         				if(rand.nextInt(100) >= 10) break;
         				drops.add(new ItemStack(item, 1, this.damageDropped(state)));
         				break;
+        			case LIGHT_BALLS:
+        			case LEAVES_BALLS:
+        				if(rand.nextInt(100) >= 80) break;
+        				drops.add(new ItemStack(Items.GLOWSTONE_DUST, 1, 0));
+        				break;
                 	default:
                 		drops.add(new ItemStack(item, 1, this.damageDropped(state)));
                 		break;
@@ -423,7 +469,8 @@ public class Barnarda_C_Dandelions extends Block implements IGrowable, IShearabl
 		YELLOW_GRASS_DOWN(8, "barnarda_c_yellow_grass_down"),
 		YELLOW_GRASS_UP(9, "barnarda_c_yellow_grass_up"),
 		REEDS(10, "barnarda_c_reeds"),
-		REEDS_FRUITS(11, "barnarda_c_reeds_fruits");
+		REEDS_FRUITS(11, "barnarda_c_reeds_fruits"),
+		VIOLET_TREE_SAPLING(12, "barnarda_c_violet_sapling");
 		
 		private final int meta;
 		private final String name;

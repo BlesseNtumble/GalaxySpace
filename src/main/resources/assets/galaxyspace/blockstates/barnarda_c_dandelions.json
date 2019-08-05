@@ -11,6 +11,7 @@
 		"type=barnarda_c_yellow_grass_down": { "model": "galaxyspace:barnarda/barnarda_c_yellow_grass_down"},
 		"type=barnarda_c_yellow_grass_up": { "model": "galaxyspace:barnarda/barnarda_c_yellow_grass_up"},
 		"type=barnarda_c_reeds": { "model": "galaxyspace:barnarda/barnarda_c_reeds"},
-		"type=barnarda_c_reeds_fruits": { "model": "galaxyspace:barnarda/barnarda_c_reeds_fruits"}
+		"type=barnarda_c_reeds_fruits": { "model": "galaxyspace:barnarda/barnarda_c_reeds_fruits"},
+		"type=barnarda_c_violet_sapling": {"model": "galaxyspace:barnarda/barnarda_c_violet_sapling"}
 	} 
 }
