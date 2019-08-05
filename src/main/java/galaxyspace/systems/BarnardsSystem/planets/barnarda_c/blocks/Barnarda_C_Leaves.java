@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import galaxyspace.core.util.GSCreativeTabs;
+import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks.EnumType;
@@ -36,7 +37,7 @@ public class Barnarda_C_Leaves extends BlockLeaves {
 	public Barnarda_C_Leaves() {
 		super();
 		this.setUnlocalizedName("barnarda_c_leaves");
-		this.setHardness(1.0F);
+		this.setHardness(0.5F);
         this.setSoundType(SoundType.GROUND);
 	}
 
@@ -51,6 +52,18 @@ public class Barnarda_C_Leaves extends BlockLeaves {
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		return new ItemStack(Item.getItemFromBlock(this), 1, this.getMetaFromState(state));
 	}
+	
+	@Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
+        return Item.getItemFromBlock(BRBlocks.BARNARDA_C_DANDELIONS);
+    }
+    
+	@Override
+    public int damageDropped(IBlockState state)
+    {
+        return 12;
+    }
 	
 	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)

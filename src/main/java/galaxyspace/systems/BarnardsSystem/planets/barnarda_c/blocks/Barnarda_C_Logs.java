@@ -1,6 +1,9 @@
 package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks;
 
+import java.util.Random;
+
 import galaxyspace.core.util.GSCreativeTabs;
+import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
 import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
 import net.minecraft.block.Block;
@@ -12,6 +15,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -46,6 +50,15 @@ public class Barnarda_C_Logs extends Block implements ISortableBlock {
         {
             list.add(new ItemStack(this, 1, 0));
         }
+    }
+	
+	@Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
+		 if(!this.getUnlocalizedName().equals("barnarda_c_test_glow_log"))
+			 return Item.getItemFromBlock(BRBlocks.BARNARDA_C_VIOLET_LOG.getDefaultState().getBlock());
+		 
+		 return super.getItemDropped(state, rand, fortune);
     }
 	
 	@Override
