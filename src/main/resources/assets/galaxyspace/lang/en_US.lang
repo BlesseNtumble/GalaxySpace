@@ -27,6 +27,17 @@ tile.magnesium_block.name=Magnesium Block
 tile.cobaltum_ore.name=Cobalt Ore
 tile.nickel_ore.name=Nickel Ore
 tile.uranium_ore.name=Uranium Ore
+tile.coal_ore.name=Coal Ore
+tile.iron_ore.name=Iron Ore
+tile.gold_ore.name=Gold Ore
+tile.redstone_ore.name=Redstone Ore
+tile.lapis_ore.name=Lapis Ore
+tile.diamond_ore.name=Diamond Ore
+tile.silicon_ore.name=Silicon Ore
+tile.copper_ore.name=Copper Ore
+tile.tin_ore.name=Tin Ore
+tile.aluminum_ore.name=Aluminum Ore
+tile.quartz_ore.name=Quartz Ore
 
 tile.surface_ice.name=Surface Ice
 
@@ -133,6 +144,32 @@ tile.proxima_b_silicon_ore.name=Silicon Ore
 tile.proxima_b_diamond_ore.name=Diamond Ore
 tile.proxima_b_log_1.name=Burnt Wood
 tile.proxima_b_log_2.name=Frozen Wood
+
+tile.barnarda_c_grass.name=Barnarda C Grass
+tile.barnarda_c_dirt.name=Barnarda C Dirt
+tile.barnarda_c_stone.name=Barnarda C Stone
+tile.barnarda_c_sandstone.name=[WIP] Barnarda C Sandstone
+tile.barnarda_c_dirt_1.name=[WIP] Barnarda C Dirt
+tile.barnarda_c_cobblestone.name=Barnarda C Cobblestone
+tile.barnarda_c_stone_bricks.name=Barnarda C Stone Bricks
+tile.barnarda_c_oak_planks.name=Barnarda C Wood Planks
+tile.barnarda_c_sand.name=Barnarda C Sand
+tile.barnarda_c_test_log.name=Barnarda C Violet Log
+tile.barnarda_c_test_glow_log.name=Barnarda C Violet Glow Log
+tile.barnarda_c_tall_grass.name=Barnarda C Tallgrass
+tile.barnarda_c_hopper_flower.name=Barnarda C Hopper Flower
+tile.barnarda_c_green_fern.name=Barnarda C Green Fern
+tile.barnarda_c_red_fern.name=Barnarda C Red Fern
+tile.barnarda_c_light_balls.name=Barnarda C Light Balls
+tile.barnarda_c_leaves_balls.name=Barnarda C Leaves Balls
+tile.barnarda_c_desert_down.name=Barnarda C Desert Flower
+tile.barnarda_c_desert_up.name=Barnarda C Desert Flower
+tile.barnarda_c_yellow_grass_down.name=Barnarda C Yellow Grass
+tile.barnarda_c_yellow_grass_up.name=Barnarda C Yellow Grass
+tile.barnarda_c_violet_sapling.name=Violet Tree Sapling
+tile.barnarda_c_leaves_1.name=Barnarda C Leaves
+tile.barnarda_c_farmland.name=Barnarda C Farmland
+
 |/////////////////////////////////////////|
 #||||||||||||Tile Description||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
@@ -323,6 +360,11 @@ item.hydrogen_canister.name=Hydrogen Canister
 item.ethane_canister.name=Ethane Canister
 item.em_canister.name=Ethane-Methane Canister
 item.helium_canister.name=Helium-3 Canister
+item.hh_canister.name=Helium-Hydrogen Canister
+
+item.violet_reeds.name=Violet Reeds
+item.water_grass.name=Water Grass
+item.yellow_fruits.name=Yellow Fruits
 |/////////////////////////////////////////|
 #||||||||||||||||||Fluids||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
@@ -490,9 +532,9 @@ solarsystem.barnards=Barnard's System
 star.barnarda_a=Barnarda A
 planet.barnarda_b=Barnarda B
 planet.barnarda_c=Barnarda C
-planet.barnarda_d=Barnarda D
+planet.barnarda_d=Asteroids Belt
 planet.barnarda_e=Barnarda E
-moon.barnarda_b1=Barnarda B1
+moon.barnarda_b1=Planet Ring
 moon.barnarda_c1=Barnarda C1
 moon.barnarda_c2=Barnarda C2
 #|/////////////////////////////////////////|

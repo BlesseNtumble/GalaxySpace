@@ -26,6 +26,17 @@ tile.magnesium_block.name=Магниевый Блок
 tile.cobaltum_ore.name=Кобальтовая Руда
 tile.nickel_ore.name=Никелевая Руда
 tile.uranium_ore.name=Урановая Руда
+tile.coal_ore.name=Угольная Руда
+tile.iron_ore.name=Железная Руда
+tile.gold_ore.name=Золотая Руда
+tile.redstone_ore.name=Руда Красного Камня
+tile.lapis_ore.name=Лазуритовая Руда
+tile.diamond_ore.name=Алмазная Руда
+tile.silicon_ore.name=Кремниевая Руда
+tile.copper_ore.name=Медная Руда
+tile.tin_ore.name=Оловянная Руда
+tile.aluminum_ore.name=Алюминиевая Руда
+tile.quartz_ore.name=Кварцевая Руда
 
 tile.surface_ice.name=Поверхностный Лед
 
@@ -132,6 +143,31 @@ tile.proxima_b_silicon_ore.name=Кремниевая Руда
 tile.proxima_b_diamon_ore.name=Алмазная Руда
 tile.proxima_b_log_1.name=Сгоревшее Дерево
 tile.proxima_b_log_2.name=Замершее Дерево
+
+tile.barnarda_c_grass.name=Трава Барнарды С
+tile.barnarda_c_dirt.name=Земля Барнарды С
+tile.barnarda_c_stone.name=Камень Барнарды С
+tile.barnarda_c_sandstone.name=[WIP] Песчанник Барнарды С
+tile.barnarda_c_dirt_1.name=[WIP] Земля Барнарды С
+tile.barnarda_c_cobblestone.name=Булыжник Барнарды С
+tile.barnarda_c_stone_bricks.name=Каменные Кирпичи Барнарды С
+tile.barnarda_c_oak_planks.name=Доски Барнарды С
+tile.barnarda_c_sand.name=Песок Барнарды С
+tile.barnarda_c_test_log.name=Фиолетовое Дерево Барнарды С
+tile.barnarda_c_test_glow_log.name=Светящееся Фиолетовое Дерево Барнарды С
+tile.barnarda_c_tall_grass.name=Трава Барнарды С
+tile.barnarda_c_hopper_flower.name=Цветок-Воронка Барнарды С
+tile.barnarda_c_green_fern.name=Зеленый Папоротник Барнарды С
+tile.barnarda_c_red_fern.name=Красный Папоротник Барнарды С
+tile.barnarda_c_light_balls.name=Светящиеся Шары Барнарды С
+tile.barnarda_c_leaves_balls.name=Лиственные Шары Барнарды С
+tile.barnarda_c_desert_down.name=Пустынный Цветок Барнарды С
+tile.barnarda_c_desert_up.name=Пустынный Цветок Барнарды С
+tile.barnarda_c_yellow_grass_down.name=Желтая Трава Барнарды С
+tile.barnarda_c_yellow_grass_up.name=Желтая Трава Барнарды С
+tile.barnarda_c_violet_sapling.name=Саженец Фиолетового Дерева
+tile.barnarda_c_leaves_1.name=Листва Фиолетового Дерева Барнарды С
+tile.barnarda_c_farmland.name=Пашня Барнарды С
 #|/////////////////////////////////////////|
 #||||||||||||Tile Description|||||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
@@ -279,6 +315,11 @@ item.hydrogen_canister.name=Канистра Водорода
 item.ethane_canister.name=Канистра Этана
 item.em_canister.name=Канистра Этано-Метановой Смеси
 item.helium_canister.name=Канистра Гелия-3
+item.hh_canister.name=Канистра Обогащенного Гелием Водорода
+
+item.violet_reeds.name=Фиолетовый Тростник
+item.water_grass.name=Лишайник
+item.yellow_fruits.name=Желтые Фрукты
 #|/////////////////////////////////////////|
 #|||||||||||||Armors\Weapons||||||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
@@ -467,9 +508,9 @@ solarsystem.barnards=Барнарда
 star.barnarda_a=Барнарда А
 planet.barnarda_b=Барнарда B
 planet.barnarda_c=Барнарда C
-planet.barnarda_d=Барнарда D
+planet.barnarda_d=Астероидный Пояс
 planet.barnarda_e=Барнарда E
-moon.barnarda_b1=Барнарда B1
+moon.barnarda_b1=Кольцо Планеты
 moon.barnarda_c1=Барнарда C1
 moon.barnarda_c2=Барнарда C2
 
