@@ -192,4 +192,9 @@ public class WorldProviderIo extends WorldProviderAdvancedSpace implements IProv
 		return GSDimensions.IO;
 	}
 
+	@Override
+	public boolean enableAdvancedThermalLevel() {
+		return false;
+	}
+
 }

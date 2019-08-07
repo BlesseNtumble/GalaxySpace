@@ -171,4 +171,9 @@ public class WorldProviderIo_WE extends WE_WorldProvider implements IProviderFre
 
 	@Override
 	public BiomeDecoratorSpace getDecorator() {	return new BiomeDecoratorIo(); }
+
+	@Override
+	public boolean enableAdvancedThermalLevel() {
+		return false;
+	}
 }

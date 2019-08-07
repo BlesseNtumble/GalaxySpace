@@ -118,7 +118,7 @@ public class WorldProviderEnceladus_WE extends WE_WorldProvider implements IProv
 		{
 			this.setSkyRenderer(new SkyProviderEnceladus());
 		}
-
+    	
 		return super.getSkyRenderer();
     }
 
@@ -181,6 +181,8 @@ public class WorldProviderEnceladus_WE extends WE_WorldProvider implements IProv
 		rg.lavaMaxY = 0;
 		cp.createChunkGen_List.add(rg);
 		
+		cp.biomesList.clear();
+		
 		WE_Biome.addBiomeToGeneration(cp, new Enceladus_Plains());	
 		WE_Biome.addBiomeToGeneration(cp, new Enceladus_Mountains());
 		WE_Biome.addBiomeToGeneration(cp, new Enceladus_Ravine());	
@@ -189,5 +191,10 @@ public class WorldProviderEnceladus_WE extends WE_WorldProvider implements IProv
 	@Override
 	public BiomeDecoratorSpace getDecorator() {
 		return new BiomeDecoratorEnceladus();
+	}
+
+	@Override
+	public boolean enableAdvancedThermalLevel() {
+		return false;
 	}
 }

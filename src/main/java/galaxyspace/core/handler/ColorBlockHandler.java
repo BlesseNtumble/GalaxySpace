@@ -38,11 +38,13 @@ public class ColorBlockHandler {
 			
 			if (blockAccess != null && pos != null) {
 				World world = FMLClientHandler.instance().getWorldClient();//WorldUtil.getWorldForDimensionServer(FMLClientHandler.instance().getWorldClient().provider.getDimension());
-				if(world.provider != null && world.provider instanceof WE_WorldProvider)
+				if(world != null && world.provider instanceof WE_WorldProvider)
 				{				
 					WE_Biome biome = WE_Biome.getBiomeAt((long)pos.getX(), (long)pos.getZ());
 					return biome.biomeBlockGrassColor;					
 				}
+				
+				return BiomeColorHelper.getGrassColorAtPos(blockAccess, pos);
 			}
 			
 			return ColorizerGrass.getGrassColor(0.5D, 1.0D);
@@ -60,12 +62,14 @@ public class ColorBlockHandler {
 		final IBlockColor waterColourHandler = (state, blockAccess, pos, tintIndex) -> {
 			
 			if (blockAccess != null && pos != null) {				
-				World world = WorldUtil.getWorldForDimensionServer(FMLClientHandler.instance().getWorldClient().provider.getDimension());
+				World world = FMLClientHandler.instance().getWorldClient();//WorldUtil.getWorldForDimensionServer(FMLClientHandler.instance().getWorldClient().provider.getDimension());
 				
-				if(world.provider != null && world.provider instanceof WE_WorldProvider)
+				if(world != null && world.provider instanceof WE_WorldProvider)
 				{		
 					return WE_Biome.getBiomeAt((long)pos.getX(), (long)pos.getZ()).biomeBlockWaterColor;					
-				}				
+				}			
+				
+				return BiomeColorHelper.getWaterColorAtPos(blockAccess, pos);
 			}
 
 			return ColorizerGrass.getGrassColor(0.5D, 1.0D);

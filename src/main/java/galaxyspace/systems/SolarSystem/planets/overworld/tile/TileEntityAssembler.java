@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+import galaxyspace.GalaxySpace;
 import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockAssembler;
 import galaxyspace.systems.SolarSystem.planets.overworld.recipes.AssemblyRecipes;
@@ -23,6 +24,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
@@ -30,6 +32,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class TileEntityAssembler extends TileBaseElectricBlock implements ISidedInventory, IPacketReceiver
 {
@@ -358,11 +361,12 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements ISided
         }
         else if (slotID >= 2)
         {
-        	if (this.producingStack != null)
+        	
+        	/*if (this.producingStack != null)
         	{
                 ItemStack stackInSlot = this.getStackInSlot(slotID);
                 return stackInSlot != null && stackInSlot.isItemEqual(itemStack);
-        	}
+        	}*/
         	return this.isItemCompressorInput(itemStack, slotID - 2);
         }
 
@@ -377,7 +381,7 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements ISided
             return new int[] { 1 };
         }
     	
-    	int[] slots = new int[] { 0, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    	int[] slots = new int[] { 7, 8, 9, 10, 11, 12, 13 };
     	ArrayList<Integer> removeSlots = new ArrayList();
     	
     	for (int i = 2; i < 11; i++)
@@ -450,8 +454,10 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements ISided
     {
         for (IRecipe recipe : AssemblyRecipes.getRecipeList())
         {
+        	
             if (recipe instanceof ShapedRecipesGC)
             {
+            	
             	if (id >= ((ShapedRecipesGC) recipe).recipeItems.length) continue;
             	ItemStack itemstack1 = ((ShapedRecipesGC) recipe).recipeItems[id];
                 if (stack.getItem() == itemstack1.getItem() && (itemstack1.getItemDamage() == 32767 || stack.getItemDamage() == itemstack1.getItemDamage()))
@@ -472,6 +478,7 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements ISided
             }
             else if (recipe instanceof ShapelessOreRecipeGC)
             {
+            	
                 ArrayList<Object> required = new ArrayList<Object>(((ShapelessOreRecipeGC) recipe).getInput());
                 
                 Iterator<Object> req = required.iterator();
@@ -485,6 +492,7 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements ISided
                     if (next instanceof ItemStack)
                     {
                         if ( OreDictionary.itemMatches((ItemStack)next, stack, false)) match++;
+                        
                     }
                     else if (next instanceof ArrayList)
                     {
@@ -498,7 +506,10 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements ISided
                             }
                         }
                     }
+                    
                 }
+                
+                
                 
                 if (match == 0) continue;
                 
@@ -523,7 +534,7 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements ISided
 
         return false;
     }
-
+    
     @Override
 	public EnumFacing getElectricInputDirection() {
 		return getFront().rotateY();

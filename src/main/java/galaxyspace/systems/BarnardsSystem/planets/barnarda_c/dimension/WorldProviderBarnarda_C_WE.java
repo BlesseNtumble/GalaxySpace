@@ -295,4 +295,9 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProvider implements IPro
 	public BiomeDecoratorSpace getDecorator() {
 		return new BiomeDecoratorBarnarda_C();
 	}
+
+	@Override
+	public boolean enableAdvancedThermalLevel() {
+		return false;
+	}
 }

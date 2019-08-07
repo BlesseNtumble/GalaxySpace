@@ -193,4 +193,9 @@ public class WorldProviderMiranda extends WorldProviderAdvancedSpace implements 
 		return GSDimensions.MIRANDA;
 	}
 
+	@Override
+	public boolean enableAdvancedThermalLevel() {
+		return false;
+	}
+
 }

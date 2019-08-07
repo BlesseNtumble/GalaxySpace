@@ -22,7 +22,7 @@ public class GSConfigGuiFactory implements IModGuiFactory
     	    	
         public CoreConfigGUI(GuiScreen parent)
         {        	
-            super(parent, GSConfigCore.getConfigElements(), GalaxySpace.MODID, false, true, GCCoreUtil.translate("gs.configgui.title"));
+            super(parent, GSConfigCore.getConfigElements(), GalaxySpace.MODID, false, false, GCCoreUtil.translate("gs.configgui.title"));
             this.configElements.addAll(GSConfigDimensions.getConfigElements());
             this.configElements.addAll(GSConfigSchematics.getConfigElements());
             this.configElements.addAll(GSConfigEnergy.getConfigElements());
@@ -50,7 +50,7 @@ public class GSConfigGuiFactory implements IModGuiFactory
 	}
 
 	public boolean hasConfigGui()
-	{
+	{		
 		return true;
 	}
 }

@@ -6,7 +6,7 @@ package galaxyspace.systems.SolarSystem.moons.titan.dimension;
 import java.util.List;
 import java.util.Random;
 
-import asmodeuscore.api.dimension.IPlanetFog;
+import asmodeuscore.api.dimension.IProviderFog;
 import asmodeuscore.api.dimension.IProviderFreeze;
 import asmodeuscore.core.astronomy.dimension.world.gen.WorldProviderAdvancedSpace;
 import galaxyspace.core.client.fx.ParticleRainCustom;
@@ -41,7 +41,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
  
 
-public class WorldProviderTitan extends WorldProviderAdvancedSpace implements IProviderFreeze, IPlanetFog, IWeatherProvider{
+public class WorldProviderTitan extends WorldProviderAdvancedSpace implements IProviderFreeze, IProviderFog, IWeatherProvider{
 	
     @Override
     public double getHorizon() {
@@ -268,6 +268,11 @@ public class WorldProviderTitan extends WorldProviderAdvancedSpace implements IP
 	@Override
 	public int getSoundInterval(float rainStrength) {
 		return 80 - (int) (rainStrength * 8F);
+	}
+
+	@Override
+	public boolean enableAdvancedThermalLevel() {
+		return false;
 	}
 
 }
