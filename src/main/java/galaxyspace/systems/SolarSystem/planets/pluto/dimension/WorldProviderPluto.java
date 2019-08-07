@@ -207,4 +207,9 @@ public class WorldProviderPluto extends WorldProviderAdvancedSpace implements IP
 		return GSDimensions.PLUTO;
 	}
 
+	@Override
+	public boolean enableAdvancedThermalLevel() {
+		return false;
+	}
+
 }

@@ -187,4 +187,9 @@ public class WorldProviderCeres extends WorldProviderAdvancedSpace implements IP
 		return GSDimensions.CERES;
 	}
 
+	@Override
+	public boolean enableAdvancedThermalLevel() {
+		return false;
+	}
+
 }

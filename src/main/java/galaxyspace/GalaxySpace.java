@@ -7,7 +7,7 @@ import java.util.List;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Logger;
 
-import asmodeuscore.api.IBookPage;
+import asmodeuscore.api.space.IBookPage;
 import asmodeuscore.core.utils.BookUtils;
 import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
 import galaxyspace.api.IBodies;

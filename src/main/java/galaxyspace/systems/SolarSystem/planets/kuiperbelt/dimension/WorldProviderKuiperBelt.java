@@ -594,4 +594,9 @@ public class WorldProviderKuiperBelt extends WorldProviderAdvancedSpace implemen
 	public void setInFreefall(Entity entity) {
 		
 	}
+
+	@Override
+	public boolean enableAdvancedThermalLevel() {
+		return false;
+	}
 }

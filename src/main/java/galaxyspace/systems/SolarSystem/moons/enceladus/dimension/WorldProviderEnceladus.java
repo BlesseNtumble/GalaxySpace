@@ -135,4 +135,9 @@ public class WorldProviderEnceladus extends WorldProviderAdvancedSpace implement
 	
 		return GSDimensions.ENCELADUS;
 	}
+
+	@Override
+	public boolean enableAdvancedThermalLevel() {
+		return false;
+	}
 }

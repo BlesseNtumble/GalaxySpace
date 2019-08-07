@@ -2,7 +2,7 @@ package galaxyspace.core.client.gui.book.pages.general;
 
 import org.lwjgl.opengl.GL11;
 
-import asmodeuscore.api.IBookPage;
+import asmodeuscore.api.space.IBookPage;
 import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
 import galaxyspace.GalaxySpace;
 import galaxyspace.api.IPage;

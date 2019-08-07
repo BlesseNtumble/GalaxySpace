@@ -194,4 +194,9 @@ public class WorldProviderGanymede extends WorldProviderAdvancedSpace implements
 		return GSDimensions.GANYMEDE;
 	}
 
+	@Override
+	public boolean enableAdvancedThermalLevel() {
+		return false;
+	}
+
 }

@@ -194,4 +194,9 @@ public class WorldProviderEuropa extends WorldProviderAdvancedSpace implements I
 		return GSDimensions.EUROPA;
 	}
 
+	@Override
+	public boolean enableAdvancedThermalLevel() {
+		return false;
+	}
+
 }

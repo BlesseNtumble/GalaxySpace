@@ -149,7 +149,6 @@ public class SolarSystemBodies implements IBodies{
 	public static Satellite marsSpaceStation;
 	public static Satellite venusSpaceStation;
 	
-	private static boolean wg;
 	/*
 	 * Sun Distance: 0.0F
 	 * Mercury Distance: 0.5F
@@ -181,7 +180,6 @@ public class SolarSystemBodies implements IBodies{
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		SolarSystem sol = GalacticraftCore.solarSystemSol;
-		wg = GSConfigCore.enableWorldEngine;
 		
 		//Planets
 		//body, name, prefix, provider, dimID, tier, phase, size, distancefromcenter, relativetime, biomes

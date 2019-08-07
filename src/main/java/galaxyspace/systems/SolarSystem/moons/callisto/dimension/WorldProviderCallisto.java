@@ -194,4 +194,9 @@ public class WorldProviderCallisto extends WorldProviderAdvancedSpace implements
 		return GSDimensions.CALLISTO;
 	}
 
+	@Override
+	public boolean enableAdvancedThermalLevel() {
+		return false;
+	}
+
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import asmodeuscore.api.dimension.IPlanetFog;
+import asmodeuscore.api.dimension.IProviderFog;
 import asmodeuscore.api.dimension.IProviderFreeze;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProvider;
@@ -44,7 +44,7 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WorldProviderProxima_B_WE extends WE_WorldProvider implements IProviderFreeze, IPlanetFog {
+public class WorldProviderProxima_B_WE extends WE_WorldProvider implements IProviderFreeze, IProviderFog {
 	
 	private final float[] colorsSunriseSunset = new float[4];
 	public static WE_ChunkProvider chunk;
@@ -181,7 +181,14 @@ public class WorldProviderProxima_B_WE extends WE_WorldProvider implements IProv
     
     @Override
     public IRenderHandler getCloudRenderer(){
-        return new CloudRenderer();
+        return super.getCloudRenderer();
+    }
+    
+    @Override 
+    @SideOnly(Side.CLIENT)
+    public float getCloudHeight()
+    {
+        return 180.0F;
     }
 
 	@SideOnly(Side.CLIENT)
@@ -251,6 +258,8 @@ public class WorldProviderProxima_B_WE extends WE_WorldProvider implements IProv
 		rg.addReplacingBlock(ACBlocks.PROXIMA_B_BLOCKS, (byte)2);
 		rg.lavaBlock = Blocks.LAVA;
 		cp.createChunkGen_List.add(rg);
+		
+		cp.biomesList.clear();
 		
 		WE_Biome.addBiomeToGeneration(cp, new Proxima_B_Plains());
 		WE_Biome.addBiomeToGeneration(cp, new Proxima_B_Forest(cp)); 
@@ -349,6 +358,11 @@ public class WorldProviderProxima_B_WE extends WE_WorldProvider implements IProv
 		}	
 		
 		
+	}
+
+	@Override
+	public boolean enableAdvancedThermalLevel() {
+		return false;
 	}
 
 }

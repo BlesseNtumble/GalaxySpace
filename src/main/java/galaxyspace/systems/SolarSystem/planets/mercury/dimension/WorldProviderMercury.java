@@ -234,5 +234,10 @@ public class WorldProviderMercury extends WorldProviderAdvancedSpace implements 
 		}*/
 	}
 
+	@Override
+	public boolean enableAdvancedThermalLevel() {
+		return false;
+	}
+
 
 }
