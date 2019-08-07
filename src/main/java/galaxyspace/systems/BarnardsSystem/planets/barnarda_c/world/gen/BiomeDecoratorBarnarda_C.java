@@ -33,11 +33,12 @@ public class BiomeDecoratorBarnarda_C extends BiomeDecoratorSpace
 {
     private World currentWorld;  
     
-    private WorldGenerator dirtGen, coalGen, ironGen, goldGen, lapisGen, redstoneGen, diamondGen, siliconGen, copperGen, tinGen, aluminumGen, quartzGen, cobaltumGen, nickelGen;
+    private WorldGenerator dirtGen, gravelGen, coalGen, ironGen, goldGen, lapisGen, redstoneGen, diamondGen, siliconGen, copperGen, tinGen, aluminumGen, quartzGen, cobaltumGen, nickelGen;
    
     public BiomeDecoratorBarnarda_C()
     {
     	dirtGen = new WorldGenMinableMeta(BRBlocks.BARNARDA_C_BLOCKS, 30, 0, true, BRBlocks.BARNARDA_C_BLOCKS, 1);
+    	gravelGen = new WorldGenMinableMeta(Blocks.GRAVEL, 15, 0, true, BRBlocks.BARNARDA_C_BLOCKS, 1);
     
     	coalGen = new WorldGenMinableMeta(BRBlocks.BARNARDA_C_ORES, 15, 0, true, BRBlocks.BARNARDA_C_BLOCKS, 1);
     	ironGen = new WorldGenMinableMeta(BRBlocks.BARNARDA_C_ORES, 6, 1, true, BRBlocks.BARNARDA_C_BLOCKS, 1);
@@ -64,6 +65,7 @@ public class BiomeDecoratorBarnarda_C extends BiomeDecoratorSpace
 		BlockPos pos = this.currentWorld.getHeight(new BlockPos(randPosX, 0, randPosZ));
 		
 		this.generateOre(30, dirtGen, 5, 180);
+		this.generateOre(15, gravelGen, 5, 180);
 		
 		this.generateOre(20, coalGen, 5, 180);
 		this.generateOre(15, ironGen, 5, 180);
