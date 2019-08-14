@@ -1,6 +1,10 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics;
 
+import java.util.List;
+
 import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.util.GSRecipeUtil;
+import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
@@ -43,29 +47,15 @@ public class SlotSchematicEngine extends Slot
     @Override
     public boolean isItemValid(ItemStack par1ItemStack)
     {
-        switch (this.index)
-        {
-        	case 1: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 5 || par1ItemStack.getItem() == MarsItems.marsItemBasic && par1ItemStack.getItemDamage() == 3 || par1ItemStack.getItem() == GSItems.HDP;
-        	case 2: return par1ItemStack.getItem() == Item.getItemFromBlock(GCBlocks.oxygenPipe);
-        	case 3: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 5 || par1ItemStack.getItem() == MarsItems.marsItemBasic && par1ItemStack.getItemDamage() == 3 || par1ItemStack.getItem() == GSItems.HDP;
-        	case 4: return par1ItemStack.getItem() == Item.getItemFromBlock(GCBlocks.oxygenPipe);
-        	case 5: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 5 || par1ItemStack.getItem() == MarsItems.marsItemBasic && par1ItemStack.getItemDamage() == 3 || par1ItemStack.getItem() == GSItems.HDP;
-        	case 6: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 5 || par1ItemStack.getItem() == MarsItems.marsItemBasic && par1ItemStack.getItemDamage() == 3 || par1ItemStack.getItem() == GSItems.HDP;
-        	case 7: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 5 || par1ItemStack.getItem() == MarsItems.marsItemBasic && par1ItemStack.getItemDamage() == 3 || par1ItemStack.getItem() == GSItems.HDP;
-        	case 8: return par1ItemStack.getItem() == GCItems.fuelCanister && par1ItemStack.getItemDamage() == 1;
-        	case 9: return par1ItemStack.getItem() == GCItems.fuelCanister && par1ItemStack.getItemDamage() == 1;
-        	case 10: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 5 || par1ItemStack.getItem() == MarsItems.marsItemBasic && par1ItemStack.getItemDamage() == 3 || par1ItemStack.getItem() == GSItems.HDP;
-        	case 11: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 5 || par1ItemStack.getItem() == MarsItems.marsItemBasic && par1ItemStack.getItemDamage() == 3 || par1ItemStack.getItem() == GSItems.HDP;
-        	case 12: return par1ItemStack.getItem() == GSItems.ROCKET_PARTS;
-        	case 13: return par1ItemStack.getItem() == Item.getItemFromBlock(GCBlocks.oxygenPipe);
-        	case 14: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 1 || par1ItemStack.getItem() == GCItems.rocketEngine;
-        	case 15: return par1ItemStack.getItem() == Item.getItemFromBlock(GCBlocks.oxygenPipe);
-        	case 16: return par1ItemStack.getItem() == GSItems.ROCKET_PARTS;
-        	case 17: return par1ItemStack.getItem() == GSItems.ROCKET_PARTS;
-        	case 18: return par1ItemStack.getItem() == GSItems.ROCKET_PARTS;
-        	
-        }
+        if (par1ItemStack == null)
+            return false;
 
+        List<INasaWorkbenchRecipe> recipes = GSRecipeUtil.getEngineRecipes();
+        for (INasaWorkbenchRecipe recipe : recipes)
+        {
+            if (ItemStack.areItemsEqual(par1ItemStack, recipe.getRecipeInput().get(this.index)))
+                return true;
+        }
         return false;
     }
 

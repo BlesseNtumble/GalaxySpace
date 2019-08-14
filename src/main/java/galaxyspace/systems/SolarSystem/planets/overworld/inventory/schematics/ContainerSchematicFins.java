@@ -1,6 +1,8 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics;
 
+import galaxyspace.GalaxySpace;
 import galaxyspace.core.util.GSRecipeUtil;
+import galaxyspace.core.util.GSUtils;
 import micdoodle8.mods.galacticraft.core.inventory.SlotRocketBenchResult;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -79,8 +81,8 @@ public class ContainerSchematicFins extends Container
 
     @Override
     public void onCraftMatrixChanged(IInventory par1IInventory)
-    {
-        this.craftResult.setInventorySlotContents(0, GSRecipeUtil.findMatchingFinsRecipe(this.craftMatrix));
+    {       
+    	this.craftResult.setInventorySlotContents(0, GSUtils.findMatchingNASARecipe(GSRecipeUtil.getFinsRecipes(), this.craftMatrix));
     }
 
     @Override

@@ -1,5 +1,9 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics;
 
+import java.util.List;
+
+import galaxyspace.core.util.GSRecipeUtil;
+import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
@@ -42,22 +46,15 @@ public class SlotSchematicOxTank extends Slot
     @Override
     public boolean isItemValid(ItemStack par1ItemStack)
     {
-        switch (this.index)
-        {
-        	case 1: return par1ItemStack.getItem() == Item.getItemFromBlock(Blocks.WOOL) && par1ItemStack.getItemDamage() == 14;
-        	case 2: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 6;
-        	case 3: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 6;
-        	case 4: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 6;
-        	case 5: return par1ItemStack.getItem() == Item.getItemFromBlock(GCBlocks.oxygenPipe);
-        	case 6: return par1ItemStack.getItem() == GCItems.oxygenConcentrator;
-        	case 7: return par1ItemStack.getItem() == GCItems.oxTankLight && par1ItemStack.getItemDamage() == GCItems.oxTankLight.getMaxDamage();
-        	case 8: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 6;
-        	case 9: return par1ItemStack.getItem() == Item.getItemFromBlock(Blocks.WOOL) && par1ItemStack.getItemDamage() == 14;
-        	case 10: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 6;
-        	case 11: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 6;
-        	case 12: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 6;
-        }
+        if (par1ItemStack == null)
+            return false;
 
+        List<INasaWorkbenchRecipe> recipes = GSRecipeUtil.getOxTankRecipes();
+        for (INasaWorkbenchRecipe recipe : recipes)
+        {
+            if (ItemStack.areItemsEqual(par1ItemStack, recipe.getRecipeInput().get(this.index)))
+                return true;
+        }
         return false;
     }
 
