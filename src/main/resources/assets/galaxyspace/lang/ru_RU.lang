@@ -496,6 +496,8 @@ planet.pluto=Плутон
 moon.charon=Харон
 planet.kuiperbelt=Пояс Койпера
 
+satellite.spacestation.venus=Венерианская Атмосферная Станция
+
 solarsystem.acentauri=a Центавра
 star.centauri_a=a Центавра A
 planet.centauri_b=a Центавра B

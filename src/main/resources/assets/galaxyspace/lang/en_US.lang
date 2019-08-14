@@ -520,6 +520,7 @@ planet.pluto=Pluto
 moon.charon=Charon
 planet.kuiperbelt=Kuiper Belt
 
+satellite.spacestation.venus=Venus Atmospheric Space Station
 solarsystem.acentauri=a Centauri
 star.centauri_a=a Centauri A
 planet.centauri_b=a Centauri B

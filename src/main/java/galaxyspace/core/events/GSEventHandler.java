@@ -21,6 +21,7 @@ import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.core.util.GSDamageSource;
 import galaxyspace.systems.SolarSystem.moons.titan.dimension.WorldProviderTitan;
 import galaxyspace.systems.SolarSystem.planets.kuiperbelt.dimension.WorldProviderKuiperBelt;
+import galaxyspace.systems.SolarSystem.planets.mars.dimension.WorldProviderMars_WE;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitationModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityPlanetShield;
@@ -51,6 +52,7 @@ import micdoodle8.mods.galacticraft.planets.mars.dimension.WorldProviderMars;
 import micdoodle8.mods.galacticraft.planets.mars.items.ItemTier2Rocket;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -74,8 +76,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
@@ -92,6 +96,24 @@ public class GSEventHandler {
 		items_to_change.add(new ItemsToChange(new ItemStack(Items.WATER_BUCKET), Blocks.AIR.getDefaultState(), true));
 		
 		block_to_change.add(new BlockToChange(Blocks.WATER.getDefaultState(), Blocks.AIR.getDefaultState(), Blocks.ICE.getDefaultState(), 0.0F, true).setParticle("waterbubbles"));
+	}
+	
+	@SubscribeEvent
+    public void onAttachCapability(AttachCapabilitiesEvent<Entity> event)
+    {
+      /*  if (event.getObject() instanceof EntityPlayerMP)
+        {
+            event.addCapability(GSCapabilityStatsHandler.GS_PLAYER_PROPERTIES, new GSCapabilityProviderStats((EntityPlayerMP) event.getObject()));
+        }*/
+    }
+
+	@SubscribeEvent
+    public void onPlayerCloned(PlayerEvent.Clone event)
+    {
+		/*IStatsCapability oldStats = GSStatsCapability.get(event.getOriginal());
+		IStatsCapability newStats = GSStatsCapability.get(event.getEntityPlayer());
+        newStats.copyFrom(oldStats, !event.isWasDeath()|| event.getOriginal().world.getGameRules().getBoolean("keepInventory"));
+   */
 	}
 	
 	@SubscribeEvent
@@ -458,7 +480,7 @@ public class GSEventHandler {
 	@SubscribeEvent
     public void onPlanetDecorated(GCCoreEventPopulate.Post event)
     {
-		if(event.world.provider instanceof WorldProviderMars)
+		if(event.world.provider instanceof WorldProviderMars || event.world.provider instanceof WorldProviderMars_WE)
 		{
 			genOre(event.world, event.pos, new WorldGenMinableMeta(GSBlocks.MARS_ORES, 4, 0, true, MarsBlocks.marsBlock, 9), 6, 4, 18);	//diamond		
 			genOre(event.world, event.pos, new WorldGenMinableMeta(GSBlocks.MARS_ORES, 6, 1, true, MarsBlocks.marsBlock, 9), 10, 6, 30); //gold
