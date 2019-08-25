@@ -3,6 +3,7 @@ package galaxyspace.systems.SolarSystem;
 import java.util.HashMap;
 
 import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.api.dimension.IAdvancedSpace.TypeBody;
 import asmodeuscore.core.astronomy.BodiesData;
 import asmodeuscore.core.astronomy.BodiesHelper;
@@ -190,7 +191,7 @@ public class SolarSystemBodies implements IBodies{
 		//Planets
 		//body, name, prefix, provider, dimID, tier, phase, size, distancefromcenter, relativetime, biomes
 		planetMercury = (Planet) BodiesHelper.registerPlanet(sol, "mercury", GalaxySpace.ASSET_PREFIX, WorldProviderMercury.class, GSConfigDimensions.dimensionIDMercury, 3, 1.45F, 0.5F, 0.5F, 0.24096385542168674698795180722892F, ACBiome.ACSpace);
-		planetMercury.setAtmosphere(new AtmosphereInfo(false, false, false, 6.0F, 0.0F, 0.0F));
+		planetMercury.setAtmosphere(new AtmosphereInfo(false, false, false, 16.0F, 0.0F, 0.0F));
 		
 		planetCeres = (Planet) BodiesHelper.registerPlanet(sol, "ceres", GalaxySpace.ASSET_PREFIX, WorldProviderCeres.class, GSConfigDimensions.dimensionIDCeres, 3, 2.0F, 0.5F, 1.7F, 15.0F, ACBiome.ACSpace).setRingColorRGB(0.0F, 0.0F, 0.0F);
 		planetCeres.setAtmosphere(new AtmosphereInfo(false, false, false, -1.5F, 0.0F, 0.0F));
@@ -239,8 +240,8 @@ public class SolarSystemBodies implements IBodies{
 		
 		charonPluto = BodiesHelper.registerMoon(planetPluto, "charon", GalaxySpace.ASSET_PREFIX, null, -1, -1, (float) Math.PI / 2, 0.0017F, 15.0F, 50F);
 
-		venusSpaceStation = BodiesHelper.registerSatellite(VenusModule.planetVenus, GalaxySpace.ASSET_PREFIX, WorldProviderVenusSS.class, GSConfigDimensions.idDimensionVenusOrbit, GSConfigDimensions.idDimensionMarsOrbitStatic, (float) Math.PI, 0.2667F, 5.5F, 20.0F);
-		
+		//venusSpaceStation = BodiesHelper.registerSatellite(VenusModule.planetVenus, GalaxySpace.ASSET_PREFIX, WorldProviderVenusSS.class, GSConfigDimensions.idDimensionVenusOrbit, GSConfigDimensions.idDimensionMarsOrbitStatic, (float) Math.PI, 0.2667F, 5.5F, 20.0F);
+		/*
 		venusSpaceStation = new Satellite("spacestation.venus").setParentBody(VenusModule.planetVenus);
 		venusSpaceStation.setRelativeSize(0.2667F);
 		venusSpaceStation.setRelativeDistanceFromCenter(new CelestialBody.ScalableDistance(5.5F, 5.5F));
@@ -249,8 +250,8 @@ public class SolarSystemBodies implements IBodies{
 		venusSpaceStation.setDimensionInfo(GSConfigDimensions.idDimensionVenusOrbit, GSConfigDimensions.idDimensionVenusOrbitStatic, WorldProviderVenusSS.class);
 		venusSpaceStation.setBodyIcon(new ResourceLocation("galacticraftcore:textures/gui/celestialbodies/space_station.png"));
 		venusSpaceStation.addChecklistKeys("equip_oxygen_suit", "equip_parachute");
-		venusSpaceStation.setBiomeInfo(BiomeOrbit.space);
-		
+		venusSpaceStation.setBiomeInfo(ACBiome.ACSpace);
+		*/
 		//GalaxyRegistry.getRegisteredPlanets().remove(MarsModule.planetMars.getName());
 		//GalaxyRegistry.getRegisteredPlanetIDs().remove(MarsModule.planetMars.getName());
 	}
@@ -287,18 +288,7 @@ public class SolarSystemBodies implements IBodies{
     	registryteleport();    	
     	registerDungeonLoot();
     	
-    	GalaxyRegistry.getRegisteredPlanets().forEach((s, p) -> GalaxySpace.debug("Planet: " + s  + " | " + p.getWorldProvider()));
-    	//GalaxyRegistry.registerSatellite(marsSpaceStation);
-    /*	GSDimensions.MARS_SS = GalacticraftRegistry.registerDimension("Mars Space Station", "_orbit", GSConfigDimensions.idDimensionMarsOrbit, WorldProviderMarsSS.class, false);
-        if (GSDimensions.MARS_SS == null)
-        {
-            GCLog.severe("Failed to register space station dimension type with ID " + GSConfigDimensions.idDimensionMarsOrbit);
-        }
-        GSDimensions.MARS_SS_KEEPLOADED = GalacticraftRegistry.registerDimension("Space Station", "_orbit", GSConfigDimensions.idDimensionMarsOrbitStatic, WorldProviderMarsSS.class, true);
-        if (GSDimensions.MARS_SS_KEEPLOADED == null)
-        {
-            GCLog.severe("Failed to register space station dimension type with ID " + GSConfigDimensions.idDimensionMarsOrbitStatic);
-        }*/
+    	//GalaxyRegistry.getRegisteredPlanets().forEach((s, p) -> GalaxySpace.debug("Planet: " + s  + " | " + p.getWorldProvider()));
         
     	SchematicRegistry.registerSchematicRecipe(new SchematicCone());
 		SchematicRegistry.registerSchematicRecipe(new SchematicBody());
@@ -307,24 +297,26 @@ public class SolarSystemBodies implements IBodies{
 		SchematicRegistry.registerSchematicRecipe(new SchematicFins());
 		SchematicRegistry.registerSchematicRecipe(new SchematicOxTank());
 		
-		for(ISchematicPage page : SchematicRegistry.schematicRecipes)
-		{
-			if(page instanceof SchematicTier2Rocket) {
-				SchematicRegistry.schematicRecipes.remove(page);	
-				break;
-			}			
+		if(GSConfigCore.enableAdvancedRocketCraft) {
+			for(ISchematicPage page : SchematicRegistry.schematicRecipes)
+			{
+				if(page instanceof SchematicTier2Rocket) {
+					SchematicRegistry.schematicRecipes.remove(page);	
+					break;
+				}			
+			}
+			
+			for(ISchematicPage page : SchematicRegistry.schematicRecipes)
+			{
+				if(page instanceof SchematicTier3Rocket) {
+					SchematicRegistry.schematicRecipes.remove(page);	
+					break;
+				}			
+			}
+			SchematicRegistry.registerSchematicRecipe(new galaxyspace.systems.SolarSystem.planets.overworld.schematics.SchematicTier2Rocket());
+			
+			GCItems.hiddenItems.add(new ItemStack(MarsItems.schematic, 1, 0).getItem());
 		}
-		
-		for(ISchematicPage page : SchematicRegistry.schematicRecipes)
-		{
-			if(page instanceof SchematicTier3Rocket) {
-				SchematicRegistry.schematicRecipes.remove(page);	
-				break;
-			}			
-		}
-		SchematicRegistry.registerSchematicRecipe(new galaxyspace.systems.SolarSystem.planets.overworld.schematics.SchematicTier2Rocket());
-		
-		GCItems.hiddenItems.add(new ItemStack(MarsItems.schematic, 1, 0).getItem());
 		
         GalacticraftRegistry.registerGear(40, EnumExtendedInventorySlot.LEFT_TANK, GSItems.OXYGENTANK_TIER_4);
         GalacticraftRegistry.registerGear(40, EnumExtendedInventorySlot.RIGHT_TANK, GSItems.OXYGENTANK_TIER_4);
@@ -334,6 +326,11 @@ public class SolarSystemBodies implements IBodies{
         GalacticraftRegistry.registerGear(42, EnumExtendedInventorySlot.RIGHT_TANK, GSItems.OXYGENTANK_TIER_6);
         GalacticraftRegistry.registerGear(43, EnumExtendedInventorySlot.LEFT_TANK, GSItems.OXYGENTANK_TIER_EPP);
         GalacticraftRegistry.registerGear(43, EnumExtendedInventorySlot.RIGHT_TANK, GSItems.OXYGENTANK_TIER_EPP);
+        
+        GalacticraftRegistry.registerGear(44, EnumExtendedInventorySlot.THERMAL_HELMET, new ItemStack(GSItems.THERMAL_PADDING_3, 1, 0));
+        GalacticraftRegistry.registerGear(45, EnumExtendedInventorySlot.THERMAL_CHESTPLATE, new ItemStack(GSItems.THERMAL_PADDING_3, 1, 1));
+        GalacticraftRegistry.registerGear(46, EnumExtendedInventorySlot.THERMAL_LEGGINGS, new ItemStack(GSItems.THERMAL_PADDING_3, 1, 2));
+        GalacticraftRegistry.registerGear(47, EnumExtendedInventorySlot.THERMAL_BOOTS, new ItemStack(GSItems.THERMAL_PADDING_3, 1, 3));
         
         GalacticraftRegistry.registerGear(101, EnumExtendedInventorySlot.SHIELD_CONTROLLER, new ItemStack(GSItems.BASIC, 1, 16));
 	}
@@ -365,52 +362,48 @@ public class SolarSystemBodies implements IBodies{
 			new ItemStack(GSItems.SPACE_SUIT_BOOTS, 1, 1)
 		};
 		
-		BodiesData data = new BodiesData(BodiesHelper.yellow + " " + BodiesHelper.getClassBody(ClassBody.DWARF), 28.088F, 999, 0, false);
+		BodiesData data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.YELLOW);
 		BodiesHelper.registerBodyWithClass(GalacticraftCore.solarSystemSol.getMainStar(), data);
 		
-		data = new BodiesData(null, BodiesHelper.calculateGravity(3.8F), 0, 176000, true).addItemStackList(suit);
+		data = new BodiesData(null, BodiesHelper.calculateGravity(3.8F), 0, 176000, true);
 		BodiesHelper.registerBody(planetMercury, data, GSConfigDimensions.enableMercury);
 		
-		data = new BodiesData(null, BodiesHelper.calculateGravity(8.88F), 92, 182000, false).addItemStackList(suit);
-		data.addItemStack(new ItemStack(GSItems.BASIC, 1, 16));
+		data = new BodiesData(null, BodiesHelper.calculateGravity(8.88F), 92, 182000, false);
 		BodiesHelper.registerBody(VenusModule.planetVenus, data, GSConfigDimensions.enableVenus);
 		
 		data = new BodiesData(null, BodiesHelper.calculateGravity(10.0F), 1, 24000, false);
 		BodiesHelper.registerBody(GalacticraftCore.planetOverworld, data, false);		
 		
-		//WorldUtil.registeredPlanets.remove(arg0)
 		data = new BodiesData(null, BodiesHelper.calculateGravity(5.37F), 0, 24660, false);
 		BodiesHelper.registerBody(MarsModule.planetMars, data, false);
 		
-		data = new BodiesData(null, BodiesHelper.calculateGravity(2.37F), 0, 10000, true).addItemStackList(suit);
+		data = new BodiesData(null, BodiesHelper.calculateGravity(2.37F), 0, 10000, true);
 		BodiesHelper.registerBody(planetCeres, data, GSConfigDimensions.enableCeres);
     	
-		data = new BodiesData(null, 0, 0, 0,  true).addItemStackList(suit);
+		data = new BodiesData(null, 0, 0, 0,  true);
 		BodiesHelper.registerBody(AsteroidsModule.planetAsteroids, data, false);
     	
-		data = new BodiesData(BodiesHelper.getTypeBody(TypeBody.GASGIANT), BodiesHelper.calculateGravity(8.375F), 100, 9000, false);		
+		data = new BodiesData(ClassBody.GASGIANT, BodiesHelper.calculateGravity(8.375F), 100, 9000, false);		
 		BodiesHelper.registerBody(planetJupiter, data, true);
 		
-		data = new BodiesData(BodiesHelper.getTypeBody(TypeBody.GASGIANT), BodiesHelper.calculateGravity(7.37F), 100, 11000, false);		
+		data = new BodiesData(ClassBody.GASGIANT, BodiesHelper.calculateGravity(7.37F), 100, 11000, false);		
 		BodiesHelper.registerBody(planetSaturn, data, true);
     	
-		data = new BodiesData(BodiesHelper.getTypeBody(TypeBody.ICEGIANT), BodiesHelper.calculateGravity(8.61F), 100, 16000, false);		
+		data = new BodiesData(ClassBody.ICEGIANT, BodiesHelper.calculateGravity(8.61F), 100, 16000, false);		
 		BodiesHelper.registerBody(planetUranus, data, true);
 		
-		data = new BodiesData(BodiesHelper.getTypeBody(TypeBody.ICEGIANT), BodiesHelper.calculateGravity(8.547F), 100, 18000, false);		
+		data = new BodiesData(ClassBody.ICEGIANT, BodiesHelper.calculateGravity(8.547F), 100, 18000, false);		
 	   	BodiesHelper.registerBody(planetNeptune, data, true);
 	
-	   	data = new BodiesData(null, BodiesHelper.calculateGravity(2.62F), 0, 98000, true).addItemStackList(suit);
+	   	data = new BodiesData(null, BodiesHelper.calculateGravity(2.62F), 0, 98000, true);
 	   	BodiesHelper.registerBody(planetPluto, data, GSConfigDimensions.enablePluto);
 	   	
-	   	data = new BodiesData(null, 0F, 0, 0, true).addItemStackList(suit);
-		data.addItemStack(new ItemStack(AsteroidsItems.grapple, 1, 0));
-		data.addItemStack(new ItemStack(Items.STRING, 16, 0));
+	   	data = new BodiesData(null, 0F, 0, 0, true);
 	   	BodiesHelper.registerBody(planetKuiperBelt, data, GSConfigDimensions.enableKuiperBelt);
 					
 		//BodiesInfo.registerBody(testPlanet, 0.04F, 0, -2, 0, 48000, false, true, GalaxySpace.debug);
 		
-	   	data = new BodiesData(null, 0.062F, 0, 192000, true).addItemStackList(suit);
+	   	data = new BodiesData(null, 0.062F, 0, 192000, true);
 		BodiesHelper.registerBody(GalacticraftCore.moonMoon, data, false);
 
 	   	data = new BodiesData(null, 0.068F, 0, 12000, false);   	
@@ -419,25 +412,25 @@ public class SolarSystemBodies implements IBodies{
 		data = new BodiesData(null, 0.064F, 0, 24000, false); 
 		BodiesHelper.registerBody(deimosMars, data, GSConfigDimensions.enableDeimos);
 		
-		data = new BodiesData(null, 0.052F, 0, 42000, true).addItemStackList(suit);
+		data = new BodiesData(null, 0.052F, 0, 42000, true);
 		BodiesHelper.registerBody(ioJupiter, data, GSConfigDimensions.enableIo);
 		
-		data = new BodiesData(null, 0.062F, 0, 58000, true).addItemStackList(suit);
+		data = new BodiesData(null, 0.062F, 0, 58000, true);
 		BodiesHelper.registerBody(europaJupiter, data, GSConfigDimensions.enableEuropa);
 		
 		data = new BodiesData(null, 0.057F, 0, 102000, false);		
 		BodiesHelper.registerBody(ganymedeJupiter, data, GSConfigDimensions.enableGanymede);
 		
-		data = new BodiesData(null, 0.054F, 0, 154000, true).addItemStackList(suit);
+		data = new BodiesData(null, 0.054F, 0, 154000, true);
 		BodiesHelper.registerBody(callistoJupiter, data, GSConfigDimensions.enableCallisto);
 		
-		data = new BodiesData(null, 0.058F, 0, 32000, true).addItemStackList(suit);
+		data = new BodiesData(null, 0.058F, 0, 32000, true);
 		BodiesHelper.registerBody(enceladusSaturn, data, GSConfigDimensions.enableEnceladus);
 		
 		data = new BodiesData(null, 0.058F, 5, 105500, false);			
 		BodiesHelper.registerBody(titanSaturn, data, GSConfigDimensions.enableTitan);
 		
-		data = new BodiesData(null, 0.057F, 0, 33500, true).addItemStackList(suit);
+		data = new BodiesData(null, 0.057F, 0, 33500, true);
 		BodiesHelper.registerBody(mirandaUranus, data, GSConfigDimensions.enableMiranda);
 		
 		BodiesData unreachableData = new BodiesData(null, 0F, 0, 0, false);	
@@ -530,13 +523,13 @@ public class SolarSystemBodies implements IBodies{
 		
 		GSDimensions.KUIPER_BELT = WorldUtil.getDimensionTypeById(GSConfigDimensions.dimensionIDKuiperBelt);
 
-		GSDimensions.VENUS_SS = GalacticraftRegistry.registerDimension("Venus Space Station", "_venus_orbit", GSConfigDimensions.idDimensionVenusOrbit, WorldProviderVenusSS.class, false);
+		/*GSDimensions.VENUS_SS = GalacticraftRegistry.registerDimension("Venus Space Station", "_venus_orbit", GSConfigDimensions.idDimensionVenusOrbit, WorldProviderVenusSS.class, false);
 		if (GSDimensions.VENUS_SS == null)
         {
             GalaxySpace.debug("Failed to register space station dimension type with ID " + GSConfigDimensions.idDimensionVenusOrbit);
         }
 		GSDimensions.VENUS_SS_KEEPLOADED = GalacticraftRegistry.registerDimension("Venus Space Station", "_venus_orbit", GSConfigDimensions.idDimensionVenusOrbitStatic, WorldProviderVenusSS.class, true);
-	
+	*/
 		GalaxyRegistry.refreshGalaxies();
 	}
 	
@@ -580,11 +573,11 @@ public class SolarSystemBodies implements IBodies{
 		spaceStationRequirements.put(Items.IRON_INGOT, 24);
 		spaceStationRequirements.put(new ItemStack(GSItems.HDP, 1, 0), 10);
 		spaceStationRequirements.put(new ItemStack(GSItems.BASIC, 1, 6), 10);
-		
+		/*
 		if(GSConfigDimensions.enableVenusSpaceStation)
 			GalacticraftRegistry.registerSpaceStation(new SpaceStationType(GSConfigDimensions.idDimensionVenusOrbit,
 				ConfigManagerVenus.dimensionIDVenus, new SpaceStationRecipe(spaceStationRequirements)));
-    	 
+    	 */
 	}
 
 	@Override

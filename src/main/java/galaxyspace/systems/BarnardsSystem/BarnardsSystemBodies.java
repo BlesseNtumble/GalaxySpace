@@ -2,6 +2,9 @@ package galaxyspace.systems.BarnardsSystem;
 
 import java.io.File;
 
+import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
+import asmodeuscore.api.dimension.IAdvancedSpace.TypeBody;
 import asmodeuscore.core.astronomy.BodiesData;
 import asmodeuscore.core.astronomy.BodiesHelper;
 import asmodeuscore.core.astronomy.BodiesHelper.Galaxies;
@@ -108,7 +111,11 @@ public class BarnardsSystemBodies implements IBodies {
 		BodiesHelper.registerBody(Barnarda_C1, unreachableData, true);
 		BodiesHelper.registerBody(Barnarda_C2, unreachableData, true);
 		
-		BodiesData data = new BodiesData(null, BodiesHelper.calculateGravity(8.5F), 3, 29000, false);
+
+		BodiesData data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.ORANGE);
+		BodiesHelper.registerBodyWithClass(BarnardsSystem.getMainStar(), data);
+		
+		data = new BodiesData(null, BodiesHelper.calculateGravity(8.5F), 3, 29000, false);
 		BodiesHelper.registerBody(Barnarda_C, data, true);
 	}
 	

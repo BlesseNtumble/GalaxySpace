@@ -69,6 +69,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemRocketParts;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemSchematics;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemTierKeysChest;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemUpgrades;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemThermalPaddingBase;
 import galaxyspace.systems.SolarSystem.planets.overworld.render.item.ItemRendererHydroponicFarm;
 import galaxyspace.systems.SolarSystem.planets.overworld.render.item.ItemRendererJetpack;
 import galaxyspace.systems.SolarSystem.planets.overworld.render.tile.TileEntityHydroponicFarmRenderer;
@@ -399,6 +400,10 @@ public class ClientProxy extends CommonProxy{
 		for(String upgrades : ItemUpgrades.names)		
 			ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.UPGRADES, i++, "upgrades/" + upgrades);
 		
+		i = 0;
+		for(String thermal_padding : ItemThermalPaddingBase.names)		
+			ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.THERMAL_PADDING_3, i++, "thermal_padding/" + thermal_padding + "_t" + ((ItemThermalPaddingBase) GSItems.THERMAL_PADDING_3).getThermalStrength());
+		
 		
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.OXYGENTANK_TIER_4);
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.OXYGENTANK_TIER_5);
@@ -572,6 +577,8 @@ public class ClientProxy extends CommonProxy{
         addVariant("schematics", "schematics/", "schematic_cone", "schematic_body", "schematic_engine", "schematic_booster", "schematic_stabiliser", "schematic_oxygen_tank", "schematic_port_nuclear_reactor");
         addVariant("dungeon_keys", "keys/", ItemTierKeysChest.keys);
         addVariant("upgrades", "upgrades/", ItemUpgrades.names);
+        
+        addVariant("thermal_padding_t3", "thermal_padding/", "thermal_helm_t3", "thermal_chestplate_t3", "thermal_leggings_t3", "thermal_boots_t3");
         
         ModelResourceLocation modelResourceLocation = new ModelResourceLocation("galaxyspace:rockets/rocket_t4", "inventory");
         for (int i = 0; i < 5; ++i)

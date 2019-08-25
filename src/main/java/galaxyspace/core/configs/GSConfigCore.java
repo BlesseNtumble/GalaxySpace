@@ -5,6 +5,8 @@ import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import org.apache.logging.log4j.Level;
 import org.lwjgl.input.Keyboard;
@@ -19,17 +21,12 @@ import net.minecraftforge.fml.common.FMLLog;
 
 public class GSConfigCore
 {
-    public static boolean loaded;
-
     static Configuration config;
 
     public GSConfigCore(File file)
     {
-        if (!GSConfigCore.loaded)
-        {
-        	GSConfigCore.config = new Configuration(file);
-        	GSConfigCore.syncConfig(true);
-        }
+        GSConfigCore.config = new Configuration(file);
+        GSConfigCore.syncConfig(true);        
     }
 
     public static boolean enableCheckVersion;
@@ -56,6 +53,7 @@ public class GSConfigCore
     public static boolean enableSpaceSuitHUD;
     public static boolean enableRadiationSystem;
     public static boolean enablePressureSystem;
+    public static boolean enableAdvancedRocketCraft;
     
     public static String spacesuit_pos = "center";
     public static boolean spacesuit_small_button;
@@ -66,7 +64,6 @@ public class GSConfigCore
     
     public static String keyOverrideToggleHelmet, keyOverrideToggleChest, keyOverrideToggleLegs, keyOverrideToggleBoots;
     public static int keyOverrideToggleHelmetI, keyOverrideToggleChestI, keyOverrideToggleLegsI, keyOverrideToggleBootsI;
-
     
     private static void setConfigBoolean(Property prop, List<String> propOrder, String category, String confname, String desc, boolean conf, boolean def)
     {
@@ -83,8 +80,8 @@ public class GSConfigCore
 
         try
         {
+        	propOrder.clear();
             Property prop;
-
             if (!config.isChild)
             {
                 if (load)
@@ -103,6 +100,12 @@ public class GSConfigCore
             prop.setComment("Enable/Disable new music on GS Planets/Moons.");
             prop.setLanguageKey("gc.configgui.enableMusic").setRequiresMcRestart(true);
             enableMusic = prop.getBoolean(true);
+            propOrder.add(prop.getName());      
+            
+            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableAdvancedRocketCraft", true);
+            prop.setComment("Enable/Disable advanced craft for rocket tier 2-3.");
+            prop.setLanguageKey("gc.configgui.enableAdvancedRocketCraft").setRequiresMcRestart(true);
+            enableAdvancedRocketCraft = prop.getBoolean(true);
             propOrder.add(prop.getName());      
             
             prop = config.get(Constants.CONFIG_CATEGORY_WORLDGEN, "enableOverworldOres", true);

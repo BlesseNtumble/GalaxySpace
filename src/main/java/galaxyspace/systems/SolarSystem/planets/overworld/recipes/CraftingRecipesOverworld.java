@@ -249,8 +249,9 @@ r
 		
    }
    
-   private static void addRocketAssembly() {	   	  
-	   addRocketRecipe(AsteroidsItems.tier3Rocket, GSItems.ROCKET_PARTS, 0);
+   private static void addRocketAssembly() {
+	   if(GSConfigCore.enableAdvancedRocketCraft)
+		   addRocketRecipe(AsteroidsItems.tier3Rocket, GSItems.ROCKET_PARTS, 0);
 	   addRocketRecipe(GSItems.ROCKET_TIER_4, GSItems.ROCKET_PARTS, 5);
 	   addRocketRecipe(GSItems.ROCKET_TIER_5, GSItems.ROCKET_PARTS, 10);
 	   addRocketRecipe(GSItems.ROCKET_TIER_6, GSItems.ROCKET_PARTS, 15);	  

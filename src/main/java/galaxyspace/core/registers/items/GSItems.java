@@ -26,6 +26,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemUpgrades;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemArmorGS;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemJetpack;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemSpaceSuit;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemThermalPaddingBase;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
@@ -91,6 +92,8 @@ public class GSItems {
 	public static Item COBALT_LEGS = new ItemArmorGS("cobalt_legs", COBALT, EntityEquipmentSlot.LEGS);
 	public static Item COBALT_BOOTS = new ItemArmorGS("cobalt_boots", COBALT, EntityEquipmentSlot.FEET);
 	
+	public static Item THERMAL_PADDING_3 = new ItemThermalPaddingBase(3, true);
+	//TOOLS
 	public static Item COBALT_SWORD = new ItemSwordGS("cobalt_sword", COBALT_TOOLS);
 	public static Item COBALT_AXE = new ItemAxeGS("cobalt_axe", COBALT_TOOLS);
 	public static Item COBALT_SPADE = new ItemSpadeGS("cobalt_spade", COBALT_TOOLS);
@@ -140,6 +143,8 @@ public class GSItems {
 		registerItem(COBALT_CHEST);
 		registerItem(COBALT_LEGS);
 		registerItem(COBALT_BOOTS);		
+		
+		registerItem(THERMAL_PADDING_3);		
 		
 		registerItem(COBALT_SWORD);
 		registerItem(COBALT_AXE);
