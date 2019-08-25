@@ -251,9 +251,9 @@ public class WorldProviderTitan extends WorldProviderAdvancedSpace implements IP
 	}
 	
 	@Override
-    public TypeBody getClassBody()
+    public ClassBody getClassBody()
     {
-    	return TypeBody.TITAN;
+    	return ClassBody.TITAN;
     }
 
 	@Override
