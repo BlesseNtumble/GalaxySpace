@@ -312,7 +312,10 @@ public class TileEntityPlanetShield extends TileBaseElectricBlockWithInventory i
     @Override
     public int[] getSlotsForFace(EnumFacing side)
     {
-        return new int[] { 0, 1, 5 };
+    	if(side == EnumFacing.DOWN)
+    		return new int[] { 5 };
+    	
+        return new int[] { 0, 5 };
     }
     
     @Override
@@ -368,7 +371,7 @@ public class TileEntityPlanetShield extends TileBaseElectricBlockWithInventory i
     @Override
     public EnumFacing getFront()
     {
-        return EnumFacing.DOWN;
+        return EnumFacing.UP;
     }
     
     @Override
