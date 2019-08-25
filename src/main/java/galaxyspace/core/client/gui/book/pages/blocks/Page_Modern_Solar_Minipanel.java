@@ -1,22 +1,19 @@
 package galaxyspace.core.client.gui.book.pages.blocks;
 
-import asmodeuscore.core.astronomy.gui.book.Page_WithCraftMatrix;
 import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
 import galaxyspace.api.IPage;
+import galaxyspace.core.client.gui.book.BookRegister;
+import galaxyspace.core.client.gui.book.pages.Page_AssemblerCraft;
 import galaxyspace.core.registers.blocks.GSBlocks;
-import micdoodle8.mods.galacticraft.core.GCBlocks;
-import micdoodle8.mods.galacticraft.core.GCItems;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 @IPage
-public class Page_Wind_Generator extends Page_WithCraftMatrix{
+public class Page_Modern_Solar_Minipanel extends Page_AssemblerCraft {
 
 	@Override
 	public String titlePage() {
-		return "wind_generator";
+		return "modern_solar_minipanel";
 	}
 
 	@Override
@@ -35,18 +32,13 @@ public class Page_Wind_Generator extends Page_WithCraftMatrix{
 	}
 
 	@Override
-	public void drawPage(int x, int y, FontRenderer font, int mouseX, int mouseY)
-	{
-		super.drawPage(x, y, font, mouseX, mouseY);
-	}
-	
-	@Override
 	public ItemStack getItem() {		
-		return new ItemStack(GSBlocks.WIND_GENERATOR);
+		return new ItemStack(GSBlocks.MODERN_SINGLE_SOLARPANEL);
 	}
 
 	@Override
 	public Recipe_Type getRecipeType() {
-		return Recipe_Type.CRAFTING_TABLE;
+		return BookRegister.ASSEMBLER;
 	}
+
 }

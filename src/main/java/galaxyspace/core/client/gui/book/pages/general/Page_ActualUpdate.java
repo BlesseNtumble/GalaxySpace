@@ -15,6 +15,7 @@ import micdoodle8.mods.galacticraft.core.util.ColorUtil;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 
@@ -23,7 +24,7 @@ public class Page_ActualUpdate extends Page_WithScroll{
 
 	private Minecraft mc = Minecraft.getMinecraft();
 	private int count = 0;
-	//List<String> changelog = new ArrayList<String>();
+	
 	private boolean ex = false;
 	
 	private static ResourceLocation bookPageTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/tablet.png");
@@ -76,16 +77,14 @@ public class Page_ActualUpdate extends Page_WithScroll{
 		}
 		
 		this.mc.getTextureManager().bindTexture(bookPageTexture);
-		
+		GlStateManager.color(1.0F, 1.0F, 1.0F);
 		int uV = 0, posX = 280, posY = 45;
 		if(mouseX >= x + posX && mouseX < x + posX + 120 && mouseY >= y + posY && mouseY <= y + posY + 16)
 			uV = 17;
 		drawTexturedModalRect(x + posX, y + posY, 120, 16, 400, uV, 87, 15, false, false, 512, 256);
 		
 		this.drawText(EnumColor.YELLOW + "Download", x + 280, y - 40, 0, font);
-		/*if(GSUtils.changelog.isEmpty())
-			start();*/
-		
+	
 	}
 
 	@Override

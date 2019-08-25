@@ -1,13 +1,10 @@
 package galaxyspace.core.client.gui.book.pages.blocks;
 
+import asmodeuscore.core.astronomy.gui.book.Page_WithCraftMatrix;
 import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
 import galaxyspace.api.IPage;
-import galaxyspace.core.client.gui.book.BookRegister.Recipe_Type;
-import galaxyspace.core.client.gui.book.pages.Page_WithCraftMatrix;
-import micdoodle8.mods.galacticraft.core.GCBlocks;
-import micdoodle8.mods.galacticraft.core.GCItems;
+import galaxyspace.core.registers.blocks.GSBlocks;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
@@ -41,13 +38,8 @@ public class Page_Fuel_Generator extends Page_WithCraftMatrix {
 	}
 	
 	@Override
-	public ItemStack[] getRecipe() {
-		return new ItemStack[] 
-		{ 
-			new ItemStack(GCItems.canister, 1, 1),	new ItemStack(Blocks.GLASS_PANE, 1, 0),	new ItemStack(GCItems.canister, 1, 1),
-			new ItemStack(GCItems.canister, 1, 1), new ItemStack(GCBlocks.machineBase, 1, 0), new ItemStack(GCItems.canister, 1, 1),
-			new ItemStack(GCItems.basicItem, 1, 9),	new ItemStack(GCItems.basicItem, 1, 9), new ItemStack(GCItems.basicItem, 1, 9)						
-		};
+	public ItemStack getItem() {		
+		return new ItemStack(GSBlocks.FUEL_GENERATOR);
 	}
 
 	@Override

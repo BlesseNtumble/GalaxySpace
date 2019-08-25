@@ -49,19 +49,7 @@ public class Page_AboutGS implements IBookPage {
 		
 		String str = GCCoreUtil.translate("book.page." + titlePage() + ".text");
 		this.drawText(str, x, y, 0, font);
-		/*String[] str1 = str.split("!n");
-		
-		for(int i = this.getScroll(); i < str1.length; i++)
-		{
-			String strings = str1[i];
-			strings = strings.replace("!c_o", EnumColor.ORANGE + "");
-			strings = strings.replace("!c_w", EnumColor.WHITE + "");
-			strings = strings.replace("!c_r", EnumColor.RED + "");
-			strings = strings.replace("!c_y", EnumColor.YELLOW + "");
-			strings = strings.replace("!c_g", EnumColor.BRIGHT_GREEN + "");
-			
-			font.drawSplitString(strings, x + 40, y + 90 + (20 * (i - this.getScroll())), 360, 0xFFFFFF);			
-		}*/
+
 	}
 
 	@Override
