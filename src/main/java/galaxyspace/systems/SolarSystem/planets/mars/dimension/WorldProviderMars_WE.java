@@ -164,32 +164,27 @@ public class WorldProviderMars_WE extends WE_WorldProvider implements IProviderF
 		WE_Biome.setBiomeMap(cp, 1.2D, 4, 800.0D, 1.0D);	
 		
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
-		terrainGenerator.worldStoneBlock = MarsBlocks.marsBlock; 
-		terrainGenerator.worldStoneBlockMeta = 9;
+		terrainGenerator.worldStoneBlock = MarsBlocks.marsBlock.getStateFromMeta(9); 
 		terrainGenerator.worldSeaGen = false;
-		terrainGenerator.worldSeaGenBlock = Blocks.WATER;
-		terrainGenerator.worldSeaGenBlockMeta = 0;
+		terrainGenerator.worldSeaGenBlock = Blocks.WATER.getDefaultState();
 		terrainGenerator.worldSeaGenMaxY = 64;
 		cp.createChunkGen_List.add(terrainGenerator);
 		
 		//-// 
 		WE_CaveGen cg = new WE_CaveGen(); 
 		cg.replaceBlocksList .clear(); 
-		cg.replaceBlocksMetaList.clear(); 
-		cg.addReplacingBlock(terrainGenerator.worldStoneBlock, (byte)terrainGenerator.worldStoneBlockMeta); 
+		cg.addReplacingBlock(terrainGenerator.worldStoneBlock); 
 		cg.lavaMaxY = 0;
-		//cg.lavaBlock = CW_Main.bfLava2; 
 		cp.createChunkGen_List.add(cg); 
 		//-// 
 		 
 		WE_RavineGen rg = new WE_RavineGen();
 		rg.replaceBlocksList    .clear();
-		rg.replaceBlocksMetaList.clear();
-		rg.addReplacingBlock(MarsBlocks.marsBlock, (byte)9);
-		rg.addReplacingBlock(MarsBlocks.marsBlock, (byte)6);
-		rg.addReplacingBlock(MarsBlocks.marsBlock, (byte)5);
-		rg.addReplacingBlock(Blocks.PACKED_ICE, (byte)0);
-		rg.lavaBlock = Blocks.AIR;
+		rg.addReplacingBlock(terrainGenerator.worldStoneBlock);
+		rg.addReplacingBlock(MarsBlocks.marsBlock.getStateFromMeta(6));
+		rg.addReplacingBlock(MarsBlocks.marsBlock.getStateFromMeta(5));
+		rg.addReplacingBlock(Blocks.PACKED_ICE.getDefaultState());
+		rg.lavaBlock = Blocks.AIR.getDefaultState();
 		rg.lavaMaxY = 0;
 		cp.createChunkGen_List.add(rg);
 		
@@ -197,8 +192,8 @@ public class WorldProviderMars_WE extends WE_WorldProvider implements IProviderF
 		
 		//WE_Biome.addBiomeToGeneration(cp, new Mars_Triangle_Mountains(-1.0D, 0.0D));
 		//WE_Biome.addBiomeToGeneration(cp, new Mars_Ravine(-1.0D, 0.0D));
-		WE_Biome.addBiomeToGeneration(cp, new Mars_Plains(-0.9D, 0.1D));
-		WE_Biome.addBiomeToGeneration(cp, new Mars_High_Plains(-0.4D, 0.7D));
+		WE_Biome.addBiomeToGeneration(cp, new Mars_Plains(-1.0D, 0.0D));
+		WE_Biome.addBiomeToGeneration(cp, new Mars_High_Plains(-0.5D, 0.5D));
 		WE_Biome.addBiomeToGeneration(cp, new Mars_Mountains(-0.0D, 1.0D));
 		
 	}

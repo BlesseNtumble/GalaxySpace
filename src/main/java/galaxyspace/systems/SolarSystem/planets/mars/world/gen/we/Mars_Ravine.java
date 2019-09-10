@@ -38,9 +38,9 @@ public class Mars_Ravine extends WE_Biome {
 		mobs.add(new Biome.SpawnListEntry(EntityEvolvedColdBlaze.class, 10, 1, 4));
 		
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();
-		standardBiomeLayers.add(MarsBlocks.marsBlock, (byte)6, MarsBlocks.marsBlock, (byte)9, -256, 0,   -4, -6,  true);
-		standardBiomeLayers.add(MarsBlocks.marsBlock, (byte)5, MarsBlocks.marsBlock, (byte)6, -256, 0,   -2, -1,  true);
-		standardBiomeLayers.add(Blocks.BEDROCK, (byte)0,                                0, 2,  0,  0, true);
+		standardBiomeLayers.add(MarsBlocks.marsBlock.getStateFromMeta(6), MarsBlocks.marsBlock.getStateFromMeta(9), -256, 0,   -4, -6,  true);
+		standardBiomeLayers.add(MarsBlocks.marsBlock.getStateFromMeta(5), MarsBlocks.marsBlock.getStateFromMeta(6), -256, 0,   -2, -1,  true);
+		standardBiomeLayers.add(Blocks.BEDROCK.getDefaultState(), 0, 2, 0, 0, true);
 		createChunkGen_InXZ_List.add(standardBiomeLayers);
 	}
 }
