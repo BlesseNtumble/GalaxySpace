@@ -3,11 +3,14 @@ package galaxyspace.systems.SolarSystem.satellites.venus.dimension;
 import java.util.List;
 import java.util.Random;
 
+import asmodeuscore.core.astronomy.dimension.world.gen.ACBiome;
 import galaxyspace.systems.SolarSystem.satellites.venus.world.gen.WorldGenVenusSS;
+import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeAdaptive;
 import micdoodle8.mods.galacticraft.api.world.ChunkProviderBase;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
 import micdoodle8.mods.galacticraft.core.world.gen.BiomeOrbit;
+import micdoodle8.mods.galacticraft.core.world.gen.ChunkProviderOrbit;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.tileentity.TileEntity;
@@ -38,7 +41,7 @@ public class ChunkProviderVenusSS extends ChunkProviderBase
 
         final Chunk var4 = new Chunk(this.world, chunkprimer, par1, par2);
 
-        final byte b = (byte) Biome.getIdForBiome( BiomeOrbit.space );
+        final byte b = (byte) Biome.getIdForBiome( ACBiome.ACSpace );
         final byte[] biomesArray = var4.getBiomeArray();
         for (int i = 0; i < biomesArray.length; ++i)
         {
@@ -48,7 +51,7 @@ public class ChunkProviderVenusSS extends ChunkProviderBase
         var4.generateSkylightMap();
         return var4;
     }
-
+    
     @Override
     public void populate(int x, int z)
     {

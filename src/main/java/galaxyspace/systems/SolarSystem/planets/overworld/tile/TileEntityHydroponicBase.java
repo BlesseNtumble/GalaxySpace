@@ -62,12 +62,6 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
     //private static Map list = new HashMap<Block, Integer>();
     private static List<SeedData> seeds = new ArrayList<SeedData>();
     
-    static {
-    	//list.put(Blocks.CARROTS, 3);
-    	//list.put(Blocks.POTATOES, 3);
-    	//list.put(Blocks.WHEAT, 7);
-    }
-    
     public TileEntityHydroponicBase()
     {
     	super("tile.hydroponic_base.name");

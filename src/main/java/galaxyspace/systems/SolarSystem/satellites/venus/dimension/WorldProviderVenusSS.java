@@ -5,6 +5,7 @@ import java.util.List;
 import asmodeuscore.core.astronomy.BodiesHelper;
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.systems.SolarSystem.SolarSystemBodies;
+import galaxyspace.systems.SolarSystem.planets.ceres.world.gen.BiomeProviderCeres;
 import galaxyspace.systems.SolarSystem.satellites.venus.dimension.sky.SkyProviderVenusSS;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.galaxies.IChildBody;
@@ -13,22 +14,30 @@ import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.IExitHeight;
 import micdoodle8.mods.galacticraft.api.world.IOrbitDimension;
 import micdoodle8.mods.galacticraft.api.world.ISolarLevel;
+import micdoodle8.mods.galacticraft.api.world.IZeroGDimension;
 import micdoodle8.mods.galacticraft.core.Constants;
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
+import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
+import micdoodle8.mods.galacticraft.core.client.SkyProviderOrbit;
+import micdoodle8.mods.galacticraft.core.dimension.GCDimensions;
+import micdoodle8.mods.galacticraft.core.dimension.WorldProviderOverworldOrbit;
 import micdoodle8.mods.galacticraft.core.dimension.WorldProviderSpaceStation;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
+import micdoodle8.mods.galacticraft.core.world.gen.ChunkProviderOrbit;
 import micdoodle8.mods.galacticraft.core.world.gen.dungeon.RoomTreasure;
 import micdoodle8.mods.galacticraft.planets.venus.VenusModule;
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
+import net.minecraft.world.biome.BiomeProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WorldProviderVenusSS extends WorldProviderSpaceStation implements IOrbitDimension, ISolarLevel, IExitHeight{
-
-	//Set<Entity> freefallingEntities = new HashSet<Entity>();
+public class WorldProviderVenusSS extends WorldProviderSpaceStation implements IZeroGDimension, IOrbitDimension, ISolarLevel, IExitHeight{
 	
 	@Override
     public DimensionType getDimensionType()
@@ -68,19 +77,19 @@ public class WorldProviderVenusSS extends WorldProviderSpaceStation implements I
                 dayColG * day + nightColG * night,
                 dayColB * day + nightColB * night);
     }
-
+    
     @Override
     public boolean hasSunset()
     {
-        return true;
+        return false;
     }
 
     @Override
     public long getDayLength()
     {
-        return 198000L;
+        return 24000L;
     }
-    
+
     @Override
     public boolean isDaytime()
     {
@@ -88,7 +97,7 @@ public class WorldProviderVenusSS extends WorldProviderSpaceStation implements I
         //TODO: adjust this according to size of planet below
         return a < 0.42F || a > 0.58F;
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public float getStarBrightness(float par1)
@@ -112,7 +121,7 @@ public class WorldProviderVenusSS extends WorldProviderSpaceStation implements I
     @Override
     public boolean isSkyColored()
     {
-        return true;
+        return false;
     }
 
     @Override
@@ -142,7 +151,7 @@ public class WorldProviderVenusSS extends WorldProviderSpaceStation implements I
     @Override
     public float getGravity()
     {
-        return BodiesHelper.calculateGravity(8.8F);
+        return 0.075F;
     }
 
     @Override
@@ -154,7 +163,7 @@ public class WorldProviderVenusSS extends WorldProviderSpaceStation implements I
     @Override
     public double getFuelUsageMultiplier()
     {
-        return 1.0D;
+        return 0.5D;
     }
 
     @Override
@@ -166,42 +175,37 @@ public class WorldProviderVenusSS extends WorldProviderSpaceStation implements I
     @Override
     public int getYCoordToTeleportToPlanet()
     {
-        return 20;
+        return 30;
     }
 
+    @Override
+    public Class<? extends IChunkGenerator> getChunkProviderClass()
+    {
+        return ChunkProviderVenusSS.class;
+    }
+    
     @Override
     public String getSaveFolder()
     {
-        return "DIM_SPACESTATION" + this.getDimension();
+        return "DIM_SPACESTATION_VENUS" + this.getDimension();
     }
 
     @Override
-	public double getSolarEnergyMultiplier()
-	{
-		double solarMultiplier = -1D;
-		if (solarMultiplier < 0D)
-		{
-			double s = this.getCelestialBody() instanceof IChildBody ? this.getSolarSizeForMoon() : this.getSolarSize();
-			solarMultiplier = s * s * s * ConfigManagerCore.spaceStationEnergyScalar;
-		}
-		return solarMultiplier;
-	}
-    
-    public float getSolarSizeForMoon()
-	{
-	    return 1.0F / ((Moon)this.getCelestialBody()).getParentPlanet().getRelativeDistanceFromCenter().unScaledDistance;
-	}
+    public double getSolarEnergyMultiplier()
+    {
+        return ConfigManagerCore.spaceStationEnergyScalar;
+    }
 
     @Override
     public double getYCoordinateToTeleport()
     {
-        return 1000;
+        return 750;
     }
 
     @Override
     public boolean canSpaceshipTierPass(int tier)
     {
-        return tier >= VenusModule.planetVenus.getTierRequirement();
+        return tier > 0;
     }
 
     @Override
@@ -209,11 +213,10 @@ public class WorldProviderVenusSS extends WorldProviderSpaceStation implements I
     {
         return 0.4F;
     }
-
+   
     @Override
     public void updateWeather()
-    {
-        //freefallingEntities.clear();
+    {        
         super.updateWeather();
     }
 
@@ -221,7 +224,7 @@ public class WorldProviderVenusSS extends WorldProviderSpaceStation implements I
     @SideOnly(Side.CLIENT)
     public void setSpinDeltaPerTick(float angle)
     {
-    	SkyProviderVenusSS skyProvider = ((SkyProviderVenusSS)this.getSkyRenderer());
+        SkyProviderOrbit skyProvider = ((SkyProviderOrbit)this.getSkyRenderer());
         if (skyProvider != null)
             skyProvider.spinDeltaPerTick = angle;
     }
@@ -230,7 +233,7 @@ public class WorldProviderVenusSS extends WorldProviderSpaceStation implements I
     @SideOnly(Side.CLIENT)
     public float getSkyRotation()
     {
-    	SkyProviderVenusSS skyProvider = ((SkyProviderVenusSS)this.getSkyRenderer());
+        SkyProviderOrbit skyProvider = ((SkyProviderOrbit)this.getSkyRenderer());
         return skyProvider.spinAngle;
     }
     
@@ -238,22 +241,11 @@ public class WorldProviderVenusSS extends WorldProviderSpaceStation implements I
     @SideOnly(Side.CLIENT)
     public void createSkyProvider()
     {
-        this.setSkyRenderer(new SkyProviderVenusSS());
+        this.setSkyRenderer(new SkyProviderOrbit(new ResourceLocation(Constants.ASSET_PREFIX, "textures/gui/celestialbodies/earth.png"), true, true));
         this.setSpinDeltaPerTick(this.getSpinManager().getSpinRate());
         
-       // if (this.getCloudRenderer() == null)
-            //this.setCloudRenderer(new CloudRenderer());
-    }
-    
-    @Override
-    public IRenderHandler getCloudRenderer(){
-        return super.getCloudRenderer();
-    }
-    
-    @SideOnly(Side.CLIENT)
-    public float getCloudHeight()
-    {
-        return 0;
+        if (this.getCloudRenderer() == null)
+            this.setCloudRenderer(new CloudRenderer());
     }
     
     @Override
@@ -273,4 +265,19 @@ public class WorldProviderVenusSS extends WorldProviderSpaceStation implements I
     {
         return null;
     }
+    
+    @Override
+    public Class<? extends BiomeProvider> getBiomeProviderClass()
+    {
+    	return BiomeProviderCeres.class;
+    }
+
+	@Override
+	public boolean inFreefall(Entity entity) {
+		return true;
+	}
+
+	@Override
+	public void setInFreefall(Entity entity) {		
+	}
 }

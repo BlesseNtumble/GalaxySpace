@@ -13,6 +13,8 @@ import asmodeuscore.core.handler.LightningStormHandler;
 import galaxyspace.GalaxySpace;
 import galaxyspace.api.item.IJetpackArmor;
 import galaxyspace.core.configs.GSConfigCore;
+import galaxyspace.core.handler.capabilities.GSStatsCapability;
+import galaxyspace.core.handler.capabilities.IStatsCapability;
 import galaxyspace.core.prefab.items.rockets.ItemTier4Rocket;
 import galaxyspace.core.prefab.items.rockets.ItemTier5Rocket;
 import galaxyspace.core.prefab.items.rockets.ItemTier6Rocket;
@@ -23,6 +25,8 @@ import galaxyspace.systems.SolarSystem.moons.titan.dimension.WorldProviderTitan;
 import galaxyspace.systems.SolarSystem.planets.kuiperbelt.dimension.WorldProviderKuiperBelt;
 import galaxyspace.systems.SolarSystem.planets.mars.dimension.WorldProviderMars_WE;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemThermalPaddingBase;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemTerraManipulator;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitationModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityPlanetShield;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityRadiationStabiliser;
@@ -52,7 +56,6 @@ import micdoodle8.mods.galacticraft.planets.mars.dimension.WorldProviderMars;
 import micdoodle8.mods.galacticraft.planets.mars.items.ItemTier2Rocket;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -76,10 +79,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
@@ -97,24 +98,33 @@ public class GSEventHandler {
 		
 		block_to_change.add(new BlockToChange(Blocks.WATER.getDefaultState(), Blocks.AIR.getDefaultState(), Blocks.ICE.getDefaultState(), 0.0F, true).setParticle("waterbubbles"));
 	}
-	
+	/*
 	@SubscribeEvent
     public void onAttachCapability(AttachCapabilitiesEvent<Entity> event)
     {
-      /*  if (event.getObject() instanceof EntityPlayerMP)
-        {
+        if (event.getObject() instanceof EntityPlayerMP)
+        {        	
             event.addCapability(GSCapabilityStatsHandler.GS_PLAYER_PROPERTIES, new GSCapabilityProviderStats((EntityPlayerMP) event.getObject()));
-        }*/
+        }
     }
 
 	@SubscribeEvent
     public void onPlayerCloned(PlayerEvent.Clone event)
     {
-		/*IStatsCapability oldStats = GSStatsCapability.get(event.getOriginal());
+		IStatsCapability oldStats = GSStatsCapability.get(event.getOriginal());
 		IStatsCapability newStats = GSStatsCapability.get(event.getEntityPlayer());
         newStats.copyFrom(oldStats, !event.isWasDeath()|| event.getOriginal().world.getGameRules().getBoolean("keepInventory"));
-   */
+   
 	}
+	
+	@SubscribeEvent
+	public void onPlayerLogin(PlayerLoggedInEvent event) {
+		EntityPlayerMP player = (EntityPlayerMP) event.player;
+		
+		IStatsCapability gs_stats = GSStatsCapability.get(player);
+		
+		GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_UPDATE_RESEARCHES, player.world, new Object[] { gs_stats.getKnowledgeResearch()}), player);
+	}*/
 	
 	@SubscribeEvent
 	public void onFall(LivingFallEvent e) {
@@ -162,7 +172,6 @@ public class GSEventHandler {
 			}				
 		}
 	}
-	
 	
 	@SubscribeEvent
 	public void onInteract(PlayerInteractEvent.RightClickBlock event)
@@ -333,14 +342,19 @@ public class GSEventHandler {
 		if (living instanceof EntityPlayerMP)
 		{
 			EntityPlayerMP player = (EntityPlayerMP)living;			
-			final GCPlayerStats stats = GCPlayerStats.get(player);			
+			final GCPlayerStats stats = GCPlayerStats.get(player);				
+			IStatsCapability gs_stats = GSStatsCapability.get(player);
 			
 			LightningStormHandler.spawnLightning(player);
 								
 			this.updateSchematics(player, stats);
-			//this.changeBlocks(world, player);
 			//this.throwMeteors(player);
 
+			
+			//if(gs_stats.getKnowledgeResearch()[0] > 0)
+			//{
+			//GalaxySpace.debug(gs_stats.getKnowledgeResearch()[0] + "");
+			//}
 			
 			if(world.rand.nextInt(50) <= 10 && !this.getProtectArmor(player) && world.provider instanceof WorldProviderTitan && world.isRaining() && world.canBlockSeeSky(player.getPosition()))
 			{
@@ -375,6 +389,18 @@ public class GSEventHandler {
 						}
 						break;
 					}
+				}
+			}
+			
+			for(ItemStack stack : stats.getExtendedInventory().stacks)
+			{
+				if(!player.capabilities.isCreativeMode && stack.getItem() instanceof ItemThermalPaddingBase)
+				{
+					ItemThermalPaddingBase item = (ItemThermalPaddingBase) stack.getItem();
+					/*
+					if(item.isFreeze() && !player.world.isDaytime())
+						stats.setThermalLevelNormalising(false);
+						stats.setThermalLevel(-22);*/
 				}
 			}
 			
@@ -419,7 +445,7 @@ public class GSEventHandler {
 	           	}
 	        }
 
-	        stats.setLastShieldControllerInSlot(stats.getShieldControllerInSlot());
+	        //stats.setLastShieldControllerInSlot(stats.getShieldControllerInSlot());
 	       
 	       
 			ItemStack stack = player.inventory.armorInventory.get(3);
@@ -773,9 +799,9 @@ public class GSEventHandler {
 	    			{
 	    				int x, y, z;
 	    				double motX, motZ;
-	    				x = world.rand.nextInt(1) - 8;
+	    				x = world.rand.nextInt(1) - 4;
 	    				y = world.rand.nextInt(20) + 200;
-	    				z = world.rand.nextInt(1) - 8;
+	    				z = world.rand.nextInt(1) - 4;
 	    				motX = world.rand.nextDouble() * 1;
 	    				motZ = world.rand.nextDouble() * 1;
 
