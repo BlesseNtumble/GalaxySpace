@@ -54,6 +54,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockOx
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockPanelController;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockPlanetShield;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockRadiationStabiliser;
+import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockResearchTable;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockRocketAssembler;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockSingleSolarPanel;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockSolarWindPanel;
@@ -108,6 +109,7 @@ public class GSBlocks {
 	public static final Block SOLARWIND_PANEL = new BlockSolarWindPanel();
 	public static final Block ADVANCED_ELECTRIC_COMPRESSOR = new BlockAdvElectricCompressor();
 	public static final Block ADVANCED_CIRCUIT_FABRICATOR = new BlockAdvCircuitFabricator();
+	public static final Block RESEARCH_TABLE = new BlockResearchTable();
 	
 	public static final Block FAKE_BLOCK = new GSBlockMulti();
 	
@@ -167,6 +169,7 @@ public class GSBlocks {
 		registerBlock(ADVANCED_ELECTRIC_COMPRESSOR, GSItemBlockDesc.class);
 		registerBlock(ADVANCED_CIRCUIT_FABRICATOR, GSItemBlockDesc.class);
 		registerBlock(PLANET_SHIELD, GSItemBlockDesc.class);
+		registerBlock(RESEARCH_TABLE, GSItemBlockDesc.class);
 		
 		registerBlock(DUNGEON_BLOCKS, ItemBlockDungeonBlocks.class);
 		registerBlock(TREASURE_CHEST_TIER_4, GSItemBlockDesc.class);		

@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import galaxyspace.GalaxySpace;
 import galaxyspace.api.item.IModificationItem;
 import galaxyspace.api.tile.ITileEffects;
 import galaxyspace.core.events.GSEventHandler;
+import galaxyspace.core.handler.capabilities.GSStatsCapability;
+import galaxyspace.core.handler.capabilities.IStatsCapability;
 import galaxyspace.core.prefab.items.modules.ItemModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemSpaceSuit;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitationModule;
@@ -52,8 +55,9 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         S_CHANGE_FLIGHT_STATE(Side.SERVER, Boolean.class),
         S_REVERSE_SEPATATOR(Side.SERVER, BlockVec3.class),   
         S_UPDATE_NBT_ITEM_ON_GUI(Side.SERVER, BlockVec3.class, String.class, Boolean.class),
-        S_UPDATE_NBT_ITEM_IN_ARMOR(Side.SERVER, Integer.class, String.class);
+        S_UPDATE_NBT_ITEM_IN_ARMOR(Side.SERVER, Integer.class, String.class), 	
         //CLIENT
+    	C_UPDATE_RESEARCHES(Side.CLIENT, Integer[].class);
         
         
         
@@ -156,10 +160,13 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
     	EntityPlayerSP playerBaseClient = null;
         GCPlayerStatsClient stats = null;
 
+		IStatsCapability gs_stats = null;
+
         if (player instanceof EntityPlayerSP)
         {
             playerBaseClient = (EntityPlayerSP) player;
             stats = GCPlayerStatsClient.get(playerBaseClient);
+            gs_stats = GSStatsCapability.get(player);
         }
         /*else
         {/*
@@ -170,6 +177,15 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         }*/
         switch (this.type)
         {       		
+        	case C_UPDATE_RESEARCHES:
+        		Integer[] id = (Integer[]) this.data.get(0);
+        		if(gs_stats != null) 
+        		{
+        			for(int i = 0; i < id.length; i++)
+        				gs_stats.setKnowledgeReserach(i, id[i]);
+        			GalaxySpace.debug("Res: " + gs_stats.getKnowledgeResearch());
+        		}
+        		break;
         	default:
         		break;
         }

@@ -16,6 +16,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiModificationTabl
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiOxygenStorageModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiPlanetShield;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiRadiationStabiliser;
+import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiResearchTable;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiRocketAssembler;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiUniversalRecycler;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiWindGenerator;
@@ -33,6 +34,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerModi
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerOxygenStorageModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerPlanetShield;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerRadiationStabiliser;
+import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerResearchTable;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerRocketAssembler;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerUniversalRecycler;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerWindGenerator;
@@ -50,6 +52,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityModernSt
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityModificationTable;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityPlanetShield;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityRadiationStabiliser;
+import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityResearchTable;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityRocketAssembler;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityUniversalRecycler;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityWindGenerator;
@@ -144,6 +147,9 @@ public class GSGuiHandler implements IGuiHandler{
         	else if (tile instanceof TileEntityAdvCircuitFabricator)
         		return new ContainerAdvCircuitFabricator(player.inventory, (TileEntityAdvCircuitFabricator) tile);
         	
+        	else if (tile instanceof TileEntityResearchTable)
+        		return new ContainerResearchTable(player.inventory, (TileEntityResearchTable) tile);
+        	
         }
        
         
@@ -222,6 +228,9 @@ public class GSGuiHandler implements IGuiHandler{
         	
         	else if (tile instanceof TileEntityAdvCircuitFabricator)            
         		return new GuiAdvCircuitFabricator(player.inventory, (TileEntityAdvCircuitFabricator) tile);
+        	
+        	else if (tile instanceof TileEntityResearchTable)            
+        		return new GuiResearchTable(player.inventory, (TileEntityResearchTable) tile);
         	
         }
         return null;

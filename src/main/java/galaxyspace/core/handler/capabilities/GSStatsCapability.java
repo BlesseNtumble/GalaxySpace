@@ -12,9 +12,9 @@ import net.minecraft.nbt.NBTTagCompound;
 public class GSStatsCapability implements IStatsCapability {
 	public WeakReference<EntityPlayerMP> player;
 	public int buildFlags = 0;
-	
-	public Engine_Type rocket_engine;
 
+	private int[] know_res = new int[256];
+	
 	public static IStatsCapability get(Entity entity)
     {
         return entity.getCapability(GSCapabilityStatsHandler.GS_STATS_CAPABILITY, null);
@@ -22,14 +22,14 @@ public class GSStatsCapability implements IStatsCapability {
 	
 	@Override
 	public void saveNBTData(NBTTagCompound nbt) {
-		nbt.setInteger("rocket_engine", this.rocket_engine.getID());
+		nbt.setIntArray("gs_knowledge_research", know_res);		
 	}
 
 	@Override
 	public void loadNBTData(NBTTagCompound nbt) {
 		try {
-			
-			this.rocket_engine = Engine_Type.byID(nbt.getInteger("rocket_engine"));
+			this.know_res = nbt.getIntArray("gs_knowledge_research");
+			//this.rocket_engine = Engine_Type.byID(nbt.getInteger("rocket_engine"));
 		} catch (Exception e) {
 			GCLog.severe("Found error in saved Galaxy Space player data for " + player.get().getGameProfile().getName() + " - this should fix itself next relog.");
 			e.printStackTrace();
@@ -40,8 +40,8 @@ public class GSStatsCapability implements IStatsCapability {
 
 	@Override
 	public void copyFrom(IStatsCapability oldData, boolean keepInv) {
-		//this.radiationLevel = oldData.getRadiationLevel();
-		this.rocket_engine = oldData.getEngineType();
+		if(oldData.getKnowledgeResearch() != null)
+			this.know_res = oldData.getKnowledgeResearch();
 	}
 
 	@Override
@@ -55,12 +55,17 @@ public class GSStatsCapability implements IStatsCapability {
 	}
 
 	@Override
-	public void setEngineType(Engine_Type type) {
-		this.rocket_engine = type;
+	public int[] getKnowledgeResearch() {
+		return know_res;
 	}
 
 	@Override
-	public Engine_Type getEngineType() {
-		return this.rocket_engine;
+	public void setKnowledgeReseraches(int[] k) {		
+		know_res = k;
+	}
+	
+	@Override
+	public void setKnowledgeReserach(int id, int k) {
+		know_res[id] = k;
 	}
 }

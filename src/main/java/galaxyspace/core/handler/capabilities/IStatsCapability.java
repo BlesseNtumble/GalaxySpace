@@ -21,7 +21,8 @@ public interface IStatsCapability {
 	//double getRadiationLevel();
 
 	//void setRadiationLevel(double d);
-	
-	void setEngineType(Engine_Type type);
-	Engine_Type getEngineType();
+
+	int[] getKnowledgeResearch();
+	void setKnowledgeReseraches(int[] k);
+	void setKnowledgeReserach(int id, int k);
 }
