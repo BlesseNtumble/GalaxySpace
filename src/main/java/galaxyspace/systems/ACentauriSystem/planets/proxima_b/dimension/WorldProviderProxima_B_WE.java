@@ -236,27 +236,23 @@ public class WorldProviderProxima_B_WE extends WE_WorldProvider implements IProv
 		WE_Biome.setBiomeMap(cp, 1.2D, 4, 1400.0D, 0.675D);	
 		
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
-		terrainGenerator.worldStoneBlock = ACBlocks.PROXIMA_B_BLOCKS; 
-		terrainGenerator.worldStoneBlockMeta = 2;
+		terrainGenerator.worldStoneBlock = ACBlocks.PROXIMA_B_BLOCKS.getStateFromMeta(2);
 		terrainGenerator.worldSeaGen = true;
-		terrainGenerator.worldSeaGenBlock = Blocks.WATER;
+		terrainGenerator.worldSeaGenBlock = Blocks.WATER.getDefaultState();
 		terrainGenerator.worldSeaGenMaxY = 64;
 		cp.createChunkGen_List.add(terrainGenerator);
 		
 		//-// 
 		WE_CaveGen cg = new WE_CaveGen(); 
 		cg.replaceBlocksList .clear(); 
-		cg.replaceBlocksMetaList.clear(); 
-		cg.addReplacingBlock(terrainGenerator.worldStoneBlock, (byte)terrainGenerator.worldStoneBlockMeta); 
-		//cg.lavaBlock = CW_Main.bfLava2; 
+		cg.addReplacingBlock(terrainGenerator.worldStoneBlock); 
 		cp.createChunkGen_List.add(cg); 
 		//-// 
 		 
 		WE_RavineGen rg = new WE_RavineGen();
 		rg.replaceBlocksList    .clear();
-		rg.replaceBlocksMetaList.clear();
-		rg.addReplacingBlock(ACBlocks.PROXIMA_B_BLOCKS, (byte)2);
-		rg.lavaBlock = Blocks.LAVA;
+		rg.addReplacingBlock(terrainGenerator.worldStoneBlock);
+		rg.lavaBlock = Blocks.LAVA.getDefaultState();
 		cp.createChunkGen_List.add(rg);
 		
 		cp.biomesList.clear();
@@ -362,7 +358,7 @@ public class WorldProviderProxima_B_WE extends WE_WorldProvider implements IProv
 
 	@Override
 	public boolean enableAdvancedThermalLevel() {
-		return false;
+		return true;
 	}
 
 }

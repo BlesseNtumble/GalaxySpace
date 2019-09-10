@@ -153,31 +153,25 @@ public class WorldProviderEnceladus_WE extends WE_WorldProvider implements IProv
 		WE_Biome.setBiomeMap(cp, 1.2D, 4, 1200.0D, 5.0D);	
 		
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
-		terrainGenerator.worldStoneBlock = GSBlocks.ENCELADUS_BLOCKS; 
-		terrainGenerator.worldStoneBlockMeta = 1;
+		terrainGenerator.worldStoneBlock = GSBlocks.ENCELADUS_BLOCKS.getStateFromMeta(1);
 		terrainGenerator.worldSeaGen = false;
-		terrainGenerator.worldSeaGenBlock = GSBlocks.ENCELADUS_BLOCKS;
-		terrainGenerator.worldSeaGenBlockMeta = 0;
 		terrainGenerator.worldSeaGenMaxY = 64;
 		cp.createChunkGen_List.add(terrainGenerator);
 		
 		//-// 
 		WE_CaveGen cg = new WE_CaveGen(); 
 		cg.replaceBlocksList .clear(); 
-		cg.replaceBlocksMetaList.clear(); 
-		cg.addReplacingBlock(terrainGenerator.worldStoneBlock, (byte)terrainGenerator.worldStoneBlockMeta); 
+		cg.addReplacingBlock(terrainGenerator.worldStoneBlock); 
 		cg.lavaMaxY = 0;
-		//cg.lavaBlock = CW_Main.bfLava2; 
 		cp.createChunkGen_List.add(cg); 
 		//-// 
 		 
 		WE_RavineGen rg = new WE_RavineGen();
 		rg.replaceBlocksList    .clear();
-		rg.replaceBlocksMetaList.clear();
-		rg.addReplacingBlock(GSBlocks.EUROPA_BLOCKS, (byte)0);
-		rg.addReplacingBlock(GSBlocks.EUROPA_BLOCKS, (byte)1);
-		rg.addReplacingBlock(Blocks.PACKED_ICE, (byte)0);
-		rg.lavaBlock = Blocks.AIR;
+		rg.addReplacingBlock(GSBlocks.EUROPA_BLOCKS.getStateFromMeta(0));
+		rg.addReplacingBlock(GSBlocks.EUROPA_BLOCKS.getStateFromMeta(1));
+		rg.addReplacingBlock(Blocks.PACKED_ICE.getDefaultState());
+		rg.lavaBlock = Blocks.AIR.getDefaultState();
 		rg.lavaMaxY = 0;
 		cp.createChunkGen_List.add(rg);
 		

@@ -142,25 +142,22 @@ public class WorldProviderIo_WE extends WE_WorldProvider implements IProviderFre
 		WE_Biome.setBiomeMap(cp, 1.2D, 6, 850.0D, 0.275D);	
 		
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
-		terrainGenerator.worldStoneBlock = GSBlocks.IO_BLOCKS; 
-		terrainGenerator.worldStoneBlockMeta = 1;
+		terrainGenerator.worldStoneBlock = GSBlocks.IO_BLOCKS.getStateFromMeta(1); 
 		terrainGenerator.worldSeaGen = false;
 		cp.createChunkGen_List.add(terrainGenerator);
 		
 		//-// 
 		WE_CaveGen cg = new WE_CaveGen(); 
 		cg.replaceBlocksList .clear(); 
-		cg.replaceBlocksMetaList.clear(); 
-		cg.addReplacingBlock(terrainGenerator.worldStoneBlock, (byte)terrainGenerator.worldStoneBlockMeta); 
-		cg.lavaBlock = Blocks.LAVA; 
+		cg.addReplacingBlock(terrainGenerator.worldStoneBlock); 
+		cg.lavaBlock = Blocks.LAVA.getDefaultState(); 
 		cp.createChunkGen_List.add(cg); 
 		//-// 
 		 
 		WE_RavineGen rg = new WE_RavineGen();
 		rg.replaceBlocksList    .clear();
-		rg.replaceBlocksMetaList.clear();
-		rg.addReplacingBlock(GSBlocks.IO_BLOCKS, (byte)1);
-		rg.lavaBlock = Blocks.LAVA;
+		rg.addReplacingBlock(terrainGenerator.worldStoneBlock);
+		rg.lavaBlock = Blocks.LAVA.getDefaultState();
 		cp.createChunkGen_List.add(rg);
 		
 		WE_Biome.addBiomeToGeneration(cp, new Io_Plains());

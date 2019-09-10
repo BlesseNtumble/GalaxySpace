@@ -37,10 +37,10 @@ public class Barnarda_C_SnowPlains extends WE_Biome {
 		this.mobs.add(new Biome.SpawnListEntry(EntityEnderman.class, 10, 1, 4));
 		
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();
-		standardBiomeLayers.add(BRBlocks.BARNARDA_C_BLOCKS, (byte)0, BRBlocks.BARNARDA_C_BLOCKS, (byte)1, -256, 0,   -5, -1,  true);
-		standardBiomeLayers.add(BRBlocks.BARNARDA_C_GRASS, (byte)0, BRBlocks.BARNARDA_C_BLOCKS, (byte)0, -256, 0, -256,  0, false);
-		standardBiomeLayers.add(Blocks.SNOW_LAYER, (byte)0, BRBlocks.BARNARDA_C_GRASS, (byte)0, -256, 0, -1,  0, false);
-		standardBiomeLayers.add(Blocks.BEDROCK, (byte)0,                      0, 2,  0,  0, true);
+		standardBiomeLayers.add(BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(0), BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(1), -256, 0,   -5, -1,  true);
+		standardBiomeLayers.add(BRBlocks.BARNARDA_C_GRASS.getStateFromMeta(0), BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(0), -256, 0, -256,  0, false);
+		standardBiomeLayers.add(Blocks.SNOW_LAYER.getDefaultState(), BRBlocks.BARNARDA_C_GRASS.getStateFromMeta(0), -256, 0, -1,  0, false);
+		standardBiomeLayers.add(Blocks.BEDROCK.getDefaultState(), 0, 2, 0, 0, true);
 		createChunkGen_InXZ_List.add(standardBiomeLayers);
 	}
 }
