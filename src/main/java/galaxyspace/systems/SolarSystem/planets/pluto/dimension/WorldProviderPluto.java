@@ -209,7 +209,7 @@ public class WorldProviderPluto extends WorldProviderAdvancedSpace implements IP
 
 	@Override
 	public boolean enableAdvancedThermalLevel() {
-		return false;
+		return true;
 	}
 
 }

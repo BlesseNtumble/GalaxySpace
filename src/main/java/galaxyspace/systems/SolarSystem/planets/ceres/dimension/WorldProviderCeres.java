@@ -65,28 +65,17 @@ public class WorldProviderCeres extends WorldProviderAdvancedSpace implements IP
     @Override
     public boolean canRainOrSnow() {
         return false;
-    }
-
- 
+    } 
 
     @Override
-
     public CelestialBody getCelestialBody() {
-
         return SolarSystemBodies.planetCeres;
-
     }
 
- 
-
-     //Created later
-
+    //Created later
     @Override
-
     public Class<? extends IChunkGenerator> getChunkProviderClass() {
-
         return ChunkProviderCeres.class;
-
     }
     
     @Override 
@@ -189,7 +178,7 @@ public class WorldProviderCeres extends WorldProviderAdvancedSpace implements IP
 
 	@Override
 	public boolean enableAdvancedThermalLevel() {
-		return false;
+		return true;
 	}
 
 }

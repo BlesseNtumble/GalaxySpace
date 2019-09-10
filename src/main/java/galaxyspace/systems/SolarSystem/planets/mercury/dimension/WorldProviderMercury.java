@@ -236,8 +236,18 @@ public class WorldProviderMercury extends WorldProviderAdvancedSpace implements 
 
 	@Override
 	public boolean enableAdvancedThermalLevel() {
-		return false;
+		return true;
 	}
-
-
+	
+	@Override
+	protected float getThermalValueMod()
+	{
+		return 1.17F;
+	}
+	
+	@Override
+	protected float setAdditionThermalValue()
+	{
+		return 3.5F;
+	}
 }
