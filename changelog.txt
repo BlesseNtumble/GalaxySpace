@@ -1,31 +1,23 @@
 ///Changelog///
 #ru
-r.1. Исправлен краш из-за слотов в Ракетном Цеху.
-r.2. Исправлен дюп вещей через быстрый клик в Модификационном столе.
-r.3. Исправлен краш при одевании брони на стойку или другие энтити.
-r.4. Исправлен краш при получении достижений.
-r.5. Исправлен конфиг для сторонней брони.
-r.6. Небольшая корректировка Гравитационного Механизма.
-r.7. Исправлено отсутствие бедрока на уровне 0 на Титане и Проксиме Б.
-r.8. Исправлен краш при получении блока на СКМ.
-r.9. Добавлен конфиг на отключение генерации Древнего Амулета.
-r.10. Небольшой фикс крафта ракеты 2 уровня.
-r.11. Фикс высокого шага в ботинках костюма.
-r.12. Добавлена интеграция с MineTweaker3 для Assembler, Recycler, Hydroponic Farm.
-r.13. Backport галактической карты с 1.12.2 версии.
-r.14. Исправлен модуль высокого прыжка.
+r.1. Фикс кол-во дропа алмазов с Венерианской руды.
+r.2. Фикс краша из-за неправильного рецепта в Жидкостном Сепараторе.
+r.3. Улучшенное небо на Земле теперь по стандарту выключено в новом конфиге.
+r.4. Переделана логика Портативного Ядерного Реактора.
+r.5. Убраны Урановые слитки. Добавлены Урановые стержни.
+r.6. Переписаны модули для костюма. Добавлены новые модули.
+r.7. Изменено GUI Модификационного стола (backport from 1.12.2)
+r.8. Добавлен конфиг на отключение изображений на небе.
+r.9. Исправлена ЕРР кислородная канистра.
+r.10. Добавлена канистра Обогащенного топлива.
 #en
-e.1. Fixed crash due to slots in the Rocket Assembler.
-e.2. Fixed a dupe of things through a quick click in the Modification table
-e.3. Fixed crash when dressing armor on armor stand or etc entity.
-e.4. Fixed crash when getting achievements.
-e.5. Fixed config for third-party armor.
-e.6. Fixed Gravity Module.
-e.7. Fixed the absence of bedrock at level 0 on Titan and Proxima B.
-e.8. Fixed crash when getting block on Mouse 3.
-e.9. Added a config to disable the generation of the Ancient Amulet.
-e.10. A small fix crafting rocket tier 2.
-e.11. High step fix in suit boots.
-e.12. Added integration with MineTweaker3 for Assembler, Recycler, Hydroponic Farm.
-e.13. Backport galaxy map with version 1.12.2.
-e.14. Fixed high jump module.
+e.1. Fixed number of drop of diamonds from Venus ore.
+e.2. Fixed crash due to incorrect recipe in Liquid Separator.
+e.3. Improved sky on Earth is now off by standard in the new config.
+e.4. Reworked logic of Portable Nuclear Reactor.
+e.5. Uranium ingots removed. Uranium rods added.
+e.6. The modules for the spacesuit are rewritten. New modules added.
+e.7. Modified GUI Modification table (backport from 1.12.2)
+e.8. Added config to disable images in the sky.
+e.9. Fixed EPP oxygen canister.
+e.10. Enriched fuel canister added.
