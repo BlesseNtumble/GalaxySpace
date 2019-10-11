@@ -2,42 +2,30 @@ package galaxyspace.systems.SolarSystem.satellites.venus.dimension;
 
 import java.util.List;
 
-import asmodeuscore.core.astronomy.BodiesHelper;
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.systems.SolarSystem.SolarSystemBodies;
 import galaxyspace.systems.SolarSystem.planets.ceres.world.gen.BiomeProviderCeres;
 import galaxyspace.systems.SolarSystem.satellites.venus.dimension.sky.SkyProviderVenusSS;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.galaxies.IChildBody;
-import micdoodle8.mods.galacticraft.api.galaxies.Moon;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.IExitHeight;
 import micdoodle8.mods.galacticraft.api.world.IOrbitDimension;
 import micdoodle8.mods.galacticraft.api.world.ISolarLevel;
-import micdoodle8.mods.galacticraft.api.world.IZeroGDimension;
 import micdoodle8.mods.galacticraft.core.Constants;
-import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
-import micdoodle8.mods.galacticraft.core.client.SkyProviderOrbit;
-import micdoodle8.mods.galacticraft.core.dimension.GCDimensions;
-import micdoodle8.mods.galacticraft.core.dimension.WorldProviderOverworldOrbit;
 import micdoodle8.mods.galacticraft.core.dimension.WorldProviderSpaceStation;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
-import micdoodle8.mods.galacticraft.core.world.gen.ChunkProviderOrbit;
 import micdoodle8.mods.galacticraft.core.world.gen.dungeon.RoomTreasure;
 import micdoodle8.mods.galacticraft.planets.venus.VenusModule;
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WorldProviderVenusSS extends WorldProviderSpaceStation implements IZeroGDimension, IOrbitDimension, ISolarLevel, IExitHeight{
+public class WorldProviderVenusSS extends WorldProviderSpaceStation implements IOrbitDimension, ISolarLevel, IExitHeight{
 	
 	@Override
     public DimensionType getDimensionType()
@@ -151,7 +139,7 @@ public class WorldProviderVenusSS extends WorldProviderSpaceStation implements I
     @Override
     public float getGravity()
     {
-        return 0.075F;
+        return 0.068F;
     }
 
     @Override
@@ -199,7 +187,7 @@ public class WorldProviderVenusSS extends WorldProviderSpaceStation implements I
     @Override
     public double getYCoordinateToTeleport()
     {
-        return 750;
+        return 1000;
     }
 
     @Override
@@ -224,7 +212,7 @@ public class WorldProviderVenusSS extends WorldProviderSpaceStation implements I
     @SideOnly(Side.CLIENT)
     public void setSpinDeltaPerTick(float angle)
     {
-        SkyProviderOrbit skyProvider = ((SkyProviderOrbit)this.getSkyRenderer());
+    	SkyProviderVenusSS skyProvider = ((SkyProviderVenusSS)this.getSkyRenderer());
         if (skyProvider != null)
             skyProvider.spinDeltaPerTick = angle;
     }
@@ -233,7 +221,7 @@ public class WorldProviderVenusSS extends WorldProviderSpaceStation implements I
     @SideOnly(Side.CLIENT)
     public float getSkyRotation()
     {
-        SkyProviderOrbit skyProvider = ((SkyProviderOrbit)this.getSkyRenderer());
+    	SkyProviderVenusSS skyProvider = ((SkyProviderVenusSS)this.getSkyRenderer());
         return skyProvider.spinAngle;
     }
     
@@ -241,11 +229,11 @@ public class WorldProviderVenusSS extends WorldProviderSpaceStation implements I
     @SideOnly(Side.CLIENT)
     public void createSkyProvider()
     {
-        this.setSkyRenderer(new SkyProviderOrbit(new ResourceLocation(Constants.ASSET_PREFIX, "textures/gui/celestialbodies/earth.png"), true, true));
+        this.setSkyRenderer(new SkyProviderVenusSS());
         this.setSpinDeltaPerTick(this.getSpinManager().getSpinRate());
         
         if (this.getCloudRenderer() == null)
-            this.setCloudRenderer(new CloudRenderer());
+            this.setCloudRenderer(super.getCloudRenderer());
     }
     
     @Override
@@ -271,13 +259,12 @@ public class WorldProviderVenusSS extends WorldProviderSpaceStation implements I
     {
     	return BiomeProviderCeres.class;
     }
+    
+    @Override 
+    @SideOnly(Side.CLIENT)
+    public float getCloudHeight()
+    {
+        return 10.0F;
+    }
 
-	@Override
-	public boolean inFreefall(Entity entity) {
-		return true;
-	}
-
-	@Override
-	public void setInFreefall(Entity entity) {		
-	}
 }

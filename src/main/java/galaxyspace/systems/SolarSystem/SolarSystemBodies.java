@@ -258,10 +258,12 @@ public class SolarSystemBodies implements IBodies{
     	// TODO Rings ---------------------------------
 		VenusModule.planetVenus.setRelativeDistanceFromCenter(new CelestialBody.ScalableDistance(0.745F, 0.74F)).setRingColorRGB(0.0F, 0.4F, 0.9F);
 		GalacticraftCore.satelliteSpaceStation.setRingColorRGB(0.0F, 0.4F, 0.9F);	
-		GalacticraftCore.moonMoon.setRingColorRGB(0.0F, 0.4F, 0.9F);
+		GalacticraftCore.moonMoon.setRingColorRGB(0.0F, 0.4F, 0.9F);	
 		MarsModule.planetMars.setRingColorRGB(0.0F, 0.4F, 0.9F);
-		MarsModule.planetMars.setDimensionInfo(ConfigManagerMars.dimensionIDMars, WorldProviderMars_WE.class, true);
-		MarsModule.planetMars.setAtmosphere(new AtmosphereInfo(false, false, false, -3.0F, 1.0F, 0.1F));		
+		if(GSConfigCore.enableWorldEngine) {
+			MarsModule.planetMars.setDimensionInfo(ConfigManagerMars.dimensionIDMars, WorldProviderMars_WE.class, true);
+			MarsModule.planetMars.setAtmosphere(new AtmosphereInfo(false, false, false, -3.0F, 1.0F, 0.1F));	
+		}
 		AsteroidsModule.planetAsteroids.setRelativeDistanceFromCenter(new CelestialBody.ScalableDistance(1.75F, 1.75F));
 				
 		// --------------------------------------------
@@ -462,7 +464,8 @@ public class SolarSystemBodies implements IBodies{
 	
 		GalacticraftRegistry.registerTeleportType(WorldProviderMercury.class, new TeleportTypeMercury());	
 		
-		GalacticraftRegistry.registerTeleportType(WorldProviderMars_WE.class, new TeleportTypeMars());
+		if(GSConfigCore.enableWorldEngine)
+			GalacticraftRegistry.registerTeleportType(WorldProviderMars_WE.class, new TeleportTypeMars());
 		
 		
 		GalacticraftRegistry.registerTeleportType(WorldProviderCeres.class, new TeleportTypeCeres());
