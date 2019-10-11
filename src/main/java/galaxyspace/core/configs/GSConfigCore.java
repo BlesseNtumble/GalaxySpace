@@ -5,8 +5,6 @@ import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 import org.apache.logging.log4j.Level;
 import org.lwjgl.input.Keyboard;
@@ -54,6 +52,7 @@ public class GSConfigCore
     public static boolean enableRadiationSystem;
     public static boolean enablePressureSystem;
     public static boolean enableAdvancedRocketCraft;
+    public static boolean enableAdvancedThermalSystem;
     
     public static String spacesuit_pos = "center";
     public static boolean spacesuit_small_button;
@@ -106,7 +105,13 @@ public class GSConfigCore
             prop.setComment("Enable/Disable advanced craft for rocket tier 2-3.");
             prop.setLanguageKey("gc.configgui.enableAdvancedRocketCraft").setRequiresMcRestart(true);
             enableAdvancedRocketCraft = prop.getBoolean(true);
-            propOrder.add(prop.getName());      
+            propOrder.add(prop.getName());   
+            
+            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableAdvancedThermalSystem", true);
+            prop.setComment("Enable/Disable advanced thermal system on celestial bodies.");
+            prop.setLanguageKey("gc.configgui.enableAdvancedThermalSystem").setRequiresMcRestart(true);
+            enableAdvancedThermalSystem = prop.getBoolean(true);
+            propOrder.add(prop.getName());    
             
             prop = config.get(Constants.CONFIG_CATEGORY_WORLDGEN, "enableOverworldOres", true);
             prop.setComment("Enable/Disable Generation Ores on Overworld.");
@@ -259,7 +264,7 @@ public class GSConfigCore
             		});
             
             prop.setComment("List armor with protect radiation and pressure. Format: 'modid:item' ");
-            prop.setLanguageKey("gc.configgui.tradeIDs").setRequiresMcRestart(true);
+            prop.setLanguageKey("gc.configgui.armorIDs").setRequiresMcRestart(true);
             radiation_armor = prop.getStringList();
             propOrder.add(prop.getName());
                         

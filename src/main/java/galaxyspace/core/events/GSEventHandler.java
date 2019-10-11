@@ -12,6 +12,7 @@ import asmodeuscore.core.event.RadiationEvent;
 import asmodeuscore.core.handler.LightningStormHandler;
 import galaxyspace.GalaxySpace;
 import galaxyspace.api.item.IJetpackArmor;
+import galaxyspace.api.item.IModificationItem;
 import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.handler.capabilities.GSStatsCapability;
 import galaxyspace.core.handler.capabilities.IStatsCapability;
@@ -26,7 +27,6 @@ import galaxyspace.systems.SolarSystem.planets.kuiperbelt.dimension.WorldProvide
 import galaxyspace.systems.SolarSystem.planets.mars.dimension.WorldProviderMars_WE;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemThermalPaddingBase;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemTerraManipulator;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitationModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityPlanetShield;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityRadiationStabiliser;
@@ -43,6 +43,7 @@ import micdoodle8.mods.galacticraft.core.entities.EntityLanderBase;
 import micdoodle8.mods.galacticraft.core.entities.EntityMeteor;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler.EnumModelPacketType;
+import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler.ThermalArmorEvent;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
 import micdoodle8.mods.galacticraft.core.items.ItemTier1Rocket;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
@@ -55,6 +56,7 @@ import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import micdoodle8.mods.galacticraft.planets.mars.dimension.WorldProviderMars;
 import micdoodle8.mods.galacticraft.planets.mars.items.ItemTier2Rocket;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockIce;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -81,7 +83,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.oredict.OreDictionary;
@@ -125,6 +129,16 @@ public class GSEventHandler {
 		
 		GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_UPDATE_RESEARCHES, player.world, new Object[] { gs_stats.getKnowledgeResearch()}), player);
 	}*/
+	@SubscribeEvent
+	public void onToolTip(ItemTooltipEvent e) {
+		if(e.getItemStack().getItem() instanceof IModificationItem)
+		{
+			if(((IModificationItem)e.getItemStack().getItem()).getType(e.getItemStack()) != null) {
+				e.getToolTip().add("");
+				e.getToolTip().add(EnumColor.AQUA + GCCoreUtil.translate("gui.module.caninstall"));
+			}
+		}
+	}
 	
 	@SubscribeEvent
 	public void onFall(LivingFallEvent e) {
@@ -171,6 +185,17 @@ public class GSEventHandler {
 				}
 			}				
 		}
+	}
+	
+	@SubscribeEvent 
+	public void onBreakBlock(BreakEvent e) {
+		World world = e.getWorld();
+		BlockPos pos = e.getPos();
+		/*
+		if(world.getBlockState(pos).getBlock() instanceof BlockIce)
+		{
+			world.setBlockToAir(pos);
+		}*/
 	}
 	
 	@SubscribeEvent
@@ -391,24 +416,29 @@ public class GSEventHandler {
 					}
 				}
 			}
-			
+			/*
 			for(ItemStack stack : stats.getExtendedInventory().stacks)
 			{
 				if(!player.capabilities.isCreativeMode && stack.getItem() instanceof ItemThermalPaddingBase)
 				{
 					ItemThermalPaddingBase item = (ItemThermalPaddingBase) stack.getItem();
-					/*
+					
 					if(item.isFreeze() && !player.world.isDaytime())
 						stats.setThermalLevelNormalising(false);
-						stats.setThermalLevel(-22);*/
+						stats.setThermalLevel(-22);
 				}
 			}
-			
+			*/
 	        /*if (stats.getShieldControllerInSlot().isEmpty())
 	        {
 	        	GCPlayerHandler.sendGearUpdatePacket(player, EnumModelPacketType.REMOVE, EnumExtendedInventorySlot.SHIELD_CONTROLLER);
 	        }
-	       	else*/ if (stats.getShieldControllerInSlot().isItemEqual(new ItemStack(GSItems.BASIC, 1, 16)))
+	       	else*/ 
+			
+			//THERMAL
+			
+			//
+			if (stats.getShieldControllerInSlot().isItemEqual(new ItemStack(GSItems.BASIC, 1, 16)))
 	        {
 	       		ItemStack shield = stats.getShieldControllerInSlot();
 	       		if (shield.hasTagCompound())
@@ -501,6 +531,19 @@ public class GSEventHandler {
 			}
 		}*/
 		
+	}
+	
+	@SubscribeEvent
+	public void onThermalArmorEvent(ThermalArmorEvent event) {
+		if (event.armorStack == null) {
+			event.setArmorAddResult(ThermalArmorEvent.ArmorAddResult.REMOVE);
+			return;
+		}
+		if (event.armorStack.getItem() == GSItems.THERMAL_PADDING_3 && event.armorStack.getItemDamage() == event.armorIndex) {
+			event.setArmorAddResult(ThermalArmorEvent.ArmorAddResult.ADD);
+			return;
+		}
+		event.setArmorAddResult(ThermalArmorEvent.ArmorAddResult.NOTHING);
 	}
 	
 	@SubscribeEvent

@@ -17,10 +17,12 @@ import galaxyspace.core.client.GSKeyHandlerClient;
 import galaxyspace.core.client.fx.GSEffectHandler;
 import galaxyspace.core.client.models.BakedModelBrightFour;
 import galaxyspace.core.client.models.BakedModelFullbright;
-import galaxyspace.core.client.models.LayerOxygenTank;
 import galaxyspace.core.client.render.entity.RenderEvolvedColdBlaze;
 import galaxyspace.core.client.render.entity.RenderIceSpike;
+import galaxyspace.core.client.render.entity.RenderLaserBeam;
 import galaxyspace.core.client.render.entity.RenderRockets;
+import galaxyspace.core.client.render.entity.layers.LayerOxygenTank;
+import galaxyspace.core.client.render.entity.layers.LayerThermalPadding;
 import galaxyspace.core.client.render.item.ItemModelRocketT4;
 import galaxyspace.core.client.render.item.ItemModelRocketT5;
 import galaxyspace.core.client.render.item.ItemModelRocketT6;
@@ -31,6 +33,7 @@ import galaxyspace.core.handler.GSSkyProviderHandler;
 import galaxyspace.core.prefab.blocks.DungeonBlocks;
 import galaxyspace.core.prefab.entities.EntityEvolvedColdBlaze;
 import galaxyspace.core.prefab.entities.EntityIceSpike;
+import galaxyspace.core.prefab.entities.EntityLaserBeam;
 import galaxyspace.core.prefab.entities.EntityTier4Rocket;
 import galaxyspace.core.prefab.entities.EntityTier5Rocket;
 import galaxyspace.core.prefab.entities.EntityTier6Rocket;
@@ -49,6 +52,7 @@ import galaxyspace.systems.SolarSystem.moons.ganymede.blocks.GanymedeBlocks;
 import galaxyspace.systems.SolarSystem.moons.io.blocks.IoBlocks;
 import galaxyspace.systems.SolarSystem.moons.miranda.blocks.MirandaBlocks;
 import galaxyspace.systems.SolarSystem.moons.titan.blocks.TitanBlocks;
+import galaxyspace.systems.SolarSystem.moons.triton.blocks.TritonBlocks;
 import galaxyspace.systems.SolarSystem.planets.ceres.blocks.CeresBlocks;
 import galaxyspace.systems.SolarSystem.planets.ceres.entities.EntityBossBlaze;
 import galaxyspace.systems.SolarSystem.planets.ceres.renderer.entities.RenderBossBlaze;
@@ -152,7 +156,10 @@ public class ClientProxy extends CommonProxy{
     {     	
     	Minecraft.getMinecraft().getRenderManager().getSkinMap().get("default").addLayer(new LayerOxygenTank());
     	Minecraft.getMinecraft().getRenderManager().getSkinMap().get("slim").addLayer(new LayerOxygenTank());
-
+    	
+    	Minecraft.getMinecraft().getRenderManager().getSkinMap().get("default").addLayer(new LayerThermalPadding(Minecraft.getMinecraft().getRenderManager().playerRenderer));
+    	Minecraft.getMinecraft().getRenderManager().getSkinMap().get("slim").addLayer(new LayerThermalPadding(Minecraft.getMinecraft().getRenderManager().playerRenderer));
+    	
     	GS_MUSIC = EnumHelper.addEnum(MusicTicker.MusicType.class, "GS_MUSIC", new Class[] { SoundEvent.class, Integer.TYPE, Integer.TYPE }, GSSounds.music, 12000, 24000);
     	   
     /*
@@ -195,6 +202,7 @@ public class ClientProxy extends CommonProxy{
         replaceModelDefault(event, "rockets/rocket_t5", "tier5rocket.obj", ImmutableList.of("Base"), ItemModelRocketT5.class, TRSRTransformation.identity());
         replaceModelDefault(event, "rockets/rocket_t6", "tier6rocket.obj", ImmutableList.of("Base"), ItemModelRocketT6.class, TRSRTransformation.identity());
         replaceModelDefault(event, "armor/jetpack", "jetpack.obj", ImmutableList.of("wing1", "wing2", "corp"), ItemRendererJetpack.class, TRSRTransformation.identity());
+        //replaceModelDefault(event, "tools/matter_manipulator", "matter_manipulator.obj", ImmutableList.of("Up", "Down", "Mid"), ItemRendererMatterManipulator.class, TRSRTransformation.identity());
 
         
         if(!FMLClientHandler.instance().hasOptifine())
@@ -230,6 +238,7 @@ public class ClientProxy extends CommonProxy{
 		GalaxySpace.proxy.registerTexture(event, "model/armor/spacesuit");
 		GalaxySpace.proxy.registerTexture(event, "model/armor/jetpack");
 		GalaxySpace.proxy.registerTexture(event, "model/hydroponic_farm");	
+		//GalaxySpace.proxy.registerTexture(event, "model/matter_manipulator");	
 		GalaxySpace.proxy.registerTexture(event, "model/rocket_tier_4");
 		GalaxySpace.proxy.registerTexture(event, "model/rocket_tier_5");	
 		GalaxySpace.proxy.registerTexture(event, "model/rocket_tier_6");	
@@ -255,8 +264,7 @@ public class ClientProxy extends CommonProxy{
     {
         ClientUtil.replaceModel(GalaxySpace.ASSET_PREFIX, event, resLoc, objLoc, visibleGroups, clazz, parentState, variants);
     }
-    
-    
+        
     @Override
     public void registerRender()
     {			
@@ -268,7 +276,7 @@ public class ClientProxy extends CommonProxy{
     		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.MERCURY_BLOCKS, blockBasic.getMeta(), blockBasic.getName());
     	
     	for (BlockFutureGlasses.EnumBlockFutureGlass blockBasic : BlockFutureGlasses.EnumBlockFutureGlass.values())
-		    	ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.FUTURE_GLASS_COLORED, blockBasic.getMeta(), blockBasic.getName());
+		    ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.FUTURE_GLASS_COLORED, blockBasic.getMeta(), blockBasic.getName());
 
 		for(BlockOres.EnumBlockOres block : BlockOres.EnumBlockOres.values())
 			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.OVERWORLD_ORES, block.getMeta(), block.getName());
@@ -286,7 +294,7 @@ public class ClientProxy extends CommonProxy{
 			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.PLUTO_BLOCKS, block.getMeta(), block.getName());
 		
 		for(IoBlocks.EnumIoBlocks block : IoBlocks.EnumIoBlocks.values())
-				ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.IO_BLOCKS, block.getMeta(), block.getName());
+			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.IO_BLOCKS, block.getMeta(), block.getName());
 		
 		for(EuropaBlocks.EnumEuropaBlocks block : EuropaBlocks.EnumEuropaBlocks.values())
 			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.EUROPA_BLOCKS, block.getMeta(), block.getName());
@@ -306,6 +314,9 @@ public class ClientProxy extends CommonProxy{
 		for(MirandaBlocks.EnumMirandaBlocks block : MirandaBlocks.EnumMirandaBlocks.values())
 			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.MIRANDA_BLOCKS, block.getMeta(), block.getName());
 			
+		for(TritonBlocks.EnumTritonBlocks block : TritonBlocks.EnumTritonBlocks.values())
+			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.TRITON_BLOCKS, block.getMeta(), block.getName());
+		
 		for(BlockMachineFrames.EnumBlockMachineFrames block : BlockMachineFrames.EnumBlockMachineFrames.values())
 			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.MACHINE_FRAMES, block.getMeta(), block.getName());
 		
@@ -401,9 +412,11 @@ public class ClientProxy extends CommonProxy{
 			ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.UPGRADES, i++, "upgrades/" + upgrades);
 		
 		i = 0;
-		for(String thermal_padding : ItemThermalPaddingBase.names)		
-			ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.THERMAL_PADDING_3, i++, "thermal_padding/" + thermal_padding + "_t" + ((ItemThermalPaddingBase) GSItems.THERMAL_PADDING_3).getThermalStrength());
-		
+		for(String thermal_padding : ItemThermalPaddingBase.names) {		
+			ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.THERMAL_PADDING_3, i, "thermal_padding/" + thermal_padding + "_t" + ((ItemThermalPaddingBase) GSItems.THERMAL_PADDING_3).getThermalStrength());
+			ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.THERMAL_PADDING_4, i, "thermal_padding/" + thermal_padding + "_t" + ((ItemThermalPaddingBase) GSItems.THERMAL_PADDING_4).getThermalStrength());
+			i++;
+		}
 		
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.OXYGENTANK_TIER_4);
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.OXYGENTANK_TIER_5);
@@ -421,6 +434,7 @@ public class ClientProxy extends CommonProxy{
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SPACE_SUIT_BOOTS, 0, "armor/" + GSItems.SPACE_SUIT_BOOTS.getUnlocalizedName().substring(5));
 		
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.JETPACK, 0, "armor/" + GSItems.JETPACK.getUnlocalizedName().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.TERRA_MANIPULATOR, 0, "tools/" + GSItems.TERRA_MANIPULATOR.getUnlocalizedName().substring(5));
 		
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_HELMET, 0, "armor/" + GSItems.COBALT_HELMET.getUnlocalizedName().substring(5));
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_CHEST, 0, "armor/" + GSItems.COBALT_CHEST.getUnlocalizedName().substring(5));
@@ -488,6 +502,12 @@ public class ClientProxy extends CommonProxy{
     		blocks[i] = MirandaBlocks.EnumMirandaBlocks.byMetadata(i).getName();
     	
     	addVariant("mirandablocks", "", blocks);
+    	
+    	blocks = new String[TritonBlocks.EnumTritonBlocks.values().length];
+    	for(int i = 0; i < blocks.length; i++)
+    		blocks[i] = TritonBlocks.EnumTritonBlocks.byMetadata(i).getName();
+    	
+    	addVariant("tritonblocks", "", blocks);
     	
     	addVariant("machineframes", "", "basic_frame", "advance_frame", "modern_frame");
     	
@@ -562,6 +582,7 @@ public class ClientProxy extends CommonProxy{
         addVariant("space_suit_feet", "armor/", "space_suit_feet");
         
         addVariant("jetpack", "armor/", "jetpack");
+        //addVariant("matter_manipulator", "tools/", "matter_manipulator");
         
         addVariant("cobalt_helmet", "armor/", "cobalt_helmet");
         addVariant("cobalt_chest", "armor/", "cobalt_chest");
@@ -579,6 +600,7 @@ public class ClientProxy extends CommonProxy{
         addVariant("upgrades", "upgrades/", ItemUpgrades.names);
         
         addVariant("thermal_padding_t3", "thermal_padding/", "thermal_helm_t3", "thermal_chestplate_t3", "thermal_leggings_t3", "thermal_boots_t3");
+        addVariant("thermal_padding_t4", "thermal_padding/", "thermal_helm_t4", "thermal_chestplate_t4", "thermal_leggings_t4", "thermal_boots_t4");
         
         ModelResourceLocation modelResourceLocation = new ModelResourceLocation("galaxyspace:rockets/rocket_t4", "inventory");
         for (int i = 0; i < 5; ++i)
@@ -601,6 +623,7 @@ public class ClientProxy extends CommonProxy{
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(GSBlocks.DUNGEON_BLOCKS), 0, new ModelResourceLocation("galaxyspace:ceres_bricks", "inventory"));
         ModelLoader.setCustomModelResourceLocation(GSItems.JETPACK, 0, new ModelResourceLocation("galaxyspace:armor/jetpack", "inventory"));
    
+        ModelLoader.setCustomModelResourceLocation(GSItems.TERRA_MANIPULATOR, 0, new ModelResourceLocation("galaxyspace:tools/matter_manipulator", "inventory"));
         
         for(IBodies list : GalaxySpace.bodies)
 			if(list.canRegister()) 
@@ -637,7 +660,7 @@ public class ClientProxy extends CommonProxy{
 		RenderingRegistry.registerEntityRenderingHandler(EntityBossBlaze.class, (RenderManager manager) -> new RenderBossBlaze(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityIceSpike.class, (RenderManager manager) -> new RenderIceSpike(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityEvolvedColdBlaze.class, (RenderManager manager) -> new RenderEvolvedColdBlaze(manager));
-		
+		RenderingRegistry.registerEntityRenderingHandler(EntityLaserBeam.class, (RenderManager manager) -> new RenderLaserBeam(manager));	
     }
 	
 	public void register_event(Object obj)
