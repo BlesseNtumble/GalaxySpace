@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import galaxyspace.api.item.IModificationItem;
 import galaxyspace.core.prefab.items.modules.ItemModule;
+import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.core.util.GSCreativeTabs;
 import galaxyspace.core.util.GSUtils.Module_Type;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.modules.EPP;
@@ -59,7 +60,10 @@ public class ItemGSOxygenTank extends ItemOxygenTank implements IModificationIte
 
 	@Override
 	public Module_Type getType(ItemStack stack) {
-		return Module_Type.OXYGEN_TANK;
+		if(stack.getItem() != GSItems.OXYGENTANK_TIER_EPP)
+			return Module_Type.OXYGEN_TANK;
+		
+		return null;
 	}
 
 	@Override

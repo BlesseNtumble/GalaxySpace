@@ -30,7 +30,7 @@ public class GSEffectHandler {
 			else if (particleID.equals("launchFlameLaunched"))
             {
                 particle = new GSParticleLaunchFlame(mc.world, position, motion, true, (EntityLivingBase) otherInfo[0], (Vector3) otherInfo[1]);
-            }
+            }	
 			
 			int setting = mc.gameSettings.particleSetting;
 			

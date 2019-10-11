@@ -17,6 +17,7 @@ import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.network.packet.GSPacketSimple;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
 import galaxyspace.core.util.GSThreadVersionCheck;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemTerraManipulator;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import micdoodle8.mods.galacticraft.core.util.ColorUtil;
@@ -24,15 +25,19 @@ import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelBiped.ArmPose;
+import net.minecraft.client.model.ModelPlayer;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.event.GuiOpenEvent;
-import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -102,13 +107,30 @@ public class GSClientTickHandler {
 		}
 	}
 	
-	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
-	public void onRender(RenderPlayerEvent.Post event) 
-	{
-		//GSColorRingClient.onPostRender(event);		
+	@SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=false)
+	public void onLivingRender(RenderLivingEvent.Pre event) {
+		if (event.getEntity() instanceof EntityPlayer) {
+			EntityPlayer player = (EntityPlayer) event.getEntity();
+			
+			ItemStack mainhand = player.getHeldItemMainhand();
+			ItemStack offhand = player.getHeldItemOffhand();
+			
+			if(!mainhand.isEmpty() && mainhand.getItem() instanceof ItemTerraManipulator || !offhand.isEmpty() && offhand.getItem() instanceof ItemTerraManipulator) {
+				ModelBase mdl = event.getRenderer().getMainModel();
+				
+				if (mdl instanceof ModelPlayer) {
+			 		ModelPlayer model = (ModelPlayer) mdl;
+			 		if (player.getPrimaryHand()==EnumHandSide.RIGHT) {
+			 			model.rightArmPose = ArmPose.BOW_AND_ARROW;
+			 		} else {
+			 			model.leftArmPose = ArmPose.BOW_AND_ARROW;
+			 		}
+		 		}
+			}
+		}
 	}
-		
+	
 	@SubscribeEvent(priority=EventPriority.LOW)
 	@SideOnly(Side.CLIENT)
 	public void onRenderTick(RenderTickEvent event)
@@ -133,7 +155,7 @@ public class GSClientTickHandler {
         			long t1 = player.world.provider instanceof WorldProviderSpace ? ((WorldProviderSpace) player.world.provider).getDayLength() : 24000;
         			long time = player.world.getWorldTime() % (t1 > 0 ? t1 : 1);
         		
-        			float temp = player.world.provider instanceof WorldProviderSpace ? ((WorldProviderSpace) player.world.provider).getThermalLevelModifier() : 1.0F;
+        			float temp = player.world.provider instanceof IGalacticraftWorldProvider ? ((IGalacticraftWorldProvider) player.world.provider).getCelestialBody().atmosphere.thermalLevel() : 1.0F;
         			
         			String[] s = { 
         					GalaxySpace.NAME + " " + GalaxySpace.VERSION + " DEBUG Mode",

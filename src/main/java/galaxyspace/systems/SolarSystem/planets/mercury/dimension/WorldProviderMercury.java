@@ -216,7 +216,7 @@ public class WorldProviderMercury extends WorldProviderAdvancedSpace implements 
 	
 		return GSDimensions.MERCURY;
 	}
-	
+	/*
 	@Override
 	public void getLightmapColors(float partialTicks, float sunBrightness, float skyLight, float blockLight, float[] colors) 
 	{
@@ -231,23 +231,13 @@ public class WorldProviderMercury extends WorldProviderAdvancedSpace implements 
 				//colors[1] = 0.05F - sunBrightness;
 				//colors[2] = 0.02F - sunBrightness;
 			}
-		}*/
+		}
 	}
-
-	@Override
-	public boolean enableAdvancedThermalLevel() {
-		return true;
-	}
+	 */
 	
 	@Override
 	protected float getThermalValueMod()
 	{
-		return 1.17F;
-	}
-	
-	@Override
-	protected float setAdditionThermalValue()
-	{
-		return 3.5F;
+		return 1.8F;
 	}
 }
