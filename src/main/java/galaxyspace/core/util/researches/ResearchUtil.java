@@ -1,16 +1,11 @@
 package galaxyspace.core.util.researches;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import javax.annotation.Nonnull;
 
 import com.google.common.collect.ImmutableList;
-
-import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
 
 public class ResearchUtil {
 

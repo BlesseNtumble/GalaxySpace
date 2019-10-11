@@ -29,6 +29,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.BiomeProvider;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -190,5 +192,17 @@ public class WorldProviderEnceladus_WE extends WE_WorldProvider implements IProv
 	@Override
 	public boolean enableAdvancedThermalLevel() {
 		return false;
+	}
+
+	@Override
+	public void onPopulate(int cX, int cZ) {		
+	}
+
+	@Override
+	public void onChunkProvider(int cX, int cZ, ChunkPrimer primer) {		
+	}
+
+	@Override
+	public void recreateStructures(Chunk chunkIn, int x, int z) {		
 	}
 }

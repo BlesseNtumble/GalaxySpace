@@ -9,8 +9,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.registers.fluids.GSFluids;

@@ -29,7 +29,6 @@ import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.galaxies.IChildBody;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
-import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -38,6 +37,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.BiomeProvider;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -49,7 +50,7 @@ public class WorldProviderProxima_B_WE extends WE_WorldProvider implements IProv
 	private final float[] colorsSunriseSunset = new float[4];
 	public static WE_ChunkProvider chunk;
 	
-    @Override
+	@Override
     public double getHorizon() {
         return 44.0D;
     }
@@ -359,6 +360,18 @@ public class WorldProviderProxima_B_WE extends WE_WorldProvider implements IProv
 	@Override
 	public boolean enableAdvancedThermalLevel() {
 		return true;
+	}
+
+	@Override
+	public void onPopulate(int cX, int cZ) {		
+	}
+
+	@Override
+	public void onChunkProvider(int cX, int cZ, ChunkPrimer primer) {		
+	}
+
+	@Override
+	public void recreateStructures(Chunk chunkIn, int x, int z) {
 	}
 
 }

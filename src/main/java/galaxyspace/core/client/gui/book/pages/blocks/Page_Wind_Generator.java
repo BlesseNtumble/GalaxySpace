@@ -4,10 +4,7 @@ import asmodeuscore.core.astronomy.gui.book.Page_WithCraftMatrix;
 import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
 import galaxyspace.api.IPage;
 import galaxyspace.core.registers.blocks.GSBlocks;
-import micdoodle8.mods.galacticraft.core.GCBlocks;
-import micdoodle8.mods.galacticraft.core.GCItems;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 

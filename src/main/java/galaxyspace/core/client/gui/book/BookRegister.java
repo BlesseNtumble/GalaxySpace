@@ -10,8 +10,6 @@ import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.systems.ACentauriSystem.core.configs.ACConfigCore;
 import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigCore;
 import galaxyspace.systems.SolarSystem.SolarSystemBodies;
-import micdoodle8.mods.galacticraft.core.GCBlocks;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.EnumHelper;

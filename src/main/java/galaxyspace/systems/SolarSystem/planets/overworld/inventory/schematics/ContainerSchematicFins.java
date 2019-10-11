@@ -1,6 +1,5 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics;
 
-import galaxyspace.GalaxySpace;
 import galaxyspace.core.util.GSRecipeUtil;
 import galaxyspace.core.util.GSUtils;
 import micdoodle8.mods.galacticraft.core.inventory.SlotRocketBenchResult;

@@ -5,9 +5,7 @@ import java.util.List;
 import org.lwjgl.opengl.GL11;
 
 import asmodeuscore.core.astronomy.gui.book.Page_WithCraftMatrix;
-import asmodeuscore.core.astronomy.gui.book.Page_WithCraftMatrix.Recipe_Type;
 import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
-import galaxyspace.GalaxySpace;
 import galaxyspace.api.IPage;
 import galaxyspace.core.client.gui.book.BookRegister;
 import galaxyspace.core.registers.blocks.GSBlocks;
@@ -16,11 +14,8 @@ import micdoodle8.mods.galacticraft.api.recipe.ShapelessOreRecipeGC;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 

@@ -2,7 +2,6 @@ package galaxyspace.core.handler.capabilities;
 
 import java.lang.ref.WeakReference;
 
-import asmodeuscore.core.astronomy.SpaceData.Engine_Type;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 

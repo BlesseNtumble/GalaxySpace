@@ -2,7 +2,6 @@ package galaxyspace.core.handler.capabilities;
 
 import java.lang.ref.WeakReference;
 
-import asmodeuscore.core.astronomy.SpaceData.Engine_Type;
 import galaxyspace.GalaxySpace;
 import micdoodle8.mods.galacticraft.core.util.GCLog;
 import net.minecraft.entity.Entity;
