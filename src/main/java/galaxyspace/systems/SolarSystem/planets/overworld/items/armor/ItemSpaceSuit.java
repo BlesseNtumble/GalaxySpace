@@ -295,7 +295,7 @@ public class ItemSpaceSuit extends ItemElectricArmor implements IArmorCorrosionR
 			color = "\u00a76";
 		}
 		
-		list.add(EnumColor.DARK_GREEN + GCCoreUtil.translate("gui.module.caninstall"));
+		//list.add(EnumColor.DARK_GREEN + GCCoreUtil.translate("gui.module.caninstall"));
 		
 		list.add(EnumColor.GREY + GCCoreUtil.translate("gui.module.available_modules") + " " + stack.getTagCompound().getInteger(mod_count));
 		list.add("");

@@ -225,7 +225,7 @@ tile.modern_storage_module.name=Modern Energy Cluster
 tile.modern_storage_module.desc=The modern version of the Energy Cluster. It may store a large amount of energy.
 
 tile.modification_table.name=Modification Table
-tile.modification_table.desc=Allows you to install modules in a space suit.
+tile.modification_table.desc=Allows you to install modules in a modification items.
 
 tile.gas_burner.name=Gas Burner
 tile.gas_burner.desc=Burns supplied gas.
