@@ -21,6 +21,8 @@ import galaxyspace.systems.SolarSystem.moons.miranda.blocks.MirandaBlocks;
 import galaxyspace.systems.SolarSystem.moons.miranda.items.ItemBlocksMiranda;
 import galaxyspace.systems.SolarSystem.moons.titan.blocks.TitanBlocks;
 import galaxyspace.systems.SolarSystem.moons.titan.items.ItemBlocksTitan;
+import galaxyspace.systems.SolarSystem.moons.triton.blocks.TritonBlocks;
+import galaxyspace.systems.SolarSystem.moons.triton.items.ItemBlocksTriton;
 import galaxyspace.systems.SolarSystem.planets.ceres.blocks.BlockBossSpawnerCeres;
 import galaxyspace.systems.SolarSystem.planets.ceres.blocks.BlockTier4TreasureChest;
 import galaxyspace.systems.SolarSystem.planets.ceres.blocks.CeresBlocks;
@@ -139,6 +141,7 @@ public class GSBlocks {
 	public static final Block TITAN_BLOCKS = new TitanBlocks().setHardness(3.0F);
 	
 	public static final Block MIRANDA_BLOCKS = new MirandaBlocks().setHardness(3.0F);
+	public static final Block TRITON_BLOCKS = new TritonBlocks().setHardness(3.0F);
 
 	public static void initialize() 
 	{				
@@ -204,6 +207,7 @@ public class GSBlocks {
 		registerBlock(TITAN_BLOCKS, ItemBlocksTitan.class);
 		
 		registerBlock(MIRANDA_BLOCKS, ItemBlocksMiranda.class);		
+		registerBlock(TRITON_BLOCKS, ItemBlocksTriton.class);		
     }
 	   
 	public static void oreDictRegistration() 
