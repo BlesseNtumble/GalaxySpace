@@ -2,6 +2,8 @@ package galaxyspace.systems.SolarSystem.planets.mars.dimension;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import asmodeuscore.api.dimension.IProviderFreeze;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProvider;
@@ -9,34 +11,45 @@ import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProvider;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_CaveGen;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_RavineGen;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_TerrainGenerator;
+import galaxyspace.GalaxySpace;
 import galaxyspace.systems.SolarSystem.planets.mars.dimension.sky.SkyProviderMars;
 import galaxyspace.systems.SolarSystem.planets.mars.world.gen.we.Mars_High_Plains;
 import galaxyspace.systems.SolarSystem.planets.mars.world.gen.we.Mars_Mountains;
 import galaxyspace.systems.SolarSystem.planets.mars.world.gen.we.Mars_Plains;
-import galaxyspace.systems.SolarSystem.planets.mars.world.gen.we.Mars_Ravine;
-import galaxyspace.systems.SolarSystem.planets.mars.world.gen.we.Mars_Triangle_Mountains;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
+import micdoodle8.mods.galacticraft.core.world.gen.dungeon.DungeonConfiguration;
+import micdoodle8.mods.galacticraft.core.world.gen.dungeon.MapGenDungeon;
 import micdoodle8.mods.galacticraft.planets.GCPlanetDimensions;
 import micdoodle8.mods.galacticraft.planets.mars.MarsModule;
+import micdoodle8.mods.galacticraft.planets.mars.blocks.BlockBasicMars;
 import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import micdoodle8.mods.galacticraft.planets.mars.world.gen.BiomeDecoratorMars;
 import micdoodle8.mods.galacticraft.planets.mars.world.gen.BiomeProviderMars;
+import micdoodle8.mods.galacticraft.planets.mars.world.gen.MapGenDungeonMars;
+import micdoodle8.mods.galacticraft.planets.mars.world.gen.RoomBossMars;
+import micdoodle8.mods.galacticraft.planets.mars.world.gen.RoomTreasureMars;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.BiomeProvider;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WorldProviderMars_WE extends WE_WorldProvider implements IProviderFreeze {
+	
+	private final MapGenDungeon dungeonGenerator = new MapGenDungeonMars(new DungeonConfiguration(MarsBlocks.marsBlock.getDefaultState().withProperty(BlockBasicMars.BASIC_TYPE, BlockBasicMars.EnumBlockBasic.DUNGEON_BRICK), 30, 8, 16, 7, 7, RoomBossMars.class, RoomTreasureMars.class));
+	private final float[] colorsSunriseSunset = new float[4];
 	
     @Override
     public double getHorizon()   { return 44.0D; }
@@ -114,8 +127,32 @@ public class WorldProviderMars_WE extends WE_WorldProvider implements IProviderF
         return var3 * var3 * 0.5F + 0.3F;
     }
     
+    @Nullable
+    @SideOnly(Side.CLIENT)
     @Override
+    public float[] calcSunriseSunsetColors(float celestialAngle, float partialTicks)
+    {
+        float f1 = MathHelper.cos(celestialAngle * ((float)Math.PI * 2F)) - 0.0F;
 
+        //GalaxySpace.debug("" + f1);
+        if (f1 >= 0.05F && f1 <= 0.4F)
+        {
+            float f3 = (f1 - -0.0F) / 0.4F * 0.5F + 0.6F;
+            float f4 = 1.0F - (1.0F - MathHelper.sin(f3 * (float)Math.PI)) * 0.99F;
+            f4 = f4 * f4;
+            this.colorsSunriseSunset[0] = f3 * 0.3F + 0.35F;
+            this.colorsSunriseSunset[1] = f3 * f3 * 0.7F + 0.2F;
+            this.colorsSunriseSunset[2] = f3 * f3 * 0.0F + 1.0F;
+            this.colorsSunriseSunset[3] = f4;
+            return this.colorsSunriseSunset;
+        }
+        else
+        {
+            return null;
+        }
+    }
+    
+    @Override
     public IRenderHandler getCloudRenderer(){
         return new CloudRenderer();
     }
@@ -133,7 +170,7 @@ public class WorldProviderMars_WE extends WE_WorldProvider implements IProviderF
 
 	@Override
 	public int getDungeonSpacing() {
-		return 0;
+		return 704;
 	}
 
 	@Override
@@ -160,6 +197,7 @@ public class WorldProviderMars_WE extends WE_WorldProvider implements IProviderF
 		cp.decorateChunkGen_List .clear(); 
 		
 		cp.CRATER_PROB = 400;
+		cp.dungeonGen_List.add(dungeonGenerator);
 		
 		WE_Biome.setBiomeMap(cp, 1.2D, 4, 800.0D, 1.0D);	
 		
@@ -205,6 +243,26 @@ public class WorldProviderMars_WE extends WE_WorldProvider implements IProviderF
 
 	@Override
 	public boolean enableAdvancedThermalLevel() {
-		return false;
+		return super.enableAdvancedThermalLevel();
+	}
+	
+	@Override
+	protected float getThermalValueMod() {
+		return 1.4F;
+	}
+
+	@Override
+	public void onPopulate(int cX, int cZ) {
+		dungeonGenerator.generateStructure(this.world, this.world.rand, new ChunkPos(cX, cZ));
+	}
+
+	@Override
+	public void onChunkProvider(int cX, int cZ, ChunkPrimer primer) {	
+		dungeonGenerator.generate(this.world, cX, cZ, primer);
+	}
+
+	@Override
+	public void recreateStructures(Chunk chunkIn, int x, int z) {		
+		dungeonGenerator.generate(this.world, x, z, null);
 	}
 }
