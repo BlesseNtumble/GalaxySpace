@@ -11,7 +11,6 @@ import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProvider;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_CaveGen;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_RavineGen;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_TerrainGenerator;
-import galaxyspace.GalaxySpace;
 import galaxyspace.systems.SolarSystem.planets.mars.dimension.sky.SkyProviderMars;
 import galaxyspace.systems.SolarSystem.planets.mars.world.gen.we.Mars_High_Plains;
 import galaxyspace.systems.SolarSystem.planets.mars.world.gen.we.Mars_Mountains;
@@ -29,6 +28,7 @@ import micdoodle8.mods.galacticraft.planets.mars.blocks.BlockBasicMars;
 import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import micdoodle8.mods.galacticraft.planets.mars.world.gen.BiomeDecoratorMars;
 import micdoodle8.mods.galacticraft.planets.mars.world.gen.BiomeProviderMars;
+import micdoodle8.mods.galacticraft.planets.mars.world.gen.MapGenCavernMars;
 import micdoodle8.mods.galacticraft.planets.mars.world.gen.MapGenDungeonMars;
 import micdoodle8.mods.galacticraft.planets.mars.world.gen.RoomBossMars;
 import micdoodle8.mods.galacticraft.planets.mars.world.gen.RoomTreasureMars;
@@ -197,7 +197,6 @@ public class WorldProviderMars_WE extends WE_WorldProvider implements IProviderF
 		cp.decorateChunkGen_List .clear(); 
 		
 		cp.CRATER_PROB = 400;
-		cp.dungeonGen_List.add(dungeonGenerator);
 		
 		WE_Biome.setBiomeMap(cp, 1.2D, 4, 800.0D, 1.0D);	
 		
@@ -225,6 +224,10 @@ public class WorldProviderMars_WE extends WE_WorldProvider implements IProviderF
 		rg.lavaBlock = Blocks.AIR.getDefaultState();
 		rg.lavaMaxY = 0;
 		cp.createChunkGen_List.add(rg);
+		
+		MapGenCavernMars cavernGenerator = new MapGenCavernMars();
+		cp.worldGenerators.clear();
+		cp.worldGenerators.add(cavernGenerator);
 		
 		cp.biomesList.clear();
 		
@@ -265,4 +268,5 @@ public class WorldProviderMars_WE extends WE_WorldProvider implements IProviderF
 	public void recreateStructures(Chunk chunkIn, int x, int z) {		
 		dungeonGenerator.generate(this.world, x, z, null);
 	}
+
 }
