@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 public class TestResearch extends BaseResearch{
 
 	public TestResearch(int id) {
-		super(id, "xuy");
+		super(id, "xuy_" + id);
 		this.addNeedItem(new ItemStack(Items.APPLE));
 	}
 

@@ -7,23 +7,22 @@ import net.minecraft.item.ItemStack;
 
 public class BaseResearch implements IResearch{
 
-	private static String name;
-	private static Set<ItemStack> items_for_need = new HashSet();
-	private static Set<ItemStack> unlock_items = new HashSet();
-	private static IResearch parent = null;
-	private static int id, need_exp = 0;
-	
-	
+	private String name;
+	private Set<ItemStack> items_for_need = new HashSet();
+	private Set<ItemStack> unlock_items = new HashSet();
+	private IResearch[] parents;
+	private int id, need_exp = 0;
+		
 	public BaseResearch(int id, String name)
 	{
 		this(id, name, null);
 	}
 	
-	public BaseResearch(int id, String name, IResearch parent)
+	public BaseResearch(int id, String name, IResearch[] parent)
 	{
 		this.id = id;
 		this.name = name;
-		this.parent = parent;
+		this.parents = parent;
 	}
 	
 	public void setExperince(int exp)
@@ -52,8 +51,8 @@ public class BaseResearch implements IResearch{
 	}
 
 	@Override
-	public IResearch getParent() {
-		return this.parent;
+	public IResearch[] getParents() {
+		return this.parents;
 	}
 
 	@Override

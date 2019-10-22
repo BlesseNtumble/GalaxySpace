@@ -9,7 +9,7 @@ public interface IResearch {
 	public abstract int getID();
 	public abstract String getName();
 	public abstract Set<ItemStack> getNeedItems();
-	public abstract IResearch getParent();
+	public abstract IResearch[] getParents();
 	public abstract float getNeedExperience();	
 	public abstract Set<ItemStack> getUnlockItems();
 }

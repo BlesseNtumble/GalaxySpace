@@ -9,17 +9,18 @@ import com.google.common.collect.ImmutableList;
 
 public class ResearchUtil {
 
-	@Nonnull
 	private static List<IResearch> list = new ArrayList<IResearch>();
 	
 	//private static Map<String, Set<IResearch>> know_research_list = new HashMap<String, Set<IResearch>>();
 	
-	public void initResearches()
+	public static void initResearches()
 	{
-		addReserach(new TestResearch(0));
+		addReserach(new TestResearch(1));
+		addReserach(new TestResearch(5));
+		addReserach(new TestResearch(6));
 	}
 	
-	private void addReserach(IResearch research)
+	private static void addReserach(IResearch research)
 	{
 		if(!list.isEmpty())
 			for(IResearch res : list)			

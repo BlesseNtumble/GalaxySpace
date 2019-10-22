@@ -28,7 +28,6 @@ public class GSStatsCapability implements IStatsCapability {
 	public void loadNBTData(NBTTagCompound nbt) {
 		try {
 			this.know_res = nbt.getIntArray("gs_knowledge_research");
-			//this.rocket_engine = Engine_Type.byID(nbt.getInteger("rocket_engine"));
 		} catch (Exception e) {
 			GCLog.severe("Found error in saved Galaxy Space player data for " + player.get().getGameProfile().getName() + " - this should fix itself next relog.");
 			e.printStackTrace();

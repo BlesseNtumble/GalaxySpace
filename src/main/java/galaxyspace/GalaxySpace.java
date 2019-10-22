@@ -1,7 +1,6 @@
 package galaxyspace;
 
 import java.io.File;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,7 +10,6 @@ import org.apache.logging.log4j.Logger;
 
 import asmodeuscore.api.space.IBookPage;
 import asmodeuscore.core.utils.BookUtils;
-import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
 import galaxyspace.api.IBodies;
 import galaxyspace.api.IBodiesHandler;
 import galaxyspace.api.IPage;
@@ -26,6 +24,7 @@ import galaxyspace.core.handler.capabilities.GSCapabilityStatsHandler;
 import galaxyspace.core.network.packet.GalaxySpaceChannelHandler;
 import galaxyspace.core.prefab.entities.EntityEvolvedColdBlaze;
 import galaxyspace.core.prefab.entities.EntityIceSpike;
+import galaxyspace.core.prefab.entities.EntityLaserBeam;
 import galaxyspace.core.prefab.entities.EntityTier4Rocket;
 import galaxyspace.core.prefab.entities.EntityTier5Rocket;
 import galaxyspace.core.prefab.entities.EntityTier6Rocket;
@@ -37,6 +36,7 @@ import galaxyspace.core.registers.potions.GSPotions;
 import galaxyspace.core.sounds.GSSounds;
 import galaxyspace.core.util.GSCreativeTabs;
 import galaxyspace.core.util.GSThreadVersionCheck;
+import galaxyspace.core.util.researches.ResearchUtil;
 import galaxyspace.systems.SolarSystem.moons.enceladus.tile.TileEntityBlockCrystallTE;
 import galaxyspace.systems.SolarSystem.planets.ceres.entities.EntityBossBlaze;
 import galaxyspace.systems.SolarSystem.planets.ceres.tile.TileEntityDungeonSpawnerCeres;
@@ -175,6 +175,8 @@ public class GalaxySpace
     		if(list.canRegister()) 
     			list.preInit(event);
 		}
+		
+		ResearchUtil.initResearches();
 		
 		if(event.getSide() == Side.CLIENT)
 	    	for (ASMData data : event.getAsmData().getAll(IPage.class.getName())) {

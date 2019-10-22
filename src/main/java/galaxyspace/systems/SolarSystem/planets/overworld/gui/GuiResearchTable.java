@@ -8,7 +8,9 @@ import org.lwjgl.opengl.GL11;
 
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.handler.capabilities.GSStatsCapability;
+import galaxyspace.core.handler.capabilities.GSStatsCapabilityClient;
 import galaxyspace.core.handler.capabilities.IStatsCapability;
+import galaxyspace.core.handler.capabilities.StatsCapabilityClient;
 import galaxyspace.core.util.researches.IResearch;
 import galaxyspace.core.util.researches.ResearchUtil;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerResearchTable;
@@ -23,7 +25,7 @@ public class GuiResearchTable extends GuiContainerGC {
 
 	private final TileEntityResearchTable tile;
 	private static final ResourceLocation guiTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/base_gui_1.png");
-	private List<IResearch> know_res = new ArrayList<IResearch>();
+	public List<IResearch> know_res = new ArrayList<IResearch>();
 	
 	public GuiResearchTable(InventoryPlayer inventoryPlayer, TileEntityResearchTable tileEntity)
     {
@@ -37,15 +39,19 @@ public class GuiResearchTable extends GuiContainerGC {
     {
 		super.initGui();
 		
-		IStatsCapability gs_stats = GSStatsCapability.get(mc.player);
+		StatsCapabilityClient gs_stats = GSStatsCapabilityClient.get(mc.player);
 		
+		GalaxySpace.debug(gs_stats.getKnowledgeResearches()[0] + "");
 		for(IResearch res : ResearchUtil.getReserachList())
 		{
-			for(int i = 0; i < gs_stats.getKnowledgeResearch().length; i++)
-				if(res.getID() == gs_stats.getKnowledgeResearch()[i])
-					know_res.add(res);					
+			for(int i = 0; i < ResearchUtil.getReserachList().size(); i++)
+			{
+				if(res.getID() == gs_stats.getKnowledgeResearches()[i] && gs_stats.getKnowledgeResearches()[i] > 0)
+					know_res.add(res);	
+			}
 		}
-		
+		GalaxySpace.debug(know_res.size() + "");
+	
     }
 	
 	@Override
@@ -65,10 +71,12 @@ public class GuiResearchTable extends GuiContainerGC {
 		int containerHeight = (this.height - this.ySize) / 2;
 		this.drawTexturedModalRect(containerWidth, containerHeight, 0, 0, this.xSize, this.ySize); // Base Gui		
 
-		
 		int i = 0;
 		for(IResearch res : know_res)
 			drawString(mc.fontRenderer, res.getID() + ", ", containerWidth + 10 * i++, containerHeight + 10, 0xFFFFFF);
+		i = 0;
+		for(IResearch res : ResearchUtil.getReserachList())
+			drawString(mc.fontRenderer, res.getID() + ", ", containerWidth + 10 * i++, containerHeight + 30, 0xFFFFFF);
     }
 	
 	@Override

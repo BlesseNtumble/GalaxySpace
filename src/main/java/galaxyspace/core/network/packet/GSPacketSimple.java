@@ -9,7 +9,9 @@ import galaxyspace.api.item.IModificationItem;
 import galaxyspace.api.tile.ITileEffects;
 import galaxyspace.core.events.GSEventHandler;
 import galaxyspace.core.handler.capabilities.GSStatsCapability;
+import galaxyspace.core.handler.capabilities.GSStatsCapabilityClient;
 import galaxyspace.core.handler.capabilities.IStatsCapability;
+import galaxyspace.core.handler.capabilities.StatsCapabilityClient;
 import galaxyspace.core.prefab.items.modules.ItemModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemSpaceSuit;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitationModule;
@@ -57,7 +59,8 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         S_UPDATE_NBT_ITEM_ON_GUI(Side.SERVER, BlockVec3.class, String.class, Boolean.class),
         S_UPDATE_NBT_ITEM_IN_ARMOR(Side.SERVER, Integer.class, String.class), 	
         //CLIENT
-    	C_UPDATE_RESEARCHES(Side.CLIENT, Integer[].class);
+    	C_UPDATE_RESEARCHES(Side.CLIENT, Integer[].class),
+    	C_UPDATE_RESEARCH(Side.CLIENT, Integer.class, Integer.class); // id, count
         
         
         
@@ -161,12 +164,14 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         GCPlayerStatsClient stats = null;
 
 		IStatsCapability gs_stats = null;
+		StatsCapabilityClient gs_stats_client = null;
 
         if (player instanceof EntityPlayerSP)
         {
             playerBaseClient = (EntityPlayerSP) player;
             stats = GCPlayerStatsClient.get(playerBaseClient);
             gs_stats = GSStatsCapability.get(player);
+            gs_stats_client = GSStatsCapabilityClient.get(playerBaseClient);
         }
         /*else
         {/*
@@ -177,14 +182,24 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         }*/
         switch (this.type)
         {       		
-        	case C_UPDATE_RESEARCHES:
-        		Integer[] id = (Integer[]) this.data.get(0);
-        		if(gs_stats != null) 
-        		{
-        			for(int i = 0; i < id.length; i++)
-        				gs_stats.setKnowledgeReserach(i, id[i]);
-        			GalaxySpace.debug("Res: " + gs_stats.getKnowledgeResearch());
-        		}
+        	case C_UPDATE_RESEARCHES:        		
+        			if(gs_stats_client != null) 
+	        		{	
+        				int i = 0;
+        				for(Object o : this.data)
+        				{
+        					gs_stats_client.setKnowledgeResearch(i++, (Integer) o);
+        				}	        				
+	        			
+	        		}
+        		break;
+        	case C_UPDATE_RESEARCH:        		
+        		int id = (int) this.data.get(0);
+        		int count = (int) this.data.get(1);
+        		
+        		if(gs_stats_client != null)         		      			
+        			gs_stats_client.setKnowledgeResearch(id, count);
+        		
         		break;
         	default:
         		break;

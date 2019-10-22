@@ -14,8 +14,13 @@ import galaxyspace.GalaxySpace;
 import galaxyspace.api.item.IJetpackArmor;
 import galaxyspace.api.item.IModificationItem;
 import galaxyspace.core.configs.GSConfigCore;
+import galaxyspace.core.handler.capabilities.GSCapabilityProviderStats;
+import galaxyspace.core.handler.capabilities.GSCapabilityProviderStatsClient;
+import galaxyspace.core.handler.capabilities.GSCapabilityStatsHandler;
 import galaxyspace.core.handler.capabilities.GSStatsCapability;
 import galaxyspace.core.handler.capabilities.IStatsCapability;
+import galaxyspace.core.network.packet.GSPacketSimple;
+import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
 import galaxyspace.core.prefab.items.rockets.ItemTier4Rocket;
 import galaxyspace.core.prefab.items.rockets.ItemTier5Rocket;
 import galaxyspace.core.prefab.items.rockets.ItemTier6Rocket;
@@ -26,7 +31,6 @@ import galaxyspace.systems.SolarSystem.moons.titan.dimension.WorldProviderTitan;
 import galaxyspace.systems.SolarSystem.planets.kuiperbelt.dimension.WorldProviderKuiperBelt;
 import galaxyspace.systems.SolarSystem.planets.mars.dimension.WorldProviderMars_WE;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemThermalPaddingBase;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitationModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityPlanetShield;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityRadiationStabiliser;
@@ -56,8 +60,9 @@ import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import micdoodle8.mods.galacticraft.planets.mars.dimension.WorldProviderMars;
 import micdoodle8.mods.galacticraft.planets.mars.items.ItemTier2Rocket;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockIce;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -81,13 +86,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class GSEventHandler {
@@ -102,7 +112,7 @@ public class GSEventHandler {
 		
 		block_to_change.add(new BlockToChange(Blocks.WATER.getDefaultState(), Blocks.AIR.getDefaultState(), Blocks.ICE.getDefaultState(), 0.0F, true).setParticle("waterbubbles"));
 	}
-	/*
+	
 	@SubscribeEvent
     public void onAttachCapability(AttachCapabilitiesEvent<Entity> event)
     {
@@ -110,8 +120,21 @@ public class GSEventHandler {
         {        	
             event.addCapability(GSCapabilityStatsHandler.GS_PLAYER_PROPERTIES, new GSCapabilityProviderStats((EntityPlayerMP) event.getObject()));
         }
+        else if (event.getObject() instanceof EntityPlayer && ((EntityPlayer)event.getObject()).world.isRemote)
+        {
+            this.onAttachCapabilityClient(event);
+        }
     }
 
+	@SideOnly(Side.CLIENT)
+    private void onAttachCapabilityClient(AttachCapabilitiesEvent<Entity> event)
+    {
+        if (event.getObject() instanceof EntityPlayerSP)
+        {
+            event.addCapability(GSCapabilityStatsHandler.GS_PLAYER_PROPERTIES_CLIENT, new GSCapabilityProviderStatsClient((EntityPlayerSP) event.getObject()));
+        }
+    }
+	
 	@SubscribeEvent
     public void onPlayerCloned(PlayerEvent.Clone event)
     {
@@ -120,15 +143,24 @@ public class GSEventHandler {
         newStats.copyFrom(oldStats, !event.isWasDeath()|| event.getOriginal().world.getGameRules().getBoolean("keepInventory"));
    
 	}
-	
+
 	@SubscribeEvent
-	public void onPlayerLogin(PlayerLoggedInEvent event) {
-		EntityPlayerMP player = (EntityPlayerMP) event.player;
-		
-		IStatsCapability gs_stats = GSStatsCapability.get(player);
-		
-		GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_UPDATE_RESEARCHES, player.world, new Object[] { gs_stats.getKnowledgeResearch()}), player);
-	}*/
+    public void onPlayerLogin(PlayerLoggedInEvent event)
+    {
+        if (event.player instanceof EntityPlayerMP)
+        {
+        	IStatsCapability stats = GSStatsCapability.get(event.player);
+        	
+        	GalaxySpace.debug(stats.getKnowledgeResearch()[0] + " Log");
+        	Integer[] ids = new Integer[256];
+        	for(int i = 0; i < stats.getKnowledgeResearch().length; i++)
+        		ids[i] = stats.getKnowledgeResearch()[i];
+
+        	GalaxySpace.debug(ids + " Log");
+        	GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_UPDATE_RESEARCHES, GCCoreUtil.getDimensionID(event.player.world), new Object[] {ids}), (EntityPlayerMP)event.player);
+        }
+    }
+	
 	@SubscribeEvent
 	public void onToolTip(ItemTooltipEvent e) {
 		if(e.getItemStack().getItem() instanceof IModificationItem)
@@ -369,7 +401,7 @@ public class GSEventHandler {
 			EntityPlayerMP player = (EntityPlayerMP)living;			
 			final GCPlayerStats stats = GCPlayerStats.get(player);				
 			IStatsCapability gs_stats = GSStatsCapability.get(player);
-			
+		
 			LightningStormHandler.spawnLightning(player);
 								
 			this.updateSchematics(player, stats);

@@ -17,10 +17,6 @@ public interface IStatsCapability {
 
 	void setPlayer(WeakReference<EntityPlayerMP> player);
 
-	//double getRadiationLevel();
-
-	//void setRadiationLevel(double d);
-
 	int[] getKnowledgeResearch();
 	void setKnowledgeReseraches(int[] k);
 	void setKnowledgeReserach(int id, int k);
