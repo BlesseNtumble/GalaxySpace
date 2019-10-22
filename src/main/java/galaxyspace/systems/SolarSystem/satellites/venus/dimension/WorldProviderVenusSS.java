@@ -41,9 +41,9 @@ public class WorldProviderVenusSS extends WorldProviderSpaceStation implements I
         float dayColR = 203.0F / 255.0F;
         float dayColG = 147.0F / 255.0F;
         float dayColB = 0.0F / 255.0F;
-        float nightColR = 131.0F / 255.0F;
-        float nightColG = 108.0F / 255.0F;
-        float nightColB = 46.0F / 255.0F;
+        float nightColR = 1.0F / 255.0F;
+        float nightColG = 1.0F / 255.0F;
+        float nightColB = 1.0F / 255.0F;
         return new Vector3(dayColR * day + nightColR * night,
                 dayColG * day + nightColG * night,
                 dayColB * day + nightColB * night);
@@ -58,12 +58,12 @@ public class WorldProviderVenusSS extends WorldProviderSpaceStation implements I
         float dayColR = 105.0F / 255.0F;
         float dayColG = 107.0F / 255.0F;
         float dayColB = 281.0F / 255.0F;
-        float nightColR = 118.0F / 255.0F;
-        float nightColG = 89.0F / 255.0F;
-        float nightColB = 61.0F / 255.0F;
+        float nightColR = 2.0F / 255.0F;
+        float nightColG = 2.0F / 255.0F;
+        float nightColB = 2.0F / 255.0F;
         return new Vector3(dayColR * day + nightColR * night,
                 dayColG * day + nightColG * night,
-                dayColB * day + nightColB * night);
+                dayColB * day + nightColB * night);    	
     }
     
     @Override
@@ -103,7 +103,7 @@ public class WorldProviderVenusSS extends WorldProviderSpaceStation implements I
             var3 = 1.0F;
         }
 
-        return var3 * var3 * 0.5F + 0.3F;
+        return var3 * var3 * 0.5F + 0.2F;
     }
 
     @Override
@@ -267,4 +267,22 @@ public class WorldProviderVenusSS extends WorldProviderSpaceStation implements I
         return 10.0F;
     }
 
+    @Override
+	public float getThermalLevelModifier()
+	{
+
+		float angle = this.world.getCelestialAngle(this.getDayLength());
+		float value = MathHelper.cos(angle * (float) Math.PI * 2.0F) * getThermalValueMod();
+
+		float def = this.getCelestialBody().atmosphere.thermalLevel();
+		if (def < 0.0)
+			value *= -1;
+
+		return def == 0 ? value : value * def + def;		
+	}
+
+	protected float getThermalValueMod()
+	{
+		return 0.5F;
+	}
 }
