@@ -162,6 +162,9 @@ public class WorldProviderIo_WE extends WE_WorldProvider implements IProviderFre
 		rg.lavaBlock = Blocks.LAVA.getDefaultState();
 		cp.createChunkGen_List.add(rg);
 		
+		cp.worldGenerators.clear();
+		cp.biomesList.clear();
+		
 		WE_Biome.addBiomeToGeneration(cp, new Io_Plains());
 		WE_Biome.addBiomeToGeneration(cp, new Io_Mountains(0, 1.4D, 1.9D, 120, 35));
 		WE_Biome.addBiomeToGeneration(cp, new Io_Mountains(1, 1.9D, 2.4D, 125, 35));

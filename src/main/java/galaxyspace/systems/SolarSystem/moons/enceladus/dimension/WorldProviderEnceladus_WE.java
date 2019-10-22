@@ -177,6 +177,7 @@ public class WorldProviderEnceladus_WE extends WE_WorldProvider implements IProv
 		rg.lavaMaxY = 0;
 		cp.createChunkGen_List.add(rg);
 		
+		cp.worldGenerators.clear();
 		cp.biomesList.clear();
 		
 		WE_Biome.addBiomeToGeneration(cp, new Enceladus_Plains());	

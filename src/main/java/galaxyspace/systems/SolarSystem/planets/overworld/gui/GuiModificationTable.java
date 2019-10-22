@@ -69,28 +69,6 @@ public class GuiModificationTable extends GuiContainerGC{
 			
 			if(stack.getItem() instanceof IModificationItem)
 			{
-				/*if(stack.getItem() instanceof ItemArmor)
-				{
-					ItemArmor item = (ItemArmor) stack.getItem();
-					
-					
-					for(SpaceSuit_Modules s : GSUtils.SpaceSuit_Modules.values())
-					{
-						if(!s.getType().equals(((IModificationItem)stack.getItem()).getType(stack))) continue;
-						
-						if(s.getSlot() == item.armorType || s.getSlot() == null)
-							this.actual_list.add(s);
-					}
-				}	
-				else 
-				{
-					for(SpaceSuit_Modules s : GSUtils.SpaceSuit_Modules.values())				
-					{
-						if(!s.getType().equals(((IModificationItem)stack.getItem()).getType(stack))) continue;					
-						
-						this.actual_list.add(s);					
-					}
-				}*/
 				
 				for(ItemModule module : ((IModificationItem)stack.getItem()).getAvailableModules())
 				{
@@ -104,6 +82,7 @@ public class GuiModificationTable extends GuiContainerGC{
 					}
 					else 
 					{
+						if(module.getType() == null) continue;
 						if(!module.getType().equals(((IModificationItem)stack.getItem()).getType(stack))) continue;					
 						
 						actual_list.add(module);

@@ -269,6 +269,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProvider implements IPro
 		rg.lavaMaxY = 15;		
 		cp.createChunkGen_List.add(rg);
 		
+		cp.worldGenerators.clear();
 		cp.biomesList.clear();
 		
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_DeepOcean(-4D, 4D));	

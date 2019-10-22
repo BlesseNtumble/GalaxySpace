@@ -256,6 +256,7 @@ public class WorldProviderProxima_B_WE extends WE_WorldProvider implements IProv
 		rg.lavaBlock = Blocks.LAVA.getDefaultState();
 		cp.createChunkGen_List.add(rg);
 		
+		cp.worldGenerators.clear();
 		cp.biomesList.clear();
 		
 		WE_Biome.addBiomeToGeneration(cp, new Proxima_B_Plains());
