@@ -247,6 +247,8 @@ public class SolarSystemBodies implements IBodies{
 		venusSpaceStation.setBodyIcon(new ResourceLocation("galacticraftcore:textures/gui/celestialbodies/space_station.png"));
 		venusSpaceStation.addChecklistKeys("equip_oxygen_suit", "equip_parachute");
 		venusSpaceStation.setBiomeInfo(ACBiome.ACSpace);
+		venusSpaceStation.atmosphereComponent(EnumAtmosphericGas.CO2).atmosphereComponent(EnumAtmosphericGas.NITROGEN);
+		venusSpaceStation.setAtmosphere(new AtmosphereInfo(false, false, false, 0.8F, 0.4F, 0.0F));
 		
 		//GalaxyRegistry.getRegisteredPlanets().remove(MarsModule.planetMars.getName());
 		//GalaxyRegistry.getRegisteredPlanetIDs().remove(MarsModule.planetMars.getName());
