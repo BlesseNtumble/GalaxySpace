@@ -37,6 +37,8 @@ import galaxyspace.systems.SolarSystem.moons.miranda.dimension.WorldProviderMira
 import galaxyspace.systems.SolarSystem.moons.miranda.recipes.CraftingRecipesMiranda;
 import galaxyspace.systems.SolarSystem.moons.titan.dimension.TeleportTypeTitan;
 import galaxyspace.systems.SolarSystem.moons.titan.dimension.WorldProviderTitan;
+import galaxyspace.systems.SolarSystem.moons.triton.dimenson.TeleportTypeTriton;
+import galaxyspace.systems.SolarSystem.moons.triton.dimenson.WorldProviderTriton_WE;
 import galaxyspace.systems.SolarSystem.planets.ceres.dimension.TeleportTypeCeres;
 import galaxyspace.systems.SolarSystem.planets.ceres.dimension.WorldProviderCeres;
 import galaxyspace.systems.SolarSystem.planets.kuiperbelt.dimension.TeleportTypeKuiperBelt;
@@ -107,7 +109,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class SolarSystemBodies implements IBodies{
 	public static Planet planetMercury;
 
-	public static Planet planetMars;
 	public static Planet planetCeres;
 
 	public static Planet planetJupiter = GalacticraftCore.planetJupiter;
@@ -202,8 +203,8 @@ public class SolarSystemBodies implements IBodies{
 		planetKuiperBelt.setAtmosphere(new AtmosphereInfo(false, false, false, -5.0F, 0.0F, 0.0F));
 		//
 		
-		phobosMars = BodiesHelper.registerMoon(GSConfigCore.enableGCMars ? MarsModule.planetMars : planetMars, "phobos", GalaxySpace.ASSET_PREFIX, null, -1, -1, 1.0F, 0.0017F, 8.0F, 100F);
-		deimosMars = BodiesHelper.registerMoon(GSConfigCore.enableGCMars ? MarsModule.planetMars : planetMars, "deimos", GalaxySpace.ASSET_PREFIX, null, -1, -1, 1.0F, 0.0017F, 16.0F, 300F);
+		phobosMars = BodiesHelper.registerMoon(MarsModule.planetMars, "phobos", GalaxySpace.ASSET_PREFIX, null, -1, -1, 1.0F, 0.0017F, 8.0F, 100F);
+		deimosMars = BodiesHelper.registerMoon(MarsModule.planetMars, "deimos", GalaxySpace.ASSET_PREFIX, null, -1, -1, 1.0F, 0.0017F, 16.0F, 300F);
 		
 		ioJupiter = BodiesHelper.registerMoon(planetJupiter, "io", GalaxySpace.ASSET_PREFIX, WorldProviderIo.class, GSConfigDimensions.dimensionIDIo, 4, 1.0F, 0.0017F, 10.0F, 50F, ACBiome.ACSpace, ACBiome.ACSpaceLowHills, ACBiome.ACSpaceLowPlains);
 		ioJupiter.setAtmosphere(new AtmosphereInfo(false, false, false, -2.0F, 0.0F, 0.0F));
@@ -232,7 +233,8 @@ public class SolarSystemBodies implements IBodies{
 		oberonUranus = BodiesHelper.registerMoon(planetUranus, "oberon", GalaxySpace.ASSET_PREFIX, null, -1, -1, (float) Math.PI / 5, 0.0017F, 30.0F, 200F);
 		
 		proteusNeptune = BodiesHelper.registerMoon(planetNeptune, "proteus", GalaxySpace.ASSET_PREFIX, null, -1, -1, (float) Math.PI, 0.0017F, 10.0F, 50F);
-		tritonNeptune = BodiesHelper.registerMoon(planetNeptune, "triton", GalaxySpace.ASSET_PREFIX, null, -1, -1, (float) Math.PI / 2, 0.0017F, 25.0F, -200F);
+		tritonNeptune = BodiesHelper.registerMoon(planetNeptune, "triton", GalaxySpace.ASSET_PREFIX, WorldProviderTriton_WE.class, GSConfigDimensions.dimensionIDTriton, 6, (float) Math.PI / 2, 0.0017F, 25.0F, -200F, ACBiome.ACSpace);
+		tritonNeptune.setAtmosphere(new AtmosphereInfo(false, false, false, -11.2F, 0.0F, 0.0F));
 		
 		charonPluto = BodiesHelper.registerMoon(planetPluto, "charon", GalaxySpace.ASSET_PREFIX, null, -1, -1, (float) Math.PI / 2, 0.0017F, 15.0F, 50F);
 
@@ -262,7 +264,7 @@ public class SolarSystemBodies implements IBodies{
 		GalacticraftCore.satelliteSpaceStation.setRingColorRGB(0.0F, 0.4F, 0.9F);	
 		GalacticraftCore.moonMoon.setRingColorRGB(0.0F, 0.4F, 0.9F);	
 		MarsModule.planetMars.setRingColorRGB(0.0F, 0.4F, 0.9F);
-		if(GSConfigCore.enableWorldEngine) {
+		if(GSConfigCore.enableWorldEngine && GSConfigCore.enableGSMars) {
 			MarsModule.planetMars.setDimensionInfo(ConfigManagerMars.dimensionIDMars, WorldProviderMars_WE.class, true);
 			MarsModule.planetMars.setAtmosphere(new AtmosphereInfo(false, false, false, -3.0F, 1.0F, 0.1F));	
 		}
@@ -441,10 +443,12 @@ public class SolarSystemBodies implements IBodies{
 		data = new BodiesData(null, 0.057F, 0, 33500, true);
 		BodiesHelper.registerBody(mirandaUranus, data, GSConfigDimensions.enableMiranda);
 		
+		data = new BodiesData(null, 0.059F, 0, 145200, true);
+		BodiesHelper.registerBody(tritonNeptune, data, GSConfigDimensions.enableTriton); 
+		
 		BodiesData unreachableData = new BodiesData(null, 0F, 0, 0, false);	
 		BodiesHelper.registerBody(oberonUranus, unreachableData, GSConfigCore.enableUnreachable);
 		BodiesHelper.registerBody(proteusNeptune, unreachableData, GSConfigCore.enableUnreachable);
-		BodiesHelper.registerBody(tritonNeptune, unreachableData, GSConfigCore.enableUnreachable); 
 		BodiesHelper.registerBody(mimasSaturn, unreachableData, GSConfigCore.enableUnreachable); 	
 		BodiesHelper.registerBody(tethysSaturn, unreachableData, GSConfigCore.enableUnreachable); 	
 		BodiesHelper.registerBody(dioneSaturn, unreachableData, GSConfigCore.enableUnreachable); 	
@@ -466,7 +470,7 @@ public class SolarSystemBodies implements IBodies{
 	
 		GalacticraftRegistry.registerTeleportType(WorldProviderMercury.class, new TeleportTypeMercury());	
 		
-		if(GSConfigCore.enableWorldEngine)
+		if(GSConfigCore.enableWorldEngine && GSConfigCore.enableGSMars)
 			GalacticraftRegistry.registerTeleportType(WorldProviderMars_WE.class, new TeleportTypeMars());
 		
 		
@@ -494,8 +498,8 @@ public class SolarSystemBodies implements IBodies{
 		
 		/*GalacticraftRegistry.registerTeleportType(WorldProviderOberon.class, new WorldProviderOberon());
 		
-		GalacticraftRegistry.registerTeleportType(WorldProviderProteus.class, new WorldProviderProteus());
-		GalacticraftRegistry.registerTeleportType(WorldProviderTriton.class, new WorldProviderTriton());*/
+		GalacticraftRegistry.registerTeleportType(WorldProviderProteus.class, new WorldProviderProteus());*/
+		GalacticraftRegistry.registerTeleportType(WorldProviderTriton_WE.class, new TeleportTypeTriton());
 		  
 		
 		/*
@@ -530,6 +534,7 @@ public class SolarSystemBodies implements IBodies{
 		GSDimensions.ENCELADUS = WorldUtil.getDimensionTypeById(GSConfigDimensions.dimensionIDEnceladus);
 		GSDimensions.TITAN = WorldUtil.getDimensionTypeById(GSConfigDimensions.dimensionIDTitan);
 		GSDimensions.MIRANDA = WorldUtil.getDimensionTypeById(GSConfigDimensions.dimensionIDMiranda);
+		GSDimensions.TRITON = WorldUtil.getDimensionTypeById(GSConfigDimensions.dimensionIDTriton);
 		
 		GSDimensions.KUIPER_BELT = WorldUtil.getDimensionTypeById(GSConfigDimensions.dimensionIDKuiperBelt);
 		
