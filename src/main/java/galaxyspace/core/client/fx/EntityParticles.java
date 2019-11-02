@@ -13,10 +13,14 @@ public class EntityParticles extends Particle {
 
    private float flameScale;
    private boolean isGravity;
+   private double speed;
   // private static final ResourceLocation texture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/particle/cloud.png");
   
-
-	public EntityParticles(World par1World, Vector3 position, Vector3 motion, int age, int particleID,	boolean hasGravity, Vector3 color, double size) {
+   	public EntityParticles(World par1World, Vector3 position, Vector3 motion, int age, int particleID,	boolean hasGravity, Vector3 color, double size) {
+   		this(par1World, position, motion, age, particleID, hasGravity, color, size, 1.0D);
+   	}
+	   
+	public EntityParticles(World par1World, Vector3 position, Vector3 motion, int age, int particleID,	boolean hasGravity, Vector3 color, double size, double speed) {
 		super(par1World, position.x, position.y, position.z, 0.0D, 0.0D, 0.0D);
 		this.motionX = this.motionX * 0.009999999776482582D + motion.x;
 		this.motionY = this.motionY * 0.009999999776482582D + motion.y;
@@ -28,6 +32,7 @@ public class EntityParticles extends Particle {
 		this.setParticleTextureIndex(particleID);
 
 		this.isGravity = hasGravity;
+		this.speed = speed;
 
 		if (color == null) {
 			this.particleRed = this.particleGreen = this.particleBlue = 1.0F;
@@ -36,6 +41,8 @@ public class EntityParticles extends Particle {
 		this.particleRed = color.floatX();
 		this.particleGreen = color.floatY();
 		this.particleBlue = color.floatZ();
+		
+		
 	}
 	
    @Override
@@ -93,9 +100,9 @@ public class EntityParticles extends Particle {
 		}
 
 		if (this.particleAge > this.particleMaxAge / 10 && this.isGravity)
-			this.motionY -= 0.04D;
+			this.motionY -= 0.04D * speed;
 
-		this.motionY += 0.01D;
+		this.motionY += 0.01D * speed;
 		this.move(super.motionX, super.motionY, super.motionZ);
 		this.motionX *= 0.9599999785423279D;
 		this.motionY *= 0.9599999785423279D;

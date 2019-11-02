@@ -2,6 +2,8 @@ package galaxyspace.systems.SolarSystem.moons.triton.blocks;
 
 import java.util.Random;
 
+import galaxyspace.GalaxySpace;
+import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
 import net.minecraft.block.Block;
@@ -32,7 +34,8 @@ public class TritonBlocks  extends Block implements ISortableBlock{
 		super(Material.ROCK);
 		this.setUnlocalizedName("tritonblocks");
         this.setSoundType(SoundType.STONE); 
-        this.setHarvestLevel("pickaxe", 2);		
+        this.setHarvestLevel("pickaxe", 2);	
+        this.setTickRandomly(false);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -43,6 +46,36 @@ public class TritonBlocks  extends Block implements ISortableBlock{
         {
             list.add(new ItemStack(this, 1, blockBasic.getMeta()));
         }
+    }
+	
+	@Override
+	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
+    {
+		if(!world.isAreaLoaded(pos, 1)) return;
+		if(state == state.withProperty(BASIC_TYPE, EnumTritonBlocks.TRITON_GEYSER))
+		{
+			if(world.isAirBlock(pos.up())) {
+				GalaxySpace.proxy.spawnParticle("waterbubbles1", new Vector3(pos.getX() + rand.nextDouble(), pos.getY() + 1.0D + rand.nextDouble(), pos.getZ() + rand.nextDouble()), new Vector3(0.0D + ((rand.nextFloat() / 10) * (rand.nextBoolean() ? -1 : 1)), 0.0001D, 0.0D + ((rand.nextFloat() / 20) * (rand.nextBoolean() ? -1 : 1))), new Object [] { 600 + rand.nextInt(400), 7, false, new Vector3(0.3F, 0.35F, 0.3F), 1.9D, 13.0D} );
+				GalaxySpace.proxy.spawnParticle("waterbubbles1", new Vector3(pos.getX() + rand.nextDouble(), pos.getY() + 1.0D + rand.nextDouble(), pos.getZ() + rand.nextDouble()), new Vector3(0.0D + ((rand.nextFloat() / 20) * (rand.nextBoolean() ? -1 : 1)), 0.0001D, 0.0D + ((rand.nextFloat() / 20) * (rand.nextBoolean() ? -1 : 1))), new Object [] { 600 + rand.nextInt(400), 7, false, new Vector3(0.4F, 0.4F, 0.4F), 1.9D, 13.0D} );
+    			GalaxySpace.proxy.spawnParticle("waterbubbles1", new Vector3(pos.getX() + rand.nextDouble(), pos.getY() + 1.0D + rand.nextDouble(), pos.getZ() + rand.nextDouble()), new Vector3(0.0D + ((rand.nextFloat() / 20) * (rand.nextBoolean() ? -1 : 1)), 0.0001D, 0.0D + ((rand.nextFloat() / 20) * (rand.nextBoolean() ? -1 : 1))), new Object [] { 600 + rand.nextInt(400), 7, false, new Vector3(0.1F, 0.1F, 0.1F), 1.9D, 13.0D} );
+    		
+			}
+			world.scheduleBlockUpdate(pos, this, 0, 0);
+		}
+    }
+	
+	@Override
+    public void onBlockAdded(World world, BlockPos pos, IBlockState state)
+    {
+		switch(state.getValue(BASIC_TYPE))
+		{
+			case TRITON_GEYSER:
+				world.scheduleBlockUpdate(pos, this, this.tickRate(world) + world.rand.nextInt(10), 0);
+				break;
+			default:
+				break;
+		}
+			
     }
 	
 	@Override

@@ -24,8 +24,13 @@ public class GSEffectHandler {
 			Particle particle = null;
 			double viewDistance = 64.0D;
 			
-			if(particleID.equals("waterbubbles")) {            	
-				 particle = new EntityParticles(mc.world, position, motion, (int) otherInfo[0], (int) otherInfo[1], (boolean) otherInfo[2], (Vector3) otherInfo[3], (double) otherInfo[4]);
+			if(particleID.equals("waterbubbles")) {
+				particle = new EntityParticles(mc.world, position, motion, (int) otherInfo[0], (int) otherInfo[1], (boolean) otherInfo[2], (Vector3) otherInfo[3], (double) otherInfo[4]);
+				
+			}
+			else if(particleID.equals("waterbubbles1")) {
+				particle = new EntityParticles(mc.world, position, motion, (int) otherInfo[0], (int) otherInfo[1], (boolean) otherInfo[2], (Vector3) otherInfo[3], (double) otherInfo[4], (double) otherInfo[5]);
+				
 			}
 			else if (particleID.equals("launchFlameLaunched"))
             {
