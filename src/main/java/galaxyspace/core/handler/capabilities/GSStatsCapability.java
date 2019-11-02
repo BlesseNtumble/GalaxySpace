@@ -8,17 +8,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class GSStatsCapability implements IStatsCapability {
+public class GSStatsCapability extends StatsCapability {
 	public WeakReference<EntityPlayerMP> player;
 	public int buildFlags = 0;
 
 	private int[] know_res = new int[256];
-	
-	public static IStatsCapability get(Entity entity)
-    {
-        return entity.getCapability(GSCapabilityStatsHandler.GS_STATS_CAPABILITY, null);
-    }
-	
+
 	@Override
 	public void saveNBTData(NBTTagCompound nbt) {
 		nbt.setIntArray("gs_knowledge_research", know_res);		
@@ -37,9 +32,9 @@ public class GSStatsCapability implements IStatsCapability {
 	}
 
 	@Override
-	public void copyFrom(IStatsCapability oldData, boolean keepInv) {
-		if(oldData.getKnowledgeResearch() != null)
-			this.know_res = oldData.getKnowledgeResearch();
+	public void copyFrom(StatsCapability oldData, boolean keepInv) {
+		if(oldData.getKnowledgeResearches() != null)
+			this.know_res = oldData.getKnowledgeResearches();
 	}
 
 	@Override
@@ -53,17 +48,14 @@ public class GSStatsCapability implements IStatsCapability {
 	}
 
 	@Override
-	public int[] getKnowledgeResearch() {
-		return know_res;
+	public int[] getKnowledgeResearches() {
+		return this.know_res;
 	}
 
 	@Override
-	public void setKnowledgeReseraches(int[] k) {		
-		know_res = k;
+	public void setKnowledgeResearch(int id, int k) {
+		this.know_res[id] = k;		
 	}
+
 	
-	@Override
-	public void setKnowledgeReserach(int id, int k) {
-		know_res[id] = k;
-	}
 }

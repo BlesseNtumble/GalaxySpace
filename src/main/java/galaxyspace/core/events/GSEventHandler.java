@@ -18,7 +18,7 @@ import galaxyspace.core.handler.capabilities.GSCapabilityProviderStats;
 import galaxyspace.core.handler.capabilities.GSCapabilityProviderStatsClient;
 import galaxyspace.core.handler.capabilities.GSCapabilityStatsHandler;
 import galaxyspace.core.handler.capabilities.GSStatsCapability;
-import galaxyspace.core.handler.capabilities.IStatsCapability;
+import galaxyspace.core.handler.capabilities.StatsCapability;
 import galaxyspace.core.network.packet.GSPacketSimple;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
 import galaxyspace.core.prefab.items.rockets.ItemTier4Rocket;
@@ -138,8 +138,8 @@ public class GSEventHandler {
 	@SubscribeEvent
     public void onPlayerCloned(PlayerEvent.Clone event)
     {
-		IStatsCapability oldStats = GSStatsCapability.get(event.getOriginal());
-		IStatsCapability newStats = GSStatsCapability.get(event.getEntityPlayer());
+		StatsCapability oldStats = GSStatsCapability.get(event.getOriginal());
+		StatsCapability newStats = GSStatsCapability.get(event.getEntityPlayer());
         newStats.copyFrom(oldStats, !event.isWasDeath()|| event.getOriginal().world.getGameRules().getBoolean("keepInventory"));
    
 	}
@@ -149,19 +149,18 @@ public class GSEventHandler {
     {
         if (event.player instanceof EntityPlayerMP)
         {
-        	IStatsCapability stats = GSStatsCapability.get(event.player);
+        	StatsCapability stats = GSStatsCapability.get(event.player);
         	
-        	GalaxySpace.debug(stats.getKnowledgeResearch()[0] + " Log");
         	Integer[] ids = new Integer[256];
-        	for(int i = 0; i < stats.getKnowledgeResearch().length; i++)
-        		ids[i] = stats.getKnowledgeResearch()[i];
+        	for(int i = 0; i < stats.getKnowledgeResearches().length; i++)
+        		ids[i] = stats.getKnowledgeResearches()[i];
 
-        	GalaxySpace.debug(ids + " Log");
         	GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_UPDATE_RESEARCHES, GCCoreUtil.getDimensionID(event.player.world), new Object[] {ids}), (EntityPlayerMP)event.player);
         }
     }
 	
 	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
 	public void onToolTip(ItemTooltipEvent e) {
 		if(e.getItemStack().getItem() instanceof IModificationItem)
 		{
@@ -399,8 +398,7 @@ public class GSEventHandler {
 		if (living instanceof EntityPlayerMP)
 		{
 			EntityPlayerMP player = (EntityPlayerMP)living;			
-			final GCPlayerStats stats = GCPlayerStats.get(player);				
-			IStatsCapability gs_stats = GSStatsCapability.get(player);
+			final GCPlayerStats stats = GCPlayerStats.get(player);			
 		
 			LightningStormHandler.spawnLightning(player);
 								

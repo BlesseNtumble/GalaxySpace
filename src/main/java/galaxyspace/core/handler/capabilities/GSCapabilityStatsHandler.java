@@ -13,23 +13,23 @@ public class GSCapabilityStatsHandler {
 	@CapabilityInject(StatsCapabilityClient.class)
 	public static Capability<StatsCapabilityClient> GS_STATS_CAPABILITY_CLIENT = null;
 	
-	@CapabilityInject(IStatsCapability.class)
-	public static Capability<IStatsCapability> GS_STATS_CAPABILITY = null;
+	@CapabilityInject(StatsCapability.class)
+	public static Capability<StatsCapability> GS_STATS_CAPABILITY = null;
 
 	public static final ResourceLocation GS_PLAYER_PROPERTIES_CLIENT = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "player_stats_client");
 	public static final ResourceLocation GS_PLAYER_PROPERTIES = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "player_stats");
 
 	public static void register() {
-		CapabilityManager.INSTANCE.register(IStatsCapability.class, new Capability.IStorage<IStatsCapability>() {
+		CapabilityManager.INSTANCE.register(StatsCapability.class, new Capability.IStorage<StatsCapability>() {
 			@Override
-			public NBTBase writeNBT(Capability<IStatsCapability> capability, IStatsCapability instance, EnumFacing side) {
+			public NBTBase writeNBT(Capability<StatsCapability> capability, StatsCapability instance, EnumFacing side) {
 				NBTTagCompound nbt = new NBTTagCompound();
                 instance.saveNBTData(nbt);
                 return nbt;
 			}
 
 			@Override
-			public void readNBT(Capability<IStatsCapability> capability, IStatsCapability instance, EnumFacing side, NBTBase nbt) {
+			public void readNBT(Capability<StatsCapability> capability, StatsCapability instance, EnumFacing side, NBTBase nbt) {
 				instance.loadNBTData((NBTTagCompound) nbt);
 			}
 		}, GSStatsCapability::new);

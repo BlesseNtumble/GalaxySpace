@@ -35,7 +35,7 @@ public class GSConfigCore
     public static boolean enableNewMenu;
     public static boolean enableFogVenus;
     public static boolean enableSkyOverworld;
-    public static boolean enableGCMars;
+    public static boolean enableGSMars;
     public static boolean enableOverworldOres;
 
     public static int idSolarRadiation = 29;
@@ -155,10 +155,10 @@ public class GSConfigCore
             enableMethaneParticle = prop.getBoolean(true);
             propOrder.add(prop.getName());   
             
-            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "enableGCMars", true);
-            prop.setComment("Enable/Disable register Phobos and Deimos on GC Mars.");
+            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "enableGSMars", true);
+            prop.setComment("Enable/Disable Mars with new generations.");
             prop.setLanguageKey("gc.configgui.enableGCMars").setRequiresMcRestart(true);
-            enableGCMars = prop.getBoolean(true);
+            enableGSMars = prop.getBoolean(true);
             propOrder.add(prop.getName());     
             /*
             prop = config.get(Constants.CONFIG_CATEGORY_WORLDGEN, "Other mods ores for GC to generate on GS planets", new String [] { });

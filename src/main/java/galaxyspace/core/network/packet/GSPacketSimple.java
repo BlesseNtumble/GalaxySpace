@@ -4,13 +4,12 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import galaxyspace.GalaxySpace;
 import galaxyspace.api.item.IModificationItem;
 import galaxyspace.api.tile.ITileEffects;
 import galaxyspace.core.events.GSEventHandler;
 import galaxyspace.core.handler.capabilities.GSStatsCapability;
 import galaxyspace.core.handler.capabilities.GSStatsCapabilityClient;
-import galaxyspace.core.handler.capabilities.IStatsCapability;
+import galaxyspace.core.handler.capabilities.StatsCapability;
 import galaxyspace.core.handler.capabilities.StatsCapabilityClient;
 import galaxyspace.core.prefab.items.modules.ItemModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemSpaceSuit;
@@ -163,7 +162,7 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
     	EntityPlayerSP playerBaseClient = null;
         GCPlayerStatsClient stats = null;
 
-		IStatsCapability gs_stats = null;
+        StatsCapability gs_stats = null;
 		StatsCapabilityClient gs_stats_client = null;
 
         if (player instanceof EntityPlayerSP)
