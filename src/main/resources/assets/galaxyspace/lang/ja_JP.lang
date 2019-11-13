@@ -1,0 +1,540 @@
+#Japanese (JP)
+menu.update=Galaxy Spaceをアップデート!
+
+|/////////////////////////////////////////|
+#||||||||||||||Achievements||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+
+
+|/////////////////////////////////////////|
+#||||||||||||||||||Blocks||||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+tile.mercury_surface.name=水星地表の土壌
+tile.mercury_subsurface.name=水星地中の土壌
+tile.mercury_stone.name=水星の石
+tile.mercury_iron_ore.name=鉄鉱石
+tile.mercury_nickel_ore.name=ニッケル鉱石
+tile.mercury_magnesium_ore.name=マグネシウム鉱石
+
+tile.deco_cobaltum.name=コバルト装飾ブロック
+tile.deco_magnesium.name=マグネシウム装飾ブロック
+tile.deco_nickel.name=ニッケル装飾ブロック
+tile.deco_copper.name=銅装飾ブロック
+tile.cobalt_block.name=コバルトブロック
+tile.nickel_block.name=ニッケルブロック
+tile.magnesium_block.name=マグネシウムブロック
+
+tile.cobaltum_ore.name=コバルト鉱石
+tile.nickel_ore.name=ニッケル鉱石
+tile.uranium_ore.name=ウラン鉱石
+tile.coal_ore.name=石炭鉱石
+tile.iron_ore.name=鉄鉱石
+tile.gold_ore.name=金鉱石
+tile.redstone_ore.name=レッドストーン鉱石
+tile.lapis_ore.name=ラピスラズリ鉱石
+tile.diamond_ore.name=ダイヤモンド鉱石
+tile.silicon_ore.name=シリコン鉱石
+tile.copper_ore.name=銅鉱石
+tile.tin_ore.name=スズ鉱石
+tile.aluminum_ore.name=アルミ鉱石
+tile.quartz_ore.name=クォーツ鉱石
+
+tile.surface_ice.name=地表の氷
+
+tile.futureglass_none.name=未来ガラス
+tile.futureglass_black.name=黒色の未来ガラス
+tile.futureglass_red.name=赤色の未来ガラス
+tile.futureglass_green.name=緑色の未来ガラス
+tile.futureglass_brown.name=茶色の未来ガラス
+tile.futureglass_blue.name=青色の未来ガラス
+tile.futureglass_purple.name=紫色の未来ガラス
+tile.futureglass_cyan.name=青緑色の未来ガラス
+tile.futureglass_lightgray.name=薄灰色の未来ガラス
+tile.futureglass_gray.name=灰色の未来ガラス
+tile.futureglass_pink.name=桃色の未来ガラス
+tile.futureglass_lime.name=黄緑色の未来ガラス
+tile.futureglass_yellow.name=黄色の未来ガラス
+tile.futureglass_lightblue.name=空色の未来ガラス
+tile.futureglass_magneta.name=赤紫の未来ガラス
+tile.futureglass_orange.name=橙色の未来ガラス
+tile.futureglass_white.name=白色の未来ガラス
+
+tile.mars_diamond.name=ダイヤモンド鉱石
+tile.mars_gold.name=金鉱石
+tile.mars_coal.name=石炭鉱石
+tile.mars_redstone.name=レッドストーン鉱石
+tile.mars_silicon.name=シリコン鉱石
+tile.mars_aluminum.name=アルミ鉱石
+
+tile.ceres_grunt.name=ケレス地表の土壌
+tile.ceres_subgrunt.name=ケレス地中の土壌
+tile.ceres_dolomite_ore.name=ドロマイト鉱石
+tile.ceres_meteoriciron_ore.name=流星鉄鉱石
+tile.ceres_dungeon_top.name=ケレスダンジョンの天井
+tile.ceres_dungeon_floor.name=ケレスダンジョンの床
+
+tile.pluto_grunt.name=冥王星地表の土壌
+tile.pluto_subgrunt.name=冥王星地中の土壌
+tile.pluto_stone.name=冥王星の石
+
+tile.io_grunt.name=イオ地表の土壌
+tile.io_stone.name=イオの石
+tile.io_ash.name=イオの灰
+tile.io_copper_ore.name=銅鉱石
+tile.io_sulfur_ore.name=硫黄鉱石
+tile.io_volcanic_ore.name=火山鉱石
+tile.io_lava_geyser.name=イオの溶岩間欠泉
+tile.io_sulfur_geyser.name=イオの硫黄間欠泉
+tile.io_top.name=イオダンジョンの天井
+tile.io_floor.name=イオダンジョンの床
+
+tile.europa_grunt.name=エウロパ表面の氷
+tile.europa_stone.name=エウロパの石
+tile.europa_brown_ice.name=茶色いエウロパの氷
+tile.europa_emerald_ore.name=エメラルド鉱石
+tile.europa_silicon_ore.name=シリコン鉱石
+tile.europa_aluminum_ore.name=アルミ鉱石
+tile.europa_geyser.name=エウロパの間欠泉
+tile.europa_uwgeyser.name=エウロパの間欠泉
+
+tile.ganymede_grunt.name=ガニメデ地表の土壌
+tile.ganymede_stone.name=ガニメデ地中の土壌
+tile.ganymede_magnesium_ore.name=マグネシウム鉱石
+tile.ganymede_titanium_ore.name=イルメナイト鉱石
+
+tile.callisto_grunt.name=カリスト地表の土壌
+tile.callisto_stone.name=カリストの石
+
+tile.enceladus_snow.name=エンケラドゥスの氷
+tile.enceladus_grunt.name=エンケラドゥス地中の土壌
+tile.enceladus_coal_ore.name=石炭鉱石
+tile.enceladus_crystal.name=未知の結晶
+
+tile.titan_grunt.name=タイタン地表の土壌
+tile.titan_subgrunt.name=タイタン地中の土壌
+tile.titan_stone.name=タイタンの石
+tile.titan_sapphire_ore.name=サファイア鉱石
+tile.titan_emerald_ore.name=エメラルド鉱石
+tile.titan_diamond_ore.name=ダイヤモンド鉱石
+tile.titan_coal_ore.name=石炭鉱石
+tile.titan_lapis_ore.name=ラピスラズリ鉱石
+tile.titan_redstone_ore.name=レッドストーン鉱石
+
+tile.miranda_grunt.name=ミランダ地表の土壌
+tile.miranda_subgrunt.name=ミランダ地中の土壌
+tile.miranda_stone.name=ミランダの石
+tile.miranda_ice.name=ミランダの氷
+tile.miranda_iron_ore.name=鉄鉱石
+tile.miranda_dolomite_ore.name=ドロマイト鉱石
+tile.miranda_diamond_ore.name=ダイヤモンド鉱石
+tile.miranda_quartz_ore.name=クォーツ鉱石
+tile.miranda_cobalt_ore.name=コバルト鉱石
+tile.miranda_nickel_ore.name=ニッケル鉱石
+
+tile.proxima_b_surface.name=プロキシマBの地表
+tile.proxima_b_subsurface.name=プロキシマBの地中
+tile.proxima_b_stone.name=プロキシマBの石
+tile.proxima_b_ice_surface.name=プロキシマB表面の氷
+tile.proxima_b_ash_rock.name=プロキシマBの凝灰岩
+tile.proxima_b_gold_ore.name=金鉱石
+tile.proxima_b_tin_ore.name=スズ鉱石
+tile.proxima_b_copper_ore.name=銅鉱石
+tile.proxima_b_coal_ore.name=石炭鉱石
+tile.proxima_b_silicon_ore.name=シリコン鉱石
+tile.proxima_b_diamond_ore.name=ダイヤモンド鉱石
+tile.proxima_b_log_1.name=焦げた木
+tile.proxima_b_log_2.name=凍った木
+
+tile.barnarda_c_grass.name=バーナードCの草
+tile.barnarda_c_dirt.name=バーナードCの土
+tile.barnarda_c_stone.name=バーナードCの石
+tile.barnarda_c_sandstone.name=[WIP]バーナードCの砂岩
+tile.barnarda_c_dirt_1.name=[WIP]バーナードCの土
+tile.barnarda_c_cobblestone.name=バーナードCの丸石
+tile.barnarda_c_stone_bricks.name=バーナードCの石レンガ
+tile.barnarda_c_oak_planks.name=バーナードCの木材
+tile.barnarda_c_sand.name=バーナードCの砂
+tile.barnarda_c_test_log.name=バーナードCの菫色の原木
+tile.barnarda_c_test_glow_log.name=バーナードCの紫色のグロウウッド
+tile.barnarda_c_tall_grass.name=バーナードCの背の高い草
+tile.barnarda_c_hopper_flower.name=バーナードCのホッパーフラワー
+tile.barnarda_c_green_fern.name=バーナードCの緑色のシダ
+tile.barnarda_c_red_fern.name=バーナードCの赤色のシダ
+tile.barnarda_c_light_balls.name=バーナードCのライトボール
+tile.barnarda_c_leaves_balls.name=バーナードCのリーブボール
+tile.barnarda_c_desert_down.name=バーナードCの砂漠の花
+tile.barnarda_c_desert_up.name=バーナードCの砂漠の花
+tile.barnarda_c_yellow_grass_down.name=バーナードCの黄色い草
+tile.barnarda_c_yellow_grass_up.name=バーナードCの黄色い草
+tile.barnarda_c_violet_sapling.name=菫色の木の苗木
+tile.barnarda_c_leaves_1.name=バーナードCの葉
+tile.barnarda_c_farmland.name=バーナードCの耕地
+
+|/////////////////////////////////////////|
+#||||||||||||Tile Description||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+tile.assembly_machine.name=組み立て機
+tile.assembly_machine.desc=圧縮機の別バージョン. 高感度レーザーで材料を加工する.
+
+tile.fuel_generator.name=燃料発電機
+tile.fuel_generator.desc=燃料を消費して十分な量のエネルギーを生産する. 燃料大国では良い選択肢となる.
+
+tile.modern_solarpanel.name=ハイブリッドソーラー発電機
+tile.modern_solarpanel.desc=金との複合パネルを利用しており, 高性能ソーラー発電機の2倍のエネルギーを生産する.
+
+tile.gravitation_module.name=重力モジュール
+tile.gravitation_module.desc=地球のような重量を全方向に生成する. 生成半径は設定可能.
+
+tile.wind_generator.name=風力発電機
+tile.wind_generator.desc=風を利用し発電する. 風のある惑星の光エネルギーに相当.
+
+tile.rocket_assembler.name=ロケット組み立て機
+tile.rocket_assembler.desc=NASA作業台で作成した部品からロケットを組み立てる.
+
+tile.universal_recycler.name=汎用リサイクル装置
+tile.universal_recycler.desc=ある資源をほかの資源にリサイクルする. 物体を液体にリサイクルすることも可能.
+
+tile.liquid_extractor.name=液体抽出器
+tile.liquid_extractor.desc=下にある液体を抽出する.
+
+tile.liquid_separator.name=液体分離器
+tile.liquid_separator.desc=液体を構成要素に分離する. その反対の操作も可能.
+
+tile.rocket_assembler.name=ロケット組み立て機
+tile.rocket_assembler.desc=NASA作業台で作成した部品からロケットを組み立てる.
+
+tile.hydroponic_base.name=水耕栽培ベース
+tile.hydroponic_base.desc=水耕栽培の基礎となるブロック. 上に水耕栽培ブロックを設置して利用する.
+
+tile.hydroponic_farm.name=水耕栽培ブロック
+tile.hydroponic_farm.desc=水耕栽培ベースの上に設置して利用する. 水耕農園の運営に必要となる. 3個まで積み上げて利用できる.
+
+tile.radiation_stabiliser.name=磁場生成機
+tile.radiation_stabiliser.desc=太陽放射から人体を保護するフィールドを生成する. モジュール"拡大"を取り付け可能.
+
+tile.panel_controller.name=ミニパネルコントローラ
+tile.panel_controller.desc=近くのミニソーラーパネルからエネルギーを取り出す. このブロックをShift+右クリックすると範囲を表示できる.
+
+tile.single_solarpanel.name=ミニソーラーパネル
+tile.single_solarpanel.desc=ソーラーパネルの別形態. ミニパネルコントローラが必要.
+
+tile.modern_single_solarpanel.name=最新型ミニソーラーパネル
+tile.modern_single_solarpanel.desc=高効率のミニソーラーパネル. ミニパネルコントローラが必要.
+
+tile.modern_storage_module.name=最新型エネルギー蓄積クラスター
+tile.modern_storage_module.desc=エネルギー蓄積クラスターの最新型. 大量のエネルギーを蓄積できる.
+
+tile.modification_table.name=改造作業台
+tile.modification_table.desc=宇宙服に様々なモジュールを取り付けできる.
+
+tile.gas_burner.name=ガスバーナー
+tile.gas_burner.desc=供給されたガスを燃焼する.
+
+tile.oxygen_storage_module.name=酸素蓄積クラスター
+tile.oxygen_storage_module.desc=酸素蓄積モジュールの改善版. 4倍の酸素を蓄積できる.
+
+tile.solarwind_panel.name=太陽風発電機
+tile.solarwind_panel.desc=太陽風をエネルギーに変換する. 大気のある惑星では発電しない.
+
+tile.advanced_landing_pad.name=強化発射台
+tile.advanced_landing_pad.desc=強化されたロケット発射台. 5x5に設置する.
+
+tile.adv_circuit_fabricator.name=高性能 回路製作機
+tile.adv_circuit_fabricator.desc=回路製作機の高性能型. 効率は2倍以上. モジュールを取り付け可能.
+
+tile.adv_electric_compressor.name=高性能 電気圧縮機
+tile.adv_electric_compressor.desc=電気圧縮機の高性能型. 効率は2倍以上. モジュールを取り付け可能.
+
+tile.planet_shield.name=プラネタシールド
+tile.planet_shield.desc=落ちてくる隕石からエリアを保護する.
+
+tile.port_nuclear_reactor.name=[WIP]ポータブル原子炉
+
+tile.basic_frame.name=基本マシンフレーム
+tile.advance_frame.name=高性能マシンフレーム
+tile.modern_frame.name=最新式マシンフレーム
+tile.coefficient.desc=発電係数
+tile.coefficientcraft.desc=クラフト速度係数
+
+tile.ceres_bricks.name=ケレスダンジョンのレンガ
+tile.io_bricks.name=[WIP]イオダンジョンのレンガ
+
+tile.treasure_t4.name=レベル4 宝箱
+tile.treasure_t4.desc=ケレスのダンジョンに生成される. 最終ボスを倒した後に解錠できる.
+
+|/////////////////////////////////////////|
+#|||||||||||||||||Items||||||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+
+item.schematics.name=NASA作業台 設計図
+item.hdp.name=ヘビーデューティーめっき
+item.dungeon_keys.name=ダンジョンの鍵
+
+item.rocket_tier_4.name=レベル4 ロケット
+item.rocket_tier_5.name=レベル5 ロケット
+item.rocket_tier_6.name=レベル6 ロケット
+
+item.space_suit_head.name=宇宙服 ヘルメット
+item.space_suit_chest.name=宇宙服 チェストプレート
+item.space_suit_legs.name=宇宙服 レギンス
+item.space_suit_feet.name=宇宙服 ブーツ
+
+item.jetpack.name=エレクトリック ジェットパック
+
+item.cobalt_helmet.name=コバルトのヘルメット
+item.cobalt_chest.name=コバルトのチェストプレート
+item.cobalt_legs.name=コバルトのレギンス
+item.cobalt_boots.name=コバルトのブーツ
+
+item.cobalt_axe.name=コバルトの斧
+item.cobalt_hoe.name=コバルトのクワ
+item.cobalt_pickaxe.name=コバルトのツルハシ
+item.cobalt_sword.name=コバルトの剣
+item.cobalt_spade.name=コバルトのシャベル
+
+item.nickel_ingot.name=ニッケルインゴット
+item.cobaltum_ingot.name=コバルトインゴット
+item.magnesium_ingot.name=マグネシウムインゴット
+item.uranium_ingot.name=ウランインゴット
+
+item.compressed_nickel.name=圧縮されたニッケル
+item.compressed_cobaltum.name=圧縮されたコバルト
+item.compressed_magnesium.name=圧縮されたマグネシウム
+item.compressed_coal.name=圧縮された石炭
+item.compressed_sdhd120.name=圧縮された"SDHC-120"合金
+item.unknow_crystal.name=未知の結晶の欠片
+item.sulfur.name=硫黄
+item.module_electrolyse.name=モジュール"電気分解"
+item.dolomite_crystal.name=ドロマイトの結晶
+item.dolomite_meal.name=ドロマイトの粉末
+item.wafer_modern.name=最新型ウェファー
+item.hematite.name=赤鉄鉱
+item.antiradiation_tablets.name=抗放射線錠剤
+item.schematic_box.name=設計図の保管箱
+item.module_base.name=空モジュール
+item.blank_schematic.name=白紙の設計書
+item.volcanic_stone.name=火山の欠片
+item.meteoric_iron_fragments.name=流星鉄の欠片
+item.uranium_fragments.name=ウラン
+item.temp_shield_control.name=試作型シールドコントローラ
+item.ice_bucket.name=氷入りバケツ
+item.emergency_portable_teleport.name=非常用携帯テレポーター
+item.guide_book.name=[WIP] Info-Pad
+item.advanced_emergency_kit.name=強化応急キット
+
+item.module_expander.name=モジュール"拡大"
+item.module_stabiliser.name=モジュール"安定化"
+item.module_speed.name=モジュール"スピード"
+item.module_energy.name=モジュール"エネルギー"
+
+item.module_small_fuelcanister.name=小型燃料タンク
+item.module_smallcanister.name=小型燃料タンクのひな形
+item.module_lander_1.name=レベル1 着陸船
+item.module_lander_2.name=レベル2 着陸船
+item.module_lander_3.name=レベル3 着陸船
+item.ion_engine.name=[WIP]イオンエンジン
+item.plasma_engine.name=[WIP]プラズマエンジン
+item.sublight_engine.name=亜光速エンジン
+item.blackhole_engine.name=[WIP]ブラックホールエンジン
+ 
+item.rocket_cone.name=高耐久 ノーズコーン
+item.rocket_body.name=高耐久 ロケットボディ
+item.rocket_engine.name=高耐久 ロケットエンジン
+item.rocket_booster.name=ヘビーブースター
+item.rocket_stabiliser.name=高耐久 ロケットフィン
+
+item.part_solarflares.name=太陽フレアモジュール
+item.solarflares.name=太陽フレア
+
+item.oxygen_tank_4.name=超大型酸素タンク
+item.oxygen_tank_5.name=究極型酸素タンク
+item.oxygen_tank_6.name=超究極酸素タンク
+item.oxygen_tank_epp_1.name=エコ酸素タンク
+
+item.advanced_battery.name=高性能電池
+item.modern_battery.name=最新式電池
+item.extra_battery.name=最上級電池
+item.ultimate_battery.name=究極型電池
+
+item.hydrogen_canister.name=水素缶
+item.ethane_canister.name=エタン缶
+item.em_canister.name=エタン-メタン燃料缶
+item.helium_canister.name=ヘリウム-3缶
+item.hh_canister.name=ヘリウム-水素燃料缶
+
+item.violet_reeds.name=菫色の草
+item.water_grass.name=水草
+item.yellow_fruits.name=黄色の果実
+|/////////////////////////////////////////|
+#||||||||||||||||||Fluids||||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+fluid.helium3=ヘリウム-3
+fluid.ethane=エタン
+fluid.liquidethanemethane=エタン-メタン混合液体
+fluid.heliumhydrogen=ヘリウム-水素混合液体
+|/////////////////////////////////////////|
+#||||||||||||||||Potions|||||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+effect.antiradiation=抗放射線効果
+
+|/////////////////////////////////////////|
+#|||||||||||||||||GUI||||||||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+gui.schematic_oxtanks.desc=エコ酸素タンク
+
+gui.tier1.desc=レベル1
+gui.tier2.desc=レベル2
+gui.tier3.desc=レベル3
+gui.tier4.desc=レベル4
+gui.tier5.desc=レベル5
+gui.tier6.desc=レベル6
+
+gui.bonemeal.desc=このアイテムは骨粉と同様の働きをする.
+gui.schematic_box.desc=ロケットの構成部品の設計図が入っている. 右クリックで展開する.
+
+gui.spacesuit.desc=高強度の宇宙服. 大気圧の安定化と太陽放射からの保護を行う.
+gui.spacesuit_helmet.desc=より長い時間の水中行動を可能にする.
+
+gui.module_expander.desc=モジュール"拡大"用スロット. 磁場の生成範囲を拡大する.
+gui.module_pressure.desc=モジュール"安定化"用スロット. 大気圧を安定させる保護層を生成する.
+gui.temp_shield_control.desc=大気腐食から保護する. ただし時間の経過とともに劣化する.
+gui.emergency_portable_teleport.desc=アンカーポイントへ緊急テレポートする.HPが6未満になると作動. アイテムを持ってShift+右クリックで、任意のブロックにアンカーポイントを設定できる. 無効/有効も設定できる.
+gui.planet_shield_stability_1.desc=モジュール"安定化"を取り付けると、
+gui.planet_shield_stability_2.desc=シールドがこのスロットに流星鉄の欠片を収集する.
+
+gui.not_attached.desc=アンカー未設定
+gui.attached.desc=アンカー設定済み:
+gui.enabled.desc=有効
+gui.charge=充電:
+gui.message.now_noshield=シールドコントローラが壊れた!
+
+gui.module.desc=ロケットモジュール
+gui.status.nolava.name=溶岩がない
+gui.message.lava.name=溶岩
+gui.message.water.name=水
+gui.message.helium.name=ヘリウム-3
+gui.status.nofuelgenerator.name=燃料がない
+gui.status.nowind.name=風がない
+gui.status.wind.name=風
+gui.status.nowater.name=水がない
+gui.message.needfrequencyModule=やあ! 周波数モジュールが必要だ!
+gui.message.active_pressure_shield.name=大気圧に有効なシールド
+
+gui.message.needoxygen=この行動をするには酸素が必要です.
+gui.message.needoxygenthermal=この行動をするには酸素と温度コントロールが必要です.
+gui.message.needoxygen.food=地球の食料を食べるには酸素が必要です!
+gui.message.needoxygenandthermal.food=地球の食料を食べるには酸素と温度コントロールが必要です!
+gui.message.invalid_teleport_conf=テレポート設定が無効、またはエネルギー不足です.
+ 
+gui.message.noradiation=あなたには太陽放射は蓄積されていません! それでいいのさ!
+gui.message.emergency_teleport=緊急テレポートが正常に作動しました. 座標:
+gui.message.can_find_in_dungeon=ダンジョンで発見できる.
+
+gui.message.need_advanced_lp.desc=強化発射台にのみ設置できる.
+gui.message.engine_type.name=エンジンの種類:
+gui.message.effect_visible.name=エフェクト可視
+gui.tank.passive_oxygen_regen.desc1=酸素のある 星/バブル/密閉空間
+gui.tank.passive_oxygen_regen.desc2=に居る時、少しずつ酸素を生産する.
+
+gui.gravity.radius.name=効果半径:
+
+gs.success.name=現在のバージョン:
+gs.update.available=新バージョンが利用可能!
+gs.update.download=Download
+gs.update.changelog=Changelog
+
+#|/////////////////////////////////////////|
+#|||||||||||||SpaceSuit Modules|||||||||||||
+#|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+
+gui.module.caninstall=改造作業台でモジュール追加が可能.
+gui.module.list=取り付け済みモジュール一覧:
+gui.module.available_modules=利用可能なモジュール:
+
+gui.module.sensor=センサーゴーグル
+gui.module.sensor.desc=センサーゴーグルを取り付ける. 周囲をスキャンし、鉱石の位置の表示&モンスターのハイライトを行う.
+gui.module.nightvision=暗視
+gui.module.nightvision.desc=暗闇を見てみよう. 松明が無い暗所の調査に役立つことだろう.
+gui.module.jetpack=エレクトリック ジェットパック
+gui.module.jetpack.desc=君は蝶のように舞うことができる. 充電が無くなるまでは.
+gui.module.speed=ランブースター
+gui.module.speed.desc=加速器を取り付けることで移動速度が若干向上する. これで敵からさらに素早く逃げることができる!
+gui.module.gravity=重力
+gui.module.gravity.desc=マグネシウム板の層が作用して・・・要は重力の効果を付与する. これで惑星への適応力がUPするぞ!
+gui.module.stepassist=オートジャンプ
+gui.module.stepassist.desc=スライムボールを取り付けたところで何の意味も無いように思える...が、ブロックを階段のように駆け上がれるという噂だ!
+gui.module.jump=ハイジャンプ
+gui.module.jump.desc=ピストンの取り付けは良い発想の一つだ. これで普段の2倍は高くジャンプできる!
+gui.module.energy=高性能電池
+gui.module.energy.desc=最大エネルギー量を2倍に増加する.
+
+gui.module.sublight_engine=亜光速エンジン
+gui.module.sublight_engine.desc=次世代エンジン. 現在の惑星系から飛び出そう。
+
+gui.message.forrbiden_modules.name=次と競合:
+gui.module.active=能動モジュール
+gui.module.passive=受動モジュール
+gui.module.empty_slot=スロットが空です. アイテムを置いてください.
+
+
+|/////////////////////////////////////////|
+#||||||||||||||Creative Tabs|||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+
+item_group.galaxyspace_blocks=GalaxySpace: ブロック
+item_group.galaxyspace_items=GalaxySpace: アイテム
+item_group.galaxyspace_armor=GalaxySpace: 防具
+item_group.galaxyspace_rocket=GalaxySpace: ロケット
+
+|/////////////////////////////////////////|
+#||||||||||||||||Entities||||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+entity.evolved_boss_blaze.name=宇宙のブレイズキング
+entity.evolved_coldblaze.name=宇宙のアイスブレイズ
+|/////////////////////////////////////////|
+#||||||||||||Celestial Bodies||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+
+planet.ceres=ケレス
+moon.phobos=フォボス
+moon.deimos=ダイモス
+moon.io=イオ
+moon.europa=エウロパ
+moon.ganymede=ガニメデ
+moon.callisto=カリスト
+moon.mimas=ミマス
+moon.enceladus=エンケラドゥス
+moon.tethys=テティス
+moon.dione=ディオネ
+moon.rheya=レア
+moon.titan=タイタン
+moon.iapetus=イアペトゥス
+moon.miranda=ミランダ
+moon.ariel=アリエル
+moon.umbriel=ウンブリエル
+moon.titania=チタニア
+moon.oberon=オベロン
+moon.proteus=プロテウス
+moon.triton=トリトン
+planet.pluto=冥王星
+moon.charon=カロン
+planet.kuiperbelt=カイパーベルト
+
+satellite.spacestation.venus=金星宇宙ステーション
+solarsystem.acentauri=ケンタウルス座α星系
+star.centauri_a=ケンタウルス座α星A
+planet.centauri_b=ケンタウルス座α星B
+
+solarsystem.proxima=プロキシマ・ケンタウリ
+star.proxima=プロキシマ・ケンタウリ
+planet.proxima_b=プロキシマB
+
+solarsystem.barnards=バーナード星系
+star.barnarda_a=バーナードA
+planet.barnarda_b=バーナードB
+planet.barnarda_c=バーナードC
+planet.barnarda_d=小惑星帯
+planet.barnarda_e=バーナードE
+moon.barnarda_b1=惑星の環
+moon.barnarda_c1=バーナードC1
+moon.barnarda_c2=バーナードC2
