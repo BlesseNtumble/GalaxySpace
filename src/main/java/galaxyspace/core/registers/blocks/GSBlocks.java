@@ -64,6 +64,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockUn
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockWindGenerator;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBlocksDecoMetals;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBlocksFutureGlasses;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBlocksIce;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBlocksMachineFrames;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBlocksOres;
 import galaxyspace.systems.SolarSystem.planets.pluto.blocks.PlutoBlocks;
@@ -183,7 +184,7 @@ public class GSBlocks {
 		
 		registerBlock(OVERWORLD_ORES, ItemBlocksOres.class);
 		registerBlock(DECO_METALS, ItemBlocksDecoMetals.class);
-		registerBlock(SURFACE_ICE, GSItemBlockDesc.class);
+		registerBlock(SURFACE_ICE, ItemBlocksIce.class);
 		
 		registerBlock(MERCURY_BLOCKS, ItemBlocksMercury.class);
 		registerBlock(MARS_ORES, ItemBlocksMarsOres.class);

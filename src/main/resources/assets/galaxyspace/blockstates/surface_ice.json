@@ -1,5 +1,9 @@
 {
 	"variants": {
-		"normal": { "model" : "galaxyspace:surface_ice"}
+		"type=oxygen_ice": { "model": "galaxyspace:oxygen_ice"}, 
+		"type=nitrogen_ice": { "model": "galaxyspace:nitrogen_ice"}, 
+		"type=methane_ice": { "model": "galaxyspace:methane_ice"}, 
+		"type=hydrogen_ice": { "model": "galaxyspace:hydrogen_ice"}, 
+		"type=dry_ice": { "model": "galaxyspace:dry_ice"}
 	}
- }
+}

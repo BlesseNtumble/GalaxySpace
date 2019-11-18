@@ -8,6 +8,10 @@ import asmodeuscore.core.utils.ACAttributePlayer;
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.configs.GSConfigSchematics;
+import galaxyspace.core.handler.capabilities.GSStatsCapability;
+import galaxyspace.core.handler.capabilities.StatsCapability;
+import galaxyspace.core.network.packet.GSPacketSimple;
+import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
 import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.core.registers.potions.GSPotions;
 import galaxyspace.core.util.GSCreativeTabs;
@@ -67,7 +71,14 @@ public class ItemBasicGS extends Item implements ISortableItem{
 		"ice_bucket",				// 17		
 		"emergency_portable_teleport", // 18
 		"guide_book", 				// 19
-		"advanced_emergency_kit"	// 20
+		"advanced_emergency_kit",	// 20
+		"thermal_cloth_t3",			// 21
+		"thermal_cloth_t4",			// 22
+		"oxygen_ice_crystal",		// 23
+		"nitrogen_ice_crystal",		// 24
+		"methane_ice_crystal",		// 25
+		"hydrogen_ice_crystal",		// 26
+		"dry_ice_crystal"			// 27
 		//"raw_plastic", 				
 		//"plastic_stick"				
 	};

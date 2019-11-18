@@ -64,6 +64,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockDecoMetals;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockFutureGlasses;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockMachineFrames;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockOres;
+import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockSurfaceIce;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemCompressedPlates;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemHeavyDutyPlates;
@@ -322,6 +323,10 @@ public class ClientProxy extends CommonProxy{
 		
 		for(DungeonBlocks.EnumDungeonBlocks block : DungeonBlocks.EnumDungeonBlocks.values())
 			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.DUNGEON_BLOCKS, block.getMeta(), block.getName());
+		
+		for(BlockSurfaceIce.EnumBlockIce block : BlockSurfaceIce.EnumBlockIce.values())
+			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.SURFACE_ICE, block.getMeta(), block.getName());
+		
 		/*
 		name = new String[MirandaBlocks.EnumMirandaBlocks.values().length];
 		for(MirandaBlocks.EnumMirandaBlocks block : MirandaBlocks.EnumMirandaBlocks.values())
@@ -340,8 +345,7 @@ public class ClientProxy extends CommonProxy{
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.MODERN_SOLAR_PANEL);
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.FUTURE_GLASS_BASIC);		
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.EUROPA_GEYSER);		
-		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.EUROPA_UWGEYSER);		
-		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.SURFACE_ICE);	
+		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.EUROPA_UWGEYSER);	
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.WIND_GENERATOR);	
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.ROCKET_ASSEMBLER);	
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.UNIVERSAL_RECYCLER);	
@@ -461,7 +465,7 @@ public class ClientProxy extends CommonProxy{
 			//GSUtils.addItemJsonFiles(GSItems.COBALT_HOE, "tools/", GSItems.COBALT_HOE.getUnlocalizedName().substring(5));		
 			//GSUtils.addItemJsonFiles(GSItems.COBALT_LEGS, "armor/", GSItems.COBALT_LEGS.getUnlocalizedName().substring(5));		
 			//GSUtils.addItemJsonFiles(GSItems.COBALT_BOOTS, "armor/", GSItems.COBALT_BOOTS.getUnlocalizedName().substring(5));		
-			//GSUtils.addItemMetadataJsonFiles(GSItems.UPGRADES, ItemUpgrades.names, "upgrades/");
+			GSUtils.addItemMetadataJsonFiles(GSItems.BASIC, ItemBasicGS.names, "basic/");
 		}
 		
 		for(IBodies list : GalaxySpace.bodies)
@@ -508,6 +512,11 @@ public class ClientProxy extends CommonProxy{
     		blocks[i] = TritonBlocks.EnumTritonBlocks.byMetadata(i).getName();
     	
     	addVariant("tritonblocks", "", blocks);
+    	
+    	blocks = new String[BlockSurfaceIce.EnumBlockIce.values().length];
+    	for(int i = 0; i < blocks.length; i++)
+    		blocks[i] = BlockSurfaceIce.EnumBlockIce.byMetadata(i).getName();    	
+    	addVariant("surface_ice", "", blocks);
     	
     	addVariant("machineframes", "", "basic_frame", "advance_frame", "modern_frame");
     	
