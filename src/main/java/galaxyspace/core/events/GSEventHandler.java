@@ -59,6 +59,7 @@ import micdoodle8.mods.galacticraft.planets.asteroids.items.ItemTier3Rocket;
 import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import micdoodle8.mods.galacticraft.planets.mars.dimension.WorldProviderMars;
 import micdoodle8.mods.galacticraft.planets.mars.items.ItemTier2Rocket;
+import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -167,6 +168,14 @@ public class GSEventHandler {
 			if(((IModificationItem)e.getItemStack().getItem()).getType(e.getItemStack()) != null) {
 				e.getToolTip().add("");
 				e.getToolTip().add(EnumColor.AQUA + GCCoreUtil.translate("gui.module.caninstall"));
+			}
+		}
+		
+		if(e.getItemStack().isItemEqual(new ItemStack(MarsItems.schematic, 1, 0)))
+		{
+			if(GSConfigCore.enableAdvancedRocketCraft) {
+				e.getToolTip().add("");
+				e.getToolTip().add(EnumColor.RED + "Disabled");
 			}
 		}
 	}
