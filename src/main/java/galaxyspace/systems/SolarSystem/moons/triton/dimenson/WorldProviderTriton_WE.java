@@ -207,9 +207,9 @@ public class WorldProviderTriton_WE extends WE_WorldProvider implements IProvide
 		*/
 		cp.biomesList.clear();
 
-		WE_Biome.addBiomeToGeneration(cp, new Triton_Plains(0.0D, 0.3D, 1.4D, 74, 16));
-		WE_Biome.addBiomeToGeneration(cp, new Triton_Plains(0.3D, 0.6D, 1.9D, 95, 2));
-		WE_Biome.addBiomeToGeneration(cp, new Triton_Mountains(0.6D, 1.0D));
+		WE_Biome.addBiomeToGeneration(cp, new Triton_Plains(0.0D, -0.8D, 1.4D, 74, 16));
+		WE_Biome.addBiomeToGeneration(cp, new Triton_Plains(0.6D, -0.3D, 1.9D, 95, 5));
+		WE_Biome.addBiomeToGeneration(cp, new Triton_Mountains(0.8D, 0.0D));
 		
 	}
 
@@ -225,7 +225,7 @@ public class WorldProviderTriton_WE extends WE_WorldProvider implements IProvide
 	
 	@Override
 	protected float getThermalValueMod() {
-		return 1.4F;
+		return 0.2F;
 	}
 
 	@Override

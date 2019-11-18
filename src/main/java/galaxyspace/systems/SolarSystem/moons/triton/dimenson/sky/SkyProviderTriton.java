@@ -25,7 +25,7 @@ public class SkyProviderTriton extends SkyProviderBase {
 
 	@Override
 	protected float sunSize() {
-		return 2;
+		return 1.2F;
 	}
 
 	@Override

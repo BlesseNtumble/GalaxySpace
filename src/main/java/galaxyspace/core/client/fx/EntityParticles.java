@@ -1,9 +1,17 @@
 package galaxyspace.core.client.fx;
 
+import java.util.List;
+
+import galaxyspace.GalaxySpace;
+import galaxyspace.systems.SolarSystem.moons.triton.dimenson.WorldProviderTriton_WE;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -103,6 +111,14 @@ public class EntityParticles extends Particle {
 			this.motionY -= 0.04D * speed;
 
 		this.motionY += 0.01D * speed;
+		//GalaxySpace.debug(particleMaxAge + "");
+		if(this.world.provider instanceof WorldProviderTriton_WE)
+			if(particleMaxAge > 200 && this.particleAge > this.particleMaxAge / 2) {
+				this.motionX -= 0.01D * speed;
+				this.motionY *= 0.5D;
+				
+			}
+		
 		this.move(super.motionX, super.motionY, super.motionZ);
 		this.motionX *= 0.9599999785423279D;
 		this.motionY *= 0.9599999785423279D;
@@ -111,6 +127,22 @@ public class EntityParticles extends Particle {
 			this.motionX *= 0.699999988079071D;
 			this.motionZ *= 0.699999988079071D;
 		}
+		/*
+		Vec3d vec31 = new Vec3d(this.posX, this.posY, this.posZ);
+		Vec3d vec32 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY,	this.posZ + this.motionZ);
+		
+		RayTraceResult ray = this.world.rayTraceBlocks(vec31, vec32, false, true, false);
+		if(ray != null)
+		{
+			vec32 = new Vec3d(ray.hitVec.x, ray.hitVec.y, ray.hitVec.z);
+		}
+		
+		Entity entity = null;
+		List list = this.world.getEntitiesWithinAABB(this,
+				new AxisAlignedBB(new BlockPos(this.motionX, this.motionY, this.motionZ)).expand(1.0D, 1.0D, 1.0D));
+		double d0 = 0.0D;
+		int i;
+		float f1;*/
 /*
 		Vec3d vec31 = Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
 		Vec3 vec3 = Vec3.createVectorHelper(this.posX + this.motionX, this.posY + this.motionY,	this.posZ + this.motionZ);
