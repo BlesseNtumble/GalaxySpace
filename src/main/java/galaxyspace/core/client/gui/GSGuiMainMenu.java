@@ -292,7 +292,7 @@ public class GSGuiMainMenu extends GuiScreen implements GuiYesNoCallback
         
         if (p_146284_1_.id == 3)
         {
-        	this.urlopen("https://minecraft.curseforge.com/projects/galaxy-space-addon-for-galacticraft");
+        	this.urlopen("https://www.curseforge.com/minecraft/mc-mods/galaxy-space-addon-for-galacticraft");
         }
 
         if (p_146284_1_.id == 5)
