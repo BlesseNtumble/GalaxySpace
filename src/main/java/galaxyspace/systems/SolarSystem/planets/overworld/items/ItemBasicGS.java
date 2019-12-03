@@ -185,6 +185,15 @@ public class ItemBasicGS extends Item implements ISortableItem{
 		{			
 			return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
 		}
+		/*else if(stack.getItemDamage() == 6)
+		{
+			StatsCapability gs_stats = GSStatsCapability.get(player);
+			gs_stats.setKnowledgeResearch(1, 6);
+			GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_UPDATE_RESEARCH, player.world, new Object[] {1, 6}), (EntityPlayerMP) player);
+			
+			
+			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
+		}	*/
 		else if(stack.getItemDamage() == 19)
 		{
 			player.openGui(GalaxySpace.MODID, GSConfigCore.guiIDGuideBook, world, 0, 0, 0);
@@ -274,7 +283,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
     	}
 		return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
 	}
-		
+
 	//EMERGENCY KIT
 	public static ItemStack getContents(int slot)
     {
