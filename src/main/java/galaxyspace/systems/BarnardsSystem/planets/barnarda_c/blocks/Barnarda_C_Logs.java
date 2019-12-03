@@ -40,6 +40,7 @@ public class Barnarda_C_Logs extends Block implements ISortableBlock {
 		setCreativeTab(GSCreativeTabs.GSBlocksTab);
 		setHardness(2.0F);
 		setSoundType(SoundType.WOOD);
+		setDefaultState(this.getStateFromMeta(0));
 	}
 
 	@SideOnly(Side.CLIENT)
