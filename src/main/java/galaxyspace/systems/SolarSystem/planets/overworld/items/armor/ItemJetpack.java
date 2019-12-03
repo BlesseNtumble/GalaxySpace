@@ -46,7 +46,7 @@ public class ItemJetpack extends ItemElectricArmor implements ISpecialArmor, IJe
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped model) {
 		
 		// ModelBiped model = new ModelJetPack();
-		ModelBiped armormodel = new ItemSpaceSuitModel(5);
+		ModelBiped armormodel = new ItemSpaceSuitModel(6);
 		if (itemStack.getItem() instanceof ItemJetpack) {
 			armormodel = ItemSpaceSuit.fillingArmorModel(armormodel, entityLiving);
 		}
