@@ -2,6 +2,7 @@ package galaxyspace.systems.SolarSystem.planets.overworld.gui;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.lwjgl.opengl.GL11;
@@ -76,6 +77,7 @@ public class GuiModificationTable extends GuiContainerGC{
 					{
 						ItemArmor item = (ItemArmor) stack.getItem();
 						if(module.getType() != Module_Type.ALL && !module.getType().equals(((IModificationItem)stack.getItem()).getType(stack))) continue;					
+						if(!module.isLoading()) continue;
 						
 						if(module.getEquipmentSlot() == item.armorType || module.getEquipmentSlot() == null || module.getType() == Module_Type.ALL)
 							actual_list.add(module);
@@ -88,6 +90,15 @@ public class GuiModificationTable extends GuiContainerGC{
 						actual_list.add(module);
 					}
 				}
+				
+				actual_list.sort(new Comparator<ItemModule>() {
+
+					@Override
+					public int compare(ItemModule arg0, ItemModule arg1) {
+						return arg0.getName().compareTo(arg1.getName());
+					}
+					
+				});
 			}	
 			//this.modules_number = actual_list.size();
 			
@@ -131,8 +142,8 @@ public class GuiModificationTable extends GuiContainerGC{
         if(!this.inventorySlots.getSlot(0).getStack().isEmpty())
 		{
         	ItemStack stack = this.inventorySlots.getSlot(0).getStack();	        
-	        
-        	 for(int i = 0; i < actual_list.size(); i++)
+	        /*
+        	for(int i = 0; i < actual_list.size(); i++)
  	        {
  	        	//texture button
  		        if(stack.hasTagCompound() && (!stack.getTagCompound().hasKey(this.actual_list.get(i).getName()) || !stack.getTagCompound().getBoolean(this.actual_list.get(i).getName())))
@@ -140,21 +151,34 @@ public class GuiModificationTable extends GuiContainerGC{
  		        else
  		        	this.drawTexturedModalRect(containerWidth + 30 + xOffsetModule, containerHeight + 20 + (22 * i), 213, 196, 20, 20);
  	        }
-        	 
+        	 */
+        	int k = 0;
 	        for(int i = 0; i < actual_list.size(); i++)
 	        {
 	        	//ItemStack[] stacks = this.actual_list.get(i).getItemsForModule();//GSUtils.getItemsForModules(this.actual_list.get(i).getName());
+	        	ItemStack stacks = actual_list.get(i).getIcon();
 	        	
-	        	
-				//if(stacks != null)
-					//for(ItemStack stacklist : stacks)
-					//{
-						//int amount = this.getAmountInInventory(stacklist);
-						
-						RenderHelper.enableGUIStandardItemLighting();
-	                    this.itemRender.renderItemAndEffectIntoGUI(actual_list.get(i).getIcon(), containerWidth + 32 + xOffsetModule, containerHeight + 22 + (22 * i));
-	                    RenderHelper.disableStandardItemLighting();                  	                    
-					//}
+	        	if(stacks == null) break;		
+				int yPos = i > 4 * (i % 4) ? i - 4 : i;
+
+				this.mc.renderEngine.bindTexture(this.guiTexture);
+				//GL11.glEnable(GL11.GL_ALPHA_TEST);
+                //GL11.glEnable(GL11.GL_BLEND);
+				if(stack.hasTagCompound() && (!stack.getTagCompound().hasKey(this.actual_list.get(i).getName()) || !stack.getTagCompound().getBoolean(this.actual_list.get(i).getName())))
+	        		this.drawTexturedModalRect(containerWidth + 30 + xOffsetModule + (22 * k), containerHeight + 20 + (22 * yPos), 192, 196, 20, 20);
+	        	else
+	        		this.drawTexturedModalRect(containerWidth + 30 + xOffsetModule + (22 * k), containerHeight + 20 + (22 * yPos), 213, 196, 20, 20);
+				//GL11.glDisable(GL11.GL_ALPHA_TEST);
+               // GL11.glDisable(GL11.GL_BLEND);
+                
+				RenderHelper.enableGUIStandardItemLighting();
+	           	//this.itemRender.renderItemAndEffectIntoGUI(actual_list.get(i).getIcon(), containerWidth + 32 + xOffsetModule, containerHeight + 22 + (22 * i));
+	            RenderHelper.disableStandardItemLighting();                  	                    
+
+	            if(i >= 3 && i % 3 == 0) 
+	            {
+	            	k++;
+	           	}
 	        }
 	        
 	        int mod_count = stack.hasTagCompound() && stack.getTagCompound().hasKey("modification_count") ? stack.getTagCompound().getInteger("modification_count") : 1;
@@ -182,68 +206,62 @@ public class GuiModificationTable extends GuiContainerGC{
 			ItemStack stack = this.inventorySlots.getSlot(0).getStack();
 			
 			for(int i = 0; i < actual_list.size(); i++)
-	        {				
+	        {		
+				int yPos = i > 4 * (i % 4) ? i - 4 : i;
 				if (mousePosX >= containerWidth + xOffsetModule + 30 && mousePosX <= containerWidth + xOffsetModule + 50 && mousePosY >= containerHeight + 20 + (22 * i) && mousePosY <= containerHeight + 40 + (22 * i))
 				{	
 					GlStateManager.disableLighting();
 					this.mc.renderEngine.bindTexture(this.guiTexture);	
 
 					GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+					//Left side
 					this.drawTexturedModalRect(containerWidth - 88, containerHeight + 12, 0, 12, xSize / 2, ySize / 2 + 1);
+		        	//Right side
+					this.drawTexturedModalRect(containerWidth + 173, containerHeight + 12, 85, 12, xSize / 2, ySize / 2 + 1);
 		        	
 					this.fontRenderer.drawSplitString(GCCoreUtil.translate("gui.message.required_equipment.name"), containerWidth - 65, containerHeight + 15, 80, 0xFFFF);
-					
-					
-					
+										
 					EnumColor encolor = stack.hasTagCompound() && stack.getTagCompound().getBoolean(this.actual_list.get(i).getName()) ? EnumColor.BRIGHT_GREEN : EnumColor.RED;
 					
-					this.fontRenderer.drawString(encolor + GCCoreUtil.translate("gui.module." + actual_list.get(i).getName()), containerWidth + 70, containerHeight + 20, 0xFFFFFF);
+					String name = GCCoreUtil.translate("gui.module." + actual_list.get(i).getName());
+					this.fontRenderer.drawString(encolor + name, containerWidth + 205 - name.length(), containerHeight + 20, 0xFFFFFF);
 					
 					String mode = actual_list.get(i).isActiveModule() ? EnumColor.PURPLE + GCCoreUtil.translate("gui.module.active") : EnumColor.GREY + GCCoreUtil.translate("gui.module.passive");
-					this.fontRenderer.drawString(mode, containerWidth + 70, containerHeight + 28, 0xFFFFFF);
+					this.fontRenderer.drawString(mode, containerWidth + 205 - mode.length(), containerHeight + 28, 0xFFFFFF);
 					
-					//this.drawToolTip(mousePosX, mousePosY,  encolor + GCCoreUtil.translate("gui.module." + actual_list.get(i)));  
 					String s = GCCoreUtil.translate("gui.module." + actual_list.get(i).getName() + ".desc");
-					this.fontRenderer.drawSplitString(s, containerWidth + 70, containerHeight + 40, 90,	0xFFFFFF);
+					this.fontRenderer.drawSplitString(s, containerWidth + 180, containerHeight + 40, 80,	0xFFFFFF);
 					
-					/*if(this.mc.gameSettings.isKeyDown(this.mc.gameSettings.keyBindSneak))
-					{
-						String s = GCCoreUtil.translate("gui.module." + actual_list.get(i) + ".desc");
-						this.drawToolTip(mousePosX, mousePosY + 20, s, 150, 8 * (this.fontRenderer.getStringWidth(s) / 100) + 4);
-						//GalaxySpace.debug(this.fontRenderer.getStringWidth(s) / 100 + "");
 					
-					}
-					else */
-					{
-						ItemStack[] stacks = actual_list.get(i).getItemsForModule();//GSUtils.getItemsForModules(this.actual_list.get(i).getName());
+					GlStateManager.enableLighting();
+					
+					ItemStack[] stacks = actual_list.get(i).getItemsForModule();//GSUtils.getItemsForModules(this.actual_list.get(i).getName());
 			        	
-			        	int k = 0;
-						if(stacks != null)
-							for(ItemStack stacklist : stacks)
-							{
-								this.mc.renderEngine.bindTexture(this.guiTexture);	
-								GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+			        int k = 0;
+					if(stacks != null)
+						for(ItemStack stacklist : stacks)
+						{
+							this.mc.renderEngine.bindTexture(this.guiTexture);	
+							GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 								//this.drawTexturedModalRect(containerWidth - 55, containerHeight + 35, 192, 196, 20, 20);
-								this.drawTexturedModalRect(containerWidth - 55, containerHeight + 35, 192, 26, 20, 21);
+							this.drawTexturedModalRect(containerWidth - 55, containerHeight + 35, 192, 26, 20, 21);
 				        		
-								int amount = this.getAmountInInventory(stacklist);
-								int xOffset = -3;
-								RenderHelper.enableGUIStandardItemLighting();
-			                    this.itemRender.renderItemAndEffectIntoGUI(stacklist, containerWidth - 50 + xOffset, containerHeight + 37);
-			                    RenderHelper.disableStandardItemLighting();
+							int amount = this.getAmountInInventory(stacklist);
+							int xOffset = -3;
+							RenderHelper.enableGUIStandardItemLighting();
+			                this.itemRender.renderItemAndEffectIntoGUI(stacklist, containerWidth - 50 + xOffset, containerHeight + 37);
+			                RenderHelper.disableStandardItemLighting();
 			                    
-			                    boolean valid = amount >= stacklist.getCount();
-			                    int color = valid | this.mc.player.capabilities.isCreativeMode ? ColorUtil.to32BitColor(255, 0, 255, 0) : ColorUtil.to32BitColor(255, 255, 0, 0);
-			                    String str = "" + stacklist.getCount();
-			                    this.fontRenderer.drawString(str, containerWidth - 35 + xOffset, containerHeight + 47, color);
-			                    this.drawToolTip(containerWidth - 40 + xOffset, containerHeight + 73,  stacklist.getDisplayName());  
+			                boolean valid = amount >= stacklist.getCount();
+			                int color = valid | this.mc.player.capabilities.isCreativeMode ? ColorUtil.to32BitColor(255, 0, 255, 0) : ColorUtil.to32BitColor(255, 255, 0, 0);
+			                String str = "" + stacklist.getCount();
+			                this.fontRenderer.drawString(str, containerWidth - 35 + xOffset, containerHeight + 47, color);
+			                this.drawToolTip(containerWidth - 40 + xOffset, containerHeight + 73,  stacklist.getDisplayName());  
 			                	
-			                    k++;
-							}
+			                k++;
+						}
 						//this.drawToolTip(mousePosX, mousePosY + 70, GCCoreUtil.translateWithFormat("item_desc.shift.name", GameSettings.getKeyDisplayString(FMLClientHandler.instance().getClient().gameSettings.keyBindSneak.getKeyCode()))); 
 						
-					}
-					
 					
 					if(this.actual_list.get(i).getForrbidenModules() != null)
 					{
@@ -251,21 +269,13 @@ public class GuiModificationTable extends GuiContainerGC{
 						
 						for(ItemModule forbidden : this.actual_list.get(i).getForrbidenModules())
 						{
-							//ItemStack[] stacks = GSUtils.getItemsForModules(forbidden);
-							
-							//if(stacks != null)
-								//for(ItemStack stacklist : stacks)
-								//{
-									this.mc.renderEngine.bindTexture(this.guiTexture);	
-									GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-									this.drawTexturedModalRect(containerWidth - 55, containerHeight + 88, 192, 196, 20, 20);
+							this.mc.renderEngine.bindTexture(this.guiTexture);	
+							GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+							this.drawTexturedModalRect(containerWidth - 55, containerHeight + 88, 192, 196, 20, 20);
 						        	
-									RenderHelper.enableGUIStandardItemLighting();
-									this.itemRender.renderItemAndEffectIntoGUI(forbidden.getIcon(), containerWidth - 53, containerHeight + 90);
-									RenderHelper.disableStandardItemLighting();
-									
-									
-								//}
+							RenderHelper.enableGUIStandardItemLighting();
+							this.itemRender.renderItemAndEffectIntoGUI(forbidden.getIcon(), containerWidth - 53, containerHeight + 90);
+							RenderHelper.disableStandardItemLighting();
 						}
 					}
 				}
@@ -343,9 +353,7 @@ public class GuiModificationTable extends GuiContainerGC{
 		super.mouseClicked(mouseX, mouseY, button);
 		
 		if(this.inventorySlots.getSlot(0).getStack() != null)
-		{
-			ItemStack stack = this.tileEntity.getStackInSlot(0);
-			
+		{			
 			int containerWidth = (this.width - this.xSize) / 2;
 			int containerHeight = (this.height - this.ySize) / 2;
 			
@@ -355,17 +363,8 @@ public class GuiModificationTable extends GuiContainerGC{
 						&& mouseY >= containerHeight + 20 + (22 * i)
 						&& mouseY <= containerHeight + 40 + (22 * i)
 						&& countdown <= 0)
-				{		
-					
-					if(!stack.getTagCompound().hasKey(this.actual_list.get(i).getName()) || !stack.getTagCompound().getBoolean(this.actual_list.get(i).getName()))
-					{					
-						GalaxySpace.packetPipeline.sendToServer(new GSPacketSimple(GSEnumSimplePacket.S_UPDATE_NBT_ITEM_ON_GUI, GCCoreUtil.getDimensionID(this.mc.world), new Object[] {new BlockVec3(this.tileEntity.getPos().getX(), this.tileEntity.getPos().getY(), this.tileEntity.getPos().getZ()), this.actual_list.get(i).getName(), true}));	   
-					}
-					else if(stack.getTagCompound().hasKey(this.actual_list.get(i).getName()))
-					{					
-						GalaxySpace.packetPipeline.sendToServer(new GSPacketSimple(GSEnumSimplePacket.S_UPDATE_NBT_ITEM_ON_GUI, GCCoreUtil.getDimensionID(this.mc.world), new Object[] {new BlockVec3(this.tileEntity.getPos().getX(), this.tileEntity.getPos().getY(), this.tileEntity.getPos().getZ()), this.actual_list.get(i).getName(), false}));	   
-					}
-					
+				{								
+					GalaxySpace.packetPipeline.sendToServer(new GSPacketSimple(GSEnumSimplePacket.S_UPDATE_NBT_ITEM_ON_GUI, GCCoreUtil.getDimensionID(this.mc.world), new Object[] {new BlockVec3(this.tileEntity.getPos().getX(), this.tileEntity.getPos().getY(), this.tileEntity.getPos().getZ()), this.actual_list.get(i).getName()}));	   
 					countdown = 20 * 3;
 				}
 	        }

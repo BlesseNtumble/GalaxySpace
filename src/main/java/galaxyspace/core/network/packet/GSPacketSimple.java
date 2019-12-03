@@ -55,7 +55,7 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         S_ON_ADVANCED_GUI_CLICKED_INT(Side.SERVER, Integer.class, Integer.class, Integer.class, Integer.class, Integer.class),
         S_CHANGE_FLIGHT_STATE(Side.SERVER, Boolean.class),
         S_REVERSE_SEPATATOR(Side.SERVER, BlockVec3.class),   
-        S_UPDATE_NBT_ITEM_ON_GUI(Side.SERVER, BlockVec3.class, String.class, Boolean.class),
+        S_UPDATE_NBT_ITEM_ON_GUI(Side.SERVER, BlockVec3.class, String.class),
         S_UPDATE_NBT_ITEM_IN_ARMOR(Side.SERVER, Integer.class, String.class), 	
         //CLIENT
     	C_UPDATE_RESEARCHES(Side.CLIENT, Integer[].class),
@@ -263,7 +263,7 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         case S_UPDATE_NBT_ITEM_ON_GUI:
         	BlockVec3 position = (BlockVec3) this.data.get(0);
         	String tag = (String) this.data.get(1);
-        	boolean turn = (boolean) this.data.get(2);
+        	boolean turn = false;
         	boolean consumed = false;
         	
         	tileEntity = position.getTileEntity(playerBase.world);
@@ -298,14 +298,17 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
 		        			}
 		        		}
 	        	
+	        		if(!stack.getTagCompound().hasKey(tag) || !stack.getTagCompound().getBoolean(tag))
+	        			turn = true;
+	        		else if (stack.getTagCompound().hasKey(tag))
+	        			turn = false;
+	        		
 	        		if(turn) {	        	
 		        	
 		        		if(check && stack.getTagCompound().getInteger(ItemSpaceSuit.mod_count) > 0) {
 			        		
-				        	for(ItemStack con : get_module.getItemsForModule()) {
-				        		if(GSEventHandler.consumeItemStack(playerBase.inventory, con)) {
-				        			consumed = true;
-				        		}
+				        	for(ItemStack con : get_module.getItemsForModule()) {				        		
+				        		consumed = GSEventHandler.consumeItemStack(playerBase.inventory, con);				        		
 				        	}
 			        		
 				        	if(consumed || playerBase.capabilities.isCreativeMode) {
