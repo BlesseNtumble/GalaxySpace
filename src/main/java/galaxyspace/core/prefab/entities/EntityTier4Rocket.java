@@ -2,7 +2,9 @@ package galaxyspace.core.prefab.entities;
 
 import java.util.List;
 
+import asmodeuscore.core.astronomy.SpaceData.Engine_Type;
 import galaxyspace.core.registers.items.GSItems;
+import micdoodle8.mods.galacticraft.api.entity.IRocketType.EnumRocketType;
 import micdoodle8.mods.galacticraft.api.prefab.entity.EntityTieredRocket;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
@@ -21,25 +23,23 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class EntityTier4Rocket extends EntityTieredRocket
+public class EntityTier4Rocket extends EntityTieredRocketWithEngine
 {
     public EntityTier4Rocket(World par1World)
     {
-        super(par1World);
+        super(par1World, 4);
         this.setSize(2.0F, 10F);
     }
 
     public EntityTier4Rocket(World par1World, double par2, double par4, double par6, EnumRocketType rocketType)
     {
-        super(par1World, par2, par4, par6);
-        this.rocketType = rocketType;
-        this.stacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        super(par1World, par2, par4, par6, 4, rocketType);
     }
-
-    public EntityTier4Rocket(World par1World, double par2, double par4, double par6, boolean reversed, EnumRocketType rocketType, NonNullList<ItemStack> inv)
+    
+    public EntityTier4Rocket(World par1World, double par2, double par4, double par6, EnumRocketType rocketType, Engine_Type engine)
     {
-        this(par1World, par2, par4, par6, rocketType);
-        this.stacks = inv;
+        super(par1World, par2, par4, par6, 4, rocketType);
+        this.setEngine(engine);
     }
 
     @Override
@@ -52,12 +52,6 @@ public class EntityTier4Rocket extends EntityTieredRocket
     public ItemStack getPickedResult(RayTraceResult target)
     {
         return new ItemStack(GSItems.ROCKET_TIER_4, 1, this.rocketType.getIndex());
-    }
-
-    @Override
-    protected void entityInit()
-    {
-        super.entityInit();
     }
 
     @Override
@@ -79,109 +73,6 @@ public class EntityTier4Rocket extends EntityTieredRocket
     }
 
     @Override
-    public void onUpdate()
-    {
-        super.onUpdate();
-
-        int i;
-
-        //GalaxySpace.debug(this.getPosition() + "");
-        if (this.timeUntilLaunch >= 100)
-        {
-            i = Math.abs(this.timeUntilLaunch / 100);
-        }
-        else
-        {
-            i = 1;
-        }
-
-        if ((this.getLaunched() || this.launchPhase == EnumLaunchPhase.IGNITED.ordinal() && this.rand.nextInt(i) == 0) && !ConfigManagerCore.disableSpaceshipParticles && this.hasValidFuel())
-        {
-            if (this.world.isRemote)
-            {
-                this.spawnParticles(this.getLaunched());
-            }
-        }
-
-        if (this.launchPhase >= EnumLaunchPhase.LAUNCHED.ordinal() && this.hasValidFuel())
-        {
-            if (this.launchPhase == EnumLaunchPhase.LAUNCHED.ordinal())
-            {
-                double d = this.timeSinceLaunch / 150;
-
-                if (this.world.provider instanceof IGalacticraftWorldProvider && ((IGalacticraftWorldProvider) this.world.provider).hasNoAtmosphere())
-                {
-                    d = Math.min(d * 1.2, 2);
-                }
-                else
-                {
-                    d = Math.min(d, 1.4);
-                }
-
-                if (d != 0.0)
-                {
-                    this.motionY = -d * 2.5D * Math.cos((this.rotationPitch - 180) / Constants.RADIANS_TO_DEGREES);
-                }
-            }
-            else
-            {
-                this.motionY -= 0.008D;
-            }
-
-            double multiplier = 1.0D;
-
-            if (this.world.provider instanceof IGalacticraftWorldProvider)
-            {
-                multiplier = ((IGalacticraftWorldProvider) this.world.provider).getFuelUsageMultiplier();
-
-                if (multiplier <= 0)
-                {
-                    multiplier = 1;
-                }
-            }
-
-            if (this.timeSinceLaunch % MathHelper.floor(2 * (1 / multiplier)) == 0)
-            {
-                this.removeFuel(1);
-                if (!this.hasValidFuel())
-                {
-                    this.stopRocketSound();
-                }
-            }
-        }
-        else if (!this.hasValidFuel() && this.getLaunched() && !this.world.isRemote)
-        {
-            if (Math.abs(Math.sin(this.timeSinceLaunch / 1000)) / 10 != 0.0)
-            {
-                this.motionY -= Math.abs(Math.sin(this.timeSinceLaunch / 1000)) / 20;
-            }
-        }
-    }
-
-    @Override
-    public void onTeleport(EntityPlayerMP player)
-    {
-        EntityPlayerMP playerBase = PlayerUtil.getPlayerBaseServerFromPlayer(player, false);
-
-        if (playerBase != null)
-        {
-            GCPlayerStats stats = GCPlayerStats.get(playerBase);
-
-            if (this.stacks == null || this.stacks.isEmpty())
-            {
-                stats.setRocketStacks(NonNullList.withSize(2, ItemStack.EMPTY));
-            }
-            else
-            {
-                stats.setRocketStacks(this.stacks);
-            }
-
-            stats.setRocketType(this.rocketType.getIndex());
-            stats.setRocketItem(GSItems.ROCKET_TIER_4);
-            stats.setFuelLevel(this.fuelTank.getFluidAmount());
-        }
-    }
-
     protected void spawnParticles(boolean launched)
     {
         if (!this.isDead)
@@ -261,53 +152,12 @@ public class EntityTier4Rocket extends EntityTieredRocket
     }
 
     @Override
-    public boolean isUsableByPlayer(EntityPlayer par1EntityPlayer)
-    {
-        return !this.isDead && par1EntityPlayer.getDistanceSq(this) <= 64.0D;
-    }
-
-    @Override
-    protected void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
-    {
-        super.writeEntityToNBT(par1NBTTagCompound);
-    }
-
-    @Override
-    protected void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
-    {
-        super.readEntityFromNBT(par1NBTTagCompound);
-    }
-
-    @Override
-    public int getRocketTier()
-    {
-        return 4;
-    }
-
-    @Override
     public int getFuelTankCapacity()
     {
         return 2200;
     }
-
-    @Override
-    public int getPreLaunchWait()
-    {
-        return 400;
-    }
-
-    @Override
-    public float getCameraZoom()
-    {
-        return 15.0F;
-    }
-
-    @Override
-    public boolean defaultThirdPerson()
-    {
-        return true;
-    }
-
+   
+/*
     @Override
     public List<ItemStack> getItemsDropped(List<ItemStack> droppedItems)
     {
@@ -318,7 +168,7 @@ public class EntityTier4Rocket extends EntityTieredRocket
         droppedItems.add(rocket);
         return droppedItems;
     }
-
+*/
     @Override
     public float getRenderOffsetY()
     {

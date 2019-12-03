@@ -201,7 +201,7 @@ public class ItemTier6Rocket extends Item implements IHoldableItem, ISortableIte
 	        		//int engine = par1ItemStack.getTagCompound().getInteger("engine_type");
 	        		int meta = par1ItemStack.getItemDamage() >= 5 ? par1ItemStack.getItemDamage() - 5 : par1ItemStack.getItemDamage();
 	        		EntityTier6Rocket rocket = new EntityTier6Rocket(FMLClientHandler.instance().getWorldClient(), 0, 0, 0, EnumRocketType.values()[meta], engines);
-	        		tooltip.add(GCCoreUtil.translate("gui.message.engine_type.name") + " " + rocket.getEngine().getName());
+	        		tooltip.add(EnumColor.YELLOW + GCCoreUtil.translate("gui.message.engine_type.name") + " " + EnumColor.WHITE + rocket.getEngine().getName());
 	        	}
         	}
         }       
