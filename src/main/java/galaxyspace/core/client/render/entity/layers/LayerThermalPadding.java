@@ -6,6 +6,8 @@ import galaxyspace.GalaxySpace;
 import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.core.util.GSConstants;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemThermalPaddingBase;
+import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
+import micdoodle8.mods.galacticraft.api.item.EnumExtendedInventorySlot;
 import micdoodle8.mods.galacticraft.api.item.IItemThermal;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import micdoodle8.mods.galacticraft.core.Constants;
@@ -82,21 +84,27 @@ public class LayerThermalPadding  extends LayerArmorBase<ModelBiped>
         {
             int padding = gearData.getThermalPadding(slotIn.getSlotIndex() - 1);
             if (padding != GCPlayerHandler.GEAR_NOT_PRESENT)
-            {            	
+            {       
                 switch (padding)
                 {
-                case GSConstants.GEAR_ID_THERMAL_PADDING_T3_HELMET:
-                case GSConstants.GEAR_ID_THERMAL_PADDING_T3_CHESTPLATE:
-                case GSConstants.GEAR_ID_THERMAL_PADDING_T3_LEGGINGS:
-                case GSConstants.GEAR_ID_THERMAL_PADDING_T3_BOOTS:
-                    return new ItemStack(GSItems.THERMAL_PADDING_3, 1, slotIn.getSlotIndex() - 1);
-                default:
-                    break;
+	                case GSConstants.GEAR_ID_THERMAL_PADDING_T3_HELMET:
+	                case GSConstants.GEAR_ID_THERMAL_PADDING_T3_CHESTPLATE:
+	                case GSConstants.GEAR_ID_THERMAL_PADDING_T3_LEGGINGS:
+	                case GSConstants.GEAR_ID_THERMAL_PADDING_T3_BOOTS:
+	                    return new ItemStack(GSItems.THERMAL_PADDING_3, 1, slotIn.getSlotIndex() - 1);
+	                    
+	                case GSConstants.GEAR_ID_THERMAL_PADDING_T4_HELMET:
+	                case GSConstants.GEAR_ID_THERMAL_PADDING_T4_CHESTPLATE:
+	                case GSConstants.GEAR_ID_THERMAL_PADDING_T4_LEGGINGS:
+	                case GSConstants.GEAR_ID_THERMAL_PADDING_T4_BOOTS:
+	                    return new ItemStack(GSItems.THERMAL_PADDING_4, 1, slotIn.getSlotIndex() - 1);
+	                default:
+	                	break;
                 }
             }
         }
 
-        return null;   //This null is OK, it's used only as flag by calling code in this same class
+        return ItemStack.EMPTY;   //This null is OK, it's used only as flag by calling code in this same class
     }
 
     @Override
@@ -112,7 +120,8 @@ public class LayerThermalPadding  extends LayerArmorBase<ModelBiped>
     {
         ItemStack itemstack = this.getItemStackFromSlot(entityLivingBaseIn, slotIn);
 
-        if (itemstack != null)
+        
+        if (!itemstack.isEmpty())
         {
             ModelBiped model = this.getModelFromSlot(slotIn);
             model.setModelAttributes(this.renderer.getMainModel());
@@ -130,6 +139,7 @@ public class LayerThermalPadding  extends LayerArmorBase<ModelBiped>
             			this.renderer.bindTexture(this.texture_t4);
             			break;
             	}
+            	//GalaxySpace.debug(itemstack.getUnlocalizedName() + "");
             }
            
             model.render(entityLivingBaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);

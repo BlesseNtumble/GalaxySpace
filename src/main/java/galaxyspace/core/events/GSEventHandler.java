@@ -31,6 +31,7 @@ import galaxyspace.systems.SolarSystem.moons.titan.dimension.WorldProviderTitan;
 import galaxyspace.systems.SolarSystem.planets.kuiperbelt.dimension.WorldProviderKuiperBelt;
 import galaxyspace.systems.SolarSystem.planets.mars.dimension.WorldProviderMars_WE;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemThermalPaddingBase;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitationModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityPlanetShield;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityRadiationStabiliser;
@@ -574,14 +575,15 @@ public class GSEventHandler {
 	
 	@SubscribeEvent
 	public void onThermalArmorEvent(ThermalArmorEvent event) {
-		if (event.armorStack == null) {
+		if (event.armorStack == ItemStack.EMPTY) {
 			event.setArmorAddResult(ThermalArmorEvent.ArmorAddResult.REMOVE);
 			return;
 		}
-		if (event.armorStack.getItem() == GSItems.THERMAL_PADDING_3 && event.armorStack.getItemDamage() == event.armorIndex) {
+		if (event.armorStack.getItem() instanceof ItemThermalPaddingBase && event.armorStack.getItemDamage() == event.armorIndex) {
 			event.setArmorAddResult(ThermalArmorEvent.ArmorAddResult.ADD);
 			return;
 		}
+
 		event.setArmorAddResult(ThermalArmorEvent.ArmorAddResult.NOTHING);
 	}
 	
