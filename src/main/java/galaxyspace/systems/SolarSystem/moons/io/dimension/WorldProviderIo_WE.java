@@ -29,6 +29,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.BiomeProvider;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -142,26 +144,26 @@ public class WorldProviderIo_WE extends WE_WorldProvider implements IProviderFre
 		WE_Biome.setBiomeMap(cp, 1.2D, 6, 850.0D, 0.275D);	
 		
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
-		terrainGenerator.worldStoneBlock = GSBlocks.IO_BLOCKS; 
-		terrainGenerator.worldStoneBlockMeta = 1;
+		terrainGenerator.worldStoneBlock = GSBlocks.IO_BLOCKS.getStateFromMeta(1); 
 		terrainGenerator.worldSeaGen = false;
 		cp.createChunkGen_List.add(terrainGenerator);
 		
 		//-// 
 		WE_CaveGen cg = new WE_CaveGen(); 
 		cg.replaceBlocksList .clear(); 
-		cg.replaceBlocksMetaList.clear(); 
-		cg.addReplacingBlock(terrainGenerator.worldStoneBlock, (byte)terrainGenerator.worldStoneBlockMeta); 
-		cg.lavaBlock = Blocks.LAVA; 
+		cg.addReplacingBlock(terrainGenerator.worldStoneBlock); 
+		cg.lavaBlock = Blocks.LAVA.getDefaultState(); 
 		cp.createChunkGen_List.add(cg); 
 		//-// 
 		 
 		WE_RavineGen rg = new WE_RavineGen();
 		rg.replaceBlocksList    .clear();
-		rg.replaceBlocksMetaList.clear();
-		rg.addReplacingBlock(GSBlocks.IO_BLOCKS, (byte)1);
-		rg.lavaBlock = Blocks.LAVA;
+		rg.addReplacingBlock(terrainGenerator.worldStoneBlock);
+		rg.lavaBlock = Blocks.LAVA.getDefaultState();
 		cp.createChunkGen_List.add(rg);
+		
+		cp.worldGenerators.clear();
+		cp.biomesList.clear();
 		
 		WE_Biome.addBiomeToGeneration(cp, new Io_Plains());
 		WE_Biome.addBiomeToGeneration(cp, new Io_Mountains(0, 1.4D, 1.9D, 120, 35));
@@ -175,5 +177,17 @@ public class WorldProviderIo_WE extends WE_WorldProvider implements IProviderFre
 	@Override
 	public boolean enableAdvancedThermalLevel() {
 		return false;
+	}
+
+	@Override
+	public void onPopulate(int cX, int cZ) {		
+	}
+
+	@Override
+	public void onChunkProvider(int cX, int cZ, ChunkPrimer primer) {		
+	}
+
+	@Override
+	public void recreateStructures(Chunk chunkIn, int x, int z) {		
 	}
 }

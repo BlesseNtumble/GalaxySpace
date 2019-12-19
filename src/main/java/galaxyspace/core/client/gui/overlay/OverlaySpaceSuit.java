@@ -2,14 +2,20 @@ package galaxyspace.core.client.gui.overlay;
 
 import org.lwjgl.opengl.GL11;
 
+import asmodeuscore.core.astronomy.BodiesHelper;
+import galaxyspace.GalaxySpace;
 import galaxyspace.api.item.IModificationItem;
 import galaxyspace.core.client.GSKeyHandlerClient;
 import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.prefab.items.modules.ItemModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemSpaceSuit;
+import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import micdoodle8.mods.galacticraft.core.client.gui.overlay.Overlay;
+import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStatsClient;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
+import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,7 +32,19 @@ public class OverlaySpaceSuit extends Overlay {
 		if(player == null) return;
 		
 		Minecraft mc = Minecraft.getMinecraft();
+		ScaledResolution scaled = new ScaledResolution(mc);
+		final EntityPlayerSP playerBaseClient = PlayerUtil.getPlayerBaseClientFromPlayer(player, false);
+		final GCPlayerStatsClient stats = GCPlayerStatsClient.get(playerBaseClient);		
+		
 		int i = 0;	
+		
+		if(player.world.provider instanceof IGalacticraftWorldProvider)
+		{
+			IGalacticraftWorldProvider prov = (IGalacticraftWorldProvider) player.world.provider;
+			float temp = prov.getCelestialBody().atmosphere.thermalLevel() == 0.0F ? (prov.getThermalLevelModifier() * BodiesHelper.getDefaultDergrees) + BodiesHelper.getDefaultDergrees : prov.getThermalLevelModifier() * BodiesHelper.getDefaultDergrees;
+			String str = GalaxySpace.debug ? "Thermal Level: " + String.format("%.4f", prov.getThermalLevelModifier()) + " | " + String.format("%.2f", temp) + " C" : "T: " + String.format("%.1f", temp) + " C";
+			mc.fontRenderer.drawString(str, scaled.getScaledWidth() - (str.length() * 5) - 12, 75, 0xFFFFFF);
+		}
 		
 		for(ItemStack stack : player.inventory.armorInventory)
 		{
@@ -48,7 +66,7 @@ public class OverlaySpaceSuit extends Overlay {
 				
 				if(module.isEmpty()) return;
 				
-				ScaledResolution scaled = new ScaledResolution(mc);
+				
 				GL11.glPushMatrix();
 				
 				boolean enable = false;
@@ -80,15 +98,10 @@ public class OverlaySpaceSuit extends Overlay {
 					yOffset = scaled.getScaledHeight() - 20;
 				
 				String[] keys = new String[] { 
-						/*Keyboard.getKeyName(GSKeyHandlerClient.toggleHelmet.getKeyCode()), 
-						Keyboard.getKeyName(GSKeyHandlerClient.toggleChest.getKeyCode()), 
-						Keyboard.getKeyName(GSKeyHandlerClient.toggleLegs.getKeyCode()), 
-						Keyboard.getKeyName(GSKeyHandlerClient.toggleBoots.getKeyCode())*/
-						GSKeyHandlerClient.toggleHelmet.getDisplayName(),
-						GSKeyHandlerClient.toggleChest.getDisplayName(),
-						GSKeyHandlerClient.toggleLegs.getDisplayName(),
-						GSKeyHandlerClient.toggleBoots.getDisplayName()
-						
+					GSKeyHandlerClient.toggleHelmet.getDisplayName(),
+					GSKeyHandlerClient.toggleChest.getDisplayName(),
+					GSKeyHandlerClient.toggleLegs.getDisplayName(),
+					GSKeyHandlerClient.toggleBoots.getDisplayName()						
 				};
 				
 				boolean horizontal = false;
@@ -103,7 +116,7 @@ public class OverlaySpaceSuit extends Overlay {
 						mc.getRenderItem().renderItemAndEffectIntoGUI(module, xOffset - (i * 20) + 60, yOffset - 6);
 						mc.getRenderItem().renderItemOverlays(mc.fontRenderer, stack, xOffset - (i * 20) + 60, yOffset - 6);
 						RenderHelper.disableStandardItemLighting();
-						mc.fontRenderer.drawString(status + "[" + keys[3 - player.inventory.armorInventory.indexOf(stack)] + "] ", xOffset - (i * 20) + 62, yOffset + 10, 0xFFFFFF);
+						mc.fontRenderer.drawSplitString(status + "[" + keys[3 - player.inventory.armorInventory.indexOf(stack)] + "] ", xOffset - (i * 20) + 62, yOffset + 10, 10, 0xFFFFFF);
 					}
 					else {
 						mc.getRenderItem().renderItemAndEffectIntoGUI(module, xOffset, yOffset - (i * 20));
@@ -112,19 +125,7 @@ public class OverlaySpaceSuit extends Overlay {
 						mc.fontRenderer.drawString(status + "[" + keys[3 - player.inventory.armorInventory.indexOf(stack)] + "] ", xOffset + 20, (yOffset + 5) - (i * 20), 0xFFFFFF);
 						
 					}
-					
-					
-					//if(GSConfigCore.spacesuit_small_button)
-					//{
-						
-						
-						
-					/*}
-					else {
-						String status = enable ? EnumColor.BRIGHT_GREEN + "[Enabled]" : EnumColor.RED + "[Disabled]";					
-						if(stack.getItemDamage() >= stack.getMaxDamage()) status = EnumColor.ORANGE + "[No Energy]";
-						mc.fontRenderer.drawString("[" + keys[3 - player.inventory.armorInventory.indexOf(stack)] + "] " + status, xOffset + 20, (yOffset + 5) - (i * 20), 0xFFFFFF);
-					}*/
+
 				}
 				else 
 				{

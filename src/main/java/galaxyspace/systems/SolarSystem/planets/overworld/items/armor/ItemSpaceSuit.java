@@ -295,7 +295,7 @@ public class ItemSpaceSuit extends ItemElectricArmor implements IArmorCorrosionR
 			color = "\u00a76";
 		}
 		
-		list.add(EnumColor.DARK_GREEN + GCCoreUtil.translate("gui.module.caninstall"));
+		//list.add(EnumColor.DARK_GREEN + GCCoreUtil.translate("gui.module.caninstall"));
 		
 		list.add(EnumColor.GREY + GCCoreUtil.translate("gui.module.available_modules") + " " + stack.getTagCompound().getInteger(mod_count));
 		list.add("");
@@ -410,7 +410,7 @@ public class ItemSpaceSuit extends ItemElectricArmor implements IArmorCorrosionR
 	public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot) {
 		if(source.isUnblockable()) 
 			return new ISpecialArmor.ArmorProperties(0, 0.0, 0);
-		return new ISpecialArmor.ArmorProperties(1, 0.15, Integer.MAX_VALUE);
+		return new ISpecialArmor.ArmorProperties(1, 0.16, Integer.MAX_VALUE);
 	}
 	
 	@Override
@@ -519,5 +519,10 @@ public class ItemSpaceSuit extends ItemElectricArmor implements IArmorCorrosionR
 	@Override
 	public int getModificationCount(ItemStack stack) {
 		return 2;
+	}
+
+	@Override
+	public int getItemEnchantability() {
+		return 0;
 	}
 }

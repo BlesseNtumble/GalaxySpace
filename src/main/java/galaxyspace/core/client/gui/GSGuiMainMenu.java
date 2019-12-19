@@ -33,6 +33,7 @@ import net.minecraft.client.gui.GuiWorldSelection;
 import net.minecraft.client.gui.GuiYesNo;
 import net.minecraft.client.gui.GuiYesNoCallback;
 import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.DynamicTexture;
@@ -291,7 +292,7 @@ public class GSGuiMainMenu extends GuiScreen implements GuiYesNoCallback
         
         if (p_146284_1_.id == 3)
         {
-        	this.urlopen("https://minecraft.curseforge.com/projects/galaxy-space-addon-for-galacticraft");
+        	this.urlopen("https://www.curseforge.com/minecraft/mc-mods/galaxy-space-addon-for-galacticraft");
         }
 
         if (p_146284_1_.id == 5)
@@ -468,7 +469,7 @@ public class GSGuiMainMenu extends GuiScreen implements GuiYesNoCallback
                     GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
                 }
 
-                this.mc.getTextureManager().bindTexture(background[4]);
+                this.mc.getTextureManager().bindTexture(background[0]);
                 vertexbuffer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
                 int f = 255 / (k + 1);
                 float f4 = 0.0F;
@@ -500,37 +501,37 @@ public class GSGuiMainMenu extends GuiScreen implements GuiYesNoCallback
      */
     private void rotateAndBlurSkybox(float p_73968_1_)
     {
-        //this.mc.getTextureManager().bindTexture(this.field_110351_G);
-    	GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
-        //GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-        GL11.glCopyTexSubImage2D(GL11.GL_TEXTURE_2D, 0, 0, 0, 0, 0, 512, 512);
-
-        
-        GL11.glEnable(GL11.GL_BLEND);
-        OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-        GL11.glColorMask(true, true, true, false);
+        //this.mc.getTextureManager().bindTexture(this.backgroundTexture);
+       // GlStateManager.glTexParameteri(3553, 10241, 9729);
+      // GlStateManager.glTexParameteri(3553, 10240, 9729);
+       // GlStateManager.glCopyTexSubImage2D(3553, 0, 0, 0, 0, 0, 1024, 1024);
+        GlStateManager.enableBlend();
+        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        GlStateManager.colorMask(true, true, true, false);
         Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferbuilder = tessellator.getBuffer();
+        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+        GlStateManager.disableAlpha();
+        int i = 0;
+
+        int k = this.width;
+        int l = this.height;
         
-        BufferBuilder vertexbuffer = tessellator.getBuffer();
-        vertexbuffer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
-        GL11.glDisable(GL11.GL_ALPHA_TEST);
-        byte b0 = 3;
-/*
-        for (int i = 0; i < b0; ++i)
+        
+        //BLUR
+        for (int j = 0; j < i; ++j)
         {
-            tessellator.setColorRGBA_F(1.0F, 1.0F, 1.0F, 1.0F / (float)(i + 1));
-            int j = this.width;
-            int k = this.height;
-            float f1 = (float)(i - b0 / 2) / 512.0F;
-            tessellator.addVertexWithUV((double)j, (double)k, (double)this.zLevel, (double)(0.0F + f1), 1.0D);
-            tessellator.addVertexWithUV((double)j, 0.0D, (double)this.zLevel, (double)(1.0F + f1), 1.0D);
-            tessellator.addVertexWithUV(0.0D, 0.0D, (double)this.zLevel, (double)(1.0F + f1), 0.0D);
-            tessellator.addVertexWithUV(0.0D, (double)k, (double)this.zLevel, (double)(0.0F + f1), 0.0D);
+            float f = 1.0F / (float)(j + 1);            
+            float f1 = (float)(j - 1) / 256.0F;
+            bufferbuilder.pos(0.0D, 0.0D, (double)this.zLevel).tex((double)(0.0F + f1), 0.0D).color(1.0F, 1.0F, 1.0F, f).endVertex();
+            bufferbuilder.pos(0.0D, (double)l, (double)this.zLevel).tex((double)(0.0F + f1), 1.0D).color(1.0F, 1.0F, 1.0F, f).endVertex();
+            bufferbuilder.pos((double)k, (double)l, (double)this.zLevel).tex((double)(1.0F + f1), 1.0D).color(1.0F, 1.0F, 1.0F, f).endVertex();
+            bufferbuilder.pos((double)k, 0.0D, (double)this.zLevel).tex((double)(1.0F + f1), 0.0D).color(1.0F, 1.0F, 1.0F, f).endVertex();
         }
-*/
+
         tessellator.draw();
-        GL11.glEnable(GL11.GL_ALPHA_TEST);
-        GL11.glColorMask(true, true, true, true);
+        GlStateManager.enableAlpha();
+        GlStateManager.colorMask(true, true, true, true);
     }
 
     /**
@@ -540,8 +541,8 @@ public class GSGuiMainMenu extends GuiScreen implements GuiYesNoCallback
     {
         this.mc.getFramebuffer().unbindFramebuffer();
         GL11.glViewport(0, 0, 512, 512);
-        this.drawPanorama(p_73971_1_, p_73971_2_, p_73971_3_);
-        this.rotateAndBlurSkybox(p_73971_3_);
+        //this.drawPanorama(p_73971_1_, p_73971_2_, p_73971_3_);
+       // this.rotateAndBlurSkybox(p_73971_3_);
         this.mc.getFramebuffer().bindFramebuffer(true);
         GL11.glViewport(0, 0, this.mc.displayWidth, this.mc.displayHeight);
         Tessellator tessellator = Tessellator.getInstance();
@@ -583,6 +584,8 @@ public class GSGuiMainMenu extends GuiScreen implements GuiYesNoCallback
         vertexbuffer.pos(0 + width, 0 + 0, zLevel).tex(1,0).endVertex();
         vertexbuffer.pos(0 + 0, 0 + 0, zLevel).tex(0, 0).endVertex();
 		tessellator.draw();
+		
+		rotateAndBlurSkybox(p_73863_1_);
 		/*if(this.height > 400 && this.width > 400)
 		{
 			

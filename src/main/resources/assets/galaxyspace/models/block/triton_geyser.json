@@ -1,0 +1,12 @@
+{ 
+	"parent": "block/cube_all",  
+	"textures": { 
+		"particle": "galaxyspace:blocks/solarsystem/triton/triton_grunt",
+        "down": "galaxyspace:blocks/solarsystem/triton/triton_grunt",
+        "up": "galaxyspace:blocks/solarsystem/triton/triton_geyser",
+        "north": "galaxyspace:blocks/solarsystem/triton/triton_grunt",
+        "east": "galaxyspace:blocks/solarsystem/triton/triton_grunt",
+        "south": "galaxyspace:blocks/solarsystem/triton/triton_grunt",
+        "west": "galaxyspace:blocks/solarsystem/triton/triton_grunt"
+	}
+}

@@ -7,6 +7,7 @@ import java.util.List;
 
 import asmodeuscore.api.dimension.IProviderFreeze;
 import asmodeuscore.core.astronomy.dimension.world.gen.WorldProviderAdvancedSpace;
+import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.systems.SolarSystem.SolarSystemBodies;
 import galaxyspace.systems.SolarSystem.planets.ceres.dimension.sky.SkyProviderCeres;
@@ -65,28 +66,17 @@ public class WorldProviderCeres extends WorldProviderAdvancedSpace implements IP
     @Override
     public boolean canRainOrSnow() {
         return false;
-    }
-
- 
+    } 
 
     @Override
-
     public CelestialBody getCelestialBody() {
-
         return SolarSystemBodies.planetCeres;
-
     }
 
- 
-
-     //Created later
-
+    //Created later
     @Override
-
     public Class<? extends IChunkGenerator> getChunkProviderClass() {
-
         return ChunkProviderCeres.class;
-
     }
     
     @Override 
@@ -187,9 +177,5 @@ public class WorldProviderCeres extends WorldProviderAdvancedSpace implements IP
 		return GSDimensions.CERES;
 	}
 
-	@Override
-	public boolean enableAdvancedThermalLevel() {
-		return false;
-	}
-
+	
 }

@@ -1,18 +1,16 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics;
 
-import galaxyspace.core.registers.items.GSItems;
-import micdoodle8.mods.galacticraft.core.GCBlocks;
-import micdoodle8.mods.galacticraft.core.GCItems;
+import java.util.List;
+
+import galaxyspace.core.util.GSRecipeUtil;
+import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
-import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
-import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 
@@ -39,39 +37,19 @@ public class SlotSchematicBody extends Slot
             GCCoreUtil.sendToAllAround(new PacketSimple(EnumSimplePacket.C_SPAWN_SPARK_PARTICLES, dimID, new Object[] { this.pos }), this.player.world, dimID, this.pos, 20);
         }
     }
-
+    
     @Override
     public boolean isItemValid(ItemStack par1ItemStack)
     {
-        switch (this.index)
-        {
-        	case 1: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 5 || par1ItemStack.getItem() == MarsItems.marsItemBasic && par1ItemStack.getItemDamage() == 3 || par1ItemStack.getItem() == GSItems.HDP;
-        	case 2: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 5 || par1ItemStack.getItem() == MarsItems.marsItemBasic && par1ItemStack.getItemDamage() == 3 || par1ItemStack.getItem() == GSItems.HDP;
-        	case 3: return par1ItemStack.getItem() == Item.getItemFromBlock(GCBlocks.spinThruster);
-        	case 4: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 5 || par1ItemStack.getItem() == MarsItems.marsItemBasic && par1ItemStack.getItemDamage() == 3 || par1ItemStack.getItem() == GSItems.HDP;
-        	case 5: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 5 || par1ItemStack.getItem() == MarsItems.marsItemBasic && par1ItemStack.getItemDamage() == 3 || par1ItemStack.getItem() == GSItems.HDP;
-        	case 6: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 5 || par1ItemStack.getItem() == MarsItems.marsItemBasic && par1ItemStack.getItemDamage() == 3 || par1ItemStack.getItem() == GSItems.HDP;
-        	case 7: return par1ItemStack.getItem() == GCItems.basicItem && par1ItemStack.getItemDamage() == 20;
-        	case 8: return par1ItemStack.getItem() == GCItems.basicItem && par1ItemStack.getItemDamage() == 19;
-        	case 9: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 5 || par1ItemStack.getItem() == MarsItems.marsItemBasic && par1ItemStack.getItemDamage() == 3 || par1ItemStack.getItem() == GSItems.HDP;
-        	case 10: return par1ItemStack.getItem() == GSItems.ROCKET_MODULES && par1ItemStack.getItemDamage() == 3;
-        	case 11: return par1ItemStack.getItem() == GSItems.ROCKET_MODULES && par1ItemStack.getItemDamage() == 3;
-        	case 12: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 1 || par1ItemStack.getItem() == GCItems.rocketEngine;
-        	case 13: return par1ItemStack.getItem() == GCItems.basicItem && par1ItemStack.getItemDamage() == 14;
-        	case 14: return par1ItemStack.getItem() == GCItems.oxygenConcentrator;
-        	case 15: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 5 || par1ItemStack.getItem() == MarsItems.marsItemBasic && par1ItemStack.getItemDamage() == 3 || par1ItemStack.getItem() == GSItems.HDP;
-        	case 16: return par1ItemStack.getItem() == GSItems.ROCKET_MODULES && par1ItemStack.getItemDamage() == 3;
-        	case 17: return par1ItemStack.getItem() == GSItems.ROCKET_MODULES && par1ItemStack.getItemDamage() == 3;
-        	case 18: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 1 || par1ItemStack.getItem() == GCItems.rocketEngine;
-        	case 19: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 5 || par1ItemStack.getItem() == MarsItems.marsItemBasic && par1ItemStack.getItemDamage() == 3 || par1ItemStack.getItem() == GSItems.HDP;
-        	case 20: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 5 || par1ItemStack.getItem() == MarsItems.marsItemBasic && par1ItemStack.getItemDamage() == 3 || par1ItemStack.getItem() == GSItems.HDP;
-        	case 21: return par1ItemStack.getItem() == Item.getItemFromBlock(GCBlocks.spinThruster);
-        	case 22: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 5 || par1ItemStack.getItem() == MarsItems.marsItemBasic && par1ItemStack.getItemDamage() == 3 || par1ItemStack.getItem() == GSItems.HDP;
-        	case 23: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 5 || par1ItemStack.getItem() == MarsItems.marsItemBasic && par1ItemStack.getItemDamage() == 3 || par1ItemStack.getItem() == GSItems.HDP;
-        	case 24: return par1ItemStack.getItem() == AsteroidsItems.basicItem && par1ItemStack.getItemDamage() == 5 || par1ItemStack.getItem() == MarsItems.marsItemBasic && par1ItemStack.getItemDamage() == 3 || par1ItemStack.getItem() == GSItems.HDP;
-        	
-        }
+        if (par1ItemStack == null)
+            return false;
 
+        List<INasaWorkbenchRecipe> recipes = GSRecipeUtil.getBodyRecipes();
+        for (INasaWorkbenchRecipe recipe : recipes)
+        {
+            if (ItemStack.areItemsEqual(par1ItemStack, recipe.getRecipeInput().get(this.index)))
+                return true;
+        }
         return false;
     }
 

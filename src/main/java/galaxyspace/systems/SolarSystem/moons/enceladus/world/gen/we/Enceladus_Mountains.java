@@ -37,10 +37,10 @@ public class Enceladus_Mountains extends WE_Biome {
 		mobs.add(new Biome.SpawnListEntry(EntityEvolvedColdBlaze.class, 10, 1, 4));
 		
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();
-		standardBiomeLayers.add(Blocks.PACKED_ICE, (byte)0, GSBlocks.ENCELADUS_BLOCKS, (byte)1, -256, 0,   -40, -2,  true);
-		standardBiomeLayers.add(GSBlocks.ENCELADUS_BLOCKS, (byte)0, Blocks.PACKED_ICE, (byte)0, -256, 0,   -4, -1,  true);
+		standardBiomeLayers.add(Blocks.PACKED_ICE.getDefaultState(), GSBlocks.ENCELADUS_BLOCKS.getStateFromMeta(1), -256, 0,   -40, -2,  true);
+		standardBiomeLayers.add(GSBlocks.ENCELADUS_BLOCKS.getStateFromMeta(0), Blocks.PACKED_ICE.getDefaultState(), -256, 0,   -4, -1,  true);
 		//standardBiomeLayers.add(GSBlocks.ENCELADUS_BLOCKS, (byte)1, GSBlocks.ENCELADUS_BLOCKS, (byte)2, -256, 0, -256,  0, false);
-		standardBiomeLayers.add(Blocks.BEDROCK, (byte)0,                                0, 2,  0,  0, true);
+		standardBiomeLayers.add(Blocks.BEDROCK.getDefaultState(), 0, 2, 0, 0, true);
 		createChunkGen_InXZ_List.add(standardBiomeLayers);
 	}
 }

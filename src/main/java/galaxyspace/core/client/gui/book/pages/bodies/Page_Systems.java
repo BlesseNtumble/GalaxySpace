@@ -101,6 +101,12 @@ public class Page_Systems extends Page_WithScroll {
 	}
 
 	@Override
+	public boolean rawTitle()
+	{
+		return true;
+	}
+	
+	@Override
 	public void drawPage(int x, int y, FontRenderer font, int mouseX, int mouseY) {
 				
 		super.drawPage(x, y, font, mouseX, mouseY);
@@ -221,8 +227,8 @@ public class Page_Systems extends Page_WithScroll {
 					infos.add(GCCoreUtil.translate("gui.message.daylength") + " " + ((WorldProviderSpace) gcdim).getDayLength() / 1000 + "h " + ((WorldProviderSpace) gcdim).getDayLength() % 1000 + "m");
 					infos.add("Distance from star: " + selected_body.getRelativeDistanceFromCenter().unScaledDistance);
 					infos.add(GCCoreUtil.translate("gui.message.gravity") + " " + (int)grav + "%");
-					infos.add(GCCoreUtil.translate("gui.message.temperature") + " " + gcdim.getThermalLevelModifier() * 40 + " C");
-					infos.add(GCCoreUtil.translate("gui.message.windspeed") + " " + gcdim.getWindLevel());					
+					infos.add(GCCoreUtil.translate("gui.message.temperature") + " " + gcdim.getCelestialBody().atmosphere.thermalLevel() * 20 + " C");
+					infos.add(GCCoreUtil.translate("gui.message.windspeed") + " " + gcdim.getCelestialBody().atmosphere.windLevel());					
 					if(dim instanceof ISolarLevel) 
 						infos.add(GCCoreUtil.translate("gui.message.solarenergy") + " " + Math.round((((ISolarLevel)dim).getSolarEnergyMultiplier() - 1) * 1000) / 10.0F + "%");
 					

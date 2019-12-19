@@ -12,7 +12,15 @@ import asmodeuscore.core.event.RadiationEvent;
 import asmodeuscore.core.handler.LightningStormHandler;
 import galaxyspace.GalaxySpace;
 import galaxyspace.api.item.IJetpackArmor;
+import galaxyspace.api.item.IModificationItem;
 import galaxyspace.core.configs.GSConfigCore;
+import galaxyspace.core.handler.capabilities.GSCapabilityProviderStats;
+import galaxyspace.core.handler.capabilities.GSCapabilityProviderStatsClient;
+import galaxyspace.core.handler.capabilities.GSCapabilityStatsHandler;
+import galaxyspace.core.handler.capabilities.GSStatsCapability;
+import galaxyspace.core.handler.capabilities.StatsCapability;
+import galaxyspace.core.network.packet.GSPacketSimple;
+import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
 import galaxyspace.core.prefab.items.rockets.ItemTier4Rocket;
 import galaxyspace.core.prefab.items.rockets.ItemTier5Rocket;
 import galaxyspace.core.prefab.items.rockets.ItemTier6Rocket;
@@ -21,7 +29,9 @@ import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.core.util.GSDamageSource;
 import galaxyspace.systems.SolarSystem.moons.titan.dimension.WorldProviderTitan;
 import galaxyspace.systems.SolarSystem.planets.kuiperbelt.dimension.WorldProviderKuiperBelt;
+import galaxyspace.systems.SolarSystem.planets.mars.dimension.WorldProviderMars_WE;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemThermalPaddingBase;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitationModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityPlanetShield;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityRadiationStabiliser;
@@ -38,6 +48,7 @@ import micdoodle8.mods.galacticraft.core.entities.EntityLanderBase;
 import micdoodle8.mods.galacticraft.core.entities.EntityMeteor;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler.EnumModelPacketType;
+import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler.ThermalArmorEvent;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
 import micdoodle8.mods.galacticraft.core.items.ItemTier1Rocket;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
@@ -49,8 +60,11 @@ import micdoodle8.mods.galacticraft.planets.asteroids.items.ItemTier3Rocket;
 import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import micdoodle8.mods.galacticraft.planets.mars.dimension.WorldProviderMars;
 import micdoodle8.mods.galacticraft.planets.mars.items.ItemTier2Rocket;
+import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -74,11 +88,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class GSEventHandler {
@@ -92,6 +113,72 @@ public class GSEventHandler {
 		items_to_change.add(new ItemsToChange(new ItemStack(Items.WATER_BUCKET), Blocks.AIR.getDefaultState(), true));
 		
 		block_to_change.add(new BlockToChange(Blocks.WATER.getDefaultState(), Blocks.AIR.getDefaultState(), Blocks.ICE.getDefaultState(), 0.0F, true).setParticle("waterbubbles"));
+	}
+	
+	@SubscribeEvent
+    public void onAttachCapability(AttachCapabilitiesEvent<Entity> event)
+    {
+        if (event.getObject() instanceof EntityPlayerMP)
+        {        	
+            event.addCapability(GSCapabilityStatsHandler.GS_PLAYER_PROPERTIES, new GSCapabilityProviderStats((EntityPlayerMP) event.getObject()));
+        }
+        else if (event.getObject() instanceof EntityPlayer && ((EntityPlayer)event.getObject()).world.isRemote)
+        {
+            this.onAttachCapabilityClient(event);
+        }
+    }
+
+	@SideOnly(Side.CLIENT)
+    private void onAttachCapabilityClient(AttachCapabilitiesEvent<Entity> event)
+    {
+        if (event.getObject() instanceof EntityPlayerSP)
+        {
+            event.addCapability(GSCapabilityStatsHandler.GS_PLAYER_PROPERTIES_CLIENT, new GSCapabilityProviderStatsClient((EntityPlayerSP) event.getObject()));
+        }
+    }
+	
+	@SubscribeEvent
+    public void onPlayerCloned(PlayerEvent.Clone event)
+    {
+		StatsCapability oldStats = GSStatsCapability.get(event.getOriginal());
+		StatsCapability newStats = GSStatsCapability.get(event.getEntityPlayer());
+        newStats.copyFrom(oldStats, !event.isWasDeath()|| event.getOriginal().world.getGameRules().getBoolean("keepInventory"));
+   
+	}
+
+	@SubscribeEvent
+    public void onPlayerLogin(PlayerLoggedInEvent event)
+    {
+        if (event.player instanceof EntityPlayerMP)
+        {
+        	StatsCapability stats = GSStatsCapability.get(event.player);
+        	
+        	Integer[] ids = new Integer[256];
+        	for(int i = 0; i < stats.getKnowledgeResearches().length; i++)
+        		ids[i] = stats.getKnowledgeResearches()[i];
+
+        	GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_UPDATE_RESEARCHES, GCCoreUtil.getDimensionID(event.player.world), new Object[] {ids}), (EntityPlayerMP)event.player);
+        }
+    }
+	
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void onToolTip(ItemTooltipEvent e) {
+		if(e.getItemStack().getItem() instanceof IModificationItem)
+		{
+			if(((IModificationItem)e.getItemStack().getItem()).getType(e.getItemStack()) != null) {
+				e.getToolTip().add("");
+				e.getToolTip().add(EnumColor.AQUA + GCCoreUtil.translate("gui.module.caninstall"));
+			}
+		}
+		
+		if(e.getItemStack().isItemEqual(new ItemStack(MarsItems.schematic, 1, 0)))
+		{
+			if(GSConfigCore.enableAdvancedRocketCraft) {
+				e.getToolTip().add("");
+				e.getToolTip().add(EnumColor.RED + "Disabled");
+			}
+		}
 	}
 	
 	@SubscribeEvent
@@ -141,6 +228,16 @@ public class GSEventHandler {
 		}
 	}
 	
+	@SubscribeEvent 
+	public void onBreakBlock(BreakEvent e) {
+		World world = e.getWorld();
+		BlockPos pos = e.getPos();
+		/*
+		if(world.getBlockState(pos).getBlock() instanceof BlockIce)
+		{
+			world.setBlockToAir(pos);
+		}*/
+	}
 	
 	@SubscribeEvent
 	public void onInteract(PlayerInteractEvent.RightClickBlock event)
@@ -312,13 +409,17 @@ public class GSEventHandler {
 		{
 			EntityPlayerMP player = (EntityPlayerMP)living;			
 			final GCPlayerStats stats = GCPlayerStats.get(player);			
-			
+		
 			LightningStormHandler.spawnLightning(player);
 								
 			this.updateSchematics(player, stats);
-			//this.changeBlocks(world, player);
 			//this.throwMeteors(player);
 
+			
+			//if(gs_stats.getKnowledgeResearch()[0] > 0)
+			//{
+			//GalaxySpace.debug(gs_stats.getKnowledgeResearch()[0] + "");
+			//}
 			
 			if(world.rand.nextInt(50) <= 10 && !this.getProtectArmor(player) && world.provider instanceof WorldProviderTitan && world.isRaining() && world.canBlockSeeSky(player.getPosition()))
 			{
@@ -355,12 +456,29 @@ public class GSEventHandler {
 					}
 				}
 			}
-			
+			/*
+			for(ItemStack stack : stats.getExtendedInventory().stacks)
+			{
+				if(!player.capabilities.isCreativeMode && stack.getItem() instanceof ItemThermalPaddingBase)
+				{
+					ItemThermalPaddingBase item = (ItemThermalPaddingBase) stack.getItem();
+					
+					if(item.isFreeze() && !player.world.isDaytime())
+						stats.setThermalLevelNormalising(false);
+						stats.setThermalLevel(-22);
+				}
+			}
+			*/
 	        /*if (stats.getShieldControllerInSlot().isEmpty())
 	        {
 	        	GCPlayerHandler.sendGearUpdatePacket(player, EnumModelPacketType.REMOVE, EnumExtendedInventorySlot.SHIELD_CONTROLLER);
 	        }
-	       	else*/ if (stats.getShieldControllerInSlot().isItemEqual(new ItemStack(GSItems.BASIC, 1, 16)))
+	       	else*/ 
+			
+			//THERMAL
+			
+			//
+			if (stats.getShieldControllerInSlot().isItemEqual(new ItemStack(GSItems.BASIC, 1, 16)))
 	        {
 	       		ItemStack shield = stats.getShieldControllerInSlot();
 	       		if (shield.hasTagCompound())
@@ -397,7 +515,7 @@ public class GSEventHandler {
 	           	}
 	        }
 
-	        stats.setLastShieldControllerInSlot(stats.getShieldControllerInSlot());
+	        //stats.setLastShieldControllerInSlot(stats.getShieldControllerInSlot());
 	       
 	       
 			ItemStack stack = player.inventory.armorInventory.get(3);
@@ -456,9 +574,23 @@ public class GSEventHandler {
 	}
 	
 	@SubscribeEvent
+	public void onThermalArmorEvent(ThermalArmorEvent event) {
+		if (event.armorStack == ItemStack.EMPTY) {
+			event.setArmorAddResult(ThermalArmorEvent.ArmorAddResult.REMOVE);
+			return;
+		}
+		if (event.armorStack.getItem() instanceof ItemThermalPaddingBase && event.armorStack.getItemDamage() == event.armorIndex) {
+			event.setArmorAddResult(ThermalArmorEvent.ArmorAddResult.ADD);
+			return;
+		}
+
+		event.setArmorAddResult(ThermalArmorEvent.ArmorAddResult.NOTHING);
+	}
+	
+	@SubscribeEvent
     public void onPlanetDecorated(GCCoreEventPopulate.Post event)
     {
-		if(event.world.provider instanceof WorldProviderMars)
+		if(event.world.provider instanceof WorldProviderMars || event.world.provider instanceof WorldProviderMars_WE)
 		{
 			genOre(event.world, event.pos, new WorldGenMinableMeta(GSBlocks.MARS_ORES, 4, 0, true, MarsBlocks.marsBlock, 9), 6, 4, 18);	//diamond		
 			genOre(event.world, event.pos, new WorldGenMinableMeta(GSBlocks.MARS_ORES, 6, 1, true, MarsBlocks.marsBlock, 9), 10, 6, 30); //gold
@@ -751,9 +883,9 @@ public class GSEventHandler {
 	    			{
 	    				int x, y, z;
 	    				double motX, motZ;
-	    				x = world.rand.nextInt(1) - 8;
+	    				x = world.rand.nextInt(1) - 4;
 	    				y = world.rand.nextInt(20) + 200;
-	    				z = world.rand.nextInt(1) - 8;
+	    				z = world.rand.nextInt(1) - 4;
 	    				motX = world.rand.nextDouble() * 1;
 	    				motZ = world.rand.nextDouble() * 1;
 

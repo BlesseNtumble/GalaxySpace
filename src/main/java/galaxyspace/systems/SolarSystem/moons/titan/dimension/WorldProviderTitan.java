@@ -251,9 +251,9 @@ public class WorldProviderTitan extends WorldProviderAdvancedSpace implements IP
 	}
 	
 	@Override
-    public TypeBody getClassBody()
+    public ClassBody getClassBody()
     {
-    	return TypeBody.TITAN;
+    	return ClassBody.TITAN;
     }
 
 	@Override
@@ -267,7 +267,8 @@ public class WorldProviderTitan extends WorldProviderAdvancedSpace implements IP
 
 	@Override
 	public int getSoundInterval(float rainStrength) {
-		return 80 - (int) (rainStrength * 8F);
+		int result = 80 - (int)(rainStrength * 88F);
+        return result > 0 ? result : 0;
 	}
 
 	@Override

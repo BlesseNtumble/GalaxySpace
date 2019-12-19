@@ -23,7 +23,7 @@ public class SkyProviderBarnarda_C extends SkyProviderBase{
 		GL11.glPopMatrix();
         GL11.glPushMatrix();
         
-       
+        GL11.glEnable(GL11.GL_BLEND);
         
         long daylength = ((WorldProviderSpace) this.mc.world.provider).getDayLength();
         
@@ -33,19 +33,19 @@ public class SkyProviderBarnarda_C extends SkyProviderBase{
         GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);	
         GL11.glRotatef(0.0F, 1.0F, 0.0F, 0.0F);	
         
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.barnarda_c1_Texture);
-        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-        buffer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
-        buffer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
-        buffer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
-        buffer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
-        tessellator.draw();
-        
+        if(!this.mc.world.isRaining()) {
+	        FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.barnarda_c1_Texture);
+	        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
+	        buffer.pos(-f10, -100.0D, f10).tex(0, 1.0).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+	        buffer.pos(f10, -100.0D, f10).tex(1.0, 1.0).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+	        buffer.pos(f10, -100.0D, -f10).tex(1.0, 0).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+	        buffer.pos(-f10, -100.0D, -f10).tex(0, 0).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+	        tessellator.draw();
+        }
         GL11.glPopMatrix();
         GL11.glPushMatrix();
         
-        GL11.glEnable(GL11.GL_BLEND);
+      
         //OpenGlHelper.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE_MINUS_SRC_ALPHA, GL11.GL_ONE, GL11.GL_ZERO);
         
         f10 = 2.5F;
@@ -54,15 +54,15 @@ public class SkyProviderBarnarda_C extends SkyProviderBase{
         GL11.glRotatef(80.0F, 0.0F, 0.0F, 1.0F);	
         GL11.glRotatef(40.0F, 1.0F, 0.0F, 0.0F);	
         
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.barnarda_c2_Texture);
-        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-        buffer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
-        buffer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
-        buffer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
-        buffer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
-        tessellator.draw();
-        
+        if(!this.mc.world.isRaining()) {
+	        FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.barnarda_c2_Texture);
+	        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+	        buffer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
+	        buffer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
+	        buffer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
+	        buffer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
+	        tessellator.draw();
+        }
         GL11.glDisable(GL11.GL_BLEND);
 	}
 

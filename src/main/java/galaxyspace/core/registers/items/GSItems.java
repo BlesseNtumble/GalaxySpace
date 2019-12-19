@@ -26,6 +26,8 @@ import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemUpgrades;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemArmorGS;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemJetpack;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemSpaceSuit;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemThermalPaddingBase;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemTerraManipulator;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
@@ -44,8 +46,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class GSItems {
-	//public static final List<Item> GS_ITEMS = new ArrayList<Item>();
-
+	
 	public static ArmorMaterial SPACESUIT_TIER_1 = EnumHelper.addArmorMaterial("SPACESUIT", "", 18, new int[] {2, 4, 5, 2}, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
 	public static ArmorMaterial COBALT = EnumHelper.addArmorMaterial("COBALT", "", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
 	public static ToolMaterial COBALT_TOOLS = EnumHelper.addToolMaterial("cobalt", 2, 250, 6.0F, 2.0F, 14);
@@ -91,6 +92,9 @@ public class GSItems {
 	public static Item COBALT_LEGS = new ItemArmorGS("cobalt_legs", COBALT, EntityEquipmentSlot.LEGS);
 	public static Item COBALT_BOOTS = new ItemArmorGS("cobalt_boots", COBALT, EntityEquipmentSlot.FEET);
 	
+	public static Item THERMAL_PADDING_3 = new ItemThermalPaddingBase(3, false);
+	public static Item THERMAL_PADDING_4 = new ItemThermalPaddingBase(4, false);
+	//TOOLS
 	public static Item COBALT_SWORD = new ItemSwordGS("cobalt_sword", COBALT_TOOLS);
 	public static Item COBALT_AXE = new ItemAxeGS("cobalt_axe", COBALT_TOOLS);
 	public static Item COBALT_SPADE = new ItemSpadeGS("cobalt_spade", COBALT_TOOLS);
@@ -98,6 +102,7 @@ public class GSItems {
 	public static Item COBALT_PICKAXE = new ItemPickaxeGS("cobalt_pickaxe", COBALT_TOOLS, false);
 	
 	public static Item JETPACK = new ItemJetpack(SPACESUIT_TIER_1, EntityEquipmentSlot.CHEST);
+	public static Item TERRA_MANIPULATOR = new ItemTerraManipulator();
 	
 	public static void initialize()
 	{		
@@ -139,7 +144,10 @@ public class GSItems {
 		registerItem(COBALT_HELMET);
 		registerItem(COBALT_CHEST);
 		registerItem(COBALT_LEGS);
-		registerItem(COBALT_BOOTS);		
+		registerItem(COBALT_BOOTS);
+		
+		registerItem(THERMAL_PADDING_3);
+		registerItem(THERMAL_PADDING_4);
 		
 		registerItem(COBALT_SWORD);
 		registerItem(COBALT_AXE);
@@ -148,6 +156,7 @@ public class GSItems {
 		registerItem(COBALT_HOE);
 		
 		registerItem(JETPACK);
+		//registerItem(TERRA_MANIPULATOR);
 		
 		GalacticraftCore.proxy.registerCanister(new PartialCanister(HYDROGEN_CANISTER, GalaxySpace.MODID, "hydrogen_canister", 6));
 		GalacticraftCore.proxy.registerCanister(new PartialCanister(ETHANE_CANISTER, GalaxySpace.MODID, "ethane_canister", 6));

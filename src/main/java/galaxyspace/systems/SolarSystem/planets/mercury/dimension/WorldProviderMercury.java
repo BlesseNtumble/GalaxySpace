@@ -41,64 +41,37 @@ public class WorldProviderMercury extends WorldProviderAdvancedSpace implements 
     @Override
 
     public float getFallDamageModifier() {
-
         return 0.16F;
-
     }
-
- 
-
+    
     @Override
-
     public double getFuelUsageMultiplier() {
-
         return 0.8;
-
     }
 
     @Override
-
     public double getMeteorFrequency() {
-
         return 3.0;
-
-    }
-
- 
+    } 
 
     @Override
-
     public float getSoundVolReductionAmount() {
-
         return Float.MAX_VALUE;
-
     }
 
     @Override
     public boolean canRainOrSnow() {
         return false;
     }
-
  
-
     @Override
-
     public CelestialBody getCelestialBody() {
-
         return SolarSystemBodies.planetMercury;
-
     }
 
- 
-
-     //Created later
-
     @Override
-
     public Class<? extends IChunkGenerator> getChunkProviderClass() {
-
         return ChunkProviderMercury.class;
-
     }
     
     @Override 
@@ -108,34 +81,23 @@ public class WorldProviderMercury extends WorldProviderAdvancedSpace implements 
     
     @Override
     public Vector3 getFogColor() {
-
     	return new Vector3(0, 0, 0);
-
     }
 
     @Override
     public Vector3 getSkyColor() {
-
     	return new Vector3(0, 0, 0);
-
     }
-
      
 	@Override
 	public boolean isSkyColored() {
 		return false;
-	}
- 
- 
+	} 
 
 	@Override
 	public boolean hasSunset() {
 		return false;
 	}
-
- 
-
-    //Can players respawn here?
 
     @Override
     public boolean shouldForceRespawn() {
@@ -216,7 +178,7 @@ public class WorldProviderMercury extends WorldProviderAdvancedSpace implements 
 	
 		return GSDimensions.MERCURY;
 	}
-	
+	/*
 	@Override
 	public void getLightmapColors(float partialTicks, float sunBrightness, float skyLight, float blockLight, float[] colors) 
 	{
@@ -231,13 +193,13 @@ public class WorldProviderMercury extends WorldProviderAdvancedSpace implements 
 				//colors[1] = 0.05F - sunBrightness;
 				//colors[2] = 0.02F - sunBrightness;
 			}
-		}*/
+		}
 	}
-
+	 */
+	
 	@Override
-	public boolean enableAdvancedThermalLevel() {
-		return false;
+	protected float getThermalValueMod()
+	{
+		return 1.8F;
 	}
-
-
 }

@@ -8,11 +8,15 @@ import com.google.common.base.Predicate;
 import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTree_Forest;
 import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTree_Forest2;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProvider;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_PerlinNoise;
+import galaxyspace.GalaxySpace;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Blocks;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Dandelions;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Falling_Blocks;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Grass;
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.WorldProviderBarnarda_C_WE;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Dunes;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Forest;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Mountains;
@@ -81,16 +85,18 @@ public class BiomeDecoratorBarnarda_C extends BiomeDecoratorSpace
 		this.generateOre(8, cobaltumGen, 5, 40);
 		this.generateOre(8, nickelGen, 5, 15);
 		
-	//	WE_ChunkProvider chunk = ((WE_WorldProvider)this.getCurrentWorld().provider).getChunkProvider();
+		/*WE_ChunkProvider chunk = ((WorldProviderBarnarda_C_WE)this.getCurrentWorld().provider).chunk;
 		
-		/*double scaleX = chunk.biomemapScaleX;
+		double scaleX = chunk.biomemapScaleX;
 		double persistance = chunk.biomemapPersistence;
 		GalaxySpace.debug("" + WE_PerlinNoise.PerlinNoise2D((this.getCurrentWorld().getSeed() * 11) ^ 6,
 				this.posX / scaleX, this.posZ / scaleX,
 				persistance, chunk.biomemapNumberOfOctaves)
-			* chunk.biomemapScaleY);
-		
+			* chunk.biomemapScaleY + " | " + WE_Biome.getBiomeAt(chunk, this.posX, this.posZ).getBiomeName());
 		*/
+		//WE_Biome.getBiomeAt(chunk, this.posX, this.posZ);
+		
+		
 
 		if(getBiome(randPosX, randPosZ) instanceof Barnarda_C_Forest)
     	{
@@ -268,6 +274,13 @@ public class BiomeDecoratorBarnarda_C extends BiomeDecoratorSpace
     				this.getCurrentWorld().setBlockState(pos, BRBlocks.BARNARDA_C_DANDELIONS.getDefaultState().withProperty(Barnarda_C_Dandelions.BASIC_TYPE, Barnarda_C_Dandelions.EnumBlockDandelions.GRASS));
 	    	}
 
+	    	if(this.rand.nextInt(10) == 0 && this.getCurrentWorld().getBlockState(pos.down()) == BRBlocks.BARNARDA_C_GRASS.getDefaultState().withProperty(Barnarda_C_Grass.BASIC_TYPE, Barnarda_C_Grass.EnumBlockGrass.GRASS)) {
+        		randPosX = this.posX + this.rand.nextInt(16) + 8;
+    			randPosZ = this.posZ + this.rand.nextInt(16) + 8;
+    			pos = this.currentWorld.getHeight(new BlockPos(randPosX, 0, randPosZ));
+    			
+    			new WorldGenTree_Small(BRBlocks.BARNARDA_C_VIOLET_LOG.getDefaultState(), BRBlocks.BARNARDA_C_LEAVES.getStateFromMeta(0), rand.nextInt(3)).generate(getCurrentWorld(), rand, pos);
+	    	}
     	}
 	    
 	    
@@ -363,7 +376,10 @@ public class BiomeDecoratorBarnarda_C extends BiomeDecoratorSpace
     				{
     					for(int size = 0; size < 2 + rand.nextInt(2); size++)
     					{
-    						this.getCurrentWorld().setBlockState(pos.up(size), BRBlocks.BARNARDA_C_DANDELIONS.getDefaultState().withProperty(Barnarda_C_Dandelions.BASIC_TYPE, Barnarda_C_Dandelions.EnumBlockDandelions.REEDS));
+    						if(rand.nextBoolean())
+    							this.getCurrentWorld().setBlockState(pos.up(size), BRBlocks.BARNARDA_C_DANDELIONS.getDefaultState().withProperty(Barnarda_C_Dandelions.BASIC_TYPE, Barnarda_C_Dandelions.EnumBlockDandelions.REEDS));
+    						else
+    							this.getCurrentWorld().setBlockState(pos.up(size), BRBlocks.BARNARDA_C_DANDELIONS.getDefaultState().withProperty(Barnarda_C_Dandelions.BASIC_TYPE, Barnarda_C_Dandelions.EnumBlockDandelions.REEDS_FRUITS));
     					}
     				}
     				else

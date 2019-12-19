@@ -16,6 +16,8 @@ public class GSHooksManager {
     public static boolean setBlockState(World world, BlockPos pos, IBlockState newState, int flags) { 
     	return MinecraftForge.EVENT_BUS.post(new SetBlockEvent(world, pos, newState, flags)); 
     }
+	
+	
 	/*
 	@Hook(returnCondition = ReturnCondition.ALWAYS)
 	public static void updateLightmap(float partialTicks)

@@ -2,6 +2,7 @@ package galaxyspace;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.logging.log4j.Level;
@@ -9,7 +10,6 @@ import org.apache.logging.log4j.Logger;
 
 import asmodeuscore.api.space.IBookPage;
 import asmodeuscore.core.utils.BookUtils;
-import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
 import galaxyspace.api.IBodies;
 import galaxyspace.api.IBodiesHandler;
 import galaxyspace.api.IPage;
@@ -24,6 +24,7 @@ import galaxyspace.core.handler.capabilities.GSCapabilityStatsHandler;
 import galaxyspace.core.network.packet.GalaxySpaceChannelHandler;
 import galaxyspace.core.prefab.entities.EntityEvolvedColdBlaze;
 import galaxyspace.core.prefab.entities.EntityIceSpike;
+import galaxyspace.core.prefab.entities.EntityLaserBeam;
 import galaxyspace.core.prefab.entities.EntityTier4Rocket;
 import galaxyspace.core.prefab.entities.EntityTier5Rocket;
 import galaxyspace.core.prefab.entities.EntityTier6Rocket;
@@ -35,6 +36,7 @@ import galaxyspace.core.registers.potions.GSPotions;
 import galaxyspace.core.sounds.GSSounds;
 import galaxyspace.core.util.GSCreativeTabs;
 import galaxyspace.core.util.GSThreadVersionCheck;
+import galaxyspace.core.util.researches.ResearchUtil;
 import galaxyspace.systems.SolarSystem.moons.enceladus.tile.TileEntityBlockCrystallTE;
 import galaxyspace.systems.SolarSystem.planets.ceres.entities.EntityBossBlaze;
 import galaxyspace.systems.SolarSystem.planets.ceres.tile.TileEntityDungeonSpawnerCeres;
@@ -58,6 +60,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityModifica
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityPanelController;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityPlanetShield;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityRadiationStabiliser;
+import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityResearchTable;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityRocketAssembler;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityUniversalRecycler;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityWindGenerator;
@@ -77,6 +80,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.discovery.ASMDataTable.ASMData;
 import net.minecraftforge.fml.common.event.FMLConstructionEvent;
@@ -92,7 +96,7 @@ import net.minecraftforge.fml.relauncher.Side;
 @Mod(
 		   modid = GalaxySpace.MODID,
 		   version = GalaxySpace.VERSION,
-		   dependencies = Constants.DEPENDENCIES_FORGE + "required-after:galacticraftcore@[4.0.2.211,]; required-after:galacticraftplanets; required-after:asmodeuscore@[0.0.9,)",
+		   dependencies = Constants.DEPENDENCIES_FORGE + "required-after:galacticraftcore@[4.0.2.237,]; required-after:galacticraftplanets; required-after:asmodeuscore@[0.0.12,)",
 		   acceptedMinecraftVersions = Constants.MCVERSION,
 		   name = GalaxySpace.NAME,
 		   guiFactory = "galaxyspace.core.client.gui.GSConfigGuiFactory"
@@ -102,7 +106,7 @@ public class GalaxySpace
 {
 	public static final int major_version = 2;
 	public static final int minor_version = 0;
-	public static final int build_version = 9;
+	public static final int build_version = 11;
 	
 	public static final String NAME = "GalaxySpace";
 	public static final String MODID = "galaxyspace";
@@ -123,14 +127,15 @@ public class GalaxySpace
 
     public static List<IBodies> bodies = new ArrayList<IBodies>();
     
+    private List<IBookPage> pages = new ArrayList<IBookPage>();
+    
     static {    	
         FluidRegistry.enableUniversalBucket();
     }
     
     @EventHandler
     public void construct(FMLConstructionEvent event) 
-    {
-    	
+    {    	
     	for (ASMData data : event.getASMHarvestedData().getAll(IBodiesHandler.class.getName())) {
     		IBodies body;
     		try {
@@ -139,7 +144,7 @@ public class GalaxySpace
     		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 				e.printStackTrace();
 			}
-    	}
+    	}  
     }
     
     @EventHandler
@@ -149,6 +154,8 @@ public class GalaxySpace
     	new GSConfigSchematics(new File(event.getModConfigurationDirectory(), "GalaxySpace/schematics.conf"));
     	new GSConfigCore(new File(event.getModConfigurationDirectory(), "GalaxySpace/core.conf"));
     	new GSConfigEnergy(new File(event.getModConfigurationDirectory(), "GalaxySpace/energy.conf"));
+    	
+    	this.initModInfo(event.getModMetadata());
     	
     	debug = GSConfigCore.enableDebug;
     	log = event.getModLog();
@@ -169,28 +176,26 @@ public class GalaxySpace
     			list.preInit(event);
 		}
 		
-		GSCapabilityStatsHandler.register();				
+		ResearchUtil.initResearches();
 		
 		if(event.getSide() == Side.CLIENT)
-		{
-			BookRegister.registerCatergories();
-			
-			for (ASMData data : event.getAsmData().getAll(IPage.class.getName())) {
+	    	for (ASMData data : event.getAsmData().getAll(IPage.class.getName())) {
 				IBookPage page;
-				try {
-					page = (IBookPage) Class.forName(data.getClassName()).newInstance();				
-					String category = page.getCategory() == null ? Book_Cateroies.GENERAL.getName() : page.getCategory();
-					BookUtils.addGuideBookPage(category, page);
+				try {				
+					page = (IBookPage) Class.forName(data.getClassName()).newInstance();	
+					pages.add(page);
 				} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 					e.printStackTrace();
 				}
 			}
-		}
+		
+		GSCapabilityStatsHandler.register();
     }
     
     @EventHandler
     public void init(FMLInitializationEvent event)
     {  
+    	
     	proxy.registerRender();    	
     	proxy.load();    	
     	//proxy.register_event(new GSOreGenOtherMods());
@@ -205,7 +210,12 @@ public class GalaxySpace
     	for(IBodies list : bodies)
     		if(list.canRegister()) 
     			list.init(event);
-     	
+     	    	
+    	if(event.getSide() == Side.CLIENT) {
+    		BookRegister.registerCatergories();
+	    	pages.forEach(BookUtils::addGuideBookPage);
+    	}
+    	
     	GSCreativeTabs.GSBlocksTab = new CreativeTabGC(CreativeTabs.getNextID(), "galaxyspace_blocks", new ItemStack(GSBlocks.ASSEMBLER), null);
         GSCreativeTabs.GSItemsTab = new CreativeTabGC(CreativeTabs.getNextID(), "galaxyspace_items", new ItemStack(GSItems.INGOTS), null);
         GSCreativeTabs.GSArmorTab = new CreativeTabGC(CreativeTabs.getNextID(), "galaxyspace_armor", new ItemStack(GSItems.SPACE_SUIT_BODY), null);
@@ -248,6 +258,7 @@ public class GalaxySpace
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityTier5Rocket.class, "rocket_tier_5", 150, 1, false);
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityTier6Rocket.class, "rocket_tier_6", 150, 1, false);
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityIceSpike.class, "ice_spike", 40, 100, true);
+    	GCCoreUtil.registerGalacticraftNonMobEntity(EntityLaserBeam.class, "laser_beam", 40, 100, false);
     	//GCCoreUtil.registerGalacticraftNonMobEntity(GSEntityMeteor.class, "GS Meteor", 150, 5, true);    	
     }
 
@@ -280,6 +291,7 @@ public class GalaxySpace
     	GameRegistry.registerTileEntity(TileEntityWindSolarPanel.class, "GS Solar Wind Panel");
     	GameRegistry.registerTileEntity(TileEntityAdvElectricCompressor.class, "GS Advanced Electric Comressor");
     	GameRegistry.registerTileEntity(TileEntityAdvCircuitFabricator.class, "GS Advanced Circuit Fabricator");
+    	GameRegistry.registerTileEntity(TileEntityResearchTable.class, "GS Research Table");
 /*    	
     	GameRegistry.registerTileEntity(TileEntityAdvOxygenSealer.class, "GS Oxygen Sealer");
     	GameRegistry.registerTileEntity(TileEntityAdvFuelLoader.class, "GS Fuel Loader");
@@ -303,6 +315,16 @@ public class GalaxySpace
    			log.log(Level.INFO, "[DEBUG]: " + message);
    		}
    	}   
+    
+    private void initModInfo(ModMetadata info)
+    {
+        info.autogenerated = false;
+        info.modId = MODID;
+        info.name = NAME;
+        info.version = VERSION;
+        info.description = "Global addon for Galacticraft 4.";
+        info.authorList = Arrays.asList("BlesseNtumble");
+    }
     
     @EventBusSubscriber(modid = MODID)
     public static class RegistrationHandler

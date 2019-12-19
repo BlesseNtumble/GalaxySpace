@@ -23,8 +23,8 @@ public class Io_Volcano extends WE_Biome {
 		createChunkGen_InXZ_List.clear();
 
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();		
-		standardBiomeLayers.add(GSBlocks.IO_BLOCKS, (byte)2, GSBlocks.IO_BLOCKS, (byte)1, -256, 0, -256,  0, false);
-		standardBiomeLayers.add(Blocks.BEDROCK, (byte)0,                                0, 2,  0,  0, true);
+		standardBiomeLayers.add(GSBlocks.IO_BLOCKS.getStateFromMeta(2), GSBlocks.IO_BLOCKS.getStateFromMeta(1), -256, 0, -256,  0, false);
+		standardBiomeLayers.add(Blocks.BEDROCK.getDefaultState(), 0, 2, 0, 0, true);
 		createChunkGen_InXZ_List.add(standardBiomeLayers);
 
 	}

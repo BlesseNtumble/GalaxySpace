@@ -1,4 +1,4 @@
-package galaxyspace.core.client.models;
+package galaxyspace.core.client.render.entity.layers;
 
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.registers.items.GSItems;

@@ -2,12 +2,14 @@ package galaxyspace.core.prefab.entities;
 
 import java.util.List;
 
+import asmodeuscore.core.astronomy.SpaceData.Engine_Type;
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockAdvancedLandingPadFull;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvLandingPad;
+import micdoodle8.mods.galacticraft.api.entity.IRocketType.EnumRocketType;
 import micdoodle8.mods.galacticraft.api.prefab.entity.EntityTieredRocket;
 import micdoodle8.mods.galacticraft.api.tile.IFuelDock;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
@@ -37,26 +39,26 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 
-public class EntityTier5Rocket extends EntityTieredRocket
+public class EntityTier5Rocket extends EntityTieredRocketWithEngine
 {
     public EntityTier5Rocket(World par1World)
     {
-        super(par1World);
+        super(par1World, 5);
         this.setSize(2.2F, 11F);
         
     }
 
     public EntityTier5Rocket(World par1World, double par2, double par4, double par6, EnumRocketType rocketType)
     {
-        super(par1World, par2, par4, par6);
+        super(par1World, par2, par4, par6, 5, rocketType);
         this.rocketType = rocketType;
         this.stacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
     }
 
-    public EntityTier5Rocket(World par1World, double par2, double par4, double par6, boolean reversed, EnumRocketType rocketType, NonNullList<ItemStack> inv)
+    public EntityTier5Rocket(World par1World, double par2, double par4, double par6, EnumRocketType rocketType, Engine_Type engine)
     {
-        this(par1World, par2, par4, par6, rocketType);
-        this.stacks = inv;
+        super(par1World, par2, par4, par6, 5, rocketType);
+        this.setEngine(engine);
     }
 
     @Override
@@ -167,123 +169,6 @@ public class EntityTier5Rocket extends EntityTieredRocket
          }
     }
     
-    @Override
-    public void onUpdate()
-    {
-        super.onUpdate();
-
-        int i;
-
-        //GalaxySpace.debug(this.getPosition() + "");
-        if (this.timeUntilLaunch >= 100)
-        {
-            i = Math.abs(this.timeUntilLaunch / 100);
-        }
-        else
-        {
-            i = 1;
-        }
-
-        if ((this.getLaunched() || this.launchPhase == EnumLaunchPhase.IGNITED.ordinal() && this.rand.nextInt(i) == 0) && !ConfigManagerCore.disableSpaceshipParticles && this.hasValidFuel())
-        {
-            if (this.world.isRemote)
-            {
-                this.spawnParticles(this.getLaunched());
-            }
-        }
-
-        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT && this.hasValidFuel() && this.rand.nextInt(4) == 0 && !this.getLaunched())
-        {
-        	//GalacticraftCore.proxy.spawnParticle("whiteSmokeLargeLaunched", new Vector3(this.posX + 0.4 - this.rand.nextDouble(), this.posY + 10, this.posZ + 0.4 - this.rand.nextDouble()), new Vector3(0.5D, -1.5D, 0.5D), new Object[] { });
-        	GalaxySpace.proxy.spawnParticle("waterbubbles", new Vector3(this.posX + 0.4D + rand.nextDouble() , this.posY - 0.4D + rand.nextDouble(), this.posZ + rand.nextDouble()), new Vector3(0.05D + 0.06D, -0.5D, 0.0D - 0.03D), new Object [] { 20, 5, false, new Vector3(1.0F), 1.0D } );
-     	   
-        	GalaxySpace.proxy.spawnParticle("waterbubbles", new Vector3(this.posX - 0.8D + rand.nextDouble() , this.posY - 0.4D + rand.nextDouble(), this.posZ + rand.nextDouble()), new Vector3(0.05D - 0.25D, -0.5D, 0.0D - 0.03D), new Object [] { 20, 5, false, new Vector3(1.0F), 1.0D } );
-      	   
-        	GalaxySpace.proxy.spawnParticle("waterbubbles", new Vector3(this.posX - 0.2D + rand.nextDouble() , this.posY - 0.4D + rand.nextDouble(), this.posZ  + 0.4D + rand.nextDouble()), new Vector3(0.0D, -0.5D, 0.1D + 0.06D), new Object [] { 20, 5, false, new Vector3(1.0F), 1.0D } );
-      	   
-        	GalaxySpace.proxy.spawnParticle("waterbubbles", new Vector3(this.posX - 0.2D + rand.nextDouble() , this.posY - 0.4D + rand.nextDouble(), this.posZ  - 0.4D + rand.nextDouble()), new Vector3(0.0D, -0.5D, -0.1D - 0.06D), new Object [] { 20, 5, false, new Vector3(1.0F), 1.0D } );
-       	   
-        }
-        
-        if (this.launchPhase >= EnumLaunchPhase.LAUNCHED.ordinal() && this.hasValidFuel())
-        {
-            if (this.launchPhase == EnumLaunchPhase.LAUNCHED.ordinal())
-            {
-                double d = this.timeSinceLaunch / 150;
-
-                if (this.world.provider instanceof IGalacticraftWorldProvider && ((IGalacticraftWorldProvider) this.world.provider).hasNoAtmosphere())
-                {
-                    d = Math.min(d * 1.2, 2);
-                }
-                else
-                {
-                    d = Math.min(d, 1.4);
-                }
-
-                if (d != 0.0)
-                {
-                    this.motionY = -d * 2.5D * Math.cos((this.rotationPitch - 180) / Constants.RADIANS_TO_DEGREES);
-                }
-            }
-            else
-            {
-                this.motionY -= 0.008D;
-            }
-
-            double multiplier = 1.0D;
-
-            if (this.world.provider instanceof IGalacticraftWorldProvider)
-            {
-                multiplier = ((IGalacticraftWorldProvider) this.world.provider).getFuelUsageMultiplier();
-
-                if (multiplier <= 0)
-                {
-                    multiplier = 1;
-                }
-            }
-
-            if (this.timeSinceLaunch % MathHelper.floor(2 * (1 / multiplier)) == 0)
-            {
-                this.removeFuel(2);
-                if (!this.hasValidFuel())
-                {
-                    this.stopRocketSound();
-                }
-            }
-        }
-        else if (!this.hasValidFuel() && this.getLaunched() && !this.world.isRemote)
-        {
-            if (Math.abs(Math.sin(this.timeSinceLaunch / 1000)) / 10 != 0.0)
-            {
-                this.motionY -= Math.abs(Math.sin(this.timeSinceLaunch / 1000)) / 20;
-            }
-        }
-    }
-
-    @Override
-    public void onTeleport(EntityPlayerMP player)
-    {
-        EntityPlayerMP playerBase = PlayerUtil.getPlayerBaseServerFromPlayer(player, false);
-
-        if (playerBase != null)
-        {
-            GCPlayerStats stats = GCPlayerStats.get(playerBase);
-
-            if (this.stacks == null || this.stacks.isEmpty())
-            {
-                stats.setRocketStacks(NonNullList.withSize(2, ItemStack.EMPTY));
-            }
-            else
-            {
-                stats.setRocketStacks(this.stacks);
-            }
-
-            stats.setRocketType(this.rocketType.getIndex());
-            stats.setRocketItem(GSItems.ROCKET_TIER_5);
-            stats.setFuelLevel(this.fuelTank.getFluidAmount());
-        }
-    }
-
     protected void spawnParticles(boolean launched)
     {
         if (!this.isDead)
@@ -371,62 +256,9 @@ public class EntityTier5Rocket extends EntityTieredRocket
     }
 
     @Override
-    public boolean isUsableByPlayer(EntityPlayer par1EntityPlayer)
-    {
-        return !this.isDead && par1EntityPlayer.getDistanceSq(this) <= 64.0D;
-    }
-
-    @Override
-    protected void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
-    {
-        super.writeEntityToNBT(par1NBTTagCompound);
-    }
-
-    @Override
-    protected void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
-    {
-        super.readEntityFromNBT(par1NBTTagCompound);
-    }
-
-    @Override
-    public int getRocketTier()
-    {
-        return 5;
-    }
-
-    @Override
     public int getFuelTankCapacity()
     {
         return 2800;
-    }
-
-    @Override
-    public int getPreLaunchWait()
-    {
-        return 400;
-    }
-
-    @Override
-    public float getCameraZoom()
-    {
-        return 15.0F;
-    }
-
-    @Override
-    public boolean defaultThirdPerson()
-    {
-        return true;
-    }
-
-    @Override
-    public List<ItemStack> getItemsDropped(List<ItemStack> droppedItems)
-    {
-        super.getItemsDropped(droppedItems);
-        ItemStack rocket = new ItemStack(GSItems.ROCKET_TIER_5, 1, this.rocketType.getIndex());
-        rocket.setTagCompound(new NBTTagCompound());
-        rocket.getTagCompound().setInteger("RocketFuel", this.fuelTank.getFluidAmount());
-        droppedItems.add(rocket);
-        return droppedItems;
     }
 
     @Override

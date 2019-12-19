@@ -140,7 +140,18 @@ public class CraftingRecipesOverworld {
 	     //RecipeUtil.addRecipe(new ItemStack(GSItems.BASIC, 1, 3), new Object[] { "XZX", "CYC", "BBB", 'X', new ItemStack(GCBlocks.aluminumWire, 1, 1), 'Y', new ItemStack(MarsItems.marsItemBasic, 1, 6), 'Z', Items.REDSTONE, 'C', new ItemStack(GSItems.INGOTS, 1, 0), 'B', plateSteel });
 	   RecipeUtil.addRecipe(new ItemStack(GSItems.BASIC, 3, 9), new Object[] { "XXX", "CYC", "XXX", 'X', plateIron, 'C', new ItemStack(GCItems.canister, 1, 0), 'Y', Items.MILK_BUCKET});
 	   RecipeUtil.addRecipe(new ItemStack(GSItems.JETPACK, 1, GSItems.JETPACK.getMaxDamage()), new Object[] { "ABA", "CDC", "EFE", 'A', GCBlocks.oxygenPipe, 'B', new ItemStack(GCItems.battery, 1, OreDictionary.WILDCARD_VALUE), 'C', plateSteel, 'D', GCItems.steelChestplate, 'E', new ItemStack(GCItems.fuelCanister, 1, 1), 'F', new ItemStack(GCBlocks.aluminumWire, 1, 1) });
-		  
+		 
+	   
+	   RecipeUtil.addRecipe(new ItemStack(GSItems.THERMAL_PADDING_3, 1, 0), new Object[] { "XXX", "X X", 'X', new ItemStack(GSItems.BASIC, 1, 21)});
+	   RecipeUtil.addRecipe(new ItemStack(GSItems.THERMAL_PADDING_3, 1, 1), new Object[] { "X X", "XXX", "XXX", 'X', new ItemStack(GSItems.BASIC, 1, 21) });
+	   RecipeUtil.addRecipe(new ItemStack(GSItems.THERMAL_PADDING_3, 1, 2), new Object[] { "XXX", "X X", "X X",'X', new ItemStack(GSItems.BASIC, 1, 21)});
+	   RecipeUtil.addRecipe(new ItemStack(GSItems.THERMAL_PADDING_3, 1, 3), new Object[] { "X X", "X X", 'X', new ItemStack(GSItems.BASIC, 1, 21) });
+	   
+	   RecipeUtil.addRecipe(new ItemStack(GSItems.THERMAL_PADDING_4, 1, 0), new Object[] { "XXX", "X X", 'X', new ItemStack(GSItems.BASIC, 1, 22)});
+	   RecipeUtil.addRecipe(new ItemStack(GSItems.THERMAL_PADDING_4, 1, 1), new Object[] { "X X", "XXX", "XXX", 'X', new ItemStack(GSItems.BASIC, 1, 22) });
+	   RecipeUtil.addRecipe(new ItemStack(GSItems.THERMAL_PADDING_4, 1, 2), new Object[] { "XXX", "X X", "X X",'X', new ItemStack(GSItems.BASIC, 1, 22)});
+	   RecipeUtil.addRecipe(new ItemStack(GSItems.THERMAL_PADDING_4, 1, 3), new Object[] { "X X", "X X", 'X', new ItemStack(GSItems.BASIC, 1, 22) });
+	   
 	   /* 
 	  // int var2 = 100;
 	   for (int var2 = 0; var2 < 100; var2 += 100)
@@ -179,6 +190,9 @@ r
 	   RecipeUtil.addRecipe(new ItemStack(GSItems.UPGRADES, 1, 2), new Object[] { " Z ", "XYX", "BCB", 'X', new ItemStack(GCBlocks.aluminumWire, 1, 1), 'Y', new ItemStack(GSItems.BASIC, 1, 11), 'Z', new ItemStack(AsteroidsItems.canisterLN2, 1, 1), 'C', new ItemStack(GSItems.BASIC, 1, 5), 'B', new ItemStack(GSItems.INGOTS, 1, 2) });
 	   RecipeUtil.addRecipe(new ItemStack(GSItems.UPGRADES, 1, 3), new Object[] { " Z ", "XYX", "BCB", 'X', new ItemStack(GCBlocks.aluminumWire, 1, 1), 'Y', new ItemStack(GSItems.BASIC, 1, 11), 'Z', new ItemStack(VenusItems.basicItem, 1, 4), 'C', new ItemStack(GSItems.BASIC, 1, 5), 'B', new ItemStack(GSItems.INGOTS, 1, 0) });
 	  
+	   RecipeUtil.addRecipe(new ItemStack(GSItems.BASIC, 1, 21), new Object[] { "XZX", "CYC", "XZX", 'X', new ItemStack(GSItems.BASIC, 1, 4), 'Y', new ItemStack(AsteroidsItems.canisterLN2, 1, 1), 'Z', new ItemStack(GSItems.BASIC, 1, 12), 'C', new ItemStack(VenusItems.basicItem, 1, 3)});
+	   RecipeUtil.addRecipe(new ItemStack(GSItems.BASIC, 1, 22), new Object[] { "XZX", "CYC", "XZX", 'X', new ItemStack(VenusItems.basicItem, 1, 4), 'Y', new ItemStack(GSItems.BASIC, 1, 17), 'Z', new ItemStack(GSItems.BASIC, 1, 8), 'C', new ItemStack(GSItems.BASIC, 1, 21)});
+		  
 	   RecipeUtil.addCustomRecipe(new ShapedRecipeNBT(new ItemStack(GSItems.BASIC, 1, 20), ItemBasicGS.getRecipe()));
    }
 
@@ -249,8 +263,9 @@ r
 		
    }
    
-   private static void addRocketAssembly() {	   	  
-	   addRocketRecipe(AsteroidsItems.tier3Rocket, GSItems.ROCKET_PARTS, 0);
+   private static void addRocketAssembly() {
+	   if(GSConfigCore.enableAdvancedRocketCraft)
+		   addRocketRecipe(AsteroidsItems.tier3Rocket, GSItems.ROCKET_PARTS, 0);
 	   addRocketRecipe(GSItems.ROCKET_TIER_4, GSItems.ROCKET_PARTS, 5);
 	   addRocketRecipe(GSItems.ROCKET_TIER_5, GSItems.ROCKET_PARTS, 10);
 	   addRocketRecipe(GSItems.ROCKET_TIER_6, GSItems.ROCKET_PARTS, 15);	  
@@ -270,7 +285,11 @@ r
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSBlocks.MERCURY_BLOCKS, 1, 2), new ItemStack(GSItems.BASIC, 1, 7), 35, null);
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(VenusBlocks.venusBlock, 20, 0), new ItemStack(VenusBlocks.venusBlock, 1, 8), 50, null);
 	   //RecyclerRecipes.recycling().addNewRecipe(FluidUtil.getFilledBucket(FluidRegistry.getFluidStack("oil", 1)), new ItemStack(GSItems.BASIC, 1, 20), 50, FluidRegistry.getFluidStack("fuel", 1000));
-
+	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSItems.BASIC, 1, 23), ItemStack.EMPTY, FluidRegistry.getFluidStack("oxygen", 25));
+	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSItems.BASIC, 1, 24), ItemStack.EMPTY, FluidRegistry.getFluidStack("nitrogen", 20));
+	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSItems.BASIC, 1, 25), ItemStack.EMPTY, FluidRegistry.getFluidStack("methane", 20));
+	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSItems.BASIC, 1, 26), ItemStack.EMPTY, FluidRegistry.getFluidStack("hydrogen", 20));
+	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSItems.BASIC, 1, 27), ItemStack.EMPTY, new FluidStack(FluidRegistry.WATER, 50));
    }
       
    

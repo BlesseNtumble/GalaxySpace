@@ -37,6 +37,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.BiomeProvider;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -243,36 +245,48 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProvider implements IPro
 		cp.createChunkGen_InXYZ_List.clear(); 
 		cp.decorateChunkGen_List .clear(); 
 		
-		WE_Biome.setBiomeMap(cp, 1.2D, 4, 3800.0D, 1.0D);	
+		WE_Biome.setBiomeMap(cp, 1.6D, 4, 4200.0D, 1.0D);	
 
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
-		terrainGenerator.worldStoneBlock = BRBlocks.BARNARDA_C_BLOCKS; 
-		terrainGenerator.worldStoneBlockMeta = 1;
+		terrainGenerator.worldStoneBlock = BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(1); 
 		terrainGenerator.worldSeaGen = true;
-		terrainGenerator.worldSeaGenBlock = Blocks.WATER;
+		terrainGenerator.worldSeaGenBlock = Blocks.WATER.getDefaultState();
 		terrainGenerator.worldSeaGenMaxY = 64;
 		cp.createChunkGen_List.add(terrainGenerator);
 		
 		//-// 
 		WE_CaveGen cg = new WE_CaveGen(); 
 		cg.replaceBlocksList .clear(); 
-		cg.replaceBlocksMetaList.clear(); 
-		cg.addReplacingBlock(terrainGenerator.worldStoneBlock, (byte)terrainGenerator.worldStoneBlockMeta); 
+		cg.addReplacingBlock(terrainGenerator.worldStoneBlock); 
 		cg.lavaMaxY = 15;
-		//cg.lavaBlock = CW_Main.bfLava2; 
 		cp.createChunkGen_List.add(cg); 
 		//-// 
 		 
 		WE_RavineGen rg = new WE_RavineGen();
 		rg.replaceBlocksList    .clear();
-		rg.replaceBlocksMetaList.clear();
-		rg.addReplacingBlock(terrainGenerator.worldStoneBlock, (byte)terrainGenerator.worldStoneBlockMeta);
-		rg.lavaBlock = Blocks.LAVA;
+		rg.addReplacingBlock(terrainGenerator.worldStoneBlock);
+		rg.lavaBlock = Blocks.LAVA.getDefaultState();
 		rg.lavaMaxY = 15;		
 		cp.createChunkGen_List.add(rg);
 		
+		cp.worldGenerators.clear();
 		cp.biomesList.clear();
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_DeepOcean(-4D, 4D));	
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(-3.8D, 3.8D, false));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Beach(-3.5D, 3.2D, 1));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Plains(-3.0D, 3.0D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Forest(-2.3D, 2.9D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(-2.2D, 2.2D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Swampland(-2.1D, 1.8D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(-1.3D, 1.5D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Dunes(-1.2D, 1.2D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-1.0D, 1.0D, 100, 2.8D, 4));	
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-0.8D, 0.8D, 180, 2.4D, 4));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_SnowPlains(-0.6D, 0.6D, 160));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-0.3D, 0.3D, 100, 2.8D, 4));	
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(-0.0D, 0.0D, true));
 		
+		/*
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_DeepOcean(-4D, 4D));	
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(-3.9D, 3.9D, false));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Swampland(-3.5D, 3.5D));		
@@ -288,7 +302,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProvider implements IPro
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-0.6D, 0.6D, 100, 2.8D, 4));	
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-0.4D, 0.4D, 180, 2.4D, 4));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_SnowPlains(-0.2D, 0.2D, 160));
-		
+		*/
 	}
 	
 	@Override
@@ -298,6 +312,25 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProvider implements IPro
 
 	@Override
 	public boolean enableAdvancedThermalLevel() {
-		return false;
+		return true;
+	}
+	
+	@Override
+	protected float getThermalValueMod()
+	{
+		return 0.2F;
+	}
+
+	@Override
+	public void onPopulate(int cX, int cZ) {
+		
+	}
+
+	@Override
+	public void onChunkProvider(int cX, int cZ, ChunkPrimer primer) {		
+	}
+
+	@Override
+	public void recreateStructures(Chunk chunkIn, int x, int z) {		
 	}
 }

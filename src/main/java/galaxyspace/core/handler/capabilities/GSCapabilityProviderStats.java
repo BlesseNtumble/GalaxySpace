@@ -10,7 +10,7 @@ import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 
 public class GSCapabilityProviderStats implements ICapabilitySerializable<NBTTagCompound> {
 	private EntityPlayerMP owner;
-	private IStatsCapability statsCapability;
+	private StatsCapability statsCapability;
 
 	public GSCapabilityProviderStats(EntityPlayerMP owner) {
 		this.owner = owner;

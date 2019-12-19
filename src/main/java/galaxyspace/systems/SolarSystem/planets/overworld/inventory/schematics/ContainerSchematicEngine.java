@@ -2,6 +2,7 @@ package galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics;
 
 import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.core.util.GSRecipeUtil;
+import galaxyspace.core.util.GSUtils;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.inventory.SlotRocketBenchResult;
@@ -92,7 +93,7 @@ public class ContainerSchematicEngine extends Container
     @Override
     public void onCraftMatrixChanged(IInventory par1IInventory)
     {
-        this.craftResult.setInventorySlotContents(0, GSRecipeUtil.findMatchingEngineRecipe(this.craftMatrix));
+    	this.craftResult.setInventorySlotContents(0, GSUtils.findMatchingNASARecipe(GSRecipeUtil.getEngineRecipes(), this.craftMatrix));
     }
 
     @Override

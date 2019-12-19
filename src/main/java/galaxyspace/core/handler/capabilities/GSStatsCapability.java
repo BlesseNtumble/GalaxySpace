@@ -2,34 +2,27 @@ package galaxyspace.core.handler.capabilities;
 
 import java.lang.ref.WeakReference;
 
-import asmodeuscore.core.astronomy.SpaceData.Engine_Type;
 import galaxyspace.GalaxySpace;
 import micdoodle8.mods.galacticraft.core.util.GCLog;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class GSStatsCapability implements IStatsCapability {
+public class GSStatsCapability extends StatsCapability {
 	public WeakReference<EntityPlayerMP> player;
 	public int buildFlags = 0;
-	
-	public Engine_Type rocket_engine;
 
-	public static IStatsCapability get(Entity entity)
-    {
-        return entity.getCapability(GSCapabilityStatsHandler.GS_STATS_CAPABILITY, null);
-    }
-	
+	private int[] know_res = new int[256];
+
 	@Override
 	public void saveNBTData(NBTTagCompound nbt) {
-		nbt.setInteger("rocket_engine", this.rocket_engine.getID());
+		nbt.setIntArray("gs_knowledge_research", know_res);		
 	}
 
 	@Override
 	public void loadNBTData(NBTTagCompound nbt) {
 		try {
-			
-			this.rocket_engine = Engine_Type.byID(nbt.getInteger("rocket_engine"));
+			this.know_res = nbt.getIntArray("gs_knowledge_research");
 		} catch (Exception e) {
 			GCLog.severe("Found error in saved Galaxy Space player data for " + player.get().getGameProfile().getName() + " - this should fix itself next relog.");
 			e.printStackTrace();
@@ -39,9 +32,9 @@ public class GSStatsCapability implements IStatsCapability {
 	}
 
 	@Override
-	public void copyFrom(IStatsCapability oldData, boolean keepInv) {
-		//this.radiationLevel = oldData.getRadiationLevel();
-		this.rocket_engine = oldData.getEngineType();
+	public void copyFrom(StatsCapability oldData, boolean keepInv) {
+		if(oldData.getKnowledgeResearches() != null)
+			this.know_res = oldData.getKnowledgeResearches();
 	}
 
 	@Override
@@ -55,12 +48,14 @@ public class GSStatsCapability implements IStatsCapability {
 	}
 
 	@Override
-	public void setEngineType(Engine_Type type) {
-		this.rocket_engine = type;
+	public int[] getKnowledgeResearches() {
+		return this.know_res;
 	}
 
 	@Override
-	public Engine_Type getEngineType() {
-		return this.rocket_engine;
+	public void setKnowledgeResearch(int id, int k) {
+		this.know_res[id] = k;		
 	}
+
+	
 }

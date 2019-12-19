@@ -8,6 +8,10 @@ import asmodeuscore.core.utils.ACAttributePlayer;
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.configs.GSConfigSchematics;
+import galaxyspace.core.handler.capabilities.GSStatsCapability;
+import galaxyspace.core.handler.capabilities.StatsCapability;
+import galaxyspace.core.network.packet.GSPacketSimple;
+import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
 import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.core.registers.potions.GSPotions;
 import galaxyspace.core.util.GSCreativeTabs;
@@ -67,7 +71,14 @@ public class ItemBasicGS extends Item implements ISortableItem{
 		"ice_bucket",				// 17		
 		"emergency_portable_teleport", // 18
 		"guide_book", 				// 19
-		"advanced_emergency_kit"	// 20
+		"advanced_emergency_kit",	// 20
+		"thermal_cloth_t3",			// 21
+		"thermal_cloth_t4",			// 22
+		"oxygen_ice_crystal",		// 23
+		"nitrogen_ice_crystal",		// 24
+		"methane_ice_crystal",		// 25
+		"hydrogen_ice_crystal",		// 26
+		"dry_ice_crystal"			// 27
 		//"raw_plastic", 				
 		//"plastic_stick"				
 	};
@@ -149,9 +160,10 @@ public class ItemBasicGS extends Item implements ISortableItem{
 	}
 
     @Override
-    public String getUnlocalizedName(ItemStack par1ItemStack)
+    public String getUnlocalizedName(ItemStack stack)
     {
-    	return "item." + this.names[par1ItemStack.getItemDamage()];
+    	if(stack.getItemDamage() == 21 || stack.getItemDamage() == 22) return "item.thermal_cloth";
+    	return "item." + this.names[stack.getItemDamage()];
     }
 
     @Override
@@ -174,6 +186,15 @@ public class ItemBasicGS extends Item implements ISortableItem{
 		{			
 			return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
 		}
+		/*else if(stack.getItemDamage() == 6)
+		{
+			StatsCapability gs_stats = GSStatsCapability.get(player);
+			gs_stats.setKnowledgeResearch(1, 6);
+			GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_UPDATE_RESEARCH, player.world, new Object[] {1, 6}), (EntityPlayerMP) player);
+			
+			
+			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
+		}	*/
 		else if(stack.getItemDamage() == 19)
 		{
 			player.openGui(GalaxySpace.MODID, GSConfigCore.guiIDGuideBook, world, 0, 0, 0);
@@ -263,7 +284,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
     	}
 		return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
 	}
-		
+
 	//EMERGENCY KIT
 	public static ItemStack getContents(int slot)
     {
@@ -292,4 +313,11 @@ public class ItemBasicGS extends Item implements ISortableItem{
         return result;
     }
 	//END 
+    
+    @Override
+    public int getItemBurnTime(ItemStack itemStack)
+    {
+    	if(itemStack.getItemDamage() == 12) return 128000;
+        return -1;
+    }
 }

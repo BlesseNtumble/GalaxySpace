@@ -1,6 +1,7 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics;
 
 import galaxyspace.core.util.GSRecipeUtil;
+import galaxyspace.core.util.GSUtils;
 import micdoodle8.mods.galacticraft.core.inventory.SlotRocketBenchResult;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -116,7 +117,7 @@ public class ContainerSchematicTier2Rocket extends Container
     @Override
     public void onCraftMatrixChanged(IInventory par1IInventory)
     {
-        this.craftResult.setInventorySlotContents(0, GSRecipeUtil.findMatchingSpaceshipT2Recipe(this.craftMatrix));
+    	this.craftResult.setInventorySlotContents(0, GSUtils.findMatchingNASARecipe(GSRecipeUtil.getRocketT2Recipes(), this.craftMatrix));
     }
 
     @Override

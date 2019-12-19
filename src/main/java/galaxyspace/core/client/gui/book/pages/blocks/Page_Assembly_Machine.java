@@ -1,14 +1,11 @@
 package galaxyspace.core.client.gui.book.pages.blocks;
 
+import asmodeuscore.core.astronomy.gui.book.Page_WithCraftMatrix;
 import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
 import galaxyspace.api.IPage;
-import galaxyspace.core.client.gui.book.BookRegister.Recipe_Type;
-import galaxyspace.core.client.gui.book.pages.Page_WithCraftMatrix;
-import micdoodle8.mods.galacticraft.core.GCBlocks;
-import micdoodle8.mods.galacticraft.core.GCItems;
+import galaxyspace.core.registers.blocks.GSBlocks;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
@@ -50,14 +47,8 @@ public class Page_Assembly_Machine extends Page_WithCraftMatrix{
 	}
 
 	@Override
-	public ItemStack[] getRecipe() {
-		return new ItemStack[] 
-		{ 
-			new ItemStack(GCItems.basicItem, 1, 9),	new ItemStack(GCBlocks.aluminumWire, 1, 0),	new ItemStack(GCItems.basicItem, 1, 9),
-			new ItemStack(GCItems.basicItem, 1, 13), new ItemStack(Blocks.CRAFTING_TABLE, 1, 0), new ItemStack(GCItems.basicItem, 1, 13),
-			new ItemStack(GCBlocks.machineBase, 1, 12),	new ItemStack(GCBlocks.aluminumWire, 1, 0), new ItemStack(GCBlocks.machineBase2, 1, 4)
-							
-		};		
+	public ItemStack getItem() {		
+		return new ItemStack(GSBlocks.ASSEMBLER);
 	}
 
 }

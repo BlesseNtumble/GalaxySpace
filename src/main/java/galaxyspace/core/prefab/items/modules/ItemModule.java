@@ -19,4 +19,5 @@ public abstract class ItemModule {
 	public int getDischargeCount() { return 0; }
 	public void onUpdate(World world, EntityPlayer player, ItemStack itemStack) {}
 	public void onUpdate(World world, EntityPlayer player, ItemStack itemStack, boolean enable) {}
+	public boolean isLoading() { return true; }
 }

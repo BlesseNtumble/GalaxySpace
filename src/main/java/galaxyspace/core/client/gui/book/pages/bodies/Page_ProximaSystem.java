@@ -10,6 +10,5 @@ public class Page_ProximaSystem extends Page_Systems{
 	{
 		super(ACentauriSystemBodies.ProximaSystem);
 		this.setResources(ACentauriSystemBodies.proxima_b, new ItemStack(ACBlocks.PROXIMA_B_BLOCKS, 1, 5), new ItemStack(ACBlocks.PROXIMA_B_BLOCKS, 1, 6), new ItemStack(ACBlocks.PROXIMA_B_BLOCKS, 1, 7), new ItemStack(ACBlocks.PROXIMA_B_BLOCKS, 1, 8), new ItemStack(ACBlocks.PROXIMA_B_BLOCKS, 1, 9), new ItemStack(ACBlocks.PROXIMA_B_BLOCKS, 1, 10));
-	}
-	
+	}	
 }

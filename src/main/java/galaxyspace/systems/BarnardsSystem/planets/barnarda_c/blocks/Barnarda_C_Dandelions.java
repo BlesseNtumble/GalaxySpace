@@ -149,7 +149,7 @@ public class Barnarda_C_Dandelions extends Block implements IGrowable, IShearabl
 		EnumBlockDandelions type = ((EnumBlockDandelions) state.getValue(BASIC_TYPE));
 		if(!world.isRemote) {	
 			if(type == EnumBlockDandelions.REEDS_FRUITS) {
-				world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(BRItems.BASIC, 1, 1)));
+				world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(BRItems.FOODS, 1, 0)));
 				world.setBlockState(pos, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS), 3);
 				return true;	
 			}

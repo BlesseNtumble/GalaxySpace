@@ -44,7 +44,7 @@ public class SkyProviderMercury extends SkyProviderBase
 
 	@Override
 	protected float sunSize() {
-		return 40.5F;
+		return 20.5F;
 	}
 
 	@Override

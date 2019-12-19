@@ -3,17 +3,7 @@ package galaxyspace.core.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Nonnull;
-
-import galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics.InventorySchematicBody;
-import galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics.InventorySchematicBooster;
-import galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics.InventorySchematicCone;
-import galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics.InventorySchematicEngine;
-import galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics.InventorySchematicFins;
-import galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics.InventorySchematicOxTank;
-import galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics.InventorySchematicTier2Rocket;
 import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
-import net.minecraft.item.ItemStack;
 
 public class GSRecipeUtil
 {
@@ -25,7 +15,8 @@ public class GSRecipeUtil
 	private static List<INasaWorkbenchRecipe> rocketBenchOxTankRecipes = new ArrayList<INasaWorkbenchRecipe>();
 	
 	private static List<INasaWorkbenchRecipe> rocketBenchT2Recipes = new ArrayList<INasaWorkbenchRecipe>();
-    
+    	
+	/*
 	public static ItemStack findMatchingConeRecipe(InventorySchematicCone craftMatrix)
     {
         for (INasaWorkbenchRecipe recipe : GSRecipeUtil.getConeRecipes())
@@ -117,7 +108,7 @@ public class GSRecipeUtil
 
 		return ItemStack.EMPTY;
 	}
-    
+    */
     // -----------------------------------------------------------------------------------------
     public static void addConeRecipe(INasaWorkbenchRecipe recipe)
     {

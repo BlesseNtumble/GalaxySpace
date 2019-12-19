@@ -21,6 +21,8 @@ import galaxyspace.systems.SolarSystem.moons.miranda.blocks.MirandaBlocks;
 import galaxyspace.systems.SolarSystem.moons.miranda.items.ItemBlocksMiranda;
 import galaxyspace.systems.SolarSystem.moons.titan.blocks.TitanBlocks;
 import galaxyspace.systems.SolarSystem.moons.titan.items.ItemBlocksTitan;
+import galaxyspace.systems.SolarSystem.moons.triton.blocks.TritonBlocks;
+import galaxyspace.systems.SolarSystem.moons.triton.items.ItemBlocksTriton;
 import galaxyspace.systems.SolarSystem.planets.ceres.blocks.BlockBossSpawnerCeres;
 import galaxyspace.systems.SolarSystem.planets.ceres.blocks.BlockTier4TreasureChest;
 import galaxyspace.systems.SolarSystem.planets.ceres.blocks.CeresBlocks;
@@ -54,6 +56,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockOx
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockPanelController;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockPlanetShield;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockRadiationStabiliser;
+import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockResearchTable;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockRocketAssembler;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockSingleSolarPanel;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockSolarWindPanel;
@@ -61,6 +64,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockUn
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockWindGenerator;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBlocksDecoMetals;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBlocksFutureGlasses;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBlocksIce;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBlocksMachineFrames;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBlocksOres;
 import galaxyspace.systems.SolarSystem.planets.pluto.blocks.PlutoBlocks;
@@ -108,6 +112,7 @@ public class GSBlocks {
 	public static final Block SOLARWIND_PANEL = new BlockSolarWindPanel();
 	public static final Block ADVANCED_ELECTRIC_COMPRESSOR = new BlockAdvElectricCompressor();
 	public static final Block ADVANCED_CIRCUIT_FABRICATOR = new BlockAdvCircuitFabricator();
+	public static final Block RESEARCH_TABLE = new BlockResearchTable();
 	
 	public static final Block FAKE_BLOCK = new GSBlockMulti();
 	
@@ -137,6 +142,7 @@ public class GSBlocks {
 	public static final Block TITAN_BLOCKS = new TitanBlocks().setHardness(3.0F);
 	
 	public static final Block MIRANDA_BLOCKS = new MirandaBlocks().setHardness(3.0F);
+	public static final Block TRITON_BLOCKS = new TritonBlocks().setHardness(3.0F);
 
 	public static void initialize() 
 	{				
@@ -167,6 +173,7 @@ public class GSBlocks {
 		registerBlock(ADVANCED_ELECTRIC_COMPRESSOR, GSItemBlockDesc.class);
 		registerBlock(ADVANCED_CIRCUIT_FABRICATOR, GSItemBlockDesc.class);
 		registerBlock(PLANET_SHIELD, GSItemBlockDesc.class);
+		//registerBlock(RESEARCH_TABLE, GSItemBlockDesc.class);
 		
 		registerBlock(DUNGEON_BLOCKS, ItemBlockDungeonBlocks.class);
 		registerBlock(TREASURE_CHEST_TIER_4, GSItemBlockDesc.class);		
@@ -177,7 +184,7 @@ public class GSBlocks {
 		
 		registerBlock(OVERWORLD_ORES, ItemBlocksOres.class);
 		registerBlock(DECO_METALS, ItemBlocksDecoMetals.class);
-		registerBlock(SURFACE_ICE, GSItemBlockDesc.class);
+		registerBlock(SURFACE_ICE, ItemBlocksIce.class);
 		
 		registerBlock(MERCURY_BLOCKS, ItemBlocksMercury.class);
 		registerBlock(MARS_ORES, ItemBlocksMarsOres.class);
@@ -201,6 +208,7 @@ public class GSBlocks {
 		registerBlock(TITAN_BLOCKS, ItemBlocksTitan.class);
 		
 		registerBlock(MIRANDA_BLOCKS, ItemBlocksMiranda.class);		
+		registerBlock(TRITON_BLOCKS, ItemBlocksTriton.class);		
     }
 	   
 	public static void oreDictRegistration() 

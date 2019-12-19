@@ -9,7 +9,6 @@ import galaxyspace.GalaxySpace;
 import galaxyspace.core.prefab.world.gen.WorldGenPool;
 import galaxyspace.systems.ACentauriSystem.core.registers.blocks.ACBlocks;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.blocks.Proxima_B_Blocks;
-import galaxyspace.systems.ACentauriSystem.planets.proxima_b.dimension.WorldProviderProxima_B_WE;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.world.gen.features.WorldGenFrozenTree;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.world.gen.we.Proxima_B_Forest;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.world.gen.we.Proxima_B_Ice_Plains;

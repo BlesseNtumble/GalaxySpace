@@ -18,6 +18,7 @@ import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseElectricBlockWithIn
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
@@ -198,6 +199,9 @@ public class TileEntityGravitationModule extends TileBaseElectricBlockWithInvent
 					}*/
 					entity.fallDistance -= g * 10.0F;
 					
+					if(e instanceof EntityLivingBase && !(e instanceof EntityPlayer))
+						((EntityLivingBase)e).motionY -= (g / 200);
+					
 					if(entity.fallDistance < 0) {
 						entity.fallDistance = 0.0F;
 	                }					
@@ -206,18 +210,20 @@ public class TileEntityGravitationModule extends TileBaseElectricBlockWithInvent
 			else
 			{
 				for(Object e: list) {
-					if(e instanceof EntityPlayer) {
-						EntityPlayer p = (EntityPlayer)e;
-						if (p.capabilities.isFlying)
-							continue;
-						
-						if (!p.inventory.armorItemInSlot(0).isEmpty()
-								&& p.inventory.armorItemInSlot(0).getItem() instanceof IArmorGravity
-								&& ((IArmorGravity) p.inventory.armorItemInSlot(0).getItem())
-										.gravityOverrideIfLow(p) > 0)
-							continue;
-					 	
-					 	p.motionY -= (g / 200);					 	
+					if(e instanceof EntityLivingBase) {
+						EntityLivingBase living = (EntityLivingBase)e;
+						if(e instanceof EntityPlayer) {
+							EntityPlayer p = (EntityPlayer)living;
+							if (p.capabilities.isFlying)
+								continue;
+							
+							if (!p.inventory.armorItemInSlot(0).isEmpty()
+									&& p.inventory.armorItemInSlot(0).getItem() instanceof IArmorGravity
+									&& ((IArmorGravity) p.inventory.armorItemInSlot(0).getItem())
+											.gravityOverrideIfLow(p) > 0)
+								continue;
+						}
+						living.motionY -= (g / 200);					 	
 					 }
 				}
 			}

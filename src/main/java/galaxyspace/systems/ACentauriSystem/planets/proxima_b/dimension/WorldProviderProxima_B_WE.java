@@ -29,7 +29,6 @@ import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.galaxies.IChildBody;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
-import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -38,6 +37,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.BiomeProvider;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -49,7 +50,7 @@ public class WorldProviderProxima_B_WE extends WE_WorldProvider implements IProv
 	private final float[] colorsSunriseSunset = new float[4];
 	public static WE_ChunkProvider chunk;
 	
-    @Override
+	@Override
     public double getHorizon() {
         return 44.0D;
     }
@@ -236,29 +237,26 @@ public class WorldProviderProxima_B_WE extends WE_WorldProvider implements IProv
 		WE_Biome.setBiomeMap(cp, 1.2D, 4, 1400.0D, 0.675D);	
 		
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
-		terrainGenerator.worldStoneBlock = ACBlocks.PROXIMA_B_BLOCKS; 
-		terrainGenerator.worldStoneBlockMeta = 2;
+		terrainGenerator.worldStoneBlock = ACBlocks.PROXIMA_B_BLOCKS.getStateFromMeta(2);
 		terrainGenerator.worldSeaGen = true;
-		terrainGenerator.worldSeaGenBlock = Blocks.WATER;
+		terrainGenerator.worldSeaGenBlock = Blocks.WATER.getDefaultState();
 		terrainGenerator.worldSeaGenMaxY = 64;
 		cp.createChunkGen_List.add(terrainGenerator);
 		
 		//-// 
 		WE_CaveGen cg = new WE_CaveGen(); 
 		cg.replaceBlocksList .clear(); 
-		cg.replaceBlocksMetaList.clear(); 
-		cg.addReplacingBlock(terrainGenerator.worldStoneBlock, (byte)terrainGenerator.worldStoneBlockMeta); 
-		//cg.lavaBlock = CW_Main.bfLava2; 
+		cg.addReplacingBlock(terrainGenerator.worldStoneBlock); 
 		cp.createChunkGen_List.add(cg); 
 		//-// 
 		 
 		WE_RavineGen rg = new WE_RavineGen();
 		rg.replaceBlocksList    .clear();
-		rg.replaceBlocksMetaList.clear();
-		rg.addReplacingBlock(ACBlocks.PROXIMA_B_BLOCKS, (byte)2);
-		rg.lavaBlock = Blocks.LAVA;
+		rg.addReplacingBlock(terrainGenerator.worldStoneBlock);
+		rg.lavaBlock = Blocks.LAVA.getDefaultState();
 		cp.createChunkGen_List.add(rg);
 		
+		cp.worldGenerators.clear();
 		cp.biomesList.clear();
 		
 		WE_Biome.addBiomeToGeneration(cp, new Proxima_B_Plains());
@@ -362,7 +360,19 @@ public class WorldProviderProxima_B_WE extends WE_WorldProvider implements IProv
 
 	@Override
 	public boolean enableAdvancedThermalLevel() {
-		return false;
+		return true;
+	}
+
+	@Override
+	public void onPopulate(int cX, int cZ) {		
+	}
+
+	@Override
+	public void onChunkProvider(int cX, int cZ, ChunkPrimer primer) {		
+	}
+
+	@Override
+	public void recreateStructures(Chunk chunkIn, int x, int z) {
 	}
 
 }

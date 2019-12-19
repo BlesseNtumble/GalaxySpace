@@ -1,0 +1,9 @@
+{ 
+	"variants": { 
+		"type=triton_grunt": { "model": "galaxyspace:triton_grunt"}, 
+		"type=triton_subgrunt": { "model": "galaxyspace:triton_subgrunt"}, 
+		"type=triton_stone": { "model": "galaxyspace:triton_stone"}, 
+		"type=triton_geyser": { "model": "galaxyspace:triton_geyser"},
+		"type=triton_geyser_2": { "model": "galaxyspace:triton_geyser"}
+	} 
+}

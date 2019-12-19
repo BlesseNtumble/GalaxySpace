@@ -19,17 +19,12 @@ import net.minecraftforge.fml.common.FMLLog;
 
 public class GSConfigCore
 {
-    public static boolean loaded;
-
     static Configuration config;
 
     public GSConfigCore(File file)
     {
-        if (!GSConfigCore.loaded)
-        {
-        	GSConfigCore.config = new Configuration(file);
-        	GSConfigCore.syncConfig(true);
-        }
+        GSConfigCore.config = new Configuration(file);
+        GSConfigCore.syncConfig(true);        
     }
 
     public static boolean enableCheckVersion;
@@ -40,7 +35,7 @@ public class GSConfigCore
     public static boolean enableNewMenu;
     public static boolean enableFogVenus;
     public static boolean enableSkyOverworld;
-    public static boolean enableGCMars;
+    public static boolean enableGSMars;
     public static boolean enableOverworldOres;
 
     public static int idSolarRadiation = 29;
@@ -56,6 +51,8 @@ public class GSConfigCore
     public static boolean enableSpaceSuitHUD;
     public static boolean enableRadiationSystem;
     public static boolean enablePressureSystem;
+    public static boolean enableAdvancedRocketCraft;
+    public static boolean enableAdvancedThermalSystem;
     
     public static String spacesuit_pos = "center";
     public static boolean spacesuit_small_button;
@@ -66,7 +63,6 @@ public class GSConfigCore
     
     public static String keyOverrideToggleHelmet, keyOverrideToggleChest, keyOverrideToggleLegs, keyOverrideToggleBoots;
     public static int keyOverrideToggleHelmetI, keyOverrideToggleChestI, keyOverrideToggleLegsI, keyOverrideToggleBootsI;
-
     
     private static void setConfigBoolean(Property prop, List<String> propOrder, String category, String confname, String desc, boolean conf, boolean def)
     {
@@ -83,8 +79,8 @@ public class GSConfigCore
 
         try
         {
+        	propOrder.clear();
             Property prop;
-
             if (!config.isChild)
             {
                 if (load)
@@ -104,6 +100,18 @@ public class GSConfigCore
             prop.setLanguageKey("gc.configgui.enableMusic").setRequiresMcRestart(true);
             enableMusic = prop.getBoolean(true);
             propOrder.add(prop.getName());      
+            
+            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableAdvancedRocketCraft", true);
+            prop.setComment("Enable/Disable advanced craft for rocket tier 2-3.");
+            prop.setLanguageKey("gc.configgui.enableAdvancedRocketCraft").setRequiresMcRestart(true);
+            enableAdvancedRocketCraft = prop.getBoolean(true);
+            propOrder.add(prop.getName());   
+            
+            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableAdvancedThermalSystem", true);
+            prop.setComment("Enable/Disable advanced thermal system on celestial bodies.");
+            prop.setLanguageKey("gc.configgui.enableAdvancedThermalSystem").setRequiresMcRestart(true);
+            enableAdvancedThermalSystem = prop.getBoolean(true);
+            propOrder.add(prop.getName());    
             
             prop = config.get(Constants.CONFIG_CATEGORY_WORLDGEN, "enableOverworldOres", true);
             prop.setComment("Enable/Disable Generation Ores on Overworld.");
@@ -147,10 +155,10 @@ public class GSConfigCore
             enableMethaneParticle = prop.getBoolean(true);
             propOrder.add(prop.getName());   
             
-            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "enableGCMars", true);
-            prop.setComment("Enable/Disable register Phobos and Deimos on GC Mars.");
+            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "enableGSMars", true);
+            prop.setComment("Enable/Disable Mars with new generations.");
             prop.setLanguageKey("gc.configgui.enableGCMars").setRequiresMcRestart(true);
-            enableGCMars = prop.getBoolean(true);
+            enableGSMars = prop.getBoolean(true);
             propOrder.add(prop.getName());     
             /*
             prop = config.get(Constants.CONFIG_CATEGORY_WORLDGEN, "Other mods ores for GC to generate on GS planets", new String [] { });
@@ -256,7 +264,7 @@ public class GSConfigCore
             		});
             
             prop.setComment("List armor with protect radiation and pressure. Format: 'modid:item' ");
-            prop.setLanguageKey("gc.configgui.tradeIDs").setRequiresMcRestart(true);
+            prop.setLanguageKey("gc.configgui.armorIDs").setRequiresMcRestart(true);
             radiation_armor = prop.getStringList();
             propOrder.add(prop.getName());
                         

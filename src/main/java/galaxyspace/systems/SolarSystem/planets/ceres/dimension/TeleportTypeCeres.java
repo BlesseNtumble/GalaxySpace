@@ -86,10 +86,10 @@ public class TeleportTypeCeres implements ITeleportType{
 
             if (!newWorld.isRemote)
             {
-            	CompatibilityManager.forceLoadChunks((WorldServer) newWorld);
+            	boolean previous = CompatibilityManager.forceLoadChunks((WorldServer) newWorld);
             	lander.forceSpawn = true;
                 newWorld.spawnEntity(lander);
-                CompatibilityManager.forceLoadChunksEnd((WorldServer) newWorld);
+                CompatibilityManager.forceLoadChunksEnd((WorldServer) newWorld, previous);
             }
 
             GCPlayerStats.get(player).setTeleportCooldown(10);
@@ -97,8 +97,7 @@ public class TeleportTypeCeres implements ITeleportType{
     }
 
 	@Override
-	public void setupAdventureSpawn(EntityPlayerMP player) {
-	
+	public void setupAdventureSpawn(EntityPlayerMP player) {	
 	}
 
 }

@@ -4,9 +4,11 @@ import org.lwjgl.opengl.GL11;
 
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import galaxyspace.GalaxySpace;
+import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.Constants;
 import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
@@ -42,7 +44,7 @@ public class SkyProviderVenusSS extends SkyProviderBase{
         worldRenderer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
         tessellator.draw();
         //GL11.glDisable(GL11.GL_BLEND);
-    /*    
+    
         double mod = ((WorldProviderSpace) this.mc.world.provider).getDayLength() / 24000;
         long time = this.mc.player.getEntityWorld().getWorldTime() % ((WorldProviderSpace) this.mc.world.provider).getDayLength();
 		double k = (time / 8) / mod;
@@ -52,17 +54,37 @@ public class SkyProviderVenusSS extends SkyProviderBase{
 		GL11.glColor4f(0.0F, 0.0F, 0.0F, 0.8F);
 		GL11.glRotatef(90F, 0.0F, 1.0F, 0.0F);
 		
-		if(k >= 0 && k < 300) {
-			worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION);			
+		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION);
+		GalaxySpace.debug(k + " | " + (f10 - k) + " | " + mod);
+		if(k >= 0 && k <= f10 * 2) {
+					
+			worldRenderer.pos(-f10, -100.0D, f10 - k).endVertex();
+	        worldRenderer.pos(f10, -100.0D, f10 - k).endVertex();
+	        worldRenderer.pos(f10, -100.0D, -f10).endVertex();
+	        worldRenderer.pos(-f10, -100.0D, -f10).endVertex();
+	        
+		}
+		else if(k >= f10 * 8 && k <= f10 * 8.5)
+		{			
+			k -= 1200;
+			
+			worldRenderer.pos(-f10, -100.0D, f10).endVertex();
+	        worldRenderer.pos(f10, -100.0D, f10).endVertex();
+	        worldRenderer.pos(f10, -100.0D, 150 - k).endVertex();
+	        worldRenderer.pos(-f10, -100.0D, 150 - k).endVertex();
+	        
+		}
+		else if(k > f10 * 8)
+		{
 			worldRenderer.pos(-f10, -100.0D, f10).endVertex();
 	        worldRenderer.pos(f10, -100.0D, f10).endVertex();
 	        worldRenderer.pos(f10, -100.0D, -f10).endVertex();
 	        worldRenderer.pos(-f10, -100.0D, -f10).endVertex();
-	        tessellator.draw();
 		}
-        
+		
+		tessellator.draw();
 	    GL11.glDisable(GL11.GL_BLEND);
-	*/
+	
 	}
 
 	@Override
@@ -87,7 +109,7 @@ public class SkyProviderVenusSS extends SkyProviderBase{
 
 	@Override
 	protected boolean enableStar() {
-		return false;
+		return true;
 	}
 
 	@Override

@@ -39,7 +39,11 @@ tile.tin_ore.name=Tin Ore
 tile.aluminum_ore.name=Aluminum Ore
 tile.quartz_ore.name=Quartz Ore
 
-tile.surface_ice.name=Surface Ice
+tile.oxygen_ice.name=Oxygen Ice
+tile.nitrogen_ice.name=Nitrogen Ice
+tile.methane_ice.name=Methane Ice
+tile.hydrogen_ice.name=Hydrogen Ice
+tile.dry_ice.name=Dry Ice
 
 tile.futureglass_none.name=Future Glass
 tile.futureglass_black.name=Black Future Glass
@@ -225,13 +229,13 @@ tile.modern_storage_module.name=Modern Energy Cluster
 tile.modern_storage_module.desc=The modern version of the Energy Cluster. It may store a large amount of energy.
 
 tile.modification_table.name=Modification Table
-tile.modification_table.desc=Allows you to install modules in a space suit.
+tile.modification_table.desc=Allows you to install modules in a modification items.
 
 tile.gas_burner.name=Gas Burner
 tile.gas_burner.desc=Burns supplied gas.
 
-tile.oxygen_storage_module.name=Oxygen Storage Cluster
-tile.oxygen_storage_module.desc=Improved version of Oxygen Storage. It can store 4 times more oxygen.
+tile.oxygen_storage_module_1.name=Oxygen Storage Cluster
+tile.oxygen_storage_module_1.desc=Improved version of Oxygen Storage. It can store 4 times more oxygen.
 
 tile.solarwind_panel.name=Solarwind Panel
 tile.solarwind_panel.desc=Converts the solar wind into energy. Don't work on a planet's with atmosphere.
@@ -321,6 +325,11 @@ item.ice_bucket.name=Bucket with Ice
 item.emergency_portable_teleport.name=Emergency Portable Teleport
 item.guide_book.name=[WIP] Info-Pad
 item.advanced_emergency_kit.name=Advanced Emergency Kit
+item.oxygen_ice_crystal.name=Oxygen Ice Shard
+item.nitrogen_ice_crystal.name=Nitrogen Ice Shard
+item.methane_ice_crystal.name=Methane Ice Shard
+item.hydrogen_ice_crystal.name=Hydrogen Ice Shard
+item.dry_ice_crystal.name=Dry Ice Shard
 
 item.module_expander.name=Module "Expander"
 item.module_stabiliser.name=Module "Stabilization"
@@ -332,7 +341,7 @@ item.module_smallcanister.name=Blank Fuel Tank
 item.module_lander_1.name=Lander Tier 1
 item.module_lander_2.name=Lander Tier 2
 item.module_lander_3.name=Lander Tier 3
-item.ion_engine.name=[WIP] Ion Engine
+item.ion_engine.name=Ion Engine
 item.plasma_engine.name=[WIP] Plasma Engine
 item.sublight_engine.name=Sublight Engine
 item.blackhole_engine.name=[WIP] Black Hole Engine
@@ -520,6 +529,7 @@ planet.pluto=Pluto
 moon.charon=Charon
 planet.kuiperbelt=Kuiper Belt
 
+satellite.spacestation.venus=Venus Atmospheric Space Station
 solarsystem.acentauri=a Centauri
 star.centauri_a=a Centauri A
 planet.centauri_b=a Centauri B

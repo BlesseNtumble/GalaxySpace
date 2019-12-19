@@ -14,6 +14,7 @@ import galaxyspace.GalaxySpace;
 import galaxyspace.core.registers.fluids.GSFluids;
 import galaxyspace.core.registers.items.GSItems;
 import micdoodle8.mods.galacticraft.api.prefab.entity.EntityTieredRocket;
+import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.GCFluids;
 import micdoodle8.mods.galacticraft.core.GCItems;
@@ -31,6 +32,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
@@ -644,4 +646,17 @@ public class GSUtils {
 				gui.mc.fontRenderer.drawString(EnumColor.WHITE + "" + gui.inventorySlots.getSlot(i).getSlotIndex(), width + x + 5, height + y + 5, 4210752);
 			}
 	}
+	
+	public static ItemStack findMatchingNASARecipe(List<INasaWorkbenchRecipe> recipes, IInventory craftMatrix)
+    {
+        for (INasaWorkbenchRecipe recipe : recipes)
+        {
+            if (recipe.matches(craftMatrix))
+            {
+                return recipe.getRecipeOutput();
+            }
+        }
+
+        return ItemStack.EMPTY;
+    }
 }

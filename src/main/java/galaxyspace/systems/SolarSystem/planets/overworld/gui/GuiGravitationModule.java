@@ -235,6 +235,8 @@ public class GuiGravitationModule extends GuiContainerGC implements ITextBoxCall
         BlockVec3 pos = new BlockVec3(tileEntity);
         int actualStrength = radius;
 
+        if(actualStrength > 16) actualStrength = 16;
+        
         GalaxySpace.packetPipeline.sendToServer(new GSPacketSimple(GSEnumSimplePacket.S_GRAVITY_RADIUS, GCCoreUtil.getDimensionID(this.mc.world), pos, actualStrength));
         tileEntity.setGravityRadius(actualStrength);
     }

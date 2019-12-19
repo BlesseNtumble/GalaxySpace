@@ -597,6 +597,12 @@ public class WorldProviderKuiperBelt extends WorldProviderAdvancedSpace implemen
 
 	@Override
 	public boolean enableAdvancedThermalLevel() {
-		return false;
+		return true;
+	}
+	
+	@Override
+	protected float getThermalValueMod()
+	{
+		return 0.01F;
 	}
 }

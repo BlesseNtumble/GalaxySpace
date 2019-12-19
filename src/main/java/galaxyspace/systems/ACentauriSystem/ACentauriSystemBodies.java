@@ -3,6 +3,8 @@ package galaxyspace.systems.ACentauriSystem;
 import java.io.File;
 
 import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
+import asmodeuscore.api.dimension.IAdvancedSpace.TypeBody;
 import asmodeuscore.core.astronomy.BodiesData;
 import asmodeuscore.core.astronomy.BodiesHelper;
 import asmodeuscore.core.astronomy.BodiesHelper.Galaxies;
@@ -11,7 +13,6 @@ import galaxyspace.GalaxySpace;
 import galaxyspace.api.IBodies;
 import galaxyspace.api.IBodiesHandler;
 import galaxyspace.core.proxy.ClientProxy;
-import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.systems.ACentauriSystem.core.configs.ACConfigCore;
 import galaxyspace.systems.ACentauriSystem.core.configs.ACConfigDimensions;
@@ -30,7 +31,6 @@ import micdoodle8.mods.galacticraft.api.world.AtmosphereInfo;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -100,21 +100,21 @@ public class ACentauriSystemBodies implements IBodies {
 	{
 		GalaxyRegistry.registerSolarSystem(aCentauriSystem);
 		GalaxyRegistry.registerSolarSystem(ProximaSystem);		
-		BodiesData unreachableData = new BodiesData(null, 0F, 0, 0, false);
+		BodiesData unreachableData = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.YELLOW);
 		BodiesHelper.registerBody(centauri_b, unreachableData, true);
 		//BodiesHelper.registerBody(proxima_c, unreachableData, true);
 		
 		BodiesData data = new BodiesData(null, BodiesHelper.calculateGravity(8.0F), 2, 35050, true);
-		data.addItemStack(new ItemStack(GSItems.SPACE_SUIT_HELMET, 1, 1));
-		data.addItemStack(new ItemStack(GSItems.SPACE_SUIT_BODY, 1, 1));
-		data.addItemStack(new ItemStack(GSItems.SPACE_SUIT_LEGGINS, 1, 1));
-		data.addItemStack(new ItemStack(GSItems.SPACE_SUIT_BOOTS, 1, 1));
+		//data.addItemStack(new ItemStack(GSItems.SPACE_SUIT_HELMET, 1, 1));
+		//data.addItemStack(new ItemStack(GSItems.SPACE_SUIT_BODY, 1, 1));
+		//data.addItemStack(new ItemStack(GSItems.SPACE_SUIT_LEGGINS, 1, 1));
+		//data.addItemStack(new ItemStack(GSItems.SPACE_SUIT_BOOTS, 1, 1));
 		BodiesHelper.registerBody(proxima_b, data, ACConfigDimensions.enableProxima_B);
 		
-		data = new BodiesData(BodiesHelper.yellow + " " + BodiesHelper.getClassBody(ClassBody.DWARF), 20.336F, 0, 0, false);
+		data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.YELLOW);
 		BodiesHelper.registerBodyWithClass(aCentauriSystem.getMainStar(), data);
 		
-		data = new BodiesData(BodiesHelper.orange + " " + BodiesHelper.getClassBody(ClassBody.DWARF), 18.124F, 0, 0, false);
+		data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.ORANGE);
 		BodiesHelper.registerBodyWithClass(ProximaSystem.getMainStar(), data);
 	}
 	
