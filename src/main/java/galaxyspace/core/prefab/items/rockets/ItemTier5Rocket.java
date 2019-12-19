@@ -4,9 +4,15 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import asmodeuscore.core.astronomy.SpaceData.Engine_Type;
+import galaxyspace.api.item.IModificationItem;
+import galaxyspace.core.prefab.entities.EntityTier4Rocket;
 import galaxyspace.core.prefab.entities.EntityTier5Rocket;
+import galaxyspace.core.prefab.items.modules.ItemModule;
 import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.core.util.GSCreativeTabs;
+import galaxyspace.core.util.GSUtils.Module_Type;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.modules.IonEngine;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvLandingPad;
 import micdoodle8.mods.galacticraft.api.entity.IRocketType.EnumRocketType;
 import micdoodle8.mods.galacticraft.api.item.IHoldableItem;
@@ -37,7 +43,7 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemTier5Rocket extends Item implements IHoldableItem, ISortableItem
+public class ItemTier5Rocket extends Item implements IHoldableItem, ISortableItem, IModificationItem
 {
     public ItemTier5Rocket(String assetName)
     {
@@ -167,10 +173,22 @@ public class ItemTier5Rocket extends Item implements IHoldableItem, ISortableIte
             tooltip.add(EnumColor.RED + "\u00a7o" + GCCoreUtil.translate("gui.creative_only.desc"));
         }
 
-        if (par1ItemStack.hasTagCompound() && par1ItemStack.getTagCompound().hasKey("RocketFuel"))
+        if (par1ItemStack.hasTagCompound())
         {
-            EntityTier5Rocket rocket = new EntityTier5Rocket(FMLClientHandler.instance().getWorldClient(), 0, 0, 0, EnumRocketType.values()[par1ItemStack.getItemDamage()]);
-            tooltip.add(GCCoreUtil.translate("gui.message.fuel.name") + ": " + par1ItemStack.getTagCompound().getInteger("RocketFuel") + " / " + rocket.fuelTank.getCapacity());
+        	if(par1ItemStack.getTagCompound().hasKey("RocketFuel")) {
+        		EntityTier5Rocket rocket = new EntityTier5Rocket(FMLClientHandler.instance().getWorldClient(), 0, 0, 0, EnumRocketType.values()[par1ItemStack.getItemDamage()]);
+        		tooltip.add(GCCoreUtil.translate("gui.message.fuel.name") + ": " + par1ItemStack.getTagCompound().getInteger("RocketFuel") + " / " + rocket.fuelTank.getCapacity());
+        	}
+        	
+            for(Engine_Type engines : Engine_Type.values()) {
+	        	if(par1ItemStack.getTagCompound().hasKey(engines.getName()))
+	        	{
+	        		//int engine = par1ItemStack.getTagCompound().getInteger("engine_type");
+	        		int meta = par1ItemStack.getItemDamage() >= 5 ? par1ItemStack.getItemDamage() - 5 : par1ItemStack.getItemDamage();
+	        		EntityTier5Rocket rocket = new EntityTier5Rocket(FMLClientHandler.instance().getWorldClient(), 0, 0, 0, EnumRocketType.values()[meta], engines);
+	        		tooltip.add(EnumColor.YELLOW + GCCoreUtil.translate("gui.message.engine_type.name") + " " + EnumColor.WHITE + rocket.getEngine().getName());
+	        	}
+        	}
         }
     }
 
@@ -221,7 +239,13 @@ public class ItemTier5Rocket extends Item implements IHoldableItem, ISortableIte
         }
 
         EntityTier5Rocket rocket = new EntityTier5Rocket(worldIn, centerX, centerY, centerZ, EnumRocketType.values()[stack.getItemDamage()]);
-
+     
+        for(Engine_Type engines : Engine_Type.values())
+	        if (stack.hasTagCompound() && stack.getTagCompound().hasKey(engines.getName()))
+	        {	        	
+	            rocket.setEngine(engines);	            
+	        }
+        
         rocket.rotationYaw += 45;
         rocket.setPosition(rocket.posX, rocket.posY + rocket.getOnPadYOffset(), rocket.posZ);
         worldIn.spawnEntity(rocket);
@@ -237,4 +261,19 @@ public class ItemTier5Rocket extends Item implements IHoldableItem, ISortableIte
         
         return true;
     }
+    
+    @Override
+	public Module_Type getType(ItemStack stack) {
+		return Module_Type.ROCKET;
+	}
+
+	@Override
+	public ItemModule[] getAvailableModules() {
+		return new ItemModule[] {new IonEngine() };
+	}
+
+	@Override
+	public int getModificationCount(ItemStack stack) {
+		return 1;
+	}
 }
