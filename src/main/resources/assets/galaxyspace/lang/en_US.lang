@@ -39,7 +39,11 @@ tile.tin_ore.name=Tin Ore
 tile.aluminum_ore.name=Aluminum Ore
 tile.quartz_ore.name=Quartz Ore
 
-tile.surface_ice.name=Surface Ice
+tile.oxygen_ice.name=Oxygen Ice
+tile.nitrogen_ice.name=Nitrogen Ice
+tile.methane_ice.name=Methane Ice
+tile.hydrogen_ice.name=Hydrogen Ice
+tile.dry_ice.name=Dry Ice
 
 tile.futureglass_none.name=Future Glass
 tile.futureglass_black.name=Black Future Glass
@@ -321,6 +325,11 @@ item.ice_bucket.name=Bucket with Ice
 item.emergency_portable_teleport.name=Emergency Portable Teleport
 item.guide_book.name=[WIP] Info-Pad
 item.advanced_emergency_kit.name=Advanced Emergency Kit
+item.oxygen_ice_crystal.name=Oxygen Ice Shard
+item.nitrogen_ice_crystal.name=Nitrogen Ice Shard
+item.methane_ice_crystal.name=Methane Ice Shard
+item.hydrogen_ice_crystal.name=Hydrogen Ice Shard
+item.dry_ice_crystal.name=Dry Ice Shard
 
 item.module_expander.name=Module "Expander"
 item.module_stabiliser.name=Module "Stabilization"
@@ -332,7 +341,7 @@ item.module_smallcanister.name=Blank Fuel Tank
 item.module_lander_1.name=Lander Tier 1
 item.module_lander_2.name=Lander Tier 2
 item.module_lander_3.name=Lander Tier 3
-item.ion_engine.name=[WIP] Ion Engine
+item.ion_engine.name=Ion Engine
 item.plasma_engine.name=[WIP] Plasma Engine
 item.sublight_engine.name=Sublight Engine
 item.blackhole_engine.name=[WIP] Black Hole Engine

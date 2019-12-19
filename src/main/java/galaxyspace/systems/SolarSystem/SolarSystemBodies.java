@@ -364,7 +364,7 @@ public class SolarSystemBodies implements IBodies{
 	    GalacticraftRegistry.addDungeonLoot(4, new ItemStack(GSItems.BASIC, 1, 16));
 	    GalacticraftRegistry.addDungeonLoot(4, new ItemStack(GSItems.BASIC, 1, 18));
 	    
-	    GalacticraftRegistry.addDungeonLoot(3, new ItemStack(GSItems.ROCKET_MODULES, 1, 6));
+	    GalacticraftRegistry.addDungeonLoot(3, new ItemStack(GSItems.ROCKET_MODULES, 1, 4));
 	    GalacticraftRegistry.addDungeonLoot(4, new ItemStack(GSItems.ROCKET_MODULES, 1, 6));
 	}
 	

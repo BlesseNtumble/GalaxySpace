@@ -38,7 +38,11 @@ tile.tin_ore.name=Оловянная Руда
 tile.aluminum_ore.name=Алюминиевая Руда
 tile.quartz_ore.name=Кварцевая Руда
 
-tile.surface_ice.name=Поверхностный Лед
+tile.oxygen_ice.name=Лед с Кислородом
+tile.nitrogen_ice.name=Лед с Азотом
+tile.methane_ice.name=Лед с Метаном
+tile.hydrogen_ice.name=Лед с Водородом
+tile.dry_ice.name=Сухой Лед
 
 tile.futureglass_none.name=Футуристическое Стекло
 tile.futureglass_black.name=Черное Футуристическое Стекло
@@ -276,6 +280,11 @@ item.ice_bucket.name=Ведро со льдом
 item.emergency_portable_teleport.name=Экстренный Телепорт
 item.guide_book.name=[WIP] Инфо-планшет
 item.advanced_emergency_kit.name=Улучшенный Космический Самоспасатель
+item.oxygen_ice_crystal.name=Кислородный Ледянной Осколок
+item.nitrogen_ice_crystal.name=Азотный Ледянной Осколок
+item.methane_ice_crystal.name=Метановый Ледянной Осколок
+item.hydrogen_ice_crystal.name=Водородный Ледянной Осколок
+item.dry_ice_crystal.name=Осколок Сухого Льда
 
 item.module_expander.name=Модуль "Расширение"
 item.module_stabiliser.name=Модуль "Стабилизация"
@@ -287,7 +296,7 @@ item.module_smallcanister.name=Заготовка Топливного Бака
 item.module_lander_1.name=Посадочный Модуль 1-го уровня
 item.module_lander_2.name=Посадочный Модуль 2-го уровня
 item.module_lander_3.name=Посадочный Модуль 3-го уровня
-item.ion_engine.name=[WIP] Ионный Двигатель
+item.ion_engine.name=Ионный Двигатель
 item.plasma_engine.name=[WIP] Плазменный Двигатель
 item.sublight_engine.name=Суб-световой Двигатель
 item.blackhole_engine.name=[WIP]Подпространственный Двигатель

@@ -96,7 +96,7 @@ import net.minecraftforge.fml.relauncher.Side;
 @Mod(
 		   modid = GalaxySpace.MODID,
 		   version = GalaxySpace.VERSION,
-		   dependencies = Constants.DEPENDENCIES_FORGE + "required-after:galacticraftcore@[4.0.2.-1,]; required-after:galacticraftplanets; required-after:asmodeuscore@[0.0.12,)",
+		   dependencies = Constants.DEPENDENCIES_FORGE + "required-after:galacticraftcore@[4.0.2.237,]; required-after:galacticraftplanets; required-after:asmodeuscore@[0.0.12,)",
 		   acceptedMinecraftVersions = Constants.MCVERSION,
 		   name = GalaxySpace.NAME,
 		   guiFactory = "galaxyspace.core.client.gui.GSConfigGuiFactory"
@@ -258,6 +258,7 @@ public class GalaxySpace
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityTier5Rocket.class, "rocket_tier_5", 150, 1, false);
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityTier6Rocket.class, "rocket_tier_6", 150, 1, false);
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityIceSpike.class, "ice_spike", 40, 100, true);
+    	GCCoreUtil.registerGalacticraftNonMobEntity(EntityLaserBeam.class, "laser_beam", 40, 100, false);
     	//GCCoreUtil.registerGalacticraftNonMobEntity(GSEntityMeteor.class, "GS Meteor", 150, 5, true);    	
     }
 
