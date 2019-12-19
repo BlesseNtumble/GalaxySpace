@@ -56,7 +56,7 @@ public class ItemThermalPaddingBase extends Item implements IItemThermal, ISorta
     @Override
     public void addInformation(ItemStack par1ItemStack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
-        tooltip.add(GCCoreUtil.translate("item.tier" + this.tier + ".desc"));
+        tooltip.add(GCCoreUtil.translate("gui.tier" + this.tier + ".desc"));
         if(forFreeze)
         	 tooltip.add(GCCoreUtil.translate("gui.message.for_freeze"));
     }

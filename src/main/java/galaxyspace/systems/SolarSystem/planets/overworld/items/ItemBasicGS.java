@@ -160,9 +160,10 @@ public class ItemBasicGS extends Item implements ISortableItem{
 	}
 
     @Override
-    public String getUnlocalizedName(ItemStack par1ItemStack)
+    public String getUnlocalizedName(ItemStack stack)
     {
-    	return "item." + this.names[par1ItemStack.getItemDamage()];
+    	if(stack.getItemDamage() == 21 || stack.getItemDamage() == 22) return "item.thermal_cloth";
+    	return "item." + this.names[stack.getItemDamage()];
     }
 
     @Override
@@ -312,4 +313,11 @@ public class ItemBasicGS extends Item implements ISortableItem{
         return result;
     }
 	//END 
+    
+    @Override
+    public int getItemBurnTime(ItemStack itemStack)
+    {
+    	if(itemStack.getItemDamage() == 12) return 128000;
+        return -1;
+    }
 }

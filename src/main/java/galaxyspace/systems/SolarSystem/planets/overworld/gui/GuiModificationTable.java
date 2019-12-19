@@ -172,7 +172,7 @@ public class GuiModificationTable extends GuiContainerGC{
                // GL11.glDisable(GL11.GL_BLEND);
                 
 				RenderHelper.enableGUIStandardItemLighting();
-	           	//this.itemRender.renderItemAndEffectIntoGUI(actual_list.get(i).getIcon(), containerWidth + 32 + xOffsetModule, containerHeight + 22 + (22 * i));
+	           	this.itemRender.renderItemAndEffectIntoGUI(actual_list.get(i).getIcon(), containerWidth + 32 + xOffsetModule, containerHeight + 22 + (22 * i));
 	            RenderHelper.disableStandardItemLighting();                  	                    
 
 	            if(i >= 3 && i % 3 == 0) 
