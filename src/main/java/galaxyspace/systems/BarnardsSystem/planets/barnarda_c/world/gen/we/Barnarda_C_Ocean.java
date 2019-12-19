@@ -33,7 +33,7 @@ public class Barnarda_C_Ocean extends WE_Biome {
 		standardBiomeLayers.add(BRBlocks.BARNARDA_C_GRASS.getStateFromMeta(0), BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(3), -256, 0, -256,  0, false);
 		
 		if(frozen)
-			standardBiomeLayers.add(Blocks.ICE.getDefaultState(), -256, 0, -1, -1, true);
+			standardBiomeLayers.add(Blocks.ICE.getDefaultState(), 64, 0, -1, 0, true);
 		
 		standardBiomeLayers.add(Blocks.BEDROCK.getDefaultState(), 0, 2, 0, 0, true);
 		createChunkGen_InXZ_List.add(standardBiomeLayers);

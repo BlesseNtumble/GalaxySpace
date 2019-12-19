@@ -245,7 +245,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProvider implements IPro
 		cp.createChunkGen_InXYZ_List.clear(); 
 		cp.decorateChunkGen_List .clear(); 
 		
-		WE_Biome.setBiomeMap(cp, 1.2D, 4, 3800.0D, 1.0D);	
+		WE_Biome.setBiomeMap(cp, 1.6D, 4, 4200.0D, 1.0D);	
 
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
 		terrainGenerator.worldStoneBlock = BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(1); 
@@ -271,7 +271,22 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProvider implements IPro
 		
 		cp.worldGenerators.clear();
 		cp.biomesList.clear();
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_DeepOcean(-4D, 4D));	
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(-3.8D, 3.8D, false));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Beach(-3.5D, 3.2D, 1));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Plains(-3.0D, 3.0D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Forest(-2.3D, 2.9D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(-2.2D, 2.2D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Swampland(-2.1D, 1.8D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(-1.3D, 1.5D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Dunes(-1.2D, 1.2D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-1.0D, 1.0D, 100, 2.8D, 4));	
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-0.8D, 0.8D, 180, 2.4D, 4));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_SnowPlains(-0.6D, 0.6D, 160));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-0.3D, 0.3D, 100, 2.8D, 4));	
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(-0.0D, 0.0D, true));
 		
+		/*
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_DeepOcean(-4D, 4D));	
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(-3.9D, 3.9D, false));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Swampland(-3.5D, 3.5D));		
@@ -287,7 +302,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProvider implements IPro
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-0.6D, 0.6D, 100, 2.8D, 4));	
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-0.4D, 0.4D, 180, 2.4D, 4));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_SnowPlains(-0.2D, 0.2D, 160));
-		
+		*/
 	}
 	
 	@Override

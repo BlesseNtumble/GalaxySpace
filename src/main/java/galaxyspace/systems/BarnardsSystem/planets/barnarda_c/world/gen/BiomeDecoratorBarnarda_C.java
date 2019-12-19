@@ -85,15 +85,15 @@ public class BiomeDecoratorBarnarda_C extends BiomeDecoratorSpace
 		this.generateOre(8, cobaltumGen, 5, 40);
 		this.generateOre(8, nickelGen, 5, 15);
 		
-		WE_ChunkProvider chunk = ((WorldProviderBarnarda_C_WE)this.getCurrentWorld().provider).chunk;
+		/*WE_ChunkProvider chunk = ((WorldProviderBarnarda_C_WE)this.getCurrentWorld().provider).chunk;
 		
 		double scaleX = chunk.biomemapScaleX;
 		double persistance = chunk.biomemapPersistence;
-		GalaxySpace.debug("" + WE_Biome.getBiomeAt(chunk, this.posX, this.posZ).getBiomeName())/* WE_PerlinNoise.PerlinNoise2D((this.getCurrentWorld().getSeed() * 11) ^ 6,
+		GalaxySpace.debug("" + WE_PerlinNoise.PerlinNoise2D((this.getCurrentWorld().getSeed() * 11) ^ 6,
 				this.posX / scaleX, this.posZ / scaleX,
 				persistance, chunk.biomemapNumberOfOctaves)
-			* chunk.biomemapScaleY)*/;
-		
+			* chunk.biomemapScaleY + " | " + WE_Biome.getBiomeAt(chunk, this.posX, this.posZ).getBiomeName());
+		*/
 		//WE_Biome.getBiomeAt(chunk, this.posX, this.posZ);
 		
 		
@@ -376,7 +376,10 @@ public class BiomeDecoratorBarnarda_C extends BiomeDecoratorSpace
     				{
     					for(int size = 0; size < 2 + rand.nextInt(2); size++)
     					{
-    						this.getCurrentWorld().setBlockState(pos.up(size), BRBlocks.BARNARDA_C_DANDELIONS.getDefaultState().withProperty(Barnarda_C_Dandelions.BASIC_TYPE, Barnarda_C_Dandelions.EnumBlockDandelions.REEDS));
+    						if(rand.nextBoolean())
+    							this.getCurrentWorld().setBlockState(pos.up(size), BRBlocks.BARNARDA_C_DANDELIONS.getDefaultState().withProperty(Barnarda_C_Dandelions.BASIC_TYPE, Barnarda_C_Dandelions.EnumBlockDandelions.REEDS));
+    						else
+    							this.getCurrentWorld().setBlockState(pos.up(size), BRBlocks.BARNARDA_C_DANDELIONS.getDefaultState().withProperty(Barnarda_C_Dandelions.BASIC_TYPE, Barnarda_C_Dandelions.EnumBlockDandelions.REEDS_FRUITS));
     					}
     				}
     				else
