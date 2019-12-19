@@ -277,7 +277,7 @@ public class GSEventHandler {
 					if(stack.getItem().equals(ore.itemstack.getItem()))
 					{		
 						if(ore.need_check_temp) {
-							if(thermal < -1.0F || thermal >= 1.5F && !OxygenUtil.isAABBInBreathableAirBlock(world, bb, true))
+							if((thermal < -1.0F || thermal >= 1.5F) && !OxygenUtil.isAABBInBreathableAirBlock(world, bb, true))
 							{
 								player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.needoxygenthermal")));				   
 								event.setCanceled(true);								
@@ -322,7 +322,7 @@ public class GSEventHandler {
 		ItemStack i = event.getItemStack();
 				
 		if(!world.isRemote && GalaxySpace.debug) 
-			GalaxySpace.debug(Item.REGISTRY.getNameForObject(i.getItem()) + "");
+			GalaxySpace.debug(Item.REGISTRY.getNameForObject(i.getItem()) + " | " + i.getUnlocalizedName());
 		
 		
 		if(!world.isRemote && GSConfigCore.enableHardMode && !player.capabilities.isCreativeMode)
