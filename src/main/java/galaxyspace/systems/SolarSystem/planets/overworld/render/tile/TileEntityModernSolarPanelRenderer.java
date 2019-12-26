@@ -5,10 +5,12 @@ import org.lwjgl.opengl.GL11;
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 
+import asmodeuscore.api.dimension.IAdvancedSpace;
 import galaxyspace.GalaxySpace;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityModernSolarPanel;
 import micdoodle8.mods.galacticraft.core.client.model.OBJLoaderGC;
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
+import micdoodle8.mods.galacticraft.planets.venus.dimension.WorldProviderVenus;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
@@ -74,7 +76,13 @@ public class TileEntityModernSolarPanelRenderer extends TileEntitySpecialRendere
         float celestialAngle = (panel.getWorld().getCelestialAngle(1.0F) - 0.784690560F) * 360.0F;
         float celestialAngle2 = panel.getWorld().getCelestialAngle(1.0F) * 360.0F;
 
-        GlStateManager.rotate(panel.currentAngle - (celestialAngle - celestialAngle2), 1.0F, 0.0F, 0.0F);
+        float par1 = celestialAngle - celestialAngle2;
+        if(panel.getWorld().provider instanceof WorldProviderVenus || (panel.getWorld().provider instanceof IAdvancedSpace && ((IAdvancedSpace)panel.getWorld().provider).isRetrogradeRotation()))
+        	par1 = celestialAngle + celestialAngle2;
+        
+        if(panel.getWorld().isRaining())
+        	par1 = 80F;
+        GlStateManager.rotate(panel.currentAngle - (par1), 1.0F, 0.0F, 0.0F);
         GlStateManager.scale(0.9F, 0.9F, 0.9F);
 
         //GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
