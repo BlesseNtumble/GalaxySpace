@@ -29,12 +29,12 @@ public class Barnarda_C_Swampland extends WE_Biome {
 		decorateChunkGen_List.clear();		
 		createChunkGen_InXZ_List.clear();
 
-		this.creatures.add(new Biome.SpawnListEntry(EntityPig.class, 10, 1, 4));
+		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityPig.class, 10, 1, 4));
 
-		this.mobs.add(new Biome.SpawnListEntry(EntityZombie.class, 10, 1, 4));
-		this.mobs.add(new Biome.SpawnListEntry(EntitySpider.class, 10, 1, 4));
-		this.mobs.add(new Biome.SpawnListEntry(EntitySkeleton.class, 10, 1, 4));
-		this.mobs.add(new Biome.SpawnListEntry(EntitySlime.class, 10, 1, 1));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityZombie.class, 10, 1, 4));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySpider.class, 10, 1, 4));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySkeleton.class, 10, 1, 4));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySlime.class, 10, 1, 1));
 
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();
 		standardBiomeLayers.add(BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(3), BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(1), -256, 0,   -5, -1,  true);

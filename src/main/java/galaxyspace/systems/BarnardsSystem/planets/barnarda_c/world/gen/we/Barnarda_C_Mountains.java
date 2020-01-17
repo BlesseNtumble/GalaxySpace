@@ -6,6 +6,11 @@ import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.monster.EntityEnderman;
+import net.minecraft.entity.monster.EntitySkeleton;
+import net.minecraft.entity.monster.EntitySpider;
+import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.passive.EntityChicken;
+import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.Biome;
 
@@ -27,7 +32,12 @@ public class Barnarda_C_Mountains extends WE_Biome {
 		decorateChunkGen_List.clear();		
 		createChunkGen_InXZ_List.clear();
 		
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityZombie.class, 10, 1, 2));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySpider.class, 10, 1, 1));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySkeleton.class, 10, 1, 2));
 		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 10, 1, 2));
+		
+		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityCow.class, 10, 1, 4));
 		
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();
 		standardBiomeLayers.add(BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(3), BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(1), -256, 0,   -5, -1,  true);

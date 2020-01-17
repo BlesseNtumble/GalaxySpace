@@ -11,6 +11,7 @@ import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.Biome;
@@ -33,16 +34,16 @@ public class Barnarda_C_Forest extends WE_Biome {
 		decorateChunkGen_List.clear();		
 		createChunkGen_InXZ_List.clear();
 		
-		this.creatures.add(new Biome.SpawnListEntry(EntityCow.class, 10, 1, 4));
-		this.creatures.add(new Biome.SpawnListEntry(EntityChicken.class, 10, 1, 4));
-		this.creatures.add(new Biome.SpawnListEntry(EntityPig.class, 10, 1, 4));
+		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntitySheep.class, 10, 1, 2));
+		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityChicken.class, 10, 1, 2));
+		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityPig.class, 10, 1, 2));
 		
-		this.mobs.add(new Biome.SpawnListEntry(EntityZombie.class, 10, 1, 4));
-		this.mobs.add(new Biome.SpawnListEntry(EntitySpider.class, 10, 1, 4));
-		this.mobs.add(new Biome.SpawnListEntry(EntitySkeleton.class, 10, 1, 4));
-		this.mobs.add(new Biome.SpawnListEntry(EntityEnderman.class, 10, 1, 1));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityZombie.class, 10, 1, 2));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySpider.class, 10, 1, 2));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySkeleton.class, 10, 1, 2));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 10, 1, 1));
 		
-		this.watercreatures.add(new Biome.SpawnListEntry(EntitySquid.class, 10, 1, 4));
+		this.spawnableWaterCreatureList.add(new Biome.SpawnListEntry(EntitySquid.class, 10, 1, 3));
 		
 		
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();
