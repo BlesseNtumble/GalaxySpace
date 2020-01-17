@@ -244,14 +244,15 @@ public class SolarSystemBodies implements IBodies{
 		venusSpaceStation.setRelativeSize(0.2667F);
 		venusSpaceStation.setRelativeDistanceFromCenter(new CelestialBody.ScalableDistance(5.5F, 5.5F));
 		venusSpaceStation.setRelativeOrbitTime(20.0F);
-		venusSpaceStation.setTierRequired(VenusModule.planetVenus.getTierRequirement());
-		venusSpaceStation.setDimensionInfo(GSConfigDimensions.idDimensionVenusOrbit, GSConfigDimensions.idDimensionVenusOrbitStatic, WorldProviderVenusSS.class);
-		venusSpaceStation.setBodyIcon(new ResourceLocation("galacticraftcore:textures/gui/celestialbodies/space_station.png"));
-		venusSpaceStation.addChecklistKeys("equip_oxygen_suit", "equip_parachute");
-		venusSpaceStation.setBiomeInfo(ACBiome.ACSpace);
-		venusSpaceStation.atmosphereComponent(EnumAtmosphericGas.CO2).atmosphereComponent(EnumAtmosphericGas.NITROGEN);
-		venusSpaceStation.setAtmosphere(new AtmosphereInfo(false, false, false, 0.8F, 0.4F, 0.0F));
-		
+		if(GSConfigDimensions.enableVenusSpaceStation) {
+			venusSpaceStation.setTierRequired(VenusModule.planetVenus.getTierRequirement());
+			venusSpaceStation.setDimensionInfo(GSConfigDimensions.idDimensionVenusOrbit, GSConfigDimensions.idDimensionVenusOrbitStatic, WorldProviderVenusSS.class);
+			venusSpaceStation.setBodyIcon(new ResourceLocation("galacticraftcore:textures/gui/celestialbodies/space_station.png"));
+			venusSpaceStation.addChecklistKeys("equip_oxygen_suit", "equip_parachute");
+			venusSpaceStation.setBiomeInfo(ACBiome.ACSpace);
+			venusSpaceStation.atmosphereComponent(EnumAtmosphericGas.CO2).atmosphereComponent(EnumAtmosphericGas.NITROGEN);
+			venusSpaceStation.setAtmosphere(new AtmosphereInfo(false, false, false, 0.8F, 0.4F, 0.0F));
+		}
 		//GalaxyRegistry.getRegisteredPlanets().remove(MarsModule.planetMars.getName());
 		//GalaxyRegistry.getRegisteredPlanetIDs().remove(MarsModule.planetMars.getName());
 	}
@@ -266,7 +267,7 @@ public class SolarSystemBodies implements IBodies{
 		MarsModule.planetMars.setRingColorRGB(0.0F, 0.4F, 0.9F);
 		if(GSConfigCore.enableWorldEngine && GSConfigCore.enableGSMars) {
 			MarsModule.planetMars.setDimensionInfo(ConfigManagerMars.dimensionIDMars, WorldProviderMars_WE.class, true);
-			MarsModule.planetMars.setAtmosphere(new AtmosphereInfo(false, false, false, -3.0F, 1.0F, 0.1F));	
+			MarsModule.planetMars.setAtmosphere(new AtmosphereInfo(false, false, false, -2.4F, 1.0F, 0.1F));	
 		}
 		AsteroidsModule.planetAsteroids.setRelativeDistanceFromCenter(new CelestialBody.ScalableDistance(1.75F, 1.75F));
 				
@@ -341,14 +342,14 @@ public class SolarSystemBodies implements IBodies{
         GalacticraftRegistry.registerGear(GSConstants.GEAR_ID_THERMAL_PADDING_T4_LEGGINGS, EnumExtendedInventorySlot.THERMAL_LEGGINGS, new ItemStack(GSItems.THERMAL_PADDING_4, 1, 2));
         GalacticraftRegistry.registerGear(GSConstants.GEAR_ID_THERMAL_PADDING_T4_BOOTS, EnumExtendedInventorySlot.THERMAL_BOOTS, new ItemStack(GSItems.THERMAL_PADDING_4, 1, 3));
         
-	
-        GSDimensions.VENUS_SS = GalacticraftRegistry.registerDimension("Venus Space Station", "_venus_orbit", GSConfigDimensions.idDimensionVenusOrbit, WorldProviderVenusSS.class, false);
-		if (GSDimensions.VENUS_SS == null)
-        {
-            GalaxySpace.debug("Failed to register space station dimension type with ID " + GSConfigDimensions.idDimensionVenusOrbit);
-        }
-		GSDimensions.VENUS_SS_KEEPLOADED = GalacticraftRegistry.registerDimension("Venus Space Station", "_venus_orbit", GSConfigDimensions.idDimensionVenusOrbitStatic, WorldProviderVenusSS.class, true);
-	
+        if(GSConfigDimensions.enableVenusSpaceStation) {
+	        GSDimensions.VENUS_SS = GalacticraftRegistry.registerDimension("Venus Space Station", "_venus_orbit", GSConfigDimensions.idDimensionVenusOrbit, WorldProviderVenusSS.class, false);
+			if (GSDimensions.VENUS_SS == null)
+	        {
+	            GalaxySpace.debug("Failed to register space station dimension type with ID " + GSConfigDimensions.idDimensionVenusOrbit);
+	        }
+			GSDimensions.VENUS_SS_KEEPLOADED = GalacticraftRegistry.registerDimension("Venus Space Station", "_venus_orbit", GSConfigDimensions.idDimensionVenusOrbitStatic, WorldProviderVenusSS.class, true);
+	    }
 	}
 	
 	private static void registerDungeonLoot()
