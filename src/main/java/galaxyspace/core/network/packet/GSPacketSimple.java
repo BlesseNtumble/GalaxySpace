@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import org.lwjgl.opengl.GL11;
+
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProvider;
 import galaxyspace.api.item.IModificationItem;
 import galaxyspace.api.tile.ITileEffects;
 import galaxyspace.core.events.GSEventHandler;
@@ -25,7 +28,12 @@ import micdoodle8.mods.galacticraft.core.network.PacketBase;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.GCLog;
 import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
+import micdoodle8.mods.galacticraft.planets.GalacticraftPlanets;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -33,6 +41,7 @@ import net.minecraft.network.INetHandler;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -56,12 +65,12 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         S_CHANGE_FLIGHT_STATE(Side.SERVER, Boolean.class),
         S_REVERSE_SEPATATOR(Side.SERVER, BlockVec3.class),   
         S_UPDATE_NBT_ITEM_ON_GUI(Side.SERVER, BlockVec3.class, String.class),
-        S_UPDATE_NBT_ITEM_IN_ARMOR(Side.SERVER, Integer.class, String.class), 	
+        S_UPDATE_NBT_ITEM_IN_ARMOR(Side.SERVER, Integer.class, String.class), 
         //CLIENT
+        C_UPDATE_WORLD(Side.CLIENT),
     	C_UPDATE_RESEARCHES(Side.CLIENT, Integer[].class),
-    	C_UPDATE_RESEARCH(Side.CLIENT, Integer.class, Integer.class); // id, count
-        
-        
+    	C_UPDATE_RESEARCH(Side.CLIENT, Integer.class, Integer.class), // id, count
+    	C_GLOW_BLOCK(Side.CLIENT, BlockVec3.class, Integer.class);        
         
         private Side targetSide;
         private Class<?>[] decodeAs;
@@ -180,7 +189,70 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
             }
         }*/
         switch (this.type)
-        {       		
+        {       	
+        	case C_GLOW_BLOCK:
+        		BlockVec3 block = (BlockVec3) this.data.get(0);
+        		int level = (int) this.data.get(1);
+        		GlStateManager.pushMatrix();
+        		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(GalacticraftPlanets.ASSET_PREFIX, "textures/misc/gradient.png"));
+        		GlStateManager.disableLighting();
+        		GlStateManager.disableCull();
+                GlStateManager.disableAlpha();
+                GlStateManager.depthMask(false);
+        		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
+                GlStateManager.enableBlend();
+        		GlStateManager.translate(block.x, block.y, block.z);
+        		final Tessellator tess = Tessellator.getInstance();
+        		BufferBuilder worldRenderer = tess.getBuffer();
+        		GlStateManager.color(1.0F, 0.7F, 0.7F, 0.016667F * (12 - level));
+        		float cA = -0.01F;
+        		float cB = 1.01F;
+        		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+        		worldRenderer.pos(cA, cB, cA).tex(0D, 1D).endVertex();
+        		worldRenderer.pos(cB, cB, cA).tex(1D, 1D).endVertex();
+        		worldRenderer.pos(cB, cB, cB).tex(1D, 0D).endVertex();
+        		worldRenderer.pos(cA, cB, cB).tex(0D, 0D).endVertex();
+        		tess.draw();
+        		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+        		worldRenderer.pos(cA, cA, cA).tex(0D, 0D).endVertex();
+        		worldRenderer.pos(cA, cA, cB).tex(0D, 1D).endVertex();
+        		worldRenderer.pos(cB, cA, cB).tex(1D, 1D).endVertex();
+        		worldRenderer.pos(cB, cA, cA).tex(1D, 0D).endVertex();
+        		tess.draw();
+        		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+        		worldRenderer.pos(cA, cA, cA).tex(1D, 0D).endVertex();
+        		worldRenderer.pos(cA, cB, cA).tex(0D, 0D).endVertex();
+        		worldRenderer.pos(cA, cB, cB).tex(0D, 1D).endVertex();
+        		worldRenderer.pos(cA, cA, cB).tex(1D, 1D).endVertex();
+        		tess.draw();
+        		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+        		worldRenderer.pos(cB, cA, cA).tex(1D, 1D).endVertex();
+        		worldRenderer.pos(cB, cA, cB).tex(1D, 0D).endVertex();
+        		worldRenderer.pos(cB, cB, cB).tex(0D, 0D).endVertex();
+        		worldRenderer.pos(cB, cB, cA).tex(0D, 1D).endVertex();
+        		tess.draw();
+        		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+        		worldRenderer.pos(cA, cA, cA).tex(1D, 0D).endVertex();
+        		worldRenderer.pos(1F, cA, cA).tex(0D, 0D).endVertex();
+        		worldRenderer.pos(1F, 1F, cA).tex(0D, 1D).endVertex();
+        		worldRenderer.pos(cA, 1F, cA).tex(1D, 1D).endVertex();
+        		tess.draw();
+        		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+        		worldRenderer.pos(1F, cA, 1F).tex(1D, 1D).endVertex();
+        		worldRenderer.pos(cA, cA, 1F).tex(1D, 0D).endVertex();
+        		worldRenderer.pos(cA, 1F, 1F).tex(0D, 0D).endVertex();
+        		worldRenderer.pos(1F, 1F, 1F).tex(0D, 1D).endVertex();
+        		tess.draw();
+        		GlStateManager.popMatrix();
+        		break;
+        	case C_UPDATE_WORLD:
+        		World world = GCCoreUtil.getServer().getWorld(this.getDimensionID());
+        		
+        		if(world != null && playerBaseClient.world != null && playerBaseClient.world.provider instanceof WE_WorldProvider)
+				{		
+        			((WE_WorldProvider)playerBaseClient.world.provider).chunk_provider = ((WE_WorldProvider)world.provider).chunk_provider;
+				}
+        		break;
         	case C_UPDATE_RESEARCHES:        		
         			if(gs_stats_client != null) 
 	        		{	
@@ -226,8 +298,8 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         	break;
         case S_GRAVITY_RADIUS:
             BlockVec3 pos = (BlockVec3) this.data.get(0);
-            int strength = (int) this.data.get(1);
-        
+            int strength = (int) this.data.get(1);        
+            
             tileEntity = pos.getTileEntity(playerBase.world);
             if(tileEntity instanceof TileEntityGravitationModule) {
                 ((TileEntityGravitationModule)tileEntity).setGravityRadius(strength);
