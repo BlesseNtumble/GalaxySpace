@@ -13,7 +13,13 @@ public class Page_Controller_Minipanels extends Page_WithCraftMatrix {
 
 	@Override
 	public String titlePage() {
-		return "controller_minipanels";
+		return getItem().getUnlocalizedName() + ".name";
+	}
+	
+	@Override
+	public boolean rawTitle()
+	{
+		return true;
 	}
 
 	@Override

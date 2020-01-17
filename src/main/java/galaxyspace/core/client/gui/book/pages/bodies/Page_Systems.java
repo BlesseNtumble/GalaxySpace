@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.lwjgl.opengl.GL11;
 
+import asmodeuscore.AsmodeusCore;
 import asmodeuscore.api.dimension.IAdvancedSpace;
 import asmodeuscore.core.astronomy.BodiesData;
 import asmodeuscore.core.astronomy.BodiesHelper;
@@ -50,7 +51,6 @@ import net.minecraft.world.WorldProvider;
 
 public class Page_Systems extends Page_WithScroll {
 
-	private static ResourceLocation bookPageTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/tablet.png");
 	private static ResourceLocation starTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/book/star_bg.png");
 	
 	enum Mode {
@@ -71,23 +71,7 @@ public class Page_Systems extends Page_WithScroll {
 	
 	public Page_Systems(SolarSystem system)
 	{		
-		this.system = system;
-		
-		setResources(SolarSystemBodies.planetMercury, new ItemStack(GSBlocks.MERCURY_BLOCKS, 1, 3), new ItemStack(GSBlocks.MERCURY_BLOCKS, 1, 4), new ItemStack(GSBlocks.MERCURY_BLOCKS, 1, 5));
-		setResources(VenusModule.planetVenus, new ItemStack(VenusBlocks.venusBlock, 1, 6), new ItemStack(VenusBlocks.venusBlock, 1, 7), new ItemStack(VenusBlocks.venusBlock, 1, 8), new ItemStack(VenusBlocks.venusBlock, 1, 9), new ItemStack(VenusBlocks.venusBlock, 1, 10), new ItemStack(VenusBlocks.venusBlock, 1, 11), new ItemStack(VenusBlocks.venusBlock, 1, 13)) ;
-		setResources(GalacticraftCore.planetOverworld, new ItemStack(Blocks.COAL_ORE, 1, 0), new ItemStack(Blocks.IRON_ORE, 1, 0), new ItemStack(Blocks.GOLD_ORE, 1, 0), new ItemStack(Blocks.REDSTONE_ORE, 1, 0), new ItemStack(Blocks.LAPIS_ORE, 1, 0), new ItemStack(Blocks.DIAMOND_ORE, 1, 0), new ItemStack(Blocks.EMERALD_ORE, 1, 0), new ItemStack(GCBlocks.basicBlock, 1, 5), new ItemStack(GCBlocks.basicBlock, 1, 6), new ItemStack(GCBlocks.basicBlock, 1, 7), new ItemStack(GCBlocks.basicBlock, 1, 8), new ItemStack(GSBlocks.OVERWORLD_ORES, 1, 0), new ItemStack(GSBlocks.OVERWORLD_ORES, 1, 1), new ItemStack(GSBlocks.OVERWORLD_ORES, 1, 2)) ;
-		setResources(GalacticraftCore.moonMoon, new ItemStack(GCBlocks.blockMoon, 1, 0), new ItemStack(GCBlocks.blockMoon, 1, 1), new ItemStack(GCBlocks.blockMoon, 1, 2), new ItemStack(GCBlocks.blockMoon, 1, 6));
-		setResources(MarsModule.planetMars, new ItemStack(MarsBlocks.marsBlock, 1, 0), new ItemStack(MarsBlocks.marsBlock, 1, 1), new ItemStack(MarsBlocks.marsBlock, 1, 2), new ItemStack(MarsBlocks.marsBlock, 1, 3));
-		setResources(SolarSystemBodies.planetCeres, new ItemStack(GSBlocks.CERES_BLOCKS, 1, 2), new ItemStack(GSBlocks.CERES_BLOCKS, 1, 3));
-		setResources(AsteroidsModule.planetAsteroids, new ItemStack(AsteroidBlocks.blockBasic, 1, 3), new ItemStack(AsteroidBlocks.blockBasic, 1, 4), new ItemStack(AsteroidBlocks.blockBasic, 1, 5));
-		setResources(SolarSystemBodies.ioJupiter, new ItemStack(GSBlocks.IO_BLOCKS, 1, 3), new ItemStack(GSBlocks.IO_BLOCKS, 1, 4), new ItemStack(GSBlocks.IO_BLOCKS, 1, 5));
-		setResources(SolarSystemBodies.europaJupiter, new ItemStack(GSBlocks.EUROPA_BLOCKS, 1, 2), new ItemStack(GSBlocks.EUROPA_BLOCKS, 1, 3), new ItemStack(GSBlocks.EUROPA_BLOCKS, 1, 4), new ItemStack(GSBlocks.EUROPA_BLOCKS, 1, 5));
-		setResources(SolarSystemBodies.ganymedeJupiter, new ItemStack(GSBlocks.GANYMEDE_BLOCKS, 1, 2), new ItemStack(GSBlocks.GANYMEDE_BLOCKS, 1, 3));
-		//setResources(SolarSystemBodies.callistoJupiter, new ItemStack(GSBlocks.GANYMEDE_BLOCKS, 1, 2), new ItemStack(GSBlocks.GANYMEDE_BLOCKS, 1, 3));
-		setResources(SolarSystemBodies.enceladusSaturn, new ItemStack(GSBlocks.ENCELADUS_BLOCKS, 1, 2), new ItemStack(GSBlocks.ENCELADUS_CRYSTAL, 1, 0));
-		setResources(SolarSystemBodies.titanSaturn, new ItemStack(GSItems.EM_CANISTER, 1, 1));
-		setResources(SolarSystemBodies.mirandaUranus, new ItemStack(GSBlocks.MIRANDA_BLOCKS, 1, 3), new ItemStack(GSBlocks.MIRANDA_BLOCKS, 1, 4));
-		setResources(SolarSystemBodies.planetKuiperBelt, new ItemStack(GSBlocks.OVERWORLD_ORES, 1, 0), new ItemStack(GSBlocks.OVERWORLD_ORES, 1, 1), new ItemStack(GSBlocks.OVERWORLD_ORES, 1, 2), new ItemStack(Blocks.COAL_ORE, 1, 0));
+		this.system = system;		
 	}
 	
 	@Override
@@ -160,7 +144,7 @@ public class Page_Systems extends Page_WithScroll {
 			this.mc.getTextureManager().bindTexture(this.system.getMainStar().getBodyIcon());
 			drawTexturedModalRect(x + 80 + maxX + 30 - 6, y + 45 + 30 - 6, 12, 12, 0, 0, 16, 16, false, false, 16, 16);
     		
-			font.drawString(GCCoreUtil.translate(this.system.getMainStar().getUnlocalizedName()), x + 150 + maxX, y + 45, 0xFFFFFF);
+			drawText(GCCoreUtil.translate("book.page." + this.system.getMainStar().getUnlocalizedName() + ".desc"), x + 110 + maxX, y - 40, 0, 200, font);
 			
 		}
 		else if(current_mode == Mode.BODY)
@@ -212,6 +196,8 @@ public class Page_Systems extends Page_WithScroll {
 				
 				int offsetY = (font.getStringWidth(GCCoreUtil.translate("book.page." + system.getUnlocalizedName() + "." + selected_body.getName().toLowerCase())) / 260) * font.FONT_HEIGHT;
 				
+				offsetY -= getScroll() * 10;
+				
 				WorldProvider dim = WorldUtil.getProviderForDimensionClient(this.selected_body.getDimensionID());
 				
 				int j = 0;
@@ -223,7 +209,7 @@ public class Page_Systems extends Page_WithScroll {
 					
 					float grav = (0.1F - ((IGalacticraftWorldProvider)dim).getGravity()) * 1000 ;
 					if(((IGalacticraftWorldProvider)dim).getGravity() == 0.0F) grav = 0.0F;
-					
+										
 					infos.add(GCCoreUtil.translate("gui.message.daylength") + " " + ((WorldProviderSpace) gcdim).getDayLength() / 1000 + "h " + ((WorldProviderSpace) gcdim).getDayLength() % 1000 + "m");
 					infos.add("Distance from star: " + selected_body.getRelativeDistanceFromCenter().unScaledDistance);
 					infos.add(GCCoreUtil.translate("gui.message.gravity") + " " + (int)grav + "%");
@@ -237,49 +223,37 @@ public class Page_Systems extends Page_WithScroll {
 					
 					BodiesData data = BodiesHelper.getData().get(selected_body);
 					if(data != null)
-					{
-									
+					{									
 						infos.add(GCCoreUtil.translate("gui.message.atmopressure") + " " + data.getPressurePlanet());
 						infos.add(GCCoreUtil.translate("gui.message.solarradiation") + " " + data.getSolarRadiationPlanet());
 					}
 					
 					infos.add(GCCoreUtil.translate("gui.message.breathableatmo") + " " + gcdim.hasBreathableAtmosphere());
+					infos.add("");
+					infos.add(GCCoreUtil.translate("gui.message.resources"));
+					for(int k = getScroll(); k < infos.size(); k++, j++) {
+						if(!infos.get(k).isEmpty() && k < 8 + getScroll()) {
+							this.mc.getTextureManager().bindTexture(bookPageTexture);
+							drawTexturedModalRect(x + 78 + maxX, y + 80 + (k * 12) + offsetY, 136, 13, 401, 119, 85, 15, false, false, 512, 256);
+							
+							font.drawString(infos.get(k), x + 84 + maxX, y + 82 + (k * 12) + offsetY, 0xFFFFFF);
+						}
+					}
 					
-					for(int k = 0; k < infos.size(); k++, j++) {
-						font.drawString(infos.get(k), x + 80 + maxX, y + 70 + (k * font.FONT_HEIGHT) + offsetY, 0xFFFFFF);						
+					if(this.resources.containsKey(selected_body) && getScroll() > 3)
+					{
+						int k = 0;
+						for(ItemStack stacks : this.resources.get(selected_body)) {
+							this.mc.renderEngine.bindTexture(this.bookPageTexture);	
+							GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+							this.drawTexturedModalRect(x + 78 + maxX + (k * 22), y + 108 + infos.size() * 10 + offsetY, 20, 20, 452, 94, 20, 20, false, false, 576, 250);
+							this.drawItemStack(mc, stacks, x + 80 + maxX + (k++ * 22), y + 110 + infos.size() * 10 + offsetY, mouseX, mouseY, true);
+						}
 					}
                 }
 				
 				
-				if(!selected_body.getReachable()) return;
-				
-				font.drawString("Resources:", x + 80 + maxX, y + 76 + (j * font.FONT_HEIGHT) + offsetY, 0xFFFFFF);
-				
-				if(this.resources.containsKey(selected_body))
-				{
-					int k = 0;
-					for(ItemStack stacks : this.resources.get(selected_body)) {
-						
-						RenderHelper.enableGUIStandardItemLighting();
-						if(k >= 14) {					
-							this.mc.getRenderItem().renderItemAndEffectIntoGUI(stacks, x + 80 + maxX + ((k - 14) * 20), y + 86 + (j * font.FONT_HEIGHT) + offsetY);
-							if (mouseX >= x + 80 + maxX + ((k - 14) * 20) && mouseX <= x + 80 + maxX + ((k - 14) * 20) + 16 && mouseY >= y + 100 + 18 + offsetY && mouseY <= y + 100 + 18 + 16 + offsetY)
-							{
-								this.drawToolTip(mouseX, y + 81 + (j * font.FONT_HEIGHT) + 18 + offsetY, stacks.getDisplayName());  
-							}
-						}
-						else {
-							this.mc.getRenderItem().renderItemAndEffectIntoGUI(stacks, x + 80 + maxX + (k * 20), y + 86 + (j * font.FONT_HEIGHT) + offsetY);
-							if (mouseX >= x + 80 + maxX + (k * 20) && mouseX <= x + 80 + maxX + (k * 20) + 16 && mouseY >= y + 86 + (j * font.FONT_HEIGHT) + offsetY && mouseY <= y + 86 + (j * font.FONT_HEIGHT) + 16 + offsetY)
-							{
-								this.drawToolTip(mouseX, y + 81 + (j * font.FONT_HEIGHT) + offsetY, stacks.getDisplayName());  
-							}
-						}
-						RenderHelper.disableStandardItemLighting();  
-						
-						k++;
-					}
-				}
+				//if(!selected_body.getReachable()) return;								
 			}
 		}
 		else if(current_mode == Mode.MOON)
@@ -297,10 +271,12 @@ public class Page_Systems extends Page_WithScroll {
 			
 			font.drawString(selected_moon.getLocalizedName(), x + 52, y + 46, 0xFFFFFF);
 		
+			int j = 0;
 			if(selected_moon != null) {
 				font.drawString(GCCoreUtil.translate("book.page." + system.getUnlocalizedName() + "." + selected_moon.getName().toLowerCase()), x + 80 + maxX, y + 46, 0xFFFFFF);
 			
 				int offsetY = (font.getStringWidth(GCCoreUtil.translate("book.page." + system.getUnlocalizedName() + "." + selected_moon.getName().toLowerCase())) / 260) * font.FONT_HEIGHT;
+				offsetY -= getScroll() * 10;
 				
 				WorldProvider dim = WorldUtil.getProviderForDimensionClient(this.selected_moon.getDimensionID());
 				
@@ -308,52 +284,60 @@ public class Page_Systems extends Page_WithScroll {
                 {
 					IGalacticraftWorldProvider gcdim = (IGalacticraftWorldProvider) dim;
 					
-					String[] infos = new String[] 
-					{
-						"Gravity: " + gcdim.getGravity(),
-						"Thermal Level: " + gcdim.getThermalLevelModifier(),
-						"Wind Level: " + gcdim.getWindLevel(),
-						"Breathable Atmoshpere: " + gcdim.hasBreathableAtmosphere()
-					};
+					List<String> infos = new ArrayList<String>(); 
+					
+					float grav = (0.1F - ((IGalacticraftWorldProvider)dim).getGravity()) * 1000 ;
+					if(((IGalacticraftWorldProvider)dim).getGravity() == 0.0F) grav = 0.0F;
+										
+					infos.add(GCCoreUtil.translate("gui.message.daylength") + " " + ((WorldProviderSpace) gcdim).getDayLength() / 1000 + "h " + ((WorldProviderSpace) gcdim).getDayLength() % 1000 + "m");
+					infos.add("Distance from planet: " + selected_moon.getRelativeDistanceFromCenter().unScaledDistance);
+					infos.add(GCCoreUtil.translate("gui.message.gravity") + " " + (int)grav + "%");
+					infos.add(GCCoreUtil.translate("gui.message.temperature") + " " + gcdim.getCelestialBody().atmosphere.thermalLevel() * 20 + " C");
+					infos.add(GCCoreUtil.translate("gui.message.windspeed") + " " + gcdim.getCelestialBody().atmosphere.windLevel());					
+					if(dim instanceof ISolarLevel) 
+						infos.add(GCCoreUtil.translate("gui.message.solarenergy") + " " + Math.round((((ISolarLevel)dim).getSolarEnergyMultiplier() - 1) * 1000) / 10.0F + "%");
+					
+					if(gcdim instanceof IAdvancedSpace)					
+						infos.add(GCCoreUtil.translate("gui.message.windenergy") + " " + Math.round(((IAdvancedSpace)dim).getSolarWindMultiplier() * 1000) / 1000F);
+					
 					BodiesData data = BodiesHelper.getData().get(selected_moon);
 					if(data != null)
-					{
-						
+					{									
+						infos.add(GCCoreUtil.translate("gui.message.atmopressure") + " " + data.getPressurePlanet());
+						infos.add(GCCoreUtil.translate("gui.message.solarradiation") + " " + data.getSolarRadiationPlanet());
 					}
 					
-					for(int k = 0; k < infos.length; k++) {
-						font.drawString(infos[k], x + 80 + maxX, y + 70 + (k * font.FONT_HEIGHT) + offsetY, 0xFFFFFF);
+					infos.add(GCCoreUtil.translate("gui.message.breathableatmo") + " " + gcdim.hasBreathableAtmosphere());
+					infos.add("");
+					infos.add(GCCoreUtil.translate("gui.message.resources"));
+					for(int k = getScroll(); k < infos.size(); k++, j++) {
+						if(!infos.get(k).isEmpty() && k < 8 + getScroll()) {
+							this.mc.getTextureManager().bindTexture(bookPageTexture);
+							drawTexturedModalRect(x + 78 + maxX, y + 80 + (k * 12) + offsetY, 146, 13, 401, 119, 85, 15, false, false, 512, 256);
+							
+							font.drawString(infos.get(k), x + 84 + maxX, y + 82 + (k * 12) + offsetY, 0xFFFFFF);
+						}
+					}
+					
+					if(this.resources.containsKey(selected_moon) && getScroll() > 3)
+					{
+						int k = 0;
+						for(ItemStack stacks : this.resources.get(selected_moon)) {
+							this.mc.renderEngine.bindTexture(this.bookPageTexture);	
+							GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+							if(k < 12) {
+								this.drawTexturedModalRect(x + 78 + maxX + (k * 22), y + 108 + infos.size() * 10 + offsetY, 20, 20, 452, 94, 20, 20, false, false, 576, 250);
+								this.drawItemStack(mc, stacks, x + 80 + maxX + (k * 22), y + 110 + infos.size() * 10 + offsetY, mouseX, mouseY, true);
+							}
+							else
+							{
+								this.drawTexturedModalRect(x + 78 + maxX + ((k - 12) * 22), y + 108 + infos.size() * 10 + offsetY + 22, 20, 20, 452, 94, 20, 20, false, false, 576, 250);
+								this.drawItemStack(mc, stacks, x + 80 + maxX + ((k - 12) * 22), y + 110 + infos.size() * 10 + offsetY + 22, mouseX, mouseY, true);
+							}
+							k++;
+						}
 					}
                 }
-				
-				if(!selected_moon.getReachable()) return;
-				font.drawString("Resources:", x + 80 + maxX, y + 126 + offsetY, 0xFFFFFF);
-				
-				if(this.resources.containsKey(selected_moon))
-				{
-					int k = 0;
-					for(ItemStack stacks : this.resources.get(selected_moon)) {
-						
-						RenderHelper.enableGUIStandardItemLighting();
-						if(k >= 14) {					
-							this.mc.getRenderItem().renderItemAndEffectIntoGUI(stacks, x + 80 + maxX + ((k - 14) * 20), y + 140 + 18 + offsetY);
-							if (mouseX >= x + 80 + maxX + ((k - 14) * 20) && mouseX <= x + 80 + maxX + ((k - 14) * 20) + 16 && mouseY >= y + 140 + 18 + offsetY && mouseY <= y + 140 + 18 + 16 + offsetY)
-							{
-								this.drawToolTip(mouseX, y + 135 + 18 + offsetY, stacks.getDisplayName());  
-							}
-						}
-						else {
-							this.mc.getRenderItem().renderItemAndEffectIntoGUI(stacks, x + 80 + maxX + (k * 20), y + 140);
-							if (mouseX >= x + 80 + maxX + (k * 20) && mouseX <= x + 80 + maxX + (k * 20) + 16 && mouseY >= y + 140 + offsetY && mouseY <= y + 140 + 16 + offsetY)
-							{
-								this.drawToolTip(mouseX, y + 135 + offsetY, stacks.getDisplayName());  
-							}
-						}
-						RenderHelper.disableStandardItemLighting();  
-						
-						k++;
-					}
-				}
 			}
 		}
 		
@@ -396,6 +380,7 @@ public class Page_Systems extends Page_WithScroll {
 		if(current_mode == Mode.BODY)
 		{
 			current_mode = Mode.LIST;
+			this.setScroll(0);
 			return true;
 		}
 		else if(current_mode == Mode.MOON)
@@ -417,6 +402,9 @@ public class Page_Systems extends Page_WithScroll {
 		if(current_mode == Mode.LIST && planets.size() > 8)
 			return planets.size() % 8;
 		
+		if(current_mode == Mode.BODY || current_mode == Mode.MOON)
+			return 5;
+		
 		return 0;
 	}	
 	
@@ -427,78 +415,5 @@ public class Page_Systems extends Page_WithScroll {
 		stacks.add(new ItemStack(GSBlocks.MERCURY_BLOCKS, 1, 4));
 		stacks.add(new ItemStack(GSBlocks.MERCURY_BLOCKS, 1, 5));	*/	
 		this.resources.put(body, stack);
-	}
-	
-	private void drawToolTip(int mousePosX, int mousePosY, String tooltip)
-	{
-		this.drawToolTip(mousePosX, mousePosY, tooltip, this.mc.fontRenderer.getStringWidth(tooltip), 8);
-	}
-	private void drawToolTip(int mousePosX, int mousePosY, String tooltip, int width, int height)
-	{
-		GL11.glDepthMask(true);
-        GL11.glEnable(GL11.GL_DEPTH_TEST);
-        GL11.glPushMatrix();
-        GL11.glTranslatef(0, 0, 300);
-        int k = width;
-        int j2 = mousePosX - k / 2;
-        int k2 = mousePosY - 12;
-        int i1 = height;
-/*
-        if (j2 + k > width)
-        {
-            j2 -= (j2 - width + k);
-        }
-
-        if (k2 + i1 + 6 > height)
-        {
-            k2 = height - i1 - 6;
-        }
-*/
-        int j1 = ColorUtil.to32BitColor(190, 0, 153, 255);
-        this.drawGradientRect(j2 - 3, k2 - 4, j2 + k + 3, k2 - 3, j1, j1);
-        this.drawGradientRect(j2 - 3, k2 + i1 + 3, j2 + k + 3, k2 + i1 + 4, j1, j1);
-        this.drawGradientRect(j2 - 3, k2 - 3, j2 + k + 3, k2 + i1 + 3, j1, j1);
-        this.drawGradientRect(j2 - 4, k2 - 3, j2 - 3, k2 + i1 + 3, j1, j1);
-        this.drawGradientRect(j2 + k + 3, k2 - 3, j2 + k + 4, k2 + i1 + 3, j1, j1);
-        int k1 = ColorUtil.to32BitColor(170, 0, 153, 255);
-        int l1 = (k1 & 16711422) >> 1 | k1 & -16777216;
-        this.drawGradientRect(j2 - 3, k2 - 3 + 1, j2 - 3 + 1, k2 + i1 + 3 - 1, k1, l1);
-        this.drawGradientRect(j2 + k + 2, k2 - 3 + 1, j2 + k + 3, k2 + i1 + 3 - 1, k1, l1);
-        this.drawGradientRect(j2 - 3, k2 - 3, j2 + k + 3, k2 - 3 + 1, k1, k1);
-        this.drawGradientRect(j2 - 3, k2 + i1 + 2, j2 + k + 3, k2 + i1 + 3, l1, l1);
-
-        this.mc.fontRenderer.drawSplitString(tooltip, j2, k2, 150, ColorUtil.to32BitColor(255, 255, 255, 255));
-
-        GL11.glPopMatrix();   
-	}
-	
-	protected void drawGradientRect(int left, int top, int right, int bottom, int startColor, int endColor)
-    {
-        float f = (float)(startColor >> 24 & 255) / 255.0F;
-        float f1 = (float)(startColor >> 16 & 255) / 255.0F;
-        float f2 = (float)(startColor >> 8 & 255) / 255.0F;
-        float f3 = (float)(startColor & 255) / 255.0F;
-        float f4 = (float)(endColor >> 24 & 255) / 255.0F;
-        float f5 = (float)(endColor >> 16 & 255) / 255.0F;
-        float f6 = (float)(endColor >> 8 & 255) / 255.0F;
-        float f7 = (float)(endColor & 255) / 255.0F;
-        float zLevel = 0.0F;
-        GlStateManager.disableTexture2D();
-        GlStateManager.enableBlend();
-        GlStateManager.disableAlpha();
-        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-        GlStateManager.shadeModel(7425);
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder bufferbuilder = tessellator.getBuffer();
-        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_COLOR);
-        bufferbuilder.pos((double)right, (double)top, (double)zLevel).color(f1, f2, f3, f).endVertex();
-        bufferbuilder.pos((double)left, (double)top, (double)zLevel).color(f1, f2, f3, f).endVertex();
-        bufferbuilder.pos((double)left, (double)bottom, (double)zLevel).color(f5, f6, f7, f4).endVertex();
-        bufferbuilder.pos((double)right, (double)bottom, (double)zLevel).color(f5, f6, f7, f4).endVertex();
-        tessellator.draw();
-        GlStateManager.shadeModel(7424);
-        GlStateManager.disableBlend();
-        GlStateManager.enableAlpha();
-        GlStateManager.enableTexture2D();
-    }
+	}	
 }

@@ -13,14 +13,20 @@ public class Page_Advanced_Circuit_Fabricator extends Page_WithCraftMatrix {
 
 	@Override
 	public String titlePage() {
-		return "advanced_circuit_fabricator";
+		return getItem().getUnlocalizedName() + ".name";
+	}
+	
+	@Override
+	public boolean rawTitle()
+	{
+		return true;
 	}
 
 	@Override
 	public ResourceLocation iconTitle() {
 		return null;
 	}
-
+	
 	@Override
 	public int getMaxScroll() {
 		return 0;

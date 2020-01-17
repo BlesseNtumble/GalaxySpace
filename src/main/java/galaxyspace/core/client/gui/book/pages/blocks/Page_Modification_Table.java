@@ -13,7 +13,13 @@ public class Page_Modification_Table extends Page_WithCraftMatrix {
 
 	@Override
 	public String titlePage() {
-		return "modification_table";
+		return getItem().getUnlocalizedName() + ".name";
+	}
+	
+	@Override
+	public boolean rawTitle()
+	{
+		return true;
 	}
 
 	@Override

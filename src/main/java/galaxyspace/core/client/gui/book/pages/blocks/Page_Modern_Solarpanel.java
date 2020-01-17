@@ -13,7 +13,13 @@ public class Page_Modern_Solarpanel extends Page_WithCraftMatrix {
 
 	@Override
 	public String titlePage() {
-		return "hybrid_solarpanel";
+		return getItem().getUnlocalizedName() + ".name";
+	}
+	
+	@Override
+	public boolean rawTitle()
+	{
+		return true;
 	}
 
 	@Override

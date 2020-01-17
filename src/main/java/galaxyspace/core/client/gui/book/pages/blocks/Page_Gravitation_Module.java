@@ -13,7 +13,13 @@ public class Page_Gravitation_Module extends Page_WithCraftMatrix {
 
 	@Override
 	public String titlePage() {
-		return "gravitation_module";
+		return getItem().getUnlocalizedName() + ".name";
+	}
+	
+	@Override
+	public boolean rawTitle()
+	{
+		return true;
 	}
 
 	@Override

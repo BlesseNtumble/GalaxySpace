@@ -13,7 +13,13 @@ public class Page_Fuel_Generator extends Page_WithCraftMatrix {
 
 	@Override
 	public String titlePage() {
-		return "fuel_generator";
+		return getItem().getUnlocalizedName() + ".name";
+	}
+	
+	@Override
+	public boolean rawTitle()
+	{
+		return true;
 	}
 
 	@Override

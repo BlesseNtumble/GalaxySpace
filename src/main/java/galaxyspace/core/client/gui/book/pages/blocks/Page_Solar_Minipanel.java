@@ -24,7 +24,13 @@ public class Page_Solar_Minipanel extends Page_WithCraftMatrix {
 
 	@Override
 	public String titlePage() {
-		return "solar_minipanel";
+		return getItem().getUnlocalizedName() + ".name";
+	}
+	
+	@Override
+	public boolean rawTitle()
+	{
+		return true;
 	}
 
 	@Override

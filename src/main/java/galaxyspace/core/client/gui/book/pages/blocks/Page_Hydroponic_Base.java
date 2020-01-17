@@ -13,7 +13,13 @@ public class Page_Hydroponic_Base extends Page_WithCraftMatrix {
 
 	@Override
 	public String titlePage() {
-		return "hydroponic_base";
+		return getItem().getUnlocalizedName() + ".name";
+	}
+	
+	@Override
+	public boolean rawTitle()
+	{
+		return true;
 	}
 
 	@Override

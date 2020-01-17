@@ -13,7 +13,13 @@ public class Page_Advanced_Electric_Compressor extends Page_WithCraftMatrix {
 
 	@Override
 	public String titlePage() {
-		return "advanced_electric_compressor";
+		return getItem().getUnlocalizedName() + ".name";
+	}
+	
+	@Override
+	public boolean rawTitle()
+	{
+		return true;
 	}
 
 	@Override
