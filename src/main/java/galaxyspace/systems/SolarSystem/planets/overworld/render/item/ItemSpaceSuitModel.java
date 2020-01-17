@@ -15,6 +15,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.init.MobEffects;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
@@ -101,11 +102,23 @@ public  class ItemSpaceSuitModel extends ModelOBJArmor {
 			if (Minecraft.getMinecraft().player.getActivePotionEffect(MobEffects.INVISIBILITY) != null) return;
 			
 			GL11.glTranslatef(0F, -1.9F, 0F);
-			GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
-			/*if(entity instanceof EntityArmorStand) 
+			//GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
+			if(entity != null && entity instanceof EntityArmorStand) 
 			{
-				GL11.glRotatef(180, 0.0F, 1.0F, 0.0F);
-			}*/
+				float i = ((EntityArmorStand)entity).rotationYaw;
+				//GalaxySpace.debug(i + "");			
+				if(i == 0)
+					GL11.glRotatef(i + 180, 0.0F, 1.0F, 0.0F);
+				if(i == 90 || i == -90)
+					GL11.glRotatef(i, 0.0F, 1.0F, 0.0F);
+				if(i == -45 || i == 135)
+					GL11.glRotatef(i - 90, 0.0F, 1.0F, 0.0F);
+				if(i == 45 || i == -135)
+					GL11.glRotatef(i + 90, 0.0F, 1.0F, 0.0F);
+				//else if(i < 45 && i > 0)
+			}
+			else
+				GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
 			GL11.glScalef(0.75F, 0.78F, 0.75F);
 			//Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 			GL11.glColor3f(color[0], color[1], color[2]);
