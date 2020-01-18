@@ -316,5 +316,10 @@ public class RocketAssemblyRecipes
     {
         return RocketAssemblyRecipes.recipes;
     }
+    
+    public static void removeRecipe(ItemStack match)
+    {
+    	RocketAssemblyRecipes.recipes.removeIf(irecipe -> ItemStack.areItemStacksEqual(match, irecipe.getRecipeOutput()));
+    }
 
 }

@@ -48,8 +48,13 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
     public int processTimeRequired = PROCESS_TIME_REQUIRED_BASE;
 	
     @NetworkedField(targetSide = Side.CLIENT)
-    public int processTicks = 0;	   
+    public int processTicks_0 = 0;
+    @NetworkedField(targetSide = Side.CLIENT)
+    public int processTicks_1 = 0;
+    @NetworkedField(targetSide = Side.CLIENT)
+    public int processTicks_2 = 0;
 	
+    
     private final int tankCapacity = 3000;
     @NetworkedField(targetSide = Side.CLIENT)
 	public FluidTank waterTank = new FluidTank(this.tankCapacity);    
@@ -124,19 +129,24 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
     	SeedData data = new SeedData(seed, product, secproduct, secchance, block, stages, rand);
     	seeds.add(data);
     }
-    
-    public List getSeeds()
+           
+    public static List getSeeds()
     {
-    	return this.seeds;
+    	return seeds;
     }
     
-    public SeedData getData(ItemStack seed)
+    public static SeedData getData(ItemStack seed)
     {
-    	for(SeedData data : this.seeds)
+    	for(SeedData data : seeds)
     		if(seed.isItemEqual(data.getSeed()))
     			return data;
     	
     	return null;
+    }
+    
+    public static void removePlant(ItemStack seed)
+    {
+    	seeds.remove(getData(seed));
     }
     
     @Override
@@ -195,55 +205,81 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
 		                }
 	                }
             }
-			
+			int ticks = 0;
 			if (this.canProcess())
-            {			
-				
+	        {			
 				if (this.hasEnoughEnergyToRun)
-                {
-                    if (this.processTicks == 0)
-                    {
-                        this.processTicks = this.processTimeRequired;
-                    }
-                    else
-                    {
-                        if (--this.processTicks <= 0)
-                        {                        	                        	
-                            this.smeltItem();
-                            this.processTicks = this.canProcess() ? this.processTimeRequired : 0;
-                        }
-                        
-                        this.waterTank.drain(1, true);
-                        
-                        if(!this.getInventory().get(8).isEmpty() 
-                        		&& (this.getInventory().get(8).getItem() == Items.DYE && this.getInventory().get(8).getItemDamage() == 15 
-                        		|| this.getInventory().get(8).getItem() == GSItems.BASIC && this.getInventory().get(8).getItemDamage() == 4))
-                        {
-                        	
-                        	if (this.processTicks % 100 == 0) {
-                        		this.processTicks -= 2000;                        		
-                        		if(this.getInventory().get(8).getCount() > 1) this.getInventory().get(8).shrink(1);
-                        		else this.getInventory().set(8, ItemStack.EMPTY);
-                        	}
-                        	
-                        }
-                        
-                    }
-                }
-                else if (this.processTicks > 0 && this.processTicks < this.processTimeRequired)
-                {
-                    //Apply a "cooling down" process if the electric furnace runs out of energy while smelting
-                    if (this.world.rand.nextInt(4) == 0)
-                    {
-                        this.processTicks++;
-                    }
-                }
-            }
-            else
-            {
-                this.processTicks = 0;
-            }
-        }
+				{
+					if (processTicks_0 == 0)
+						processTicks_0 = this.processTimeRequired;
+					if (processTicks_1 == 0)
+						processTicks_1 = this.processTimeRequired;
+					if (processTicks_2 == 0)
+						processTicks_2 = this.processTimeRequired;
+
+					if (--this.processTicks_0 <= 0) {
+						this.smeltItem();
+						processTicks_0 = this.canProcess() ? this.processTimeRequired : 0;
+					}
+					if (--this.processTicks_1 <= 0) {
+						this.smeltItem();
+						processTicks_1 = this.canProcess() ? this.processTimeRequired : 0;
+					}
+					if (--this.processTicks_2 <= 0) {
+						this.smeltItem();
+						processTicks_2 = this.canProcess() ? this.processTimeRequired : 0;
+					}
+
+					this.waterTank.drain(1, true);
+
+					if (!this.getInventory().get(8).isEmpty() && (this.getInventory().get(8).getItem() == Items.DYE
+							&& this.getInventory().get(8).getItemDamage() == 15
+							|| this.getInventory().get(8).getItem() == GSItems.BASIC
+									&& this.getInventory().get(8).getItemDamage() == 4)) {
+
+						if (this.processTicks_0 % 100 == 0) {
+							this.processTicks_0 -= 2000;
+							if (this.getInventory().get(8).getCount() > 1)
+								this.getInventory().get(8).shrink(1);
+							else
+								this.getInventory().set(8, ItemStack.EMPTY);
+						}
+						if (this.processTicks_1 % 100 == 0) {
+							this.processTicks_1 -= 2000;
+							if (this.getInventory().get(8).getCount() > 1)
+								this.getInventory().get(8).shrink(1);
+							else
+								this.getInventory().set(8, ItemStack.EMPTY);
+						}
+						if (this.processTicks_2 % 100 == 0) {
+							this.processTicks_2 -= 2000;
+							if (this.getInventory().get(8).getCount() > 1)
+								this.getInventory().get(8).shrink(1);
+							else
+								this.getInventory().set(8, ItemStack.EMPTY);
+						}
+
+					}
+
+				} else if (this.processTicks_0 > 0 && this.processTicks_0 < this.processTimeRequired) {
+					if (this.world.rand.nextInt(4) == 0) {
+						this.processTicks_0++;
+					}
+				} else if (this.processTicks_1 > 0 && this.processTicks_1 < this.processTimeRequired) {
+					if (this.world.rand.nextInt(4) == 0) {
+						this.processTicks_1++;
+					}
+				} else if (this.processTicks_2 > 0 && this.processTicks_2 < this.processTimeRequired) {
+					if (this.world.rand.nextInt(4) == 0) {
+						this.processTicks_2++;
+					}
+				}
+			} else {
+				this.processTicks_0 = 0;
+				this.processTicks_1 = 0;
+				this.processTicks_2 = 0;
+			}
+		}
     }
     
     public boolean canProcess()
@@ -259,7 +295,6 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
 					&& this.getInventory().get(i+8).getCount() >= 64) return false;
 			
 			if(this.getInventory().get(i*2).isEmpty()) return false;
-
 			
 			ItemStack stack = this.getInventory().get(i*2);
 			SeedData data = getSeedData(stack);
@@ -353,9 +388,13 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
 		
 		
 		
-		
+		int ticks = 0;
 		for(int i = 1; i <= this.getModuleLevel(); i++)
 		{
+			if(i == 1) ticks = processTicks_0;
+        	else if(i == 2) ticks = processTicks_1;
+        	else if(i == 3) ticks = processTicks_2;
+			
 			if(world.getTileEntity(pos.up(i)) instanceof TileEntityHydroponicFarm)
 			{
 				TileEntityHydroponicFarm farm = (TileEntityHydroponicFarm) world.getTileEntity(pos.up(i));
@@ -368,7 +407,7 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
 						SeedData data = getSeedData(this.getInventory().get(i * 2));
 						
 						if(data != null) {
-							int scale = processTicks > 0 ? (int) ((double) this.processTicks / (double) this.processTimeRequired * (int) data.getStages()) : (int) data.getStages();
+							int scale = ticks > 0 ? (int) ((double) ticks/ (double) this.processTimeRequired * (int) data.getStages()) : (int) data.getStages();
 						
 							farm.setPlant(data.getBlock());
 							farm.setMetaPlant(data.getStages() - scale);
@@ -430,7 +469,9 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
         super.readFromNBT(par1NBTTagCompound);
         
         this.moduleLevel = par1NBTTagCompound.getInteger("moduleTier");
-        this.processTicks = par1NBTTagCompound.getInteger("smeltingTicks");
+        this.processTicks_0 = par1NBTTagCompound.getInteger("smeltingTicks_0");
+        this.processTicks_1 = par1NBTTagCompound.getInteger("smeltingTicks_1");
+        this.processTicks_2 = par1NBTTagCompound.getInteger("smeltingTicks_2");
         
         ItemStackHelper.loadAllItems(par1NBTTagCompound, this.getInventory());
         
@@ -445,7 +486,9 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
     public NBTTagCompound writeToNBT(NBTTagCompound par1NBTTagCompound)
     {
     	super.writeToNBT(par1NBTTagCompound);
-        par1NBTTagCompound.setInteger("smeltingTicks", this.processTicks);
+        par1NBTTagCompound.setInteger("smeltingTicks_0", this.processTicks_0);
+        par1NBTTagCompound.setInteger("smeltingTicks_1", this.processTicks_1);
+        par1NBTTagCompound.setInteger("smeltingTicks_2", this.processTicks_2);
         par1NBTTagCompound.setInteger("moduleTier", this.moduleLevel);
 
         ItemStackHelper.saveAllItems(par1NBTTagCompound, this.getInventory());

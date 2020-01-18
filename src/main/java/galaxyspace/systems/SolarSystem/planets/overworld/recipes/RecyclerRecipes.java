@@ -26,6 +26,11 @@ public class RecyclerRecipes {
 	 {
 		 this.recipes.add(new RecycleRecipe(stack, result, fluidstack, chance));
 	 }
+	 
+	 public void removeRecipe(ItemStack stack)
+	 {
+		 recipes.remove(getRecipe(stack));
+	 }
 	 	 	 
 	 public List<RecycleRecipe> getRecipes()
 	 {

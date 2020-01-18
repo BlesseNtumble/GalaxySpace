@@ -35,7 +35,7 @@ public class TileEntityPanelController extends TileBaseUniversalElectricalSource
 
     public static final float MIN_GENERATE_GJ_PER_TICK = 1;
     
-	public Map<BlockPos, Integer> panels = new HashMap<BlockPos, Integer>();
+	private Map<BlockPos, Integer> panels = new HashMap<BlockPos, Integer>();
 
 	@NetworkedField(targetSide = Side.CLIENT)
     public float heatGJperTick = 0;

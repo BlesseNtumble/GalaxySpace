@@ -15,8 +15,6 @@ import net.minecraft.util.NonNullList;
 
 public class TileEntityModificationTable extends TileBaseElectricBlockWithInventory {
 		
-	private List<ItemModule> modules = new ArrayList<ItemModule>();
-	
 	public TileEntityModificationTable()
     {		
 		super("tile.modification_table.name");
