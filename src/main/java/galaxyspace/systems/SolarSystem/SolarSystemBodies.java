@@ -267,7 +267,7 @@ public class SolarSystemBodies implements IBodies{
 		MarsModule.planetMars.setRingColorRGB(0.0F, 0.4F, 0.9F);
 		if(GSConfigCore.enableWorldEngine && GSConfigCore.enableGSMars) {
 			MarsModule.planetMars.setDimensionInfo(ConfigManagerMars.dimensionIDMars, WorldProviderMars_WE.class, true);
-			MarsModule.planetMars.setAtmosphere(new AtmosphereInfo(false, false, false, -2.4F, 1.0F, 0.1F));	
+			MarsModule.planetMars.setAtmosphere(new AtmosphereInfo(false, false, false, -2.0F, 1.0F, 0.1F));	
 		}
 		AsteroidsModule.planetAsteroids.setRelativeDistanceFromCenter(new CelestialBody.ScalableDistance(1.75F, 1.75F));
 				
@@ -420,7 +420,7 @@ public class SolarSystemBodies implements IBodies{
 					
 		//BodiesInfo.registerBody(testPlanet, 0.04F, 0, -2, 0, 48000, false, true, GalaxySpace.debug);
 		
-	   	data = new BodiesData(null, 0.062F, 0, 192000, true);
+	   	data = new BodiesData(null, 0.062F, 0, 192000, false);
 		BodiesHelper.registerBody(GalacticraftCore.moonMoon, data, false);
 
 	   	data = new BodiesData(null, 0.068F, 0, 12000, false);   	
