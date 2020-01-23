@@ -23,7 +23,7 @@ public class Mars_Plains extends WE_Biome {
 		biomeScaleX             = 280.0D;
 		biomeScaleY             =   1.7D;
 		biomeSurfaceHeight      =     80;
-		biomeInterpolateQuality =     20;
+		biomeInterpolateQuality =     30;
 		
 		//-//
 		decorateChunkGen_List.clear();		

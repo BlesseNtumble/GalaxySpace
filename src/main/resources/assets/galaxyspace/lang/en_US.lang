@@ -442,12 +442,14 @@ gui.message.can_find_in_dungeon=Can find in dungeons.
 gui.message.need_advanced_lp.desc=Can place only on Advanced Landing Pad.
 gui.message.engine_type.name=Engine Type:
 gui.message.effect_visible.name=Effects visible
+gui.message.resources=Available Resources:
+
 gui.tank.passive_oxygen_regen.desc1=Passively generate oxygen
 gui.tank.passive_oxygen_regen.desc2=if the player is in a suitable sphere (bubble, sealed room).
 
 gui.gravity.radius.name=Radius of action:
 
-gs.success.name=Actual version:
+gs.success.name=Available version:
 gs.update.available=New version available!
 gs.update.download=Download
 gs.update.changelog=Changelog
@@ -562,17 +564,27 @@ book.category.mechanics.name=Mechanics
 #||||||||||||||||Book-General|||||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 book.page.about_addon.name=About Galaxy Space
-book.page.about_addon.text=Galaxy Space - addon for Galacticraft, adding an impressive amount of in-game content. !nThe development of the addon has been going on for more than 4 years, contributing more and more game content. !n!nAll star systems are made on the basis of real data and are as close to reality as the Minecraft engine allows. The emphasis of the addon is also towards realism. 
+book.page.about_addon.text=Galaxy Space - addon for Galacticraft, adding an impressive amount of in-game content. !n!nThe development of the addon has been going on for more than 4 years, contributing more and more game content. !n!nAll star systems are made on the basis of real data and are as close to reality as the Minecraft engine allows. The emphasis of the addon is also towards realism. 
 book.page.actual_update.name=Actual Update
+
 #|/////////////////////////////////////////|
 #||||||||||||Book-Celestial Bodies||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-book.page.solarsystem.sol.name=Solar System
-book.page.star.sol=Main star: Sol - Yellow dwarf 
-book.page.solarsystem.asteroids=The asteroid belt is a massive cluster of asteroids orbiting the sun. Most asteroids contain a large amount of minerals.
-book.page.solarsystem.ceres=Ceres is a dwarf planet in the Asteroid Belt. It contains copious amounts of meteoric iron and dolomite crystals.
-book.page.solarsystem.jupiter=Jupiter - Gas giant with stone moons that are available to the reachable.
-book.page.solarsystem.callisto=Callisto - the farthest moon of Jupiter.
+book.page.star.sol.desc=!c_ySol - Yellow dwarf. !c_wThe native star of humans.
+book.page.solarsystem.sol.asteroids=The asteroid belt is a massive cluster of asteroids orbiting the sun. Most asteroids contain a large amount of minerals.
+book.page.solarsystem.sol.ceres=Ceres is a dwarf planet in the Asteroid Belt. It contains copious amounts of meteoric iron and dolomite crystals.
+book.page.solarsystem.sol.jupiter=Jupiter - Gas giant with stone moons that are available to the reachable.
+book.page.solarsystem.sol.callisto=Callisto - the farthest moon of Jupiter.
+
+book.page.star.barnarda_a.desc=!c_yBarnarda A - Orange dwarf. !c_wA nearby star relative to the sun.
+book.page.solarsystem.barnards.barnarda_b=Barnarda B - The gas giant located close to its star. It has a ring of the smallest stones.
+book.page.solarsystem.barnards.barnarda_b1=The ring of the planet, consisting of many tiny stones.
+book.page.solarsystem.barnards.barnarda_c=Barnarda C - A planet located in the !c_ghabitable zone !c_wof its star. It has suitable conditions for humans.
+book.page.solarsystem.barnards.barnarda_c1=Barnarda C1 - Frozen moon. Very cold conditions for humans.
+book.page.solarsystem.barnards.barnarda_c2=Barnarda C2 - Unrealized moon.
+book.page.solarsystem.barnards.barnarda_d=The asteroid belt is a massive cluster of asteroids orbiting the star. Most asteroids contain a large amount of minerals.
+book.page.solarsystem.barnards.barnarda_e=Barnarda E - The distant gas giant.
+
 #|/////////////////////////////////////////|
 #|||||||||||||||Book-Mechanics||||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|

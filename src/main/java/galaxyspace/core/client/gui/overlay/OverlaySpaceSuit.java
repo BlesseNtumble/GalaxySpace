@@ -45,7 +45,7 @@ public class OverlaySpaceSuit extends Overlay {
 			String str = GalaxySpace.debug ? "Thermal Level: " + String.format("%.4f", prov.getThermalLevelModifier()) + " | " + String.format("%.2f", temp) + " C" : "T: " + String.format("%.1f", temp) + " C";
 			mc.fontRenderer.drawString(str, scaled.getScaledWidth() - (str.length() * 5) - 12, 75, 0xFFFFFF);
 		}
-		
+		int max = 0;
 		for(ItemStack stack : player.inventory.armorInventory)
 		{
 			if(stack.isEmpty() || !(stack.getItem() instanceof ItemSpaceSuit)) 
@@ -86,7 +86,7 @@ public class OverlaySpaceSuit extends Overlay {
 					if(stack.getTagCompound().getBoolean(ItemSpaceSuit.suit_buttons[3])) { enable = true;}
 				};
 								
-				int xOffset = 5, yOffset = 0;
+				int xOffset = -35, yOffset = 0;
 				
 				if(GSConfigCore.spacesuit_pos.equals("up") || GSConfigCore.spacesuit_pos.equals("top")) 
 					yOffset = 70;
@@ -112,11 +112,14 @@ public class OverlaySpaceSuit extends Overlay {
 						status = EnumColor.ORANGE;
 					
 					RenderHelper.enableStandardItemLighting();
-					if(horizontal) {
-						mc.getRenderItem().renderItemAndEffectIntoGUI(module, xOffset - (i * 20) + 60, yOffset - 6);
-						mc.getRenderItem().renderItemOverlays(mc.fontRenderer, stack, xOffset - (i * 20) + 60, yOffset - 6);
+					if(!horizontal) {
+						String key = keys[3 - player.inventory.armorInventory.indexOf(stack)];
+						if(max < key.length()) max = key.length();
+						
+						mc.getRenderItem().renderItemAndEffectIntoGUI(module, xOffset - (i * 35) + 160, yOffset - 6);
+						mc.getRenderItem().renderItemOverlays(mc.fontRenderer, stack, xOffset - (i * 35) + 160, yOffset - 6);
 						RenderHelper.disableStandardItemLighting();
-						mc.fontRenderer.drawSplitString(status + "[" + keys[3 - player.inventory.armorInventory.indexOf(stack)] + "] ", xOffset - (i * 20) + 62, yOffset + 10, 10, 0xFFFFFF);
+						mc.fontRenderer.drawSplitString(status + "[" + key + "] ", xOffset - (i * 35) + 162 - ((int)(key.length() / 2) * 6), yOffset + 10, key.length() * 20, 0xFFFFFF);
 					}
 					else {
 						mc.getRenderItem().renderItemAndEffectIntoGUI(module, xOffset, yOffset - (i * 20));

@@ -439,6 +439,7 @@ public class ClientProxy extends CommonProxy{
 		
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.JETPACK, 0, "armor/" + GSItems.JETPACK.getUnlocalizedName().substring(5));
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.TERRA_MANIPULATOR, 0, "tools/" + GSItems.TERRA_MANIPULATOR.getUnlocalizedName().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.GEOLOGICAL_SCANNER, 0, "tools/" + GSItems.GEOLOGICAL_SCANNER.getUnlocalizedName().substring(5));
 		
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_HELMET, 0, "armor/" + GSItems.COBALT_HELMET.getUnlocalizedName().substring(5));
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_CHEST, 0, "armor/" + GSItems.COBALT_CHEST.getUnlocalizedName().substring(5));
@@ -592,6 +593,7 @@ public class ClientProxy extends CommonProxy{
         
         addVariant("jetpack", "armor/", "jetpack");
         //addVariant("matter_manipulator", "tools/", "matter_manipulator");
+        addVariant("geo_scanner", "tools/", "geo_scanner");
         
         addVariant("cobalt_helmet", "armor/", "cobalt_helmet");
         addVariant("cobalt_chest", "armor/", "cobalt_chest");

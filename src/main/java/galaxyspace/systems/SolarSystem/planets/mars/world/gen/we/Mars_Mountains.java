@@ -18,12 +18,12 @@ public class Mars_Mountains extends WE_Biome {
 				
 		biomeMinValueOnMap      =  	min;
 		biomeMaxValueOnMap      =   max;
-		biomePersistence        =   1.2D;
+		biomePersistence        =   1.8D;
 		biomeNumberOfOctaves    =      4;
 		biomeScaleX             = 280.0D;
 		biomeScaleY             =   1.7D;
 		biomeSurfaceHeight      =     140;
-		biomeInterpolateQuality =     2;
+		biomeInterpolateQuality =     8;
 		
 		//-//
 		decorateChunkGen_List.clear();		

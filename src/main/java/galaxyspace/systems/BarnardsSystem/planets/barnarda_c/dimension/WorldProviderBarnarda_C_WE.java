@@ -102,6 +102,12 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProvider implements IPro
         return 180.0F;
     }
     
+	@Override
+	public boolean canRespawnHere()
+	{
+		return true;
+	}
+	
     @Nullable
     @SideOnly(Side.CLIENT)
     public float[] calcSunriseSunsetColors(float celestialAngle, float partialTicks)
@@ -277,7 +283,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProvider implements IPro
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Plains(-3.0D, 3.0D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Forest(-2.3D, 2.9D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(-2.2D, 2.2D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Swampland(-2.1D, 1.8D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Swampland(-1.8D, 1.8D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(-1.3D, 1.5D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Dunes(-1.2D, 1.2D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-1.0D, 1.0D, 100, 2.8D, 4));	

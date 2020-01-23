@@ -1,4 +1,4 @@
-package galaxyspace.core.client.gui.book.pages.bodies;
+package galaxyspace.core.client.gui.book.pages;
 
 import java.util.ArrayList;
 import java.util.HashMap;

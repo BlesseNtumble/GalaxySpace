@@ -1,6 +1,7 @@
 package galaxyspace.core.client.gui.book.pages.bodies;
 
 import galaxyspace.api.IPage;
+import galaxyspace.core.client.gui.book.pages.Page_Systems;
 import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.systems.SolarSystem.SolarSystemBodies;
