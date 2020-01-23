@@ -98,7 +98,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
 		"methane_ice_crystal",		// 25
 		"hydrogen_ice_crystal",		// 26
 		"dry_ice_crystal",			// 27
-		"geo_scanner"				// 28
+		//"geo_scanner"				// 28
 		//"raw_plastic", 				
 		//"plastic_stick"				
 	};
@@ -196,6 +196,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
 	public EnumSortCategoryItem getCategory(int meta) {
 		return EnumSortCategoryItem.GENERAL;
 	}
+			 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
 	{
@@ -206,7 +207,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
 		if(world.isRemote)
 		{			
 			return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
-		}
+		}/*
 		else if(stack.getItemDamage() == 28)
 		{
 			RayTraceResult ray = this.getRay(world, player, true);
@@ -217,9 +218,6 @@ public class ItemBasicGS extends Item implements ISortableItem{
 					IBlockState block = world.getBlockState(scan);				
 					if(world.isAirBlock(scan)) continue;				
 					
-					
-					//GalaxySpace.debug("" + block);
-					//GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_GLOW_BLOCK, player.world, new Object[] {new BlockVec3(scan.getX(), scan.getY(), scan.getZ()), 5}), (EntityPlayerMP) player);
 					if(blocks.containsKey(block)) {
 						blocks.put(block, blocks.get(block) + 1);
 						continue;
@@ -227,18 +225,17 @@ public class ItemBasicGS extends Item implements ISortableItem{
 					
 					blocks.put(block, 1);
 				}
-			
-			
 				
 				for(Entry<IBlockState, Integer> block : blocks.entrySet()) {
 					ItemStack item = new ItemStack(Item.getItemFromBlock(block.getKey().getBlock()), 1, block.getKey().getBlock().getMetaFromState(block.getKey()));				
 						
 					player.sendMessage(new TextComponentString(TextFormatting.GREEN + item.getDisplayName() + " x" + block.getValue()));
 				}//GalaxySpace.debug("" + blocks);
+				player.sendMessage(new TextComponentString(TextFormatting.GREEN + "#################################"));
 				
 			}
 			
-		}
+		}*/
 		else if(stack.getItemDamage() == 6)
 		{
 			StatsCapability gs_stats = GSStatsCapability.get(player);

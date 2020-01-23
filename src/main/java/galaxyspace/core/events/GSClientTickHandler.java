@@ -5,6 +5,9 @@ import java.util.Random;
 import org.lwjgl.opengl.GL11;
 
 import asmodeuscore.api.dimension.IAdvancedSpace;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProvider;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_PerlinNoise;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProvider;
 import asmodeuscore.core.astronomy.gui.book.ACGuiGuideBook;
 import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
@@ -16,12 +19,18 @@ import galaxyspace.core.client.gui.overlay.OverlaySpaceSuit;
 import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.network.packet.GSPacketSimple;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
+import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.core.util.GSThreadVersionCheck;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemGeologicalScanner;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemTerraManipulator;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import micdoodle8.mods.galacticraft.core.util.ColorUtil;
 import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
+import micdoodle8.mods.galacticraft.planets.GalacticraftPlanets;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.GuiMainMenu;
@@ -29,15 +38,23 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped.ArmPose;
 import net.minecraft.client.model.ModelPlayer;
 import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderGlobal;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHandSide;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -156,6 +173,20 @@ public class GSClientTickHandler {
         			long time = player.world.getWorldTime() % (t1 > 0 ? t1 : 1);
         		
         			float temp = player.world.provider instanceof IGalacticraftWorldProvider ? ((IGalacticraftWorldProvider) player.world.provider).getCelestialBody().atmosphere.thermalLevel() : 1.0F;
+        			boolean isWE = player.getEntityWorld().provider instanceof WE_WorldProvider;
+        			double count = 0;
+        			
+        			if(isWE) {
+	        			WE_ChunkProvider chunk = ((WE_WorldProvider)player.world.provider).chunk_provider;
+	        			
+	        			if(chunk != null) {
+		        			double scaleX = chunk.biomemapScaleX;
+		        			double persistance = chunk.biomemapPersistence;
+		        			count = WE_PerlinNoise.PerlinNoise2D((player.getEntityWorld().getSeed() * 11) ^ 6,	player.getEntityWorld().getChunkFromBlockCoords(player.getPosition()).x / scaleX, player.getEntityWorld().getChunkFromBlockCoords(player.getPosition()).z / scaleX,
+		        					persistance, chunk.biomemapNumberOfOctaves)
+		        				* chunk.biomemapScaleY;
+	        			}
+        			}
         			
         			String[] s = { 
         					GalaxySpace.NAME + " " + GalaxySpace.VERSION + " DEBUG Mode",
@@ -175,15 +206,18 @@ public class GSClientTickHandler {
         					"Biome: " + player.world.getBiomeForCoordsBody(new BlockPos((int)player.posX, (int)player.posY, (int)player.posZ)).getBiomeName(),
         					"Current Time: " + time + " | Day Length: " + (player.world.provider instanceof WorldProviderSpace ? ((WorldProviderSpace) player.world.provider).getDayLength() : "24000") + " | Total Time: " + player.world.getWorldTime(),
         					"Moon Phase: " + player.world.getMoonPhase(),
+        					"Chunk Pos: x" + player.getEntityWorld().getChunkFromBlockCoords(player.getPosition()).x + " z" + player.getEntityWorld().getChunkFromBlockCoords(player.getPosition()).z,
         					"",
         					"Is Galacticraft Provider: " + ((player.getEntityWorld().provider instanceof IGalacticraftWorldProvider) ? "Yes" : "No"),
         					"Is Advance Space Provider: " + ((player.getEntityWorld().provider instanceof IAdvancedSpace) ? "Yes" : "No"), 
         					"Is Enable Oregen: " + (GSConfigCore.enableOresGeneration == true ? "Yes" : "No"),
-        					"Is World Engine Provider: " +  ((player.getEntityWorld().provider instanceof WE_WorldProvider) == true ? "Yes" : "No")
+        					"Is World Engine Provider: " + (isWE ? "Yes" : "No"),
+        					"[WE] Biome Perlin Count: " + count
+        					
         			};
-        			
+            			
         			int k = 3;
-        			if(mc.gameSettings.isKeyDown(mc.gameSettings.keyBindSneak)) k = s.length;
+        			if(!mc.gameSettings.isKeyDown(mc.gameSettings.keyBindSneak)) k = s.length;
         			GL11.glPushMatrix();
         			//GlStateManager.disableLighting();
         			for(int i = 0; i < k; i++)
@@ -196,9 +230,107 @@ public class GSClientTickHandler {
         		if(minecraft.inGameHasFocus && !minecraft.gameSettings.hideGUI && GSConfigCore.enableSpaceSuitHUD)
         			OverlaySpaceSuit.renderSpaceSuitOverlay(playerBaseClient);
         		
-        		GlStateManager.disableLighting();
+        		GlStateManager.disableLighting();        		
+    			
             }
         }
+	}
+	/*
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void onDrawBlockSelectionBox(DrawBlockHighlightEvent e) {
+		
+	}
+	*/
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+    public void renderBlocks(RenderWorldLastEvent e) {
+		EntityPlayerSP player = Minecraft.getMinecraft().player;
+		ItemStack stack = player.getHeldItemMainhand();
+		
+		if(stack.getItem() instanceof ItemGeologicalScanner && stack.getItemDamage() < stack.getMaxDamage()) {	
+			RayTraceResult ray = ItemBasicGS.getRay(player.getEntityWorld(), player, false);
+    		
+			if(ray != null && ray.hitVec.distanceTo(player.getPositionVector()) < 5.0F) {
+				final Tessellator tess = Tessellator.getInstance();
+				BufferBuilder worldRenderer = tess.getBuffer();
+
+				//GalaxySpace.debug(ray.hitVec.distanceTo(player.getPositionVector()) + "");
+				GlStateManager.enableBlend();
+				GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+				GlStateManager.glLineWidth(2.0F);
+				GlStateManager.disableTexture2D();
+				GlStateManager.depthMask(false);
+				BlockPos blockpos = ray.getBlockPos();
+				IBlockState iblockstate = player.world.getBlockState(blockpos);
+
+				if (iblockstate.getMaterial() != Material.AIR && player.world.getWorldBorder().contains(blockpos)) {
+					double d3 = player.lastTickPosX + (player.posX - player.lastTickPosX) * (double) player.ticksExisted;
+					double d4 = player.lastTickPosY + (player.posY - player.lastTickPosY) * (double) player.ticksExisted;
+					double d5 = player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * (double) player.ticksExisted;
+					Minecraft.getMinecraft().renderGlobal.drawSelectionBoundingBox(iblockstate.getSelectedBoundingBox(player.world, blockpos)
+							.grow(2.0D).offset(-d3, -d4, -d5), 1.0F, 0.0F, 0.0F, 0.4F);
+					
+					//FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(GalacticraftPlanets.ASSET_PREFIX, "textures/misc/gradient.png"));
+
+				}
+
+				GlStateManager.depthMask(true);
+				GlStateManager.enableTexture2D();
+				GlStateManager.disableBlend();
+				/*GlStateManager.pushMatrix();
+	    		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(GalacticraftPlanets.ASSET_PREFIX, "textures/misc/gradient.png"));
+	    		GlStateManager.disableDepth();
+	            GlStateManager.enableTexture2D();
+	            net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
+	            Minecraft.getMinecraft().entityRenderer.disableLightmap();
+	            GlStateManager.disableTexture2D();
+	    		GlStateManager.translate(ray.getBlockPos().getX(), ray.getBlockPos().getY() + 1, ray.getBlockPos().getZ());
+	    		final Tessellator tess = Tessellator.getInstance();
+	    		BufferBuilder worldRenderer = tess.getBuffer();
+	    		GlStateManager.color(1.0F, 0.7F, 0.7F, 1.0F);
+	    		float cA = -0.01F;
+	    		float cB = 1.01F;
+
+	    		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+        		worldRenderer.pos(cA, cB, cA).tex(0D, 1D).endVertex();
+        		worldRenderer.pos(cB, cB, cA).tex(1D, 1D).endVertex();
+        		worldRenderer.pos(cB, cB, cB).tex(1D, 0D).endVertex();
+        		worldRenderer.pos(cA, cB, cB).tex(0D, 0D).endVertex();
+        		tess.draw();
+        		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+        		worldRenderer.pos(cA, cA, cA).tex(0D, 0D).endVertex();
+        		worldRenderer.pos(cA, cA, cB).tex(0D, 1D).endVertex();
+        		worldRenderer.pos(cB, cA, cB).tex(1D, 1D).endVertex();
+        		worldRenderer.pos(cB, cA, cA).tex(1D, 0D).endVertex();
+        		tess.draw();
+        		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+        		worldRenderer.pos(cA, cA, cA).tex(1D, 0D).endVertex();
+        		worldRenderer.pos(cA, cB, cA).tex(0D, 0D).endVertex();
+        		worldRenderer.pos(cA, cB, cB).tex(0D, 1D).endVertex();
+        		worldRenderer.pos(cA, cA, cB).tex(1D, 1D).endVertex();
+        		tess.draw();
+        		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+        		worldRenderer.pos(cB, cA, cA).tex(1D, 1D).endVertex();
+        		worldRenderer.pos(cB, cA, cB).tex(1D, 0D).endVertex();
+        		worldRenderer.pos(cB, cB, cB).tex(0D, 0D).endVertex();
+        		worldRenderer.pos(cB, cB, cA).tex(0D, 1D).endVertex();
+        		tess.draw();
+        		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+        		worldRenderer.pos(cA, cA, cA).tex(1D, 0D).endVertex();
+        		worldRenderer.pos(1F, cA, cA).tex(0D, 0D).endVertex();
+        		worldRenderer.pos(1F, 1F, cA).tex(0D, 1D).endVertex();
+        		worldRenderer.pos(cA, 1F, cA).tex(1D, 1D).endVertex();
+        		tess.draw();
+        		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+        		worldRenderer.pos(1F, cA, 1F).tex(1D, 1D).endVertex();
+        		worldRenderer.pos(cA, cA, 1F).tex(1D, 0D).endVertex();
+        		worldRenderer.pos(cA, 1F, 1F).tex(0D, 0D).endVertex();
+        		worldRenderer.pos(1F, 1F, 1F).tex(0D, 1D).endVertex();
+        		tess.draw();
+	    		GlStateManager.popMatrix();*/
+			}
+		}
 	}
 	
 	@SubscribeEvent
