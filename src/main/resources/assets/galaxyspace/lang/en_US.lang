@@ -355,9 +355,9 @@ item.rocket_stabiliser.name=Durable Rocket Vane
 item.part_solarflares.name=Solar Flare Module
 item.solarflares.name=Solar Flare
 
-item.oxygen_tank_4.name=Very Heavy Oxygen Tank
-item.oxygen_tank_5.name=Ultra Oxygen Tank
-item.oxygen_tank_6.name=Very Ultra Oxygen Tank
+item.oxygen_tank_4.name=Super Oxygen Tank
+item.oxygen_tank_5.name=Supreme Oxygen Tank
+item.oxygen_tank_6.name=Omega Oxygen Tank
 item.oxygen_tank_epp_1.name=Environmental Protection Oxygen Tank
 
 item.advanced_battery.name=Advanced Battery
@@ -434,6 +434,7 @@ gui.message.needoxygenthermal=Oxygen and thermal control is necessary to perform
 gui.message.needoxygen.food=Oxygen is necessary to use earth food!
 gui.message.needoxygenandthermal.food=Oxygen and thermal control is necessary to use earth food!
 gui.message.invalid_teleport_conf=Invalid teleport configuration or no energy.
+gui.message.cant_place=Can't this place.
  
 gui.message.noradiation=You not have solar radiation! It's good!
 gui.message.emergency_teleport=Emergency teleport successfully used. Coordinates:
