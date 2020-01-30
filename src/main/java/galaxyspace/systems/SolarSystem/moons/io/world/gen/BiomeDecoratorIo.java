@@ -14,6 +14,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.fluids.FluidRegistry;
 
 public class BiomeDecoratorIo extends BiomeDecoratorSpace
 {
@@ -31,7 +32,7 @@ public class BiomeDecoratorIo extends BiomeDecoratorSpace
     public BiomeDecoratorIo()
     {    	
     	this.lavalakesGen = new WorldGenLakes(Blocks.FLOWING_LAVA, 0, GSBlocks.IO_BLOCKS, 0).addAdditions(GSBlocks.IO_BLOCKS.getStateFromMeta(5), 85);
-    	this.sulfurlakesGen = new WorldGenLakes(VenusBlocks.sulphuricAcid, 0, GSBlocks.IO_BLOCKS, 0);
+    	this.sulfurlakesGen = new WorldGenLakes(FluidRegistry.getFluid("sulphuricacid").getBlock(), 0, GSBlocks.IO_BLOCKS, 0);
     	
     	this.OreGenCopper = new WorldGenMinableMeta(GSBlocks.IO_BLOCKS, 4, 3, true, GSBlocks.IO_BLOCKS, 1);
     	this.OreGenSulfur = new WorldGenMinableMeta(GSBlocks.IO_BLOCKS, 3, 4, true, GSBlocks.IO_BLOCKS, 1);

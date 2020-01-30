@@ -156,7 +156,7 @@ public class CraftingRecipesOverworld {
 	  // int var2 = 100;
 	   for (int var2 = 0; var2 < 100; var2 += 100)
        {
-r
+
 			   RecipeUtil.addRecipe(new ItemStack(GSItems.JetPack, 1, 100), new Object[] { "ABA", "CDC", "EFE", 'A', MarsBlocks.hydrogenPipe, 'B', new ItemStack(GCItems.battery, 1, var2), 'C', "compressedMeteoricIron", 'D', GCItems.steelChestplate, 'E', new ItemStack(GCItems.fuelCanister, 1, 1), 'F', new ItemStack(GCBlocks.aluminumWire, 1, 1) });
 			   RecipeUtil.addRecipe(new ItemStack(GSItems.PlasmaSword, 1), new Object[] { " X ", " X ", "ZVZ", 'X', "plateCobalt", 'Z', new ItemStack(GCBlocks.aluminumWire, 1, 0), 'V', new ItemStack(GCItems.battery, 1, var2) });
 			   RecipeUtil.addRecipe(new ItemStack(GSItems.PlasmaAxe, 1), new Object[] { "XX ", "XY ", "ZVZ", 'X', "plateCobalt", 'Z', new ItemStack(GCBlocks.aluminumWire, 1, 0), 'V', new ItemStack(GCItems.battery, 1, var2), 'Y', GCItems.flagPole });
@@ -278,7 +278,7 @@ r
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GCBlocks.blockMoon, 1, 4), new ItemStack(GCItems.itemBasicMoon, 1, 2), 5, null);	 
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GCBlocks.blockMoon, 1, 5), new ItemStack(GCBlocks.blockMoon, 1, 3), new FluidStack(GSFluids.Helium3, 10));
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(MarsBlocks.marsBlock, 20, 5), new ItemStack(GSItems.BASIC, 1, 6), null);
-	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSItems.BASIC, 1, 7), new ItemStack(Items.GUNPOWDER, 1, 0), new FluidStack(VenusModule.sulphuricAcid, 20));
+	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSItems.BASIC, 1, 7), new ItemStack(Items.GUNPOWDER, 1, 0), new FluidStack(FluidRegistry.getFluid("sulphuricacid"), 20));
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSBlocks.SURFACE_ICE, 1), ItemStack.EMPTY, new FluidStack(FluidRegistry.WATER, 100));
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSBlocks.EUROPA_BLOCKS, 1, 2), new ItemStack(GSItems.BASIC, 1, 6), 50, new FluidStack(FluidRegistry.WATER, 100));
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSBlocks.MERCURY_BLOCKS, 1, 0), ItemStack.EMPTY, new FluidStack(GSFluids.Helium3, 100));
