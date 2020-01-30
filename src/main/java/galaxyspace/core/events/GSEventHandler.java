@@ -3,8 +3,6 @@ package galaxyspace.core.events;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.lwjgl.opengl.GL11;
-
 import asmodeuscore.api.dimension.IAdvancedSpace;
 import asmodeuscore.api.dimension.IProviderFreeze;
 import asmodeuscore.api.item.IItemPressurized;
@@ -53,12 +51,12 @@ import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler.EnumMod
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler.ThermalArmorEvent;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
 import micdoodle8.mods.galacticraft.core.items.ItemTier1Rocket;
+import micdoodle8.mods.galacticraft.core.util.CompatibilityManager;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
 import micdoodle8.mods.galacticraft.core.world.gen.WorldGenMinableMeta;
-import micdoodle8.mods.galacticraft.planets.GalacticraftPlanets;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.ItemTier3Rocket;
 import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import micdoodle8.mods.galacticraft.planets.mars.dimension.WorldProviderMars;
@@ -67,10 +65,6 @@ import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -92,7 +86,6 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -103,7 +96,6 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
-import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
@@ -275,7 +267,19 @@ public class GSEventHandler {
 						
 		}
 		if(!world.isRemote && GSConfigCore.enableHardMode)
-		{				
+		{		
+			
+			if(CompatibilityManager.isIc2Loaded())
+			{
+				//IC2 WIND TURBINE
+				if(world.provider instanceof IGalacticraftWorldProvider && ((IGalacticraftWorldProvider)world.provider).hasNoAtmosphere() && ((IGalacticraftWorldProvider)world.provider).getWindLevel() <= 0.0F) {
+					if(stack.getItem() == Item.getByNameOrId("ic2:te") && stack.getItemDamage() == 21) {
+						player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.cant_place")));	
+						event.setCanceled(true);
+					}
+				}
+			}
+			
 			//ICE BUCKET
 			if(block == Blocks.ICE && stack.getItem() instanceof ItemBucket)
 			{				
