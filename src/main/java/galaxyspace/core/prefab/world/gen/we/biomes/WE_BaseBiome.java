@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class WE_BaseBiome extends WE_Biome {
 	
-	private static int[] colors = new int[] {0xFFFFFF, 0xFFFFFF, 0xFFFFFF};
+	private static int[] colors = new int[] {0x00FF00, 0xFFFFFF, 0x00FF00};
 	/**
 	 * 
 	 * @param 
