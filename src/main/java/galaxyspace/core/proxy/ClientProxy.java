@@ -26,6 +26,7 @@ import galaxyspace.core.client.render.entity.layers.LayerThermalPadding;
 import galaxyspace.core.client.render.item.ItemModelRocketT4;
 import galaxyspace.core.client.render.item.ItemModelRocketT5;
 import galaxyspace.core.client.render.item.ItemModelRocketT6;
+import galaxyspace.core.client.render.tile.TileEntityTreasureChestRenderer;
 import galaxyspace.core.events.GSClientTickHandler;
 import galaxyspace.core.handler.ColorBlockHandler;
 import galaxyspace.core.handler.GSMapHandler;
@@ -50,13 +51,15 @@ import galaxyspace.systems.SolarSystem.moons.enceladus.tile.TileEntityBlockCryst
 import galaxyspace.systems.SolarSystem.moons.europa.blocks.EuropaBlocks;
 import galaxyspace.systems.SolarSystem.moons.ganymede.blocks.GanymedeBlocks;
 import galaxyspace.systems.SolarSystem.moons.io.blocks.IoBlocks;
+import galaxyspace.systems.SolarSystem.moons.io.entities.EntityBossGhast;
+import galaxyspace.systems.SolarSystem.moons.io.renderer.entities.RenderBossGhast;
+import galaxyspace.systems.SolarSystem.moons.io.tile.TileEntityTreasureChestIo;
 import galaxyspace.systems.SolarSystem.moons.miranda.blocks.MirandaBlocks;
 import galaxyspace.systems.SolarSystem.moons.titan.blocks.TitanBlocks;
 import galaxyspace.systems.SolarSystem.moons.triton.blocks.TritonBlocks;
 import galaxyspace.systems.SolarSystem.planets.ceres.blocks.CeresBlocks;
 import galaxyspace.systems.SolarSystem.planets.ceres.entities.EntityBossBlaze;
 import galaxyspace.systems.SolarSystem.planets.ceres.renderer.entities.RenderBossBlaze;
-import galaxyspace.systems.SolarSystem.planets.ceres.renderer.tile.TileEntityTreasureChestRenderer;
 import galaxyspace.systems.SolarSystem.planets.ceres.tile.TileEntityTreasureChestCeres;
 import galaxyspace.systems.SolarSystem.planets.mars.blocks.MarsOresBlocks;
 import galaxyspace.systems.SolarSystem.planets.mercury.blocks.MercuryBlocks;
@@ -161,7 +164,7 @@ public class ClientProxy extends CommonProxy{
     	Minecraft.getMinecraft().getRenderManager().getSkinMap().get("default").addLayer(new LayerThermalPadding(Minecraft.getMinecraft().getRenderManager().playerRenderer));
     	Minecraft.getMinecraft().getRenderManager().getSkinMap().get("slim").addLayer(new LayerThermalPadding(Minecraft.getMinecraft().getRenderManager().playerRenderer));
     	
-    	GS_MUSIC = EnumHelper.addEnum(MusicTicker.MusicType.class, "GS_MUSIC", new Class[] { SoundEvent.class, Integer.TYPE, Integer.TYPE }, GSSounds.music, 12000, 24000);
+    	//GS_MUSIC = EnumHelper.addEnum(MusicTicker.MusicType.class, "GS_MUSIC", new Class[] { SoundEvent.class, Integer.TYPE, Integer.TYPE }, GSSounds.music, 12000, 24000);
     	   
     /*
     	ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySolarWind.class, new TileEntitySolarWindPanelRenderer());
@@ -176,18 +179,19 @@ public class ClientProxy extends CommonProxy{
 	
     @Override
     public void postload() {   			
-    	try {
+    	/*try {
             Field ftc = Minecraft.getMinecraft().getClass().getDeclaredField(GCCoreUtil.isDeobfuscated() ? "mcMusicTicker" : "field_147126_aw");
             ftc.setAccessible(true);
             ftc.set(Minecraft.getMinecraft(), new GSMusicTicker(Minecraft.getMinecraft()));
         } catch (Exception e) {e.printStackTrace();} 
-    	
+    	*/
     	ItemSchematics.registerTextures();
     	
     	ClientRegistry.bindTileEntitySpecialRenderer(TileEntityModernSolarPanel.class, new TileEntityModernSolarPanelRenderer());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWindGenerator.class, new TileEntityWindGeneratorRenderer());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHydroponicFarm.class, new TileEntityHydroponicFarmRenderer());
-    	ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTreasureChestCeres.class, new TileEntityTreasureChestRenderer());
+    	ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTreasureChestCeres.class, new TileEntityTreasureChestRenderer(new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/model/treasure_ceres.png")));
+    	ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTreasureChestIo.class, new TileEntityTreasureChestRenderer( new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/model/treasure_io.png")));
     	ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBlockCrystallTE.class, new TileEntityBlockCrystall());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWindSolarPanel.class, new TileEntitySolarWindPanelRenderer());
     
@@ -354,8 +358,10 @@ public class ClientProxy extends CommonProxy{
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.HYDROPONIC_BASE);	
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.HYDROPONIC_FARM);	
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.GRAVITATION_MODULE);	
-		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.TREASURE_CHEST_TIER_4, 0, "treasure_t4");	
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.BOSS_SPAWNER_CERES);
+		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.BOSS_SPAWNER_IO);
+		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.TREASURE_CHEST_TIER_4, 0, "treasure_t4");	
+		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.TREASURE_CHEST_TIER_5, 0, "treasure_t5");	
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.RADIATION_STABILISER);
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.ENCELADUS_CRYSTAL);	
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.PANEL_CONTROLLER);	
@@ -490,7 +496,7 @@ public class ClientProxy extends CommonProxy{
     	addVariant("marsores", "", "mars_diamond", "mars_gold", "mars_coal", "mars_redstone", "mars_silicon", "mars_aluminum");
     	addVariant("ceresblocks", "", "ceres_grunt", "ceres_subgrunt", "ceres_dolomite_ore", "ceres_meteoriciron_ore", "ceres_dungeon_top", "ceres_dungeon_floor");
     	addVariant("plutoblocks", "", "pluto_grunt_1", "pluto_grunt_2", "pluto_grunt_3", "pluto_grunt_4", "pluto_subgrunt", "pluto_stone");
-    	addVariant("ioblocks", "", "io_grunt", "io_stone", "io_ash", "io_copper_ore", "io_sulfur_ore", "io_volcanic_ore", "io_lava_geyser", "io_sulfur_geyser", "io_top", "io_floor");
+    	addVariant("ioblocks", "", "io_grunt", "io_stone", "io_ash", "io_copper_ore", "io_sulfur_ore", "io_volcanic_ore", "io_lava_geyser", "io_sulfur_geyser", "io_top", "io_floor", "io_dungeon_bricks");
     	addVariant("europablocks", "", "europa_grunt", "europa_stone", "europa_brown_ice", "europa_emerald_ore", "europa_silicon_ore", "europa_aluminum_ore");
     	addVariant("ganymedeblocks", "", "ganymede_grunt", "ganymede_stone", "ganymede_magnesium_ore", "ganymede_titanium_ore");
     	addVariant("callistoblocks", "", "callisto_grunt", "callisto_stone");
@@ -671,7 +677,10 @@ public class ClientProxy extends CommonProxy{
 		RenderingRegistry.registerEntityRenderingHandler(EntityBossBlaze.class, (RenderManager manager) -> new RenderBossBlaze(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityIceSpike.class, (RenderManager manager) -> new RenderIceSpike(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityEvolvedColdBlaze.class, (RenderManager manager) -> new RenderEvolvedColdBlaze(manager));
+		RenderingRegistry.registerEntityRenderingHandler(EntityBossGhast.class, (RenderManager manager) -> new RenderBossGhast(manager));
+		
 		RenderingRegistry.registerEntityRenderingHandler(EntityLaserBeam.class, (RenderManager manager) -> new RenderLaserBeam(manager));	
+    
     }
 	
 	public void register_event(Object obj)
