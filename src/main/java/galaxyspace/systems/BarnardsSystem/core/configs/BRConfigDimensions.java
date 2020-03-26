@@ -31,7 +31,9 @@ public class BRConfigDimensions {
     
     // DIMENSIONS
     public static int dimensionIDBarnardaC;
+    public static int dimensionIDBarnardaC1;
     public static boolean enableBarnardaC;
+    public static boolean enableBarnardaC1;
 
     public static void syncConfig(boolean load)
     {
@@ -55,10 +57,22 @@ public class BRConfigDimensions {
             dimensionIDBarnardaC = prop.getInt();
             propOrder.add(prop.getName());
             
+            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "dimensionIDBarnardaC1", -1031);
+            prop.setComment("Dimension ID for Barnarda C1 (Moon)");
+            prop.setLanguageKey("gc.configgui.dimensionIDBarnardaC1").setRequiresMcRestart(true);
+            dimensionIDBarnardaC1 = prop.getInt();
+            propOrder.add(prop.getName());
+            
             prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableBarnardaC", true);
             prop.setComment("Enable/Disable Barnarda C planet.");
             prop.setLanguageKey("gc.configgui.enableBarnardaC").setRequiresMcRestart(true);
             enableBarnardaC = prop.getBoolean(true);
+            propOrder.add(prop.getName());
+            
+            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableBarnardaC1", true);
+            prop.setComment("Enable/Disable Barnarda C1 moon.");
+            prop.setLanguageKey("gc.configgui.enableBarnardaC1").setRequiresMcRestart(true);
+            enableBarnardaC1 = prop.getBoolean(true);
             propOrder.add(prop.getName());
             
             config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
