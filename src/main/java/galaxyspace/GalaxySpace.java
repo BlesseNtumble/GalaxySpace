@@ -38,6 +38,9 @@ import galaxyspace.core.util.GSCreativeTabs;
 import galaxyspace.core.util.GSThreadVersionCheck;
 import galaxyspace.core.util.researches.ResearchUtil;
 import galaxyspace.systems.SolarSystem.moons.enceladus.tile.TileEntityBlockCrystallTE;
+import galaxyspace.systems.SolarSystem.moons.io.entities.EntityBossGhast;
+import galaxyspace.systems.SolarSystem.moons.io.tile.TileEntityDungeonSpawnerIo;
+import galaxyspace.systems.SolarSystem.moons.io.tile.TileEntityTreasureChestIo;
 import galaxyspace.systems.SolarSystem.planets.ceres.entities.EntityBossBlaze;
 import galaxyspace.systems.SolarSystem.planets.ceres.tile.TileEntityDungeonSpawnerCeres;
 import galaxyspace.systems.SolarSystem.planets.ceres.tile.TileEntityTreasureChestCeres;
@@ -106,7 +109,7 @@ public class GalaxySpace
 {
 	public static final int major_version = 2;
 	public static final int minor_version = 0;
-	public static final int build_version = 11;
+	public static final int build_version = 12;
 	
 	public static final String NAME = "GalaxySpace";
 	public static final String MODID = "galaxyspace";
@@ -247,6 +250,7 @@ public class GalaxySpace
     	int fore = -8388608;
     	GCCoreUtil.registerGalacticraftCreature(EntityBossBlaze.class, "evolved_boss_blaze", back, fore);
     	GCCoreUtil.registerGalacticraftCreature(EntityEvolvedColdBlaze.class, "evolved_coldblaze", back, fore);
+    	GCCoreUtil.registerGalacticraftCreature(EntityBossGhast.class, "evolved_boss_ghast", back, fore);
     	//GCCoreUtil.registerGalacticraftCreature(EntityEvolvedFireCreeper.class, "EvolvedFireCreeper", back, fore);
     	//GCCoreUtil.registerGalacticraftCreature(EntityEvolvedFireSkeleton.class, "EvolvedFireSkeleton", back, fore);
     	//GCCoreUtil.registerGalacticraftCreature(EntityEvolvedFireSpider.class, "EvolvedFireSpider", back, fore);    	
@@ -279,6 +283,8 @@ public class GalaxySpace
     	GameRegistry.registerTileEntity(TileEntityBlockCrystallTE.class, "GS Crystal");
     	GameRegistry.registerTileEntity(TileEntityTreasureChestCeres.class, "GS Treasure Ceres");
     	GameRegistry.registerTileEntity(TileEntityDungeonSpawnerCeres.class, "GS Spawner Boss Ceres");
+    	GameRegistry.registerTileEntity(TileEntityTreasureChestIo.class, "GS Treasure Io");
+    	GameRegistry.registerTileEntity(TileEntityDungeonSpawnerIo.class, "GS Spawner Boss Io");
     	GameRegistry.registerTileEntity(TileEntityRadiationStabiliser.class, "GS Radiation Stabiliser");
     	GameRegistry.registerTileEntity(TileEntityPanelController.class, "GS Panel Controller");
     	GameRegistry.registerTileEntity(TileEntityPlanetShield.class, "GS Planet Shield");

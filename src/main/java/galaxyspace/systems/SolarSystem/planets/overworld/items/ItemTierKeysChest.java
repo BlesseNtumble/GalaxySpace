@@ -20,7 +20,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemTierKeysChest extends Item implements IKeyItem , ISortableItem{
 	
-    public static String[] keys = { "key_tier_4" };
+    public static String[] keys = { "key_tier_4", "key_tier_5" };
     
     public ItemTierKeysChest()
 	{
