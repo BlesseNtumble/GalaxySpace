@@ -11,6 +11,7 @@ import galaxyspace.core.util.GSDimensions;
 import galaxyspace.systems.SolarSystem.SolarSystemBodies;
 import galaxyspace.systems.SolarSystem.moons.io.dimension.sky.SkyProviderIo;
 import galaxyspace.systems.SolarSystem.moons.io.world.gen.BiomeProviderIo;
+import galaxyspace.systems.SolarSystem.moons.io.world.gen.dungeon.RoomTreasureIo;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
@@ -178,7 +179,7 @@ public class WorldProviderIo extends WorldProviderAdvancedSpace implements IProv
 
 	@Override
 	public ResourceLocation getDungeonChestType() {
-		return null;
+		return RoomTreasureIo.IOCHEST;
 	}
 
 	@Override
@@ -193,8 +194,8 @@ public class WorldProviderIo extends WorldProviderAdvancedSpace implements IProv
 	}
 
 	@Override
-	public boolean enableAdvancedThermalLevel() {
-		return false;
+	protected float getThermalValueMod()
+	{
+		return 0.5F;
 	}
-
 }

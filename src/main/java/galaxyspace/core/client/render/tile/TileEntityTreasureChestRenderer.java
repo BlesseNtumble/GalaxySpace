@@ -1,25 +1,30 @@
-package galaxyspace.systems.SolarSystem.planets.ceres.renderer.tile;
+package galaxyspace.core.client.render.tile;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import galaxyspace.GalaxySpace;
-import galaxyspace.systems.SolarSystem.planets.ceres.tile.TileEntityTreasureChestCeres;
 import micdoodle8.mods.galacticraft.core.client.model.block.ModelTreasureChest;
+import micdoodle8.mods.galacticraft.core.tile.TileEntityTreasureChest;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class TileEntityTreasureChestRenderer extends TileEntitySpecialRenderer<TileEntityTreasureChestCeres>
+public class TileEntityTreasureChestRenderer extends TileEntitySpecialRenderer<TileEntityTreasureChest>
 {
-    private static final ResourceLocation treasureChestTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/model/treasure_ceres.png");
+    private final ResourceLocation treasureChestTexture;
 
     private final ModelTreasureChest chestModel = new ModelTreasureChest();
 
+    public TileEntityTreasureChestRenderer(ResourceLocation texture)
+    {
+    	treasureChestTexture = texture;
+    }
+    
     @Override
-    public void render(TileEntityTreasureChestCeres chest, double x, double y, double z, float par7, int par8, float alpha)
+    public void render(TileEntityTreasureChest chest, double x, double y, double z, float par7, int par8, float alpha)
     {
         int var9;
 
@@ -32,7 +37,7 @@ public class TileEntityTreasureChestRenderer extends TileEntitySpecialRenderer<T
             var9 = chest.getBlockMetadata();
         }
 
-        this.bindTexture(TileEntityTreasureChestRenderer.treasureChestTexture);
+        this.bindTexture(treasureChestTexture);
 
         GL11.glPushMatrix();
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);

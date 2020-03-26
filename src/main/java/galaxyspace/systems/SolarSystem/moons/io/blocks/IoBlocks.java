@@ -103,7 +103,7 @@ public class IoBlocks extends Block implements ISortableBlock{
 	@Override
 	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
-		if(!world.isAreaLoaded(pos, 1)) return;
+		if(!world.isAreaLoaded(pos, 16)) return;
 
 		if(state == state.withProperty(BASIC_TYPE, EnumIoBlocks.IO_LAVA_GEYSER))
 		{
@@ -224,8 +224,8 @@ public class IoBlocks extends Block implements ISortableBlock{
 		IO_LAVA_GEYSER(6, "io_lava_geyser"),
 		IO_SULFUR_GEYSER(7, "io_sulfur_geyser"),
 		IO_DUNGEON_TOP(8, "io_top"),
-		IO_DUNGEON_FLOOR(9, "io_floor");
-
+		IO_DUNGEON_FLOOR(9, "io_floor"),
+		IO_DUNGEON_BRICKS(10, "io_dungeon_bricks");
 
 		private final int meta;
 		private final String name;

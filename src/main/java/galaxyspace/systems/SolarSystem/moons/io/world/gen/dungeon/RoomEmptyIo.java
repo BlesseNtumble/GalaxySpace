@@ -18,7 +18,7 @@ public class RoomEmptyIo extends SizedPieceIo
     
     public RoomEmptyIo(DungeonConfiguration configuration, Random rand, int blockPosX, int blockPosZ, EnumFacing entranceDir)
 	{
-		this(configuration, rand, blockPosX, blockPosZ, rand.nextInt(4) + 6, configuration.getRoomHeight(), rand.nextInt(4) + 6, entranceDir);
+		this(configuration, rand, blockPosX, blockPosZ, rand.nextInt(4) + 14, configuration.getRoomHeight(), rand.nextInt(4) + 14, entranceDir);
 	}
     
     public RoomEmptyIo(DungeonConfiguration configuration, Random rand, int blockPosX, int blockPosZ, int sizeX, int sizeY, int sizeZ, EnumFacing entranceDir)
@@ -80,9 +80,9 @@ public class RoomEmptyIo extends SizedPieceIo
                         if (placeBlock)
                         {
                         	if(j == this.configuration.getHallwayHeight())
-                        		this.setBlockState(worldIn, GSBlocks.CERES_BLOCKS.getDefaultState().withProperty(CeresBlocks.BASIC_TYPE, CeresBlocks.EnumCeresBlocks.CERES_DUNGEON_TOP), i, j, k, boundingBox);
+                        		this.setBlockState(worldIn, this.configuration.getOtherBlock(false), i, j, k, boundingBox);
                         	else if(j == 0)
-                        		this.setBlockState(worldIn, GSBlocks.CERES_BLOCKS.getDefaultState().withProperty(CeresBlocks.BASIC_TYPE, CeresBlocks.EnumCeresBlocks.CERES_DUNGEON_FLOOR), i, j, k, boundingBox);
+                        		this.setBlockState(worldIn, this.configuration.getOtherBlock(true), i, j, k, boundingBox);
                         	else
                         		this.setBlockState(worldIn, this.configuration.getBrickBlock(), i, j, k, boundingBox);
                         }
@@ -115,6 +115,6 @@ public class RoomEmptyIo extends SizedPieceIo
             return null;
         }
 
-        return getCorridor(rand, startPiece, 10, false);
+        return getCorridor(rand, startPiece, 10, false, 8);
     }
 }

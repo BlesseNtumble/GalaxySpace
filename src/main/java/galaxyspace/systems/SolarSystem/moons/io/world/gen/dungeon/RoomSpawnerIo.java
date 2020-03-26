@@ -20,7 +20,7 @@ public class RoomSpawnerIo extends RoomEmptyIo
 
     public RoomSpawnerIo(DungeonConfiguration configuration, Random rand, int blockPosX, int blockPosZ, EnumFacing entranceDir)
 	{
-		this(configuration, rand, blockPosX, blockPosZ, rand.nextInt(4) + 8, configuration.getRoomHeight(), rand.nextInt(4) + 8, entranceDir);
+		this(configuration, rand, blockPosX, blockPosZ, rand.nextInt(4) + 14, configuration.getRoomHeight(), rand.nextInt(4) + 14, entranceDir);
 	}
     
     public RoomSpawnerIo(DungeonConfiguration configuration, Random rand, int blockPosX, int blockPosZ, int sizeX, int sizeY, int sizeZ, EnumFacing entranceDir)
@@ -33,7 +33,7 @@ public class RoomSpawnerIo extends RoomEmptyIo
     {
         if (super.addComponentParts(worldIn, random, boundingBox))
         {
-            for (int i = 1; i <= this.sizeX - 1; ++i)
+            /*for (int i = 1; i <= this.sizeX - 1; ++i)
             {
                 for (int j = 1; j <= this.sizeY - 1; ++j)
                 {
@@ -45,7 +45,7 @@ public class RoomSpawnerIo extends RoomEmptyIo
                         }
                     }
                 }
-            }
+            }*/
 
             this.setBlockState(worldIn, Blocks.MOB_SPAWNER.getDefaultState(), 1, 0, 1, boundingBox);
             this.setBlockState(worldIn, Blocks.MOB_SPAWNER.getDefaultState(), this.sizeX - 1, 0, this.sizeZ - 1, boundingBox);
