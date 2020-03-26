@@ -1,0 +1,8 @@
+{ 
+	"variants": { 
+		"type=haumea_ground": { "model": "galaxyspace:haumea_ground"}, 
+		"type=haumea_stone": { "model": "galaxyspace:haumea_stone"}, 
+		"type=haumea_cobblestone": { "model": "galaxyspace:haumea_cobblestone"}, 
+		"type=haumea_aluminum_ore": { "model": "galaxyspace:haumea_aluminum_ore"}
+	} 
+}

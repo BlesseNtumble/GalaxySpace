@@ -61,6 +61,7 @@ import galaxyspace.systems.SolarSystem.planets.ceres.blocks.CeresBlocks;
 import galaxyspace.systems.SolarSystem.planets.ceres.entities.EntityBossBlaze;
 import galaxyspace.systems.SolarSystem.planets.ceres.renderer.entities.RenderBossBlaze;
 import galaxyspace.systems.SolarSystem.planets.ceres.tile.TileEntityTreasureChestCeres;
+import galaxyspace.systems.SolarSystem.planets.haumea.blocks.HaumeaBlocks;
 import galaxyspace.systems.SolarSystem.planets.mars.blocks.MarsOresBlocks;
 import galaxyspace.systems.SolarSystem.planets.mercury.blocks.MercuryBlocks;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockDecoMetals;
@@ -298,6 +299,9 @@ public class ClientProxy extends CommonProxy{
 		for(PlutoBlocks.EnumPlutoBlocks block : PlutoBlocks.EnumPlutoBlocks.values())
 			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.PLUTO_BLOCKS, block.getMeta(), block.getName());
 		
+		for(HaumeaBlocks.EnumHaumeaBlocks block : HaumeaBlocks.EnumHaumeaBlocks.values())
+			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.HAUMEA_BLOCKS, block.getMeta(), block.getName());
+		
 		for(IoBlocks.EnumIoBlocks block : IoBlocks.EnumIoBlocks.values())
 			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.IO_BLOCKS, block.getMeta(), block.getName());
 		
@@ -331,18 +335,18 @@ public class ClientProxy extends CommonProxy{
 		for(BlockSurfaceIce.EnumBlockIce block : BlockSurfaceIce.EnumBlockIce.values())
 			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.SURFACE_ICE, block.getMeta(), block.getName());
 		
-		/*
-		name = new String[MirandaBlocks.EnumMirandaBlocks.values().length];
-		for(MirandaBlocks.EnumMirandaBlocks block : MirandaBlocks.EnumMirandaBlocks.values())
+		
+		name = new String[HaumeaBlocks.EnumHaumeaBlocks.values().length];
+		for(HaumeaBlocks.EnumHaumeaBlocks block : HaumeaBlocks.EnumHaumeaBlocks.values())
 		{
 			if(block.getName() != null) name[block.getMeta()] = block.getName();
 			//ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.DUNGEON_BLOCKS, block.getMeta(), block.getName());
 		}
 		
 		if(GCCoreUtil.isDeobfuscated()) 
-			GSUtils.addBlockMetadataJsonFiles(GSBlocks.MIRANDA_BLOCKS, name, MirandaBlocks.BASIC_TYPE.getName(), "");
+			GSUtils.addBlockMetadataJsonFiles(GSBlocks.HAUMEA_BLOCKS, name, HaumeaBlocks.BASIC_TYPE.getName(), "");
 		
-		*/
+		
 		//--------------------------- BLOCKS -----------------------------------
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.ASSEMBLER);		
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.FUEL_GENERATOR);	
@@ -519,6 +523,13 @@ public class ClientProxy extends CommonProxy{
     		blocks[i] = TritonBlocks.EnumTritonBlocks.byMetadata(i).getName();
     	
     	addVariant("tritonblocks", "", blocks);
+    	
+    	blocks = new String[HaumeaBlocks.EnumHaumeaBlocks.values().length];
+    	for(int i = 0; i < blocks.length; i++)
+    		blocks[i] = HaumeaBlocks.EnumHaumeaBlocks.byMetadata(i).getName();
+    	
+    	addVariant("haumeablocks", "", blocks);
+    	
     	
     	blocks = new String[BlockSurfaceIce.EnumBlockIce.values().length];
     	for(int i = 0; i < blocks.length; i++)
