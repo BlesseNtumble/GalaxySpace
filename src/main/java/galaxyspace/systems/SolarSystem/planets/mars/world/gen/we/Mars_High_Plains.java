@@ -9,12 +9,13 @@ import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSpider;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedZombie;
 import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import net.minecraft.init.Blocks;
+import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.Biome;
 
 public class Mars_High_Plains extends WE_Biome {
 	
 	public Mars_High_Plains(double min, double max) {
-		super(new BiomeProperties("mars_high_plains"), new int[] {0xFFFFFF, 0xFFFFFF, 0x00FF00});
+		super(new BiomeProperties("mars_high_plains"), new int[] {ColorizerGrass.getGrassColor(0.5D, 1.0D), 0xFFFFFF,  ColorizerGrass.getGrassColor(0.5D, 1.0D)});
 				
 		biomeMinValueOnMap      =  	min;
 		biomeMaxValueOnMap      =   max;

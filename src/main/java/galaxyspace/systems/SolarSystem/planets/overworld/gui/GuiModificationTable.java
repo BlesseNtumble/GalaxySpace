@@ -172,7 +172,7 @@ public class GuiModificationTable extends GuiContainerGC{
                // GL11.glDisable(GL11.GL_BLEND);
                 
 				RenderHelper.enableGUIStandardItemLighting();
-	           	this.itemRender.renderItemAndEffectIntoGUI(actual_list.get(i).getIcon(), containerWidth + 32 + xOffsetModule, containerHeight + 22 + (22 * i));
+	           	this.itemRender.renderItemAndEffectIntoGUI(actual_list.get(i).getIcon(), containerWidth + 32 + xOffsetModule + (22 * k), containerHeight + 22 + (22 * yPos));
 	            RenderHelper.disableStandardItemLighting();                  	                    
 
 	            if(i >= 3 && i % 3 == 0) 
@@ -205,10 +205,12 @@ public class GuiModificationTable extends GuiContainerGC{
 			int containerHeight = (this.height - this.ySize) / 2;
 			ItemStack stack = this.inventorySlots.getSlot(0).getStack();
 			
+			int k = 0;
 			for(int i = 0; i < actual_list.size(); i++)
 	        {		
 				int yPos = i > 4 * (i % 4) ? i - 4 : i;
-				if (mousePosX >= containerWidth + xOffsetModule + 30 && mousePosX <= containerWidth + xOffsetModule + 50 && mousePosY >= containerHeight + 20 + (22 * i) && mousePosY <= containerHeight + 40 + (22 * i))
+				
+				if (mousePosX >= containerWidth + xOffsetModule + 30  + (22 * k) && mousePosX <= containerWidth + xOffsetModule + 50  + (22 * k) && mousePosY >= containerHeight + 20 + (22 * yPos) && mousePosY <= containerHeight + 40 + (22 * yPos))
 				{	
 					GlStateManager.disableLighting();
 					this.mc.renderEngine.bindTexture(this.guiTexture);	
@@ -237,27 +239,28 @@ public class GuiModificationTable extends GuiContainerGC{
 					
 					ItemStack[] stacks = actual_list.get(i).getItemsForModule();//GSUtils.getItemsForModules(this.actual_list.get(i).getName());
 			        	
-			        int k = 0;
 					if(stacks != null)
 						for(ItemStack stacklist : stacks)
 						{
 							this.mc.renderEngine.bindTexture(this.guiTexture);	
 							GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+							int xOffset = -3;
 								//this.drawTexturedModalRect(containerWidth - 55, containerHeight + 35, 192, 196, 20, 20);
 							this.drawTexturedModalRect(containerWidth - 55, containerHeight + 35, 192, 26, 20, 21);
 				        		
 							int amount = this.getAmountInInventory(stacklist);
-							int xOffset = -3;
+							
 							RenderHelper.enableGUIStandardItemLighting();
 			                this.itemRender.renderItemAndEffectIntoGUI(stacklist, containerWidth - 50 + xOffset, containerHeight + 37);
 			                RenderHelper.disableStandardItemLighting();
-			                    
+
 			                boolean valid = amount >= stacklist.getCount();
 			                int color = valid | this.mc.player.capabilities.isCreativeMode ? ColorUtil.to32BitColor(255, 0, 255, 0) : ColorUtil.to32BitColor(255, 255, 0, 0);
 			                String str = "" + stacklist.getCount();
 			                this.fontRenderer.drawString(str, containerWidth - 35 + xOffset, containerHeight + 47, color);
+
 			                this.drawToolTip(containerWidth - 40 + xOffset, containerHeight + 73,  stacklist.getDisplayName());  
-			                	
+			              
 			                k++;
 						}
 						//this.drawToolTip(mousePosX, mousePosY + 70, GCCoreUtil.translateWithFormat("item_desc.shift.name", GameSettings.getKeyDisplayString(FMLClientHandler.instance().getClient().gameSettings.keyBindSneak.getKeyCode()))); 
@@ -279,6 +282,11 @@ public class GuiModificationTable extends GuiContainerGC{
 						}
 					}
 				}
+				
+				if(i >= 3 && i % 3 == 0) 
+	            {
+	            	k++;
+	           	}
 	        }
 		}
     }
@@ -344,7 +352,8 @@ public class GuiModificationTable extends GuiContainerGC{
 
         this.fontRenderer.drawSplitString(tooltip, j2, k2, 150, ColorUtil.to32BitColor(255, 255, 255, 255));
 
-        GL11.glPopMatrix();   
+        GL11.glPopMatrix(); 
+        GL11.glDepthMask(false);
 	}
 	
 	@Override
@@ -357,15 +366,22 @@ public class GuiModificationTable extends GuiContainerGC{
 			int containerWidth = (this.width - this.xSize) / 2;
 			int containerHeight = (this.height - this.ySize) / 2;
 			
+			int k = 0;
 			for(int i = 0; i < actual_list.size(); i++)
 	        {
-				if (mouseX >= containerWidth + xOffsetModule + 30 && mouseX <= containerWidth + xOffsetModule + 50 
-						&& mouseY >= containerHeight + 20 + (22 * i)
-						&& mouseY <= containerHeight + 40 + (22 * i)
+				int yPos = i > 4 * (i % 4) ? i - 4 : i;
+
+				if (mouseX >= containerWidth + xOffsetModule + 30 + (22 * k)&& mouseX <= containerWidth + xOffsetModule + 50 + (22 * k)
+						&& mouseY >= containerHeight + 20 + (22 * yPos)
+						&& mouseY <= containerHeight + 40 + (22 * yPos)
 						&& countdown <= 0)
 				{								
 					GalaxySpace.packetPipeline.sendToServer(new GSPacketSimple(GSEnumSimplePacket.S_UPDATE_NBT_ITEM_ON_GUI, GCCoreUtil.getDimensionID(this.mc.world), new Object[] {new BlockVec3(this.tileEntity.getPos().getX(), this.tileEntity.getPos().getY(), this.tileEntity.getPos().getZ()), this.actual_list.get(i).getName()}));	   
 					countdown = 20 * 3;
+				}
+				
+				if (i >= 3 && i % 3 == 0) {
+					k++;
 				}
 	        }
 		}

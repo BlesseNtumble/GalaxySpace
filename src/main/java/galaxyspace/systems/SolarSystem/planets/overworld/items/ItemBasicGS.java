@@ -207,7 +207,12 @@ public class ItemBasicGS extends Item implements ISortableItem{
 		if(world.isRemote)
 		{			
 			return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
-		}/*
+		}
+		else if(stack.getItemDamage() == 27)
+		{
+			
+		}
+		/*
 		else if(stack.getItemDamage() == 28)
 		{
 			RayTraceResult ray = this.getRay(world, player, true);

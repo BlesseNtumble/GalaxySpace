@@ -217,7 +217,7 @@ public class GSClientTickHandler {
         			};
             			
         			int k = 3;
-        			if(!mc.gameSettings.isKeyDown(mc.gameSettings.keyBindSneak)) k = s.length;
+        			if(mc.gameSettings.isKeyDown(mc.gameSettings.keyBindSneak)) k = s.length;
         			GL11.glPushMatrix();
         			//GlStateManager.disableLighting();
         			for(int i = 0; i < k; i++)
@@ -226,11 +226,13 @@ public class GSClientTickHandler {
         			GL11.glPopMatrix();
 
         		}
+        		GlStateManager.disableLighting();
         		
+        		GL11.glPushMatrix();
         		if(minecraft.inGameHasFocus && !minecraft.gameSettings.hideGUI && GSConfigCore.enableSpaceSuitHUD)
         			OverlaySpaceSuit.renderSpaceSuitOverlay(playerBaseClient);
-        		
-        		GlStateManager.disableLighting();        		
+        		GL11.glPopMatrix();
+        		        		
     			
             }
         }

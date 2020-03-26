@@ -81,7 +81,7 @@ public class ItemGeologicalScanner extends ItemElectricBase implements ISortable
 				}//GalaxySpace.debug("" + blocks);
 				player.sendMessage(new TextComponentString(TextFormatting.GREEN + "#################################"));
 				if(!player.capabilities.isCreativeMode)
-					this.discharge(stack, 100, true);
+					this.discharge(stack, 20 * blocks.size(), true);
 		}
 		return EnumActionResult.SUCCESS;
 	}
