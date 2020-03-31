@@ -7,10 +7,9 @@ import java.util.List;
 import org.lwjgl.opengl.GL11;
 
 import galaxyspace.GalaxySpace;
-import galaxyspace.core.handler.capabilities.GSStatsCapability;
 import galaxyspace.core.handler.capabilities.GSStatsCapabilityClient;
-import galaxyspace.core.handler.capabilities.IStatsCapability;
 import galaxyspace.core.handler.capabilities.StatsCapabilityClient;
+import galaxyspace.core.util.GSUtils;
 import galaxyspace.core.util.researches.IResearch;
 import galaxyspace.core.util.researches.ResearchUtil;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerResearchTable;
@@ -18,20 +17,23 @@ import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityResearch
 import micdoodle8.mods.galacticraft.core.client.gui.container.GuiContainerGC;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 public class GuiResearchTable extends GuiContainerGC {
 
 	private final TileEntityResearchTable tile;
-	private static final ResourceLocation guiTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/base_gui_1.png");
+	private static final ResourceLocation guiTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/research_table.png");
 	public List<IResearch> know_res = new ArrayList<IResearch>();
 	
 	public GuiResearchTable(InventoryPlayer inventoryPlayer, TileEntityResearchTable tileEntity)
     {
 		super(new ContainerResearchTable(inventoryPlayer, tileEntity));
 		this.tile = tileEntity;
-		this.ySize = 204; 
+		this.xSize = 640;
+		this.ySize = 400; 
     }
 	
 	@Override
@@ -41,7 +43,6 @@ public class GuiResearchTable extends GuiContainerGC {
 		
 		StatsCapabilityClient gs_stats = GSStatsCapabilityClient.get(mc.player);
 		
-		GalaxySpace.debug(gs_stats.getKnowledgeResearches()[0] + "");
 		for(IResearch res : ResearchUtil.getReserachList())
 		{
 			for(int i = 0; i < ResearchUtil.getReserachList().size(); i++)
@@ -50,7 +51,6 @@ public class GuiResearchTable extends GuiContainerGC {
 					know_res.add(res);	
 			}
 		}
-		GalaxySpace.debug(know_res.size() + "");
 	
     }
 	
@@ -69,11 +69,12 @@ public class GuiResearchTable extends GuiContainerGC {
 
 		int containerWidth = (this.width - this.xSize) / 2;
 		int containerHeight = (this.height - this.ySize) / 2;
-		this.drawTexturedModalRect(containerWidth, containerHeight, 0, 0, this.xSize, this.ySize); // Base Gui		
+		this.drawModalRectWithCustomSizedTexture(containerWidth, containerHeight, 0, 0, this.xSize, this.ySize, 780, 500); // Base Gui		
 
 		int i = 0;
 		for(IResearch res : know_res)
-			drawString(mc.fontRenderer, res.getID() + ", ", containerWidth + 10 * i++, containerHeight + 10, 0xFFFFFF);
+			drawWindow(containerWidth + 50, containerHeight + 50, par3, res);
+			//drawString(mc.fontRenderer, res.getID() + ", ", containerWidth + 10 * i++, containerHeight + 10, 0xFFFFFF);
 		i = 0;
 		for(IResearch res : ResearchUtil.getReserachList())
 			drawString(mc.fontRenderer, res.getID() + ", ", containerWidth + 10 * i++, containerHeight + 30, 0xFFFFFF);
@@ -90,4 +91,21 @@ public class GuiResearchTable extends GuiContainerGC {
     {
 		super.mouseClicked(mouseX, mouseY, button);		
     }
+	
+	private void drawWindow(int posX, int posY, int ticks, IResearch res)
+	{
+		this.mc.renderEngine.bindTexture(this.guiTexture);
+		GL11.glColor4f(1.0F, 0.0F, 1.0F, 1.0F);
+		this.drawModalRectWithCustomSizedTexture(posX, posY, 0, 0, 150, 40, 150, 50); // Base Gui		
+
+		this.drawString(mc.fontRenderer, res.getName(), posX + 10, posY + 5, 0xFFFFFF);
+		
+		int i = 0;
+		for(ItemStack s : res.getNeedItems()) {
+			RenderHelper.enableGUIStandardItemLighting();
+	        this.mc.getRenderItem().renderItemAndEffectIntoGUI(s, posX + (16 * i) + 10, posY + (16 * i) + 16);
+	        RenderHelper.disableStandardItemLighting();
+	        i++;
+		}
+	}
 }

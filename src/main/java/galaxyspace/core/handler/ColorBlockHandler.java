@@ -6,6 +6,7 @@ import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProvider;
 import galaxyspace.GalaxySpace;
 import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigCore;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.WorldProviderBarnarda_C_WE;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.color.BlockColors;
@@ -29,13 +30,13 @@ public class ColorBlockHandler {
 	@SideOnly(Side.CLIENT)
 	public void registerBlockColourHandlers(ColorHandlerEvent.Block event) {
 		final BlockColors blockColors = event.getBlockColors();
-
 		
 		// Use the grass colour of the biome or the default grass colour
 		final IBlockColor grassColourHandler = (state, blockAccess, pos, tintIndex) -> {
 			
 			if (blockAccess != null && pos != null) {
 				World world = FMLClientHandler.instance().getWorldClient();
+							
 				if(world != null && world.provider instanceof WE_WorldProvider)
 				{			
 					WE_ChunkProvider chunk = ((WE_WorldProvider)world.provider).chunk_provider;
@@ -63,9 +64,8 @@ public class ColorBlockHandler {
 				
 				if(world != null && world.provider instanceof WE_WorldProvider)
 				{		
-					WE_ChunkProvider chunk = ((WE_WorldProvider)world.provider).chunk_provider;
+					WE_ChunkProvider chunk = ((WE_WorldProvider)world.provider).chunk_provider;					
 					
-					//GalaxySpace.debug(((WE_ChunkProvider)world.getChunkProvider()) + "");
 					if(chunk != null)
 						return WE_Biome.getBiomeAt(chunk, (long)pos.getX(), (long)pos.getZ()).biomeBlockWaterColor;					
 				}			
