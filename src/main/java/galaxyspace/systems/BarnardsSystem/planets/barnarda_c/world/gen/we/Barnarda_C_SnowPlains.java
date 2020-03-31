@@ -4,6 +4,7 @@ import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
 import net.minecraft.entity.monster.EntityEnderman;
+import net.minecraft.entity.monster.EntityPolarBear;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.monster.EntityZombie;
@@ -29,12 +30,13 @@ public class Barnarda_C_SnowPlains extends WE_Biome {
 		decorateChunkGen_List.clear();		
 		createChunkGen_InXZ_List.clear();
 				
-		this.creatures.add(new Biome.SpawnListEntry(EntityCow.class, 10, 1, 4));
+		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityCow.class, 10, 1, 4));
+		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityPolarBear.class, 10, 1, 3));
 		
-		this.mobs.add(new Biome.SpawnListEntry(EntityZombie.class, 10, 1, 4));
-		this.mobs.add(new Biome.SpawnListEntry(EntitySpider.class, 10, 1, 4));
-		this.mobs.add(new Biome.SpawnListEntry(EntitySkeleton.class, 10, 1, 4));
-		this.mobs.add(new Biome.SpawnListEntry(EntityEnderman.class, 10, 1, 4));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityZombie.class, 10, 1, 4));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySpider.class, 10, 1, 4));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySkeleton.class, 10, 1, 4));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 10, 1, 4));
 		
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();
 		standardBiomeLayers.add(BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(0), BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(1), -256, 0,   -5, -1,  true);

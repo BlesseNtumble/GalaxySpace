@@ -13,7 +13,13 @@ public class Page_Magnetic_Field_Generator extends Page_WithCraftMatrix {
 
 	@Override
 	public String titlePage() {
-		return "magnetic_field_generator";
+		return getItem().getUnlocalizedName() + ".name";
+	}
+	
+	@Override
+	public boolean rawTitle()
+	{
+		return true;
 	}
 
 	@Override

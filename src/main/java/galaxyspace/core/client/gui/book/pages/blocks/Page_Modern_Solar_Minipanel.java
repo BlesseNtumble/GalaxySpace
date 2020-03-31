@@ -13,7 +13,13 @@ public class Page_Modern_Solar_Minipanel extends Page_AssemblerCraft {
 
 	@Override
 	public String titlePage() {
-		return "modern_solar_minipanel";
+		return getItem().getUnlocalizedName() + ".name";
+	}
+	
+	@Override
+	public boolean rawTitle()
+	{
+		return true;
 	}
 
 	@Override

@@ -13,9 +13,15 @@ public class Page_Solarwind_Panel extends Page_WithCraftMatrix {
 
 	@Override
 	public String titlePage() {
-		return "solarwind_panel";
+		return getItem().getUnlocalizedName() + ".name";
 	}
-
+	
+	@Override
+	public boolean rawTitle()
+	{
+		return true;
+	}
+	
 	@Override
 	public ResourceLocation iconTitle() {
 		return null;

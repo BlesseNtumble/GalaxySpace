@@ -66,6 +66,8 @@ public abstract class Page_AssemblerCraft extends Page_WithCraftMatrix{
 						
 			for(ItemStack s : getRecipe())
 			{				
+				if(s == null) continue;
+				
 				RenderHelper.enableGUIStandardItemLighting();
                 this.mc.getRenderItem().renderItemAndEffectIntoGUI(s, x + 310 + (j * 25), y + 82 + (z * 25));
                 RenderHelper.disableStandardItemLighting();

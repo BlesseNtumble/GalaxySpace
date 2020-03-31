@@ -1,9 +1,13 @@
 package galaxyspace.core.handler;
 
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProvider;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProvider;
+import galaxyspace.GalaxySpace;
 import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigCore;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.WorldProviderBarnarda_C_WE;
+import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.IBlockColor;
@@ -26,19 +30,19 @@ public class ColorBlockHandler {
 	@SideOnly(Side.CLIENT)
 	public void registerBlockColourHandlers(ColorHandlerEvent.Block event) {
 		final BlockColors blockColors = event.getBlockColors();
-
 		
 		// Use the grass colour of the biome or the default grass colour
 		final IBlockColor grassColourHandler = (state, blockAccess, pos, tintIndex) -> {
 			
 			if (blockAccess != null && pos != null) {
 				World world = FMLClientHandler.instance().getWorldClient();
+							
 				if(world != null && world.provider instanceof WE_WorldProvider)
-				{				
-					WE_Biome biome = WE_Biome.getBiomeAt((long)pos.getX(), (long)pos.getZ());
-					return biome.biomeBlockGrassColor;					
-				}
-				
+				{			
+					WE_ChunkProvider chunk = ((WE_WorldProvider)world.provider).chunk_provider;
+					if(chunk != null)
+						return WE_Biome.getBiomeAt(chunk, (long)pos.getX(), (long)pos.getZ()).biomeBlockGrassColor;					
+				}				
 				return BiomeColorHelper.getGrassColorAtPos(blockAccess, pos);
 			}			
 			return ColorizerGrass.getGrassColor(0.5D, 1.0D);
@@ -60,7 +64,10 @@ public class ColorBlockHandler {
 				
 				if(world != null && world.provider instanceof WE_WorldProvider)
 				{		
-					return WE_Biome.getBiomeAt((long)pos.getX(), (long)pos.getZ()).biomeBlockWaterColor;					
+					WE_ChunkProvider chunk = ((WE_WorldProvider)world.provider).chunk_provider;					
+					
+					if(chunk != null)
+						return WE_Biome.getBiomeAt(chunk, (long)pos.getX(), (long)pos.getZ()).biomeBlockWaterColor;					
 				}			
 				
 				return BiomeColorHelper.getWaterColorAtPos(blockAccess, pos);

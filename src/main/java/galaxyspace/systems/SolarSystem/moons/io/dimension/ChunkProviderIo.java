@@ -43,9 +43,9 @@ public class ChunkProviderIo extends ChunkProviderSpaceLakes {
     
     private IBlockState top = GSBlocks.IO_BLOCKS.getDefaultState().withProperty(IoBlocks.BASIC_TYPE, IoBlocks.EnumIoBlocks.IO_DUNGEON_TOP);
     private IBlockState floor = GSBlocks.IO_BLOCKS.getDefaultState().withProperty(IoBlocks.BASIC_TYPE, IoBlocks.EnumIoBlocks.IO_DUNGEON_FLOOR);
-    private IBlockState bricks = GSBlocks.DUNGEON_BLOCKS.getDefaultState().withProperty(DungeonBlocks.BASIC_TYPE, DungeonBlocks.EnumDungeonBlocks.IO_BRICKS);
+    private IBlockState bricks = GSBlocks.IO_BLOCKS.getDefaultState().withProperty(IoBlocks.BASIC_TYPE, IoBlocks.EnumIoBlocks.IO_DUNGEON_BRICKS);
     
-    private final MapGenDungeonIo dungeonGenerator = new MapGenDungeonIo(new DungeonConfiguration(bricks, top, floor, 30, 8, 16, 7, 7, CorridorIo.class, RoomEmptyIo.class, RoomSpawnerIo.class, RoomChestIo.class, RoomBossIo.class, RoomTreasureIo.class));
+    private final MapGenDungeonIo dungeonGenerator = new MapGenDungeonIo(new DungeonConfiguration(bricks, top, floor, 30, 30, 35, 7, 7, CorridorIo.class, RoomEmptyIo.class, RoomSpawnerIo.class, RoomChestIo.class, RoomBossIo.class, RoomTreasureIo.class));
     
 	@Override
 	protected List<MapGenBaseMeta> getWorldGenerators()

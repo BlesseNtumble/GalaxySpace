@@ -13,7 +13,13 @@ public class Page_Oxygen_Storage_Module extends Page_WithCraftMatrix {
 
 	@Override
 	public String titlePage() {
-		return "oxygen_storage_module";
+		return getItem().getUnlocalizedName() + ".name";
+	}
+	
+	@Override
+	public boolean rawTitle()
+	{
+		return true;
 	}
 
 	@Override

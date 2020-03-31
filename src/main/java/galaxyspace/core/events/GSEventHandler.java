@@ -31,7 +31,9 @@ import galaxyspace.systems.SolarSystem.moons.titan.dimension.WorldProviderTitan;
 import galaxyspace.systems.SolarSystem.planets.kuiperbelt.dimension.WorldProviderKuiperBelt;
 import galaxyspace.systems.SolarSystem.planets.mars.dimension.WorldProviderMars_WE;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemSpaceSuit;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemThermalPaddingBase;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.modules.Protection;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitationModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityPlanetShield;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityRadiationStabiliser;
@@ -51,6 +53,7 @@ import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler.EnumMod
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler.ThermalArmorEvent;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
 import micdoodle8.mods.galacticraft.core.items.ItemTier1Rocket;
+import micdoodle8.mods.galacticraft.core.util.CompatibilityManager;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
@@ -89,6 +92,8 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -146,11 +151,24 @@ public class GSEventHandler {
    
 	}
 
+	
+	@SubscribeEvent
+    public void onPlayerJoinWorld(EntityTravelToDimensionEvent event)
+    {
+		if (event.getEntity() instanceof EntityPlayerMP)
+        {
+			GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_UPDATE_WORLD, GCCoreUtil.getDimensionID(event.getEntity().getEntityWorld())), (EntityPlayerMP)event.getEntity());
+        		
+        }
+    }
+	
 	@SubscribeEvent
     public void onPlayerLogin(PlayerLoggedInEvent event)
     {
         if (event.player instanceof EntityPlayerMP)
         {
+        	GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_UPDATE_WORLD, GCCoreUtil.getDimensionID(event.player.world)), (EntityPlayerMP)event.player);
+        	
         	StatsCapability stats = GSStatsCapability.get(event.player);
         	
         	Integer[] ids = new Integer[256];
@@ -188,6 +206,30 @@ public class GSEventHandler {
 			e.setCanceled(chest != null && chest.getItem() instanceof IJetpackArmor && ((IJetpackArmor) chest.getItem()).canFly(chest, (EntityPlayer) e.getEntityLiving()) && ((IJetpackArmor) chest.getItem()).isActivated(chest));
 		}
 		
+	}
+	
+	@SubscribeEvent
+	public void onDamage(LivingDamageEvent e) {
+		if(e.getEntityLiving() instanceof EntityPlayerMP)
+		{
+			EntityPlayerMP player = (EntityPlayerMP) e.getEntityLiving();
+			World world = player.getEntityWorld();
+			if(!world.isRemote)
+			{
+				float protect = 0.0F;
+				
+				for(ItemStack s : player.inventory.armorInventory)
+				{
+					if(s.getItem() instanceof ItemSpaceSuit && s.hasTagCompound())
+					{
+						if(((ItemSpaceSuit)s.getItem()).getElectricityStored(s) > 5 && s.getTagCompound().hasKey("protection"))
+							protect += 0.1F;
+					}
+				}
+				
+				e.setAmount(e.getAmount() - e.getAmount() * protect);
+			}
+		}
 	}
 
 	@SubscribeEvent 
@@ -256,9 +298,27 @@ public class GSEventHandler {
 		final Block block = world.getBlockState(event.getPos()).getBlock();
 		ItemStack stack = event.getItemStack();
 		EntityPlayer player = event.getEntityPlayer();
-					
+			
+		
+		
+		if(world.isRemote)
+		{						
+						
+		}
 		if(!world.isRemote && GSConfigCore.enableHardMode)
-		{				
+		{		
+			
+			if(CompatibilityManager.isIc2Loaded())
+			{
+				//IC2 WIND TURBINE
+				if(world.provider instanceof IGalacticraftWorldProvider && ((IGalacticraftWorldProvider)world.provider).hasNoAtmosphere() && ((IGalacticraftWorldProvider)world.provider).getWindLevel() <= 0.0F) {
+					if(stack.getItem() == Item.getByNameOrId("ic2:te") && (stack.getItemDamage() == 11 || stack.getItemDamage() == 21)) {
+						player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.cant_place")));	
+						event.setCanceled(true);
+					}
+				}
+			}
+			
 			//ICE BUCKET
 			if(block == Blocks.ICE && stack.getItem() instanceof ItemBucket)
 			{				
@@ -277,7 +337,7 @@ public class GSEventHandler {
 					if(stack.getItem().equals(ore.itemstack.getItem()))
 					{		
 						if(ore.need_check_temp) {
-							if(thermal < -1.0F || thermal >= 1.5F && !OxygenUtil.isAABBInBreathableAirBlock(world, bb, true))
+							if((thermal < -1.0F || thermal >= 1.5F) && !OxygenUtil.isAABBInBreathableAirBlock(world, bb, true))
 							{
 								player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.needoxygenthermal")));				   
 								event.setCanceled(true);								
@@ -322,9 +382,9 @@ public class GSEventHandler {
 		ItemStack i = event.getItemStack();
 				
 		if(!world.isRemote && GalaxySpace.debug) 
-			GalaxySpace.debug(Item.REGISTRY.getNameForObject(i.getItem()) + "");
+			GalaxySpace.debug(Item.REGISTRY.getNameForObject(i.getItem()) + " | " + i.getUnlocalizedName());
 		
-		
+					
 		if(!world.isRemote && GSConfigCore.enableHardMode && !player.capabilities.isCreativeMode)
 		{	
 			if(world.provider instanceof IGalacticraftWorldProvider && !((IGalacticraftWorldProvider)world.provider).hasBreathableAtmosphere())

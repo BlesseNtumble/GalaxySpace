@@ -9,32 +9,31 @@ import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSpider;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedZombie;
 import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import net.minecraft.init.Blocks;
+import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.Biome;
 
 public class Mars_Mountains extends WE_Biome {
 	
 	public Mars_Mountains(double min, double max) {
-		super(new BiomeProperties("mars_mountains"), new int[] {0xFFFFFF, 0xFFFFFF, 0x00FF00});
+		super(new BiomeProperties("mars_mountains"), new int[] {ColorizerGrass.getGrassColor(0.5D, 1.0D), 0xFFFFFF,  ColorizerGrass.getGrassColor(0.5D, 1.0D)});
 				
 		biomeMinValueOnMap      =  	min;
 		biomeMaxValueOnMap      =   max;
-		biomePersistence        =   1.2D;
+		biomePersistence        =   1.8D;
 		biomeNumberOfOctaves    =      4;
 		biomeScaleX             = 280.0D;
 		biomeScaleY             =   1.7D;
 		biomeSurfaceHeight      =     140;
-		biomeInterpolateQuality =     2;
+		biomeInterpolateQuality =     8;
 		
 		//-//
 		decorateChunkGen_List.clear();		
 		createChunkGen_InXZ_List.clear();
-		mobs.clear();
-		
-		mobs.add(new Biome.SpawnListEntry(EntityEvolvedSpider.class, 10, 1, 2));
-		mobs.add(new Biome.SpawnListEntry(EntityEvolvedSkeleton.class, 10, 1, 2));
-		mobs.add(new Biome.SpawnListEntry(EntityEvolvedZombie.class, 10, 1, 4));
-		mobs.add(new Biome.SpawnListEntry(EntityEvolvedEnderman.class, 10, 1, 2));
-		mobs.add(new Biome.SpawnListEntry(EntityEvolvedColdBlaze.class, 10, 1, 4));
+		spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEvolvedSpider.class, 10, 1, 2));
+		spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEvolvedSkeleton.class, 10, 1, 2));
+		spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEvolvedZombie.class, 10, 1, 2));
+		spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEvolvedEnderman.class, 10, 1, 2));
+		spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEvolvedColdBlaze.class, 10, 1, 2));
 		
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();
 		standardBiomeLayers.add(MarsBlocks.marsBlock.getStateFromMeta(6), MarsBlocks.marsBlock.getStateFromMeta(9), -256, 0,   -4, -6,  true);

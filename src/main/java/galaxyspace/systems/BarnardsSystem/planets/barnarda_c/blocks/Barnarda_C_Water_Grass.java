@@ -77,7 +77,7 @@ public class Barnarda_C_Water_Grass extends BlockBush implements IPlantable{
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(BRItems.BASIC, 1, 2);
+        return new ItemStack(BRItems.BASIC, 1, 1);
     }
 	
 	@Override

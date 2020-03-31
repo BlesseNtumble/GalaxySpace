@@ -3,7 +3,9 @@ package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
+import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.init.Blocks;
+import net.minecraft.world.biome.Biome;
 
 public class Barnarda_C_DeepOcean extends WE_Biome {
 
@@ -22,6 +24,8 @@ public class Barnarda_C_DeepOcean extends WE_Biome {
 		//-//
 		decorateChunkGen_List.clear();		
 		createChunkGen_InXZ_List.clear();
+		
+		this.spawnableWaterCreatureList.add(new Biome.SpawnListEntry(EntitySquid.class, 10, 1, 4));
 		
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();
 		standardBiomeLayers.add(BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(0), BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(1), -256, 0,   -4, -1,  true);

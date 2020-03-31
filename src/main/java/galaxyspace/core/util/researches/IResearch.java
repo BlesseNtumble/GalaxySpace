@@ -12,4 +12,6 @@ public interface IResearch {
 	public abstract IResearch[] getParents();
 	public abstract float getNeedExperience();	
 	public abstract Set<ItemStack> getUnlockItems();
+	public abstract int getPosX();
+	public abstract int getPosY();	
 }

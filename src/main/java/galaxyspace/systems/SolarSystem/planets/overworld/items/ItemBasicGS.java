@@ -1,8 +1,14 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.items;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.annotation.Nullable;
+
+import org.lwjgl.opengl.GL11;
 
 import asmodeuscore.core.utils.ACAttributePlayer;
 import galaxyspace.GalaxySpace;
@@ -15,16 +21,23 @@ import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
 import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.core.registers.potions.GSPotions;
 import galaxyspace.core.util.GSCreativeTabs;
+import micdoodle8.mods.galacticraft.api.vector.BlockVec3;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.items.IClickableItem;
 import micdoodle8.mods.galacticraft.core.items.ISortableItem;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryItem;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
+import micdoodle8.mods.galacticraft.planets.GalacticraftPlanets;
 import micdoodle8.mods.galacticraft.planets.asteroids.blocks.AsteroidBlocks;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import micdoodle8.mods.galacticraft.planets.asteroids.tile.TileEntityShortRangeTelepad;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
@@ -32,6 +45,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
@@ -39,10 +53,15 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -78,7 +97,8 @@ public class ItemBasicGS extends Item implements ISortableItem{
 		"nitrogen_ice_crystal",		// 24
 		"methane_ice_crystal",		// 25
 		"hydrogen_ice_crystal",		// 26
-		"dry_ice_crystal"			// 27
+		"dry_ice_crystal",			// 27
+		//"geo_scanner"				// 28
 		//"raw_plastic", 				
 		//"plastic_stick"				
 	};
@@ -176,17 +196,52 @@ public class ItemBasicGS extends Item implements ISortableItem{
 	public EnumSortCategoryItem getCategory(int meta) {
 		return EnumSortCategoryItem.GENERAL;
 	}
-	
-	
+			 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
 	{
 		ItemStack stack = player.getHeldItem(hand);
+		
+		
+		
 		if(world.isRemote)
 		{			
 			return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
 		}
-		/*else if(stack.getItemDamage() == 6)
+		else if(stack.getItemDamage() == 27)
+		{
+			
+		}
+		/*
+		else if(stack.getItemDamage() == 28)
+		{
+			RayTraceResult ray = this.getRay(world, player, true);
+			Map<IBlockState, Integer> blocks = new HashMap<IBlockState, Integer>();
+			
+			if(ray != null) {		
+				for(BlockPos scan : ray.getBlockPos().getAllInBox(ray.getBlockPos().add(-2, -2, -2), ray.getBlockPos().add(2, 2, 2))) {
+					IBlockState block = world.getBlockState(scan);				
+					if(world.isAirBlock(scan)) continue;				
+					
+					if(blocks.containsKey(block)) {
+						blocks.put(block, blocks.get(block) + 1);
+						continue;
+					}
+					
+					blocks.put(block, 1);
+				}
+				
+				for(Entry<IBlockState, Integer> block : blocks.entrySet()) {
+					ItemStack item = new ItemStack(Item.getItemFromBlock(block.getKey().getBlock()), 1, block.getKey().getBlock().getMetaFromState(block.getKey()));				
+						
+					player.sendMessage(new TextComponentString(TextFormatting.GREEN + item.getDisplayName() + " x" + block.getValue()));
+				}//GalaxySpace.debug("" + blocks);
+				player.sendMessage(new TextComponentString(TextFormatting.GREEN + "#################################"));
+				
+			}
+			
+		}*/
+		else if(stack.getItemDamage() == 6)
 		{
 			StatsCapability gs_stats = GSStatsCapability.get(player);
 			gs_stats.setKnowledgeResearch(1, 6);
@@ -194,7 +249,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
 			
 			
 			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
-		}	*/
+		}	
 		else if(stack.getItemDamage() == 19)
 		{
 			player.openGui(GalaxySpace.MODID, GSConfigCore.guiIDGuideBook, world, 0, 0, 0);
@@ -320,4 +375,23 @@ public class ItemBasicGS extends Item implements ISortableItem{
     	if(itemStack.getItemDamage() == 12) return 128000;
         return -1;
     }
+    
+    public static RayTraceResult getRay(World world, EntityPlayer player, boolean useLiquids)
+	{
+		float f = player.rotationPitch;
+		float f1 = player.rotationYaw;
+		double d0 = player.posX;
+		double d1 = player.posY + (double) player.getEyeHeight();
+		double d2 = player.posZ;
+		Vec3d vec3d = new Vec3d(d0, d1, d2);
+		float f2 = MathHelper.cos(-f1 * 0.017453292F - (float) Math.PI);
+		float f3 = MathHelper.sin(-f1 * 0.017453292F - (float) Math.PI);
+		float f4 = -MathHelper.cos(-f * 0.017453292F);
+		float f5 = MathHelper.sin(-f * 0.017453292F);
+		float f6 = f3 * f4;
+		float f7 = f2 * f4;
+		double d3 = player.getEntityAttribute(EntityPlayer.REACH_DISTANCE).getAttributeValue() + 10;
+		Vec3d vec3d1 = vec3d.addVector((double) f6 * d3, (double) f5 * d3, (double) f7 * d3);
+		return world.rayTraceBlocks(vec3d, vec3d1, useLiquids, !useLiquids, false);
+	}
 }

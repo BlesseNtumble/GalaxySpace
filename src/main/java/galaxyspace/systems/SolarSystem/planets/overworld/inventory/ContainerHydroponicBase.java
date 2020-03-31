@@ -75,9 +75,16 @@ public class ContainerHydroponicBase extends Container
             
             if (!ItemStack.areItemStacksEqual(itemstack1, itemstack))
             {
-            	if(i == 2 || i == 4 || i == 6)
-            		if(!itemstack.isEmpty() && !itemstack1.isEmpty() && !itemstack.getItem().equals(itemstack1.getItem())) 
-            			this.tileEntity.processTicks = 0;
+            	if(!itemstack.isEmpty() && !itemstack1.isEmpty() && !itemstack.getItem().equals(itemstack1.getItem())) 
+            	{
+            		if(i == 2)            			
+            			this.tileEntity.processTicks_0 = 0;
+            		if(i == 4)  
+            			this.tileEntity.processTicks_1 = 0;
+            		if(i == 6) 
+            			this.tileEntity.processTicks_2 = 0;
+            	}
+            			
             	
                 boolean clientStackChanged = !ItemStack.areItemStacksEqualUsingNBTShareTag(itemstack1, itemstack);
                 itemstack1 = itemstack.isEmpty() ? ItemStack.EMPTY : itemstack.copy();

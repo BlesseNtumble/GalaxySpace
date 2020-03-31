@@ -62,7 +62,8 @@ public class Page_ActualUpdate extends Page_WithScroll{
 		
 		String ver = GSThreadVersionCheck.remoteMajVer + "." + GSThreadVersionCheck.remoteMinVer + "." + GSThreadVersionCheck.remoteBuildVer;
 		
-		this.drawText(I18n.format("gs.success.name") + " " + EnumColor.YELLOW + ver, x, y - 40, 0, font);
+		this.drawText("Current Version: " + EnumColor.YELLOW + GalaxySpace.VERSION, x, y - 45, 0, font);
+		this.drawText(I18n.format("gs.success.name") + " " + EnumColor.YELLOW + ver, x, y - 35, 0, font);
 		if(GSThreadVersionCheck.newversion)
 		{			
 			font.drawString(I18n.format("gs.update.available"), x + 180, y + 40, ColorUtil.to32BitColor(255, mc.player.ticksExisted % 5 == 0 ? 150 : 50, 200, 255));

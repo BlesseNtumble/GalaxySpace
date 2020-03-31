@@ -13,7 +13,13 @@ public class Page_Wind_Generator extends Page_WithCraftMatrix{
 
 	@Override
 	public String titlePage() {
-		return "wind_generator";
+		return getItem().getUnlocalizedName() + ".name";
+	}
+	
+	@Override
+	public boolean rawTitle()
+	{
+		return true;
 	}
 
 	@Override

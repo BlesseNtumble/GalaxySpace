@@ -13,7 +13,13 @@ public class Page_Liquid_Separator extends Page_WithCraftMatrix {
 
 	@Override
 	public String titlePage() {
-		return "liquid_separator";
+		return getItem().getUnlocalizedName() + ".name";
+	}
+	
+	@Override
+	public boolean rawTitle()
+	{
+		return true;
 	}
 
 	@Override

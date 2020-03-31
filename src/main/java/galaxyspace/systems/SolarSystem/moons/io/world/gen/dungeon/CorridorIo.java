@@ -39,35 +39,79 @@ public class CorridorIo extends SizedPieceIo {
             {
                 for (int k = 0; k < this.boundingBox.getZSize(); k++)
                 {
-                    if ((this.getDirection().getAxis() == EnumFacing.Axis.Z && (i == 0 || i == this.boundingBox.getXSize() - 1)) ||
-                            j == 0 || j == this.boundingBox.getYSize() - 1 ||
-                            (this.getDirection().getAxis() == EnumFacing.Axis.X && (k == 0 || k == this.boundingBox.getZSize() - 1)))
-                    {
-                    	if(j == this.configuration.getHallwayHeight())
-                    		this.setBlockState(worldIn, this.configuration.getOtherBlock(false), i, j, k, boundingBox);
-                    	else if(j == 0)
-                    		this.setBlockState(worldIn, this.configuration.getOtherBlock(true), i, j, k, boundingBox);
-                    	else
-                    		this.setBlockState(worldIn, this.configuration.getBrickBlock(), i, j, k, boundingBox);
+                	//GEN ROOM
+                	if ((this.getDirection().getAxis() == EnumFacing.Axis.Z && ((i == 0 || i == 1) || (i == this.boundingBox.getXSize() - 1 || i == this.boundingBox.getXSize() - 2))) ||
+                             j == 0 || j == this.boundingBox.getYSize() - 1 ||
+                             (this.getDirection().getAxis() == EnumFacing.Axis.X && ((k == 0 || k == 1) || (k == this.boundingBox.getZSize() - 1 || k == this.boundingBox.getZSize() - 2))))
+                	{
+                     	if(j == this.configuration.getHallwayHeight())
+                     		this.setBlockState(worldIn, this.configuration.getOtherBlock(false), i, j, k, boundingBox);
+                     	else if(j == 0)
+                     		this.setBlockState(worldIn, this.configuration.getOtherBlock(true), i, j, k, boundingBox);
+                     	else
+                     		this.setBlockState(worldIn, this.configuration.getBrickBlock(), i, j, k, boundingBox);                   	
+                     	
                     }
-                    else
+                	else
                     {
-                        if (j == this.boundingBox.getYSize() - 4)
+                		this.setBlockState(worldIn, Blocks.AIR.getDefaultState(), i, j, k, this.boundingBox);
+                    }
+                	/*
+                	if(this.getDirection().getAxis() == EnumFacing.Axis.Z && (k + 1) % 8 == 0 && k != this.boundingBox.getZSize() - 1)
+                    {
+                		if (i == 3 || i == this.boundingBox.getXSize() - 1 - 3)
                         {
-                            if (this.getDirection().getAxis() == EnumFacing.Axis.Z && (k + 1) % 4 == 0 && (i == 1 || i == this.boundingBox.getXSize() - 2))
-                            {
-                                this.setBlockState(worldIn, GCBlocks.unlitTorch.getDefaultState().withProperty(BlockUnlitTorch.FACING, i == 1 ? EnumFacing.WEST.getOpposite() : EnumFacing.EAST.getOpposite()), i, j, k, this.boundingBox);
-                                continue;
-                            }
-                            else if (this.getDirection().getAxis() == EnumFacing.Axis.X && (i + 1) % 4 == 0 && (k == 1 || k == this.boundingBox.getZSize() - 2))
-                            {
-                                this.setBlockState(worldIn, GCBlocks.unlitTorch.getDefaultState().withProperty(BlockUnlitTorch.FACING, k == 1 ? EnumFacing.NORTH.getOpposite() : EnumFacing.SOUTH.getOpposite()), i, j, k, this.boundingBox);
-                                continue;
-                            }
+                			this.setBlockState(worldIn, this.configuration.getBrickBlock(), i, j, k, this.boundingBox);
                         }
-
-                        this.setBlockState(worldIn, Blocks.AIR.getDefaultState(), i, j, k, this.boundingBox);
+                    }   
+                	
+                	if (this.getDirection().getAxis() == EnumFacing.Axis.X && (i + 1) % 8 == 0 && i != this.boundingBox.getXSize() - 1)
+                    {
+                		if (i == 3 || i == this.boundingBox.getXSize() - 1 - 3)
+                        {
+                			this.setBlockState(worldIn, this.configuration.getBrickBlock(), i, j, k, this.boundingBox);
+                        }
                     }
+                	*/
+                	//DECORATE
+                	if (this.getDirection().getAxis() == EnumFacing.Axis.Z && (k + 1) % 8 == 0 && k != this.boundingBox.getZSize() - 1)
+                    {
+                		if(j == 2) {
+	                        if (i == 0 || i == this.boundingBox.getXSize() - 1)
+	                        {
+	                            this.setBlockState(worldIn, Blocks.LAVA.getDefaultState(), i, j, k, this.boundingBox);
+	                        }
+	                        else if (i == 1 || i == this.boundingBox.getXSize() - 2)
+	                        {
+	                            this.setBlockState(worldIn, Blocks.IRON_BARS.getDefaultState(), i, j, k, this.boundingBox);
+	                        }
+                		}
+                		
+                		if (this.boundingBox.getXSize() >= 10 && (i == 3 || i == this.boundingBox.getXSize() - 1 - 3))
+                        {
+                			this.setBlockState(worldIn, this.configuration.getBrickBlock(), i, j, k, this.boundingBox);
+                        }
+        
+                    }
+                    else if (this.getDirection().getAxis() == EnumFacing.Axis.X && (i + 1) % 8 == 0 && i != this.boundingBox.getXSize() - 1)
+                    {
+                    	if(j == 2) {
+	                        if (k == 0 || k == this.boundingBox.getZSize() - 1)
+	                        {
+	                            this.setBlockState(worldIn, Blocks.LAVA.getDefaultState(), i, j, k, this.boundingBox);
+	                        }
+	                        else if (k == 1 || k == this.boundingBox.getZSize() - 2)
+	                        {
+	                            this.setBlockState(worldIn, Blocks.IRON_BARS.getDefaultState(), i, j, k, this.boundingBox);
+	                        }
+                    	}
+                    	
+                    	if (this.boundingBox.getZSize() >= 10 && (k == 3 || k == this.boundingBox.getZSize() - 1 - 3))
+                        {
+                			this.setBlockState(worldIn, this.configuration.getBrickBlock(), i, j, k, this.boundingBox);
+                        }                       
+                    }
+                                   
                 }
             }
         }
@@ -133,7 +177,7 @@ public class CorridorIo extends SizedPieceIo {
             }
             else
             {
-                StructureBoundingBox extension = getExtension(this.getDirection(), rand.nextInt(4) + 6, rand.nextInt(4) + 6);
+                StructureBoundingBox extension = getExtension(this.getDirection(), rand.nextInt(4) + 10, rand.nextInt(4) + 10);
 
                 if (startPiece.checkIntersection(extension))
                 {

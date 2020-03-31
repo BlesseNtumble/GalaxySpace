@@ -236,7 +236,7 @@ public class EntityBossBlaze extends EntityBossBase implements IEntityBreathable
         return entityitem;
     }
 
-     @Override
+    @Override
     public boolean canBreath()
     {
         return true;

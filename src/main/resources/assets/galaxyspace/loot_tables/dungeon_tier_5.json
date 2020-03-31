@@ -85,26 +85,6 @@
                 },
                 {
                     "type": "item",
-                    "name": "galacticraftplanets:desh_boots",
-                    "weight": 2
-                },
-                {
-                    "type": "item",
-                    "name": "galacticraftplanets:desh_chestplate",
-                    "weight": 2
-                },
-                {
-                    "type": "item",
-                    "name": "galacticraftplanets:desh_helmet",
-                    "weight": 2
-                },
-                {
-                    "type": "item",
-                    "name": "galacticraftplanets:desh_leggings",
-                    "weight": 2
-                },
-                {
-                    "type": "item",
                     "name": "galacticraftcore:oil_canister_partial",
                     "weight": 5,
                     "functions": [
@@ -116,8 +96,22 @@
                 },
                 {
                     "type": "item",
-                    "name": "galacticraftplanets:bucket_sulphuric_acid",
-                    "weight": 4
+					"entryName": "volcanic_shard",
+                    "name": "galaxyspace:gs_basic",
+                    "weight": 4,
+					"functions": [
+                        {
+                            "function": "set_data",
+                            "data": 12
+                        },
+                        {
+                            "function": "minecraft:set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 2
+                            }
+                        }
+                    ]
                 },
                 {
                     "type": "item",
@@ -166,19 +160,20 @@
                     "weight": 4
                 },
                 {
-                    "type": "item",
-                    "name": "galacticraftplanets:basic_item_venus",
+                    "type": "item",					
+					"entryName": "meteorite_shard",
+                    "name": "galaxyspace:gs_basic",
                     "weight": 10,
                     "functions": [
                         {
                             "function": "set_data",
-                            "data": 3
+                            "data": 13
                         },
                         {
                             "function": "minecraft:set_count",
                             "count": {
-                                "min": 2,
-                                "max": 7
+                                "min": 5,
+                                "max": 9
                             }
                         }
                     ]

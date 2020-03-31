@@ -13,7 +13,13 @@ public class Page_Modern_Energy_Cluster extends Page_WithCraftMatrix {
 
 	@Override
 	public String titlePage() {
-		return "modern_energy_cluster";
+		return getItem().getUnlocalizedName() + ".name";
+	}
+	
+	@Override
+	public boolean rawTitle()
+	{
+		return true;
 	}
 
 	@Override

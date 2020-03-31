@@ -66,7 +66,7 @@ public class EntityIceSpike extends EntityThrowable{
     @Override
     protected float getGravityVelocity()
     {
-        return 0.003F;
+        return 0.0003F;
     }
     
 	@Override

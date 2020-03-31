@@ -5,7 +5,7 @@ import java.util.Random;
 import asmodeuscore.core.astronomy.dimension.world.gen.dungeons.standart.DungeonConfiguration;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import micdoodle8.mods.galacticraft.core.Constants;
-import micdoodle8.mods.galacticraft.core.blocks.BlockTier1TreasureChest;
+import net.minecraft.block.BlockChest;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityMobSpawner;
@@ -23,7 +23,7 @@ public class RoomChestIo extends RoomEmptyIo{
 
 	public RoomChestIo(DungeonConfiguration configuration, Random rand, int blockPosX, int blockPosZ, EnumFacing entranceDir)
 	{
-		this(configuration, rand, blockPosX, blockPosZ, rand.nextInt(4) + 8, configuration.getRoomHeight(), rand.nextInt(4) + 8, entranceDir);
+		this(configuration, rand, blockPosX, blockPosZ, rand.nextInt(4) + 14, configuration.getRoomHeight(), rand.nextInt(4) + 14, entranceDir);
 	}
 	 
 	public RoomChestIo(DungeonConfiguration configuration, Random rand, int blockPosX, int blockPosZ, int sizeX, int sizeY, int sizeZ, EnumFacing entranceDir)
@@ -35,30 +35,31 @@ public class RoomChestIo extends RoomEmptyIo{
 	public boolean addComponentParts(World worldIn, Random rand, StructureBoundingBox boundingBox) {
 		if (super.addComponentParts(worldIn, rand, boundingBox)) {
 			int chestX = this.sizeX / 2;
-			int chestY = 2;
+			int chestY = 3;
 			int chestZ = this.sizeZ / 2;
 			
 
-			for(int x = -1; x < 2; x++)
-				for(int z = -1; z < 2; z++)
+			for(int x = -2; x < 3; x++)
+				for(int z = -2; z < 3; z++)
 				{
-					this.setBlockState(worldIn, Blocks.PACKED_ICE.getDefaultState(), chestX + x, chestY - 1, chestZ + z, boundingBox);
+					if((x == -3 || x == 2) && (z == -3 || z == 2))
+						this.setBlockState(worldIn, Blocks.PACKED_ICE.getDefaultState(), chestX + x, 1, chestZ + z, boundingBox);
 					
-					for(int y = 0; y < 2; y++) {
+					/*for(int y = 0; y < 2; y++) {
 						if(x % 2 != 0 && z % 2 != 0) 
 							this.setBlockState(worldIn, Blocks.PACKED_ICE.getDefaultState(), chestX + x, chestY + y, chestZ + z, boundingBox);
 						else 
 							this.setBlockState(worldIn, Blocks.ICE.getDefaultState(), chestX + x, chestY + y, chestZ + z, boundingBox);
-					}
+					}*/
 					
-					if(x != 0 || z != 0)
-						for(int y = 2; y < this.configuration.getRoomHeight() - 2; y++)
-							this.setBlockState(worldIn, Blocks.PACKED_ICE.getDefaultState(), chestX + x, chestY + y, chestZ + z, boundingBox);
+					//if(x != 0 || z != 0)
+						//for(int y = 2; y < this.configuration.getRoomHeight() - 2; y++)
+							//this.setBlockState(worldIn, Blocks.PACKED_ICE.getDefaultState(), chestX + x, chestY + y, chestZ + z, boundingBox);
 					
 				}
 
 			
-			this.setBlockState(worldIn, Blocks.CHEST.getDefaultState().withProperty(BlockTier1TreasureChest.FACING,
+			this.setBlockState(worldIn, Blocks.CHEST.getDefaultState().withProperty(BlockChest.FACING,
 					this.getDirection().getOpposite()), chestX, chestY, chestZ, boundingBox);
 			
 			BlockPos blockpos = new BlockPos(this.getXWithOffset(chestX, chestZ), this.getYWithOffset(chestY),
@@ -73,7 +74,7 @@ public class RoomChestIo extends RoomEmptyIo{
 				chest.setLootTable(chesttype, rand.nextLong());
 			}
 			
-			this.setBlockState(worldIn, Blocks.MOB_SPAWNER.getDefaultState(), chestX, chestY + 1, chestZ, boundingBox);
+			this.setBlockState(worldIn, Blocks.MOB_SPAWNER.getDefaultState(), chestX, chestY - 1, chestZ, boundingBox);
 			TileEntityMobSpawner spawner = (TileEntityMobSpawner) worldIn.getTileEntity(blockpos.up());
 			  
 			if (spawner != null)

@@ -10,6 +10,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.fluids.FluidRegistry;
 
 public class WorldGenVaporPool extends WorldGenerator {
 
@@ -37,7 +38,7 @@ public class WorldGenVaporPool extends WorldGenerator {
                     if (distance <= radiusSq)
                     {
                         BlockPos pos = new BlockPos(poolX + position.getX(), poolY + position.getY(), poolZ + position.getZ());
-                        world.setBlockState(pos, distance >= radiusSq - 16 ? ioSoft : (poolY <= 0 ? VenusBlocks.sulphuricAcid.getDefaultState() : Blocks.AIR.getDefaultState()), distance == radiusSq ? 3 : 2);
+                        world.setBlockState(pos, distance >= radiusSq - 16 ? ioSoft : (poolY <= 0 ? FluidRegistry.getFluid("sulphuricacid").getBlock().getDefaultState() : Blocks.AIR.getDefaultState()), distance == radiusSq ? 3 : 2);
                     }
                 }
             }

@@ -51,7 +51,7 @@ public class GuiHydroponicBase extends GuiContainerGC
     {
     	int yOffset = -18;
     	int scale;
-    	
+    	/*
     	if (this.tileEntity.processTicks > 0)
         {
             scale = (int) ((double) this.tileEntity.processTicks / (double) this.tileEntity.processTimeRequired * 101);
@@ -60,13 +60,14 @@ public class GuiHydroponicBase extends GuiContainerGC
         {
             scale = 100;
         }
+    	
     	String displayString = this.tileEntity.getName();
         this.fontRenderer.drawString(EnumColor.WHITE + displayString, this.xSize / 2 - this.fontRenderer.getStringWidth(displayString) / 2, -19, 4210752);
           	  
         String status = this.tileEntity.waterTank.getFluidAmount() > 0 ? 100 - scale + "%" : EnumColor.RED + GCCoreUtil.translate("gui.status.nowater.name");
         String displayText = EnumColor.WHITE + GCCoreUtil.translate("gui.message.status.name") + ": " + status;           
        
-        this.fontRenderer.drawString(EnumColor.WHITE + displayText, 100, 123 + yOffset, 4210752);
+        this.fontRenderer.drawString(EnumColor.WHITE + displayText, 100, 123 + yOffset, 4210752);*/
         this.fontRenderer.drawString(EnumColor.WHITE + GCCoreUtil.translate("container.inventory"), 14, this.ySize - 93 + 5, 4210752);
     }
 	
@@ -98,21 +99,28 @@ public class GuiHydroponicBase extends GuiContainerGC
         EnergyDisplayHelper.getEnergyDisplayTooltip(this.tileEntity.getEnergyStoredGC(), this.tileEntity.getMaxEnergyStoredGC(), electricityDesc);
         this.electricInfoRegion.tooltipStrings = electricityDesc;
 
-        if (this.tileEntity.processTicks > 0)
-        {
-            scale = (int) ((double) this.tileEntity.processTicks / (double) this.tileEntity.processTimeRequired * 100);
-        }
-        else
-        {
-            scale = 100;
-        }
-        
-        if (tileEntity.getModuleLevel() > 0 && this.tileEntity.processTicks > 0)
-        {
-        	scale = (int) ((double) this.tileEntity.processTicks / (double) this.tileEntity.processTimeRequired * 36);
-             
-        	for(int i = 0; i < tileEntity.getModuleLevel(); i++)
-        		this.drawTexturedModalRect(containerWidth + 65, containerHeight + 56 - (22 * i), 192, 124, 36 - scale, 17);
+        int ticks = 0;
+        for(int i = 0 ; i < this.tileEntity.getModuleLevel(); i++) {
+        	
+        	if(i == 0) ticks = tileEntity.processTicks_0;
+        	else if(i == 1) ticks = tileEntity.processTicks_1;
+        	else if(i == 2) ticks = tileEntity.processTicks_2;
+        	
+	        if (ticks > 0)
+	        {
+	            scale = (int) ((double) ticks / (double) this.tileEntity.processTimeRequired * 100);
+	        }
+	        else
+	        {
+	            scale = 100;
+	        }
+	        
+	        if (tileEntity.getModuleLevel() > 0 && ticks > 0)
+	        {
+	        	scale = (int) ((double) ticks / (double) this.tileEntity.processTimeRequired * 36);
+	             
+	        	this.drawTexturedModalRect(containerWidth + 65, containerHeight + 56 - (22 * i), 192, 124, 36 - scale, 17);   
+	        }
         }
         
         //Energy

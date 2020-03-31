@@ -58,7 +58,7 @@ public abstract class DirectionalPieceIo extends PieceIo
 
     public PieceIo getCorridor(Random rand, DungeonStartIo startPiece, int maxAttempts, boolean small)
     {
-    	return getCorridor(rand, startPiece, maxAttempts, small, 4);
+    	return getCorridor(rand, startPiece, maxAttempts, small, 6);
     }
     
     public PieceIo getCorridor(Random rand, DungeonStartIo startPiece, int maxAttempts, boolean small, int width)
@@ -89,7 +89,7 @@ public abstract class DirectionalPieceIo extends PieceIo
             return null;
         }
 
-        return getRoom(this.configuration.getCorridor(), startPiece, rand, blockX, blockZ, sizeX, small ? 3 : this.configuration.getHallwayHeight(), sizeZ, randomDir);//new Corridor(this.configuration, rand, blockX, blockZ, sizeX, small ? 3 : this.configuration.getHallwayHeight(), sizeZ, randomDir);
+        return getRoom(this.configuration.getCorridor(), startPiece, rand, blockX, blockZ, sizeX, small ? 6 : this.configuration.getHallwayHeight(), sizeZ, randomDir);//new Corridor(this.configuration, rand, blockX, blockZ, sizeX, small ? 3 : this.configuration.getHallwayHeight(), sizeZ, randomDir);
     }
     
     private <T extends SizedPieceIo> T getRoom(Class<?> clazz, DungeonStartIo startPiece, Random rand, int blockX, int blockZ, int sizeX, int sizeY, int sizeZ, EnumFacing randomDir)

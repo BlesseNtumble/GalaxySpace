@@ -33,11 +33,13 @@ import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.core.registers.fluids.GSFluids;
 import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.core.registers.potions.GSPotions;
-import galaxyspace.core.sounds.GSSounds;
 import galaxyspace.core.util.GSCreativeTabs;
 import galaxyspace.core.util.GSThreadVersionCheck;
 import galaxyspace.core.util.researches.ResearchUtil;
 import galaxyspace.systems.SolarSystem.moons.enceladus.tile.TileEntityBlockCrystallTE;
+import galaxyspace.systems.SolarSystem.moons.io.entities.EntityBossGhast;
+import galaxyspace.systems.SolarSystem.moons.io.tile.TileEntityDungeonSpawnerIo;
+import galaxyspace.systems.SolarSystem.moons.io.tile.TileEntityTreasureChestIo;
 import galaxyspace.systems.SolarSystem.planets.ceres.entities.EntityBossBlaze;
 import galaxyspace.systems.SolarSystem.planets.ceres.tile.TileEntityDungeonSpawnerCeres;
 import galaxyspace.systems.SolarSystem.planets.ceres.tile.TileEntityTreasureChestCeres;
@@ -72,7 +74,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -96,7 +97,7 @@ import net.minecraftforge.fml.relauncher.Side;
 @Mod(
 		   modid = GalaxySpace.MODID,
 		   version = GalaxySpace.VERSION,
-		   dependencies = Constants.DEPENDENCIES_FORGE + "required-after:galacticraftcore@[4.0.2.237,]; required-after:galacticraftplanets; required-after:asmodeuscore@[0.0.12,)",
+		   dependencies = Constants.DEPENDENCIES_FORGE + "required-after:galacticraftcore@[4.0.2.237,]; required-after:galacticraftplanets; required-after:asmodeuscore@[0.0.13,)",
 		   acceptedMinecraftVersions = Constants.MCVERSION,
 		   name = GalaxySpace.NAME,
 		   guiFactory = "galaxyspace.core.client.gui.GSConfigGuiFactory"
@@ -106,7 +107,7 @@ public class GalaxySpace
 {
 	public static final int major_version = 2;
 	public static final int minor_version = 0;
-	public static final int build_version = 11;
+	public static final int build_version = 12;
 	
 	public static final String NAME = "GalaxySpace";
 	public static final String MODID = "galaxyspace";
@@ -247,6 +248,7 @@ public class GalaxySpace
     	int fore = -8388608;
     	GCCoreUtil.registerGalacticraftCreature(EntityBossBlaze.class, "evolved_boss_blaze", back, fore);
     	GCCoreUtil.registerGalacticraftCreature(EntityEvolvedColdBlaze.class, "evolved_coldblaze", back, fore);
+    	GCCoreUtil.registerGalacticraftCreature(EntityBossGhast.class, "evolved_boss_ghast", back, fore);
     	//GCCoreUtil.registerGalacticraftCreature(EntityEvolvedFireCreeper.class, "EvolvedFireCreeper", back, fore);
     	//GCCoreUtil.registerGalacticraftCreature(EntityEvolvedFireSkeleton.class, "EvolvedFireSkeleton", back, fore);
     	//GCCoreUtil.registerGalacticraftCreature(EntityEvolvedFireSpider.class, "EvolvedFireSpider", back, fore);    	
@@ -279,6 +281,8 @@ public class GalaxySpace
     	GameRegistry.registerTileEntity(TileEntityBlockCrystallTE.class, "GS Crystal");
     	GameRegistry.registerTileEntity(TileEntityTreasureChestCeres.class, "GS Treasure Ceres");
     	GameRegistry.registerTileEntity(TileEntityDungeonSpawnerCeres.class, "GS Spawner Boss Ceres");
+    	GameRegistry.registerTileEntity(TileEntityTreasureChestIo.class, "GS Treasure Io");
+    	GameRegistry.registerTileEntity(TileEntityDungeonSpawnerIo.class, "GS Spawner Boss Io");
     	GameRegistry.registerTileEntity(TileEntityRadiationStabiliser.class, "GS Radiation Stabiliser");
     	GameRegistry.registerTileEntity(TileEntityPanelController.class, "GS Panel Controller");
     	GameRegistry.registerTileEntity(TileEntityPlanetShield.class, "GS Planet Shield");
@@ -334,15 +338,6 @@ public class GalaxySpace
     		proxy.registerVariants();
 
     	}    
-    	
-    	@SubscribeEvent
-        public static void registerSounds(RegistryEvent.Register<SoundEvent> event)
-        {
-            if (GCCoreUtil.getEffectiveSide() == Side.CLIENT)
-            {
-                GSSounds.registerSounds(event.getRegistry());
-            }
-        }
     	
     	@SubscribeEvent
         public static void registerItems(RegistryEvent.Register<Item> event)

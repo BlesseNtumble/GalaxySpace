@@ -15,6 +15,7 @@ import galaxyspace.systems.SolarSystem.SolarSystemBodies;
 import galaxyspace.systems.SolarSystem.moons.io.dimension.sky.SkyProviderIo;
 import galaxyspace.systems.SolarSystem.moons.io.world.gen.BiomeDecoratorIo;
 import galaxyspace.systems.SolarSystem.moons.io.world.gen.BiomeProviderIo;
+import galaxyspace.systems.SolarSystem.moons.io.world.gen.dungeon.RoomTreasureIo;
 import galaxyspace.systems.SolarSystem.moons.io.world.gen.we.Io_Mountains;
 import galaxyspace.systems.SolarSystem.moons.io.world.gen.we.Io_Plains;
 import galaxyspace.systems.SolarSystem.moons.io.world.gen.we.Io_Volcano;
@@ -123,7 +124,7 @@ public class WorldProviderIo_WE extends WE_WorldProvider implements IProviderFre
 	public int getDungeonSpacing() { return 0; }
 
 	@Override
-	public ResourceLocation getDungeonChestType() {	return null; }
+	public ResourceLocation getDungeonChestType() {	return RoomTreasureIo.IOCHEST; }
 
 	@Override
 	public List<Block> getSurfaceBlocks() {	return null; }

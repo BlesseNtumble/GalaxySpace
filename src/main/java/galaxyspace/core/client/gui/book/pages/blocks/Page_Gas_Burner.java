@@ -13,7 +13,13 @@ public class Page_Gas_Burner extends Page_WithCraftMatrix {
 
 	@Override
 	public String titlePage() {
-		return "gas_burner";
+		return getItem().getUnlocalizedName() + ".name";
+	}
+	
+	@Override
+	public boolean rawTitle()
+	{
+		return true;
 	}
 
 	@Override

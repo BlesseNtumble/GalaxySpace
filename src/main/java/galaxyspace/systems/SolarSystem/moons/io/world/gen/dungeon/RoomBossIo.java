@@ -3,6 +3,7 @@ package galaxyspace.systems.SolarSystem.moons.io.world.gen.dungeon;
 import java.util.Random;
 
 import asmodeuscore.core.astronomy.dimension.world.gen.dungeons.standart.DungeonConfiguration;
+import galaxyspace.core.prefab.blocks.DungeonBlocks;
 import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.systems.SolarSystem.planets.ceres.blocks.CeresBlocks;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
@@ -26,7 +27,7 @@ public class RoomBossIo extends SizedPieceIo
 
     public RoomBossIo(DungeonConfiguration configuration, Random rand, int blockPosX, int blockPosZ, EnumFacing entranceDir)
     {
-        this(configuration, rand, blockPosX, blockPosZ, rand.nextInt(6) + 14, rand.nextInt(2) + 8, rand.nextInt(6) + 14, entranceDir);
+        this(configuration, rand, blockPosX, blockPosZ, 24, rand.nextInt(2) + 12, 24, entranceDir);
     }
 
     public RoomBossIo(DungeonConfiguration configuration, Random rand, int blockPosX, int blockPosZ, int sizeX, int sizeY, int sizeZ, EnumFacing entranceDir)
@@ -90,20 +91,20 @@ public class RoomBossIo extends SizedPieceIo
             {
                 for (int k = 0; k <= this.sizeZ; k++)
                 {
-                    if (i == 0 || i == this.sizeX || j == 0 || k == 0 || k == this.sizeZ)
+                    if (i == 0 || i == this.sizeX || j == 0 || j == this.sizeY || k == 0 || k == this.sizeZ)
                     {
                         boolean placeBlock = true;
                         if (getDirection().getAxis() == EnumFacing.Axis.Z)
                         {
                             int start = (this.boundingBox.maxX - this.boundingBox.minX) / 2 - 1;
                             int end = (this.boundingBox.maxX - this.boundingBox.minX) / 2 + 1;
-                            if (i > start && i <= end && j < 3 && j > 0)
+                            if (i > start && i <= end && j < 4 && j > 0)
                             {
-                                if (getDirection() == EnumFacing.SOUTH && k == 0)
+                                if (getDirection() == EnumFacing.SOUTH && (k == 0 || k == 2))
                                 {
                                     placeBlock = false;
                                 }
-                                else if (getDirection() == EnumFacing.NORTH && k == this.sizeZ)
+                                else if (getDirection() == EnumFacing.NORTH && (k == this.sizeZ || k == this.sizeZ - 2))
                                 {
                                     placeBlock = false;
                                 }
@@ -113,13 +114,13 @@ public class RoomBossIo extends SizedPieceIo
                         {
                             int start = (this.boundingBox.maxZ - this.boundingBox.minZ) / 2 - 1;
                             int end = (this.boundingBox.maxZ - this.boundingBox.minZ) / 2 + 1;
-                            if (k > start && k <= end && j < 3 && j > 0)
+                            if (k > start && k <= end && j < 4 && j > 0)
                             {
-                                if (getDirection() == EnumFacing.EAST && i == 0)
+                                if (getDirection() == EnumFacing.EAST && (i == 0 || i == 2))
                                 {
                                     placeBlock = false;
                                 }
-                                else if (getDirection() == EnumFacing.WEST && i == this.sizeX)
+                                else if (getDirection() == EnumFacing.WEST && (i == this.sizeX || i == this.sizeX - 2))
                                 {
                                     placeBlock = false;
                                 }
@@ -129,21 +130,28 @@ public class RoomBossIo extends SizedPieceIo
                         {
                         	if(j == 0)
                         	{
-                        		if(i == this.sizeX / 2 && k > 1 && k < this.sizeZ - 1)
+                        		if(i > 2 && i < this.sizeX - 2 && k > 2 && k < this.sizeZ - 2)
                                 {
                                     this.setBlockState(worldIn, GSBlocks.FUTURE_GLASS_BASIC.getDefaultState(), i, j, k, chunkBox);
-                                    this.setBlockState(worldIn, Blocks.PACKED_ICE.getDefaultState(), i, j - 1, k, chunkBox);
+                                    this.setBlockState(worldIn, Blocks.LAVA.getDefaultState(), i, j - 1, k, chunkBox);
                                 }
-                        		else if(k == this.sizeZ / 2 && i > 1 && i < this.sizeX - 1)
+                        		else
+                        			this.setBlockState(worldIn, this.configuration.getOtherBlock(true), i, j, k, boundingBox);
+                           	}                        	
+                        	else if(j == this.sizeY)
+                        	{
+                        		if ((i <= 2 || k <= 2 || i >= this.sizeX - 2 || k >= this.sizeZ - 2) && random.nextInt(4) == 0)
                                 {
-                                    this.setBlockState(worldIn, GSBlocks.FUTURE_GLASS_BASIC.getDefaultState(), i, j, k, chunkBox);
-                                    this.setBlockState(worldIn, Blocks.PACKED_ICE.getDefaultState(), i, j - 1, k, chunkBox);
+                                    this.setBlockState(worldIn, Blocks.GLOWSTONE.getDefaultState(), i, j, k, chunkBox);
                                 }
-                        		else if((i == 3 || i == this.sizeX - 3) && (k == 3 || k == this.sizeZ - 3))
-                        			this.setBlockState(worldIn, Blocks.GLOWSTONE.getDefaultState(), i, j, k, chunkBox);
-                        		else this.setBlockState(worldIn, GSBlocks.CERES_BLOCKS.getDefaultState().withProperty(CeresBlocks.BASIC_TYPE, CeresBlocks.EnumCeresBlocks.CERES_DUNGEON_FLOOR), i, j, k, boundingBox);
-                        		
+                                else
+                                {
+                                	this.setBlockState(worldIn, this.configuration.getOtherBlock(false), i, j, k, boundingBox);
+
+                                }
                         	}
+                        	//else if(i == 1 || i == this.sizeX - 2 || k == 1 || k == this.sizeZ - 2) 
+                        		//this.setBlockState(worldIn, GSBlocks.DUNGEON_BLOCKS.getDefaultState().withProperty(DungeonBlocks.BASIC_TYPE, DungeonBlocks.EnumDungeonBlocks.IO_BRICKS), i, j, k, chunkBox);                        	
                         	else
                         		this.setBlockState(worldIn, this.configuration.getBrickBlock(), i, j, k, chunkBox);
                         }
@@ -152,6 +160,16 @@ public class RoomBossIo extends SizedPieceIo
                             this.setBlockState(worldIn, Blocks.AIR.getDefaultState(), i, j, k, chunkBox);
                         }
                     }
+                    else if ((i == 2 || i == this.sizeX - 2) || (k == 2 || k == this.sizeZ - 2))
+                    {               
+                    	if(i % 2 == 0 && k % 2 == 0)
+                    		this.setBlockState(worldIn, GSBlocks.DUNGEON_BLOCKS.getDefaultState().withProperty(DungeonBlocks.BASIC_TYPE, DungeonBlocks.EnumDungeonBlocks.IO_BRICKS), i, j, k, chunkBox);                        	
+                    	else
+                    		this.setBlockState(worldIn, Blocks.AIR.getDefaultState(), i, j, k, chunkBox);
+                    }
+                    else
+                    	this.setBlockState(worldIn, Blocks.AIR.getDefaultState(), i, j, k, chunkBox);
+                    /*
                     else if (j == this.sizeY)
                     {
                         if ((i <= 2 || k <= 2 || i >= this.sizeX - 2 || k >= this.sizeZ - 2) && random.nextInt(4) == 0)
@@ -164,19 +182,19 @@ public class RoomBossIo extends SizedPieceIo
                             
                             //this.setBlockState(worldIn, this.configuration.getBrickBlock(), i, j, k, chunkBox);
                         }
-                    }
+                    }*/
                    /* else if (j == 1 && (i <= 2 || k <= 2 || i >= this.sizeX - 2 || k >= this.sizeZ - 2) && random.nextInt(6) == 0)
                     {
                         this.setBlockState(worldIn, MarsBlocks.creeperEgg.getDefaultState(), i, j, k, chunkBox);
                     }*/
-                    else
+                  /*  else
                     {
                     	if((i == 2 || i == 4 || i == this.sizeX - 2 || i == this.sizeX - 4) && 
                     			(k == 2 || k == 4 && i != 4 && i != this.sizeX - 4 || k == this.sizeZ - 2 || k == this.sizeZ - 4 && i != 4 && i != this.sizeX - 4))
                     		this.setBlockState(worldIn, Blocks.PACKED_ICE.getDefaultState(), i, j, k, chunkBox);
                     	else
                     		this.setBlockState(worldIn, Blocks.AIR.getDefaultState(), i, j, k, chunkBox);
-                    }
+                    }*/
                     
                     
                     
@@ -185,13 +203,13 @@ public class RoomBossIo extends SizedPieceIo
         }
         
         int spawnerX = this.sizeX / 2;
-        int spawnerY = 1;
+        int spawnerY = this.sizeY / 2;
         int spawnerZ = this.sizeZ / 2;
         BlockPos blockpos = new BlockPos(this.getXWithOffset(spawnerX, spawnerZ), this.getYWithOffset(spawnerY), this.getZWithOffset(spawnerX, spawnerZ));
         //Is this position inside the chunk currently being generated?
         if (chunkBox.isVecInside(blockpos))
         {
-            worldIn.setBlockState(blockpos, GSBlocks.BOSS_SPAWNER_CERES.getDefaultState(), 2);
+            worldIn.setBlockState(blockpos, GSBlocks.BOSS_SPAWNER_IO.getDefaultState(), 2);
             TileEntityDungeonSpawner spawner = (TileEntityDungeonSpawner) worldIn.getTileEntity(blockpos);
             if (spawner != null)
             {

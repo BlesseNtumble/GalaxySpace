@@ -13,7 +13,13 @@ public class Page_Planetar_Shield extends Page_WithCraftMatrix {
 
 	@Override
 	public String titlePage() {
-		return "planetar_shield";
+		return getItem().getUnlocalizedName() + ".name";
+	}
+	
+	@Override
+	public boolean rawTitle()
+	{
+		return true;
 	}
 
 	@Override

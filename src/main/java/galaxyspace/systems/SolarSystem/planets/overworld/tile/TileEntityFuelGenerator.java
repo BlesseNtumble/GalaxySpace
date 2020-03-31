@@ -65,6 +65,15 @@ public class TileEntityFuelGenerator extends TileBaseUniversalElectricalSource i
     	fuel.add(new Fuel(fluid, burn_time, mod_energy));
     }
     
+    public static void removeFuel(Fluid fluid)
+    {
+    	for(Fuel fluids : fuel)
+    	{
+    		if(fluids.fuel.equals(fluid))
+    			fuel.remove(fluids);
+    	}
+    }
+    
     public TileEntityFuelGenerator()
     {
     	super("tile.fuel_generator.name");

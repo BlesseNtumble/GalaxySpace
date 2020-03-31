@@ -8,9 +8,12 @@ import asmodeuscore.api.dimension.IProviderFreeze;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProvider;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProvider;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_CaveGen;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_RavineGen;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_TerrainGenerator;
+import galaxyspace.GalaxySpace;
+import galaxyspace.core.prefab.world.gen.we.biomes.WE_BaseBiome;
 import galaxyspace.systems.SolarSystem.planets.mars.dimension.sky.SkyProviderMars;
 import galaxyspace.systems.SolarSystem.planets.mars.world.gen.we.Mars_High_Plains;
 import galaxyspace.systems.SolarSystem.planets.mars.world.gen.we.Mars_Mountains;
@@ -33,6 +36,7 @@ import micdoodle8.mods.galacticraft.planets.mars.world.gen.MapGenDungeonMars;
 import micdoodle8.mods.galacticraft.planets.mars.world.gen.RoomBossMars;
 import micdoodle8.mods.galacticraft.planets.mars.world.gen.RoomTreasureMars;
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.ChunkPos;
@@ -43,6 +47,7 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -86,7 +91,7 @@ public class WorldProviderMars_WE extends WE_WorldProvider implements IProviderF
     public Vector3 getFogColor()
     {
         float f = 1.0F - this.getStarBrightness(1.0F);
-        return new Vector3(210F / 255F * f, 120F / 255F * f, 59F / 255F * f);
+        return new Vector3(210F / 255F * f, 120F / 255F * f, 59F / 255F * f);        
     }
 
     @Override
@@ -94,6 +99,7 @@ public class WorldProviderMars_WE extends WE_WorldProvider implements IProviderF
     {
         float f = 1.0F - this.getStarBrightness(1.0F);
         return new Vector3(154 / 255.0F * f, 114 / 255.0F * f, 66 / 255.0F * f);
+       
     }
      
 	@Override
@@ -124,7 +130,7 @@ public class WorldProviderMars_WE extends WE_WorldProvider implements IProviderF
             var3 = 1.0F;
         }
 
-        return var3 * var3 * 0.5F + 0.3F;
+        return var3 * var3 * 0.5F + 0.1F;
     }
     
     @Nullable
@@ -175,7 +181,7 @@ public class WorldProviderMars_WE extends WE_WorldProvider implements IProviderF
 
 	@Override
 	public ResourceLocation getDungeonChestType() {
-		return null;
+		return RoomTreasureMars.MARSCHEST;
 	}
 
 	@Override
@@ -196,9 +202,9 @@ public class WorldProviderMars_WE extends WE_WorldProvider implements IProviderF
 		cp.createChunkGen_InXYZ_List.clear(); 
 		cp.decorateChunkGen_List .clear(); 
 		
-		cp.CRATER_PROB = 400;
+		cp.CRATER_PROB = 2000;
 		
-		WE_Biome.setBiomeMap(cp, 1.2D, 4, 800.0D, 1.0D);	
+		WE_Biome.setBiomeMap(cp, 1.4D, 4, 4000.0D, 1.0D);	
 		
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
 		terrainGenerator.worldStoneBlock = MarsBlocks.marsBlock.getStateFromMeta(9); 
@@ -233,9 +239,17 @@ public class WorldProviderMars_WE extends WE_WorldProvider implements IProviderF
 		
 		//WE_Biome.addBiomeToGeneration(cp, new Mars_Triangle_Mountains(-1.0D, 0.0D));
 		//WE_Biome.addBiomeToGeneration(cp, new Mars_Ravine(-1.0D, 0.0D));
-		WE_Biome.addBiomeToGeneration(cp, new Mars_Plains(-1.0D, 0.0D));
-		WE_Biome.addBiomeToGeneration(cp, new Mars_High_Plains(-0.5D, 0.5D));
-		WE_Biome.addBiomeToGeneration(cp, new Mars_Mountains(-0.0D, 1.0D));
+		WE_BiomeLayer layer = new WE_BiomeLayer();
+		layer.add(MarsBlocks.marsBlock.getStateFromMeta(6), MarsBlocks.marsBlock.getStateFromMeta(9), -256, 0,   -4, -6,  true);
+		layer.add(MarsBlocks.marsBlock.getStateFromMeta(5), MarsBlocks.marsBlock.getStateFromMeta(6), -256, 0,   -2, -1,  true);
+		layer.add(Blocks.BEDROCK.getDefaultState(), 0, 2, 0, 0, true);
+		
+		WE_Biome.addBiomeToGeneration(cp, new Mars_Plains(-0.0D, 0.0D));
+		WE_Biome.addBiomeToGeneration(cp, new Mars_High_Plains(-0.3D, 0.3D));
+		WE_Biome.addBiomeToGeneration(cp, new Mars_Mountains(-0.5D, 0.5D));
+		WE_Biome.addBiomeToGeneration(cp, new Mars_Plains(-1.0D, 1.0D));
+		WE_Biome.addBiomeToGeneration(cp, new Mars_High_Plains(-1.3D, 1.3D));
+		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-1.5D, 1.5D, 2.4F, 4, 180, 30, layer));
 		
 	}
 
@@ -251,7 +265,7 @@ public class WorldProviderMars_WE extends WE_WorldProvider implements IProviderF
 	
 	@Override
 	protected float getThermalValueMod() {
-		return 1.4F;
+		return 0.85F;
 	}
 
 	@Override
@@ -268,5 +282,6 @@ public class WorldProviderMars_WE extends WE_WorldProvider implements IProviderF
 	public void recreateStructures(Chunk chunkIn, int x, int z) {		
 		dungeonGenerator.generate(this.world, x, z, null);
 	}
+	
 
 }

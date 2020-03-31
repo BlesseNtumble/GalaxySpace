@@ -9,6 +9,7 @@
 		"type=io_lava_geyser": { "model": "galaxyspace:io_lava_geyser"},
 		"type=io_sulfur_geyser": { "model": "galaxyspace:io_sulfur_geyser"},
 		"type=io_top": { "model": "galaxyspace:io_top"},
-		"type=io_floor": { "model": "galaxyspace:io_floor"}
+		"type=io_floor": { "model": "galaxyspace:io_floor"},
+		"type=io_dungeon_bricks": { "model": "galaxyspace:io_dungeon_bricks"}
 	} 
 }

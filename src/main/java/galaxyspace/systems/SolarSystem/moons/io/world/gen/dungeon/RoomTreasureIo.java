@@ -5,8 +5,7 @@ import java.util.Random;
 import asmodeuscore.core.astronomy.dimension.world.gen.dungeons.standart.DungeonConfiguration;
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.registers.blocks.GSBlocks;
-import galaxyspace.systems.SolarSystem.planets.ceres.blocks.BlockTier4TreasureChest;
-import galaxyspace.systems.SolarSystem.planets.ceres.blocks.CeresBlocks;
+import galaxyspace.systems.SolarSystem.moons.io.blocks.BlockTier5TreasureChest;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityTreasureChest;
 import net.minecraft.init.Blocks;
@@ -88,9 +87,9 @@ public class RoomTreasureIo extends SizedPieceIo
                         if (placeBlock)
                         {
                         	if(j == this.configuration.getHallwayHeight())
-                        		this.setBlockState(worldIn, GSBlocks.CERES_BLOCKS.getDefaultState().withProperty(CeresBlocks.BASIC_TYPE, CeresBlocks.EnumCeresBlocks.CERES_DUNGEON_TOP), i, j, k, boundingBox);
+                        		this.setBlockState(worldIn, this.configuration.getOtherBlock(false), i, j, k, boundingBox);
                         	else if(j == 0)
-                        		this.setBlockState(worldIn, GSBlocks.CERES_BLOCKS.getDefaultState().withProperty(CeresBlocks.BASIC_TYPE, CeresBlocks.EnumCeresBlocks.CERES_DUNGEON_FLOOR), i, j, k, boundingBox);
+                        		this.setBlockState(worldIn, this.configuration.getOtherBlock(true), i, j, k, boundingBox);
                         	else
                         		this.setBlockState(worldIn, this.configuration.getBrickBlock(), i, j, k, boundingBox);
                         }
@@ -108,11 +107,11 @@ public class RoomTreasureIo extends SizedPieceIo
                         BlockPos blockpos = new BlockPos(this.getXWithOffset(i, k), this.getYWithOffset(j), this.getZWithOffset(i, k));
                         if (boundingBox.isVecInside(blockpos))
                         {
-                            worldIn.setBlockState(blockpos, GSBlocks.TREASURE_CHEST_TIER_4.getDefaultState().withProperty(BlockTier4TreasureChest.FACING, this.getDirection().getOpposite()), 2);
+                            worldIn.setBlockState(blockpos, GSBlocks.TREASURE_CHEST_TIER_5.getDefaultState().withProperty(BlockTier5TreasureChest.FACING, this.getDirection().getOpposite()), 2);
                             TileEntityTreasureChest treasureChest = (TileEntityTreasureChest) worldIn.getTileEntity(blockpos);
                             if (treasureChest != null)
                             {
-                                ResourceLocation chesttype = TABLE_TIER_5_DUNGEON;
+                                ResourceLocation chesttype = IOCHEST;
                                 if (worldIn.provider instanceof IGalacticraftWorldProvider)
                                 {
                                     chesttype = ((IGalacticraftWorldProvider)worldIn.provider).getDungeonChestType();

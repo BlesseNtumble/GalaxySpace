@@ -11,18 +11,20 @@ public class BaseResearch implements IResearch{
 	private Set<ItemStack> items_for_need = new HashSet();
 	private Set<ItemStack> unlock_items = new HashSet();
 	private IResearch[] parents;
-	private int id, need_exp = 0;
+	private int id, need_exp = 0, posX = 0, posY = 0;
 		
-	public BaseResearch(int id, String name)
+	public BaseResearch(int id, String name, int posX, int posY)
 	{
-		this(id, name, null);
+		this(id, name, null, posX, posY);
 	}
 	
-	public BaseResearch(int id, String name, IResearch[] parent)
+	public BaseResearch(int id, String name, IResearch[] parent, int posX, int posY)
 	{
 		this.id = id;
 		this.name = name;
 		this.parents = parent;
+		this.posX = posX;
+		this.posY = posY;
 	}
 	
 	public void setExperince(int exp)
@@ -68,6 +70,16 @@ public class BaseResearch implements IResearch{
 	@Override
 	public int getID() {
 		return this.id;
+	}
+
+	@Override
+	public int getPosX() {
+		return this.posX;
+	}
+
+	@Override
+	public int getPosY() {
+		return this.posY;
 	}
 
 }

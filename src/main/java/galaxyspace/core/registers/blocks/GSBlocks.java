@@ -15,6 +15,8 @@ import galaxyspace.systems.SolarSystem.moons.europa.blocks.EuropaBlocks;
 import galaxyspace.systems.SolarSystem.moons.europa.items.ItemBlocksEuropa;
 import galaxyspace.systems.SolarSystem.moons.ganymede.blocks.GanymedeBlocks;
 import galaxyspace.systems.SolarSystem.moons.ganymede.items.ItemBlocksGanymede;
+import galaxyspace.systems.SolarSystem.moons.io.blocks.BlockBossSpawnerIo;
+import galaxyspace.systems.SolarSystem.moons.io.blocks.BlockTier5TreasureChest;
 import galaxyspace.systems.SolarSystem.moons.io.blocks.IoBlocks;
 import galaxyspace.systems.SolarSystem.moons.io.items.ItemBlocksIo;
 import galaxyspace.systems.SolarSystem.moons.miranda.blocks.MirandaBlocks;
@@ -27,6 +29,8 @@ import galaxyspace.systems.SolarSystem.planets.ceres.blocks.BlockBossSpawnerCere
 import galaxyspace.systems.SolarSystem.planets.ceres.blocks.BlockTier4TreasureChest;
 import galaxyspace.systems.SolarSystem.planets.ceres.blocks.CeresBlocks;
 import galaxyspace.systems.SolarSystem.planets.ceres.items.ItemBlocksCeres;
+import galaxyspace.systems.SolarSystem.planets.haumea.blocks.HaumeaBlocks;
+import galaxyspace.systems.SolarSystem.planets.haumea.items.ItemBlocksHaumea;
 import galaxyspace.systems.SolarSystem.planets.mars.blocks.MarsOresBlocks;
 import galaxyspace.systems.SolarSystem.planets.mars.items.ItemBlocksMarsOres;
 import galaxyspace.systems.SolarSystem.planets.mercury.blocks.MercuryBlocks;
@@ -118,13 +122,16 @@ public class GSBlocks {
 	
 	public static final Block DUNGEON_BLOCKS = new DungeonBlocks().setHardness(1.0F);
 	public static final Block TREASURE_CHEST_TIER_4 = new BlockTier4TreasureChest("treasure_t4");
+	public static final Block TREASURE_CHEST_TIER_5 = new BlockTier5TreasureChest("treasure_t5");
 	public static final Block BOSS_SPAWNER_CERES = new BlockBossSpawnerCeres("boss_spawner_ceres"); 
+	public static final Block BOSS_SPAWNER_IO = new BlockBossSpawnerIo("boss_spawner_io"); 
 	// MARS --------------------------------------------------------------------
 	public static final Block MARS_ORES = new MarsOresBlocks().setHardness(2.0F);
 	
 	public static final Block CERES_BLOCKS = new CeresBlocks().setHardness(3.0F);	
 	
 	public static final Block PLUTO_BLOCKS = new PlutoBlocks().setHardness(3.0F);
+	public static final Block HAUMEA_BLOCKS = new HaumeaBlocks().setHardness(3.0F);
 	
 	public static final Block IO_BLOCKS = new IoBlocks().setHardness(3.0F);
 	
@@ -177,7 +184,9 @@ public class GSBlocks {
 		
 		registerBlock(DUNGEON_BLOCKS, ItemBlockDungeonBlocks.class);
 		registerBlock(TREASURE_CHEST_TIER_4, GSItemBlockDesc.class);		
+		registerBlock(TREASURE_CHEST_TIER_5, GSItemBlockDesc.class);		
 		registerBlock(BOSS_SPAWNER_CERES, null);
+		registerBlock(BOSS_SPAWNER_IO, null);
 		
 		registerBlock(FUTURE_GLASS_BASIC, GSItemBlockDesc.class);
 		registerBlock(FUTURE_GLASS_COLORED, ItemBlocksFutureGlasses.class);
@@ -192,6 +201,8 @@ public class GSBlocks {
 		registerBlock(CERES_BLOCKS, ItemBlocksCeres.class);
 		
 		registerBlock(PLUTO_BLOCKS, ItemBlocksPluto.class);
+		registerBlock(HAUMEA_BLOCKS, ItemBlocksHaumea.class);
+		
 		registerBlock(IO_BLOCKS, ItemBlocksIo.class);
 		
 		registerBlock(EUROPA_BLOCKS, ItemBlocksEuropa.class);
@@ -231,6 +242,8 @@ public class GSBlocks {
 		
 		OreDictionary.registerOre("oreDolomite", new ItemStack(CERES_BLOCKS, 1, 2));
 		OreDictionary.registerOre("oreMeteroricIron", new ItemStack(CERES_BLOCKS, 1, 3));
+		
+		OreDictionary.registerOre("oreAluminum", new ItemStack(HAUMEA_BLOCKS, 1, 3));
 		
 		OreDictionary.registerOre("oreCopper", new ItemStack(IO_BLOCKS, 1, 3));
 		OreDictionary.registerOre("oreSulfur", new ItemStack(IO_BLOCKS, 1, 4));

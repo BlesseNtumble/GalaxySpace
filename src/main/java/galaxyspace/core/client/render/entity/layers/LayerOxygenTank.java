@@ -26,7 +26,7 @@ public class LayerOxygenTank implements LayerRenderer<AbstractClientPlayer>{
 
 	public LayerOxygenTank()
     {
-		this.playerRenderer = Minecraft.getMinecraft().getRenderManager().playerRenderer;
+		this.playerRenderer = Minecraft.getMinecraft().getRenderManager().getSkinMap().get("default");
 		float scaleFactor = 0.0F;
 		ModelPlayer modelPlayer = playerRenderer.getMainModel();
 		
