@@ -1,8 +1,8 @@
 package galaxyspace.core.hooks;
 
-import asmodeuscore.core.hooklib.asm.Hook;
-import asmodeuscore.core.hooklib.asm.ReturnCondition;
 import galaxyspace.core.events.SetBlockEvent;
+import galaxyspace.core.hooklib.asm.Hook;
+import galaxyspace.core.hooklib.asm.ReturnCondition;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
