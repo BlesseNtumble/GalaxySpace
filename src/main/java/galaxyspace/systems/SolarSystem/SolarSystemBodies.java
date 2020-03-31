@@ -43,6 +43,7 @@ import galaxyspace.systems.SolarSystem.planets.ceres.dimension.TeleportTypeCeres
 import galaxyspace.systems.SolarSystem.planets.ceres.dimension.WorldProviderCeres;
 import galaxyspace.systems.SolarSystem.planets.haumea.dimension.TeleportTypeHaumea;
 import galaxyspace.systems.SolarSystem.planets.haumea.dimension.WorldProviderHaumea_WE;
+import galaxyspace.systems.SolarSystem.planets.haumea.recipes.CraftingRecipesHaumea;
 import galaxyspace.systems.SolarSystem.planets.kuiperbelt.dimension.TeleportTypeKuiperBelt;
 import galaxyspace.systems.SolarSystem.planets.kuiperbelt.dimension.WorldProviderKuiperBelt;
 import galaxyspace.systems.SolarSystem.planets.mars.dimension.WorldProviderMars_WE;
@@ -582,6 +583,7 @@ public class SolarSystemBodies implements IBodies{
 		CraftingRecipesMercury.loadRecipes();
 		CraftingRecipesOverworld.loadRecipes();		
     	CraftingRecipesMars.loadRecipes();
+    	CraftingRecipesHaumea.loadRecipes();
     	CraftingRecipesIo.loadRecipes();
     	CraftingRecipesEuropa.loadRecipes();
     	CraftingRecipesGanymede.loadRecipes();
