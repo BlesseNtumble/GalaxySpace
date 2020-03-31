@@ -1,6 +1,5 @@
 package galaxyspace.core.proxy;
 
-import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,8 +40,6 @@ import galaxyspace.core.prefab.entities.EntityTier6Rocket;
 import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.core.registers.fluids.GSFluids;
 import galaxyspace.core.registers.items.GSItems;
-import galaxyspace.core.sounds.GSMusicTicker;
-import galaxyspace.core.sounds.GSSounds;
 import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.moons.callisto.blocks.CallistoBlocks;
 import galaxyspace.systems.SolarSystem.moons.enceladus.blocks.EnceladusBlocks;
@@ -97,7 +94,6 @@ import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.wrappers.ModelTransformWrapper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.MusicTicker;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
@@ -105,7 +101,6 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.event.TextureStitchEvent.Pre;
@@ -113,7 +108,6 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
-import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -129,7 +123,7 @@ public class ClientProxy extends CommonProxy{
 	public static Map<String, ResourceLocation> GScapesMap = Maps.newHashMap();
 	
 	public static Minecraft mc = FMLClientHandler.instance().getClient();
-	public static MusicTicker.MusicType GS_MUSIC;
+	//public static MusicTicker.MusicType GS_MUSIC;
 	
 	private static ModelResourceLocation LEMethaneLocation = new ModelResourceLocation(GalaxySpace.TEXTURE_PREFIX + "liquid_ethanemethane", "fluid");
 	private static ModelResourceLocation HeliumLocation = new ModelResourceLocation(GalaxySpace.TEXTURE_PREFIX + "liquid_helium", "fluid");

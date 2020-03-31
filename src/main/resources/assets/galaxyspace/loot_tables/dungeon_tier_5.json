@@ -96,6 +96,7 @@
                 },
                 {
                     "type": "item",
+					"entryName": "volcanic_shard",
                     "name": "galaxyspace:gs_basic",
                     "weight": 4,
 					"functions": [
@@ -159,7 +160,8 @@
                     "weight": 4
                 },
                 {
-                    "type": "item",
+                    "type": "item",					
+					"entryName": "meteorite_shard",
                     "name": "galaxyspace:gs_basic",
                     "weight": 10,
                     "functions": [

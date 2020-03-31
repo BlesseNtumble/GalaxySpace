@@ -111,7 +111,7 @@ public class RoomTreasureIo extends SizedPieceIo
                             TileEntityTreasureChest treasureChest = (TileEntityTreasureChest) worldIn.getTileEntity(blockpos);
                             if (treasureChest != null)
                             {
-                                ResourceLocation chesttype = TABLE_TIER_5_DUNGEON;
+                                ResourceLocation chesttype = IOCHEST;
                                 if (worldIn.provider instanceof IGalacticraftWorldProvider)
                                 {
                                     chesttype = ((IGalacticraftWorldProvider)worldIn.provider).getDungeonChestType();

@@ -33,7 +33,6 @@ import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.core.registers.fluids.GSFluids;
 import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.core.registers.potions.GSPotions;
-import galaxyspace.core.sounds.GSSounds;
 import galaxyspace.core.util.GSCreativeTabs;
 import galaxyspace.core.util.GSThreadVersionCheck;
 import galaxyspace.core.util.researches.ResearchUtil;
@@ -75,7 +74,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -99,7 +97,7 @@ import net.minecraftforge.fml.relauncher.Side;
 @Mod(
 		   modid = GalaxySpace.MODID,
 		   version = GalaxySpace.VERSION,
-		   dependencies = Constants.DEPENDENCIES_FORGE + "required-after:galacticraftcore@[4.0.2.237,]; required-after:galacticraftplanets; required-after:asmodeuscore@[0.0.12,)",
+		   dependencies = Constants.DEPENDENCIES_FORGE + "required-after:galacticraftcore@[4.0.2.237,]; required-after:galacticraftplanets; required-after:asmodeuscore@[0.0.13,)",
 		   acceptedMinecraftVersions = Constants.MCVERSION,
 		   name = GalaxySpace.NAME,
 		   guiFactory = "galaxyspace.core.client.gui.GSConfigGuiFactory"
@@ -340,15 +338,6 @@ public class GalaxySpace
     		proxy.registerVariants();
 
     	}    
-    	
-    	@SubscribeEvent
-        public static void registerSounds(RegistryEvent.Register<SoundEvent> event)
-        {
-            if (GCCoreUtil.getEffectiveSide() == Side.CLIENT)
-            {
-                GSSounds.registerSounds(event.getRegistry());
-            }
-        }
     	
     	@SubscribeEvent
         public static void registerItems(RegistryEvent.Register<Item> event)

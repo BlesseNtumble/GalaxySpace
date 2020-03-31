@@ -79,9 +79,9 @@ public class HaumeaBlocks extends Block implements ISortableBlock{
     {
         switch (getMetaFromState(state))
         {
-	      /*  case 0:
-	            return 0;
-	        case 2:
+	       	case 1:
+	            return 2;
+	        /*case 2:
 	            return 0;
 	        case 3:
 	            return 0;
