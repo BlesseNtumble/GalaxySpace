@@ -412,6 +412,9 @@ item_group.galaxyspace_rocket=GalaxySpace: 火箭
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 entity.evolved_boss_blaze.name=进化冷焰人BOSS
 entity.evolved_coldblaze.name=进化冷焰人
+entity.rocket_tier_4.name=四阶火箭
+entity.rocket_tier_5.name=五阶火箭
+entity.rocket_tier_6.name=六阶火箭
 |/////////////////////////////////////////|
 #||||||||||||Celestial Bodies||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
