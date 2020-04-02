@@ -522,6 +522,9 @@ item_group.galaxyspace_rocket=GalaxySpace: Rockets
 entity.evolved_boss_blaze.name=Evolved Boss Blaze
 entity.evolved_coldblaze.name=Evolved Ice Blaze
 entity.evolved_boss_ghast.name=Evolved Boss Ghast
+entity.rocket_tier_4.name=Tier 4 Rocket
+entity.rocket_tier_5.name=Tier 5 Rocket
+entity.rocket_tier_6.name=Tier 6 Rocket
 |/////////////////////////////////////////|
 #||||||||||||Celestial Bodies||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
