@@ -36,6 +36,7 @@ import galaxyspace.core.client.jei.rocketassembler.RocketAssemblerRecipeCategory
 import galaxyspace.core.client.jei.rocketassembler.RocketAssemblerShapedRecipeWrapper;
 import galaxyspace.core.client.jei.rocketassembler.RocketAssemblerShapelessRecipeWrapper;
 import galaxyspace.core.registers.blocks.GSBlocks;
+import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.systems.SolarSystem.planets.overworld.recipes.AssemblyRecipes;
 import galaxyspace.systems.SolarSystem.planets.overworld.recipes.RocketAssemblyRecipes;
 import mezz.jei.api.BlankModPlugin;
@@ -54,6 +55,7 @@ import micdoodle8.mods.galacticraft.api.recipe.ShapedRecipesGC;
 import micdoodle8.mods.galacticraft.api.recipe.ShapelessOreRecipeGC;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.client.jei.RecipeCategories;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.item.ItemStack;
 
 @JEIPlugin
@@ -123,6 +125,7 @@ public class GalaxySpaceJEI extends BlankModPlugin
         registry.addRecipeCatalyst(new ItemStack(GCBlocks.crafting), VanillaRecipeCategoryUid.CRAFTING);*/
        // registry.getRecipeTransferRegistry().addRecipeTransferHandler(new MagneticCraftingTransferInfo());
 
+        registry.addIngredientInfo(new ItemStack(GSItems.BASIC, 1, 17), ItemStack.class, GCCoreUtil.translate("gui.ice_bucket.desc"));
         this.addInformationPages(registry);
         //GCItems.hideItemsJEI(registry.getJeiHelpers().getIngredientBlacklist());
 
