@@ -126,7 +126,7 @@ public class GSClientTickHandler {
 	
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=false)
-	public void onLivingRender(RenderLivingEvent.Pre event) {
+	public void onLivingRender(RenderLivingEvent.Post event) {
 		if (event.getEntity() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.getEntity();
 			
@@ -139,7 +139,8 @@ public class GSClientTickHandler {
 				if (mdl instanceof ModelPlayer) {
 			 		ModelPlayer model = (ModelPlayer) mdl;
 			 		if (player.getPrimaryHand()==EnumHandSide.RIGHT) {
-			 			model.rightArmPose = ArmPose.BOW_AND_ARROW;
+			 			model.bipedRightArm.rotateAngleY = -0.1F + model.bipedHead.rotateAngleY;
+			 			//model.rightArmPose = ArmPose.BOW_AND_ARROW;
 			 		} else {
 			 			model.leftArmPose = ArmPose.BOW_AND_ARROW;
 			 		}
