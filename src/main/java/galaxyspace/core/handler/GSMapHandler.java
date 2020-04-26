@@ -6,12 +6,12 @@ import org.lwjgl.Sys;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector3f;
 
+import galaxyspace.GalaxySpace;
 import galaxyspace.systems.SolarSystem.SolarSystemBodies;
 import micdoodle8.mods.galacticraft.api.event.client.CelestialBodyRenderEvent;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.galaxies.Moon;
 import micdoodle8.mods.galacticraft.api.galaxies.Planet;
-import micdoodle8.mods.galacticraft.core.Constants;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiCelestialSelection;
 import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore;
@@ -25,9 +25,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GSMapHandler
 {
 	
-	private static final ResourceLocation saturnRingTexture = new ResourceLocation(Constants.ASSET_PREFIX, "textures/gui/celestialbodies/saturn_rings.png");    
-    private static final ResourceLocation uranusRingTexture = new ResourceLocation(Constants.ASSET_PREFIX, "textures/gui/celestialbodies/uranus_rings.png");
-	//private static final ResourceLocation acrdisk = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/celestialbodies/acrdisk.png");
+	//private static final ResourceLocation saturnRingTexture = new ResourceLocation(Constants.ASSET_PREFIX, "textures/gui/celestialbodies/saturn_rings.png");    
+    //private static final ResourceLocation uranusRingTexture = new ResourceLocation(Constants.ASSET_PREFIX, "textures/gui/celestialbodies/uranus_rings.png");
+    private static final ResourceLocation haumeaRingTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/celestialbodies/sol/haumea_rings.png");
+	
+    //private static final ResourceLocation acrdisk = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/celestialbodies/acrdisk.png");
 	
     final Minecraft minecraft = FMLClientHandler.instance().getClient();
     public Random rand;
@@ -172,6 +174,11 @@ public class GSMapHandler
 			GL11.glRotatef(Sys.getTime() / 10.0F % 360, 0, 0, 1);
 		}
 		
+		if (renderEvent.celestialBody.equals(SolarSystemBodies.planetHaumea)) 
+		{
+			GL11.glRotatef(Sys.getTime() / 1000.0F % 360, 0, 0, 1);
+		}
+		
 		if (renderEvent.celestialBody.getRingColorR() == 1.0F && renderEvent.celestialBody.getRingColorG() == 0.0F && renderEvent.celestialBody.getRingColorB() == 0.0F) 
 		{
 			GL11.glRotatef(Sys.getTime() / 10.0F % 360, 0, 0, 1);
@@ -197,6 +204,13 @@ public class GSMapHandler
                 minecraft.renderEngine.bindTexture(ClientProxyCore.uranusRingTexture);
                 float size = ((GuiCelestialSelection)minecraft.currentScreen).getWidthForCelestialBody(event.celestialBody) / 6.0F;
                 ((GuiCelestialSelection)minecraft.currentScreen).drawTexturedModalRect(-1.75F * size, -7.0F * size, 8.5F * size, 16.0F * size, 0, 0, 28, 7, false, false, 28, 7);
+        	}
+        	else if (event.celestialBody == SolarSystemBodies.planetHaumea)
+        	{
+                minecraft.renderEngine.bindTexture(haumeaRingTexture);
+                float size = ((GuiCelestialSelection)minecraft.currentScreen).getWidthForCelestialBody(event.celestialBody) / 6.0F;
+                GL11.glRotatef(45F, 0, 0, 1);
+                ((GuiCelestialSelection)minecraft.currentScreen).drawTexturedModalRect(-4.45F * size, -8.0F * size, 9.5F * size, 16.0F * size, 0, 0, 28, 7, false, false, 28, 7);
         	}
         }
     }

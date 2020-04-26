@@ -22,6 +22,7 @@ import galaxyspace.core.events.GSEventHandler;
 import galaxyspace.core.handler.GSGuiHandler;
 import galaxyspace.core.handler.capabilities.GSCapabilityStatsHandler;
 import galaxyspace.core.network.packet.GalaxySpaceChannelHandler;
+import galaxyspace.core.prefab.entities.EntityCustomCargoRocket;
 import galaxyspace.core.prefab.entities.EntityEvolvedColdBlaze;
 import galaxyspace.core.prefab.entities.EntityIceSpike;
 import galaxyspace.core.prefab.entities.EntityLaserBeam;
@@ -97,7 +98,7 @@ import net.minecraftforge.fml.relauncher.Side;
 @Mod(
 		   modid = GalaxySpace.MODID,
 		   version = GalaxySpace.VERSION,
-		   dependencies = Constants.DEPENDENCIES_FORGE + "required-after:galacticraftcore@[4.0.2.237,]; required-after:galacticraftplanets; required-after:asmodeuscore@[0.0.13,)",
+		   dependencies = Constants.DEPENDENCIES_FORGE + "required-after:galacticraftcore@[4.0.2.261,]; required-after:galacticraftplanets; required-after:asmodeuscore@[0.0.14,)",
 		   acceptedMinecraftVersions = Constants.MCVERSION,
 		   name = GalaxySpace.NAME,
 		   guiFactory = "galaxyspace.core.client.gui.GSConfigGuiFactory"
@@ -107,7 +108,7 @@ public class GalaxySpace
 {
 	public static final int major_version = 2;
 	public static final int minor_version = 0;
-	public static final int build_version = 12;
+	public static final int build_version = 13;
 	
 	public static final String NAME = "GalaxySpace";
 	public static final String MODID = "galaxyspace";
@@ -259,6 +260,7 @@ public class GalaxySpace
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityTier4Rocket.class, "rocket_tier_4", 150, 1, false);
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityTier5Rocket.class, "rocket_tier_5", 150, 1, false);
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityTier6Rocket.class, "rocket_tier_6", 150, 1, false);
+    	GCCoreUtil.registerGalacticraftNonMobEntity(EntityCustomCargoRocket.class, "rocket_fluid_cargo", 150, 1, false);
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityIceSpike.class, "ice_spike", 40, 100, true);
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityLaserBeam.class, "laser_beam", 40, 100, false);
     	//GCCoreUtil.registerGalacticraftNonMobEntity(GSEntityMeteor.class, "GS Meteor", 150, 5, true);    	
