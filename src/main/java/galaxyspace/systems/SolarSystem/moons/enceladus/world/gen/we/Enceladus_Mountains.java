@@ -14,7 +14,7 @@ import net.minecraft.world.biome.Biome;
 public class Enceladus_Mountains extends WE_Biome {
 	
 	public Enceladus_Mountains() {
-		super(new BiomeProperties("enceladus_mountains"), new int[] {0xFFFFFF, 0xFFFFFF, 0x00FF00});
+		super(new BiomeProperties("enceladus_mountains"), new int[] {0x00CC00, 0xFFFFFF, 0x00CC00});
 				
 		biomeMinValueOnMap      =  	0.0D;
 		biomeMaxValueOnMap      =   2.0D;

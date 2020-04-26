@@ -15,7 +15,7 @@ import net.minecraft.world.biome.Biome;
 public class Mars_Ravine extends WE_Biome {
 	
 	public Mars_Ravine(double min, double max) {
-		super(new BiomeProperties("mars_ravine"), new int[] {ColorizerGrass.getGrassColor(0.5D, 1.0D), 0xFFFFFF, ColorizerGrass.getGrassColor(0.5D, 1.0D)});
+		super(new BiomeProperties("mars_ravine"), new int[] {0x00CC00, 0xFFFFFF, 0x00CC00});
 				
 		biomeMinValueOnMap      =  	min;
 		biomeMaxValueOnMap      =   max;

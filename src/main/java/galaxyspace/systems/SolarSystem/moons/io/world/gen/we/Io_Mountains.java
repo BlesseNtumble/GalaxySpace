@@ -7,7 +7,7 @@ import net.minecraft.init.Blocks;
 
 public class Io_Mountains extends WE_Biome {
 	public Io_Mountains(int index, double min, double max, int y, int interpolate) {
-		super(new BiomeProperties("io_mountains_" + index), new int[] {0xFFFFFF, 0xFFFFFF, 0x00FF00});
+		super(new BiomeProperties("io_mountains_" + index), new int[] {0x00CC00, 0xFFFFFF, 0x00CC00});
 		
 		biomeMinValueOnMap      =  min;
 		biomeMaxValueOnMap      =  max;

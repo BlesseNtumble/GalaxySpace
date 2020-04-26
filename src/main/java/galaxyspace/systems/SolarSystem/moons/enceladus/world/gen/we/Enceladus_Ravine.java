@@ -14,7 +14,7 @@ import net.minecraft.world.biome.Biome;
 public class Enceladus_Ravine extends WE_Biome {
 	
 	public Enceladus_Ravine() {
-		super(new BiomeProperties("enceladus_ravine"), new int[] {0xFFFFFF, 0xFFFFFF, 0x00FF00});
+		super(new BiomeProperties("enceladus_ravine"), new int[] {0x00CC00, 0xFFFFFF, 0x00CC00});
 				
 		biomeMinValueOnMap      =  	-4.0D;
 		biomeMaxValueOnMap      =   -4.4D;

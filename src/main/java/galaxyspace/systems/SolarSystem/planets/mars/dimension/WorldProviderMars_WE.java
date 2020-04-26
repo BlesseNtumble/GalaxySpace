@@ -18,6 +18,7 @@ import galaxyspace.systems.SolarSystem.planets.mars.dimension.sky.SkyProviderMar
 import galaxyspace.systems.SolarSystem.planets.mars.world.gen.we.Mars_High_Plains;
 import galaxyspace.systems.SolarSystem.planets.mars.world.gen.we.Mars_Mountains;
 import galaxyspace.systems.SolarSystem.planets.mars.world.gen.we.Mars_Plains;
+import galaxyspace.systems.SolarSystem.planets.mars.world.gen.we.WE_BiomeRavineGen;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
@@ -36,8 +37,10 @@ import micdoodle8.mods.galacticraft.planets.mars.world.gen.MapGenDungeonMars;
 import micdoodle8.mods.galacticraft.planets.mars.world.gen.RoomBossMars;
 import micdoodle8.mods.galacticraft.planets.mars.world.gen.RoomTreasureMars;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockColored;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
@@ -202,9 +205,9 @@ public class WorldProviderMars_WE extends WE_WorldProvider implements IProviderF
 		cp.createChunkGen_InXYZ_List.clear(); 
 		cp.decorateChunkGen_List .clear(); 
 		
-		cp.CRATER_PROB = 2000;
+		//cp.CRATER_PROB = 2000;
 		
-		WE_Biome.setBiomeMap(cp, 1.4D, 4, 4000.0D, 1.0D);	
+		WE_Biome.setBiomeMap(cp, 1.9D, 4, 3500.0D, 1.0D);	
 		
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
 		terrainGenerator.worldStoneBlock = MarsBlocks.marsBlock.getStateFromMeta(9); 
@@ -229,7 +232,7 @@ public class WorldProviderMars_WE extends WE_WorldProvider implements IProviderF
 		rg.addReplacingBlock(Blocks.PACKED_ICE.getDefaultState());
 		rg.lavaBlock = Blocks.AIR.getDefaultState();
 		rg.lavaMaxY = 0;
-		cp.createChunkGen_List.add(rg);
+		//cp.createChunkGen_List.add(rg);
 		
 		MapGenCavernMars cavernGenerator = new MapGenCavernMars();
 		cp.worldGenerators.clear();
@@ -244,13 +247,31 @@ public class WorldProviderMars_WE extends WE_WorldProvider implements IProviderF
 		layer.add(MarsBlocks.marsBlock.getStateFromMeta(5), MarsBlocks.marsBlock.getStateFromMeta(6), -256, 0,   -2, -1,  true);
 		layer.add(Blocks.BEDROCK.getDefaultState(), 0, 2, 0, 0, true);
 		
+		WE_BiomeLayer mount_layer = new WE_BiomeLayer();
+		mount_layer.add(MarsBlocks.marsBlock.getStateFromMeta(6), MarsBlocks.marsBlock.getStateFromMeta(9), -256, 0,   -4, -6,  true);
+		mount_layer.add(MarsBlocks.marsBlock.getStateFromMeta(5), MarsBlocks.marsBlock.getStateFromMeta(6), -256, 0,   -2, -1,  true);
+		mount_layer.add(Blocks.BEDROCK.getDefaultState(), 0, 2, 0, 0, true);
+		
 		WE_Biome.addBiomeToGeneration(cp, new Mars_Plains(-0.0D, 0.0D));
 		WE_Biome.addBiomeToGeneration(cp, new Mars_High_Plains(-0.3D, 0.3D));
 		WE_Biome.addBiomeToGeneration(cp, new Mars_Mountains(-0.5D, 0.5D));
 		WE_Biome.addBiomeToGeneration(cp, new Mars_Plains(-1.0D, 1.0D));
 		WE_Biome.addBiomeToGeneration(cp, new Mars_High_Plains(-1.3D, 1.3D));
 		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-1.5D, 1.5D, 2.4F, 4, 180, 30, layer));
-		
+		/*WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(0D, 0D, 2.8F, 3, 95, 25, layer));
+		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-0.4D, 0.4D, 11.4F, 3, 155, 5, mount_layer));
+		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-1.4D, 1.1D, 2.8F, 3, 95, 15, layer));*/
+		//WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-1.8D, 1.8D, 2.8F, 2, 90, 5, layer));
+		//WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-2.6D, 2.6D, 1.2F, 3, 45, 10, mount_layer).setSize(128.0D, 1.5D));
+		/*WE_BiomeRavineGen biome_ravine = new WE_BiomeRavineGen();
+		biome_ravine.addReplacingBlock(terrainGenerator.worldStoneBlock);
+		biome_ravine.addReplacingBlock(MarsBlocks.marsBlock.getStateFromMeta(6));
+		biome_ravine.addReplacingBlock(MarsBlocks.marsBlock.getStateFromMeta(5));
+		biome_ravine.addReplacingBlock(Blocks.PACKED_ICE.getDefaultState());
+		biome_ravine.lavaBlock = Blocks.AIR.getDefaultState();
+		biome_ravine.lavaMaxY = 0;
+		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-1.8D, 1.8D, 2.8F, 2, 90, 5, layer).addChunkGen(biome_ravine));
+		 */
 	}
 
 	@Override

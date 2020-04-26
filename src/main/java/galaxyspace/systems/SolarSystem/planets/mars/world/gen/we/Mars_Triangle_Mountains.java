@@ -15,7 +15,7 @@ import net.minecraft.world.biome.Biome;
 public class Mars_Triangle_Mountains extends WE_Biome {
 	
 	public Mars_Triangle_Mountains(double min, double max) {
-		super(new BiomeProperties("mars_triangle_mountains"), new int[] {ColorizerGrass.getGrassColor(0.5D, 1.0D), 0xFFFFFF, ColorizerGrass.getGrassColor(0.5D, 1.0D)});
+		super(new BiomeProperties("mars_triangle_mountains"), new int[] {0x00CC00, 0xFFFFFF, 0x00CC00});
 				
 		biomeMinValueOnMap      =  	min;
 		biomeMaxValueOnMap      =   max;

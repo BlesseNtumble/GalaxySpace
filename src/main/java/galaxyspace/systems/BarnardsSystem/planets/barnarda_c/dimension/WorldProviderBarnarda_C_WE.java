@@ -251,7 +251,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProvider implements IPro
 		cp.createChunkGen_InXYZ_List.clear(); 
 		cp.decorateChunkGen_List .clear(); 
 		
-		WE_Biome.setBiomeMap(cp, 2.4D, 4, 3200.0D, 1.0D);	
+		WE_Biome.setBiomeMap(cp, 1.4D, 4, 1000.0D, 1.0D);	
 
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
 		terrainGenerator.worldStoneBlock = BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(1); 
@@ -282,9 +282,9 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProvider implements IPro
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Beach(-3.5D, 3.2D, 1));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Plains(-3.0D, 3.0D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Forest(-2.8D, 2.8D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(-2.2D, 2.2D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(-2.7D, 2.7D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Swampland(-1.8D, 1.8D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(-1.3D, 1.5D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(-1.5D, 1.5D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Dunes(-1.2D, 1.2D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-1.0D, 1.0D, 100, 2.8D, 4));	
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-0.8D, 0.8D, 180, 2.4D, 4));

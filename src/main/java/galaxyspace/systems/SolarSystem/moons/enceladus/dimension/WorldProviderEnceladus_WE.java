@@ -192,7 +192,7 @@ public class WorldProviderEnceladus_WE extends WE_WorldProvider implements IProv
 
 	@Override
 	public boolean enableAdvancedThermalLevel() {
-		return false;
+		return true;
 	}
 
 	@Override

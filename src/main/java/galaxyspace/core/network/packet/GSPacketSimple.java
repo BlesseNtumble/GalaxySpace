@@ -40,6 +40,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.INetHandler;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -244,15 +245,23 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         		worldRenderer.pos(1F, 1F, 1F).tex(0D, 1D).endVertex();
         		tess.draw();
         		GlStateManager.popMatrix();
-        		break;
+        		break;  
         	case C_UPDATE_WORLD:
-        		World world = GCCoreUtil.getServer().getWorld(this.getDimensionID());
+        		MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
         		
-        		if(world != null && playerBaseClient.world != null && playerBaseClient.world.provider instanceof WE_WorldProvider)
-				{		
-        			((WE_WorldProvider)playerBaseClient.world.provider).chunk_provider = ((WE_WorldProvider)world.provider).chunk_provider;
-				}
-        		break;
+        		if(server == null)
+        			break;
+        		
+        		if(playerBaseClient == null)
+        			break;
+        		
+         		World world = server.getWorld(this.getDimensionID());
+         		
+         		if(world != null && playerBaseClient.world != null && playerBaseClient.world.provider instanceof WE_WorldProvider && world.provider != null && world.provider instanceof WE_WorldProvider)
+     			{	
+         			((WE_WorldProvider)playerBaseClient.world.provider).chunk_provider = ((WE_WorldProvider)world.provider).chunk_provider;
+     			}
+         		break;
         	case C_UPDATE_RESEARCHES:        		
         			if(gs_stats_client != null) 
 	        		{	
@@ -291,7 +300,7 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         TileEntity tileEntity;
         
         switch (this.type)
-        {
+        {       
         case S_CHANGE_FLIGHT_STATE:
         	boolean state = (boolean) this.data.get(0);
         	GSEventHandler.enableFlight(player, state);

@@ -14,7 +14,7 @@ import net.minecraft.world.biome.Biome;
 public class Enceladus_Plains extends WE_Biome {
 	
 	public Enceladus_Plains() {
-		super(new BiomeProperties("enceladus_plains"), new int[] {0xFFFFFF, 0xFFFFFF, 0x00FF00});
+		super(new BiomeProperties("enceladus_plains"), new int[] {0x00CC00, 0xFFFFFF, 0x00CC00});
 				
 		biomeMinValueOnMap      =  	-0.4D;
 		biomeMaxValueOnMap      =   0.0D;

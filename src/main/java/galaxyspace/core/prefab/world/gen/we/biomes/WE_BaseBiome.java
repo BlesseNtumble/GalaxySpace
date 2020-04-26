@@ -1,6 +1,7 @@
 package galaxyspace.core.prefab.world.gen.we.biomes;
 
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.additions.WE_CreateChunkGen_InXZ;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
 import galaxyspace.core.prefab.world.gen.we.WE_LakesGen;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
@@ -17,12 +18,13 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class WE_BaseBiome extends WE_Biome {
 	
-	private static int[] colors = new int[] {0x00FF00, 0xFFFFFF, 0x00FF00};
+	private static int[] colors = new int[] {0x00CC00, 0xFFFFFF, 0x00CC00};
 	/**
 	 * 
 	 * @param 
 	 *
 	 */
+	
 	public WE_BaseBiome(double min, double max, double persistance, int octaves, int height, int intquility, WE_BiomeLayer layers, IWorldGenerator... gens) {
 		super(new BiomeProperties("we_basebiome"), colors);
 				
@@ -56,5 +58,20 @@ public class WE_BaseBiome extends WE_Biome {
 		biomeBlockLeavesColor = leaves;
 		return this;
 	}
+	
+	
+	public WE_BaseBiome setSize(double x, double y)
+	{
+		biomeScaleX = x;
+		biomeScaleY = y;
+		return this;
+	}
+	
+	public WE_BaseBiome addChunkGen(WE_CreateChunkGen_InXZ gen)
+	{
+		createChunkGen_InXZ_List.add(gen);
+		return this;
+	}
+	
 	
 }

@@ -14,7 +14,7 @@ import net.minecraft.world.biome.Biome;
 public class Triton_Mountains extends WE_Biome {
 	
 	public Triton_Mountains(double min, double max) {
-		super(new BiomeProperties("triton_mountains"), new int[] {0xFFFFFF, 0xFFFFFF, 0x00FF00});
+		super(new BiomeProperties("triton_mountains"), new int[] {0x00CC00, 0xFFFFFF, 0x00CC00});
 				
 		biomeMinValueOnMap      =  	min;
 		biomeMaxValueOnMap      =   max;
