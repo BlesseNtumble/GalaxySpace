@@ -7,7 +7,7 @@
 3. GalaxySpace version:
 4. AsmodeusCore version (for 2.0.1 version and above): 
 5. Side (Single player (SSP), Multiplayer (SMP), or SSP opened to LAN (LAN)):
-
+6. Other add-ons:
 ------------------------------------------------------------------------
 Description of the issue:
 
