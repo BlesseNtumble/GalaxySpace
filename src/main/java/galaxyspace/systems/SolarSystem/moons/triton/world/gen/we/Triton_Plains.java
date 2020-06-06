@@ -1,7 +1,7 @@
 package galaxyspace.systems.SolarSystem.moons.triton.world.gen.we;
 
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import galaxyspace.core.prefab.entities.EntityEvolvedColdBlaze;
 import galaxyspace.core.registers.blocks.GSBlocks;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedEnderman;

@@ -1,14 +1,20 @@
 package galaxyspace.systems.SolarSystem.moons.triton.world.gen.we;
 
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
+import java.util.Random;
+
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import galaxyspace.core.prefab.entities.EntityEvolvedColdBlaze;
 import galaxyspace.core.registers.blocks.GSBlocks;
+import galaxyspace.systems.SolarSystem.moons.triton.blocks.TritonBlocks;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedEnderman;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSkeleton;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSpider;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedZombie;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
 public class Triton_Mountains extends WE_Biome {
@@ -42,4 +48,50 @@ public class Triton_Mountains extends WE_Biome {
 		createChunkGen_InXZ_List.add(standardBiomeLayers);
 	}
 
+	@Override
+	public void decorateBiome(World world, Random rand, int x, int z)
+	{
+		int randPosX;
+		int randPosY;
+		int randPosZ;
+		
+		for (int i = 0; i < 1; i++) {
+			
+			 randPosX = x + rand.nextInt(16) + 8;
+			 randPosY = rand.nextInt(70);
+			 randPosZ = z + rand.nextInt(16) + 8;
+			 
+			 BlockPos pos = new BlockPos(randPosX, randPosY, randPosZ);
+			 
+			 if(world.isAirBlock(pos))
+			 {
+				 IBlockState state = world.getBlockState(pos);
+				 if(world.getBlockState(pos) == GSBlocks.TRITON_BLOCKS.getDefaultState())					 
+				 {
+					 world.setBlockState(pos, GSBlocks.TRITON_BLOCKS.getDefaultState().withProperty(TritonBlocks.BASIC_TYPE, TritonBlocks.EnumTritonBlocks.TRITON_GEYSER), 3);
+					 world.scheduleBlockUpdate(pos, GSBlocks.TRITON_BLOCKS.getDefaultState().withProperty(TritonBlocks.BASIC_TYPE, TritonBlocks.EnumTritonBlocks.TRITON_GEYSER).getBlock(), 0, 0);
+				 }
+			 }
+		}
+		
+		for (int i = 0; i < 2; i++) {
+			
+			 randPosX = x + rand.nextInt(16) + 8;
+			 randPosY = rand.nextInt(70);
+			 randPosZ = z + rand.nextInt(16) + 8;
+			 
+			 BlockPos pos = new BlockPos(randPosX, randPosY, randPosZ);
+			 
+			 if(world.isAirBlock(pos.up()) && randPosX % 50 == 0)
+			 {
+				 IBlockState state = world.getBlockState(pos);
+				 if(world.getBlockState(pos) == GSBlocks.TRITON_BLOCKS.getDefaultState())					 
+				 {
+					 world.setBlockState(pos, GSBlocks.TRITON_BLOCKS.getDefaultState().withProperty(TritonBlocks.BASIC_TYPE, TritonBlocks.EnumTritonBlocks.TRITON_GEYSER_2), 3);
+					 world.scheduleBlockUpdate(pos, GSBlocks.TRITON_BLOCKS.getDefaultState().withProperty(TritonBlocks.BASIC_TYPE, TritonBlocks.EnumTritonBlocks.TRITON_GEYSER_2).getBlock(), 0, 0);
+						
+				 }
+			 }
+		}
+	}
 }

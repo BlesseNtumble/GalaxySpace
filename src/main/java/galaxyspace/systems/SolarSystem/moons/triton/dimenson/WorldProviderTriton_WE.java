@@ -3,21 +3,20 @@ package galaxyspace.systems.SolarSystem.moons.triton.dimenson;
 import java.util.List;
 
 import asmodeuscore.api.dimension.IProviderFreeze;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProvider;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProvider;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_CaveGen;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_TerrainGenerator;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_CaveGen;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
 import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.systems.SolarSystem.SolarSystemBodies;
 import galaxyspace.systems.SolarSystem.moons.triton.dimenson.sky.SkyProviderTriton;
-import galaxyspace.systems.SolarSystem.moons.triton.world.gen.BiomeDecoratorTriton;
 import galaxyspace.systems.SolarSystem.moons.triton.world.gen.BiomeProviderTriton;
 import galaxyspace.systems.SolarSystem.moons.triton.world.gen.we.Triton_Mountains;
 import galaxyspace.systems.SolarSystem.moons.triton.world.gen.we.Triton_Plains;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
@@ -34,7 +33,7 @@ import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WorldProviderTriton_WE extends WE_WorldProvider implements IProviderFreeze {
+public class WorldProviderTriton_WE extends WE_WorldProviderSpace implements IProviderFreeze {
 	@Override
     public double getHorizon()   { return 44.0D; }
 
@@ -51,14 +50,11 @@ public class WorldProviderTriton_WE extends WE_WorldProvider implements IProvide
     public float getSoundVolReductionAmount() { return Float.MAX_VALUE; }
 
     @Override
-    public boolean canRainOrSnow() { return false; } 
-
-    @Override
     public CelestialBody getCelestialBody() { return SolarSystemBodies.tritonNeptune; }
 
     @Override
     public Class<? extends IChunkGenerator> getChunkProviderClass() {
-    	return WE_ChunkProvider.class;
+    	return WE_ChunkProviderSpace.class;
     }
     
     @Override 
@@ -172,7 +168,7 @@ public class WorldProviderTriton_WE extends WE_WorldProvider implements IProvide
 		cp.createChunkGen_InXYZ_List.clear(); 
 		cp.decorateChunkGen_List .clear(); 
 		
-		cp.CRATER_PROB = 400;
+		((WE_ChunkProviderSpace)cp).CRATER_PROB = 400;
 		
 		WE_Biome.setBiomeMap(cp, 1.2D, 4, 1800.0D, 1.0D);	
 		
@@ -211,11 +207,6 @@ public class WorldProviderTriton_WE extends WE_WorldProvider implements IProvide
 		WE_Biome.addBiomeToGeneration(cp, new Triton_Plains(0.6D, -0.3D, 1.9D, 95, 5));
 		WE_Biome.addBiomeToGeneration(cp, new Triton_Mountains(0.8D, 0.0D));
 		
-	}
-
-	@Override
-	public BiomeDecoratorSpace getDecorator() {
-		return new BiomeDecoratorTriton();
 	}
 
 	@Override

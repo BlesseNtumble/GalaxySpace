@@ -3,21 +3,21 @@ package galaxyspace.systems.SolarSystem.planets.haumea.dimension;
 import java.util.List;
 
 import asmodeuscore.api.dimension.IProviderFreeze;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProvider;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProvider;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_CaveGen;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_TerrainGenerator;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_CaveGen;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_OreGen;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
 import galaxyspace.core.prefab.world.gen.we.biomes.WE_BaseBiome;
 import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.systems.SolarSystem.SolarSystemBodies;
 import galaxyspace.systems.SolarSystem.planets.ceres.world.gen.BiomeProviderCeres;
 import galaxyspace.systems.SolarSystem.planets.haumea.dimension.sky.SkyProviderHaumea;
-import galaxyspace.systems.SolarSystem.planets.haumea.world.gen.BiomeDecoratorHaumea;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
@@ -34,7 +34,7 @@ import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WorldProviderHaumea_WE extends WE_WorldProvider implements IProviderFreeze {
+public class WorldProviderHaumea_WE extends WE_WorldProviderSpace implements IProviderFreeze {
 	
 	
     @Override
@@ -51,16 +51,13 @@ public class WorldProviderHaumea_WE extends WE_WorldProvider implements IProvide
  
     @Override
     public float getSoundVolReductionAmount() { return Float.MAX_VALUE; }
-
-    @Override
-    public boolean canRainOrSnow() { return false; } 
-
+    
     @Override
     public CelestialBody getCelestialBody() { return SolarSystemBodies.planetHaumea; }
 
     @Override
     public Class<? extends IChunkGenerator> getChunkProviderClass() {
-    	return WE_ChunkProvider.class;
+    	return WE_ChunkProviderSpace.class;
     }
     
     @Override 
@@ -175,9 +172,8 @@ public class WorldProviderHaumea_WE extends WE_WorldProvider implements IProvide
 		cp.createChunkGen_InXZ_List .clear(); 
 		cp.createChunkGen_InXYZ_List.clear(); 
 		cp.decorateChunkGen_List .clear(); 
-		cp.worldGenerators.clear();
-		
-		cp.CRATER_PROB = 600;
+		((WE_ChunkProviderSpace)cp).worldGenerators.clear();		
+		((WE_ChunkProviderSpace)cp).CRATER_PROB = 600;
 		
 		WE_Biome.setBiomeMap(cp, 1.4D, 4, 1500.0D, 1.0D);	
 		
@@ -212,6 +208,14 @@ public class WorldProviderHaumea_WE extends WE_WorldProvider implements IProvide
 		*/
 		cp.biomesList.clear();
 		
+		WE_OreGen standardOres = new WE_OreGen();
+		standardOres.add(GSBlocks.SURFACE_ICE.getStateFromMeta(0), terrainGenerator.worldStoneBlock, 4, 15, 40, 6);
+		standardOres.add(GSBlocks.SURFACE_ICE.getStateFromMeta(1), terrainGenerator.worldStoneBlock, 6, 30, 90, 12);
+		standardOres.add(GSBlocks.SURFACE_ICE.getStateFromMeta(4), GSBlocks.HAUMEA_BLOCKS.getStateFromMeta(0), 25, 60, 90, 20);
+		standardOres.add(GSBlocks.HAUMEA_BLOCKS.getStateFromMeta(2), terrainGenerator.worldStoneBlock, 15, 15, 90, 12);
+		standardOres.add(GSBlocks.HAUMEA_BLOCKS.getStateFromMeta(3), terrainGenerator.worldStoneBlock, 6, 15, 40, 5);
+		cp.decorateChunkGen_List.add(standardOres);
+		
 		//WE_Biome.addBiomeToGeneration(cp, new Mars_Triangle_Mountains(-1.0D, 0.0D));
 		//WE_Biome.addBiomeToGeneration(cp, new Mars_Ravine(-1.0D, 0.0D));
 		WE_BiomeLayer layer = new WE_BiomeLayer();
@@ -227,11 +231,6 @@ public class WorldProviderHaumea_WE extends WE_WorldProvider implements IProvide
 		
 	}
 
-	@Override
-	public BiomeDecoratorSpace getDecorator() {
-		return new BiomeDecoratorHaumea();
-	}
-	
 	@Override
 	protected float getThermalValueMod() {
 		return 0.15F;

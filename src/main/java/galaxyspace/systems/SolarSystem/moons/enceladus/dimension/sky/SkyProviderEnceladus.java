@@ -25,7 +25,7 @@ public class SkyProviderEnceladus extends SkyProviderBase
 
 		GL11.glPopMatrix();
 		GL11.glPushMatrix();
-		
+		 
 		// Render titan
 		f10 = 0.5F;
 		GL11.glScalef(0.6F, 0.6F, 0.6F);

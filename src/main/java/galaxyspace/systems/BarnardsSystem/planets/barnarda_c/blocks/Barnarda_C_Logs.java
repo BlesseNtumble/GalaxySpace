@@ -4,6 +4,7 @@ import java.util.Random;
 
 import galaxyspace.core.util.GSCreativeTabs;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.core.registers.BRItems;
 import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
 import net.minecraft.block.Block;
@@ -15,10 +16,14 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.Rotation;
@@ -62,6 +67,18 @@ public class Barnarda_C_Logs extends Block implements ISortableBlock {
 		 return super.getItemDropped(state, rand, fortune);
     }
 	
+	@Override
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player,
+			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		
+		if(!world.isRemote && world.getBlockState(pos) == BRBlocks.BARNARDA_C_VIOLET_GLOW_LOG.getStateFromMeta(0) && player.getHeldItem(hand).getItem() instanceof ItemAxe) {
+			world.setBlockState(pos, BRBlocks.BARNARDA_C_VIOLET_LOG.getStateFromMeta(0));
+			world.spawnEntity(new EntityItem(world, player.posX, player.posY, player.posZ, new ItemStack(BRItems.BASIC, 1, 2)));
+			return false;
+		}
+		return false;
+	}
+	 
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
 		int i = 4;

@@ -2,6 +2,8 @@ package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
 import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
 import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
@@ -14,6 +16,7 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -148,28 +151,31 @@ public class Barnarda_C_Blocks  extends Block implements ISortableBlock, ITerraf
 	
 	public enum EnumBlockBarnardaC implements IStringSerializable
 	{		
-		DIRT(0, "barnarda_c_dirt", Material.GROUND),
-		STONE(1, "barnarda_c_stone", Material.ROCK),
-		SANDSTONE(2, "barnarda_c_sandstone", Material.ROCK),
-		DIRT_1(3, "barnarda_c_dirt_1", Material.GROUND),
-		COBBLESTONE(4, "barnarda_c_cobblestone", Material.ROCK),
-		STONE_BRICKS(5, "barnarda_c_stone_bricks", Material.ROCK),
-		OAK_PLANKS(6, "barnarda_c_oak_planks", Material.WOOD);
+		DIRT(0, "barnarda_c_dirt", Material.GROUND, SoundType.GROUND),
+		STONE(1, "barnarda_c_stone", Material.ROCK, SoundType.STONE),
+		SANDSTONE(2, "barnarda_c_sandstone", Material.ROCK, SoundType.STONE),
+		DIRT_1(3, "barnarda_c_dirt_1", Material.GROUND, SoundType.GROUND),
+		COBBLESTONE(4, "barnarda_c_cobblestone", Material.ROCK, SoundType.STONE),
+		STONE_BRICKS(5, "barnarda_c_stone_bricks", Material.ROCK, SoundType.STONE),
+		OAK_PLANKS(6, "barnarda_c_oak_planks", Material.WOOD, SoundType.WOOD);
 		
 		private final int meta;
 		private final String name;
 		private final Material material;
+		private final SoundType sound;
 		
-		private EnumBlockBarnardaC(int meta, String name, Material material)
+		private EnumBlockBarnardaC(int meta, String name, Material material, SoundType sound)
 		{
 			this.meta = meta;
 			this.name = name;
 			this.material = material;
+			this.sound = sound;
 		}
 	
 		public int getMeta() { return this.meta; }   
 		
 		public Material getMaterial() { return this.material; } 
+		public SoundType getSoundType() {return this.sound; }
 		
 		public static EnumBlockBarnardaC byMetadata(int meta) { return values()[meta]; }
 	
@@ -204,5 +210,10 @@ public class Barnarda_C_Blocks  extends Block implements ISortableBlock, ITerraf
 	{
 		return new BlockStateContainer(this, BASIC_TYPE);
 	}
+	
+	@Override
+	public SoundType getSoundType(IBlockState state, World world, BlockPos pos, @Nullable Entity entity) {
+		return ((EnumBlockBarnardaC) state.getValue(BASIC_TYPE)).getSoundType();
+    }
 	
 }

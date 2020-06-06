@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import asmodeuscore.core.astronomy.dimension.world.worldengine.additions.WE_CreateChunkGen_InXZ;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.additions.WE_GeneratorData;
+import asmodeuscore.core.utils.worldengine.additions.WE_CreateChunkGen_InXZ;
+import asmodeuscore.core.utils.worldengine.additions.WE_GeneratorData;
 import galaxyspace.GalaxySpace;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
