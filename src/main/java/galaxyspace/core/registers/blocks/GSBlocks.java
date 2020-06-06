@@ -44,7 +44,6 @@ import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockMachineFram
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockOres;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockSurfaceIce;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockAdvCircuitFabricator;
-import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockAdvElectricCompressor;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockAssembler;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockFuelGenerator;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockGasBurner;
@@ -114,7 +113,6 @@ public class GSBlocks {
 	public static final Block GAS_BURNER = new BlockGasBurner();
 	public static final Block OXYGEN_STORAGE_MODULE = new BlockOxygenStorageModule(1);
 	public static final Block SOLARWIND_PANEL = new BlockSolarWindPanel();
-	public static final Block ADVANCED_ELECTRIC_COMPRESSOR = new BlockAdvElectricCompressor();
 	public static final Block ADVANCED_CIRCUIT_FABRICATOR = new BlockAdvCircuitFabricator();
 	public static final Block RESEARCH_TABLE = new BlockResearchTable();
 	
@@ -177,7 +175,6 @@ public class GSBlocks {
 		registerBlock(GAS_BURNER, GSItemBlockDesc.class);
 		registerBlock(OXYGEN_STORAGE_MODULE, GSItemBlockDesc.class);
 		registerBlock(SOLARWIND_PANEL, GSItemBlockDesc.class);
-		registerBlock(ADVANCED_ELECTRIC_COMPRESSOR, GSItemBlockDesc.class);
 		registerBlock(ADVANCED_CIRCUIT_FABRICATOR, GSItemBlockDesc.class);
 		registerBlock(PLANET_SHIELD, GSItemBlockDesc.class);
 		//registerBlock(RESEARCH_TABLE, GSItemBlockDesc.class);
@@ -224,7 +221,6 @@ public class GSBlocks {
 	   
 	public static void oreDictRegistration() 
 	{
-
 		OreDictionary.registerOre("oreNickel", new ItemStack(MERCURY_BLOCKS, 1, 3));
 		OreDictionary.registerOre("oreIron", new ItemStack(MERCURY_BLOCKS, 1, 4));
 		OreDictionary.registerOre("oreMagnesium", new ItemStack(MERCURY_BLOCKS, 1, 5));
@@ -247,6 +243,7 @@ public class GSBlocks {
 		
 		OreDictionary.registerOre("oreCopper", new ItemStack(IO_BLOCKS, 1, 3));
 		OreDictionary.registerOre("oreSulfur", new ItemStack(IO_BLOCKS, 1, 4));
+		OreDictionary.registerOre("oreVolcanic", new ItemStack(IO_BLOCKS, 1, 5));
 		
 		OreDictionary.registerOre("oreEmerald", new ItemStack(EUROPA_BLOCKS, 1, 3));
 		OreDictionary.registerOre("oreSilicon", new ItemStack(EUROPA_BLOCKS, 1, 4));
@@ -257,8 +254,19 @@ public class GSBlocks {
 		
 		OreDictionary.registerOre("oreCoal", new ItemStack(ENCELADUS_BLOCKS, 1, 2));
 		
+		OreDictionary.registerOre("oreSapphire", new ItemStack(TITAN_BLOCKS, 1, 3));
+		OreDictionary.registerOre("oreEmerald", new ItemStack(TITAN_BLOCKS, 1, 4));
+		OreDictionary.registerOre("oreDiamond", new ItemStack(TITAN_BLOCKS, 1, 5));
+		OreDictionary.registerOre("oreCoal", new ItemStack(TITAN_BLOCKS, 1, 6));
+		OreDictionary.registerOre("oreLapis", new ItemStack(TITAN_BLOCKS, 1, 7));
+		OreDictionary.registerOre("oreRedstone", new ItemStack(TITAN_BLOCKS, 1, 8));
+		
 		OreDictionary.registerOre("oreIron", new ItemStack(MIRANDA_BLOCKS, 1, 3));
 		OreDictionary.registerOre("oreDolomite", new ItemStack(MIRANDA_BLOCKS, 1, 4));
+		OreDictionary.registerOre("oreDiamond", new ItemStack(MIRANDA_BLOCKS, 1, 5));
+		OreDictionary.registerOre("oreQuartz", new ItemStack(MIRANDA_BLOCKS, 1, 6));
+		OreDictionary.registerOre("oreCobalt", new ItemStack(MIRANDA_BLOCKS, 1, 7));
+		OreDictionary.registerOre("oreNickel", new ItemStack(MIRANDA_BLOCKS, 1, 8));
 /*
 	
 		OreDictionary.registerOre("oreUranium", new ItemStack(TritonBlocks, 1, 5));
