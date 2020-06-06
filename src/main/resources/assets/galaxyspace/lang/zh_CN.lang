@@ -12,14 +12,21 @@ menu.update=更新星空
 tile.mercury_surface.name=水星地表岩石
 tile.mercury_subsurface.name=水星地底岩石
 tile.mercury_stone.name=水星石头
-tile.mercury_iron_ore.name=铁矿石
-tile.mercury_nickel_ore.name=镍矿石
-tile.mercury_magnesium_ore.name=镁矿石
+tile.mercury_iron_ore.name=水星铁矿石
+tile.mercury_nickel_ore.name=水星镍矿石
+tile.mercury_magnesium_ore.name=水星镁矿石
 
-tile.deco_cobaltum.name=钴装饰方块
-tile.deco_magnesium.name=镁装饰方块
-tile.deco_nickel.name=镍装饰方块
-tile.deco_copper.name=铜装饰方块
+tile.mars_diamond.name=火星钻石矿石
+tile.mars_gold.name=火星金矿石
+tile.mars_coal.name=火星煤矿石
+tile.mars_redstone.name=火星红石矿石
+tile.mars_silicon.name=火星硅矿石
+tile.mars_aluminum.name=火星铝矿石
+
+tile.deco_cobaltum.name=钴饰墙砖
+tile.deco_magnesium.name=镁饰墙砖
+tile.deco_nickel.name=镍饰墙砖
+tile.deco_copper.name=铜饰墙砖
 tile.cobalt_block.name=钴块
 tile.nickel_block.name=镍块
 tile.magnesium_block.name=镁块
@@ -29,6 +36,11 @@ tile.nickel_ore.name=镍矿石
 tile.uranium_ore.name=铀矿石
 
 tile.surface_ice.name=表层冰
+tile.oxygen_ice.name=含氧冰
+tile.nitrogen_ice.name=含氮冰
+tile.methane_ice.name=含甲烷冰
+tile.hydrogen_ice.name=含氢冰
+tile.dry_ice.name=干冰
 
 tile.futureglass_none.name=未来玻璃
 tile.futureglass_black.name=黑色未来玻璃
@@ -49,184 +61,257 @@ tile.futureglass_orange.name=橙色未来玻璃
 tile.futureglass_white.name=白色未来玻璃
 
 tile.ceres_grunt.name=谷神星地表岩石
-tile.ceres_subgrunt.name=谷神星 
-tile.ceres_dolomite_ore.name=白云石矿石
-tile.ceres_meteoriciron_ore.name=陨铁矿石
+tile.ceres_subgrunt.name=谷神星地底岩石
+tile.ceres_dolomite_ore.name=谷神星白云石矿石
+tile.ceres_meteoriciron_ore.name=谷神星陨铁矿石
 tile.ceres_dungeon_top.name=谷神星地牢顶砖
 tile.ceres_dungeon_floor.name=谷神星地牢地砖
 
+tile.haumea_ground.name=妊神星地表岩石
+tile.haumea_cobblestone.name=妊神星圆石
+tile.haumea_stone.name=妊神星地表岩石
+tile.haumea_aluminum_ore.name=妊神星铝矿石
+
 tile.pluto_grunt.name=冥王星地表岩石
 tile.pluto_subgrunt.name=冥王星地底岩石
-tile.pluto_stone.name=冥王星 石头
+tile.pluto_stone.name=冥王星石头
 
-tile.io_grunt.name=伊奥卫星地表岩石
-tile.io_stone.name=伊奥卫星石头
-tile.io_ash.name=伊奥卫星灰烬
-tile.io_copper_ore.name=铜矿石
-tile.io_sulfur_ore.name=硫磺矿石
-tile.io_volcanic_ore.name=火山岩矿石
-tile.io_lava_geyser.name=伊奥卫星岩浆间歇泉
-tile.io_sulfur_geyser.name=伊奥卫星硫磺间歇泉
-tile.io_top.name=伊奥卫星地牢顶砖
-tile.io_floor.name=伊奥卫星地牢地砖
+tile.io_grunt.name=木卫一地表岩石
+tile.io_stone.name=木卫一石头
+tile.io_ash.name=木卫一灰烬
+tile.io_copper_ore.name=木卫一铜矿石
+tile.io_sulfur_ore.name=木卫一硫磺矿石
+tile.io_volcanic_ore.name=木卫一火山岩矿石
+tile.io_lava_geyser.name=木卫一岩浆泉
+tile.io_sulfur_geyser.name=木卫一硫磺泉
+tile.io_top.name=木卫一地牢顶砖
+tile.io_floor.name=木卫一地牢地砖
+tile.io_dungeon_bricks.name=木卫一地牢砖
 
-tile.europa_grunt.name=欧罗巴卫星表层冰
-tile.europa_stone.name=欧罗巴卫星石头
-tile.europa_brown_ice.name=棕色欧罗巴卫星冰晶
-tile.europa_emerald_ore.name=绿宝石矿石
-tile.europa_silicon_ore.name=硅矿石
-tile.europa_aluminum_ore.name=铝矿石
-tile.europa_geyser.name=欧罗巴卫星间歇泉
-tile.europa_uwgeyser.name=欧罗巴卫星uw间歇泉
+tile.europa_grunt.name=木卫二表层冰
+tile.europa_stone.name=木卫二石头
+tile.europa_brown_ice.name=木卫二棕色冰
+tile.europa_emerald_ore.name=木卫二绿宝石矿石
+tile.europa_silicon_ore.name=木卫二硅矿石
+tile.europa_aluminum_ore.name=木卫二铝矿石
+tile.europa_geyser.name=木卫二间歇泉
+tile.europa_uwgeyser.name=木卫二水下间歇泉
 
-tile.ganymede_grunt.name=盖尼米得卫星地表岩石
-tile.ganymede_stone.name=盖尼米得卫星 石头
-tile.ganymede_magnesium_ore.name=镁矿石
-tile.ganymede_titanium_ore.name=钛铁矿石
+tile.ganymede_grunt.name=木卫三地表岩石
+tile.ganymede_stone.name=木卫三石头
+tile.ganymede_magnesium_ore.name=木卫三镁矿石
+tile.ganymede_titanium_ore.name=木卫三钛铁矿石
 
-tile.callisto_grunt.name=卡里斯托地表岩石
-tile.callisto_stone.name=卡里斯托石头
+tile.callisto_grunt.name=木卫四地表岩石
+tile.callisto_stone.name=木卫四石头
 
-tile.enceladus_snow.name=木卫二冰块
-tile.enceladus_grunt.name=木卫二地底岩石
-tile.enceladus_coal_ore.name=煤矿矿石
+tile.enceladus_snow.name=土卫二雪
+tile.enceladus_grunt.name=土卫二地底岩石
+tile.enceladus_coal_ore.name=土卫二煤矿石
 tile.enceladus_crystal.name=未知水晶
 
-tile.titan_grunt.name=泰坦地表岩石
-tile.titan_subgrunt.name=泰坦地底岩石
-tile.titan_stone.name=泰坦石头
+tile.titan_grunt.name=土卫六地表岩石
+tile.titan_subgrunt.name=土卫六地底岩石
+tile.titan_stone.name=土卫六石头
+tile.titan_sapphire_ore.name=土卫六蓝月宝石矿石
+tile.titan_emerald_ore.name=土卫六绿宝石矿石
+tile.titan_lapis_ore.name=土卫六青金石矿石
+tile.titan_coal_ore.name=土卫六煤矿石
+tile.titan_diamond_ore.name=土卫六钻石矿石
+tile.titan_redstone_ore.name=土卫六红石矿石
 
 tile.miranda_grunt.name=天卫五地表岩石
 tile.miranda_subgrunt.name=天卫五地底岩石
 tile.miranda_stone.name=天卫五石头
-tile.miranda_iron_ore.name=铁矿矿石
-tile.miranda_dolomite_ore.name=白云石矿石
+tile.miranda_iron_ore.name=天卫五铁矿石
+tile.miranda_dolomite_ore.name=天卫五白云石矿石
+tile.miranda_diamond_ore.name=天卫五钻石矿石
+tile.miranda_quartz_ore.name=天卫五石英矿石
+tile.miranda_cobalt_ore.name=天卫五钴矿石
+tile.miranda_nickel_ore.name=天卫五镍矿石
+tile.miranda_ice.name=天卫五冰
 
-tile.proxima_b_surface.name=比邻B星表层
-tile.proxima_b_subsurface.name=比邻B星地底
-tile.proxima_b_stone.name=比邻B星石头
-tile.proxima_b_ice_surface.name=比邻B星冰层
-tile.proxima_b_ash_rock.name=比邻B星火山灰岩
-tile.proxima_b_gold_ore.name=金矿石
-tile.proxima_b_tin_ore.name=锡矿石
-tile.proxima_b_copper_ore.name=铜矿石
-tile.proxima_b_coal_ore.name=煤矿石
-tile.proxima_b_silicon_ore.name=硅矿石
-tile.proxima_b_diamond_ore.name=钻石矿石
-tile.proxima_b_log_1.name=燃烧木材
-tile.proxima_b_log_2.name=冰冻木材
+tile.triton_grunt.name=海卫一地表岩石
+tile.triton_subgrunt.name=海卫一地底岩石
+tile.triton_stone.name=海卫一石头
+tile.triton_geyser.name=海卫一间歇泉
+tile.triton_geyser_2.name=海卫一小型间歇泉
+
+tile.proxima_b_surface.name=比邻星B地表岩石
+tile.proxima_b_subsurface.name=比邻星B地底岩石
+tile.proxima_b_stone.name=比邻星B石头
+tile.proxima_b_ice_surface.name=比邻星B冰
+tile.proxima_b_ash_rock.name=比邻星B火山灰岩
+tile.proxima_b_gold_ore.name=比邻星B金矿石
+tile.proxima_b_tin_ore.name=比邻星B锡矿石
+tile.proxima_b_copper_ore.name=比邻星B铜矿石
+tile.proxima_b_coal_ore.name=比邻星B煤矿石
+tile.proxima_b_silicon_ore.name=比邻星B硅矿石
+tile.proxima_b_diamond_ore.name=比邻星B钻石矿石
+tile.proxima_b_log_1.name=焦木
+tile.proxima_b_log_2.name=冻木
+
+tile.barnarda_c_grass.name=巴纳德C草方块
+tile.barnarda_c_dirt.name=巴纳德C泥土
+tile.barnarda_c_stone.name=巴纳德C石头
+tile.barnarda_c_sandstone.name=[WIP] 巴纳德C砂砾
+tile.barnarda_c_dirt_1.name=[WIP] 巴纳德C泥土
+tile.barnarda_c_cobblestone.name=巴纳德C圆石
+tile.barnarda_c_stone_bricks.name=巴纳德C石砖
+tile.barnarda_c_sand.name=巴纳德C沙子
+tile.barnarda_c_oak_planks.name=巴纳德C紫树木板
+tile.barnarda_c_test_log.name=巴纳德C紫树原木
+tile.barnarda_c_test_glow_log.name=巴纳德C紫树花纹原木
+tile.barnarda_c_farmland.name=巴纳德C耕地
+tile.barnarda_c_tall_grass.name=巴纳德C草
+tile.barnarda_c_hopper_flower.name=巴纳德C漏斗花
+tile.barnarda_c_green_fern.name=巴纳德C绿厥
+tile.barnarda_c_red_fern.name=巴纳德C红厥
+tile.barnarda_c_light_balls.name=巴纳德C光球草
+tile.barnarda_c_leaves_balls.name=巴纳德C叶球草
+tile.barnarda_c_desert_down.name=巴纳德C沙漠花
+tile.barnarda_c_desert_up.name=巴纳德C沙漠花
+tile.barnarda_c_yellow_grass_down.name=巴纳德C黄草
+tile.barnarda_c_yellow_grass_up.name=巴纳德C黄草
+tile.barnarda_c_violet_sapling.name=巴纳德C紫树树苗
+tile.barnarda_c_leaves_1.name=巴纳德C紫树树叶
+tile.coal_ore.name=巴纳德C煤矿石
+tile.iron_ore.name=巴纳德C铁矿石
+tile.gold_ore.name=巴纳德C金矿石
+tile.redstone_ore.name=巴纳德C红石矿石
+tile.lapis_ore.name=巴纳德C青金石矿石
+tile.diamond_ore.name=巴纳德C钻石矿石
+tile.silicon_ore.name=巴纳德C硅矿石
+tile.copper_ore.name=巴纳德C铜矿石
+tile.tin_ore.name=巴纳德C锡矿石
+tile.aluminum_ore.name=巴纳德C铝矿石
+tile.quartz_ore.name=巴纳德C石英矿石
 |/////////////////////////////////////////|
 #||||||||||||Tile Description||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-tile.assembly_machine.name=融合机
-tile.assembly_machine.desc=新型压缩机，利用高灵敏激光结合材料。
+tile.assembly_machine.name=元件装配机
+tile.assembly_machine.desc=用于将一些元件装配成物品，支持模块升级。
 
 tile.fuel_generator.name=燃油发电机
-tile.fuel_generator.desc=燃油发电机消耗燃料并产生大量能量，消耗燃油的极佳选择。
+tile.fuel_generator.desc=消耗燃料并产生大量能量，对于高耗能的机器来说是一个不错的选择。
+
+tile.adv_electric_compressor.name=高级压缩机
+tile.adv_electric_compressor.desc=升级的电动压缩机，效率提高两倍。支持模块升级。
+
+tile.planet_shield.name=行星屏障
+tile.planet_shield.desc=保护一片区域不受陨石撞击的破坏。
+
+tile.adv_circuit_fabricator.name=高级元件制造台
+tile.adv_circuit_fabricator.desc=升级的元件制造台，效率提高两倍，支持模块升级.
 
 tile.modern_solarpanel.name=混合太阳能电池板
-tile.modern_solarpanel.desc=覆盖金层的混合太阳能电池板, 能产生两倍太阳能电池板的能量。
+tile.modern_solarpanel.desc=镀金的太阳能板, 产能2倍于高级太阳能板。
 
-tile.gravitation_module.name=重力模块
-tile.gravitation_module.desc=在一定范围内产生类地球重力。
+tile.gravitation_module.name=重力舱
+tile.gravitation_module.desc=在一定半径的球形范围内维持与地球相同的重力。
 
-tile.wind_generator.name=风力涡轮机
-tile.wind_generator.desc=以风力发电，风能版的太阳能发电。
+tile.wind_generator.name=风轮发电机
+tile.wind_generator.desc=利用风力产生少量能量，在有大气的星球上工作。
 
-tile.rocket_assembler.name=火箭部件
-tile.rocket_assembler.desc=通过NASA工作台制作。
+tile.rocket_assembler.name=火箭组装台
+tile.rocket_assembler.desc=用CNSA工作台里制作的零件来组装火箭。
 
-tile.universal_recycler.name=高级提取机
-tile.universal_recycler.desc=将矿物或岩石提取出固态资源或液体。
+tile.universal_recycler.name=通用回收机
+tile.universal_recycler.desc=从矿物、岩石或者有杂质的冰中提取出有用的资源。
 
-tile.liquid_extractor.name=液体萃取机
-tile.liquid_extractor.desc=收集液体。
+tile.liquid_extractor.name=液体抽取器
+tile.liquid_extractor.desc=收集下方的液体，安装模块后可收集重水。
 
-tile.liquid_separator.name=液体离心机
-tile.liquid_separator.desc=将不同种液体分离，同种液体聚集。
+tile.liquid_separator.name=流体分离器
+tile.liquid_separator.desc=将流体分离为组成成分，或者将两种流体聚合。
 
-tile.rocket_assembler.name=火箭总装台
-tile.rocket_assembler.desc=GS火箭组装工作台
+tile.hydroponic_base.name=培养器底座
+tile.hydroponic_base.desc=配合上方放置的培养器方块工作。
 
-tile.hydroponic_base.name=水耕基块
-tile.hydroponic_base.desc=水耕农场中的基本方块上边放置农场方块。
+tile.hydroponic_farm.name=培养器方块
+tile.hydroponic_farm.desc=放置在培养器底座上，可以堆三层高。
 
-tile.hydroponic_farm.name=水耕农场方块
-tile.hydroponic_farm.desc=放置于水耕基块上水耕农场中的必要方块，你可以堆至三层高。
+tile.radiation_stabiliser.name=磁场发生器
+tile.radiation_stabiliser.desc=产生一个抵御恒星辐射的磁场，可以使用模块拓展范围。
 
-tile.radiation_stabiliser.name=磁场生成器
-tile.radiation_stabiliser.desc=产生一个抵御太阳辐射的磁场，可以使用模块升级。
+tile.panel_controller.name=太阳能板控制器
+tile.panel_controller.desc=从邻近的单体太阳能板收集能量。按Shift+右键查看支持的范围。
 
-tile.panel_controller.name=小型太阳能电池板控制器
-tile.panel_controller.desc=从相近的小型太阳能电池板获取能量。按Shift + 右键点击方块查看空间情况。
+tile.single_solarpanel.name=单体太阳能板
+tile.single_solarpanel.desc=模块化的太阳能板。需要连接到太阳能板控制器才能工作。
 
-tile.single_solarpanel.name=小型太阳能电池板
-tile.single_solarpanel.desc=太阳能电池板单体，需要小型太阳能电池板控制器才能工作。
+tile.modern_single_solarpanel.name=现代单体太阳能电池板
+tile.modern_single_solarpanel.desc=比普通单体太阳能板效率更高，同样需要连接到太阳能控制器才能工作。
 
-tile.modern_single_solarpanel.name=模块小型太阳能电池板
-tile.modern_single_solarpanel.desc=比原有电池板效率更高，需要小型太阳能控制器才能工作。
+tile.modern_storage_module.name=现代储能集群
+tile.modern_storage_module.desc=储存大量能量。
 
-tile.modern_storage_module.name=储能集群簇
-tile.modern_storage_module.desc=能量簇的集群版，可以储存大量能量。
-
-tile.modification_table.name=模块工作台
-tile.modification_table.desc=安装模块单元至宇航服或火箭等。
+tile.modification_table.name=改装台
+tile.modification_table.desc=为宇航服或火箭安装模块。
 
 tile.gas_burner.name=燃气炉
-tile.gas_burner.desc=燃烧燃气
+tile.gas_burner.desc=燃烧供应的气体。
 
-tile.oxygen_storage_module_1.name=进阶氧模块
-tile.oxygen_storage_module_1.desc=升级版的氧气罐，储量是原来的四倍。
+tile.oxygen_storage_module_1.name=氧气储存集群
+tile.oxygen_storage_module_1.desc=储存大量氧气，储量4倍于储氧模块。
 
-tile.solarwind_panel.name=太阳风发电板
-tile.solarwind_panel.desc=在没有大气的情况下可以将太阳风转化为能量。
+tile.solarwind_panel.name=太阳风发电机
+tile.solarwind_panel.desc=将太阳风转化为能量，在有大气的星球上不工作。
 
-tile.advanced_landing_pad.name=进阶发射台
-tile.advanced_landing_pad.desc=A进阶版的发射台大小5x5
+tile.advanced_landing_pad.name=高级发射台
+tile.advanced_landing_pad.desc=搭建5x5的火箭发射平台。
 
 tile.port_nuclear_reactor.name=[WIP] 便携核反应堆
 
 tile.basic_frame.name=基础机械框架
-tile.advance_frame.name=进阶机械框架
-tile.modern_frame.name=高级机械框架
+tile.advance_frame.name=高级机械框架
+tile.modern_frame.name=现代机械框架
 tile.coefficient.desc=发电系数
 tile.coefficientcraft.desc=航速系数
 
-tile.ceres_bricks.name=谷神星 地牢砖块
-tile.io_bricks.name=[WIP] 伊奥卫星 地牢砖块
+tile.ceres_bricks.name=谷神星地牢砖
+tile.io_bricks.name=木卫一地牢砖
 
-tile.treasure_t4.name=4阶地牢
-tile.treasure_t4.desc=4阶藏宝箱生成于谷神星地牢，击杀BOSS后可以获得钥匙打开宝箱
-
+tile.treasure_t4.name=4阶地牢宝箱
+tile.treasure_t4.desc=生成于谷神星地牢，击杀谷神星地牢BOSS可以获得钥匙。
+tile.treasure_t5.name=5阶地牢宝箱
+tile.treasure_t5.desc=生成于木卫一地牢，击杀木卫一地牢BOSS可以获得钥匙。
 |/////////////////////////////////////////|
 #|||||||||||||||||Items||||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-
-item.schematics.name=NASA火箭部件设计图
-item.hdp.name=重压钢板
+item.schematics.name=CNSA工作台图纸
+item.hdp.name=重型钢板
 item.dungeon_keys.name=地牢钥匙
 
-item.rocket_tier_4.name=四阶火箭
-item.rocket_tier_5.name=五阶火箭
-item.rocket_tier_6.name=六阶火箭
+item.rocket_tier_4.name=4阶火箭
+item.rocket_tier_5.name=5阶火箭
+item.rocket_tier_6.name=6阶火箭
+
+item.oxygen_ice_crystal.name=含氧冰碎片
+item.nitrogen_ice_crystal.name=含氮冰碎片
+item.methane_ice_crystal.name=含甲烷冰碎片
+item.hydrogen_ice_crystal.name=含氢冰碎片
+item.dry_ice_crystal.name=干冰碎片
 
 item.space_suit_head.name=宇航头盔
 item.space_suit_chest.name=宇航胸甲
 item.space_suit_legs.name=宇航裤
 item.space_suit_feet.name=宇航靴
-
 item.jetpack.name=电力喷气背包
-
 item.cobalt_helmet.name=钴头盔
 item.cobalt_chest.name=钴胸甲
 item.cobalt_legs.name=钴护腿
 item.cobalt_boots.name=钴靴
-
 item.cobalt_axe.name=钴斧
 item.cobalt_hoe.name=钴锄
-item.cobalt_pickaxe.name=钴鹤嘴锄
+item.cobalt_pickaxe.name=钴镐
 item.cobalt_sword.name=钴剑
 item.cobalt_spade.name=钴铲
+item.emergency_portable_teleport.name=便携式紧急传送器
+item.guide_book.name=[WIP] 帮助手册
+item.advanced_emergency_kit.name=进阶紧急工具
+item.temp_shield_control.name=控制器屏障雏形
+item.geo_scanner.name=地质勘探器
 
 item.nickel_ingot.name=镍锭
 item.cobaltum_ingot.name=钴锭
@@ -237,131 +322,138 @@ item.compressed_nickel.name=致密镍板
 item.compressed_cobaltum.name=致密钴板
 item.compressed_magnesium.name=致密镁板
 item.compressed_coal.name=致密煤板
-item.compressed_sdhd120.name=致密"SDHC-120"合金
+item.compressed_sdhd120.name=致密SDHC-120合金
 item.unknow_crystal.name=未知水晶碎片
 item.sulfur.name=硫磺
 item.module_electrolyse.name=电解模块
 item.dolomite_crystal.name=白云石晶体
 item.dolomite_meal.name=白云石粉
-item.wafer_modern.name=印刷芯片
+item.wafer_modern.name=现代晶圆
 item.hematite.name=赤铁矿
 item.antiradiation_tablets.name=抗辐射含片
-item.schematic_box.name=火箭部件图宝箱
+item.schematic_box.name=图纸盒子
 item.volcanic_stone.name=火山岩碎片
+item.module_base.name=空模块
 item.module_expander.name=拓展模块
 item.module_stabiliser.name=稳定模块
+item.module_speed.name=效率模块
+item.module_energy.name=能量模块
 item.uranium_fragments.name=铀
-item.temp_shield_control.name=原生防护护盾
 item.ice_bucket.name=桶装冰
-item.emergency_portable_teleport.name=便携紧急传送器
-item.guide_book.name=[WIP] 帮助手册
-item.advanced_emergency_kit.name=进阶紧急工具
+item.part_solarflares.name=部分太阳耀斑
+item.solarflares.name=太阳耀斑
+item.blank_schematic.name=空白设计图
+item.meteoric_iron_fragments.name=陨铁碎片
 
 item.module_small_fuelcanister.name=小型燃料罐
-item.module_smallcanister.name=空燃料罐
-item.module_lander_1.name=一阶登陆器
-item.module_lander_2.name=二阶登陆器
-item.module_lander_3.name=三阶登陆器
+item.module_smallcanister.name=空储罐
+item.module_lander_1.name=1阶登陆器
+item.module_lander_2.name=2阶登陆器
+item.module_lander_3.name=3阶登陆器
 item.ion_engine.name=[WIP] 离子引擎
 item.plasma_engine.name=[WIP] 等离子引擎
 item.sublight_engine.name=亚光速引擎
 item.blackhole_engine.name=[WIP] 黑洞引擎
  
-item.rocket_cone.name=重型鼻锥
-item.rocket_body.name=重型箭体
-item.rocket_engine.name=重型火箭引擎
-item.rocket_booster.name=重型助推器
-item.rocket_stabiliser.name=重型尾翼
+item.rocket_cone.name=耐久型火箭鼻锥
+item.rocket_body.name=耐久型火箭箭身
+item.rocket_engine.name=耐久型火箭引擎
+item.rocket_booster.name=耐久型火箭助推器
+item.rocket_stabiliser.name=耐久型火箭尾翼
 
-item.part_solarflares.name=太阳耀斑模块
-item.solarflares.name=太阳耀斑
+item.oxygen_tank_4.name=超重型氧气罐
+item.oxygen_tank_5.name=特重型氧气罐
+item.oxygen_tank_6.name=究极氧气罐
+item.oxygen_tank_epp_1.name=环保型氧气罐
 
-item.oxygen_tank_4.name=进阶重型氧气罐
-item.oxygen_tank_5.name=增强重型氧气罐
-item.oxygen_tank_6.name=超级重型氧气罐
-item.oxygen_tank_epp_1.name=氧环境气罐
-
-item.advanced_battery.name=进阶电池
-item.modern_battery.name=模块电池
+item.advanced_battery.name=高级电池
+item.modern_battery.name=新式电池
 item.extra_battery.name=特大电池
 item.ultimate_battery.name=终极电池
 
-item.hydrogen_canister.name=氢气罐
+item.hydrogen_canister.name=氢罐
 item.ethane_canister.name=乙烷罐
-item.em_canister.name=甲乙烷混合罐
-item.helium_canister.name=氦-3气罐
+item.em_canister.name=乙烷-甲烷混合罐
+item.helium_canister.name=氦-3罐
+
+item.violet_reeds.name=巴纳德C紫苇
+item.water_grass.name=巴纳德C水草
+item.yellow_fruits.name=巴纳德C黄果
 |/////////////////////////////////////////|
 #||||||||||||||||||Fluids||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 fluid.helium3=氦-3
 fluid.ethane=乙烷
-fluid.liquidethanemethane=甲乙烷混合液
+fluid.liquidethanemethane=乙烷-甲烷混合液
 fluid.heliumhydrogen=氢氦混合液
 |/////////////////////////////////////////|
 #||||||||||||||||Potions|||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-effect.antiradiation=防辐射
+effect.antiradiation=抗辐射
 
 |/////////////////////////////////////////|
 #|||||||||||||||||GUI||||||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-gui.schematic_oxtanks.desc=氧环境气罐
+gui.schematic_oxtanks.desc=环保型氧气罐
 
-gui.tier1.desc=一阶
-gui.tier2.desc=二阶
-gui.tier3.desc=三阶
-gui.tier4.desc=四阶
-gui.tier5.desc=五阶
-gui.tier6.desc=六阶
+gui.tier1.desc=1阶
+gui.tier2.desc=2阶
+gui.tier3.desc=3阶
+gui.tier4.desc=4阶
+gui.tier5.desc=5阶
+gui.tier6.desc=6阶
 
-gui.bonemeal.desc=白云石打粉
-gui.schematic_box.desc=包含所有GS火箭设计图方案，右键这货获取帮助。
+gui.bonemeal.desc=看起来很像骨粉
+gui.schematic_box.desc=包含所有重型火箭元件的设计图纸，右键打开。
 
-gui.spacesuit.desc=高强度护服，能稳定护服内压力，防护宇宙射线。
-gui.spacesuit_helmet.desc=头盔能够使你长时间在水下逗留。
+gui.spacesuit.desc=高强度航天保护服，能维持内部气压，抵御恒星辐射。
+gui.spacesuit_helmet.desc=头盔能够帮助你在水下活动更长的时间。
 
-gui.module_expander.desc= 拓展模块插槽，可增加磁场范围。
-gui.module_pressure.desc=稳定模块插槽，创造一个稳定的大气保护层。
-gui.temp_shield_control.desc=防护大气腐蚀，但是随着时间流失防护将会失效。
-gui.emergency_portable_teleport.desc=当血量低于6时紧急传送至预设点， Shift+右键在传送器可设定预设点，在其他方块则是打开或关闭。
-
+gui.module_expander.desc= 置入拓展模块可以增加磁场作用半径。
+gui.module_pressure.desc=如果置入稳定模块，落入屏障的陨石将不会被摧毁，并且同样不产生冲击。
+gui.temp_shield_control.desc=抵御腐蚀性大气对护甲的侵蚀，随着有效时间的流失效果也会降低。
+gui.emergency_portable_teleport.desc=角色生命值低于6时会被紧急传送至预设的传送点， 对着传送器Shift+右键可设定传送点，对着其他方块则是打开或关闭紧急便携传送器。
+gui.planet_shield_stability_1.desc=如果安装了稳定模块
+gui.planet_shield_stability_2.desc=护盾会将坠落的陨石收集到这里。
 
 gui.not_attached.desc=未连接
 gui.attached.desc=已连接:
 gui.enabled.desc=启动
 gui.charge=充能:
-gui.message.now_noshield=你的防护罩已经损毁了。
+gui.message.now_noshield=防护罩已经损毁了！
 
 gui.module.desc=火箭模块
-gui.status.nolava.name=没有熔岩
-gui.message.lava.name=熔岩
+gui.status.nolava.name=无岩浆
+gui.message.lava.name=岩浆
 gui.message.water.name=水
 gui.message.helium.name=氦-3
-gui.status.nofuelgenerator.name=没有燃料。
-gui.status.nowind.name=没风!
-gui.status.nowater.name=没有水。
-gui.message.needfrequencyModule=我需要频率模块。
-gui.message.active_pressure_shield.name=启动气压护盾。
+gui.status.nofuelgenerator.name=无燃料
+gui.status.nowind.name=没有检测到风
+gui.status.nowater.name=没有检测到水
+gui.message.needfrequencyModule=需要频率模块！
+gui.message.active_pressure_shield.name=启动护盾。
 
-gui.message.needoxygen=需要氧气环境才能使用或者放置方块。
-gui.message.needoxygenthermal=需要氧环境与温度稳定才能行动。
-gui.message.needoxygen.food=需要氧环境才能食用地球食物。
-gui.message.needoxygenthermal.food=需要氧环境与温度稳定才能食用地球食物。
+gui.message.needoxygen=在有氧环境才能使用或者放置！
+gui.message.needoxygenthermal=需要有氧与恒温环境！
+gui.message.needoxygen.food=在有氧环境才能食用该食物！
+gui.message.needoxygenthermal.food=在有氧有环境与适宜温度下才能食用该食物！
+gui.message.invalid_teleport_conf=传送配置无效或缺少能量！
+gui.message.cant_place_this=不能放置在这里！
 
-gui.message.noradiation=你未受到太阳辐射。
-gui.message.emergency_teleport=成功紧急传送 调节:
-gui.message_can_find_in_dungeon=可以在地牢内找到。
+gui.message.noradiation=你的辐射水平很低，太好了！
+gui.message.emergency_teleport=紧急传送成功，频道：
+gui.message.can_find_in_dungeon=可在地牢内找到。
 
-gui.message.need_advanced_lp.desc=这只能放置在进阶发射台
+gui.message.need_advanced_lp.desc=只能在进阶发射台发射
 gui.message.engine_type.name=能量种类:
-gui.message.effect_visible.name=效果可见
-gui.tank.passive_oxygen_regen.desc1=被动生氧
-gui.tank.passive_oxygen_regen.desc2=如果玩家在一个合适的环境密闭房间或生成环境。
+gui.message.effect_visible.name=范围是否可见
+gui.tank.passive_oxygen_regen.desc1=当玩家处于有氧环境时
+gui.tank.passive_oxygen_regen.desc2=被动产生氧气
 
-gui.gravity.radius.name=作用半径:
+gui.gravity.radius.name=工作半径:
 
-gs.success.name=目前版本:
-gs.update.available=新版本可用!
+gs.success.name=当前版本:
+gs.update.available=有可用新版本!
 gs.update.download=下载
 gs.update.changelog=更新日志
 
@@ -369,52 +461,52 @@ gs.update.changelog=更新日志
 #|||||||||||||SpaceSuit Modules|||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 
-gui.module.caninstall=可以在模块工作台中安装模块。
-gui.module.list=模块列表:
-gui.module.available_modules=有效模块:
+gui.module.caninstall=可在改装台中安装模块
+gui.module.list=当前模块列表
+gui.module.available_modules=允许安装模块数量:
 
-gui.module.sensor=传感眼镜
-gui.module.sensor.desc=增加传感眼镜至头盔，能够扫描出玩家周围矿物并高亮显示怪物。
-gui.module.nightvision=夜视
-gui.module.nightvision.desc=就是夜视的效果啦
-gui.module.jetpack=电力喷气背包
-gui.module.jetpack.desc=安装喷气背包能让你像蝴蝶一样，直到你胸甲没电。
-gui.module.speed=冲刺推进器
-gui.module.speed.desc=安装加速器能够增加你的一点速度，让你更快的跑路。
-gui.module.gravity=重力
-gui.module.gravity.desc=事实证明，镁板层产生了重力效应。在行星上的适应现在好多了！
-gui.module.stepassist=步伐放大
-gui.module.stepassist.desc=用来爬楼梯，现在你可以不用跳就能上第二个方块了。
-gui.module.jump=超级跳
-gui.module.jump.desc=装上这个你可以跳出原来两倍的距离
-gui.module.energy=进阶电池
-gui.module.energy.desc=最大电量是原来的两倍
+gui.module.sensor=探测目镜
+gui.module.sensor.desc=为头盔添加探测目镜，能够扫描玩家周围的矿物以及高亮标示敌对生物。
+gui.module.nightvision=夜视模块
+gui.module.nightvision.desc=持续提供夜视效果。
+gui.module.jetpack=喷气背包
+gui.module.jetpack.desc=加装电力喷气背包来飞行。
+gui.module.speed=助跑器
+gui.module.speed.desc=推进器让你跑得更快。
+gui.module.gravity=重力模块
+gui.module.gravity.desc=钴板拥有奇异的重力效应，你可以在任何星球上找回与地球一样的重力感！
+gui.module.stepassist=步伐辅助
+gui.module.stepassist.desc=帮助你像马一样轻松地走上一格高的台阶。
+gui.module.jump=跳跃模块
+gui.module.jump.desc=让你能跳到两倍的高度。
+gui.module.energy=能量拓展
+gui.module.energy.desc=储能倍增持久续航。
+gui.module.protection=防护模块
+gui.module.protection.desc=抵抗大量伤害。
 
 gui.module.sublight_engine=亚光速引擎
-gui.module.sublight_engine.desc=新一代引擎，可以跃迁至其他星系。
+gui.module.sublight_engine.desc=新世代引擎，可以推动火箭突破太阳系的束缚。
 
-gui.message.forrbiden_modules.name=不兼容:
-gui.module.active=主动模块
+gui.message.forrbiden_modules.name=不能同时安装模块:
+gui.module.active=激活模块
 gui.module.passive=被动模块
-gui.module.empty_slot=将需要加入模块的物品放入插槽，将模块置入插槽。
+gui.module.empty_slot=放入要安装模块的物品。
 
 |/////////////////////////////////////////|
 #||||||||||||||Creative Tabs|||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 
-item_group.galaxyspace_blocks=GalaxySpace: 方块
-item_group.galaxyspace_items=GalaxySpace: 五篇
-item_group.galaxyspace_armor=GalaxySpace: 盔甲
-item_group.galaxyspace_rocket=GalaxySpace: 火箭
+item_group.galaxyspace_blocks=星空|方块
+item_group.galaxyspace_items=星空|物品
+item_group.galaxyspace_armor=星空|装备
+item_group.galaxyspace_rocket=星空|火箭
 
 |/////////////////////////////////////////|
 #||||||||||||||||Entities||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-entity.evolved_boss_blaze.name=进化冷焰人BOSS
-entity.evolved_coldblaze.name=进化冷焰人
-entity.rocket_tier_4.name=四阶火箭
-entity.rocket_tier_5.name=五阶火箭
-entity.rocket_tier_6.name=六阶火箭
+entity.evolved_boss_blaze.name=烈焰人之王（进化体）
+entity.evolved_coldblaze.name=冰焰人
+entity.evolved_boss_ghast.name=恶魂之王（进化体）
 |/////////////////////////////////////////|
 #||||||||||||Celestial Bodies||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
@@ -422,47 +514,50 @@ entity.rocket_tier_6.name=六阶火箭
 planet.ceres=谷神星
 moon.phobos=火卫一
 moon.deimos=火卫二
-moon.io=伊奥卫星
-moon.europa=欧罗巴卫星
-moon.ganymede=盖尼米得卫星
-moon.callisto=卡里斯托
-moon.mimas=米玛斯
-moon.enceladus=木卫二
+moon.io=木卫一
+moon.europa=木卫二
+moon.ganymede=木卫三
+moon.callisto=木卫四
+moon.mimas=土卫一
+moon.enceladus=土卫二
 moon.tethys=土卫三
 moon.dione=土卫四
-moon.rheya=莱雅
-moon.titan=泰坦
-moon.iapetus=伊帕托斯
+moon.rheya=土卫五
+moon.titan=土卫六
+moon.iapetus=土卫八
 moon.miranda=天卫五
-moon.ariel=羚羊科学卫星
+moon.ariel=天卫一
 moon.umbriel=天卫二
 moon.titania=天卫三
 moon.oberon=天卫四
-moon.proteus=Proteus
+moon.proteus=海卫八
 moon.triton=海卫一
 planet.pluto=冥王星
 moon.charon=冥卫一
 planet.kuiperbelt=柯伊伯带
+planet.haumea=妊神星
+
+satellite.spacestation.venus=金星空间站
+
+solarsystem.acentauri=南门二星系(比邻双星)
+star.centauri_a=南门二星A
+planet.centauri_b=南门二星B
 
 book.page.solarsystem.proxima.name=比邻星系
-solarsystem.acentauri=α半人马座
-star.centauri_a=α半人马座 A
-planet.centauri_b=α半人马座 B
+solarsystem.proxima=比邻星系
+star.proxima=比邻星A
+planet.proxima_b=比邻星B
 
-solarsystem.proxima=比邻半人马座
-star.proxima=比邻半人马座
-planet.proxima_b=比邻B星
-
-book.page.solarsystem.barnarda.name=巴纳德星系
-solarsystem.barnards=巴纳德星系
-star.barnarda_a=巴纳德星 A
-planet.barnarda_b=巴纳德星 B
-planet.barnarda_c=巴纳德星 C
-planet.barnarda_d=巴纳德星 D
-planet.barnarda_e=巴纳德星 E
-moon.barnarda_b1=巴纳德星 B1
-moon.barnarda_c1=巴纳德星 C1
-moon.barnarda_c2=巴纳德星 C2
+book.page.solarsystem.barnarda.name=巴纳德系统
+solarsystem.barnards=巴纳德系统
+star.barnarda_a=巴纳德星A
+planet.barnarda_b=巴纳德星B
+planet.barnarda_c=巴纳德星C
+planet.barnarda_d=巴纳德小行星带
+planet.barnarda_e=巴纳德星E
+moon.barnarda_b1=巴纳德星B星环
+moon.barnarda_c1=巴纳德星C1
+moon.barnarda_c2=巴纳德星C2
 #|/////////////////////////////////////////|
 #|||||||||||||||||||Book||||||||||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
@@ -472,13 +567,13 @@ book.category.general.name=详情
 book.category.bodies.name=天体
 book.category.blocks.name=方块
 book.category.items.name=物品
-book.category.mechanics.name=环境简介
+book.category.mechanics.name=环境情况
 
 #|/////////////////////////////////////////|
 #||||||||||||||||Book-General|||||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 book.page.about_addon.name=关于星空mod
-book.page.about_addon.text=星空mod — 星系mod拓展,添加了大量游戏内容， !n这个项目我们大概开发了4年，贡献了很多游戏内容和。 !n!n所有的卫星行星甚至星系我们都在minecraft引擎所允许下尽可能地贴近现实，这个附属也是趋向于现实主义。
+book.page.about_addon.text=星空mod — 星系模组的拓展模组，添加了大量游戏内容，项目开发至今已有4年。!n所有新增地的卫星、行星甚至星系我们都在minecraft引擎所允许的范围内尽可能设计得地贴近现实，这个模组也正是追求写实的。
 book.page.new_gc_elements.name=未完成
 book.page.actual_update.name=更新概况
 #|/////////////////////////////////////////|
@@ -486,15 +581,15 @@ book.page.actual_update.name=更新概况
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 
 book.page.solarsystem.sol.name=太阳系
-book.page.star.sol=主星: 索尔 - 黄矮星
-book.page.solarsystem.asteroids=小行星带是一个围绕太阳运行的巨大小行星群。大多数小行星中含有大量的矿物。
-book.page.solarsystem.ceres=谷神星是小行星带中的一颗矮行星，它含有大量的陨石铁和白云石晶体。
-book.page.solarsystem.jupiter=木星 - 一个气态星球，拥有可以探索的岩石卫星。
-book.page.solarsystem.callisto=卡里斯托 - 木星上最远的卫星。
+book.page.star.sol=主星: 太阳 - 黄矮星
+book.page.solarsystem.asteroids=小行星带是一个由众多小行星组成的天体带。!n多数小行星中含有大量的矿物。
+book.page.solarsystem.ceres=谷神星是小行星带中的一颗矮行星。!n它含有不少陨铁矿石和白云石晶体。
+book.page.solarsystem.jupiter=木星 - 气态巨星，拥有可以探索的岩石卫星。
+book.page.solarsystem.callisto=木卫四 - 木星最远的卫星。
 #|/////////////////////////////////////////|
 #|||||||||||||||Book-Mechanics||||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-book.page.solar_radiation.name=太阳辐射
-book.page.solar_radiation.text=太阳辐射 - 能逐渐杀死玩家的负面效果。!n当辐射值超过  !c_r红 !c_w界 - 获得辐射效果， !n如果玩家在保护层或者地下庇护所内, 辐射将不会增加也不会减少， 辐射超过 !c_r红 !c_w界。 !n!n可以通过使用 !c_g抗辐射含片消除 !c_w!n穿着 !c_o宇航服 !c_w或者 进入 !c_o磁场生成器 保护范围可以防止辐射影响.  
+book.page.solar_radiation.name=恒星辐射
+book.page.solar_radiation.text=恒星辐射 - 恒星发出的辐射会让玩家受到不良影响。!n当辐射值超过红色界线，玩家会受到辐射debuff影响。!n如果玩家在宇航服、磁场或者地下的庇护所中，辐射值将稳定在安全水平。!n服用抗辐射含片可以降低辐射值。
 book.page.atmosphere_pressure.name=气压
-book.page.atmosphere_pressure.text=大气压是在行星上定居的主要问题 !n处在 !c_r 高强度 !c_w气压 下, 玩家会获得各种各样的效果, 例如: 呕吐, 致盲以及减速. !n!n在 !c_o高强度 !c_w压强下,玩家将会流失生命值. 如果!n压强值 !c_y爆炸 !c_w- 玩家就等着暴毙吧。 !n可以通过穿着 !c_o宇航服 !c_w或者添加 !c_o重力模块来保护自己。
+book.page.atmosphere_pressure.text=大气压强有时会影响玩家的生存，处在高强度气压下，玩家会受到多种负面影响，包括反胃、失明和缓慢，同时还会流失生命值。!n穿着宇航服可以使玩家免受高强度气压的影响。

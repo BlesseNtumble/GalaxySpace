@@ -10,6 +10,7 @@ import javax.vecmath.Vector3f;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 
+import asmodeuscore.core.handler.ColorBlockHandler;
 import galaxyspace.GalaxySpace;
 import galaxyspace.api.IBodies;
 import galaxyspace.core.client.GSKeyHandlerClient;
@@ -28,7 +29,6 @@ import galaxyspace.core.client.render.item.ItemModelRocketT5;
 import galaxyspace.core.client.render.item.ItemModelRocketT6;
 import galaxyspace.core.client.render.tile.TileEntityTreasureChestRenderer;
 import galaxyspace.core.events.GSClientTickHandler;
-import galaxyspace.core.handler.ColorBlockHandler;
 import galaxyspace.core.handler.GSMapHandler;
 import galaxyspace.core.handler.GSSkyProviderHandler;
 import galaxyspace.core.prefab.blocks.DungeonBlocks;
@@ -139,7 +139,7 @@ public class ClientProxy extends CommonProxy{
 		register_event(new GSSkyProviderHandler());
 		register_event(new GSClientTickHandler());
 		register_event(new GSMapHandler());	
-		register_event(new ColorBlockHandler());		
+		//register_event(new ColorBlockHandler());	
 		register_event(new GSKeyHandlerClient());
 		
 		ClientRegistry.registerKeyBinding(GSKeyHandlerClient.toggleHelmet);
@@ -156,6 +156,7 @@ public class ClientProxy extends CommonProxy{
     @Override
     public void load()
     {     	
+    	
     	Minecraft.getMinecraft().getRenderManager().getSkinMap().get("default").addLayer(new LayerOxygenTank());
     	Minecraft.getMinecraft().getRenderManager().getSkinMap().get("slim").addLayer(new LayerOxygenTank());
     	
@@ -380,7 +381,6 @@ public class ClientProxy extends CommonProxy{
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.GAS_BURNER);
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.OXYGEN_STORAGE_MODULE);
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.SOLARWIND_PANEL);
-		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.ADVANCED_ELECTRIC_COMPRESSOR);
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.ADVANCED_CIRCUIT_FABRICATOR);
 		
 		if(GCCoreUtil.isDeobfuscated()) 

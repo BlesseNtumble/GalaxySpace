@@ -40,7 +40,7 @@ public class GSMapHandler
     public void onRingRender(CelestialBodyRenderEvent.CelestialRingRenderEvent.Pre renderEvent)
     {
  	
-    	if(renderEvent.celestialBody.getRingColorR() == 1.0F
+    	if(renderEvent.celestialBody.getRingColorR() == 1.1F
     			&& renderEvent.celestialBody.getRingColorG() == 0.0F
     			&& renderEvent.celestialBody.getRingColorB() == 0.0F) 
     	{
@@ -48,13 +48,13 @@ public class GSMapHandler
     	}
     	
     	
-    	if(renderEvent.celestialBody.getRingColorG() == 1.0F
+    	if(renderEvent.celestialBody.getRingColorG() == 1.1F
     			&& renderEvent.celestialBody.getRingColorB() == 0.0F
     			&& renderEvent.celestialBody.getRingColorR() == 0.0F) {
             this.RingRender(renderEvent, renderEvent.celestialBody, 0.0F, 0.7F, 0.0F);
         }
     	
-    	if(renderEvent.celestialBody.getRingColorB() == 1.0F
+    	if(renderEvent.celestialBody.getRingColorB() == 1.1F
     			&& renderEvent.celestialBody.getRingColorG() == 0.0F
     			&& renderEvent.celestialBody.getRingColorR() == 0.0F) {
     		this.RingRender(renderEvent, renderEvent.celestialBody, 0.0F, 0.0F, 0.7F);

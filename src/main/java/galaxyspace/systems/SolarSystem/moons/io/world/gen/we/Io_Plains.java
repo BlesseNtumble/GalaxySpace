@@ -1,7 +1,7 @@
 package galaxyspace.systems.SolarSystem.moons.io.world.gen.we;
 
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import galaxyspace.core.registers.blocks.GSBlocks;
 import net.minecraft.init.Blocks;
 

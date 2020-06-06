@@ -5,14 +5,15 @@ import java.util.Random;
 import org.lwjgl.opengl.GL11;
 
 import asmodeuscore.api.dimension.IAdvancedSpace;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProvider;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_PerlinNoise;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProvider;
 import asmodeuscore.core.astronomy.gui.book.ACGuiGuideBook;
 import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
+import asmodeuscore.core.utils.worldengine.WE_PerlinNoise;
+import asmodeuscore.core.utils.worldengine.WE_WorldProvider;
 import galaxyspace.GalaxySpace;
 import galaxyspace.api.item.IJetpackArmor;
+import galaxyspace.api.item.IModificationItem;
 import galaxyspace.core.client.gui.GSGuiMainMenu;
 import galaxyspace.core.client.gui.book.pages.general.Page_ActualUpdate;
 import galaxyspace.core.client.gui.overlay.OverlaySpaceSuit;
@@ -27,8 +28,11 @@ import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemTerraMa
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import micdoodle8.mods.galacticraft.core.util.ColorUtil;
+import micdoodle8.mods.galacticraft.core.util.EnumColor;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
 import micdoodle8.mods.galacticraft.planets.GalacticraftPlanets;
+import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -55,6 +59,7 @@ import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -82,6 +87,26 @@ public class GSClientTickHandler {
 		{
 			event.gui = new GSGuiRocketInventory(mc.thePlayer.inventory, (EntityTier4Rocket) mc.thePlayer.ridingEntity, ((EntityTier4Rocket) mc.thePlayer.ridingEntity).getType());
 		}*/		
+	}
+	
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void onToolTip(ItemTooltipEvent e) {
+		if(e.getItemStack().getItem() instanceof IModificationItem)
+		{
+			if(((IModificationItem)e.getItemStack().getItem()).getType(e.getItemStack()) != null) {
+				//e.getToolTip().add("");
+				e.getToolTip().add(1, EnumColor.AQUA + GCCoreUtil.translate("gui.module.caninstall"));
+			}
+		}
+		
+		if(e.getItemStack().isItemEqual(new ItemStack(MarsItems.schematic, 1, 0)))
+		{
+			if(GSConfigCore.enableAdvancedRocketCraft) {
+				//e.getToolTip().add("");
+				e.getToolTip().add(1, EnumColor.RED + "Disabled. See new recipe in JEI/NEI!");
+			}
+		}
 	}
 	
 	@SubscribeEvent

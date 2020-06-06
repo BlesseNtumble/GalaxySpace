@@ -233,7 +233,7 @@ public class GuiUniversalRecycler extends GuiContainerGC
        // this.drawTexturedModalRect(containerWidth + 4, containerHeight + 38, 192, 66, 20, 42);
         
         FluidStack fluid = this.tileEntity.waterTank.getFluid();        
-        FluidStack fluid1 = this.tileEntity.waterTank1.getFluid();  
+        //FluidStack fluid1 = this.tileEntity.waterTank1.getFluid();  
         GL11.glPushMatrix();        
         
         if(fluid != null)

@@ -6,6 +6,7 @@ import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.systems.SolarSystem.moons.titan.blocks.BlockLiquidEthaneMethane;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialLiquid;
@@ -25,7 +26,24 @@ public class GSFluids {
 	public static Block BLOCK_ETHANE;
 	public static Block BLOCK_HELIUM_HYDROGEN;
 	
-	public static Material methaneMaterial = new MaterialLiquid(MapColor.BLUE);
+	public static final Material LEMethane = new MaterialLiquid(MapColor.BROWN){
+		public EnumPushReaction getMobilityFlag()
+			{
+				return EnumPushReaction.DESTROY;
+			}
+	};
+	public static final Material HELIUM = new MaterialLiquid(MapColor.SNOW){
+		public EnumPushReaction getMobilityFlag()
+			{
+				return EnumPushReaction.DESTROY;
+			}
+	};
+	public static final Material HH = new MaterialLiquid(MapColor.PINK){
+		public EnumPushReaction getMobilityFlag()
+		{
+			return EnumPushReaction.DESTROY;
+		}
+	};
 	
 	public static void initialize()
     {
@@ -42,9 +60,9 @@ public class GSFluids {
 	public static void BlockFluidRegistration()
 	{
 		BLOCK_LEMETHANE = new BlockLiquidEthaneMethane();
-		BLOCK_HELIUM3 = new BlockFluidGS(Helium3, Material.WATER, false);
-		BLOCK_ETHANE = new BlockFluidGS(Ethane, Material.WATER, false);
-		BLOCK_HELIUM_HYDROGEN = new BlockFluidGS(HeliumHydrogen, Material.WATER, false);
+		BLOCK_HELIUM3 = new BlockFluidGS(Helium3, HELIUM, false);
+		BLOCK_ETHANE = new BlockFluidGS(Ethane, HH, false);
+		BLOCK_HELIUM_HYDROGEN = new BlockFluidGS(HeliumHydrogen, HH, false);
 		
 		GSBlocks.registerBlock(BLOCK_LEMETHANE, null);
 		GSBlocks.registerBlock(BLOCK_HELIUM3, null);

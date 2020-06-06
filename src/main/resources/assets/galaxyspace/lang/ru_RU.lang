@@ -402,6 +402,7 @@ gui.temp_shield_control.desc=Защищает от коррозии атмосф
 gui.emergency_portable_teleport.desc=Эвакуирует игрока к приязанной точке. Срабатывает при HP < 6. Shift+ПКМ по телепорту привязывает точку, по любому блоку - вкл/выкл.
 
 gui.module.desc=Ракетный Модуль
+gui.ice_bucket.desc=Можно получить, нажав ПКМ по льду пустым ведром.
 
 gui.status.nolava.name=Нет Лавы
 gui.message.lava.name=Лава
@@ -494,9 +495,6 @@ item_group.galaxyspace_rocket=GalaxySpace: Ракеты
 entity.evolved_boss_blaze.name=Эволюционировавший Босс Ледянной Ифрит
 entity.evolved_coldblaze.name=Эволюционировавший Ледянной Ифрит
 entity.evolved_boss_ghast.name=Эволюционировавший Босс Гаст
-entity.rocket_tier_4.name=Ракета 4-го уровня
-entity.rocket_tier_5.name=Ракета 5-го уровня
-entity.rocket_tier_6.name=Ракета 6-го уровня
 #|/////////////////////////////////////////|
 #|||||||||||||Celestial Bodies||||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|

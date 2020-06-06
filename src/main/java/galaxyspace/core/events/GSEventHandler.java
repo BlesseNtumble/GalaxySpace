@@ -160,21 +160,7 @@ public class GSEventHandler {
             event.addCapability(GSCapabilityStatsHandler.GS_PLAYER_PROPERTIES_CLIENT, new GSCapabilityProviderStatsClient((EntityPlayerSP) event.getObject()));
         }
     }
-
-	@SubscribeEvent
-	public void onConfigChanged(ConfigChangedEvent event) {
-		if (event.getModID().equals(GalaxySpace.MODID)) {
-			GSConfigCore.syncConfig(false);
-			GSConfigDimensions.syncConfig(false);
-			GSConfigSchematics.syncConfig(false);
-			GSConfigEnergy.syncConfig(false);
-			ACConfigCore.syncConfig(false);
-			ACConfigDimensions.syncConfig(false);
-			BRConfigCore.syncConfig(false);
-			BRConfigDimensions.syncConfig(false);
-		}
-	}
-	 
+		 
 	@SubscribeEvent
     public void onPlayerCloned(PlayerEvent.Clone event)
     {
@@ -210,28 +196,8 @@ public class GSEventHandler {
 
         	GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_UPDATE_RESEARCHES, GCCoreUtil.getDimensionID(event.player.world), new Object[] {ids}), (EntityPlayerMP)event.player);
         }
-    }
-	
-	@SubscribeEvent
-	@SideOnly(Side.CLIENT)
-	public void onToolTip(ItemTooltipEvent e) {
-		if(e.getItemStack().getItem() instanceof IModificationItem)
-		{
-			if(((IModificationItem)e.getItemStack().getItem()).getType(e.getItemStack()) != null) {
-				e.getToolTip().add("");
-				e.getToolTip().add(EnumColor.AQUA + GCCoreUtil.translate("gui.module.caninstall"));
-			}
-		}
+    }	
 		
-		if(e.getItemStack().isItemEqual(new ItemStack(MarsItems.schematic, 1, 0)))
-		{
-			if(GSConfigCore.enableAdvancedRocketCraft) {
-				e.getToolTip().add("");
-				e.getToolTip().add(EnumColor.RED + "Disabled. See new recipe in JEI/NEI!");
-			}
-		}
-	}
-	
 	@SubscribeEvent
 	public void onFall(LivingFallEvent e) {
 		if (e.getEntityLiving() instanceof EntityPlayer) {
@@ -367,7 +333,7 @@ public class GSEventHandler {
 
 				for(ItemsToChange ore : items_to_change)
 				{					
-					if(stack.getItem().equals(ore.itemstack.getItem()))
+					if(stack.getItem().equals(ore.itemstack.getItem()) && !((IGalacticraftWorldProvider)world.provider).hasBreathableAtmosphere())
 					{		
 						if(ore.need_check_temp && (thermal >= 1.5 || thermal < -1.5F)) {
 							if(!OxygenUtil.isAABBInBreathableAirBlock(world, bb, true))
@@ -415,7 +381,7 @@ public class GSEventHandler {
 		ItemStack i = event.getItemStack();
 				
 		if(!world.isRemote && GalaxySpace.debug) 
-			GalaxySpace.debug(Item.REGISTRY.getNameForObject(i.getItem()) + " | " + i.getUnlocalizedName());
+			GalaxySpace.instance.debug(Item.REGISTRY.getNameForObject(i.getItem()) + " | " + i.getUnlocalizedName());
 		
 					
 		if(!world.isRemote && GSConfigCore.enableHardMode && !player.capabilities.isCreativeMode)
@@ -505,7 +471,7 @@ public class GSEventHandler {
 		
 			LightningStormHandler.spawnLightning(player);
 								
-			this.updateSchematics(player, stats);
+			//this.updateSchematics(player, stats);
 			//this.throwMeteors(player);
 
 			

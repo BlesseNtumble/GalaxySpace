@@ -33,7 +33,6 @@ public class GSConfigCore
     public static boolean enableOresGeneration;
     public static boolean enableDungeonsGeneration;
     public static boolean enableNewMenu;
-    public static boolean enableFogVenus;
     public static boolean enableSkyOverworld;
     public static boolean enableGSMars;
     public static boolean enableOverworldOres;
@@ -168,11 +167,6 @@ public class GSConfigCore
             oregenIDs = prop.getStringList();
             propOrder.add(prop.getName());
             */
-            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "enableFogVenus", true);
-            prop.setComment("Enable/Disable Fog on Venus.");
-            prop.setLanguageKey("gc.configgui.enableFogVenus").setRequiresMcRestart(true);
-            enableFogVenus = prop.getBoolean(true);
-            propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "enableSkyOverworld", true);
             prop.setComment("Enable/Disable new render sky on Overworld.");
