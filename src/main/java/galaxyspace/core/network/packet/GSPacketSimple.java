@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.lwjgl.opengl.GL11;
 
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProvider;
+import asmodeuscore.core.utils.worldengine.WE_WorldProvider;
 import galaxyspace.api.item.IModificationItem;
 import galaxyspace.api.tile.ITileEffects;
 import galaxyspace.core.events.GSEventHandler;

@@ -19,8 +19,8 @@ public class WE_LakesGen implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
 		if(random.nextInt(chunksForLake) == 0) {
-			int x = chunkX,
-				z = chunkZ,
+			int x = chunkX + 8,
+				z = chunkZ + 8,
 				//y = minY + random.nextInt(maxY - minY + 1);
 				y = underground ? minY + random.nextInt(maxY - minY + 1) : world.getTopSolidOrLiquidBlock(new BlockPos(x, 0, z)).getY();
 			//-//
