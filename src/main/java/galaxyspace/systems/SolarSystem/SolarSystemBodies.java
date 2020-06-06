@@ -9,6 +9,7 @@ import asmodeuscore.core.astronomy.BodiesData;
 import asmodeuscore.core.astronomy.BodiesHelper;
 import asmodeuscore.core.astronomy.dimension.world.OreGenerator;
 import asmodeuscore.core.astronomy.dimension.world.gen.ACBiome;
+import asmodeuscore.core.prefab.celestialbody.ExPlanet;
 import galaxyspace.GalaxySpace;
 import galaxyspace.api.IBodies;
 import galaxyspace.api.IBodiesHandler;
@@ -88,6 +89,7 @@ import micdoodle8.mods.galacticraft.api.world.SpaceStationType;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.items.ItemBasic;
+import micdoodle8.mods.galacticraft.core.util.CompatibilityManager;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import micdoodle8.mods.galacticraft.planets.asteroids.AsteroidsModule;
 import micdoodle8.mods.galacticraft.planets.asteroids.schematic.SchematicTier3Rocket;
@@ -102,7 +104,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -120,7 +121,7 @@ public class SolarSystemBodies implements IBodies{
 	public static Planet planetNeptune = GalacticraftCore.planetNeptune;
 	
 	public static Planet planetPluto;
-	public static Planet planetKuiperBelt;
+	public static ExPlanet planetKuiperBelt;
 	public static Planet planetHaumea;
 	public static Planet planetMakemake;
 	public static Planet planetEris;
@@ -188,62 +189,168 @@ public class SolarSystemBodies implements IBodies{
 	{
 		SolarSystem sol = GalacticraftCore.solarSystemSol;
 		
-		//Planets
-		//body, name, prefix, provider, dimID, tier, phase, size, distancefromcenter, relativetime, biomes
-		planetMercury = (Planet) BodiesHelper.registerPlanet(sol, "mercury", GalaxySpace.ASSET_PREFIX, WorldProviderMercury.class, GSConfigDimensions.dimensionIDMercury, 3, 1.45F, 0.5F, 0.5F, 0.24096385542168674698795180722892F, ACBiome.ACSpace);
-		planetMercury.setAtmosphere(new AtmosphereInfo(false, false, false, 8.0F, 0.0F, 0.0F));
+		planetMercury = BodiesHelper.registerExPlanet(sol, "mercury", GalaxySpace.ASSET_PREFIX, 0.5F);
+		BodiesHelper.setOrbitData(planetMercury, 1.45F, 0.5F, 0.24F, 0F, 0F, 4F, 0F);
+		BodiesHelper.setPlanetData(planetMercury, 0, 176000L, BodiesHelper.calculateGravity(3.8F), true);
+		BodiesHelper.setAtmosphere(planetMercury, false, false, false, 8.0F, 0.0F, 0.0F);
+		BodiesHelper.setProviderData(planetMercury, WorldProviderMercury.class, GSConfigDimensions.dimensionIDMercury, 3, ACBiome.ACSpace);
+		GalaxyRegistry.registerPlanet(planetMercury);
 		
-		planetCeres = (Planet) BodiesHelper.registerPlanet(sol, "ceres", GalaxySpace.ASSET_PREFIX, WorldProviderCeres.class, GSConfigDimensions.dimensionIDCeres, 3, 2.0F, 0.5F, 1.7F, 15.0F, ACBiome.ACSpace).setRingColorRGB(0.0F, 0.0F, 0.0F);
-		planetCeres.setAtmosphere(new AtmosphereInfo(false, false, false, -5.0F, 0.0F, 0.0F));
+		planetCeres = BodiesHelper.registerExPlanet(sol, "ceres", GalaxySpace.ASSET_PREFIX, 1.7F);
+		planetCeres.setRingColorRGB(0F, 0F, 0F);
+		BodiesHelper.setOrbitData(planetCeres, 2.0F, 0.5F, 15.0F);
+		BodiesHelper.setPlanetData(planetCeres, 0, 10000L, BodiesHelper.calculateGravity(2.37F), true);
+		BodiesHelper.setAtmosphere(planetCeres, false, false, false, -5.0F, 0.0F, 0.0F);
+		BodiesHelper.setProviderData(planetCeres, WorldProviderCeres.class, GSConfigDimensions.dimensionIDCeres, 3, ACBiome.ACSpace);
+		GalaxyRegistry.registerPlanet(planetCeres);
 		
-		planetJupiter = BodiesHelper.registerPlanet(sol,"jupiter", GalaxySpace.ASSET_PREFIX, null, -1, -1, (float) Math.PI, 1.0F, 2.0F, 11.861993428258488499452354874042F);
-		planetSaturn = BodiesHelper.registerPlanet(sol,"saturn", GalaxySpace.ASSET_PREFIX, null, -1, -1, (float) Math.PI / 2, 1.0F, 2.25F, 29.463307776560788608981380065717F);
-		planetUranus = BodiesHelper.registerPlanet(sol,"uranus", GalaxySpace.ASSET_PREFIX, null, -1, -1, (float) Math.PI, 1.0F, 2.5F, 84.063526834611171960569550930997F);
-		planetNeptune = BodiesHelper.registerPlanet(sol,"neptune", GalaxySpace.ASSET_PREFIX, null, -1, -1, 1.0F, 1.0F, 2.75F, 164.84118291347207009857612267251F);
-		planetPluto = (Planet) BodiesHelper.registerPlanet(sol,"pluto", GalaxySpace.ASSET_PREFIX, WorldProviderPluto.class, GSConfigDimensions.dimensionIDPluto, 6, 0.1F, 0.5F, 3.0F, 250.0F, ACBiome.ACSpace, ACBiome.ACSpaceLowPlains, ACBiome.ACSpaceLowHills, ACBiome.ACSpaceMidPlains).atmosphereComponent(EnumAtmosphericGas.NITROGEN);
-		planetPluto.setAtmosphere(new AtmosphereInfo(false, false, false, -12.0F, 0.0F, 0.0F));
-		planetKuiperBelt = (Planet) BodiesHelper.registerPlanet(sol,"kuiperbelt", GalaxySpace.ASSET_PREFIX, WorldProviderKuiperBelt.class, GSConfigDimensions.dimensionIDKuiperBelt, 6, 1.5F, 0.5F, 3.25F, 300.0F, ACBiome.ACSpace).setRingColorRGB(1.0F, 0.0F, 0.0F);;	
-		planetKuiperBelt.setAtmosphere(new AtmosphereInfo(false, false, false, -12.0F, 0.0F, 0.0F));
-		planetHaumea = BodiesHelper.registerPlanet(sol,"haumea", GalaxySpace.ASSET_PREFIX, WorldProviderHaumea_WE.class, GSConfigDimensions.dimensionIDKuiperBelt-1, 6, (float) Math.PI + 1.64F, 1.0F, 3.5F, 392.9F);
-		planetHaumea.setAtmosphere(new AtmosphereInfo(false, false, false, -12.0F, 0.0F, 0.0F));
+		planetJupiter = BodiesHelper.registerExPlanet(sol, "jupiter", GalaxySpace.ASSET_PREFIX, 2.0F);
+		BodiesHelper.setOrbitData(planetJupiter, (float) Math.PI, 2.0F, 11.86F);
+		GalaxyRegistry.registerPlanet(planetJupiter);
 		
-		//
+		planetSaturn = BodiesHelper.registerExPlanet(sol, "saturn", GalaxySpace.ASSET_PREFIX, 2.25F);
+		BodiesHelper.setOrbitData(planetSaturn, (float) Math.PI / 2, 1.5F, 29.46F);
+		GalaxyRegistry.registerPlanet(planetSaturn);
 		
-		phobosMars = BodiesHelper.registerMoon(MarsModule.planetMars, "phobos", GalaxySpace.ASSET_PREFIX, null, -1, -1, 1.0F, 0.0017F, 8.0F, 100F);
-		deimosMars = BodiesHelper.registerMoon(MarsModule.planetMars, "deimos", GalaxySpace.ASSET_PREFIX, null, -1, -1, 1.0F, 0.0017F, 16.0F, 300F);
+		planetUranus = BodiesHelper.registerExPlanet(sol, "uranus", GalaxySpace.ASSET_PREFIX, 2.5F);
+		BodiesHelper.setOrbitData(planetUranus, (float) Math.PI / 4, 1.2F, 84.06F);
+		GalaxyRegistry.registerPlanet(planetUranus);
 		
-		ioJupiter = BodiesHelper.registerMoon(planetJupiter, "io", GalaxySpace.ASSET_PREFIX, WorldProviderIo.class, GSConfigDimensions.dimensionIDIo, 4, 1.0F, 0.0017F, 10.0F, 50F, ACBiome.ACSpace, ACBiome.ACSpaceLowHills, ACBiome.ACSpaceLowPlains);
-		ioJupiter.setAtmosphere(new AtmosphereInfo(false, false, false, -4.5F, 0.0F, 0.0F));
-		europaJupiter = BodiesHelper.registerMoon(planetJupiter, "europa", GalaxySpace.ASSET_PREFIX, WorldProviderEuropa.class, GSConfigDimensions.dimensionIDEuropa, 4, 1.0F, 0.0017F, 15.0F, 100F);
-		europaJupiter.setAtmosphere(new AtmosphereInfo(false, false, false, -2.0F, 0.0F, 0.0F));
-		ganymedeJupiter = BodiesHelper.registerMoon(planetJupiter, "ganymede", GalaxySpace.ASSET_PREFIX, WorldProviderGanymede.class, GSConfigDimensions.dimensionIDGanymede, 4, 1.0F, 0.0017F, 20.0F, 150F);
-		ganymedeJupiter.setAtmosphere(new AtmosphereInfo(false, false, false, -2.0F, 0.0F, 0.0F));
-		callistoJupiter = BodiesHelper.registerMoon(planetJupiter, "callisto", GalaxySpace.ASSET_PREFIX, WorldProviderCallisto.class, GSConfigDimensions.dimensionIDCallisto, 4, 1.0F, 0.0017F, 30.0F, 200F);
-		callistoJupiter.setAtmosphere(new AtmosphereInfo(false, false, false, -2.0F, 0.0F, 0.0F));
+		planetNeptune = BodiesHelper.registerExPlanet(sol, "neptune", GalaxySpace.ASSET_PREFIX, 2.75F);
+		BodiesHelper.setOrbitData(planetNeptune, (float) Math.PI, 1.2F, 164.84F);
+		GalaxyRegistry.registerPlanet(planetNeptune);
 		
-		mimasSaturn = BodiesHelper.registerMoon(planetSaturn, "mimas", GalaxySpace.ASSET_PREFIX, null, -1, -1, (float) Math.PI / 2, 0.0017F, 10.0F, 20F);
-		enceladusSaturn = BodiesHelper.registerMoon(planetSaturn, "enceladus", GalaxySpace.ASSET_PREFIX, GSConfigCore.enableWorldEngine ? WorldProviderEnceladus_WE.class : WorldProviderEnceladus.class, GSConfigDimensions.dimensionIDEnceladus, 5, (float) Math.PI / 3, 0.0017F, 15.0F, 50F);
-		enceladusSaturn.setAtmosphere(new AtmosphereInfo(false, false, false, -4.0F, 0.0F, 0.0F));
-		tethysSaturn = BodiesHelper.registerMoon(planetSaturn, "tethys", GalaxySpace.ASSET_PREFIX, null, -1, -1, (float) Math.PI, 0.0017F, 20.0F, 120F);
-		dioneSaturn = BodiesHelper.registerMoon(planetSaturn, "dione", GalaxySpace.ASSET_PREFIX, null, -1, -1, (float) Math.PI / 4, 0.0017F, 25.0F, 180F);
-		rheyaSaturn = BodiesHelper.registerMoon(planetSaturn, "rheya", GalaxySpace.ASSET_PREFIX, null, -1, -1, (float) Math.PI / 3, 0.0017F, 30.0F, 220F);
-		titanSaturn = (Moon) BodiesHelper.registerMoon(planetSaturn, "titan", GalaxySpace.ASSET_PREFIX, WorldProviderTitan.class, GSConfigDimensions.dimensionIDTitan, 5, (float) Math.PI / 5, 0.0017F, 35.0F, 280F).atmosphereComponent(EnumAtmosphericGas.NITROGEN).atmosphereComponent(EnumAtmosphericGas.METHANE).atmosphereComponent(EnumAtmosphericGas.HYDROGEN);
-		titanSaturn.setAtmosphere(new AtmosphereInfo(false, true, true, -4.0F, 1.0F, 0.0F));
-		iapetusSaturn = BodiesHelper.registerMoon(planetSaturn, "iapetus", GalaxySpace.ASSET_PREFIX, null, -1, -1, (float) Math.PI, 0.0017F, 40.0F, 350F);
+		planetPluto = BodiesHelper.registerExPlanet(sol, "pluto", GalaxySpace.ASSET_PREFIX, 3.0F);
+		planetPluto.atmosphereComponent(EnumAtmosphericGas.NITROGEN);
+		BodiesHelper.setOrbitData(planetPluto, 0.0F, 0.5F, 250.0F, 0, 0, 25F, 0F);
+		BodiesHelper.setPlanetData(planetPluto, 0, 98000L, BodiesHelper.calculateGravity(2.62F), true);
+		BodiesHelper.setAtmosphere(planetPluto, false, false, false, -12.0F, 0.0F, 0.0F);
+		BodiesHelper.setProviderData(planetPluto, WorldProviderPluto.class, GSConfigDimensions.dimensionIDPluto, 6, ACBiome.ACSpace, ACBiome.ACSpaceLowPlains, ACBiome.ACSpaceLowHills, ACBiome.ACSpaceMidPlains);
+		GalaxyRegistry.registerPlanet(planetPluto);
 		
-		mirandaUranus = BodiesHelper.registerMoon(planetUranus, "miranda", GalaxySpace.ASSET_PREFIX, WorldProviderMiranda.class, GSConfigDimensions.dimensionIDMiranda, 5, (float) Math.PI, 0.0017F, 10.0F, 20F, ACBiome.ACSpace, ACBiome.ACSpaceLowPlains, ACBiome.ACSpaceMidHills);
-		mirandaUranus.setAtmosphere(new AtmosphereInfo(false, true, false, -5.0F, 0.0F, 0.0F));		
-		arielUranus = BodiesHelper.registerMoon(planetUranus, "ariel", GalaxySpace.ASSET_PREFIX, null, -1, -1, (float) Math.PI / 2, 0.0017F, 15.0F, 50F);
-		umbrielUranus = BodiesHelper.registerMoon(planetUranus, "umbriel", GalaxySpace.ASSET_PREFIX, null, -1, -1, (float) Math.PI / 3, 0.0017F, 20.0F, 120F);
-		titaniaUranus = BodiesHelper.registerMoon(planetUranus, "titania", GalaxySpace.ASSET_PREFIX, null, -1, -1, (float) Math.PI / 4, 0.0017F, 25.0F, 180F);
-		oberonUranus = BodiesHelper.registerMoon(planetUranus, "oberon", GalaxySpace.ASSET_PREFIX, null, -1, -1, (float) Math.PI / 5, 0.0017F, 30.0F, 200F);
+		planetKuiperBelt = (ExPlanet) BodiesHelper.registerExPlanet(sol, "kuiperbelt", GalaxySpace.ASSET_PREFIX, 3.25F).setRingColorRGB(1.1F, 0.0F, 0.0F);
+		planetKuiperBelt.setClassPlanet(ClassBody.ASTEROID);
+		BodiesHelper.setOrbitData(planetKuiperBelt, 1.0F, 1.0F, 300F);
+		BodiesHelper.setAtmosphere(planetKuiperBelt, false, false, false, -12.0F, 0.0F, 0.0F);
+		BodiesHelper.setPlanetData(planetKuiperBelt, 0, 0, 0, true);
+		BodiesHelper.setProviderData(planetKuiperBelt, WorldProviderKuiperBelt.class, GSConfigDimensions.dimensionIDKuiperBelt, 6, ACBiome.ACSpace);
+		GalaxyRegistry.registerPlanet(planetKuiperBelt);
 		
-		proteusNeptune = BodiesHelper.registerMoon(planetNeptune, "proteus", GalaxySpace.ASSET_PREFIX, null, -1, -1, (float) Math.PI, 0.0017F, 10.0F, 50F);
-		tritonNeptune = BodiesHelper.registerMoon(planetNeptune, "triton", GalaxySpace.ASSET_PREFIX, WorldProviderTriton_WE.class, GSConfigDimensions.dimensionIDTriton, 6, (float) Math.PI / 2, 0.0017F, 25.0F, -200F, ACBiome.ACSpace);
-		tritonNeptune.setAtmosphere(new AtmosphereInfo(false, false, false, -11.2F, 0.0F, 0.0F));
+		planetHaumea = BodiesHelper.registerExPlanet(sol, "haumea", GalaxySpace.ASSET_PREFIX, 3.5F);
+		BodiesHelper.setOrbitData(planetHaumea, (float) Math.PI + 1.64F, 1.0F, 392.9F);
+		BodiesHelper.setAtmosphere(planetHaumea, false, false, false, -12.0F, 0.0F, 0.0F);
+		BodiesHelper.setPlanetData(planetHaumea, 0, 12000, BodiesHelper.calculateGravity(2.02F), true);
+		BodiesHelper.setProviderData(planetHaumea, WorldProviderHaumea_WE.class, GSConfigDimensions.dimensionIDHaumea, 6, ACBiome.ACSpace);
+		GalaxyRegistry.registerPlanet(planetHaumea);
+				
+		phobosMars = BodiesHelper.registerExMoon(MarsModule.planetMars, "phobos", GalaxySpace.ASSET_PREFIX, 8.0F);
+		BodiesHelper.setOrbitData(phobosMars, 1.0F, 0.0017F, 100F);
+		GalaxyRegistry.registerMoon(phobosMars);
 		
-		charonPluto = BodiesHelper.registerMoon(planetPluto, "charon", GalaxySpace.ASSET_PREFIX, null, -1, -1, (float) Math.PI / 2, 0.0017F, 15.0F, 50F);
-
+		deimosMars = BodiesHelper.registerExMoon(MarsModule.planetMars, "deimos", GalaxySpace.ASSET_PREFIX, 16.0F);
+		BodiesHelper.setOrbitData(deimosMars, 1.0F, 0.0017F, 300F);
+		GalaxyRegistry.registerMoon(deimosMars);
+					
+		ioJupiter = BodiesHelper.registerExMoon(planetJupiter, "io", GalaxySpace.ASSET_PREFIX, 10F);
+		BodiesHelper.setOrbitData(ioJupiter, 1.0F, 0.0017F, 50F);
+		BodiesHelper.setAtmosphere(ioJupiter, false, false, false, -4.2F, 0.0F, 0.0F);
+		BodiesHelper.setPlanetData(ioJupiter, 0, 42000, 0.052F, true);
+		BodiesHelper.setProviderData(ioJupiter, WorldProviderIo.class, GSConfigDimensions.dimensionIDIo, 4, ACBiome.ACSpace, ACBiome.ACSpaceLowHills, ACBiome.ACSpaceLowPlains);
+		GalaxyRegistry.registerMoon(ioJupiter);
+		
+		europaJupiter = BodiesHelper.registerExMoon(planetJupiter, "europa", GalaxySpace.ASSET_PREFIX, 15F);
+		BodiesHelper.setOrbitData(europaJupiter, (float)Math.PI, 0.0017F, 100F);
+		BodiesHelper.setAtmosphere(europaJupiter, false, false, false, -2.0F, 0.0F, 0.0F);
+		BodiesHelper.setPlanetData(europaJupiter, 0, 58000L, 0.062F, true);
+		BodiesHelper.setProviderData(europaJupiter, WorldProviderEuropa.class, GSConfigDimensions.dimensionIDEuropa, 4);
+		GalaxyRegistry.registerMoon(europaJupiter);
+		
+		ganymedeJupiter = BodiesHelper.registerExMoon(planetJupiter, "ganymede", GalaxySpace.ASSET_PREFIX, 20F);
+		BodiesHelper.setOrbitData(ganymedeJupiter, (float)Math.PI / 2, 0.0017F, 150F);
+		BodiesHelper.setAtmosphere(ganymedeJupiter, false, false, false, -2.0F, 0.0F, 0.0F);
+		BodiesHelper.setPlanetData(ganymedeJupiter, 0, 102000L, 0.057F, false);
+		BodiesHelper.setProviderData(ganymedeJupiter, WorldProviderGanymede.class, GSConfigDimensions.dimensionIDGanymede, 4);
+		GalaxyRegistry.registerMoon(ganymedeJupiter);
+		
+		callistoJupiter = BodiesHelper.registerExMoon(planetJupiter, "callisto", GalaxySpace.ASSET_PREFIX, 30F);
+		BodiesHelper.setOrbitData(callistoJupiter, (float)Math.PI / 3, 0.0017F, 200F);
+		BodiesHelper.setAtmosphere(callistoJupiter, false, false, false, -2.0F, 0.0F, 0.0F);
+		BodiesHelper.setPlanetData(callistoJupiter, 0, 154000L, 0.054F, false);
+		BodiesHelper.setProviderData(callistoJupiter, WorldProviderCallisto.class, GSConfigDimensions.dimensionIDCallisto, 4);
+		GalaxyRegistry.registerMoon(callistoJupiter);
+				
+		mimasSaturn = BodiesHelper.registerExMoon(planetSaturn, "mimas", GalaxySpace.ASSET_PREFIX, 10F);
+		BodiesHelper.setOrbitData(mimasSaturn, (float) Math.PI / 2, 0.0017F, 20F);
+		GalaxyRegistry.registerMoon(mimasSaturn);
+		
+		enceladusSaturn = BodiesHelper.registerExMoon(planetSaturn, "enceladus", GalaxySpace.ASSET_PREFIX, 15F);
+		BodiesHelper.setOrbitData(enceladusSaturn, (float)Math.PI / 3, 0.0017F, 50F);
+		BodiesHelper.setAtmosphere(enceladusSaturn, false, false, false, -4.0F, 0.0F, 0.0F);
+		BodiesHelper.setPlanetData(enceladusSaturn, 0, 32000L, 0.058F, false);
+		BodiesHelper.setProviderData(enceladusSaturn, GSConfigCore.enableWorldEngine ? WorldProviderEnceladus_WE.class : WorldProviderEnceladus.class, GSConfigDimensions.dimensionIDEnceladus, 5);
+		GalaxyRegistry.registerMoon(enceladusSaturn);
+	
+		tethysSaturn = BodiesHelper.registerExMoon(planetSaturn, "tethys", GalaxySpace.ASSET_PREFIX, 20F);
+		BodiesHelper.setOrbitData(tethysSaturn, (float) Math.PI, 0.0017F, 120F);
+		GalaxyRegistry.registerMoon(tethysSaturn);
+		
+		dioneSaturn = BodiesHelper.registerExMoon(planetSaturn, "dione", GalaxySpace.ASSET_PREFIX, 25F);
+		BodiesHelper.setOrbitData(dioneSaturn, (float) Math.PI / 4, 0.0017F, 180F);
+		GalaxyRegistry.registerMoon(dioneSaturn);
+		
+		rheyaSaturn = BodiesHelper.registerExMoon(planetSaturn, "rheya", GalaxySpace.ASSET_PREFIX, 30F);
+		BodiesHelper.setOrbitData(rheyaSaturn, (float) Math.PI / 3, 0.0017F, 220F);
+		GalaxyRegistry.registerMoon(rheyaSaturn);
+		
+		titanSaturn = BodiesHelper.registerExMoon(planetSaturn, "enceladus", GalaxySpace.ASSET_PREFIX, 35F);
+		BodiesHelper.setOrbitData(titanSaturn, (float)Math.PI / 5, 0.0017F, 280F);
+		BodiesHelper.setAtmosphere(titanSaturn, false, false, false, -4.0F, 1.0F, 0.0F);
+		BodiesHelper.setPlanetData(titanSaturn, 0, 105500L, 0.058F, false);
+		BodiesHelper.setProviderData(titanSaturn, WorldProviderTitan.class, GSConfigDimensions.dimensionIDTitan, 5);
+		GalaxyRegistry.registerMoon(titanSaturn);
+		
+		iapetusSaturn = BodiesHelper.registerExMoon(planetSaturn, "iapetus", GalaxySpace.ASSET_PREFIX, 40F);
+		BodiesHelper.setOrbitData(iapetusSaturn, (float) Math.PI, 0.0017F, 350F);
+		GalaxyRegistry.registerMoon(iapetusSaturn);		
+		
+		mirandaUranus = BodiesHelper.registerExMoon(planetUranus, "miranda", GalaxySpace.ASSET_PREFIX, 10F);
+		BodiesHelper.setOrbitData(mirandaUranus, (float)Math.PI, 0.0017F, 20F);
+		BodiesHelper.setAtmosphere(mirandaUranus, false, false, false, -5.0F, 0.0F, 0.0F);
+		BodiesHelper.setPlanetData(mirandaUranus, 0, 33500L, 0.057F, true);
+		BodiesHelper.setProviderData(mirandaUranus, WorldProviderMiranda.class, GSConfigDimensions.dimensionIDMiranda, 5);
+		GalaxyRegistry.registerMoon(mirandaUranus);
+			
+		arielUranus = BodiesHelper.registerExMoon(planetSaturn, "ariel", GalaxySpace.ASSET_PREFIX, 15F);
+		BodiesHelper.setOrbitData(arielUranus, (float) Math.PI / 2, 0.0017F, 50F);
+		GalaxyRegistry.registerMoon(arielUranus);
+		
+		umbrielUranus = BodiesHelper.registerExMoon(planetSaturn, "umbriel", GalaxySpace.ASSET_PREFIX, 20F);
+		BodiesHelper.setOrbitData(umbrielUranus, (float) Math.PI / 3, 0.0017F, 120F);
+		GalaxyRegistry.registerMoon(umbrielUranus);
+		
+		titaniaUranus = BodiesHelper.registerExMoon(planetSaturn, "titania", GalaxySpace.ASSET_PREFIX, 25F);
+		BodiesHelper.setOrbitData(titaniaUranus, (float) Math.PI / 4, 0.0017F, 180F);
+		GalaxyRegistry.registerMoon(titaniaUranus);
+		
+		oberonUranus = BodiesHelper.registerExMoon(planetSaturn, "oberon", GalaxySpace.ASSET_PREFIX, 30F);
+		BodiesHelper.setOrbitData(oberonUranus, (float) Math.PI / 4, 0.0017F, 220F);
+		GalaxyRegistry.registerMoon(oberonUranus);
+		
+		proteusNeptune = BodiesHelper.registerExMoon(planetNeptune, "proteus", GalaxySpace.ASSET_PREFIX, 10F);
+		BodiesHelper.setOrbitData(proteusNeptune, (float) Math.PI, 0.0017F, 50F);
+		GalaxyRegistry.registerMoon(proteusNeptune);
+		
+		tritonNeptune = BodiesHelper.registerExMoon(planetNeptune, "triton", GalaxySpace.ASSET_PREFIX, 25F);
+		BodiesHelper.setOrbitData(tritonNeptune, (float)Math.PI, 0.0017F, -200F);
+		BodiesHelper.setAtmosphere(tritonNeptune, false, false, false, -11.2F, 0.0F, 0.0F);
+		BodiesHelper.setPlanetData(tritonNeptune, 0, 145200L, 0.059F, true);
+		BodiesHelper.setProviderData(tritonNeptune, WorldProviderTriton_WE.class, GSConfigDimensions.dimensionIDTriton, 6);
+		GalaxyRegistry.registerMoon(tritonNeptune);		
+		
+		charonPluto = BodiesHelper.registerExMoon(planetPluto, "charon", GalaxySpace.ASSET_PREFIX, 15F);
+		BodiesHelper.setOrbitData(charonPluto, (float) Math.PI, 0.0017F, 50F);
+		GalaxyRegistry.registerMoon(charonPluto);
+				
 		//venusSpaceStation = BodiesHelper.registerSatellite(VenusModule.planetVenus, GalaxySpace.ASSET_PREFIX, WorldProviderVenusSS.class, GSConfigDimensions.idDimensionVenusOrbit, GSConfigDimensions.idDimensionMarsOrbitStatic, (float) Math.PI, 0.2667F, 5.5F, 20.0F);
 		
 		venusSpaceStation = new Satellite("spacestation.venus").setParentBody(VenusModule.planetVenus);
@@ -261,6 +368,9 @@ public class SolarSystemBodies implements IBodies{
 		}
 		//GalaxyRegistry.getRegisteredPlanets().remove(MarsModule.planetMars.getName());
 		//GalaxyRegistry.getRegisteredPlanetIDs().remove(MarsModule.planetMars.getName());
+		
+		registryteleport();
+		registrycelestial(); 		
 	}
 	
 	public void init(FMLInitializationEvent event)
@@ -281,7 +391,7 @@ public class SolarSystemBodies implements IBodies{
 		// --------------------------------------------
 		// TODO Overworld -----------------------------
 		if(GSConfigCore.enableOverworldOres) {
-			if(!Loader.isModLoaded("Tinkers' Construct") || !Loader.isModLoaded("tconstruct"))
+			if(!CompatibilityManager.isTConstructLoaded)
 				GameRegistry.registerWorldGenerator(new OreGenerator(GSBlocks.OVERWORLD_ORES.getDefaultState().withProperty(BlockOres.BASIC_TYPE, BlockOres.EnumBlockOres.COBALT), 6, 0, 60, 5, Blocks.STONE.getDefaultState(), 0), 0);
 			
 			GameRegistry.registerWorldGenerator(new OreGenerator(GSBlocks.OVERWORLD_ORES.getDefaultState().withProperty(BlockOres.BASIC_TYPE, BlockOres.EnumBlockOres.NICKEL), 6, 0, 45, 4, Blocks.STONE.getDefaultState(), 0), 1);
@@ -294,8 +404,7 @@ public class SolarSystemBodies implements IBodies{
 			GameRegistry.registerWorldGenerator(new OreGenerator(GSBlocks.OVERWORLD_ORES.getStateFromMeta(2), 4, 0, 45, 4, GCBlocks.blockMoon.getStateFromMeta(4), ConfigManagerCore.idDimensionMoon), 4);
 			// --------------------------------------------
 		}*/
-		registrycelestial();
-    	registryteleport();    	
+		   	   	
     	registerDungeonLoot();
     	
     	//GalaxyRegistry.getRegisteredPlanets().forEach((s, p) -> GalaxySpace.debug("Planet: " + s  + " | " + p.getWorldProvider()));
@@ -353,7 +462,7 @@ public class SolarSystemBodies implements IBodies{
 	        GSDimensions.VENUS_SS = GalacticraftRegistry.registerDimension("Venus Space Station", "_venus_orbit", GSConfigDimensions.idDimensionVenusOrbit, WorldProviderVenusSS.class, false);
 			if (GSDimensions.VENUS_SS == null)
 	        {
-	            GalaxySpace.debug("Failed to register space station dimension type with ID " + GSConfigDimensions.idDimensionVenusOrbit);
+	            GalaxySpace.instance.debug("Failed to register space station dimension type with ID " + GSConfigDimensions.idDimensionVenusOrbit);
 	        }
 			GSDimensions.VENUS_SS_KEEPLOADED = GalacticraftRegistry.registerDimension("Venus Space Station", "_venus_orbit", GSConfigDimensions.idDimensionVenusOrbitStatic, WorldProviderVenusSS.class, true);
 	    }
@@ -379,6 +488,7 @@ public class SolarSystemBodies implements IBodies{
 	
 	private static void registrycelestial()
 	{
+		/*
 		ItemStack[] suit = new ItemStack[] 
 		{
 			new ItemStack(GSItems.SPACE_SUIT_HELMET, 1, 1),
@@ -386,99 +496,39 @@ public class SolarSystemBodies implements IBodies{
 			new ItemStack(GSItems.SPACE_SUIT_LEGGINS, 1, 1),
 			new ItemStack(GSItems.SPACE_SUIT_BOOTS, 1, 1)
 		};
-		
+		*/
 		BodiesData data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.YELLOW);
-		BodiesHelper.registerBodyWithClass(GalacticraftCore.solarSystemSol.getMainStar(), data);
-		
-		data = new BodiesData(null, BodiesHelper.calculateGravity(3.8F), 0, 176000, true);
-		BodiesHelper.registerBody(planetMercury, data, GSConfigDimensions.enableMercury);
-		
+		BodiesHelper.registerBodyData(GalacticraftCore.solarSystemSol.getMainStar(), data);
+
 		data = new BodiesData(null, BodiesHelper.calculateGravity(8.88F), 92, 182000, false);
-		BodiesHelper.registerBody(VenusModule.planetVenus, data, GSConfigDimensions.enableVenus);
+		BodiesHelper.registerBodyData(VenusModule.planetVenus, data);
 		
 		data = new BodiesData(null, BodiesHelper.calculateGravity(10.0F), 1, 24000, false);
-		BodiesHelper.registerBody(GalacticraftCore.planetOverworld, data, false);		
+		BodiesHelper.registerBodyData(GalacticraftCore.planetOverworld, data);		
 		
 		data = new BodiesData(null, BodiesHelper.calculateGravity(5.37F), 0, 24660, false);
-		BodiesHelper.registerBody(MarsModule.planetMars, data, false);
-		
-		data = new BodiesData(null, BodiesHelper.calculateGravity(2.37F), 0, 10000, true);
-		BodiesHelper.registerBody(planetCeres, data, GSConfigDimensions.enableCeres);
+		BodiesHelper.registerBodyData(MarsModule.planetMars, data);
+		    	
+		data = new BodiesData(null, 0, 0, 0, true);
+		BodiesHelper.registerBodyData(AsteroidsModule.planetAsteroids, data);
     	
-		data = new BodiesData(null, 0, 0, 0,  true);
-		BodiesHelper.registerBody(AsteroidsModule.planetAsteroids, data, false);
-    	
-		data = new BodiesData(ClassBody.GASGIANT, BodiesHelper.calculateGravity(8.375F), 100, 9000, false);		
-		BodiesHelper.registerBody(planetJupiter, data, true);
-		
-		data = new BodiesData(ClassBody.GASGIANT, BodiesHelper.calculateGravity(7.37F), 100, 11000, false);		
-		BodiesHelper.registerBody(planetSaturn, data, true);
-    	
-		data = new BodiesData(ClassBody.ICEGIANT, BodiesHelper.calculateGravity(8.61F), 100, 16000, false);		
-		BodiesHelper.registerBody(planetUranus, data, true);
-		
-		data = new BodiesData(ClassBody.ICEGIANT, BodiesHelper.calculateGravity(8.547F), 100, 18000, false);		
-	   	BodiesHelper.registerBody(planetNeptune, data, true);
-	
-	   	data = new BodiesData(null, BodiesHelper.calculateGravity(2.62F), 0, 98000, true);
-	   	BodiesHelper.registerBody(planetPluto, data, GSConfigDimensions.enablePluto);
-	   	
-	   	data = new BodiesData(null, 0F, 0, 0, true);
-	   	BodiesHelper.registerBody(planetKuiperBelt, data, GSConfigDimensions.enableKuiperBelt);
-			
-	   	data = new BodiesData(null, BodiesHelper.calculateGravity(2.02F), 0, 12000, true);
-	   	BodiesHelper.registerBody(planetHaumea, data, GSConfigDimensions.enableKuiperBelt);
-		 
 	   	////MOONS
 	   	data = new BodiesData(null, 0.062F, 0, 192000, false);
-		BodiesHelper.registerBody(GalacticraftCore.moonMoon, data, false);
-
-	   	data = new BodiesData(null, 0.068F, 0, 12000, false);   	
-		BodiesHelper.registerBody(phobosMars, data, GSConfigDimensions.enablePhobos);
-		
-		data = new BodiesData(null, 0.064F, 0, 24000, false); 
-		BodiesHelper.registerBody(deimosMars, data, GSConfigDimensions.enableDeimos);
-		
-		data = new BodiesData(null, 0.052F, 0, 42000, true);
-		BodiesHelper.registerBody(ioJupiter, data, GSConfigDimensions.enableIo);
-		
-		data = new BodiesData(null, 0.062F, 0, 58000, true);
-		BodiesHelper.registerBody(europaJupiter, data, GSConfigDimensions.enableEuropa);
-		
-		data = new BodiesData(null, 0.057F, 0, 102000, false);		
-		BodiesHelper.registerBody(ganymedeJupiter, data, GSConfigDimensions.enableGanymede);
-		
-		data = new BodiesData(null, 0.054F, 0, 154000, true);
-		BodiesHelper.registerBody(callistoJupiter, data, GSConfigDimensions.enableCallisto);
-		
-		data = new BodiesData(null, 0.058F, 0, 32000, true);
-		BodiesHelper.registerBody(enceladusSaturn, data, GSConfigDimensions.enableEnceladus);
-		
-		data = new BodiesData(null, 0.058F, 5, 105500, false);			
-		BodiesHelper.registerBody(titanSaturn, data, GSConfigDimensions.enableTitan);
-		
-		data = new BodiesData(null, 0.057F, 0, 33500, true);
-		BodiesHelper.registerBody(mirandaUranus, data, GSConfigDimensions.enableMiranda);
-		
-		data = new BodiesData(null, 0.059F, 0, 145200, true);
-		BodiesHelper.registerBody(tritonNeptune, data, GSConfigDimensions.enableTriton); 
+		BodiesHelper.registerBodyData(GalacticraftCore.moonMoon, data);
 		
 		BodiesData unreachableData = new BodiesData(null, 0F, 0, 0, false);	
-		BodiesHelper.registerBody(oberonUranus, unreachableData, GSConfigCore.enableUnreachable);
-		BodiesHelper.registerBody(proteusNeptune, unreachableData, GSConfigCore.enableUnreachable);
-		BodiesHelper.registerBody(mimasSaturn, unreachableData, GSConfigCore.enableUnreachable); 	
-		BodiesHelper.registerBody(tethysSaturn, unreachableData, GSConfigCore.enableUnreachable); 	
-		BodiesHelper.registerBody(dioneSaturn, unreachableData, GSConfigCore.enableUnreachable); 	
-		BodiesHelper.registerBody(rheyaSaturn, unreachableData, GSConfigCore.enableUnreachable); 	
-		BodiesHelper.registerBody(iapetusSaturn, unreachableData, GSConfigCore.enableUnreachable); 	
-		BodiesHelper.registerBody(arielUranus, unreachableData, GSConfigCore.enableUnreachable); 	
-		BodiesHelper.registerBody(umbrielUranus, unreachableData, GSConfigCore.enableUnreachable); 	
-		BodiesHelper.registerBody(titaniaUranus, unreachableData, GSConfigCore.enableUnreachable); 	
-		BodiesHelper.registerBody(charonPluto, unreachableData, GSConfigCore.enableUnreachable); 
-		
-		//if(GSConfigDimensions.enableMarsSS) GalaxyRegistry.registerSatellite(marsSpaceStation);
-		//if(GSConfigDimensions.enableVenusSpaceStation) GalaxyRegistry.registerSatellite(venusSpaceStation);
-
+		BodiesHelper.registerBodyData(oberonUranus, unreachableData);
+		BodiesHelper.registerBodyData(proteusNeptune, unreachableData);
+		BodiesHelper.registerBodyData(mimasSaturn, unreachableData); 	
+		BodiesHelper.registerBodyData(tethysSaturn, unreachableData); 	
+		BodiesHelper.registerBodyData(dioneSaturn, unreachableData); 	
+		BodiesHelper.registerBodyData(rheyaSaturn, unreachableData); 	
+		BodiesHelper.registerBodyData(iapetusSaturn, unreachableData); 	
+		BodiesHelper.registerBodyData(arielUranus, unreachableData); 	
+		BodiesHelper.registerBodyData(umbrielUranus, unreachableData); 	
+		BodiesHelper.registerBodyData(titaniaUranus, unreachableData); 	
+		BodiesHelper.registerBodyData(charonPluto, unreachableData); 
+			
 	}
 	
 	private static void registryteleport()
@@ -553,7 +603,7 @@ public class SolarSystemBodies implements IBodies{
 		GSDimensions.TRITON = WorldUtil.getDimensionTypeById(GSConfigDimensions.dimensionIDTriton);
 		
 		GSDimensions.KUIPER_BELT = WorldUtil.getDimensionTypeById(GSConfigDimensions.dimensionIDKuiperBelt);
-		GSDimensions.HAUMEA = WorldUtil.getDimensionTypeById(GSConfigDimensions.dimensionIDKuiperBelt - 1);
+		GSDimensions.HAUMEA = WorldUtil.getDimensionTypeById(GSConfigDimensions.dimensionIDHaumea);
 		
 		GalaxyRegistry.refreshGalaxies();
 	}

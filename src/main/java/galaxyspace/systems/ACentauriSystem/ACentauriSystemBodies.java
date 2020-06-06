@@ -31,6 +31,8 @@ import micdoodle8.mods.galacticraft.api.world.AtmosphereInfo;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
+import net.minecraft.item.Item;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -62,10 +64,25 @@ public class ACentauriSystemBodies implements IBodies {
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {		
 		
-		aCentauriSystem = BodiesHelper.registerSolarSystem(GalaxySpace.ASSET_PREFIX, "acentauri", Galaxies.MILKYWAY.getName(), new Vector3(1.5F, 0.0F, 0.0F), "centauri_a", 1.3F);
-        centauri_b = (Planet) BodiesHelper.registerPlanet(aCentauriSystem, "centauri_b", GalaxySpace.ASSET_PREFIX, null, -1, -1, (float) Math.PI, 1.5F, 0.3F, 1000F).setRingColorRGB(0.0F, 0.0F, 0.0F);;
+		aCentauriSystem = BodiesHelper.registerSolarSystem(GalaxySpace.ASSET_PREFIX, "acentauri", Galaxies.MILKYWAY, new Vector3(1.5F, 0.0F, 0.0F), "centauri_a", 1.3F);
+		GalaxyRegistry.registerSolarSystem(aCentauriSystem);
+		
+		centauri_b = BodiesHelper.registerExPlanet(aCentauriSystem, "centauri_b", GalaxySpace.ASSET_PREFIX, 0.3F);
+		BodiesHelper.setOrbitData(centauri_b, (float) Math.PI, 1.5F, 1000F);
+		GalaxyRegistry.registerPlanet(centauri_b);
+		
+        ProximaSystem = BodiesHelper.registerSolarSystem(GalaxySpace.ASSET_PREFIX, "proxima", Galaxies.MILKYWAY, new Vector3(1.7F, -0.2F, 0.0F), "proxima", 0.8F);
+        GalaxyRegistry.registerSolarSystem(ProximaSystem);		
+       
+        proxima_b = BodiesHelper.registerExPlanet(ProximaSystem, "proxima_b", GalaxySpace.ASSET_PREFIX, 0.25F);
+        proxima_b.setRingColorRGB(0.0F, 0.4F, 0.9F).atmosphereComponent(EnumAtmosphericGas.CO2);
+        BodiesHelper.setOrbitData(proxima_b, (float) Math.PI*3, 1.2F, 2.0F);
+        BodiesHelper.setAtmosphere(proxima_b, false, true, false, 0.5F, 0.4F, 0.0F);
+        BodiesHelper.setPlanetData(proxima_b, 2, 35050, BodiesHelper.calculateGravity(8.0F), true);
+        BodiesHelper.setProviderData(proxima_b, WorldProviderProxima_B_WE.class, ACConfigDimensions.dimensionIDProxima_B, 6);
+        GalaxyRegistry.registerPlanet(proxima_b);	
         
-        ProximaSystem = BodiesHelper.registerSolarSystem(GalaxySpace.ASSET_PREFIX, "proxima", Galaxies.MILKYWAY.getName(), new Vector3(1.7F, -0.2F, 0.0F), "proxima", 0.8F);
+        /*
         proxima_b = (Planet) BodiesHelper.registerPlanet(ProximaSystem, "proxima_b", GalaxySpace.ASSET_PREFIX, WorldProviderProxima_B_WE.class, ACConfigDimensions.dimensionIDProxima_B, 6, (float) Math.PI*3, 1.2F, 0.25F, 1.1F, ACBiome.ACSpace)
         		.setRingColorRGB(0.0F, 0.4F, 0.9F).atmosphereComponent(EnumAtmosphericGas.CO2);//.atmosphereComponent(EnumAtmosphericGas.OXYGEN);
         proxima_b.setAtmosphere(new AtmosphereInfo(false, true, false, 0.5F, 0.4F, 0.0F));
@@ -75,7 +92,7 @@ public class ACentauriSystemBodies implements IBodies {
         			"proxima_c", 
         			GalaxySpace.ASSET_PREFIX, 
         			null, -1, -1, (float) Math.PI*4, 1.9F, 0.75F, 15.2F);
-        
+        */
         //if(ACConfigCore.enableACentauriSystems) {
         	ACBlocks.initialize();
 	        registrycelestial();
@@ -97,25 +114,15 @@ public class ACentauriSystemBodies implements IBodies {
 	}
 	
 	private static void registrycelestial()
-	{
-		GalaxyRegistry.registerSolarSystem(aCentauriSystem);
-		GalaxyRegistry.registerSolarSystem(ProximaSystem);		
-		BodiesData unreachableData = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.YELLOW);
-		BodiesHelper.registerBody(centauri_b, unreachableData, true);
-		//BodiesHelper.registerBody(proxima_c, unreachableData, true);
-		
-		BodiesData data = new BodiesData(null, BodiesHelper.calculateGravity(8.0F), 2, 35050, true);
-		//data.addItemStack(new ItemStack(GSItems.SPACE_SUIT_HELMET, 1, 1));
-		//data.addItemStack(new ItemStack(GSItems.SPACE_SUIT_BODY, 1, 1));
-		//data.addItemStack(new ItemStack(GSItems.SPACE_SUIT_LEGGINS, 1, 1));
-		//data.addItemStack(new ItemStack(GSItems.SPACE_SUIT_BOOTS, 1, 1));
-		BodiesHelper.registerBody(proxima_b, data, ACConfigDimensions.enableProxima_B);
-		
+	{		
+		BodiesData data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.YELLOW);
+		BodiesHelper.registerBodyData(centauri_b, data);
+	
 		data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.YELLOW);
-		BodiesHelper.registerBodyWithClass(aCentauriSystem.getMainStar(), data);
+		BodiesHelper.registerBodyData(aCentauriSystem.getMainStar(), data);
 		
 		data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.ORANGE);
-		BodiesHelper.registerBodyWithClass(ProximaSystem.getMainStar(), data);
+		BodiesHelper.registerBodyData(ProximaSystem.getMainStar(), data);
 	}
 	
 	private static void registryteleport()
@@ -166,4 +173,8 @@ public class ACentauriSystemBodies implements IBodies {
 		//}
 	}
 
+	@Override
+	public void registerItems(RegistryEvent.Register<Item> event) {
+		ACBlocks.oreDictRegistration();
+	}
 }
