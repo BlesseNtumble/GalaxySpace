@@ -158,7 +158,7 @@ tile.proxima_b_coal_ore.name=Угольная Руда
 tile.proxima_b_silicon_ore.name=Кремниевая Руда
 tile.proxima_b_diamon_ore.name=Алмазная Руда
 tile.proxima_b_log_1.name=Сгоревшее Дерево
-tile.proxima_b_log_2.name=Замершее Дерево
+tile.proxima_b_log_2.name=Замерзшее Дерево
 
 tile.barnarda_c_grass.name=Трава Барнарды С
 tile.barnarda_c_dirt.name=Земля Барнарды С
