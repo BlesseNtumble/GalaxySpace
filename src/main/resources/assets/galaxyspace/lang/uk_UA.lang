@@ -190,7 +190,7 @@ tile.barnarda_c_farmland.name=Рілля Барнарди С
 
 tile.assembly_machine.name=Збиральний Цех
 tile.assembly_machine.desc=Змінена версія компресора. Виробляє сплав матеріалів високочутливим лазером.
-tile.fuel_generator.name=Пливний Генератор
+tile.fuel_generator.name=Паливний Генератор
 tile.fuel_generator.desc=Паливний Генератор споживає паливо або лаву і виробляє непогану кількість енергії. Хороший варіант для паливних магнатів.
 tile.modern_solarpanel.name=Гібридна Сонячна Панель
 tile.modern_solarpanel.desc=Покрита золотом гібридна панель, виробляє в півтора рази більше енергії, ніж продвинута панель.
