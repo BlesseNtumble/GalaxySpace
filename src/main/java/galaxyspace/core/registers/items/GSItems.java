@@ -8,6 +8,7 @@ import galaxyspace.core.prefab.items.ItemHoeGS;
 import galaxyspace.core.prefab.items.ItemPickaxeGS;
 import galaxyspace.core.prefab.items.ItemSpadeGS;
 import galaxyspace.core.prefab.items.ItemSwordGS;
+import galaxyspace.core.prefab.items.rockets.ItemFluidCargoRocket;
 import galaxyspace.core.prefab.items.rockets.ItemTier4Rocket;
 import galaxyspace.core.prefab.items.rockets.ItemTier5Rocket;
 import galaxyspace.core.prefab.items.rockets.ItemTier6Rocket;
@@ -70,6 +71,7 @@ public class GSItems {
 	public static Item ROCKET_TIER_4 = new ItemTier4Rocket("rocket_tier_4");
 	public static Item ROCKET_TIER_5 = new ItemTier5Rocket("rocket_tier_5");
 	public static Item ROCKET_TIER_6 = new ItemTier6Rocket("rocket_tier_6");
+	public static Item ROCKET_FLUID_CRAGO = new ItemFluidCargoRocket("rocket_fluid_cargo");
 	
 	public static Item ADVANCED_BATTERY = new ItemBattery("advanced_battery", 60000);
 	public static Item MODERN_BATTERY = new ItemBattery("modern_battery", 120000);
@@ -137,6 +139,7 @@ public class GSItems {
 		registerItem(ROCKET_TIER_4);
 		registerItem(ROCKET_TIER_5);
 		registerItem(ROCKET_TIER_6);
+		//registerItem(ROCKET_FLUID_CRAGO);
 		
 		registerItem(SPACE_SUIT_HELMET);
 		registerItem(SPACE_SUIT_BODY);

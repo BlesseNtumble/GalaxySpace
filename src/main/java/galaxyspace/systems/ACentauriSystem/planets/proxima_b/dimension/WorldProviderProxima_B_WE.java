@@ -6,18 +6,19 @@ import javax.annotation.Nullable;
 
 import asmodeuscore.api.dimension.IProviderFog;
 import asmodeuscore.api.dimension.IProviderFreeze;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProvider;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProvider;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_CaveGen;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_RavineGen;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_TerrainGenerator;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_CaveGen;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_OreGen;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_RavineGen;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.ACentauriSystem.ACentauriSystemBodies;
 import galaxyspace.systems.ACentauriSystem.core.registers.blocks.ACBlocks;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.dimension.sky.SkyProviderProxima_B;
-import galaxyspace.systems.ACentauriSystem.planets.proxima_b.world.gen.BiomeDecoratorProxima_B;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.world.gen.BiomeProviderProxima_B;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.world.gen.we.Proxima_B_Beach;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.world.gen.we.Proxima_B_Forest;
@@ -27,7 +28,6 @@ import galaxyspace.systems.ACentauriSystem.planets.proxima_b.world.gen.we.Proxim
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.world.gen.we.Proxima_B_Plains;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.galaxies.IChildBody;
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import net.minecraft.block.Block;
@@ -45,7 +45,7 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WorldProviderProxima_B_WE extends WE_WorldProvider implements IProviderFreeze, IProviderFog {
+public class WorldProviderProxima_B_WE extends WE_WorldProviderSpace implements IProviderFreeze, IProviderFog {
 	
 	private final float[] colorsSunriseSunset = new float[4];
 	public static WE_ChunkProvider chunk;
@@ -76,18 +76,13 @@ public class WorldProviderProxima_B_WE extends WE_WorldProvider implements IProv
     }
 
     @Override
-    public boolean canRainOrSnow() {
-        return true;
-    }
-
-    @Override
     public CelestialBody getCelestialBody() {
         return ACentauriSystemBodies.proxima_b;
     }
 
     @Override
     public Class<? extends IChunkGenerator> getChunkProviderClass() {
-        return WE_ChunkProvider.class;
+        return WE_ChunkProviderSpace.class;
 
     }
     
@@ -256,8 +251,19 @@ public class WorldProviderProxima_B_WE extends WE_WorldProvider implements IProv
 		rg.lavaBlock = Blocks.LAVA.getDefaultState();
 		cp.createChunkGen_List.add(rg);
 		
-		cp.worldGenerators.clear();
+		((WE_ChunkProviderSpace)cp).worldGenerators.clear();
 		cp.biomesList.clear();
+		
+		WE_OreGen standardOres = new WE_OreGen();
+		standardOres.add(ACBlocks.PROXIMA_B_BLOCKS.getStateFromMeta(1), terrainGenerator.worldStoneBlock, 14, 30, 100, 150);
+		standardOres.add(ACBlocks.PROXIMA_B_BLOCKS.getStateFromMeta(5), terrainGenerator.worldStoneBlock, 6, 10, 80, 8);
+		standardOres.add(ACBlocks.PROXIMA_B_BLOCKS.getStateFromMeta(6), terrainGenerator.worldStoneBlock, 6, 20, 90, 10);
+		standardOres.add(ACBlocks.PROXIMA_B_BLOCKS.getStateFromMeta(7), terrainGenerator.worldStoneBlock, 6, 20, 90, 15);
+		standardOres.add(ACBlocks.PROXIMA_B_BLOCKS.getStateFromMeta(8), terrainGenerator.worldStoneBlock, 10, 20, 90, 15);
+		standardOres.add(ACBlocks.PROXIMA_B_BLOCKS.getStateFromMeta(9), terrainGenerator.worldStoneBlock, 4, 5, 20, 5);
+		standardOres.add(ACBlocks.PROXIMA_B_BLOCKS.getStateFromMeta(10), terrainGenerator.worldStoneBlock, 4, 3, 15, 4);
+		
+		cp.decorateChunkGen_List.add(standardOres);
 		
 		WE_Biome.addBiomeToGeneration(cp, new Proxima_B_Plains());
 		WE_Biome.addBiomeToGeneration(cp, new Proxima_B_Forest(cp)); 
@@ -265,11 +271,6 @@ public class WorldProviderProxima_B_WE extends WE_WorldProvider implements IProv
 		WE_Biome.addBiomeToGeneration(cp, new Proxima_B_Mountains()); 
 		WE_Biome.addBiomeToGeneration(cp, new Proxima_B_Ocean()); 
 		WE_Biome.addBiomeToGeneration(cp, new Proxima_B_Beach());  
-	}
-	
-	@Override
-	public BiomeDecoratorSpace getDecorator() {
-		return new BiomeDecoratorProxima_B();
 	}
 	
 	@Override

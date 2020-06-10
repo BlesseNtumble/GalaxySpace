@@ -402,6 +402,7 @@ gui.temp_shield_control.desc=Защищает от коррозии атмосф
 gui.emergency_portable_teleport.desc=Эвакуирует игрока к приязанной точке. Срабатывает при HP < 6. Shift+ПКМ по телепорту привязывает точку, по любому блоку - вкл/выкл.
 
 gui.module.desc=Ракетный Модуль
+gui.ice_bucket.desc=Можно получить, нажав ПКМ по льду пустым ведром.
 
 gui.status.nolava.name=Нет Лавы
 gui.message.lava.name=Лава

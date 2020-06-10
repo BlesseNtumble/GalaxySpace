@@ -118,8 +118,7 @@ public class CraftingRecipesOverworld {
 		
 	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.GAS_BURNER, 1, 0), new Object[] { "XYX", "ZCZ", "VBV", 'V', new ItemStack(GCBlocks.aluminumWire, 1, 1), 'X', new ItemStack(GCBlocks.fluidTank, 1, 0), 'B', new ItemStack(GSItems.BASIC, 1, 5), 'C', new ItemStack(GSBlocks.MACHINE_FRAMES, 1, 0), 'Z', new ItemStack(Items.FLINT_AND_STEEL, 1, 0), 'Y', new ItemStack(GCItems.oxygenVent, 1, 0)});
 	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.ADVANCED_CIRCUIT_FABRICATOR, 1, 0), new Object[] { "XYX", "ZCZ", "XBX", 'X', plateDesh, 'B', new ItemStack(GSItems.BASIC, 1, 5), 'C', new ItemStack(GSBlocks.MACHINE_FRAMES, 1, 1), 'Z', new ItemStack(GSItems.BASIC, 1, 3), 'Y', new ItemStack(GCBlocks.machineBase2, 1, 4)});
-	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.ADVANCED_ELECTRIC_COMPRESSOR, 1, 0), new Object[] { "XYX", "ZCZ", "XBX", 'X', plateDesh, 'B', new ItemStack(GSItems.BASIC, 1, 5), 'C', new ItemStack(GSBlocks.MACHINE_FRAMES, 1, 1), 'Z', new ItemStack(MarsItems.marsItemBasic, 1, 1), 'Y', new ItemStack(GCBlocks.machineBase2, 1, 0)});
-	   
+	  
 	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.PLANET_SHIELD, 1, 0), new Object[] { "XYX", "VCV", "ZZZ", 'V', new ItemStack(GCBlocks.aluminumWire, 1, 1), 'X', new ItemStack(MarsItems.marsItemBasic, 1, 6), 'C', new ItemStack(GSBlocks.MACHINE_FRAMES, 1, 2), 'Z', new ItemStack(GSItems.HDP, 1, 0), 'Y', new ItemStack(GSBlocks.GRAVITATION_MODULE, 1, 0)});
    }
 

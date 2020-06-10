@@ -1,14 +1,17 @@
 package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we;
 
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
+import java.util.Random;
+
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
 import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
 
 public class Barnarda_C_Beach extends WE_Biome {
 
 	public Barnarda_C_Beach(double min, double max, int tier) {
-		super(new BiomeProperties("barnarda_c_beach" + tier), new int[] {0x89AC76, 0x11FF66, 0x00FF00});
+		super(new BiomeProperties("barnarda_c_beach" + tier), new int[] {0x89AC76, 0x11FF66, 0x985cff});
 		
 		biomeMinValueOnMap      =   min;
 		biomeMaxValueOnMap      =   max;
@@ -18,7 +21,7 @@ public class Barnarda_C_Beach extends WE_Biome {
 		biomeScaleY             =   1.7D;
 		biomeSurfaceHeight      =     68;
 		biomeInterpolateQuality =     20;
-				
+		biomeTemerature 		=	0.5F; 
 		//-//
 		decorateChunkGen_List.clear();		
 		createChunkGen_InXZ_List.clear();
@@ -30,4 +33,9 @@ public class Barnarda_C_Beach extends WE_Biome {
 		createChunkGen_InXZ_List.add(standardBiomeLayers);
 	}
 
+	@Override
+	public void decorateBiome(World world, Random rand, int x, int z)
+	{
+		
+	}
 }

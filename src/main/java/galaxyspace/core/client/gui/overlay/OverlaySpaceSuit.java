@@ -56,6 +56,21 @@ public class OverlaySpaceSuit extends Overlay {
 		{
 			if(!stack.isEmpty() && stack.getItem() instanceof ItemSpaceSuit)
 			{	
+				boolean hasModule = false;
+				ItemStack module = ItemStack.EMPTY;
+				
+				if(((IModificationItem)stack.getItem()).getAvailableModules() != null)
+					for(ItemModule modules : ((IModificationItem)stack.getItem()).getAvailableModules())
+					{
+						if(stack.getTagCompound().hasKey(modules.getName()) && modules.isActiveModule()) {
+							
+							hasModule = stack.getTagCompound().getBoolean(modules.getName());	
+							module = modules.getIcon();
+						}						
+					}
+				
+				if(module.isEmpty()) continue; 
+				
 				hasSuit = true;
 				break;
 			}
@@ -75,6 +90,15 @@ public class OverlaySpaceSuit extends Overlay {
 		
 		int xOffset = -35, yOffset = scaled.getScaledHeight() - 140;
 		final ResourceLocation guiTexture = new ResourceLocation(AsmodeusCore.ASSET_PREFIX, "textures/gui/gui.png");
+		
+		if(GSConfigCore.spacesuit_pos.equals("up") || GSConfigCore.spacesuit_pos.equals("top")) 
+			yOffset = 70;
+		
+		if(GSConfigCore.spacesuit_pos.equals("center")) 
+			yOffset = scaled.getScaledHeight() / 2 + 20;
+		
+		if(GSConfigCore.spacesuit_pos.equals("down") || GSConfigCore.spacesuit_pos.equals("bottom")) 
+			yOffset = scaled.getScaledHeight() - 140;
 		
 		if(hasSuit) {
 			//mc.entityRenderer.setupOverlayRendering();
@@ -134,19 +158,7 @@ public class OverlaySpaceSuit extends Overlay {
 				if(player.getItemStackFromSlot(EntityEquipmentSlot.FEET).equals(stack)) {
 					if(stack.getTagCompound().getBoolean(ItemSpaceSuit.suit_buttons[3])) { enable = true;}
 				};
-								
-				
-				
-				if(GSConfigCore.spacesuit_pos.equals("up") || GSConfigCore.spacesuit_pos.equals("top")) 
-					yOffset = 70;
-				
-				if(GSConfigCore.spacesuit_pos.equals("center")) 
-					yOffset = scaled.getScaledHeight() / 2 + 20;
-				
-				if(GSConfigCore.spacesuit_pos.equals("down") || GSConfigCore.spacesuit_pos.equals("bottom")) 
-					yOffset = scaled.getScaledHeight() - 140;
-				
-				
+						
 				String key = keys[3 - player.inventory.armorInventory.indexOf(stack)];
 				
 				

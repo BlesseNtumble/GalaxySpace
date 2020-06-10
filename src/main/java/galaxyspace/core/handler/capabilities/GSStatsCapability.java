@@ -28,7 +28,7 @@ public class GSStatsCapability extends StatsCapability {
 			e.printStackTrace();
 		}
 
-		GalaxySpace.debug("Finished loading Galaxy Space player data for " + player.get().getGameProfile().getName() + " : " + this.buildFlags);
+		GalaxySpace.instance.debug("Finished loading Galaxy Space player data for " + player.get().getGameProfile().getName() + " : " + this.buildFlags);
 	}
 
 	@Override

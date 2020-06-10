@@ -22,7 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class BlockLiquidEthaneMethane extends BlockFluidClassic{
 
 	public BlockLiquidEthaneMethane() {
-		super(GSFluids.LiquidEthaneMethane, GSFluids.methaneMaterial);
+		super(GSFluids.LiquidEthaneMethane, GSFluids.LEMethane);
 		this.setQuantaPerBlock(9);
         //this.setLightLevel(0.1F);
         //this.needsRandomTick = true;

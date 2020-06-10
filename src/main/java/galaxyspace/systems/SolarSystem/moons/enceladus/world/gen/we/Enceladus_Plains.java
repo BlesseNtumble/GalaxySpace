@@ -1,20 +1,27 @@
 package galaxyspace.systems.SolarSystem.moons.enceladus.world.gen.we;
 
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
+import java.util.Random;
+
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import galaxyspace.core.prefab.entities.EntityEvolvedColdBlaze;
 import galaxyspace.core.registers.blocks.GSBlocks;
+import galaxyspace.systems.SolarSystem.moons.enceladus.blocks.EnceladusCrystal;
+import galaxyspace.systems.SolarSystem.moons.enceladus.blocks.EnceladusBlocks.EnumEnceladusBlocks;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedEnderman;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSkeleton;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSpider;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedZombie;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
 public class Enceladus_Plains extends WE_Biome {
 	
 	public Enceladus_Plains() {
-		super(new BiomeProperties("enceladus_plains"), new int[] {0xFFFFFF, 0xFFFFFF, 0x00FF00});
+		super(new BiomeProperties("enceladus_plains"), new int[] {0x00CC00, 0xFFFFFF, 0x00CC00});
 				
 		biomeMinValueOnMap      =  	-0.4D;
 		biomeMaxValueOnMap      =   0.0D;
@@ -40,5 +47,34 @@ public class Enceladus_Plains extends WE_Biome {
 		//standardBiomeLayers.add(GSBlocks.ENCELADUS_BLOCKS, (byte)1, GSBlocks.ENCELADUS_BLOCKS, (byte)2, -256, 0, -256,  0, false);
 		standardBiomeLayers.add(Blocks.BEDROCK.getDefaultState(), 0, 2, 0, 0, true);
 		createChunkGen_InXZ_List.add(standardBiomeLayers);
+	}
+	
+	@Override
+	public void decorateBiome(World world, Random rand, int x, int z)
+	{
+		int randPosX = x + rand.nextInt(16) + 8;
+		int randPosY = rand.nextInt(80);
+		int randPosZ = x + rand.nextInt(16) + 8;
+
+    	for (int i = 0; i < 50; i++) {
+			 
+	        randPosX = x + rand.nextInt(16) + 8;
+	        randPosY = rand.nextInt(80);
+	        randPosZ = x + rand.nextInt(16) + 8;
+       
+	        BlockPos pos = new BlockPos(randPosX, randPosY, randPosZ);
+	        if (world.getBlockState(pos.down()) == GSBlocks.ENCELADUS_BLOCKS.getStateFromMeta(EnumEnceladusBlocks.ENCELADUS_GRUNT.getMeta()) && world.isAirBlock(pos))
+	        {	        	
+	        	world.setBlockState(pos, GSBlocks.ENCELADUS_CRYSTAL.getDefaultState().withProperty(EnceladusCrystal.FACING, EnumFacing.HORIZONTALS[rand.nextInt(4)]));	  
+	        }
+	        
+	        if (world.getBlockState(pos.up()) == GSBlocks.ENCELADUS_BLOCKS.getStateFromMeta(EnumEnceladusBlocks.ENCELADUS_GRUNT.getMeta()) && world.isAirBlock(pos))
+	        {	        	
+	        	world.setBlockState(pos, GSBlocks.ENCELADUS_CRYSTAL.getDefaultState().withProperty(EnceladusCrystal.FACING, EnumFacing.HORIZONTALS[rand.nextInt(4)]));	  
+	        	
+	        	
+	        }
+        
+		}
 	}
 }

@@ -2,9 +2,9 @@
 	"forge_marker": 1,
 	"defaults": {
 		"textures": {
-			"particle": "galacticraftplanets:blocks/machine",
-			"down": "galacticraftplanets:blocks/machine",
-			"up": "galacticraftplanets:blocks/machine",
+			"particle": "galacticraftcore:blocks/advanced/machine",
+			"down": "galacticraftcore:blocks/advanced/machine",
+			"up": "galacticraftcore:blocks/advanced/machine",
 			"north": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_0",
 			"east": "galacticraftplanets:blocks/machine_oxygen_input",
 			"south": "galaxyspace:blocks/overworld/storage_module/oxmodule_t2_0",

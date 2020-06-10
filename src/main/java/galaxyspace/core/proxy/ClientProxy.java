@@ -10,12 +10,14 @@ import javax.vecmath.Vector3f;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 
+import asmodeuscore.core.handler.ColorBlockHandler;
 import galaxyspace.GalaxySpace;
 import galaxyspace.api.IBodies;
 import galaxyspace.core.client.GSKeyHandlerClient;
 import galaxyspace.core.client.fx.GSEffectHandler;
 import galaxyspace.core.client.models.BakedModelBrightFour;
 import galaxyspace.core.client.models.BakedModelFullbright;
+import galaxyspace.core.client.render.entity.RenderCargoRockets;
 import galaxyspace.core.client.render.entity.RenderEvolvedColdBlaze;
 import galaxyspace.core.client.render.entity.RenderIceSpike;
 import galaxyspace.core.client.render.entity.RenderLaserBeam;
@@ -27,10 +29,10 @@ import galaxyspace.core.client.render.item.ItemModelRocketT5;
 import galaxyspace.core.client.render.item.ItemModelRocketT6;
 import galaxyspace.core.client.render.tile.TileEntityTreasureChestRenderer;
 import galaxyspace.core.events.GSClientTickHandler;
-import galaxyspace.core.handler.ColorBlockHandler;
 import galaxyspace.core.handler.GSMapHandler;
 import galaxyspace.core.handler.GSSkyProviderHandler;
 import galaxyspace.core.prefab.blocks.DungeonBlocks;
+import galaxyspace.core.prefab.entities.EntityCustomCargoRocket;
 import galaxyspace.core.prefab.entities.EntityEvolvedColdBlaze;
 import galaxyspace.core.prefab.entities.EntityIceSpike;
 import galaxyspace.core.prefab.entities.EntityLaserBeam;
@@ -92,6 +94,7 @@ import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.wrappers.ModelTransformWrapper;
+import micdoodle8.mods.galacticraft.planets.asteroids.client.render.item.ItemModelCargoRocket;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelBakery;
@@ -136,7 +139,7 @@ public class ClientProxy extends CommonProxy{
 		register_event(new GSSkyProviderHandler());
 		register_event(new GSClientTickHandler());
 		register_event(new GSMapHandler());	
-		register_event(new ColorBlockHandler());		
+		//register_event(new ColorBlockHandler());	
 		register_event(new GSKeyHandlerClient());
 		
 		ClientRegistry.registerKeyBinding(GSKeyHandlerClient.toggleHelmet);
@@ -153,6 +156,7 @@ public class ClientProxy extends CommonProxy{
     @Override
     public void load()
     {     	
+    	
     	Minecraft.getMinecraft().getRenderManager().getSkinMap().get("default").addLayer(new LayerOxygenTank());
     	Minecraft.getMinecraft().getRenderManager().getSkinMap().get("slim").addLayer(new LayerOxygenTank());
     	
@@ -201,6 +205,8 @@ public class ClientProxy extends CommonProxy{
         replaceModelDefault(event, "rockets/rocket_t4", "tier4rocket.obj", ImmutableList.of("Base"), ItemModelRocketT4.class, TRSRTransformation.identity());
         replaceModelDefault(event, "rockets/rocket_t5", "tier5rocket.obj", ImmutableList.of("Base"), ItemModelRocketT5.class, TRSRTransformation.identity());
         replaceModelDefault(event, "rockets/rocket_t6", "tier6rocket.obj", ImmutableList.of("Base"), ItemModelRocketT6.class, TRSRTransformation.identity());
+        replaceModelDefault(event, "rockets/rocket_cargo", "cargo_rocket.obj", ImmutableList.of("Rocket"), ItemModelCargoRocket.class, TRSRTransformation.identity());
+        
         replaceModelDefault(event, "armor/jetpack", "jetpack.obj", ImmutableList.of("wing1", "wing2", "corp"), ItemRendererJetpack.class, TRSRTransformation.identity());
         //replaceModelDefault(event, "tools/matter_manipulator", "matter_manipulator.obj", ImmutableList.of("Up", "Down", "Mid"), ItemRendererMatterManipulator.class, TRSRTransformation.identity());
 
@@ -241,7 +247,8 @@ public class ClientProxy extends CommonProxy{
 		//GalaxySpace.proxy.registerTexture(event, "model/matter_manipulator");	
 		GalaxySpace.proxy.registerTexture(event, "model/rocket_tier_4");
 		GalaxySpace.proxy.registerTexture(event, "model/rocket_tier_5");	
-		GalaxySpace.proxy.registerTexture(event, "model/rocket_tier_6");	
+		GalaxySpace.proxy.registerTexture(event, "model/rocket_tier_6");			
+		GalaxySpace.proxy.registerTexture(event, "model/cargo_rocket");	
 		
 		if(!FMLClientHandler.instance().hasOptifine()) {
 			GalaxySpace.proxy.registerTexture(event, "blocks/solarsystem/ceres/ceres_bricks_layer");	
@@ -374,7 +381,6 @@ public class ClientProxy extends CommonProxy{
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.GAS_BURNER);
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.OXYGEN_STORAGE_MODULE);
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.SOLARWIND_PANEL);
-		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.ADVANCED_ELECTRIC_COMPRESSOR);
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.ADVANCED_CIRCUIT_FABRICATOR);
 		
 		if(GCCoreUtil.isDeobfuscated()) 
@@ -642,6 +648,12 @@ public class ClientProxy extends CommonProxy{
             ModelLoader.setCustomModelResourceLocation(GSItems.ROCKET_TIER_6, i, modelResourceLocation);
         }
         
+        modelResourceLocation = new ModelResourceLocation("galaxyspace:rockets/rocket_cargo", "inventory");
+        for (int i = 0; i < 5; ++i)
+        {
+            ModelLoader.setCustomModelResourceLocation(GSItems.ROCKET_FLUID_CRAGO, i, modelResourceLocation);
+        }
+        
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(GSBlocks.DUNGEON_BLOCKS), 0, new ModelResourceLocation("galaxyspace:ceres_bricks", "inventory"));
         ModelLoader.setCustomModelResourceLocation(GSItems.JETPACK, 0, new ModelResourceLocation("galaxyspace:armor/jetpack", "inventory"));
    
@@ -679,6 +691,7 @@ public class ClientProxy extends CommonProxy{
 		RenderingRegistry.registerEntityRenderingHandler(EntityTier4Rocket.class, (RenderManager manager) -> new RenderRockets(manager, "tier4rocket"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityTier5Rocket.class, (RenderManager manager) -> new RenderRockets(manager, "tier5rocket"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityTier6Rocket.class, (RenderManager manager) -> new RenderRockets(manager, "tier6rocket"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityCustomCargoRocket.class, (RenderManager manager) -> new RenderCargoRockets(manager, "rockets/rocket_cargo"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBossBlaze.class, (RenderManager manager) -> new RenderBossBlaze(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityIceSpike.class, (RenderManager manager) -> new RenderIceSpike(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityEvolvedColdBlaze.class, (RenderManager manager) -> new RenderEvolvedColdBlaze(manager));

@@ -1,7 +1,7 @@
 package galaxyspace.systems.SolarSystem.planets.mars.world.gen.we;
 
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import galaxyspace.core.prefab.entities.EntityEvolvedColdBlaze;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedEnderman;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSkeleton;
@@ -15,7 +15,7 @@ import net.minecraft.world.biome.Biome;
 public class Mars_Triangle_Mountains extends WE_Biome {
 	
 	public Mars_Triangle_Mountains(double min, double max) {
-		super(new BiomeProperties("mars_triangle_mountains"), new int[] {ColorizerGrass.getGrassColor(0.5D, 1.0D), 0xFFFFFF, ColorizerGrass.getGrassColor(0.5D, 1.0D)});
+		super(new BiomeProperties("mars_triangle_mountains"), new int[] {0x00CC00, 0xFFFFFF, 0x00CC00});
 				
 		biomeMinValueOnMap      =  	min;
 		biomeMaxValueOnMap      =   max;

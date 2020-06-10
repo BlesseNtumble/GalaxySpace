@@ -284,7 +284,7 @@ public class TileEntityGasBurner extends TileBaseElectricBlock implements IGasHa
 		
 		if (stack != null && this.canFill(side, stack.getGas().getFluid()))       
 	    {	 
-			GalaxySpace.debug("filled");
+			GalaxySpace.instance.debug("filled");
 			
     		if(side == this.getPipe()) {
  	            final String liquidName = FluidRegistry.getFluidName(stack.getGas().getFluid());	

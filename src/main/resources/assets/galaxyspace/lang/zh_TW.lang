@@ -81,11 +81,6 @@ tile.pluto_grunt.name=冥王星表面泥土
 tile.pluto_subgrunt.name=冥王星地底泥土
 tile.pluto_stone.name=冥王星石頭
 
-tile.haumea_ground.name=妊神星表面泥土
-tile.haumea_stone.name=妊神星石頭
-tile.haumea_cobblestone.name=妊神星鵝卵石
-tile.haumea_aluminum_ore.name=鋁礦
-
 tile.io_grunt.name=木衛一表面泥土
 tile.io_stone.name=木衛一石頭
 tile.io_ash.name=木衛一灰燼
@@ -157,8 +152,8 @@ tile.proxima_b_log_2.name=冷凍原木
 tile.barnarda_c_grass.name=巴納德C草地
 tile.barnarda_c_dirt.name=巴納德C泥土
 tile.barnarda_c_stone.name=巴納德C石頭
-tile.barnarda_c_sandstone.name=[WIP] 巴納德C砂岩
-tile.barnarda_c_dirt_1.name=[WIP] 巴納德C土
+tile.barnarda_c_sandstone.name=[WIP] 巴納德C Sandstone
+tile.barnarda_c_dirt_1.name=[WIP] 巴納德C 土
 tile.barnarda_c_cobblestone.name=巴納德C鵝卵石
 tile.barnarda_c_stone_bricks.name=巴納德C石磚
 tile.barnarda_c_oak_planks.name=巴納德C木板
@@ -265,8 +260,8 @@ tile.modern_frame.name=現代機械模塊
 tile.coefficient.desc=C生成係數
 tile.coefficientcraft.desc=速度係數
 
-tile.ceres_bricks.name=穀神星地牢磚
-tile.io_bricks.name=木衛一地牢磚
+tile.ceres_bricks.name=穀神星 Dungeon Brick
+tile.io_bricks.name=[WIP] 木衛一 Dungeon Brick
 
 tile.treasure_t4.name=四階寶箱
 tile.treasure_t4.desc=四階寶箱會生成在榖神星地牢。可在擊敗最終BOSS後開啟。
@@ -276,9 +271,8 @@ tile.treasure_t4.desc=四階寶箱會生成在榖神星地牢。可在擊敗最�
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 
 item.schematics.name=NASA工作臺圖紙
-item.hdp.name=重型版
-item.dungeon_keys.name=地牢鑰匙
-item.geo_scanner.name=地質掃描儀
+item.hdp.name=Heavy Duty Plate
+item.dungeon_keys.name=Dungeon Key
 
 item.rocket_tier_4.name=四階火箭
 item.rocket_tier_5.name=五階火箭
@@ -418,7 +412,7 @@ gui.planet_shield_stability_1.desc=如果安裝模組"Stabilization"
 gui.planet_shield_stability_2.desc=防護罩將會收集隕石碎片。
 
 gui.not_attached.desc=未安裝
-gui.attached.desc=已安裝:
+gui.attached.desc=已安裝ed:
 gui.enabled.desc=Enabled
 gui.charge=Charge:
 gui.message.now_noshield=你的護盾控制器毀損了!
@@ -482,8 +476,6 @@ gui.module.jump=跳躍
 gui.module.jump.desc=安裝活塞是一個好主意。 現在您的跳躍比平時高2倍！
 gui.module.energy=高級電池
 gui.module.energy.desc=最大能量供應增加2倍。
-gui.module.protection=防護
-gui.module.protection.desc=套裝中的鈷鑲嵌提供了對傷害的強大保護。
 
 gui.module.sublight_engine=亞光速引擎
 gui.module.sublight_engine.desc=新一代的引擎。 讓我們離開當前的恆星系統。
@@ -536,7 +528,6 @@ moon.triton=海衛一
 planet.pluto=冥王星
 moon.charon=冥衛一
 planet.kuiperbelt=古柏帶
-planet.haumea=妊神星
 
 satellite.spacestation.venus=金星大氣層空間站
 solarsystem.acentauri=半人馬星系

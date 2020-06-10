@@ -7,6 +7,8 @@ import galaxyspace.systems.ACentauriSystem.planets.proxima_b.items.ItemBlocksPro
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class ACBlocks {
 	
@@ -23,7 +25,12 @@ public class ACBlocks {
 	
 	public static void oreDictRegistration() 
 	{
-		
+		OreDictionary.registerOre("oreGold", new ItemStack(PROXIMA_B_BLOCKS, 1, 5));
+		OreDictionary.registerOre("oreTin", new ItemStack(PROXIMA_B_BLOCKS, 1, 6));
+		OreDictionary.registerOre("oreCopper", new ItemStack(PROXIMA_B_BLOCKS, 1, 7));
+		OreDictionary.registerOre("oreCoal", new ItemStack(PROXIMA_B_BLOCKS, 1, 8));
+		OreDictionary.registerOre("oreSilicon", new ItemStack(PROXIMA_B_BLOCKS, 1, 9));
+		OreDictionary.registerOre("oreDiamond", new ItemStack(PROXIMA_B_BLOCKS, 1, 10));
 	}
 	
 	public static void registerBlock(Block block, Class<? extends ItemBlock> itemClass)
