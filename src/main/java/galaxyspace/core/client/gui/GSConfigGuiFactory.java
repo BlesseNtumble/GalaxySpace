@@ -8,7 +8,9 @@ import galaxyspace.core.configs.GSConfigDimensions;
 import galaxyspace.core.configs.GSConfigEnergy;
 import galaxyspace.core.configs.GSConfigSchematics;
 import galaxyspace.systems.ACentauriSystem.core.configs.ACConfigCore;
+import galaxyspace.systems.ACentauriSystem.core.configs.ACConfigDimensions;
 import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigCore;
+import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigDimensions;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -22,9 +24,12 @@ public class GSConfigGuiFactory implements IModGuiFactory
     	    	
         public CoreConfigGUI(GuiScreen parent)
         {        	
-            super(parent, GSConfigCore.getConfigElements(), GalaxySpace.MODID, false, false, GCCoreUtil.translate("gs.configgui.title"));
+            super(parent, GalaxySpace.MODID, GCCoreUtil.translate("gs.configgui.title"));
+            this.configElements.addAll(GSConfigCore.getConfigElements());
             this.configElements.addAll(GSConfigDimensions.getConfigElements());
             this.configElements.addAll(GSConfigSchematics.getConfigElements());
+            this.configElements.addAll(ACConfigDimensions.getConfigElements());
+            this.configElements.addAll(BRConfigDimensions.getConfigElements());
             this.configElements.addAll(GSConfigEnergy.getConfigElements());
             this.configElements.addAll(ACConfigCore.getConfigElements());
             this.configElements.addAll(BRConfigCore.getConfigElements());

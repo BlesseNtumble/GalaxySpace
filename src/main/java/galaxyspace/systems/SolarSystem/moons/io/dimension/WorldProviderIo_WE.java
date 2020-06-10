@@ -3,12 +3,13 @@ package galaxyspace.systems.SolarSystem.moons.io.dimension;
 import java.util.List;
 
 import asmodeuscore.api.dimension.IProviderFreeze;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProvider;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProvider;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_CaveGen;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_RavineGen;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_TerrainGenerator;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_CaveGen;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_RavineGen;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
 import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.systems.SolarSystem.SolarSystemBodies;
@@ -37,7 +38,7 @@ import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WorldProviderIo_WE extends WE_WorldProvider implements IProviderFreeze{
+public class WorldProviderIo_WE extends WE_WorldProviderSpace implements IProviderFreeze{
 	public static WE_ChunkProvider chunk;
 	
 	@Override
@@ -56,14 +57,11 @@ public class WorldProviderIo_WE extends WE_WorldProvider implements IProviderFre
     public float getSoundVolReductionAmount() { return Float.MAX_VALUE; }
 
     @Override
-    public boolean canRainOrSnow() { return false; }
- 
-    @Override
     public CelestialBody getCelestialBody() { return SolarSystemBodies.ioJupiter; }
     
     @Override
     public Class<? extends IChunkGenerator> getChunkProviderClass() {
-        return WE_ChunkProvider.class;
+        return WE_ChunkProviderSpace.class;
     }
     
     @Override 
@@ -163,7 +161,7 @@ public class WorldProviderIo_WE extends WE_WorldProvider implements IProviderFre
 		rg.lavaBlock = Blocks.LAVA.getDefaultState();
 		cp.createChunkGen_List.add(rg);
 		
-		cp.worldGenerators.clear();
+		((WE_ChunkProviderSpace)cp).worldGenerators.clear();
 		cp.biomesList.clear();
 		
 		WE_Biome.addBiomeToGeneration(cp, new Io_Plains());
@@ -171,9 +169,6 @@ public class WorldProviderIo_WE extends WE_WorldProvider implements IProviderFre
 		WE_Biome.addBiomeToGeneration(cp, new Io_Mountains(1, 1.9D, 2.4D, 125, 35));
 		WE_Biome.addBiomeToGeneration(cp, new Io_Volcano());
 	}
-
-	@Override
-	public BiomeDecoratorSpace getDecorator() {	return new BiomeDecoratorIo(); }
 
 	@Override
 	public boolean enableAdvancedThermalLevel() {

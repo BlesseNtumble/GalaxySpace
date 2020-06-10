@@ -22,6 +22,7 @@ import galaxyspace.core.events.GSEventHandler;
 import galaxyspace.core.handler.GSGuiHandler;
 import galaxyspace.core.handler.capabilities.GSCapabilityStatsHandler;
 import galaxyspace.core.network.packet.GalaxySpaceChannelHandler;
+import galaxyspace.core.prefab.entities.EntityCustomCargoRocket;
 import galaxyspace.core.prefab.entities.EntityEvolvedColdBlaze;
 import galaxyspace.core.prefab.entities.EntityIceSpike;
 import galaxyspace.core.prefab.entities.EntityLaserBeam;
@@ -36,6 +37,10 @@ import galaxyspace.core.registers.potions.GSPotions;
 import galaxyspace.core.util.GSCreativeTabs;
 import galaxyspace.core.util.GSThreadVersionCheck;
 import galaxyspace.core.util.researches.ResearchUtil;
+import galaxyspace.systems.ACentauriSystem.core.configs.ACConfigCore;
+import galaxyspace.systems.ACentauriSystem.core.configs.ACConfigDimensions;
+import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigCore;
+import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigDimensions;
 import galaxyspace.systems.SolarSystem.moons.enceladus.tile.TileEntityBlockCrystallTE;
 import galaxyspace.systems.SolarSystem.moons.io.entities.EntityBossGhast;
 import galaxyspace.systems.SolarSystem.moons.io.tile.TileEntityDungeonSpawnerIo;
@@ -44,7 +49,6 @@ import galaxyspace.systems.SolarSystem.planets.ceres.entities.EntityBossBlaze;
 import galaxyspace.systems.SolarSystem.planets.ceres.tile.TileEntityDungeonSpawnerCeres;
 import galaxyspace.systems.SolarSystem.planets.ceres.tile.TileEntityTreasureChestCeres;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvCircuitFabricator;
-import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvElectricCompressor;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvLandingPad;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvLandingPadSingle;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvOxygenStorageModule;
@@ -75,8 +79,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.common.config.Config.Type;
+import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -97,7 +104,7 @@ import net.minecraftforge.fml.relauncher.Side;
 @Mod(
 		   modid = GalaxySpace.MODID,
 		   version = GalaxySpace.VERSION,
-		   dependencies = Constants.DEPENDENCIES_FORGE + "required-after:galacticraftcore@[4.0.2.237,]; required-after:galacticraftplanets; required-after:asmodeuscore@[0.0.13,)",
+		   dependencies = Constants.DEPENDENCIES_FORGE + "required-after:galacticraftcore@[4.0.2.261,]; required-after:galacticraftplanets; required-after:asmodeuscore@[0.0.17,)",
 		   acceptedMinecraftVersions = Constants.MCVERSION,
 		   name = GalaxySpace.NAME,
 		   guiFactory = "galaxyspace.core.client.gui.GSConfigGuiFactory"
@@ -107,7 +114,7 @@ public class GalaxySpace
 {
 	public static final int major_version = 2;
 	public static final int minor_version = 0;
-	public static final int build_version = 12;
+	public static final int build_version = 14;
 	
 	public static final String NAME = "GalaxySpace";
 	public static final String MODID = "galaxyspace";
@@ -259,6 +266,7 @@ public class GalaxySpace
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityTier4Rocket.class, "rocket_tier_4", 150, 1, false);
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityTier5Rocket.class, "rocket_tier_5", 150, 1, false);
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityTier6Rocket.class, "rocket_tier_6", 150, 1, false);
+    	GCCoreUtil.registerGalacticraftNonMobEntity(EntityCustomCargoRocket.class, "rocket_fluid_cargo", 150, 1, false);
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityIceSpike.class, "ice_spike", 40, 100, true);
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityLaserBeam.class, "laser_beam", 40, 100, false);
     	//GCCoreUtil.registerGalacticraftNonMobEntity(GSEntityMeteor.class, "GS Meteor", 150, 5, true);    	
@@ -293,7 +301,6 @@ public class GalaxySpace
     	GameRegistry.registerTileEntity(TileEntityGasBurner.class, "GS Gas Burner");
     	GameRegistry.registerTileEntity(TileEntityAdvOxygenStorageModule.class, "GS Oxygen Storage Module");
     	GameRegistry.registerTileEntity(TileEntityWindSolarPanel.class, "GS Solar Wind Panel");
-    	GameRegistry.registerTileEntity(TileEntityAdvElectricCompressor.class, "GS Advanced Electric Comressor");
     	GameRegistry.registerTileEntity(TileEntityAdvCircuitFabricator.class, "GS Advanced Circuit Fabricator");
     	GameRegistry.registerTileEntity(TileEntityResearchTable.class, "GS Research Table");
 /*    	
@@ -312,7 +319,7 @@ public class GalaxySpace
    		}		
 	}
     
-    public static void debug(String message)
+    public void debug(String message)
    	{     	
    		if(debug && log != null) 
    		{
@@ -334,6 +341,21 @@ public class GalaxySpace
     public static class RegistrationHandler
     {
     	@SubscribeEvent
+    	public void onConfigChanged(ConfigChangedEvent event) {
+    		if (event.getModID().equals(GalaxySpace.MODID)) {
+    			ConfigManager.sync(ASSET_PREFIX, Type.INSTANCE);
+    			GSConfigCore.syncConfig(true);
+    			GSConfigDimensions.syncConfig(true);
+    			GSConfigSchematics.syncConfig(true);
+    			GSConfigEnergy.syncConfig(true);
+    			ACConfigCore.syncConfig(true);
+    			ACConfigDimensions.syncConfig(true);
+    			BRConfigCore.syncConfig(true);
+    			BRConfigDimensions.syncConfig(true);
+    		}
+    	}
+    	
+    	@SubscribeEvent
     	public static void registerModels(ModelRegistryEvent event) {
     		proxy.registerVariants();
 
@@ -342,11 +364,13 @@ public class GalaxySpace
     	@SubscribeEvent
         public static void registerItems(RegistryEvent.Register<Item> event)
         {
-    		for(IBodies list : bodies)
-    			list.registerItems(event);
     		
     		GSBlocks.oreDictRegistration();
     		GSItems.oreDictRegistration();
+    		
+    		for(IBodies list : bodies)
+    			if(list.canRegister()) 
+    				list.registerItems(event);
         }
     	
     	@SubscribeEvent(priority = EventPriority.LOWEST)

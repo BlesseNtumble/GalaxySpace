@@ -1,20 +1,26 @@
 package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we;
 
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
+import java.util.Random;
+
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Dandelions;
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Falling_Blocks;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntityHusk;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
 public class Barnarda_C_Dunes extends WE_Biome {
 
 	public Barnarda_C_Dunes(double min, double max) {
-		super(new BiomeProperties("barnarda_c_dunes"), new int[] {0x89AC76, 0x11FF66, 0x00FF00});
+		super(new BiomeProperties("barnarda_c_dunes"), new int[] {0x89AC76, 0x11FF66, 0x985cff});
 		
 		biomeMinValueOnMap      =   min;
 		biomeMaxValueOnMap      =   max;
@@ -24,7 +30,7 @@ public class Barnarda_C_Dunes extends WE_Biome {
 		biomeScaleY             =   1.7D;
 		biomeSurfaceHeight      =     72;
 		biomeInterpolateQuality =     15;		
-		
+		biomeTemerature = 0.8F;
 		//-//
 		decorateChunkGen_List.clear();		
 		createChunkGen_InXZ_List.clear();
@@ -40,4 +46,37 @@ public class Barnarda_C_Dunes extends WE_Biome {
 		createChunkGen_InXZ_List.add(standardBiomeLayers);
 	}
 
+	@Override
+	public void decorateBiome(World world, Random rand, int x, int z)
+	{
+		int randPosX = x + rand.nextInt(16) + 8;
+		int randPosZ = z + rand.nextInt(16) + 8;
+		BlockPos pos = world.getHeight(new BlockPos(randPosX, 0, randPosZ));
+		
+		boolean cangen = true;
+		int range = 2;
+		for(BlockPos pos1 : pos.getAllInBox(pos.add(-range, -range, -range), pos.add(range, range, range))) 
+			if(world.getBlockState(pos1) == Blocks.CACTUS.getDefaultState()) 
+				cangen = false; 
+		
+		for(BlockPos pos1 : pos.getAllInBox(pos.add(-range, 0, -range), pos.add(range, 0, range))) 
+			if(world.getBlockState(pos1) != Blocks.AIR.getDefaultState())
+				cangen = false;
+		
+		if(cangen && world.getBlockState(pos.down()) == BRBlocks.BARNARDA_C_FALLING_BLOCKS.getDefaultState().withProperty(Barnarda_C_Falling_Blocks.BASIC_TYPE, Barnarda_C_Falling_Blocks.EnumFallingBlockBarnardaC.SAND)) {
+			if(rand.nextInt(2) == 0)
+			{
+				for(int size = 0; size < 1 + rand.nextInt(3); size++)
+				{
+					world.setBlockState(pos.up(size), Blocks.CACTUS.getDefaultState());
+				}
+			}
+			else {
+				world.setBlockState(pos, BRBlocks.BARNARDA_C_DANDELIONS.getDefaultState().withProperty(Barnarda_C_Dandelions.BASIC_TYPE, Barnarda_C_Dandelions.EnumBlockDandelions.DESERT_DOWN));
+				if(rand.nextInt(3) == 0)
+					world.setBlockState(pos.up(), BRBlocks.BARNARDA_C_DANDELIONS.getDefaultState().withProperty(Barnarda_C_Dandelions.BASIC_TYPE, Barnarda_C_Dandelions.EnumBlockDandelions.DESERT_UP));
+			}
+		}
+	}
+	
 }

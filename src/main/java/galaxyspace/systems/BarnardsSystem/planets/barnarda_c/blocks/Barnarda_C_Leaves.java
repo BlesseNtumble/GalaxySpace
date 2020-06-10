@@ -50,7 +50,7 @@ public class Barnarda_C_Leaves extends BlockLeaves {
 	
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-		return new ItemStack(Item.getItemFromBlock(this), 1, this.getMetaFromState(state));
+		return new ItemStack(Item.getItemFromBlock(this), 1, 0);
 	}
 	
 	@Override
@@ -62,7 +62,7 @@ public class Barnarda_C_Leaves extends BlockLeaves {
 	@Override
     public int damageDropped(IBlockState state)
     {
-        return 12;
+        return 0;
     }
 	
 	@Override

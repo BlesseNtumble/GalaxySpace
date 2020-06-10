@@ -131,10 +131,10 @@ public class MirandaBlocks extends Block implements ISortableBlock {
 	public enum EnumMirandaBlocks implements IStringSerializable {
 		MIRANDA_GRUNT(0, "miranda_grunt"), 
 		MIRANDA_SUBGRUNT(1, "miranda_subgrunt"), 
-		MIRANDA_STONE(2, "miranda_stone"),		
-		MIRANDA_IRON_ORE(3, "miranda_iron_ore"),
-		MIRANDA_DOLOMITE_ORE(4, "miranda_dolomite_ore"),
+		MIRANDA_STONE(2, "miranda_stone"),	
 		
+		MIRANDA_IRON_ORE(3, "miranda_iron_ore"),
+		MIRANDA_DOLOMITE_ORE(4, "miranda_dolomite_ore"),		
 		MIRANDA_DIAMOND_ORE(5, "miranda_diamond_ore"),
 		MIRANDA_QUARTZ_ORE(6, "miranda_quartz_ore"),
 		MIRANDA_COBALT_ORE(7, "miranda_cobalt_ore"),

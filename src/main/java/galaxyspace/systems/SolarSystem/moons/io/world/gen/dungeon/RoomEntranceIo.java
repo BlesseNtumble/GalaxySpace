@@ -30,7 +30,7 @@ public class RoomEntranceIo extends SizedPieceIo
     	this.setCoordBaseMode(EnumFacing.SOUTH);
 
         this.boundingBox = new StructureBoundingBox(blockPosX - range, configuration.getYPosition() - 5, blockPosZ - range, blockPosX + range - 1, 150, blockPosZ + range);
-        GalaxySpace.debug(blockPosX  + " | " + blockPosZ);
+        GalaxySpace.instance.debug(blockPosX  + " | " + blockPosZ);
     }
 
     @Override

@@ -426,6 +426,7 @@ gui.temp_shield_control.desc=Provides protection against corrosion of atmosphere
 gui.emergency_portable_teleport.desc=Emergency teleport to anchor point. Works with HP < 6. Shift+Right Click on teleport allows you to snap a point, on any block - enable/disable.
 gui.planet_shield_stability_1.desc=If installed the module "Stabilization"
 gui.planet_shield_stability_2.desc=the shield will collect meteorite fragments in this slot.
+gui.ice_bucket.desc=You can get it by clicking Right Mouse Click on the ice with an empty bucket.
 
 gui.not_attached.desc=Not attached
 gui.attached.desc=Attached:

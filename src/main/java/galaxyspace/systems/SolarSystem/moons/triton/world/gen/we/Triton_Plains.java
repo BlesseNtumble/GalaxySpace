@@ -1,7 +1,7 @@
 package galaxyspace.systems.SolarSystem.moons.triton.world.gen.we;
 
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import galaxyspace.core.prefab.entities.EntityEvolvedColdBlaze;
 import galaxyspace.core.registers.blocks.GSBlocks;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedEnderman;
@@ -15,7 +15,7 @@ import net.minecraft.world.biome.Biome.BiomeProperties;
 public class Triton_Plains extends WE_Biome {
 	
 	public Triton_Plains(double min, double max, double per, int height, int interpolate) {
-		super(new BiomeProperties("triton_plains"), new int[] {0xFFFFFF, 0xFFFFFF, 0x00FF00});
+		super(new BiomeProperties("triton_plains"), new int[] {0x00CC00, 0xFFFFFF, 0x00CC00});
 				
 		biomeMinValueOnMap      =  	 min;
 		biomeMaxValueOnMap      =    max;

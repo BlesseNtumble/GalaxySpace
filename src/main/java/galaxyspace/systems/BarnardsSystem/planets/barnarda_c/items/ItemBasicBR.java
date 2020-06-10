@@ -40,7 +40,8 @@ public class ItemBasicBR extends Item implements ISortableItem{
 	public static String[] names = 
 	{ 
 		"violet_reeds",
-		"water_grass"
+		"water_grass",
+		"tree_juice"
 		//"debugger"
 	};
 	
@@ -125,7 +126,7 @@ public class ItemBasicBR extends Item implements ISortableItem{
             }
 		}
 		if(itemstack.getItemDamage() == 3) {
-			GalaxySpace.debug(pos + "");
+			GalaxySpace.instance.debug(pos + "");
 			if(world.isAirBlock(pos.up())) {
 				new WorldGenTree_Swampland_2(BRBlocks.BARNARDA_C_VIOLET_LOG.getDefaultState().withProperty(Barnarda_C_Logs.LOG_AXIS, Barnarda_C_Logs.EnumAxis.NONE), BRBlocks.BARNARDA_C_LEAVES.getStateFromMeta(0), world.rand.nextInt(3)).generate(world, world.rand, pos.up());
 				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));

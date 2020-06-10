@@ -5,22 +5,24 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import asmodeuscore.api.dimension.IProviderFreeze;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProvider;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProvider;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_CaveGen;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_RavineGen;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_TerrainGenerator;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_CaveGen;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_OreGen;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_RavineGen;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.systems.BarnardsSystem.BarnardsSystemBodies;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.sky.SkyProviderBarnarda_C;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.BiomeDecoratorBarnarda_C;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.BiomeProviderBarnarda_C;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Beach;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_DeepOcean;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Dunes;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Forest;
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Jungle;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Mountains;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Ocean;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Plains;
@@ -28,7 +30,6 @@ import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnar
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_SnowPlains;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Swampland;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import net.minecraft.block.Block;
@@ -44,7 +45,7 @@ import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WorldProviderBarnarda_C_WE extends WE_WorldProvider implements IProviderFreeze {
+public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements IProviderFreeze {
 
 	private final float[] colorsSunriseSunset = new float[4];
 	public static WE_ChunkProvider chunk;
@@ -73,12 +74,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProvider implements IPro
     public float getSoundVolReductionAmount() {
         return Float.MIN_VALUE;
     }
-    
-    @Override
-    public boolean canRainOrSnow() {
-        return true;
-    }
-        
+
     @Override
     public CelestialBody getCelestialBody() {
         return BarnardsSystemBodies.Barnarda_C;
@@ -86,7 +82,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProvider implements IPro
 
     @Override
     public Class<? extends IChunkGenerator> getChunkProviderClass() {
-        return WE_ChunkProvider.class;
+        return WE_ChunkProviderSpace.class;
 
     }
     
@@ -250,8 +246,9 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProvider implements IPro
 		cp.createChunkGen_InXZ_List .clear(); 
 		cp.createChunkGen_InXYZ_List.clear(); 
 		cp.decorateChunkGen_List .clear(); 
+		((WE_ChunkProviderSpace)cp).worldGenerators.clear();
 		
-		WE_Biome.setBiomeMap(cp, 2.4D, 4, 3200.0D, 1.0D);	
+		WE_Biome.setBiomeMap(cp, 1.5D, 4, 6400.0D, 1.0D);	
 
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
 		terrainGenerator.worldStoneBlock = BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(1); 
@@ -264,7 +261,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProvider implements IPro
 		WE_CaveGen cg = new WE_CaveGen(); 
 		cg.replaceBlocksList .clear(); 
 		cg.addReplacingBlock(terrainGenerator.worldStoneBlock); 
-		cg.lavaMaxY = 15;
+		cg.lavaMaxY = 8;
 		cp.createChunkGen_List.add(cg); 
 		//-// 
 		 
@@ -275,17 +272,57 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProvider implements IPro
 		rg.lavaMaxY = 15;		
 		cp.createChunkGen_List.add(rg);
 		
-		cp.worldGenerators.clear();
+		WE_OreGen standardOres = new WE_OreGen();
+		//Coal
+		standardOres.add(BRBlocks.BARNARDA_C_ORES.getStateFromMeta(0), terrainGenerator.worldStoneBlock, 15, 5, 150, 20);
+		//Iron
+		standardOres.add(BRBlocks.BARNARDA_C_ORES.getStateFromMeta(1), terrainGenerator.worldStoneBlock, 6, 5, 70, 15);
+		//Gold
+		standardOres.add(BRBlocks.BARNARDA_C_ORES.getStateFromMeta(2), terrainGenerator.worldStoneBlock, 6, 5, 45, 10);
+		//Redstone
+		standardOres.add(BRBlocks.BARNARDA_C_ORES.getStateFromMeta(3), terrainGenerator.worldStoneBlock, 6, 5, 15, 20);
+		//Lapis
+		standardOres.add(BRBlocks.BARNARDA_C_ORES.getStateFromMeta(4), terrainGenerator.worldStoneBlock, 4, 5, 35, 4);
+		//Diamond
+		standardOres.add(BRBlocks.BARNARDA_C_ORES.getStateFromMeta(5), terrainGenerator.worldStoneBlock, 5, 5, 12, 8);
+		//Silicon
+		standardOres.add(BRBlocks.BARNARDA_C_ORES.getStateFromMeta(6), terrainGenerator.worldStoneBlock, 6, 10, 40, 8);
+		//Copper
+		standardOres.add(BRBlocks.BARNARDA_C_ORES.getStateFromMeta(7), terrainGenerator.worldStoneBlock, 8, 20, 150, 20);
+		//Tin
+		standardOres.add(BRBlocks.BARNARDA_C_ORES.getStateFromMeta(8), terrainGenerator.worldStoneBlock, 8, 15, 64, 15);
+		//Aluminum
+		standardOres.add(BRBlocks.BARNARDA_C_ORES.getStateFromMeta(9), terrainGenerator.worldStoneBlock, 5, 5, 30, 15);
+		//Quartz
+		standardOres.add(BRBlocks.BARNARDA_C_ORES.getStateFromMeta(10), terrainGenerator.worldStoneBlock, 4, 5, 15, 8);
+		//Cobaltum
+		standardOres.add(BRBlocks.BARNARDA_C_ORES.getStateFromMeta(11), terrainGenerator.worldStoneBlock, 4, 5, 25, 20);
+		//Nickel
+		standardOres.add(BRBlocks.BARNARDA_C_ORES.getStateFromMeta(12), terrainGenerator.worldStoneBlock, 4, 5, 15, 15);
+		
+		//Dirt
+		standardOres.add(BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(0), terrainGenerator.worldStoneBlock, 30, 5, 150, 30);
+		//Gravel
+		standardOres.add(Blocks.GRAVEL.getDefaultState(), terrainGenerator.worldStoneBlock, 15, 5, 150, 20);
+		//Granite
+		standardOres.add(Blocks.STONE.getStateFromMeta(1), terrainGenerator.worldStoneBlock, 15, 5, 150, 20);
+		//Diorite
+		standardOres.add(Blocks.STONE.getStateFromMeta(3), terrainGenerator.worldStoneBlock, 15, 5, 150, 20);
+		//Andesite
+		standardOres.add(Blocks.STONE.getStateFromMeta(5), terrainGenerator.worldStoneBlock, 15, 5, 150, 20);
+				
+		cp.decorateChunkGen_List.add(standardOres);
+		
 		cp.biomesList.clear();
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_DeepOcean(-4D, 4D));	
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(-3.8D, 3.8D, false));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Beach(-3.5D, 3.2D, 1));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Plains(-3.0D, 3.0D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Forest(-2.8D, 2.8D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(-2.2D, 2.2D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Swampland(-1.8D, 1.8D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(-1.3D, 1.5D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Dunes(-1.2D, 1.2D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Beach(-3.5D, 3.5D, 1));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Plains(-3.4D, 3.4D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Forest(-2.9D, 2.9D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(-2.5D, 2.5D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Swampland(-2.4D, 2.4D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Jungle(-2.3D, 2.3D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Dunes(-1.4D, 1.4D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-1.0D, 1.0D, 100, 2.8D, 4));	
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-0.8D, 0.8D, 180, 2.4D, 4));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_SnowPlains(-0.6D, 0.6D, 160));
@@ -309,11 +346,6 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProvider implements IPro
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-0.4D, 0.4D, 180, 2.4D, 4));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_SnowPlains(-0.2D, 0.2D, 160));
 		*/
-	}
-	
-	@Override
-	public BiomeDecoratorSpace getDecorator() {
-		return new BiomeDecoratorBarnarda_C();
 	}
 
 	@Override

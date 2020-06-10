@@ -21,9 +21,9 @@ public class SkyProviderTitan extends SkyProviderBase
 	protected void rendererSky(Tessellator tessellator, BufferBuilder worldRenderer, float f10, float ticks) {
 		GL11.glPopMatrix();
 		GL11.glPushMatrix();
-		//GL11.glEnable(GL11.GL_BLEND);
+		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glEnable(GL11.GL_ALPHA_TEST);
-		//GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_DST_COLOR);
+		GL11.glBlendFunc(GL11.GL_DST_COLOR, GL11.GL_ONE);
 		// Render saturn
 		f10 = 20.0F;
 		GL11.glScalef(0.6F, 0.6F, 0.6F);
@@ -31,6 +31,7 @@ public class SkyProviderTitan extends SkyProviderBase
 		GL11.glRotatef(330F, 0F, 0F, 1.0F);
 		GL11.glRotatef(-this.mc.world.getCelestialAngle(this.ticks) * 360.0F, 0.0F, 1.0F, 0.0F);
 
+		
 		float color = this.mc.world.isRaining() ? (1.0F - (this.mc.world.rainingStrength / 4)) - this.mc.world.getStarBrightness(1.0F) : 1.1F - this.mc.world.getStarBrightness(1.0F);
 		GL11.glColor4f(color, color, color, 1.0F);
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.saturnTexture);
@@ -41,6 +42,7 @@ public class SkyProviderTitan extends SkyProviderBase
 		worldRenderer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
 		tessellator.draw();
 
+		GL11.glBlendFunc(GL11.GL_DST_COLOR, GL11.GL_ONE);
 		 // Render saturn Rings
         f10 = 50.0F;
         FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.saturnRingsTexture);
@@ -57,7 +59,7 @@ public class SkyProviderTitan extends SkyProviderBase
 
 	@Override
 	protected boolean enableBaseImages() {
-		return true;
+		return false;
 	}
 
 	@Override

@@ -56,7 +56,7 @@ public class TileEntityGravitationModule extends TileBaseElectricBlockWithInvent
 	
 		super("tile.gravitation_module.name");
         this.initialised = true;
-		this.radius = 4;
+		this.radius = 8;
 		this.storage.setCapacity(15000);
 		this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 60 : 45);
 		this.inventory = NonNullList.withSize(1 + 4, ItemStack.EMPTY);
@@ -118,11 +118,14 @@ public class TileEntityGravitationModule extends TileBaseElectricBlockWithInvent
 			if (this.hasEnoughEnergyToRun) {		
 				
 				int energy_boost = 0;
+				radius = 8;
         	   	
         	   	//////////
 
             	for(int i = 0; i <= 3; i++)
             	{
+            		if(this.getInventory().get(1 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 0)))
+            			radius += 2;
             		if(this.getInventory().get(1 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 3)))
             			energy_boost++;
             	}
@@ -223,7 +226,7 @@ public class TileEntityGravitationModule extends TileBaseElectricBlockWithInvent
 											.gravityOverrideIfLow(p) > 0)
 								continue;
 						}
-						living.motionY -= (g / 200);					 	
+						living.motionY -= (g / 300);					 	
 					 }
 				}
 			}

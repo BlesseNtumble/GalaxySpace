@@ -60,7 +60,9 @@ public class GuiGravitationModule extends GuiContainerGC implements ITextBoxCall
     {
         super(new ContainerGravitationModule(par1InventoryPlayer, tileEntity));
         this.tileEntity = tileEntity;
+        this.xSize = 190;
         this.ySize = 204;
+        
         radius = tileEntity.getGravityRadius();
     }
 
@@ -78,12 +80,12 @@ public class GuiGravitationModule extends GuiContainerGC implements ITextBoxCall
         desc.add(GCCoreUtil.translate("gui.battery_slot.desc.0"));
         desc.add(GCCoreUtil.translate("gui.battery_slot.desc.1"));
         this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 76, (this.height - this.ySize) / 2 + 98, 18, 18, desc, this.width, this.height, this));
-   
+   /*
         desc = new ArrayList<String>();
         desc.add(GCCoreUtil.translate("gui.gravitation_module_stabilisation_1.desc"));
         desc.add(GCCoreUtil.translate("gui.gravitation_module_stabilisation_2.desc"));
         this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2, (this.height - this.ySize) / 2 + 12, 10, 10, desc, this.width, this.height, this));
-   
+   */
         this.buttonList.clear();
         final int var5 = (this.width - this.xSize) / 2;
         final int var6 = (this.height - this.ySize) / 2;
@@ -100,9 +102,10 @@ public class GuiGravitationModule extends GuiContainerGC implements ITextBoxCall
         desc = new ArrayList<String>();
         desc.add(EnumColor.BRIGHT_GREEN + GCCoreUtil.translate("gui.available_modules.desc"));
         desc.add("");
+        desc.add("- " + new ItemStack(GSItems.UPGRADES, 1, 0).getDisplayName());
         desc.add("- " + new ItemStack(GSItems.UPGRADES, 1, 1).getDisplayName());
         desc.add("- " + new ItemStack(GSItems.UPGRADES, 1, 3).getDisplayName());
-        this.infoRegions.add(new GuiElementInfoRegion((this.width + this.xSize) / 2, (this.height - this.ySize) / 2 + 16, 18, 21 * 4, desc, this.width, this.height, this));
+        this.infoRegions.add(new GuiElementInfoRegion((this.width + this.xSize) / 2 - 14, (this.height - this.ySize) / 2 + 16, 18, 21 * 4, desc, this.width, this.height, this));
      
     }
 
@@ -140,10 +143,14 @@ public class GuiGravitationModule extends GuiContainerGC implements ITextBoxCall
         this.fontRenderer.drawString(EnumColor.WHITE + GCCoreUtil.translate("gui.message.status.name") + ": " + displayText, 100, 104, 4210752);
         this.fontRenderer.drawString(EnumColor.WHITE + GCCoreUtil.translate("container.inventory"), 13, this.ySize - 88, 4210752);
    
-        if(this.inventorySlots.getSlot(1).getHasStack()) 
-        	this.fontRenderer.drawString(EnumColor.BRIGHT_GREEN + GCCoreUtil.translate("gui.message.active_pressure_shield.name"), 30, 24, 4210752);
-        
+        for(int i = 0; i < 4; i++)
+        	if(this.tileEntity.getStackInSlot(i+1).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 1))) {
+        		this.fontRenderer.drawString(EnumColor.BRIGHT_GREEN + GCCoreUtil.translate("gui.message.active_pressure_shield.name"), 3, 24, 4210752);
+        		break;
+        	}
        
+        this.strengthField.text = tileEntity.getGravityRadius() + "";
+       // this.fontRenderer.drawString(EnumColor.BRIGHT_GREEN + "" + tileEntity.getGravityRadius() , 30, 5, 0xFFFFFF);
     }
 
     /**
@@ -173,7 +180,7 @@ public class GuiGravitationModule extends GuiContainerGC implements ITextBoxCall
         }
 */
         //Info
-        this.drawTexturedModalRect(containerWidth, containerHeight + 12, 215, 7, 10, 10);  
+        //this.drawTexturedModalRect(containerWidth, containerHeight + 12, 215, 7, 10, 10);  
         //Energy
         this.drawTexturedModalRect(containerWidth + 16, containerHeight + 102, 192, 47, 56, 9);
         this.drawTexturedModalRect(containerWidth + 4, containerHeight + 102, 192, 56, 11, 10);
@@ -288,7 +295,7 @@ public class GuiGravitationModule extends GuiContainerGC implements ITextBoxCall
 
 	@Override
 	public boolean canPlayerEdit(GuiElementTextBox textBox, EntityPlayer player) {
-		return true;
+		return false;
 	}
 
 	@Override

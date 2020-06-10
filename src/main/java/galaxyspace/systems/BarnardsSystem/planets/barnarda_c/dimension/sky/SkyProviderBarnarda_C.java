@@ -2,6 +2,7 @@ package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.sky;
 
 import org.lwjgl.opengl.GL11;
 
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import galaxyspace.GalaxySpace;
 import galaxyspace.systems.BarnardsSystem.BarnardsSystemBodies;
@@ -25,7 +26,11 @@ public class SkyProviderBarnarda_C extends SkyProviderBase{
         
         GL11.glEnable(GL11.GL_BLEND);
         
-        long daylength = ((WorldProviderSpace) this.mc.world.provider).getDayLength();
+        long daylength = 0L;
+        if(this.mc.world.provider instanceof WorldProviderSpace)
+        	daylength = ((WorldProviderSpace) this.mc.world.provider).getDayLength();
+        else if(this.mc.world.provider instanceof WE_WorldProviderSpace)
+        	daylength = ((WE_WorldProviderSpace) this.mc.world.provider).getDayLength();
         
         f10 = 5.5F;
 
