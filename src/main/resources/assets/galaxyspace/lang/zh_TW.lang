@@ -9,443 +9,443 @@ menu.update=Update Galaxy Space!
 |/////////////////////////////////////////|
 #||||||||||||||||||Blocks||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-tile.mercury_surface.name=¤ô¬Pªí­±ªd¤g
-tile.mercury_subsurface.name=¤ô¬P¦a©³ªd¤g
-tile.mercury_stone.name=¤ô¬P¥ÛÀY
-tile.mercury_iron_ore.name=ÅKÄq
-tile.mercury_nickel_ore.name=ÂìÄq
-tile.mercury_magnesium_ore.name=ÁâÄq
+tile.mercury_surface.name=æ°´æ˜Ÿè¡¨é¢æ³¥åœŸ
+tile.mercury_subsurface.name=æ°´æ˜Ÿåœ°åº•æ³¥åœŸ
+tile.mercury_stone.name=æ°´æ˜ŸçŸ³é ­
+tile.mercury_iron_ore.name=éµç¤¦
+tile.mercury_nickel_ore.name=é³ç¤¦
+tile.mercury_magnesium_ore.name=é‚ç¤¦
 
-tile.deco_cobaltum.name=¹W¸Ë¹¢¶ô
-tile.deco_magnesium.name=Áâ¸Ë¹¢¶ô
-tile.deco_nickel.name=Âì¸Ë¹¢¶ô
-tile.deco_copper.name=»É¸Ë¹¢¶ô
-tile.cobalt_block.name=¹W¿j
-tile.nickel_block.name=Âì¿j
-tile.magnesium_block.name=Áâ¿j
+tile.deco_cobaltum.name=éˆ·è£é£¾å¡Š
+tile.deco_magnesium.name=é‚è£é£¾å¡Š
+tile.deco_nickel.name=é³è£é£¾å¡Š
+tile.deco_copper.name=éŠ…è£é£¾å¡Š
+tile.cobalt_block.name=éˆ·ç£š
+tile.nickel_block.name=é³ç£š
+tile.magnesium_block.name=é‚ç£š
 
-tile.cobaltum_ore.name=¹WÄq
-tile.nickel_ore.name=ÂìÄq
-tile.uranium_ore.name=¹\Äq
-tile.coal_ore.name=·Ñ¬´Äq
-tile.iron_ore.name=ÅKÄq
-tile.gold_ore.name=ª÷Äq
-tile.redstone_ore.name=¬õ¥ÛÄq
-tile.lapis_ore.name=«Cª÷¥ÛÄq
-tile.diamond_ore.name=Æp¥ÛÄq
-tile.silicon_ore.name=ª¿Äq
-tile.copper_ore.name=»ÉÄq
-tile.tin_ore.name=¿üÄq
-tile.aluminum_ore.name=¾TÄq
-tile.quartz_ore.name=¥Û­^Äq
+tile.cobaltum_ore.name=éˆ·ç¤¦
+tile.nickel_ore.name=é³ç¤¦
+tile.uranium_ore.name=éˆ¾ç¤¦
+tile.coal_ore.name=ç…¤ç‚­ç¤¦
+tile.iron_ore.name=éµç¤¦
+tile.gold_ore.name=é‡‘ç¤¦
+tile.redstone_ore.name=ç´…çŸ³ç¤¦
+tile.lapis_ore.name=é’é‡‘çŸ³ç¤¦
+tile.diamond_ore.name=é‘½çŸ³ç¤¦
+tile.silicon_ore.name=çŸ½ç¤¦
+tile.copper_ore.name=éŠ…ç¤¦
+tile.tin_ore.name=éŒ«ç¤¦
+tile.aluminum_ore.name=é‹ç¤¦
+tile.quartz_ore.name=çŸ³è‹±ç¤¦
 
-tile.oxygen_ice.name=®ñ¦B
-tile.nitrogen_ice.name=´á¦B
-tile.methane_ice.name=¥ÒÖJ¦B
-tile.hydrogen_ice.name=²B¦B
-tile.dry_ice.name=°®¦B
+tile.oxygen_ice.name=æ°§å†°
+tile.nitrogen_ice.name=æ°®å†°
+tile.methane_ice.name=ç”²çƒ·å†°
+tile.hydrogen_ice.name=æ°«å†°
+tile.dry_ice.name=ä¹¾å†°
 
-tile.futureglass_none.name=¥¼¨Ó¬Á¼ş
-tile.futureglass_black.name=¶Â¦â¥¼¨Ó¬Á¼ş
-tile.futureglass_red.name=¬õ¦â¥¼¨Ó¬Á¼ş
-tile.futureglass_green.name=ºñ¦â¥¼¨Ó¬Á¼ş
-tile.futureglass_brown.name=´Ä¦â¥¼¨Ó¬Á¼ş
-tile.futureglass_blue.name=ÂÅ¦â¥¼¨Ó¬Á¼ş
-tile.futureglass_purple.name=µµ¦â¥¼¨Ó¬Á¼ş
-tile.futureglass_cyan.name=«C¦â¥¼¨Ó¬Á¼ş
-tile.futureglass_lightgray.name=²L¦Ç¦â¥¼¨Ó¬Á¼ş
-tile.futureglass_gray.name=¦Ç¦â¥¼¨Ó¬Á¼ş
-tile.futureglass_pink.name=¯»¬õ¦â¥¼¨Ó¬Á¼ş
-tile.futureglass_lime.name=«Gºñ¦â¥¼¨Ó¬Á¼ş
-tile.futureglass_yellow.name=¶À¦â¥¼¨Ó¬Á¼ş
-tile.futureglass_lightblue.name=²LÂÅ¦â¥¼¨Ó¬Á¼ş
-tile.futureglass_magneta.name=«~¬õ¦â¥¼¨Ó¬Á¼ş
-tile.futureglass_orange.name=¾ï¦â¥¼¨Ó¬Á¼ş
-tile.futureglass_white.name=¥Õ¦â¥¼¨Ó¬Á¼ş
+tile.futureglass_none.name=æœªä¾†ç»ç’ƒ
+tile.futureglass_black.name=é»‘è‰²æœªä¾†ç»ç’ƒ
+tile.futureglass_red.name=ç´…è‰²æœªä¾†ç»ç’ƒ
+tile.futureglass_green.name=ç¶ è‰²æœªä¾†ç»ç’ƒ
+tile.futureglass_brown.name=æ£•è‰²æœªä¾†ç»ç’ƒ
+tile.futureglass_blue.name=è—è‰²æœªä¾†ç»ç’ƒ
+tile.futureglass_purple.name=ç´«è‰²æœªä¾†ç»ç’ƒ
+tile.futureglass_cyan.name=é’è‰²æœªä¾†ç»ç’ƒ
+tile.futureglass_lightgray.name=æ·ºç°è‰²æœªä¾†ç»ç’ƒ
+tile.futureglass_gray.name=ç°è‰²æœªä¾†ç»ç’ƒ
+tile.futureglass_pink.name=ç²‰ç´…è‰²æœªä¾†ç»ç’ƒ
+tile.futureglass_lime.name=äº®ç¶ è‰²æœªä¾†ç»ç’ƒ
+tile.futureglass_yellow.name=é»ƒè‰²æœªä¾†ç»ç’ƒ
+tile.futureglass_lightblue.name=æ·ºè—è‰²æœªä¾†ç»ç’ƒ
+tile.futureglass_magneta.name=å“ç´…è‰²æœªä¾†ç»ç’ƒ
+tile.futureglass_orange.name=æ©˜è‰²æœªä¾†ç»ç’ƒ
+tile.futureglass_white.name=ç™½è‰²æœªä¾†ç»ç’ƒ
 
-tile.mars_diamond.name=Æp¥ÛÄq
-tile.mars_gold.name=ª÷Äq
-tile.mars_coal.name=·Ñ¬´Äq
-tile.mars_redstone.name=¬õ¥ÛÄq
-tile.mars_silicon.name=ª¿Äq
-tile.mars_aluminum.name=¾TÄq
+tile.mars_diamond.name=é‘½çŸ³ç¤¦
+tile.mars_gold.name=é‡‘ç¤¦
+tile.mars_coal.name=ç…¤ç‚­ç¤¦
+tile.mars_redstone.name=ç´…çŸ³ç¤¦
+tile.mars_silicon.name=çŸ½ç¤¦
+tile.mars_aluminum.name=é‹ç¤¦
 
-tile.ceres_grunt.name=½\¯«¬Pªí­±ªd¤g
-tile.ceres_subgrunt.name=½\¯«¬P¦a©³ªd¤g
-tile.ceres_dolomite_ore.name=¥Õ¶³¥ÛÄq
-tile.ceres_meteoriciron_ore.name=¹kÅKÄq
-tile.ceres_dungeon_top.name=½\¯«¬P¦a¨c¤ÑªáªO
-tile.ceres_dungeon_floor.name=½\¯«¬P¦a¨c¦aªO
+tile.ceres_grunt.name=ç©€ç¥æ˜Ÿè¡¨é¢æ³¥åœŸ
+tile.ceres_subgrunt.name=ç©€ç¥æ˜Ÿåœ°åº•æ³¥åœŸ
+tile.ceres_dolomite_ore.name=ç™½é›²çŸ³ç¤¦
+tile.ceres_meteoriciron_ore.name=éš•éµç¤¦
+tile.ceres_dungeon_top.name=ç©€ç¥æ˜Ÿåœ°ç‰¢å¤©èŠ±æ¿
+tile.ceres_dungeon_floor.name=ç©€ç¥æ˜Ÿåœ°ç‰¢åœ°æ¿
 
-tile.pluto_grunt.name=­ß¤ı¬Pªí­±ªd¤g
-tile.pluto_subgrunt.name=­ß¤ı¬P¦a©³ªd¤g
-tile.pluto_stone.name=­ß¤ı¬P¥ÛÀY
+tile.pluto_grunt.name=å†¥ç‹æ˜Ÿè¡¨é¢æ³¥åœŸ
+tile.pluto_subgrunt.name=å†¥ç‹æ˜Ÿåœ°åº•æ³¥åœŸ
+tile.pluto_stone.name=å†¥ç‹æ˜ŸçŸ³é ­
 
-tile.io_grunt.name=¤ì½Ã¤@ªí­±ªd¤g
-tile.io_stone.name=¤ì½Ã¤@¥ÛÀY
-tile.io_ash.name=¤ì½Ã¤@¦ÇÂu
-tile.io_copper_ore.name=»ÉÄq
-tile.io_sulfur_ore.name=²¸Äq
-tile.io_volcanic_ore.name=¤õ¤s©¥Äq
-tile.io_lava_geyser.name=¤ì½Ã¤@©¥¼ß¼Q¬u
-tile.io_sulfur_geyser.name=¤ì½Ã¤@²¸¼Q¬u
-tile.io_top.name=¤ì½Ã¤@¦a¨c¤ÑªáªO
-tile.io_floor.name=¤ì½Ã¤@¦a¨c¦aªO
+tile.io_grunt.name=æœ¨è¡›ä¸€è¡¨é¢æ³¥åœŸ
+tile.io_stone.name=æœ¨è¡›ä¸€çŸ³é ­
+tile.io_ash.name=æœ¨è¡›ä¸€ç°ç‡¼
+tile.io_copper_ore.name=éŠ…ç¤¦
+tile.io_sulfur_ore.name=ç¡«ç¤¦
+tile.io_volcanic_ore.name=ç«å±±å²©ç¤¦
+tile.io_lava_geyser.name=æœ¨è¡›ä¸€å²©æ¼¿å™´æ³‰
+tile.io_sulfur_geyser.name=æœ¨è¡›ä¸€ç¡«å™´æ³‰
+tile.io_top.name=æœ¨è¡›ä¸€åœ°ç‰¢å¤©èŠ±æ¿
+tile.io_floor.name=æœ¨è¡›ä¸€åœ°ç‰¢åœ°æ¿
 
-tile.europa_grunt.name=¤ì½Ã¤Gªí­±¦B
-tile.europa_stone.name=¤ì½Ã¤G¥ÛÀY
-tile.europa_brown_ice.name=´Ä¦â¤ì½Ã¤G¦B
-tile.europa_emerald_ore.name=ºñÄ_¥ÛÄq
-tile.europa_silicon_ore.name=ª¿Äq
-tile.europa_aluminum_ore.name=¾TÄq
-tile.europa_geyser.name=¤ì½Ã¤G¼Q¬u
-tile.europa_uwgeyser.name=¤ì½Ã¤G¼Q¬u
+tile.europa_grunt.name=æœ¨è¡›äºŒè¡¨é¢å†°
+tile.europa_stone.name=æœ¨è¡›äºŒçŸ³é ­
+tile.europa_brown_ice.name=æ£•è‰²æœ¨è¡›äºŒå†°
+tile.europa_emerald_ore.name=ç¶ å¯¶çŸ³ç¤¦
+tile.europa_silicon_ore.name=çŸ½ç¤¦
+tile.europa_aluminum_ore.name=é‹ç¤¦
+tile.europa_geyser.name=æœ¨è¡›äºŒå™´æ³‰
+tile.europa_uwgeyser.name=æœ¨è¡›äºŒå™´æ³‰
 
-tile.ganymede_grunt.name=¤ì½Ã¤Tªí­±ªd¤g
-tile.ganymede_stone.name=¤ì½Ã¤T¥ÛÀY
-tile.ganymede_magnesium_ore.name=ÁâÄq
-tile.ganymede_titanium_ore.name=ÜgÅKÄq
+tile.ganymede_grunt.name=æœ¨è¡›ä¸‰è¡¨é¢æ³¥åœŸ
+tile.ganymede_stone.name=æœ¨è¡›ä¸‰çŸ³é ­
+tile.ganymede_magnesium_ore.name=é‚ç¤¦
+tile.ganymede_titanium_ore.name=éˆ¦éµç¤¦
 
-tile.callisto_grunt.name=¤ì½Ã¥|ªí­±ªd¤g
-tile.callisto_stone.name=¤ì½Ã¥|¥ÛÀY
+tile.callisto_grunt.name=æœ¨è¡›å››è¡¨é¢æ³¥åœŸ
+tile.callisto_stone.name=æœ¨è¡›å››çŸ³é ­
 
-tile.enceladus_snow.name=¤g½Ã¤G¦B
-tile.enceladus_grunt.name=¤g½Ã¤G¦a©³ªd¤g
-tile.enceladus_coal_ore.name=·Ñ¬´Äq
-tile.enceladus_crystal.name=¥¼ª¾¤ô´¹
+tile.enceladus_snow.name=åœŸè¡›äºŒå†°
+tile.enceladus_grunt.name=åœŸè¡›äºŒåœ°åº•æ³¥åœŸ
+tile.enceladus_coal_ore.name=ç…¤ç‚­ç¤¦
+tile.enceladus_crystal.name=æœªçŸ¥æ°´æ™¶
 
-tile.titan_grunt.name=¤g½Ã¤»ªí­±ªd¤g
-tile.titan_subgrunt.name=¤g½Ã¤»¦a©³ªd¤g
-tile.titan_stone.name=¤g½Ã¤»¥ÛÀY
-tile.titan_sapphire_ore.name=ÂÅÄ_¥ÛÄq
-tile.titan_emerald_ore.name=ºñÄ_¥ÛÄq
-tile.titan_diamond_ore.name=Æp¥ÛÄq
-tile.titan_coal_ore.name=·Ñ¬´Äq
-tile.titan_lapis_ore.name=«Cª÷¥ÛÄq
-tile.titan_redstone_ore.name=¬õ¥ÛÄq
+tile.titan_grunt.name=åœŸè¡›å…­è¡¨é¢æ³¥åœŸ
+tile.titan_subgrunt.name=åœŸè¡›å…­åœ°åº•æ³¥åœŸ
+tile.titan_stone.name=åœŸè¡›å…­çŸ³é ­
+tile.titan_sapphire_ore.name=è—å¯¶çŸ³ç¤¦
+tile.titan_emerald_ore.name=ç¶ å¯¶çŸ³ç¤¦
+tile.titan_diamond_ore.name=é‘½çŸ³ç¤¦
+tile.titan_coal_ore.name=ç…¤ç‚­ç¤¦
+tile.titan_lapis_ore.name=é’é‡‘çŸ³ç¤¦
+tile.titan_redstone_ore.name=ç´…çŸ³ç¤¦
 
-tile.miranda_grunt.name=¤Ñ½Ã¤­ªí­±ªd¤g
-tile.miranda_subgrunt.name=¤Ñ½Ã¤­¦a©³ªd¤g
-tile.miranda_stone.name=¤Ñ½Ã¤­¥ÛÀY
-tile.miranda_ice.name=¤Ñ½Ã¤­¦B
-tile.miranda_iron_ore.name=ÅKÄq
-tile.miranda_dolomite_ore.name=¥Õ¶³¥ÛÄq
-tile.miranda_diamond_ore.name=Æp¥ÛÄq
-tile.miranda_quartz_ore.name=¥Û­^Äq
-tile.miranda_cobalt_ore.name=¹WÄq
-tile.miranda_nickel_ore.name=ÂìÄq
+tile.miranda_grunt.name=å¤©è¡›äº”è¡¨é¢æ³¥åœŸ
+tile.miranda_subgrunt.name=å¤©è¡›äº”åœ°åº•æ³¥åœŸ
+tile.miranda_stone.name=å¤©è¡›äº”çŸ³é ­
+tile.miranda_ice.name=å¤©è¡›äº”å†°
+tile.miranda_iron_ore.name=éµç¤¦
+tile.miranda_dolomite_ore.name=ç™½é›²çŸ³ç¤¦
+tile.miranda_diamond_ore.name=é‘½çŸ³ç¤¦
+tile.miranda_quartz_ore.name=çŸ³è‹±ç¤¦
+tile.miranda_cobalt_ore.name=éˆ·ç¤¦
+tile.miranda_nickel_ore.name=é³ç¤¦
 
-tile.proxima_b_surface.name=¤ñ¾F¬PBªí­±
-tile.proxima_b_subsurface.name=¤ñ¾F¬PB¦a©³
-tile.proxima_b_stone.name=¤ñ¾F¬PB¥ÛÀY
-tile.proxima_b_ice_surface.name=¤ñ¾F¬PB¦Bªí­±
-tile.proxima_b_ash_rock.name=¤ñ¾F¬PB¦ÇÂu©¥¥Û
-tile.proxima_b_gold_ore.name=ª÷Äq
-tile.proxima_b_tin_ore.name=¿üÄq
-tile.proxima_b_copper_ore.name=»ÉÄq
-tile.proxima_b_coal_ore.name=·Ñ¬´Äq
-tile.proxima_b_silicon_ore.name=ª¿Äq
-tile.proxima_b_diamond_ore.name=Æp¥ÛÄq
-tile.proxima_b_log_1.name=µJ¤Æ­ì¤ì
-tile.proxima_b_log_2.name=§N­á­ì¤ì
+tile.proxima_b_surface.name=æ¯”é„°æ˜ŸBè¡¨é¢
+tile.proxima_b_subsurface.name=æ¯”é„°æ˜ŸBåœ°åº•
+tile.proxima_b_stone.name=æ¯”é„°æ˜ŸBçŸ³é ­
+tile.proxima_b_ice_surface.name=æ¯”é„°æ˜ŸBå†°è¡¨é¢
+tile.proxima_b_ash_rock.name=æ¯”é„°æ˜ŸBç°ç‡¼å²©çŸ³
+tile.proxima_b_gold_ore.name=é‡‘ç¤¦
+tile.proxima_b_tin_ore.name=éŒ«ç¤¦
+tile.proxima_b_copper_ore.name=éŠ…ç¤¦
+tile.proxima_b_coal_ore.name=ç…¤ç‚­ç¤¦
+tile.proxima_b_silicon_ore.name=çŸ½ç¤¦
+tile.proxima_b_diamond_ore.name=é‘½çŸ³ç¤¦
+tile.proxima_b_log_1.name=ç„¦åŒ–åŸæœ¨
+tile.proxima_b_log_2.name=å†·å‡åŸæœ¨
 
-tile.barnarda_c_grass.name=¤Ú¯Ç¼wC¯ó¦a
-tile.barnarda_c_dirt.name=¤Ú¯Ç¼wCªd¤g
-tile.barnarda_c_stone.name=¤Ú¯Ç¼wC¥ÛÀY
-tile.barnarda_c_sandstone.name=[WIP] ¤Ú¯Ç¼wC Sandstone
-tile.barnarda_c_dirt_1.name=[WIP] ¤Ú¯Ç¼wC ¤g
-tile.barnarda_c_cobblestone.name=¤Ú¯Ç¼wCÃZ§Z¥Û
-tile.barnarda_c_stone_bricks.name=¤Ú¯Ç¼wC¥Û¿j
-tile.barnarda_c_oak_planks.name=¤Ú¯Ç¼wC¤ìªO
-tile.barnarda_c_sand.name=¤Ú¯Ç¼wC¨F
-tile.barnarda_c_test_log.name=¤Ú¯Ç¼wCµµ¦â­ì¤ì
-tile.barnarda_c_test_glow_log.name=¤Ú¯Ç¼wCµµ¦âµo¥ú­ì¤ì
-tile.barnarda_c_tall_grass.name=¤Ú¯Ç¼wC°ª¯ó
-tile.barnarda_c_hopper_flower.name=¤Ú¯Ç¼wCº|¤æªá
-tile.barnarda_c_green_fern.name=¤Ú¯Ç¼wC ºñ¦â¿¹Ãş
-tile.barnarda_c_red_fern.name=¤Ú¯Ç¼wC ¬õ¦â¿¹Ãş
-tile.barnarda_c_light_balls.name=¤Ú¯Ç¼wC«G²y
-tile.barnarda_c_leaves_balls.name=¤Ú¯Ç¼wC¾ğ¸­²y
-tile.barnarda_c_desert_down.name=¤Ú¯Ç¼wC¨Fºzªá¦·
-tile.barnarda_c_desert_up.name=¤Ú¯Ç¼wC¨Fºzªá¦·
-tile.barnarda_c_yellow_grass_down.name=¤Ú¯Ç¼wC¶À¦â¯ó¦a
-tile.barnarda_c_yellow_grass_up.name=¤Ú¯Ç¼wC¶À¦â¯ó¦a
-tile.barnarda_c_violet_sapling.name=µµ¦â¾ğ¾ğ­]
-tile.barnarda_c_leaves_1.name=¤Ú¯Ç¼wC¾ğ¸­
-tile.barnarda_c_farmland.name=¤Ú¯Ç¼wC¹A¥Ğ
+tile.barnarda_c_grass.name=å·´ç´å¾·Cè‰åœ°
+tile.barnarda_c_dirt.name=å·´ç´å¾·Cæ³¥åœŸ
+tile.barnarda_c_stone.name=å·´ç´å¾·CçŸ³é ­
+tile.barnarda_c_sandstone.name=[WIP] å·´ç´å¾·C Sandstone
+tile.barnarda_c_dirt_1.name=[WIP] å·´ç´å¾·C åœŸ
+tile.barnarda_c_cobblestone.name=å·´ç´å¾·CéµåµçŸ³
+tile.barnarda_c_stone_bricks.name=å·´ç´å¾·CçŸ³ç£š
+tile.barnarda_c_oak_planks.name=å·´ç´å¾·Cæœ¨æ¿
+tile.barnarda_c_sand.name=å·´ç´å¾·Cæ²™
+tile.barnarda_c_test_log.name=å·´ç´å¾·Cç´«è‰²åŸæœ¨
+tile.barnarda_c_test_glow_log.name=å·´ç´å¾·Cç´«è‰²ç™¼å…‰åŸæœ¨
+tile.barnarda_c_tall_grass.name=å·´ç´å¾·Cé«˜è‰
+tile.barnarda_c_hopper_flower.name=å·´ç´å¾·Cæ¼æ–—èŠ±
+tile.barnarda_c_green_fern.name=å·´ç´å¾·C ç¶ è‰²è•¨é¡
+tile.barnarda_c_red_fern.name=å·´ç´å¾·C ç´…è‰²è•¨é¡
+tile.barnarda_c_light_balls.name=å·´ç´å¾·Cäº®çƒ
+tile.barnarda_c_leaves_balls.name=å·´ç´å¾·Cæ¨¹è‘‰çƒ
+tile.barnarda_c_desert_down.name=å·´ç´å¾·Cæ²™æ¼ èŠ±æœµ
+tile.barnarda_c_desert_up.name=å·´ç´å¾·Cæ²™æ¼ èŠ±æœµ
+tile.barnarda_c_yellow_grass_down.name=å·´ç´å¾·Cé»ƒè‰²è‰åœ°
+tile.barnarda_c_yellow_grass_up.name=å·´ç´å¾·Cé»ƒè‰²è‰åœ°
+tile.barnarda_c_violet_sapling.name=ç´«è‰²æ¨¹æ¨¹è‹—
+tile.barnarda_c_leaves_1.name=å·´ç´å¾·Cæ¨¹è‘‰
+tile.barnarda_c_farmland.name=å·´ç´å¾·Cè¾²ç”°
 
 |/////////////////////////////////////////|
 #||||||||||||Tile Description||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-tile.assembly_machine.name=²Õ¦X¾÷
-tile.assembly_machine.desc=À£ÁY¾÷ªº§ïª©¡C ¨Ï¥Î°ª±j«×¹p®gº²¤Æª÷Äİ
+tile.assembly_machine.name=çµ„åˆæ©Ÿ
+tile.assembly_machine.desc=å£“ç¸®æ©Ÿçš„æ”¹ç‰ˆã€‚ ä½¿ç”¨é«˜å¼·åº¦é›·å°„ç†”åŒ–é‡‘å±¬
 
-tile.fuel_generator.name=¿Uªoµo¹q¾÷
-tile.fuel_generator.desc=¿Uªoµo¹q¾÷®ø¯Ó¿Uªo¨Ã²£¥Í¤j¶q¯à¶q¡C¿Uªo¤j¦ëªº¦n¿ï¾Ü¡C
+tile.fuel_generator.name=ç‡ƒæ²¹ç™¼é›»æ©Ÿ
+tile.fuel_generator.desc=ç‡ƒæ²¹ç™¼é›»æ©Ÿæ¶ˆè€—ç‡ƒæ²¹ä¸¦ç”¢ç”Ÿå¤§é‡èƒ½é‡ã€‚ç‡ƒæ²¹å¤§äº¨çš„å¥½é¸æ“‡ã€‚
 
-tile.modern_solarpanel.name=½Æ¦X¦¡¤Ó¶§¯àªO
-tile.modern_solarpanel.desc=ÂĞ»\µÛª÷¦â²V¦X­±ªO¡A²£¥Íªº¯à¶q¬O°ª¯Å¤Ó¶§¯àªOªº¨â­¿¡C
+tile.modern_solarpanel.name=è¤‡åˆå¼å¤ªé™½èƒ½æ¿
+tile.modern_solarpanel.desc=è¦†è“‹è‘—é‡‘è‰²æ··åˆé¢æ¿ï¼Œç”¢ç”Ÿçš„èƒ½é‡æ˜¯é«˜ç´šå¤ªé™½èƒ½æ¿çš„å…©å€ã€‚
 
-tile.gravitation_module.name=­«¤O¼Ò²Õ
-tile.gravitation_module.desc=¦b¦U«ü©wªº¥b®|¤º³Ğ«ØÃş¦ü¦a²yªº­«¤O³õ¡C
+tile.gravitation_module.name=é‡åŠ›æ¨¡çµ„
+tile.gravitation_module.desc=åœ¨å„æŒ‡å®šçš„åŠå¾‘å…§å‰µå»ºé¡ä¼¼åœ°çƒçš„é‡åŠ›å ´ã€‚
 
-tile.wind_generator.name=­·¤Oµo¹q¾÷
-tile.wind_generator.desc=±q®ğ¬y¤¤²£¥Í¯à¶q¡C¦æ¬P¤Wªº°®²b¯à­û¡C
+tile.wind_generator.name=é¢¨åŠ›ç™¼é›»æ©Ÿ
+tile.wind_generator.desc=å¾æ°£æµä¸­ç”¢ç”Ÿèƒ½é‡ã€‚è¡Œæ˜Ÿä¸Šçš„ä¹¾æ·¨èƒ½å“¡ã€‚
 
-tile.rocket_assembler.name=¤õ½b²Õ¦X¾÷
-tile.rocket_assembler.desc=¦¬¶°±qNASA¤u§@»O»s³yªº¹s¥ó²Õ¦X¤õ½b¡C
+tile.rocket_assembler.name=ç«ç®­çµ„åˆæ©Ÿ
+tile.rocket_assembler.desc=æ”¶é›†å¾NASAå·¥ä½œè‡ºè£½é€ çš„é›¶ä»¶çµ„åˆç«ç®­ã€‚
 
-tile.universal_recycler.name=¸U¯à¦^¦¬¾÷
-tile.universal_recycler.desc=±N¤@¶µ¸ê·½Âà´«¦¨¥t¤@¶µ¸ê·½¡C¤]¥i¥H±N§÷®Æ¦^¦¬¦¨²GÅé¡C
+tile.universal_recycler.name=è¬èƒ½å›æ”¶æ©Ÿ
+tile.universal_recycler.desc=å°‡ä¸€é …è³‡æºè½‰æ›æˆå¦ä¸€é …è³‡æºã€‚ä¹Ÿå¯ä»¥å°‡ææ–™å›æ”¶æˆæ¶²é«”ã€‚
 
-tile.liquid_extractor.name=²GÅé©â¨ú¾¹
-tile.liquid_extractor.desc=±q¦Û¨­©³¤U¦¬¶°²GÅé
+tile.liquid_extractor.name=æ¶²é«”æŠ½å–å™¨
+tile.liquid_extractor.desc=å¾è‡ªèº«åº•ä¸‹æ”¶é›†æ¶²é«”
 
-tile.liquid_separator.name=²GÅé¤ÀÂ÷¾¹
-tile.liquid_separator.desc=±N¤@ºØ²GÅé¤ÀÂ÷¦¨¨ä²Õ¦¨³¡¤À©Î±N³o¨Ç³¡¤À²Õ¦X¦b¤@°_¡C
+tile.liquid_separator.name=æ¶²é«”åˆ†é›¢å™¨
+tile.liquid_separator.desc=å°‡ä¸€ç¨®æ¶²é«”åˆ†é›¢æˆå…¶çµ„æˆéƒ¨åˆ†æˆ–å°‡é€™äº›éƒ¨åˆ†çµ„åˆåœ¨ä¸€èµ·ã€‚
 
-tile.rocket_assembler.name=¤õ½b²Õ¦X¾÷
-tile.rocket_assembler.desc=¦¬¶°±qNASA¤u§@»O»s³yªº¹s¥ó²Õ¦X¤õ½b¡C
+tile.rocket_assembler.name=ç«ç®­çµ„åˆæ©Ÿ
+tile.rocket_assembler.desc=æ”¶é›†å¾NASAå·¥ä½œè‡ºè£½é€ çš„é›¶ä»¶çµ„åˆç«ç®­ã€‚
 
-tile.hydroponic_base.name=¤ô°ö°ò®y
-tile.hydroponic_base.desc=¤ô°ö¹A³õªº°ò©³¤è¶ô¡C ¦b¤W¤è¦w¸Ë¹A³õ¤è¶ô¡C
+tile.hydroponic_base.name=æ°´åŸ¹åŸºåº§
+tile.hydroponic_base.desc=æ°´åŸ¹è¾²å ´çš„åŸºåº•æ–¹å¡Šã€‚ åœ¨ä¸Šæ–¹å®‰è£è¾²å ´æ–¹å¡Šã€‚
 
-tile.hydroponic_farm.name=¤ô°ö¹A³õ¤è¶ô
-tile.hydroponic_farm.desc=¦w¸Ë¦b¤ô°ö°ò®yªº³»³¡¡C ¬O¤ô¯Ñ¹A³õ¹B§@ªº¥²­n³]³Æ¡C³Ì¦h¥i¥H³]¸m3¼h¡C
+tile.hydroponic_farm.name=æ°´åŸ¹è¾²å ´æ–¹å¡Š
+tile.hydroponic_farm.desc=å®‰è£åœ¨æ°´åŸ¹åŸºåº§çš„é ‚éƒ¨ã€‚ æ˜¯æ°´è€•è¾²å ´é‹ä½œçš„å¿…è¦è¨­å‚™ã€‚æœ€å¤šå¯ä»¥è¨­ç½®3å±¤ã€‚
 
-tile.radiation_stabiliser.name=ºÏ³õ²£¥Í¾¹
-tile.radiation_stabiliser.desc=³Ğ«Ø¤@­Ó¨¾¤î«í¬P¿ç®gªº¤O³õ¡C ¤ä«ù¼Ò¶ôÂX®i½d³ò¡C
+tile.radiation_stabiliser.name=ç£å ´ç”¢ç”Ÿå™¨
+tile.radiation_stabiliser.desc=å‰µå»ºä¸€å€‹é˜²æ­¢æ†æ˜Ÿè¼»å°„çš„åŠ›å ´ã€‚ æ”¯æŒæ¨¡å¡Šæ“´å±•ç¯„åœã€‚
 
-tile.panel_controller.name=°g§A­±ªO±±¨î¾¹
-tile.panel_controller.desc=±qªşªñªº¤Ó¶§¯à·L«¬­±ªOÀò¨ú¯à¶q¡C ±z¥i¥H³q¹L«öShift+¥kÁä¨Ó¬d¬İ°Ï°ì¡C
+tile.panel_controller.name=è¿·ä½ é¢æ¿æ§åˆ¶å™¨
+tile.panel_controller.desc=å¾é™„è¿‘çš„å¤ªé™½èƒ½å¾®å‹é¢æ¿ç²å–èƒ½é‡ã€‚ æ‚¨å¯ä»¥é€šéæŒ‰Shift+å³éµä¾†æŸ¥çœ‹å€åŸŸã€‚
 
-tile.single_solarpanel.name=¤Ó¶§¯à·L«¬­±ªO
-tile.single_solarpanel.desc=¤Ó¶§¯àªOªº¤@­ÓÅÜ§Î¡C »İ­n°g§A­±ªO±±¨î¾¹¡C
+tile.single_solarpanel.name=å¤ªé™½èƒ½å¾®å‹é¢æ¿
+tile.single_solarpanel.desc=å¤ªé™½èƒ½æ¿çš„ä¸€å€‹è®Šå½¢ã€‚ éœ€è¦è¿·ä½ é¢æ¿æ§åˆ¶å™¨ã€‚
 
-tile.modern_single_solarpanel.name=²{¥N¤Ó¶§¯à·L«¬­±ªO
-tile.modern_single_solarpanel.desc=¤ñ´¶³qª©¥»§ó¦³®Ä²v¡C »İ­n°g§A­±ªO±±¨î¾¹¡C
+tile.modern_single_solarpanel.name=ç¾ä»£å¤ªé™½èƒ½å¾®å‹é¢æ¿
+tile.modern_single_solarpanel.desc=æ¯”æ™®é€šç‰ˆæœ¬æ›´æœ‰æ•ˆç‡ã€‚ éœ€è¦è¿·ä½ é¢æ¿æ§åˆ¶å™¨ã€‚
 
-tile.modern_storage_module.name=²{¥N¯à·½ÁL
-tile.modern_storage_module.desc=¯à·½ÁLªº²{¥Nª©¥»¡C¯à¦sÀx¤j¶q¯à¶q¡C
+tile.modern_storage_module.name=ç¾ä»£èƒ½æºç°‡
+tile.modern_storage_module.desc=èƒ½æºç°‡çš„ç¾ä»£ç‰ˆæœ¬ã€‚èƒ½å­˜å„²å¤§é‡èƒ½é‡ã€‚
 
-tile.modification_table.name=§ï³y®à
-tile.modification_table.desc=¤¹³\±z¦b¥i­×§ï³yª««~¤¤¦w¸Ë¼Ò²Õ¡C
+tile.modification_table.name=æ”¹é€ æ¡Œ
+tile.modification_table.desc=å…è¨±æ‚¨åœ¨å¯ä¿®æ”¹é€ ç‰©å“ä¸­å®‰è£æ¨¡çµ„ã€‚
 
-tile.gas_burner.name=®ğÅé¿U¿N¾¹
-tile.gas_burner.desc=¿U¿N¨ÑÀ³ªº®ğÅé¡C
+tile.gas_burner.name=æ°£é«”ç‡ƒç‡’å™¨
+tile.gas_burner.desc=ç‡ƒç‡’ä¾›æ‡‰çš„æ°£é«”ã€‚
 
-tile.oxygen_storage_module_1.name=Àx®ñÁL
-tile.oxygen_storage_module_1.desc=®ñ®ğÀx¦s¼Ò²Õªº§ï¶iª©¥»¡C¥i¥H¦sÀx4­¿ªº®ñ®ğ¡C
+tile.oxygen_storage_module_1.name=å„²æ°§ç°‡
+tile.oxygen_storage_module_1.desc=æ°§æ°£å„²å­˜æ¨¡çµ„çš„æ”¹é€²ç‰ˆæœ¬ã€‚å¯ä»¥å­˜å„²4å€çš„æ°§æ°£ã€‚
 
-tile.solarwind_panel.name=¤Ó¶§­·ªO
-tile.solarwind_panel.desc=±N¤Ó¶§­·Âà´«¦¨¯à·½¡C¤£¥i¦b¦³¤j®ğ¼hªº¬P²y¤W¤u§@
+tile.solarwind_panel.name=å¤ªé™½é¢¨æ¿
+tile.solarwind_panel.desc=å°‡å¤ªé™½é¢¨è½‰æ›æˆèƒ½æºã€‚ä¸å¯åœ¨æœ‰å¤§æ°£å±¤çš„æ˜Ÿçƒä¸Šå·¥ä½œ
 
-tile.advanced_landing_pad.name=°ª¯Åµo®g¥­¥x
-tile.advanced_landing_pad.desc=¤õ½bªº°ª¯Åµo®g¥­¥x¡CÂ\©ñ¦¨5x5¡C
+tile.advanced_landing_pad.name=é«˜ç´šç™¼å°„å¹³å°
+tile.advanced_landing_pad.desc=ç«ç®­çš„é«˜ç´šç™¼å°„å¹³å°ã€‚æ“ºæ”¾æˆ5x5ã€‚
 
-tile.adv_circuit_fabricator.name=°ª¯Å¤¸¥ó»s³y¥x
-tile.adv_circuit_fabricator.desc=°ª¯Åª©¥»¤¸¥ó»s³y¥x¡C2­¿®Ä²v¡C¤ä´©¼Ò²Õ¡C
+tile.adv_circuit_fabricator.name=é«˜ç´šå…ƒä»¶è£½é€ å°
+tile.adv_circuit_fabricator.desc=é«˜ç´šç‰ˆæœ¬å…ƒä»¶è£½é€ å°ã€‚2å€æ•ˆç‡ã€‚æ”¯æ´æ¨¡çµ„ã€‚
 
-tile.adv_electric_compressor.name=°ª¯Å¹q°ÊÀ£ÁY¾÷
-tile.adv_electric_compressor.desc=°ª¯Åª©¥»¹q°ÊÀ£ÁY¾÷¡C2­¿®Ä²v¡C¤ä´©¼Ò²Õ¡C
+tile.adv_electric_compressor.name=é«˜ç´šé›»å‹•å£“ç¸®æ©Ÿ
+tile.adv_electric_compressor.desc=é«˜ç´šç‰ˆæœ¬é›»å‹•å£“ç¸®æ©Ÿã€‚2å€æ•ˆç‡ã€‚æ”¯æ´æ¨¡çµ„ã€‚
 
-tile.planet_shield.name=¦æ¬PÅ@¬Ş
-tile.planet_shield.desc=«OÅ@°Ï°ì§K©ó¼Y¸¨ªº¹k¥Û
+tile.planet_shield.name=è¡Œæ˜Ÿè­·ç›¾
+tile.planet_shield.desc=ä¿è­·å€åŸŸå…æ–¼å¢œè½çš„éš•çŸ³
 
 tile.port_nuclear_reactor.name=[WIP] Portable Nuclear Reactor
 
-tile.basic_frame.name=°òÂ¦¾÷±ñ¼Ò¶ô
-tile.advance_frame.name=°ª¯Å¾÷±ñ¼Ò¶ô
-tile.modern_frame.name=²{¥N¾÷±ñ¼Ò¶ô
-tile.coefficient.desc=C¥Í¦¨«Y¼Æ
-tile.coefficientcraft.desc=³t«×«Y¼Æ
+tile.basic_frame.name=åŸºç¤æ©Ÿæ¢°æ¨¡å¡Š
+tile.advance_frame.name=é«˜ç´šæ©Ÿæ¢°æ¨¡å¡Š
+tile.modern_frame.name=ç¾ä»£æ©Ÿæ¢°æ¨¡å¡Š
+tile.coefficient.desc=Cç”Ÿæˆä¿‚æ•¸
+tile.coefficientcraft.desc=é€Ÿåº¦ä¿‚æ•¸
 
-tile.ceres_bricks.name=½\¯«¬P Dungeon Brick
-tile.io_bricks.name=[WIP] ¤ì½Ã¤@ Dungeon Brick
+tile.ceres_bricks.name=ç©€ç¥æ˜Ÿ Dungeon Brick
+tile.io_bricks.name=[WIP] æœ¨è¡›ä¸€ Dungeon Brick
 
-tile.treasure_t4.name=¥|¶¥Ä_½c
-tile.treasure_t4.desc=¥|¶¥Ä_½c·|¥Í¦¨¦bâB¯«¬P¦a¨c¡C¥i¦bÀ»±Ñ³Ì²×BOSS«á¶}±Ò¡C
+tile.treasure_t4.name=å››éšå¯¶ç®±
+tile.treasure_t4.desc=å››éšå¯¶ç®±æœƒç”Ÿæˆåœ¨æ¦–ç¥æ˜Ÿåœ°ç‰¢ã€‚å¯åœ¨æ“Šæ•—æœ€çµ‚BOSSå¾Œé–‹å•Ÿã€‚
 
 |/////////////////////////////////////////|
 #|||||||||||||||||Items||||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 
-item.schematics.name=NASA¤u§@»O¹Ï¯È
+item.schematics.name=NASAå·¥ä½œè‡ºåœ–ç´™
 item.hdp.name=Heavy Duty Plate
 item.dungeon_keys.name=Dungeon Key
 
-item.rocket_tier_4.name=¥|¶¥¤õ½b
-item.rocket_tier_5.name=¤­¶¥¤õ½b
-item.rocket_tier_6.name=¤»¶¥¤õ½b
+item.rocket_tier_4.name=å››éšç«ç®­
+item.rocket_tier_5.name=äº”éšç«ç®­
+item.rocket_tier_6.name=å…­éšç«ç®­
 
-item.space_suit_head.name=¤ÓªÅ¸ËÀY²¯
-item.space_suit_chest.name=¤ÓªÅ¸Ë¯İ¥Ò
-item.space_suit_legs.name=¤ÓªÅ¸ËÅ@»L
-item.space_suit_feet.name=¤ÓªÅ¸Ë¹u¤l
+item.space_suit_head.name=å¤ªç©ºè£é ­ç›”
+item.space_suit_chest.name=å¤ªç©ºè£èƒ¸ç”²
+item.space_suit_legs.name=å¤ªç©ºè£è­·è…¿
+item.space_suit_feet.name=å¤ªç©ºè£é´å­
 
-item.jetpack.name=¹q¤O¼Q®g­I¥]
+item.jetpack.name=é›»åŠ›å™´å°„èƒŒåŒ…
 
-item.cobalt_helmet.name=¹WÀY²¯
-item.cobalt_chest.name=¹W¯İ¥Ò
-item.cobalt_legs.name=¹WÅ@»L
-item.cobalt_boots.name=¹W¹u¤l
+item.cobalt_helmet.name=éˆ·é ­ç›”
+item.cobalt_chest.name=éˆ·èƒ¸ç”²
+item.cobalt_legs.name=éˆ·è­·è…¿
+item.cobalt_boots.name=éˆ·é´å­
 
-item.cobalt_axe.name=¹W©ò
-item.cobalt_hoe.name=¹W¾S
-item.cobalt_pickaxe.name=¹WÂî
-item.cobalt_sword.name=¹W¼C
-item.cobalt_spade.name=¹WÃê
+item.cobalt_axe.name=éˆ·æ–§
+item.cobalt_hoe.name=éˆ·é‹¤
+item.cobalt_pickaxe.name=éˆ·é¬
+item.cobalt_sword.name=éˆ·åŠ
+item.cobalt_spade.name=éˆ·éŸ
 
-item.nickel_ingot.name=Âì¿õ
-item.cobaltum_ingot.name=¹W¿õ
-item.magnesium_ingot.name=Áâ¿õ
-item.uranium_ingot.name=¹\¿õ
+item.nickel_ingot.name=é³éŒ 
+item.cobaltum_ingot.name=éˆ·éŒ 
+item.magnesium_ingot.name=é‚éŒ 
+item.uranium_ingot.name=éˆ¾éŒ 
 
-item.compressed_nickel.name=½o±KÂì
-item.compressed_cobaltum.name=½o±K¹W
-item.compressed_magnesium.name=½o±KÁâ
-item.compressed_coal.name=½o±K·Ñ¬´
-item.compressed_sdhd120.name=½o±K"SDHC-120"¦Xª÷
-item.unknow_crystal.name=¥¼ª¾¤ô´¹¸H¤ù
-item.sulfur.name=²¸
-item.module_electrolyse.name=¼Ò²Õ"Electrolyse"
-item.dolomite_crystal.name=¥Õ¶³¥Û¤ô´¹
-item.dolomite_meal.name=¥Õ¶³¥Û¯»
-item.wafer_modern.name=²{¥N´¹¶ê
-item.hematite.name=¨ªÅKÄq
-item.antiradiation_tablets.name=§Ü¿ç®g¤ù
-item.schematic_box.name=¹Ï¯È½c
-item.module_base.name=ªÅ¥Õ¼Ò²Õ
-item.blank_schematic.name=ªÅ¥Õ¹Ï¯È
-item.volcanic_stone.name=¤õ¤s©¥¸H¤ù
-item.meteoric_iron_fragments.name=¹kÅK¸H¤ù
-item.uranium_fragments.name=¹\
-item.temp_shield_control.name=­ì«¬Å@¬Ş±±¨î¾¹
-item.ice_bucket.name=¦B±í
-item.emergency_portable_teleport.name=«KÄâ¦¡ºò«æ¶Ç°e¾¹
+item.compressed_nickel.name=ç·»å¯†é³
+item.compressed_cobaltum.name=ç·»å¯†éˆ·
+item.compressed_magnesium.name=ç·»å¯†é‚
+item.compressed_coal.name=ç·»å¯†ç…¤ç‚­
+item.compressed_sdhd120.name=ç·»å¯†"SDHC-120"åˆé‡‘
+item.unknow_crystal.name=æœªçŸ¥æ°´æ™¶ç¢ç‰‡
+item.sulfur.name=ç¡«
+item.module_electrolyse.name=æ¨¡çµ„"Electrolyse"
+item.dolomite_crystal.name=ç™½é›²çŸ³æ°´æ™¶
+item.dolomite_meal.name=ç™½é›²çŸ³ç²‰
+item.wafer_modern.name=ç¾ä»£æ™¶åœ“
+item.hematite.name=èµ¤éµç¤¦
+item.antiradiation_tablets.name=æŠ—è¼»å°„ç‰‡
+item.schematic_box.name=åœ–ç´™ç®±
+item.module_base.name=ç©ºç™½æ¨¡çµ„
+item.blank_schematic.name=ç©ºç™½åœ–ç´™
+item.volcanic_stone.name=ç«å±±å²©ç¢ç‰‡
+item.meteoric_iron_fragments.name=éš•éµç¢ç‰‡
+item.uranium_fragments.name=éˆ¾
+item.temp_shield_control.name=åŸå‹è­·ç›¾æ§åˆ¶å™¨
+item.ice_bucket.name=å†°æ¡¶
+item.emergency_portable_teleport.name=ä¾¿æ”œå¼ç·Šæ€¥å‚³é€å™¨
 item.guide_book.name=[WIP] Info-Pad
-item.advanced_emergency_kit.name=°ª¯Å«æ±Ï¥]
-item.oxygen_ice_crystal.name=®ñ¦B¸H¤ù
-item.nitrogen_ice_crystal.name=´á¦B¸H¤ù
-item.methane_ice_crystal.name=¥ÒÖJ¦B¸H¤ù
-item.hydrogen_ice_crystal.name=²B¦B¸H¤ù
-item.dry_ice_crystal.name=°®¦B¸H¤ù
+item.advanced_emergency_kit.name=é«˜ç´šæ€¥æ•‘åŒ…
+item.oxygen_ice_crystal.name=æ°§å†°ç¢ç‰‡
+item.nitrogen_ice_crystal.name=æ°®å†°ç¢ç‰‡
+item.methane_ice_crystal.name=ç”²çƒ·å†°ç¢ç‰‡
+item.hydrogen_ice_crystal.name=æ°«å†°ç¢ç‰‡
+item.dry_ice_crystal.name=ä¹¾å†°ç¢ç‰‡
 
-item.module_expander.name=¼Ò²Õ"Expander"
-item.module_stabiliser.name=¼Ò²Õ"Stabilization"
-item.module_speed.name=¼Ò²Õ"³t«×"
-item.module_energy.name=¼Ò²Õ"¯à·½"
+item.module_expander.name=æ¨¡çµ„"Expander"
+item.module_stabiliser.name=æ¨¡çµ„"Stabilization"
+item.module_speed.name=æ¨¡çµ„"é€Ÿåº¦"
+item.module_energy.name=æ¨¡çµ„"èƒ½æº"
 
-item.module_small_fuelcanister.name=¤p«¬¿UªoÅø
-item.module_smallcanister.name=ªÅ¥Õªo½c
-item.module_lander_1.name=¤@¶¥µn³°¾¹
-item.module_lander_2.name=¤G¶¥µn³°¾¹ 
-item.module_lander_3.name=¤T¶¥µn³°¾¹
-item.ion_engine.name=Â÷¤l¤ŞÀº
+item.module_small_fuelcanister.name=å°å‹ç‡ƒæ²¹ç½
+item.module_smallcanister.name=ç©ºç™½æ²¹ç®±
+item.module_lander_1.name=ä¸€éšç™»é™¸å™¨
+item.module_lander_2.name=äºŒéšç™»é™¸å™¨ 
+item.module_lander_3.name=ä¸‰éšç™»é™¸å™¨
+item.ion_engine.name=é›¢å­å¼•æ“
 item.plasma_engine.name=[WIP] Plasma Engine
-item.sublight_engine.name=¨È¥ú³t¤ŞÀº
+item.sublight_engine.name=äºå…‰é€Ÿå¼•æ“
 item.blackhole_engine.name=[WIP] Black Hole Engine
  
-item.rocket_cone.name=­@¥Î»óÀ@
-item.rocket_body.name=­@¥Î¤õ½b²îÅé
-item.rocket_engine.name=­@¥Î¤õ½b¤ŞÀº
-item.rocket_booster.name=­««¬±À¶i¾¹
-item.rocket_stabiliser.name=­@¥Î¤õ½b§ÀÁl
+item.rocket_cone.name=è€ç”¨é¼»éŒ
+item.rocket_body.name=è€ç”¨ç«ç®­èˆ¹é«”
+item.rocket_engine.name=è€ç”¨ç«ç®­å¼•æ“
+item.rocket_booster.name=é‡å‹æ¨é€²å™¨
+item.rocket_stabiliser.name=è€ç”¨ç«ç®­å°¾ç¿¼
 
-item.part_solarflares.name=Ä£´³¼Ò²Õ
-item.solarflares.name=Ä£´³
+item.part_solarflares.name=è€€æ–‘æ¨¡çµ„
+item.solarflares.name=è€€æ–‘
 
-item.oxygen_tank_4.name=¶W­««¬®ñ®ğÅø
-item.oxygen_tank_5.name=·¥­««¬®ñ®ğÅø
-item.oxygen_tank_6.name=¶W·¥­««¬®ñ®ğÅø
-item.oxygen_tank_epp_1.name=Àô«O®ñ®ğÅø
+item.oxygen_tank_4.name=è¶…é‡å‹æ°§æ°£ç½
+item.oxygen_tank_5.name=æ¥µé‡å‹æ°§æ°£ç½
+item.oxygen_tank_6.name=è¶…æ¥µé‡å‹æ°§æ°£ç½
+item.oxygen_tank_epp_1.name=ç’°ä¿æ°§æ°£ç½
 
-item.advanced_battery.name=°ª¯Å¹q¦À
-item.modern_battery.name=²{¥N¹q¦À
-item.extra_battery.name=ºë­^¹q¦À
-item.ultimate_battery.name=²×·¥¹q¦À
+item.advanced_battery.name=é«˜ç´šé›»æ± 
+item.modern_battery.name=ç¾ä»£é›»æ± 
+item.extra_battery.name=ç²¾è‹±é›»æ± 
+item.ultimate_battery.name=çµ‚æ¥µé›»æ± 
 
-item.hydrogen_canister.name=²B®ğÅø
-item.ethane_canister.name=¤AÖJÅø
-item.em_canister.name=¤AÖJ-¥ÒÖJÅø
-item.helium_canister.name=®ó-3Åø
-item.hh_canister.name=®ó-²BÅø
+item.hydrogen_canister.name=æ°«æ°£ç½
+item.ethane_canister.name=ä¹™çƒ·ç½
+item.em_canister.name=ä¹™çƒ·-ç”²çƒ·ç½
+item.helium_canister.name=æ°¦-3ç½
+item.hh_canister.name=æ°¦-æ°«ç½
 
 item.violet_reeds.name=Violet Reeds
-item.water_grass.name=Water ¯ó¦a
-item.yellow_fruits.name=¶À¦â Fruits
+item.water_grass.name=Water è‰åœ°
+item.yellow_fruits.name=é»ƒè‰² Fruits
 |/////////////////////////////////////////|
 #||||||||||||||||||Fluids||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-fluid.helium3=®ó-3
-fluid.ethane=¤AÖJ
-fluid.liquidethanemethane=²GºA¤AÖJ-¥ÒÖJ
-fluid.heliumhydrogen=²GºA®ó-²B®ğ
+fluid.helium3=æ°¦-3
+fluid.ethane=ä¹™çƒ·
+fluid.liquidethanemethane=æ¶²æ…‹ä¹™çƒ·-ç”²çƒ·
+fluid.heliumhydrogen=æ¶²æ…‹æ°¦-æ°«æ°£
 |/////////////////////////////////////////|
 #||||||||||||||||Potions|||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-effect.antiradiation=§Ü¿ç®g
+effect.antiradiation=æŠ—è¼»å°„
 
 |/////////////////////////////////////////|
 #|||||||||||||||||GUI||||||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 gui.schematic_oxtanks.desc=Oxygen EPP Tank
 
-gui.tier1.desc=¤@¶¥
-gui.tier2.desc=¤G¶¥
-gui.tier3.desc=¤T¶¥
-gui.tier4.desc=¥|¶¥
-gui.tier5.desc=¤­¶¥
-gui.tier6.desc=¤»¶¥
+gui.tier1.desc=ä¸€éš
+gui.tier2.desc=äºŒéš
+gui.tier3.desc=ä¸‰éš
+gui.tier4.desc=å››éš
+gui.tier5.desc=äº”éš
+gui.tier6.desc=å…­éš
 
-gui.bonemeal.desc=¦ü¥G¸Óª««~ªº§@¥ÎÃş¦ü©ó°©¯»¡C
-gui.schematic_box.desc=¥]§t¤õ½bªº°ò¥»¹Ï¯È¡C¥kÁä¶}±Ò¡C
+gui.bonemeal.desc=ä¼¼ä¹è©²ç‰©å“çš„ä½œç”¨é¡ä¼¼æ–¼éª¨ç²‰ã€‚
+gui.schematic_box.desc=åŒ…å«ç«ç®­çš„åŸºæœ¬åœ–ç´™ã€‚å³éµé–‹å•Ÿã€‚
 
-gui.spacesuit.desc=°ª±j«×®M¸Ë¡C Ã­©w¤j®ğÀ£¤O¨Ã¼W¥[¹ï«í¬P¿ç®gªº¨¾Å@¡C
-gui.spacesuit_helmet.desc=ÀY²¯¤¹³\§A¦b¤ô¤U«İ§ó¤[¡C
+gui.spacesuit.desc=é«˜å¼·åº¦å¥—è£ã€‚ ç©©å®šå¤§æ°£å£“åŠ›ä¸¦å¢åŠ å°æ†æ˜Ÿè¼»å°„çš„é˜²è­·ã€‚
+gui.spacesuit_helmet.desc=é ­ç›”å…è¨±ä½ åœ¨æ°´ä¸‹å¾…æ›´ä¹…ã€‚
 
-gui.module_expander.desc=¼Ò²Õ"Expander"ªº´¡¼Ñ¡C ¼W¥[ºÏ³õ½d³ò¡C
-gui.module_pressure.desc=¼Ò²Õ"Stabilization"ªº´¡¼Ñ¡C ³Ğ«Ø¤@­ÓÃ­©w¤j®ğÀ£¤Oªº«OÅ@¼h¡C
-gui.temp_shield_control.desc=´£¨Ñ¨¾¤î¤j®ğ»G»kªº«OÅ@¡A¦ı·|ÀHµÛ®É¶¡ªº¬y³u¦Ó´î®z¡C
-gui.emergency_portable_teleport.desc=ºò«æ¶Ç°e¨ì¼Ğ©wÂI¡C ¾A¥Î©óHP<6¡CShift + ¥kÁä³æÀ»¥i¥H¦b¥ô¦ó¤è¶ô¶ô¤W¼Ğ©wÂI-±Ò¥Î/¸T¥Î¡C
-gui.planet_shield_stability_1.desc=¦pªG¦w¸Ë¼Ò²Õ"Stabilization"
-gui.planet_shield_stability_2.desc=¨¾Å@¸n±N·|¦¬¶°¹k¥Û¸H¤ù¡C
+gui.module_expander.desc=æ¨¡çµ„"Expander"çš„æ’æ§½ã€‚ å¢åŠ ç£å ´ç¯„åœã€‚
+gui.module_pressure.desc=æ¨¡çµ„"Stabilization"çš„æ’æ§½ã€‚ å‰µå»ºä¸€å€‹ç©©å®šå¤§æ°£å£“åŠ›çš„ä¿è­·å±¤ã€‚
+gui.temp_shield_control.desc=æä¾›é˜²æ­¢å¤§æ°£è…è•çš„ä¿è­·ï¼Œä½†æœƒéš¨è‘—æ™‚é–“çš„æµé€è€Œæ¸›å¼±ã€‚
+gui.emergency_portable_teleport.desc=ç·Šæ€¥å‚³é€åˆ°æ¨™å®šé»ã€‚ é©ç”¨æ–¼HP<6ã€‚Shift + å³éµå–®æ“Šå¯ä»¥åœ¨ä»»ä½•æ–¹å¡Šå¡Šä¸Šæ¨™å®šé»-å•Ÿç”¨/ç¦ç”¨ã€‚
+gui.planet_shield_stability_1.desc=å¦‚æœå®‰è£æ¨¡çµ„"Stabilization"
+gui.planet_shield_stability_2.desc=é˜²è­·ç½©å°‡æœƒæ”¶é›†éš•çŸ³ç¢ç‰‡ã€‚
 
-gui.not_attached.desc=¥¼¦w¸Ë
-gui.attached.desc=¤w¦w¸Ëed:
+gui.not_attached.desc=æœªå®‰è£
+gui.attached.desc=å·²å®‰è£ed:
 gui.enabled.desc=Enabled
 gui.charge=Charge:
-gui.message.now_noshield=§AªºÅ@¬Ş±±¨î¾¹·´·l¤F!
+gui.message.now_noshield=ä½ çš„è­·ç›¾æ§åˆ¶å™¨æ¯€æäº†!
 
-gui.module.desc=¤õ½b¼Ò²Õ
-gui.status.nolava.name=¨S¦³©¥¼ß
-gui.message.lava.name=©¥¼ß
-gui.message.water.name=¤ô
-gui.message.helium.name=®ó-3
-gui.status.nofuelgenerator.name=¨S¦³¿Uªo
-gui.status.nowind.name=¨S¦³­·
-gui.status.wind.name=­·
-gui.status.nowater.name=¨S¦³¤ô
-gui.message.needfrequencyModule=§Ú»İ­nÀW²v¼Ò²Õ!
+gui.module.desc=ç«ç®­æ¨¡çµ„
+gui.status.nolava.name=æ²’æœ‰å²©æ¼¿
+gui.message.lava.name=å²©æ¼¿
+gui.message.water.name=æ°´
+gui.message.helium.name=æ°¦-3
+gui.status.nofuelgenerator.name=æ²’æœ‰ç‡ƒæ²¹
+gui.status.nowind.name=æ²’æœ‰é¢¨
+gui.status.wind.name=é¢¨
+gui.status.nowater.name=æ²’æœ‰æ°´
+gui.message.needfrequencyModule=æˆ‘éœ€è¦é »ç‡æ¨¡çµ„!
 gui.message.active_pressure_shield.name=Active shield from atm. pressure.
 
-gui.message.needoxygen=¶i¦æ¦¹¾Ş§@»İ­n®ñ®ğ¡C
-gui.message.needoxygenthermal=¶i¦æ¦¹¾Ş§@»İ­n®ñ®ğ©M·Å«×±±¨î¡C
-gui.message.needoxygen.food=¨Ï¥Î¦a²y­¹«~»İ­n®ñ®ğ¡I
-gui.message.needoxygenandthermal.food=¨Ï¥Î¦a²y­¹ª«¥²¶·¶i¦æ®ñ®ğ©M·Å«×±±¨î¡I
-gui.message.invalid_teleport_conf=µL®Äªº¶Ç°e°t¸m©Î¨S¦³¯à¶q¡C
+gui.message.needoxygen=é€²è¡Œæ­¤æ“ä½œéœ€è¦æ°§æ°£ã€‚
+gui.message.needoxygenthermal=é€²è¡Œæ­¤æ“ä½œéœ€è¦æ°§æ°£å’Œæº«åº¦æ§åˆ¶ã€‚
+gui.message.needoxygen.food=ä½¿ç”¨åœ°çƒé£Ÿå“éœ€è¦æ°§æ°£ï¼
+gui.message.needoxygenandthermal.food=ä½¿ç”¨åœ°çƒé£Ÿç‰©å¿…é ˆé€²è¡Œæ°§æ°£å’Œæº«åº¦æ§åˆ¶ï¼
+gui.message.invalid_teleport_conf=ç„¡æ•ˆçš„å‚³é€é…ç½®æˆ–æ²’æœ‰èƒ½é‡ã€‚
  
-gui.message.noradiation=±z¨S¦³«í¬P¿ç®g¡I «Ü¦n¡I
-gui.message.emergency_teleport=ºò«æ¶Ç°e¸Ë¸m¦¨¥\±Ò°Ê¡C®y¼Ğ:
-gui.message.can_find_in_dungeon=¥i¦A¦a¨c¸Ìµo²{¡C
+gui.message.noradiation=æ‚¨æ²’æœ‰æ†æ˜Ÿè¼»å°„ï¼ å¾ˆå¥½ï¼
+gui.message.emergency_teleport=ç·Šæ€¥å‚³é€è£ç½®æˆåŠŸå•Ÿå‹•ã€‚åº§æ¨™:
+gui.message.can_find_in_dungeon=å¯å†åœ°ç‰¢è£¡ç™¼ç¾ã€‚
 
-gui.message.need_advanced_lp.desc=¥u¯à©ñ¸m¦b°ª¯Åµo®g¥­¥x¡C
-gui.message.engine_type.name=¤ŞÀºÃş«¬:
-gui.message.effect_visible.name=¥i¨£®ÄªG
-gui.tank.passive_oxygen_regen.desc1=³Q°Ê²£¥Í®ñ®ğ
-gui.tank.passive_oxygen_regen.desc2=¦pªGª±®a¦b¦X¾Aªº½d³ò¤º¡]®ğªw¡A±K«ÊªºªÅ¶¡¡^¡C
+gui.message.need_advanced_lp.desc=åªèƒ½æ”¾ç½®åœ¨é«˜ç´šç™¼å°„å¹³å°ã€‚
+gui.message.engine_type.name=å¼•æ“é¡å‹:
+gui.message.effect_visible.name=å¯è¦‹æ•ˆæœ
+gui.tank.passive_oxygen_regen.desc1=è¢«å‹•ç”¢ç”Ÿæ°§æ°£
+gui.tank.passive_oxygen_regen.desc2=å¦‚æœç©å®¶åœ¨åˆé©çš„ç¯„åœå…§ï¼ˆæ°£æ³¡ï¼Œå¯†å°çš„ç©ºé–“ï¼‰ã€‚
 
-gui.gravity.radius.name=°Ê§@¥b®|¡G
+gui.gravity.radius.name=å‹•ä½œåŠå¾‘ï¼š
 
 gs.success.name=Actual version:
 gs.update.available=New version available!
@@ -456,29 +456,29 @@ gs.update.changelog=Changelog
 #|||||||||||||Space suit Modoles|||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 
-gui.module.caninstall=¥i¦b§ï³y®à¤¤¦w¸Ë¼Ò²Õ.
-gui.module.list=¼Ò²Õ¦Cªí:
-gui.module.available_modules=¥i¥Î¼Ò²Õ:
+gui.module.caninstall=å¯åœ¨æ”¹é€ æ¡Œä¸­å®‰è£æ¨¡çµ„.
+gui.module.list=æ¨¡çµ„åˆ—è¡¨:
+gui.module.available_modules=å¯ç”¨æ¨¡çµ„:
 
-gui.module.sensor=·P´ú²´Ãè
-gui.module.sensor.desc=¦bÀY²¯¤W¼W¥[¤F·P´ú²´Ãè¡C ±½´yª±®a©P³òªº°Ï°ì¡AµM«á¦b¿Ã¹õ¤WÅã¥ÜÄq¥Û¡CÁÙ¬ğ¥XÅã¥Ü©Çª«¡C
-gui.module.nightvision=©]µø
-gui.module.nightvision.desc=Åı§Ú­Ì¦b¶Â·t¤¤¬İ¡C ¹ï©ó¶Â·tªº¦a¤è¦³¥Î¥B¤£»İ­n¤õ§â¡C
-gui.module.jetpack=¹q¤O¼Q®g­I¥]
-gui.module.jetpack.desc=¦w¸Ë¼Q®ğ­I¥]¡C ¨Ï±z¹³½¹½º¤@¼Ë­¸µ¾¡Aª½¨ì¯İ¥Ò¤¤ªº¹q¤O¯ÓºÉ¡C
-gui.module.speed=§U¶]¾¹
-gui.module.speed.desc=¦w¸Ë¥[³t¾¹¥i¥Hµy·L´£°ª²¾°Ê³t«×¡C ²{¦b±z¥i¥H§ó§Ö¦a°kÂ÷¼Ä¤H¡I
-gui.module.gravity=­«¤O
-gui.module.gravity.desc=¨Æ¹êÃÒ©ú¡AÁâªO¨ã¦³­«¤O§@¥Î¡C ²{¦b¡A¾AÀ³¦æ¬P­n¦n±o¦h¡I
-gui.module.stepassist=¼W¥[¨B¥ï
-gui.module.stepassist.desc=¬İ¨Ó¡A¥vµÜ©i²yªº¦w¸Ë±NµL³B¥i´M...¦ı¬O²{¦b±z¥i¥H¶]¤W¤@®æ°ªªº¤è¶ô¤F¡A³o­Ó¦r¥¿¦bª¦¤W¼Ó±è¡I
-gui.module.jump=¸õÅD
-gui.module.jump.desc=¦w¸Ë¬¡¶ë¬O¤@­Ó¦n¥D·N¡C ²{¦b±zªº¸õÅD¤ñ¥­®É°ª2­¿¡I
-gui.module.energy=°ª¯Å¹q¦À
-gui.module.energy.desc=³Ì¤j¯à¶q¨ÑÀ³¼W¥[2­¿¡C
+gui.module.sensor=æ„Ÿæ¸¬çœ¼é¡
+gui.module.sensor.desc=åœ¨é ­ç›”ä¸Šå¢åŠ äº†æ„Ÿæ¸¬çœ¼é¡ã€‚ æƒæç©å®¶å‘¨åœçš„å€åŸŸï¼Œç„¶å¾Œåœ¨è¢å¹•ä¸Šé¡¯ç¤ºç¤¦çŸ³ã€‚é‚„çªå‡ºé¡¯ç¤ºæ€ªç‰©ã€‚
+gui.module.nightvision=å¤œè¦–
+gui.module.nightvision.desc=è®“æˆ‘å€‘åœ¨é»‘æš—ä¸­çœ‹ã€‚ å°æ–¼é»‘æš—çš„åœ°æ–¹æœ‰ç”¨ä¸”ä¸éœ€è¦ç«æŠŠã€‚
+gui.module.jetpack=é›»åŠ›å™´å°„èƒŒåŒ…
+gui.module.jetpack.desc=å®‰è£å™´æ°£èƒŒåŒ…ã€‚ ä½¿æ‚¨åƒè´è¶ä¸€æ¨£é£›ç¿”ï¼Œç›´åˆ°èƒ¸ç”²ä¸­çš„é›»åŠ›è€—ç›¡ã€‚
+gui.module.speed=åŠ©è·‘å™¨
+gui.module.speed.desc=å®‰è£åŠ é€Ÿå™¨å¯ä»¥ç¨å¾®æé«˜ç§»å‹•é€Ÿåº¦ã€‚ ç¾åœ¨æ‚¨å¯ä»¥æ›´å¿«åœ°é€ƒé›¢æ•µäººï¼
+gui.module.gravity=é‡åŠ›
+gui.module.gravity.desc=äº‹å¯¦è­‰æ˜ï¼Œé‚æ¿å…·æœ‰é‡åŠ›ä½œç”¨ã€‚ ç¾åœ¨ï¼Œé©æ‡‰è¡Œæ˜Ÿè¦å¥½å¾—å¤šï¼
+gui.module.stepassist=å¢åŠ æ­¥ä¼
+gui.module.stepassist.desc=çœ‹ä¾†ï¼Œå²èŠå§†çƒçš„å®‰è£å°‡ç„¡è™•å¯å°‹...ä½†æ˜¯ç¾åœ¨æ‚¨å¯ä»¥è·‘ä¸Šä¸€æ ¼é«˜çš„æ–¹å¡Šäº†ï¼Œé€™å€‹å­—æ­£åœ¨çˆ¬ä¸Šæ¨“æ¢¯ï¼
+gui.module.jump=è·³èº
+gui.module.jump.desc=å®‰è£æ´»å¡æ˜¯ä¸€å€‹å¥½ä¸»æ„ã€‚ ç¾åœ¨æ‚¨çš„è·³èºæ¯”å¹³æ™‚é«˜2å€ï¼
+gui.module.energy=é«˜ç´šé›»æ± 
+gui.module.energy.desc=æœ€å¤§èƒ½é‡ä¾›æ‡‰å¢åŠ 2å€ã€‚
 
-gui.module.sublight_engine=¨È¥ú³t¤ŞÀº
-gui.module.sublight_engine.desc=·s¤@¥Nªº¤ŞÀº¡C Åı§Ú­ÌÂ÷¶}·í«eªº«í¬P¨t²Î¡C
+gui.module.sublight_engine=äºå…‰é€Ÿå¼•æ“
+gui.module.sublight_engine.desc=æ–°ä¸€ä»£çš„å¼•æ“ã€‚ è®“æˆ‘å€‘é›¢é–‹ç•¶å‰çš„æ†æ˜Ÿç³»çµ±ã€‚
 
 gui.message.forrbiden_modules.name=Incompatible with:
 gui.module.active=Active module
@@ -499,54 +499,54 @@ item_group.galaxyspace_rocket=GalaxySpace: Rockets
 #||||||||||||||||Entities||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 entity.evolved_boss_blaze.name=Evolved Boss Blaze
-entity.evolved_coldblaze.name=Evolved ¦B Blaze
+entity.evolved_coldblaze.name=Evolved å†° Blaze
 |/////////////////////////////////////////|
 #||||||||||||Celestial Bodies||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 
-planet.ceres=½\¯«¬P
-moon.phobos=¤õ½Ã¤@
-moon.deimos=¤õ½Ã¤G
-moon.io=¤ì½Ã¤@
-moon.europa=¤ì½Ã¤G
-moon.ganymede=¤ì½Ã¤T
-moon.callisto=¤ì½Ã¥|
-moon.mimas=¤g½Ã¤@
-moon.enceladus=¤g½Ã¤G
-moon.tethys=¤g½Ã¤T
-moon.dione=¤g½Ã¥|
-moon.rheya=¤g½Ã¤­
-moon.titan=¤g½Ã¤»
-moon.iapetus=¤g½Ã¤K
-moon.miranda=¤Ñ½Ã¤­
-moon.ariel=¤Ñ½Ã¤@
-moon.umbriel=¤Ñ½Ã¤G
-moon.titania=¤Ñ½Ã¤T
-moon.oberon=¤Ñ½Ã¥|
-moon.proteus=®ü½Ã¤K
-moon.triton=®ü½Ã¤@
-planet.pluto=­ß¤ı¬P
-moon.charon=­ß½Ã¤@
-planet.kuiperbelt=¥j¬f±a
+planet.ceres=ç©€ç¥æ˜Ÿ
+moon.phobos=ç«è¡›ä¸€
+moon.deimos=ç«è¡›äºŒ
+moon.io=æœ¨è¡›ä¸€
+moon.europa=æœ¨è¡›äºŒ
+moon.ganymede=æœ¨è¡›ä¸‰
+moon.callisto=æœ¨è¡›å››
+moon.mimas=åœŸè¡›ä¸€
+moon.enceladus=åœŸè¡›äºŒ
+moon.tethys=åœŸè¡›ä¸‰
+moon.dione=åœŸè¡›å››
+moon.rheya=åœŸè¡›äº”
+moon.titan=åœŸè¡›å…­
+moon.iapetus=åœŸè¡›å…«
+moon.miranda=å¤©è¡›äº”
+moon.ariel=å¤©è¡›ä¸€
+moon.umbriel=å¤©è¡›äºŒ
+moon.titania=å¤©è¡›ä¸‰
+moon.oberon=å¤©è¡›å››
+moon.proteus=æµ·è¡›å…«
+moon.triton=æµ·è¡›ä¸€
+planet.pluto=å†¥ç‹æ˜Ÿ
+moon.charon=å†¥è¡›ä¸€
+planet.kuiperbelt=å¤æŸå¸¶
 
-satellite.spacestation.venus=ª÷¬P¤j®ğ¼hªÅ¶¡¯¸
-solarsystem.acentauri=¥b¤H°¨¬P¨t
-star.centauri_a=¥b¤H°¨A
-planet.centauri_b=¥b¤H°¨B
+satellite.spacestation.venus=é‡‘æ˜Ÿå¤§æ°£å±¤ç©ºé–“ç«™
+solarsystem.acentauri=åŠäººé¦¬æ˜Ÿç³»
+star.centauri_a=åŠäººé¦¬A
+planet.centauri_b=åŠäººé¦¬B
 
-solarsystem.proxima=¤ñ¾F¬P¨t
-star.proxima=¤ñ¾F¬P
-planet.proxima_b=¤ñ¾F¬PB
+solarsystem.proxima=æ¯”é„°æ˜Ÿç³»
+star.proxima=æ¯”é„°æ˜Ÿ
+planet.proxima_b=æ¯”é„°æ˜ŸB
 
-solarsystem.barnards=¤Ú¯Ç¼w¬P¨t
-star.barnarda_a=¤Ú¯Ç¼wA
-planet.barnarda_b=¤Ú¯Ç¼wB
-planet.barnarda_c=¤Ú¯Ç¼wC
-planet.barnarda_d=¤p¦æ¬P±a
-planet.barnarda_e=¤Ú¯Ç¼wE
-moon.barnarda_b1=¦æ¬PÀô
-moon.barnarda_c1=¤Ú¯Ç¼wC1
-moon.barnarda_c2=¤Ú¯Ç¼wC2
+solarsystem.barnards=å·´ç´å¾·æ˜Ÿç³»
+star.barnarda_a=å·´ç´å¾·A
+planet.barnarda_b=å·´ç´å¾·B
+planet.barnarda_c=å·´ç´å¾·C
+planet.barnarda_d=å°è¡Œæ˜Ÿå¸¶
+planet.barnarda_e=å·´ç´å¾·E
+moon.barnarda_b1=è¡Œæ˜Ÿç’°
+moon.barnarda_c1=å·´ç´å¾·C1
+moon.barnarda_c2=å·´ç´å¾·C2
 #|/////////////////////////////////////////|
 #|||||||||||||||||||Book||||||||||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
@@ -554,7 +554,7 @@ book.button.back.name=Back
 
 book.category.general.name=General
 book.category.bodies.name=Celestial bodies
-book.category.blocks.name=¿js
+book.category.blocks.name=ç£šs
 book.category.items.name=Items
 book.category.mechanics.name=Mechanics
 
@@ -568,15 +568,15 @@ book.page.actual_update.name=Actual Update
 #||||||||||||Book-Celestial Bodies||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 book.page.solarsystem.sol.name=Solar System
-book.page.star.sol=Main star: Sol - ¶À¦â dwarf 
+book.page.star.sol=Main star: Sol - é»ƒè‰² dwarf 
 book.page.solarsystem.asteroids=The asteroid belt is a massive cluster of asteroids orbiting the sun. Most asteroids contain a large amount of minerals.
-book.page.solarsystem.ceres=½\¯«¬P is a dwarf planet in the Asteroid Belt. It contains copious amounts of meteoric iron and dolomite crystals.
+book.page.solarsystem.ceres=ç©€ç¥æ˜Ÿ is a dwarf planet in the Asteroid Belt. It contains copious amounts of meteoric iron and dolomite crystals.
 book.page.solarsystem.jupiter=Jupiter - Gas giant with stone moons that are available to the reachable.
-book.page.solarsystem.callisto=¤ì½Ã¥| - the farthest moon of Jupiter.
+book.page.solarsystem.callisto=æœ¨è¡›å›› - the farthest moon of Jupiter.
 #|/////////////////////////////////////////|
 #|||||||||||||||Book-Mechanics||||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 book.page.solar_radiation.name=Solar Radiation
 book.page.solar_radiation.text=Solar Radiation - negative effect that gradually kills the player. !nWhen the radiation scale crosses the  !c_rred !c_wborder - effect is activated. !nIf a player is in a shelter or underground, the radiation does not accumulate and decreases, if the scale has crossed the !c_rred !c_wborder. !n!nRemove the remaining radiation by using !c_gAntiradiation tablets. !c_w!nProtect yourself from radiation by wearing a !c_oSpacesuit !c_wor being inside a bubble from a !c_oMagnetic Field Generator.  
 book.page.atmosphere_pressure.name=Atmosphere Pressure
-book.page.atmosphere_pressure.text=Atmospheric pressure is one of the main problems of the colonization of planets with the atmosphere. !nWith a !c_rlarge !c_watmospheric pressure, the player manifests various effects, such as: nausea, blindness and slowness. !n!nWith !c_ohigh !c_watmospheric pressure, the player begins to lose his health. !nIf the pressure scale is !c_ymaximal !c_w- the player is waiting for instant death. !nProtect yourself from radiation by wearing a !c_oSpacesuit !c_wor being inside a border from a !c_oGravity ¼Ò²Õ. 
+book.page.atmosphere_pressure.text=Atmospheric pressure is one of the main problems of the colonization of planets with the atmosphere. !nWith a !c_rlarge !c_watmospheric pressure, the player manifests various effects, such as: nausea, blindness and slowness. !n!nWith !c_ohigh !c_watmospheric pressure, the player begins to lose his health. !nIf the pressure scale is !c_ymaximal !c_w- the player is waiting for instant death. !nProtect yourself from radiation by wearing a !c_oSpacesuit !c_wor being inside a border from a !c_oGravity æ¨¡çµ„. 
