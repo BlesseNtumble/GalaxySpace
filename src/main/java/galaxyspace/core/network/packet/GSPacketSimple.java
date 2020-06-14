@@ -7,6 +7,7 @@ import java.util.List;
 import org.lwjgl.opengl.GL11;
 
 import asmodeuscore.core.utils.worldengine.WE_WorldProvider;
+import galaxyspace.GalaxySpace;
 import galaxyspace.api.item.IModificationItem;
 import galaxyspace.api.tile.ITileEffects;
 import galaxyspace.core.events.GSEventHandler;
@@ -49,6 +50,7 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
 {
@@ -391,7 +393,6 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
 				        	for(ItemStack con : get_module.getItemsForModule()) {				        		
 				        		consumed = GSEventHandler.consumeItemStack(playerBase.inventory, con);				        		
 				        	}
-			        		
 				        	if(consumed || playerBase.capabilities.isCreativeMode) {
 				        		ItemStack copied = stack;
 			            	
@@ -407,7 +408,10 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
 			        {
 			        	if(!playerBase.capabilities.isCreativeMode)
 				        	for(ItemStack con : get_module.getItemsForModule()) {
-				        		playerBase.addItemStackToInventory(con);
+				        		if(con.getItemDamage() == OreDictionary.WILDCARD_VALUE)				        			
+				        			playerBase.addItemStackToInventory(new ItemStack(con.getItem(), 1, con.getMaxDamage()));
+				        		else
+				        			playerBase.addItemStackToInventory(con);
 				        	}
 			        	
 			        	ItemStack copied = stack;

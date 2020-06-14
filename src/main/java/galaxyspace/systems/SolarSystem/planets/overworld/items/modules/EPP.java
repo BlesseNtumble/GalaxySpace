@@ -5,6 +5,7 @@ import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.core.util.GSUtils.Module_Type;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class EPP extends ItemModule{
 
@@ -30,7 +31,7 @@ public class EPP extends ItemModule{
 
 	@Override
 	public ItemStack[] getItemsForModule() {
-		return new ItemStack[] { new ItemStack(GSItems.OXYGENTANK_TIER_EPP, 1, GSItems.OXYGENTANK_TIER_EPP.getMaxDamage()) };
+		return new ItemStack[] { new ItemStack(GSItems.OXYGENTANK_TIER_EPP, 1, OreDictionary.WILDCARD_VALUE) };
 	}
 
 	@Override
