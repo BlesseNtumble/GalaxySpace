@@ -31,6 +31,7 @@ import galaxyspace.core.prefab.items.rockets.ItemTier6Rocket;
 import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.core.util.GSDamageSource;
+import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.ACentauriSystem.core.configs.ACConfigCore;
 import galaxyspace.systems.ACentauriSystem.core.configs.ACConfigDimensions;
 import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigCore;
@@ -126,17 +127,18 @@ public class GSEventHandler {
 	static {
 		OreDictionary.getOres("treeLeaves").forEach((ItemStack stack) -> {
 			
-			items_to_change.add(new ItemsToChange(stack, Blocks.AIR.getDefaultState(), true));
+			items_to_change.add(new ItemsToChange(stack, Blocks.AIR.getDefaultState(), true).setOxygenCheck(true));
 		});
 		
 		OreDictionary.getOres("treeSapling").forEach((ItemStack stack) -> {
 			
 			//block_to_change.add(new BlockToChange(Block.getBlockFromItem(stack.getItem()).getDefaultState(), Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), 0.0F, true));
-			items_to_change.add(new ItemsToChange(stack, Blocks.DEADBUSH.getDefaultState(), true));
+			items_to_change.add(new ItemsToChange(stack, Blocks.DEADBUSH.getDefaultState(), true).setOxygenCheck(true));
 		});
 		
-		items_to_change.add(new ItemsToChange(new ItemStack(Items.WATER_BUCKET), Blocks.AIR.getDefaultState(), true));
-		block_to_change.add(new BlockToChange(Blocks.WATER.getDefaultState(), Blocks.AIR.getDefaultState(), Blocks.ICE.getDefaultState(), 0.0F, true).setParticle("waterbubbles"));
+		items_to_change.add(new ItemsToChange(new ItemStack(Items.WATER_BUCKET), Blocks.AIR.getDefaultState(), true).setOxygenCheck(false));
+		block_to_change.add(new BlockToChange(Blocks.WATER.getDefaultState(), Blocks.AIR.getDefaultState(), Blocks.ICE.getDefaultState(), 0.0F, true).setParticle("waterbubbles").setOxygenCheck(false));
+		block_to_change.add(new BlockToChange(Blocks.LEAVES.getStateFromMeta(0), Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), 0.5F, true).setParticle("waterbubbles"));
 	}
 	
 	@SubscribeEvent
@@ -301,12 +303,11 @@ public class GSEventHandler {
 		
 		
 		if(world.isRemote)
-		{						
-						
+		{				
 		}
+		
 		if(!world.isRemote && GSConfigCore.enableHardMode)
 		{		
-			
 			if(CompatibilityManager.isIc2Loaded())
 			{
 				//IC2 WIND TURBINE
@@ -317,9 +318,9 @@ public class GSEventHandler {
 					}
 				}
 			}
-
+			
 			//ICE BUCKET
-			if(block == Blocks.ICE && stack.getItem() instanceof ItemBucket)
+			if(block == Blocks.ICE && stack.getItem() == Items.BUCKET)
 			{				
 				stack.shrink(1);
 				player.inventory.addItemStackToInventory(new ItemStack(GSItems.BASIC, 1, 17));				
@@ -335,18 +336,42 @@ public class GSEventHandler {
 				{					
 					if(stack.getItem().equals(ore.itemstack.getItem()) && !((IGalacticraftWorldProvider)world.provider).hasBreathableAtmosphere())
 					{		
-						if(ore.need_check_temp && (thermal >= 1.5 || thermal < -1.5F)) {
-							if(!OxygenUtil.isAABBInBreathableAirBlock(world, bb, true))
+						if(ore.need_check_oxygen)
+						{
+							if(!OxygenUtil.isAABBInBreathableAirBlock(world, bb, ore.need_check_temp))
+							{
+								player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.needoxygen" + (ore.need_check_temp ? "thermal" : ""))));				   
+								event.setCanceled(true);
+							}
+						}						
+						
+						if(ore.need_check_temp)
+						{
+							if(!GSUtils.getThermalControl(world, event.getPos().up()) && (thermal > 1.0F || thermal < -1.0F))
+							{
+								player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.needthermal")));				   
+								event.setCanceled(true);
+							}
+						}
+						/*
+						if(ore.need_check_temp && (thermal >= 1.5 || thermal < -1.0F)) {
+							
+							if(ore.need_check_oxygen && !OxygenUtil.isAABBInBreathableAirBlock(world, bb, true))
 							{
 								player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.needoxygenthermal")));				   
 								event.setCanceled(true);								
 							}
+							else
+							{
+								player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.needthermal")));				   
+								event.setCanceled(true);		
+							}
 						}
-						else if(!OxygenUtil.isAABBInBreathableAirBlock(world, bb, false)) {
+						else if(ore.need_check_oxygen && !OxygenUtil.isAABBInBreathableAirBlock(world, bb, false)) {
 							player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.needoxygen")));				   
 							event.setCanceled(true);	
 						}
-						
+						*/
 						if(ore.replaced != Blocks.AIR.getDefaultState())
 							if(world.getBlockState(event.getPos()).getBlock().isReplaceable(world, event.getPos()))
 								world.setBlockState(event.getPos(), ore.replaced);
@@ -863,7 +888,7 @@ public class GSEventHandler {
 		}
 
 	public static boolean isItemStackEqual(ItemStack stack1, ItemStack stack2) {
-		return (!stack1.isEmpty() && !stack2.isEmpty() && stack1.getItem() == stack2.getItem() && stack1.getItemDamage() == stack2.getItemDamage());
+		return (!stack1.isEmpty() && stack1.getItem() == stack2.getItem() && (stack1.getItemDamage() == stack2.getItemDamage() || stack2.getItemDamage() == OreDictionary.WILDCARD_VALUE));
 	}
 	/*
 	public static ItemStack changeStackItem(ItemStack stack, Item item) {
@@ -951,7 +976,7 @@ public class GSEventHandler {
 	{
 		private IBlockState state, hot_replaced, cold_replaced;
 		private float temp;
-		private boolean need_check_temp, only_gs_dim = false;
+		private boolean need_check_temp, need_check_oxygen, only_gs_dim = false;
 		private String particle_name = "";
 		
 		BlockToChange(IBlockState state, IBlockState hot_replaced, IBlockState cold_replaced, float temp, boolean need_check_temp)
@@ -974,12 +999,18 @@ public class GSEventHandler {
 			this.only_gs_dim = true;
 			return this;
 		}
+		
+		public BlockToChange setOxygenCheck(boolean check)
+		{
+			this.need_check_oxygen = check;
+			return this;
+		}
 	
 		void spawnParticleHotTemp(World world, BlockPos pos)
 		{
 			if(!particle_name.isEmpty())
 				for(int i = 0; i < 5; i++)
-					GalaxySpace.proxy.spawnParticle(particle_name, new Vector3(pos.getX() + world.rand.nextDouble(), pos.getY() + 0.4D + world.rand.nextDouble(), pos.getZ() + world.rand.nextDouble()), new Vector3(0.0D, 0.001D, 0.0D), new Object [] { 10, 5, false, new Vector3(1.0F, 1.0F, 1.0F), 1.0D } );  	
+					GalaxySpace.proxy.spawnParticle(particle_name, new Vector3(pos.getX() + world.rand.nextDouble(), pos.getY() + 1.0D + world.rand.nextDouble(), pos.getZ() + world.rand.nextDouble()), new Vector3(0.0D, 0.001D, 0.0D), new Object [] { 10, 5, false, new Vector3(1.0F, 1.0F, 1.0F), 1.0D } );  	
 		}
 	}	
 	
@@ -987,7 +1018,7 @@ public class GSEventHandler {
 	{
 		private ItemStack itemstack = ItemStack.EMPTY;
 		private IBlockState replaced;
-		private boolean need_check_temp, only_gs_dim = false;
+		private boolean need_check_temp, need_check_oxygen, only_gs_dim = false;
 		
 		ItemsToChange(ItemStack stack, IBlockState placed, boolean need_check_temp)
 		{
@@ -1001,5 +1032,12 @@ public class GSEventHandler {
 			this.only_gs_dim = true;
 			return this;
 		}
+		
+		public ItemsToChange setOxygenCheck(boolean check)
+		{
+			this.need_check_oxygen = check;
+			return this;
+		}
+		
 	}
 }
