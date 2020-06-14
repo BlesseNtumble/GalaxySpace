@@ -197,7 +197,7 @@ public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProv
 		cp.createChunkGen_InXYZ_List.clear(); 
 		cp.decorateChunkGen_List .clear(); 
 		
-		//cp.CRATER_PROB = 2000;
+		((WE_ChunkProviderSpace)cp).CRATER_PROB = 2000;
 		
 		WE_Biome.setBiomeMap(cp, 1.5D, 4, 1200.0D, 1.0D);	
 		
@@ -278,7 +278,7 @@ public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProv
 	@Override
 	public void onPopulate(int cX, int cZ) {
 		dungeonGenerator.generateStructure(this.world, this.world.rand, new ChunkPos(cX, cZ));
-		new BiomeDecoratorMars().decorate(this.world, this.world.rand, cX, cZ);
+		new BiomeDecoratorMars().decorate(this.world, this.world.rand, cX * 16, cZ * 16);
 	}
 
 	@Override

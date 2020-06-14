@@ -192,7 +192,7 @@ public class GSClientTickHandler {
         			OverlayRocketHelp.renderSpaceshipOverlay();
         		}*/
         		
-        		if(minecraft.inGameHasFocus && !minecraft.gameSettings.hideGUI && GalaxySpace.debug)
+        		if(minecraft.currentScreen == null && GalaxySpace.debug)
         		{
         			
         			long t1 = player.world.provider instanceof WorldProviderSpace ? ((WorldProviderSpace) player.world.provider).getDayLength() : 24000;

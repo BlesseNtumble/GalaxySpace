@@ -8,21 +8,38 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.registers.fluids.GSFluids;
 import galaxyspace.core.registers.items.GSItems;
+import micdoodle8.mods.galacticraft.api.block.IPartialSealableBlock;
 import micdoodle8.mods.galacticraft.api.prefab.entity.EntityTieredRocket;
 import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCFluids;
 import micdoodle8.mods.galacticraft.core.GCItems;
+import micdoodle8.mods.galacticraft.core.fluid.OxygenPressureProtocol;
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.FluidUtil;
+import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockEnchantmentTable;
+import net.minecraft.block.BlockFarmland;
+import net.minecraft.block.BlockGlass;
+import net.minecraft.block.BlockGravel;
+import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.BlockLiquid;
+import net.minecraft.block.BlockPistonBase;
+import net.minecraft.block.BlockSlab;
+import net.minecraft.block.BlockSponge;
+import net.minecraft.block.BlockStainedGlass;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -36,8 +53,11 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -46,7 +66,8 @@ import net.minecraftforge.fluids.FluidTank;
 public class GSUtils {
 	
 	public static List<String> changelog = new ArrayList<String>();
-
+	private static HashSet<BlockPos> checked;
+	
 	public enum Module_Type {
 		SPACESUIT,
 		ROCKET,
@@ -289,6 +310,105 @@ public class GSUtils {
         }      
     }
 	
+	public static boolean getThermalControl(World world, BlockPos pos)
+	{
+		Block block = world.getBlockState(pos).getBlock();
+		checked = new HashSet<>();
+		return testContactWithBreathableAir(world, block, pos, 0) == 1;
+	}
+	
+	private static synchronized int testContactWithBreathableAir(World world, Block block, BlockPos pos,
+			int limitCount) {
+		checked.add(pos);
+		if (block == GCBlocks.breatheableAir || block == GCBlocks.brightBreatheableAir) {
+			return block.getMetaFromState(world.getBlockState(pos));
+		}
+
+		IBlockState state = world.getBlockState(pos);
+		if (block == null || block.getMaterial(state) == Material.AIR) {
+			return -1;
+		}
+
+		// Test for non-sided permeable or solid blocks first
+		boolean permeableFlag = false;
+		if (!(block instanceof BlockLeaves)) {
+			if (block.isOpaqueCube(state)) {
+				if (block instanceof BlockGravel || block.getMaterial(state) == Material.CLOTH
+						|| block instanceof BlockSponge) {
+					permeableFlag = true;
+				} else {
+					return -1;
+				}
+			} else if (block instanceof BlockGlass || block instanceof BlockStainedGlass) {
+				return -1;
+			} else if (block instanceof BlockLiquid) {
+				return -1;
+			} else if (OxygenPressureProtocol.nonPermeableBlocks.containsKey(block)) {
+				ArrayList<Integer> metaList = OxygenPressureProtocol.nonPermeableBlocks.get(block);
+				if (metaList.contains(-1) || metaList.contains(state.getBlock().getMetaFromState(state))) {
+					return -1;
+				}
+			}
+		} else {
+			permeableFlag = true;
+		}
+
+		// Testing a non-air, permeable block (for example a torch or a ladder)
+		if (limitCount < 5) {
+			for (EnumFacing side : EnumFacing.VALUES) {
+				if (permeableFlag || canBlockPassAirOnSide(world, block, pos, side)) {
+					BlockPos sidevec = pos.add(side.getFrontOffsetX(), side.getFrontOffsetY(), side.getFrontOffsetZ());
+					if (!checked.contains(sidevec)) {
+						Block newblock = world.getBlockState(sidevec).getBlock();
+						int adjResult = testContactWithBreathableAir(world, newblock, sidevec,
+								limitCount + 1);
+						if (adjResult >= 0) {
+							return adjResult;
+						}
+					}
+				}
+			}
+		}
+
+		return -1;
+	}
+	
+	 private static boolean canBlockPassAirOnSide(World world, Block block, BlockPos vec, EnumFacing side)
+	    {
+	        if (block instanceof IPartialSealableBlock)
+	        {
+	            return !((IPartialSealableBlock) block).isSealed(world, vec, side);
+	        }
+
+	        //Half slab seals on the top side or the bottom side according to its metadata
+	        if (block instanceof BlockSlab)
+	        {
+	            IBlockState state = world.getBlockState(vec);
+	            int meta = state.getBlock().getMetaFromState(state);
+	            return !(side == EnumFacing.DOWN && (meta & 8) == 8 || side == EnumFacing.UP && (meta & 8) == 0);
+	        }
+
+	        //Farmland etc only seals on the solid underside
+	        if (block instanceof BlockFarmland || block instanceof BlockEnchantmentTable || block instanceof BlockLiquid)
+	        {
+	            return side != EnumFacing.UP;
+	        }
+
+	        if (block instanceof BlockPistonBase)
+	        {
+	            IBlockState state = world.getBlockState(vec);
+	            if ((Boolean) state.getValue(BlockPistonBase.EXTENDED))
+	            {
+	                int meta0 = state.getBlock().getMetaFromState(state);
+	                EnumFacing facing = BlockPistonBase.getFacing(meta0);
+	                return side != facing;
+	            }
+	            return false;
+	        }
+
+	        return !block.isSideSolid(world.getBlockState(vec), world, vec, EnumFacing.getFront(side.getIndex() ^ 1));
+	    }
+	 
 	public static void start() {
 		Minecraft mc = Minecraft.getMinecraft();
 		
