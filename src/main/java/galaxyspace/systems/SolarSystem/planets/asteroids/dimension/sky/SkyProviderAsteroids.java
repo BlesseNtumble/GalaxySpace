@@ -2,7 +2,7 @@ package galaxyspace.systems.SolarSystem.planets.asteroids.dimension.sky;
 
 import org.lwjgl.opengl.GL11;
 
-import asmodeuscore.core.astronomy.sky.SkyProviderBase;
+import asmodeuscore.core.astronomy.sky.SkyProviderBaseOld;
 import galaxyspace.GalaxySpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.FMLClientHandler;
 
-public class SkyProviderAsteroids extends SkyProviderBase
+public class SkyProviderAsteroids extends SkyProviderBaseOld
 {	  
 	private static final ResourceLocation ceresTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/celestialbodies/sol/ceres.png");
 	   

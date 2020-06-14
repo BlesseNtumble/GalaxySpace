@@ -1,6 +1,8 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.dimension.sky;
 
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
+import asmodeuscore.core.astronomy.sky.SkyProviderBaseOld;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
@@ -34,13 +36,13 @@ public class SkyProviderOverworld extends SkyProviderBase {
 	}
 
 	@Override
-	protected int modeLight() {
-		return 0;
+	protected ModeLight modeLight() {
+		return ModeLight.DEFAULT;
 	}
 
 	@Override
-	protected Vector3 colorSunAura() {
-		return new Vector3(255, 194, 180);
+	protected StarColor colorSunAura() {
+		return StarColor.YELLOW;
 	}
 
 	@Override

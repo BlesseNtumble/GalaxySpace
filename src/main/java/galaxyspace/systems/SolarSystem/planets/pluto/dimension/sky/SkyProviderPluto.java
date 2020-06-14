@@ -2,7 +2,9 @@ package galaxyspace.systems.SolarSystem.planets.pluto.dimension.sky;
 
 import org.lwjgl.opengl.GL11;
 
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
+import asmodeuscore.core.astronomy.sky.SkyProviderBaseOld;
 import galaxyspace.GalaxySpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -17,9 +19,8 @@ public class SkyProviderPluto extends SkyProviderBase
 	
 	@Override
 	protected void rendererSky(Tessellator tessellator, BufferBuilder worldRenderer, float f10, float ticks) {		
-		GL11.glPopMatrix();
+		
         GL11.glPushMatrix();
-       
         // Render charon
         f10 = 20.0F;
         GL11.glScalef(0.6F, 0.6F, 0.6F);
@@ -33,6 +34,7 @@ public class SkyProviderPluto extends SkyProviderBase
         worldRenderer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
         worldRenderer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
         tessellator.draw();
+        GL11.glPopMatrix();
 	}
 
 	@Override
@@ -56,13 +58,13 @@ public class SkyProviderPluto extends SkyProviderBase
 	}
 
 	@Override
-	protected int modeLight() {
-		return 0;
+	protected ModeLight modeLight() {
+		return ModeLight.DEFAULT;
 	}
 
 	@Override
-	protected Vector3 colorSunAura() {
-		return new Vector3(150, 150, 150);
+	protected StarColor colorSunAura() {
+		return StarColor.WHITE;
 	}
 
 	@Override
@@ -74,6 +76,6 @@ public class SkyProviderPluto extends SkyProviderBase
 	public boolean enableSmoothRender() {return false;}
 	
 	@Override
-	public int addSizeAura() {return -4;}
+	public int expandSizeAura() {return -4;}
 
 }

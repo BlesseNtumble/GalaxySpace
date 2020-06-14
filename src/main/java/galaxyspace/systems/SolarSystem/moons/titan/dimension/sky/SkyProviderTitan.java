@@ -2,7 +2,9 @@ package galaxyspace.systems.SolarSystem.moons.titan.dimension.sky;
 
 import org.lwjgl.opengl.GL11;
 
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
+import asmodeuscore.core.astronomy.sky.SkyProviderBaseOld;
 import galaxyspace.GalaxySpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.Constants;
@@ -19,7 +21,7 @@ public class SkyProviderTitan extends SkyProviderBase
 	
 	@Override
 	protected void rendererSky(Tessellator tessellator, BufferBuilder worldRenderer, float f10, float ticks) {
-		GL11.glPopMatrix();
+		
 		GL11.glPushMatrix();
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glEnable(GL11.GL_ALPHA_TEST);
@@ -29,7 +31,7 @@ public class SkyProviderTitan extends SkyProviderBase
 		GL11.glScalef(0.6F, 0.6F, 0.6F);
 		GL11.glRotatef(240F, 1.0F, 0.0F, 0.0F);
 		GL11.glRotatef(330F, 0F, 0F, 1.0F);
-		GL11.glRotatef(-this.mc.world.getCelestialAngle(this.ticks) * 360.0F, 0.0F, 1.0F, 0.0F);
+		GL11.glRotatef(-this.mc.world.getCelestialAngle(ticks) * 360.0F, 0.0F, 1.0F, 0.0F);
 
 		
 		float color = this.mc.world.isRaining() ? (1.0F - (this.mc.world.rainingStrength / 4)) - this.mc.world.getStarBrightness(1.0F) : 1.1F - this.mc.world.getStarBrightness(1.0F);
@@ -55,6 +57,7 @@ public class SkyProviderTitan extends SkyProviderBase
 		
 		GL11.glDisable(GL11.GL_ALPHA_TEST);
         GL11.glDisable(GL11.GL_BLEND);
+        GL11.glPopMatrix();
 	}
 
 	@Override
@@ -78,12 +81,12 @@ public class SkyProviderTitan extends SkyProviderBase
 	}
 
 	@Override
-	protected int modeLight() {
-		return 0;
+	protected ModeLight modeLight() {
+		return ModeLight.DEFAULT;
 	}
 
 	@Override
-	protected Vector3 colorSunAura() {
+	protected StarColor colorSunAura() {
 		return null;
 	}
 

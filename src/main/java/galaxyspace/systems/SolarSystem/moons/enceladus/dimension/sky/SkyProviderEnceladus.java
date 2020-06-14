@@ -2,7 +2,9 @@ package galaxyspace.systems.SolarSystem.moons.enceladus.dimension.sky;
 
 import org.lwjgl.opengl.GL11;
 
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
+import asmodeuscore.core.astronomy.sky.SkyProviderBaseOld;
 import galaxyspace.GalaxySpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.Constants;
@@ -23,14 +25,13 @@ public class SkyProviderEnceladus extends SkyProviderBase
 	@Override
 	protected void rendererSky(Tessellator tessellator, BufferBuilder worldRenderer, float f10, float ticks) {
 
-		GL11.glPopMatrix();
 		GL11.glPushMatrix();
 		 
 		// Render titan
 		f10 = 0.5F;
 		GL11.glScalef(0.6F, 0.6F, 0.6F);
 		GL11.glRotatef(5.0F, 0.0F, 0.0F, 1.0F);
-		GL11.glRotatef(this.mc.world.getCelestialAngle(this.ticks) * 360.0F / 2, 0.0F, 1.0F, 0.0F);
+		GL11.glRotatef(this.mc.world.getCelestialAngle(ticks) * 360.0F / 2, 0.0F, 1.0F, 0.0F);
 		GL11.glRotatef(-110F, 1.0F, 0.0F, 0.0F);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.titanTexture);
@@ -49,7 +50,7 @@ public class SkyProviderEnceladus extends SkyProviderBase
 		GL11.glScalef(0.6F, 0.6F, 0.6F);
 		GL11.glRotatef(270F, 1.0F, 0.0F, 0.0F);
 
-		GL11.glRotatef(-this.mc.world.getCelestialAngle(this.ticks) * 360.0F + 90, 0.0F, 1.0F, 0.0F);
+		GL11.glRotatef(-this.mc.world.getCelestialAngle(ticks) * 360.0F + 90, 0.0F, 1.0F, 0.0F);
 
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.saturnTexture);
@@ -69,7 +70,7 @@ public class SkyProviderEnceladus extends SkyProviderBase
 		GL11.glScalef(0.6F, 0.6F, 0.6F);
 		GL11.glRotatef(270F, 1.0F, 0.0F, 0.0F);
 
-		GL11.glRotatef(-this.mc.world.getCelestialAngle(this.ticks) * 360.0F + 90, 0.0F, 1.0F, 0.0F);
+		GL11.glRotatef(-this.mc.world.getCelestialAngle(ticks) * 360.0F + 90, 0.0F, 1.0F, 0.0F);
 
 		float f11 = f10;
 		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
@@ -89,7 +90,7 @@ public class SkyProviderEnceladus extends SkyProviderBase
         f10 = 125.0F;
         GL11.glScalef(0.6F, 0.6F, 0.6F);
         GL11.glRotatef(270F, 1.0F, 0.0F, 0.0F);
-        GL11.glRotatef(-this.mc.world.getCelestialAngle(this.ticks) * 360.0F + 90, 0.0F, 1.0F, 0.0F);
+        GL11.glRotatef(-this.mc.world.getCelestialAngle(ticks) * 360.0F + 90, 0.0F, 1.0F, 0.0F);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.6F);
         FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.saturnRingsTexture);
 		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
@@ -109,6 +110,7 @@ public class SkyProviderEnceladus extends SkyProviderBase
 		
 		GL11.glDisable(GL11.GL_ALPHA_TEST);
         GL11.glDisable(GL11.GL_BLEND);
+        GL11.glPopMatrix();
 	}
 
 	@Override
@@ -132,13 +134,13 @@ public class SkyProviderEnceladus extends SkyProviderBase
 	}
 
 	@Override
-	protected int modeLight() {
-		return 0;
+	protected ModeLight modeLight() {
+		return ModeLight.DEFAULT;
 	}
 
 	@Override
-	protected Vector3 colorSunAura() {
-		return new Vector3(150, 150, 150);
+	protected StarColor colorSunAura() {
+		return StarColor.WHITE;
 	}
 
 	@Override

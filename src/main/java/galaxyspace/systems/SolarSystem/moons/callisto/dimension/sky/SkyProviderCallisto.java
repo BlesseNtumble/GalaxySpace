@@ -2,9 +2,12 @@ package galaxyspace.systems.SolarSystem.moons.callisto.dimension.sky;
 
 import org.lwjgl.opengl.GL11;
 
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
+import asmodeuscore.core.astronomy.sky.SkyProviderBaseOld;
 import galaxyspace.GalaxySpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -21,96 +24,34 @@ public class SkyProviderCallisto extends SkyProviderBase
     int wait = 5;
     
     @Override
-	protected void rendererSky(Tessellator tessellator, BufferBuilder worldRenderer, float f10, float ticks) {
+	protected void rendererSky(Tessellator tessellator, BufferBuilder worldRenderer, float size, float ticks) {
 		
-		GL11.glPopMatrix();    
+    	GL11.glPushMatrix();
+	    	GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
+	    	
+	    	float x = (float) (15 * (Math.sin((this.mc.world.getCelestialAngle(ticks) * 360.0F) / 40.0F)));
+	    	if(wait == 0 && (x >= 15F || x <= -15F)) 
+	    	{
+	    		wait = 150;
+	    		test = !test;
+	    	}
+	    	if(!test) {
+		    	this.renderImage(jupiterTexture, 0F, 90F, 0F, 20.0F);
+		    	float f = 0.9F;
+		    	this.renderAtmo(tessellator, 90.0F, 0.0F, 20 - 2, new Vector3(120 / 255.0F * f, 110 / 255.0F * f, 120 / 255.0F * f));
+		    }
 
-        if(!test) {
-        	GL11.glPushMatrix();
-			f10 = 20.0F;
-			GL11.glScalef(0.8F, 0.8F, 0.8F);
-			GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
-			GL11.glRotatef(90F, 1.0F, 0.0F, 0.0F);
-			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
-			FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.jupiterTexture);
-			worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-			worldRenderer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
-			worldRenderer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
-			worldRenderer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
-			worldRenderer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
-			tessellator.draw();
-        
-			float f = 0.9F;
-			this.renderAtmo(tessellator, 0.0F, 0.0F, f10 - 7, new Vector3(120 / 255.0F * f, 110 / 255.0F * f, 120 / 255.0F * f));
-			GL11.glEnable(GL11.GL_TEXTURE_2D);
-			GL11.glPopMatrix();   
-        }
-		    
-        float x = (float) (15 * (Math.sin((this.mc.world.getCelestialAngle(this.ticks) * 360.0F) / 40.0F)));
-
-        if(wait == 0 && (x >= 15F || x <= -15F)) 
-        {
-        	wait = 150;
-        	test = !test;
-        }
-        if(wait > 0) wait--;
-        
-        GL11.glPushMatrix();   
-        
-        f10 = 1.0F;
-		GL11.glScalef(0.8F, 0.8F, 0.8F);
-		GL11.glRotatef(x, 0.0F, 1.0F, 0.0F);
-		GL11.glRotatef(100F, 1.0F, 0.0F, 0.0F);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.europaTexture);
-		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-		worldRenderer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
-		worldRenderer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
-		worldRenderer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
-		worldRenderer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
-		tessellator.draw();
-		
-		GL11.glPopMatrix(); 
-		
-		GL11.glPushMatrix();
-
-		f10 = 1.5F;
-		GL11.glScalef(0.8F, 0.8F, 0.8F);
-		GL11.glRotatef(x + 15, 0.0F, 1.0F, 0.0F);
-		GL11.glRotatef(85F, 1.0F, 0.0F, 0.0F);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.ganymedeTexture);
-		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-		worldRenderer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
-		worldRenderer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
-		worldRenderer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
-		worldRenderer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
-		tessellator.draw();
-
-		GL11.glPopMatrix();
-		
-		if(test)
-		{
-			GL11.glPushMatrix();
-			f10 = 20.0F;
-			GL11.glScalef(0.8F, 0.8F, 0.8F);
-			GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
-			GL11.glRotatef(90F, 1.0F, 0.0F, 0.0F);
-			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
-			FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.jupiterTexture);
-			worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-			worldRenderer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
-			worldRenderer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
-			worldRenderer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
-			worldRenderer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
-			tessellator.draw();
-        
-			float f = 0.9F;
-			this.renderAtmo(tessellator, 0.0F, 0.0F, f10 - 7, new Vector3(120 / 255.0F * f, 110 / 255.0F * f, 120 / 255.0F * f));
-			GL11.glEnable(GL11.GL_TEXTURE_2D);
-			GL11.glPopMatrix(); 
-		}
-		GL11.glPushMatrix();
+	        if(wait > 0) wait--;
+	        
+	        this.renderImage(europaTexture, x, 100F, 0, 1.0F);
+	        this.renderImage(ganymedeTexture, x+15, 85, 0, 1.5F);
+	        
+	        if(test) {
+		    	this.renderImage(jupiterTexture, 0F, 90F, 0F, 20.0F);
+		    	float f = 0.9F;
+		    	this.renderAtmo(tessellator, 90.0F, 0.0F, 20 - 2, new Vector3(120 / 255.0F * f, 110 / 255.0F * f, 120 / 255.0F * f));
+		    }
+	    GL11.glPopMatrix(); 
 	}
 
 	@Override
@@ -134,13 +75,13 @@ public class SkyProviderCallisto extends SkyProviderBase
 	}
 
 	@Override
-	protected int modeLight() {
-		return 0;
+	protected ModeLight modeLight() {
+		return ModeLight.DEFAULT;
 	}
 
 	@Override
-	protected Vector3 colorSunAura() {
-		return new Vector3(150, 150, 150);
+	protected StarColor colorSunAura() {
+		return StarColor.WHITE;
 	}
 
 	@Override
