@@ -319,11 +319,11 @@ public class GalaxySpace
    		}		
 	}
     
-    public void debug(String message)
+    public void debug(Object message)
    	{     	
    		if(debug && log != null) 
    		{
-   			log.log(Level.INFO, "[DEBUG]: " + message);
+   			log.log(Level.INFO, "[DEBUG]: " + message.toString());
    		}
    	}   
     

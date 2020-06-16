@@ -55,43 +55,24 @@ public class Triton_Mountains extends WE_Biome {
 		int randPosY;
 		int randPosZ;
 		
-		for (int i = 0; i < 1; i++) {
+		if(rand.nextInt(3000) < 10) {
 			
 			 randPosX = x + rand.nextInt(16) + 8;
-			 randPosY = rand.nextInt(70);
 			 randPosZ = z + rand.nextInt(16) + 8;
+			 randPosY = world.getHeight(randPosX, randPosZ);//rand.nextInt(90);
 			 
 			 BlockPos pos = new BlockPos(randPosX, randPosY, randPosZ);
 			 
-			 if(world.isAirBlock(pos))
+			 if(world.isAirBlock(pos.up()))
 			 {
-				 IBlockState state = world.getBlockState(pos);
-				 if(world.getBlockState(pos) == GSBlocks.TRITON_BLOCKS.getDefaultState())					 
+				 IBlockState state = world.getBlockState(pos.down());
+				 if(state == GSBlocks.TRITON_BLOCKS.getDefaultState().withProperty(TritonBlocks.BASIC_TYPE, TritonBlocks.EnumTritonBlocks.TRITON_GRUNT))					 
 				 {
-					 world.setBlockState(pos, GSBlocks.TRITON_BLOCKS.getDefaultState().withProperty(TritonBlocks.BASIC_TYPE, TritonBlocks.EnumTritonBlocks.TRITON_GEYSER), 3);
-					 world.scheduleBlockUpdate(pos, GSBlocks.TRITON_BLOCKS.getDefaultState().withProperty(TritonBlocks.BASIC_TYPE, TritonBlocks.EnumTritonBlocks.TRITON_GEYSER).getBlock(), 0, 0);
+					 world.setBlockState(pos.down(), GSBlocks.TRITON_BLOCKS.getDefaultState().withProperty(TritonBlocks.BASIC_TYPE, TritonBlocks.EnumTritonBlocks.TRITON_GEYSER), 3);
+					 world.scheduleBlockUpdate(pos.down(), GSBlocks.TRITON_BLOCKS.getDefaultState().withProperty(TritonBlocks.BASIC_TYPE, TritonBlocks.EnumTritonBlocks.TRITON_GEYSER).getBlock(), 0, 0);
+					 
 				 }
 			 }
-		}
-		
-		for (int i = 0; i < 2; i++) {
-			
-			 randPosX = x + rand.nextInt(16) + 8;
-			 randPosY = rand.nextInt(70);
-			 randPosZ = z + rand.nextInt(16) + 8;
-			 
-			 BlockPos pos = new BlockPos(randPosX, randPosY, randPosZ);
-			 
-			 if(world.isAirBlock(pos.up()) && randPosX % 50 == 0)
-			 {
-				 IBlockState state = world.getBlockState(pos);
-				 if(world.getBlockState(pos) == GSBlocks.TRITON_BLOCKS.getDefaultState())					 
-				 {
-					 world.setBlockState(pos, GSBlocks.TRITON_BLOCKS.getDefaultState().withProperty(TritonBlocks.BASIC_TYPE, TritonBlocks.EnumTritonBlocks.TRITON_GEYSER_2), 3);
-					 world.scheduleBlockUpdate(pos, GSBlocks.TRITON_BLOCKS.getDefaultState().withProperty(TritonBlocks.BASIC_TYPE, TritonBlocks.EnumTritonBlocks.TRITON_GEYSER_2).getBlock(), 0, 0);
-						
-				 }
-			 }
-		}
+		}		
 	}
 }
