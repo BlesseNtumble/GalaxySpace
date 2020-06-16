@@ -56,6 +56,8 @@ import micdoodle8.mods.galacticraft.api.vector.BlockVec3Dim;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import micdoodle8.mods.galacticraft.core.Constants;
+import micdoodle8.mods.galacticraft.core.GCBlocks;
+import micdoodle8.mods.galacticraft.core.blocks.BlockAirLockWall;
 import micdoodle8.mods.galacticraft.core.entities.EntityLanderBase;
 import micdoodle8.mods.galacticraft.core.entities.EntityMeteor;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler;
@@ -172,7 +174,7 @@ public class GSEventHandler {
    
 	}
 
-	
+	/*
 	@SubscribeEvent
     public void onPlayerJoinWorld(EntityJoinWorldEvent event)
     {
@@ -182,13 +184,13 @@ public class GSEventHandler {
         		
         }
     }
-	
+	*/
 	@SubscribeEvent
     public void onPlayerLogin(PlayerLoggedInEvent event)
     {
         if (event.player instanceof EntityPlayerMP)
         {
-        	GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_UPDATE_WORLD, GCCoreUtil.getDimensionID(event.player.world)), (EntityPlayerMP)event.player);
+        	//GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_UPDATE_WORLD, GCCoreUtil.getDimensionID(event.player.world)), (EntityPlayerMP)event.player);
         	
         	StatsCapability stats = GSStatsCapability.get(event.player);
         	
@@ -658,7 +660,7 @@ public class GSEventHandler {
 	}
 	
 	@SubscribeEvent
-	public void onThermalArmorEvent(ThermalArmorEvent event) {
+	public void onThermalArmorEvent(ThermalArmorEvent event) {		
 		if (event.armorStack == ItemStack.EMPTY) {
 			event.setArmorAddResult(ThermalArmorEvent.ArmorAddResult.REMOVE);
 			return;
@@ -704,7 +706,16 @@ public class GSEventHandler {
 		{
 			EntityPlayerMP player = (EntityPlayerMP) living;			
 			
-			event.setCanceled(!GSConfigCore.enableRadiationSystem || this.getProtectArmor(player) || player.getRidingEntity() instanceof EntityLanderBase || player.getRidingEntity() instanceof EntityTieredRocket || this.inRadiationBubble(player.getEntityWorld(), player.posX, player.posY, player.posZ));		
+			
+			boolean checkAirLock = false;
+			for(int y = 0; y < 255; y++) {
+				if(player.world.getBlockState(player.getPosition().up(y)).getBlock() == GCBlocks.airLockSeal) {
+					checkAirLock = true;
+					break;
+				}
+			}
+			
+			event.setCanceled(checkAirLock || !GSConfigCore.enableRadiationSystem || this.getProtectArmor(player) || player.getRidingEntity() instanceof EntityLanderBase || player.getRidingEntity() instanceof EntityTieredRocket || this.inRadiationBubble(player.getEntityWorld(), player.posX, player.posY, player.posZ));		
 		}
 	}
 	
