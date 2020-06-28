@@ -527,9 +527,9 @@ planet.haumea=Хаумеа
 
 satellite.spacestation.venus=Венерианская Атмосферная Станция
 
-solarsystem.acentauri=a Центавра
-star.centauri_a=a Центавра A
-planet.centauri_b=a Центавра B
+solarsystem.acentauri=α Центавра
+star.centauri_a=α Центавра A
+planet.centauri_b=α Центавра B
 
 solarsystem.proxima=Проксима Центавра
 star.proxima=Проксима Центавра
