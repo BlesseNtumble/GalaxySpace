@@ -336,7 +336,7 @@ item.extra_battery.name=Об'ємна Батарейка
 item.ultimate_battery.name=Відмінна Батарейка
 
 item.hydrogen_canister.name=Каністра Водню
-item.ethane_canister.name=каністра Етана
+item.ethane_canister.name=Каністра Етана
 item.em_canister.name=Каністра Етано-Метанової Суміші
 item.helium_canister.name=Каністра Гелія-3
 item.hh_canister.name=Каністра Збагаченого Гелієм Водню
@@ -356,8 +356,8 @@ item.space_suit_feet.name=Чоботи Космічного Костюма
 
 item.cobalt_helmet.name=Кобальтовий Шолом
 item.cobalt_chest.name=Кобальтова Кіраса
-item.cobalt_legs.name=кобальтові Наголінники
-item.cobalt_boots.name=кобальтові Чоботи
+item.cobalt_legs.name=Кобальтові Наголінники
+item.cobalt_boots.name=Кобальтові Чоботи
 
 item.cobalt_axe.name=Кобальтова Сокира
 item.cobalt_hoe.name=Кобальтова Мотика
@@ -526,9 +526,9 @@ planet.haumea=Гаумеа
 
 satellite.spacestation.venus=Венеріанська Атмосферная Станція
 
-solarsystem.acentauri=a Центавра
-star.centauri_a=a Центавра A
-planet.centauri_b=a Центавра B
+solarsystem.acentauri=α Центавра
+star.centauri_a=α Центавра A
+planet.centauri_b=α Центавра B
 
 solarsystem.proxima=Проксима Центавра
 star.proxima=Проксима Центавра
