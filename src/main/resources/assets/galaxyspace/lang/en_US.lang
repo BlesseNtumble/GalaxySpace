@@ -554,9 +554,9 @@ planet.kuiperbelt=Kuiper Belt
 planet.haumea=Haumea
 
 satellite.spacestation.venus=Venus Atmospheric Space Station
-solarsystem.acentauri=a Centauri
-star.centauri_a=a Centauri A
-planet.centauri_b=a Centauri B
+solarsystem.acentauri=α Centauri
+star.centauri_a=α Centauri A
+planet.centauri_b=α Centauri B
 
 solarsystem.proxima=Proxima Centauri
 star.proxima=Proxima Centauri
