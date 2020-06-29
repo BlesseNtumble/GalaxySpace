@@ -491,6 +491,9 @@ item_group.galaxyspace_rocket=GalaxySpace: ロケット
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 entity.evolved_boss_blaze.name=宇宙のブレイズキング
 entity.evolved_coldblaze.name=宇宙のアイスブレイズ
+entity.rocket_tier_4.name=レベル4 ロケット
+entity.rocket_tier_5.name=レベル5 ロケット
+entity.rocket_tier_6.name=レベル6 ロケット
 |/////////////////////////////////////////|
 #||||||||||||Celestial Bodies||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
