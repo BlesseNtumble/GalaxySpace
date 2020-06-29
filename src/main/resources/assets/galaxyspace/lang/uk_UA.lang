@@ -494,6 +494,9 @@ item_group.galaxyspace_rocket=GalaxySpace: Ракети
 entity.evolved_boss_blaze.name=Еволюціонувавший Бос Крижаний Блейз
 entity.evolved_coldblaze.name=Еволюціонувавший Крижаний Блейз
 entity.evolved_boss_ghast.name=Еволюціонувавший Бос Ґаст
+entity.rocket_tier_4.name=Ракета 4-го рівня
+entity.rocket_tier_5.name=Ракета 5-го рівня
+entity.rocket_tier_6.name=Ракета 6-го рівня
 #|/////////////////////////////////////////|
 #|||||||||||||Celestial Bodies||||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
