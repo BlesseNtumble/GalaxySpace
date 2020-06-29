@@ -500,6 +500,9 @@ item_group.galaxyspace_rocket=GalaxySpace: Rockets
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 entity.evolved_boss_blaze.name=Evolved Boss Blaze
 entity.evolved_coldblaze.name=Evolved 冰 Blaze
+entity.rocket_tier_4.name=四階火箭
+entity.rocket_tier_5.name=五階火箭
+entity.rocket_tier_6.name=六階火箭
 |/////////////////////////////////////////|
 #||||||||||||Celestial Bodies||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
