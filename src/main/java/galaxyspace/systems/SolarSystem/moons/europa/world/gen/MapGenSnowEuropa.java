@@ -1,6 +1,6 @@
 package galaxyspace.systems.SolarSystem.moons.europa.world.gen;
 
-import galaxyspace.core.registers.blocks.GSBlocks;
+import galaxyspace.core.GSBlocks;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.MapGenBaseMeta;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;

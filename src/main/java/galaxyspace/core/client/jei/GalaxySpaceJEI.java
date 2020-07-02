@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 
+import galaxyspace.core.GSBlocks;
+import galaxyspace.core.GSItems;
 import galaxyspace.core.client.jei.assembler.AssemblerRecipeCategory;
 import galaxyspace.core.client.jei.assembler.AssemblerShapedRecipeWrapper;
 import galaxyspace.core.client.jei.assembler.AssemblerShapelessRecipeWrapper;
@@ -35,8 +37,6 @@ import galaxyspace.core.client.jei.recycler.UniversalRecyclerRecipeWrapper;
 import galaxyspace.core.client.jei.rocketassembler.RocketAssemblerRecipeCategory;
 import galaxyspace.core.client.jei.rocketassembler.RocketAssemblerShapedRecipeWrapper;
 import galaxyspace.core.client.jei.rocketassembler.RocketAssemblerShapelessRecipeWrapper;
-import galaxyspace.core.registers.blocks.GSBlocks;
-import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.systems.SolarSystem.planets.overworld.recipes.AssemblyRecipes;
 import galaxyspace.systems.SolarSystem.planets.overworld.recipes.RocketAssemblyRecipes;
 import mezz.jei.api.BlankModPlugin;

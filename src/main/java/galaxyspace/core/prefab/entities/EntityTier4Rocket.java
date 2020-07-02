@@ -3,7 +3,7 @@ package galaxyspace.core.prefab.entities;
 import java.util.List;
 
 import asmodeuscore.core.astronomy.SpaceData.Engine_Type;
-import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.GSItems;
 import micdoodle8.mods.galacticraft.api.entity.IRocketType.EnumRocketType;
 import micdoodle8.mods.galacticraft.api.prefab.entity.EntityTieredRocket;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;

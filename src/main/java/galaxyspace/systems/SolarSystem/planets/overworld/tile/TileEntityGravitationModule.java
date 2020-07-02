@@ -6,7 +6,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import galaxyspace.api.tile.ITileEffects;
-import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.GSItems;
 import micdoodle8.mods.galacticraft.api.entity.IAntiGrav;
 import micdoodle8.mods.galacticraft.api.item.IArmorGravity;
 import micdoodle8.mods.galacticraft.api.transmission.NetworkType;

@@ -8,7 +8,7 @@ import com.google.common.collect.Lists;
 
 import asmodeuscore.core.astronomy.dimension.world.gen.ACBiome;
 import asmodeuscore.core.astronomy.dimension.world.gen.ChunkProviderSpaceLakes;
-import galaxyspace.core.registers.blocks.GSBlocks;
+import galaxyspace.core.GSBlocks;
 import galaxyspace.systems.SolarSystem.moons.europa.world.gen.BiomeDecoratorEuropa;
 import galaxyspace.systems.SolarSystem.moons.europa.world.gen.MapGenRavineEuropa;
 import galaxyspace.systems.SolarSystem.moons.europa.world.gen.MapGenSnowEuropa;

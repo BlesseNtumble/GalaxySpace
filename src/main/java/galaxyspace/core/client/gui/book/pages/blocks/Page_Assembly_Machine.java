@@ -3,7 +3,7 @@ package galaxyspace.core.client.gui.book.pages.blocks;
 import asmodeuscore.core.astronomy.gui.book.Page_WithCraftMatrix;
 import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
 import galaxyspace.api.IPage;
-import galaxyspace.core.registers.blocks.GSBlocks;
+import galaxyspace.core.GSBlocks;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;

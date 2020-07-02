@@ -1,6 +1,6 @@
 package galaxyspace.systems.BarnardsSystem.core.registers;
 
-import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.GSItems;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.items.ItemBasicBR;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.items.ItemFoodBR;
 import net.minecraft.item.Item;

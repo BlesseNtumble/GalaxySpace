@@ -3,8 +3,8 @@ package galaxyspace.core.prefab.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import galaxyspace.core.registers.fluids.GSFluids;
-import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.GSFluids;
+import galaxyspace.core.GSItems;
 import io.netty.buffer.ByteBuf;
 import micdoodle8.mods.galacticraft.api.entity.IRocketType;
 import micdoodle8.mods.galacticraft.api.entity.IWorldTransferCallback;

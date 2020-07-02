@@ -14,13 +14,13 @@ import asmodeuscore.core.utils.worldengine.WE_WorldProvider;
 import galaxyspace.GalaxySpace;
 import galaxyspace.api.item.IJetpackArmor;
 import galaxyspace.api.item.IModificationItem;
+import galaxyspace.core.GSItems;
 import galaxyspace.core.client.gui.GSGuiMainMenu;
 import galaxyspace.core.client.gui.book.pages.general.Page_ActualUpdate;
 import galaxyspace.core.client.gui.overlay.OverlaySpaceSuit;
 import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.network.packet.GSPacketSimple;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
-import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.core.util.GSThreadVersionCheck;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemGeologicalScanner;
@@ -74,7 +74,7 @@ public class GSClientTickHandler {
 
 	public Minecraft mc = FMLClientHandler.instance().getClient();
 	public Random rand;
-	
+		
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void onGuiOpenEvent(GuiOpenEvent event)

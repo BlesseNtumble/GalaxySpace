@@ -5,8 +5,8 @@ import javax.annotation.Nonnull;
 import org.lwjgl.opengl.GL11;
 
 import galaxyspace.GalaxySpace;
+import galaxyspace.core.GSBlocks;
 import galaxyspace.core.client.jei.GSRecipeCategories;
-import galaxyspace.core.registers.blocks.GSBlocks;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;

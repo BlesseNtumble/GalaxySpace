@@ -10,7 +10,7 @@ import asmodeuscore.core.astronomy.dimension.world.gen.ACBiome;
 import asmodeuscore.core.astronomy.dimension.world.gen.ChunkProviderSpaceLakes;
 import asmodeuscore.core.astronomy.dimension.world.gen.MapGenCaves;
 import asmodeuscore.core.astronomy.dimension.world.gen.MapGenCaves.BlockGen;
-import galaxyspace.core.registers.blocks.GSBlocks;
+import galaxyspace.core.GSBlocks;
 import galaxyspace.systems.SolarSystem.moons.ganymede.world.gen.BiomeDecoratorGanymede;
 import galaxyspace.systems.SolarSystem.moons.ganymede.world.gen.MapGenSnowGanymede;
 import micdoodle8.mods.galacticraft.api.prefab.core.BlockMetaPair;

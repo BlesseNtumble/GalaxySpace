@@ -4,8 +4,8 @@ import java.util.Random;
 
 import asmodeuscore.core.astronomy.dimension.world.gen.dungeons.standart.DungeonConfiguration;
 import galaxyspace.GalaxySpace;
+import galaxyspace.core.GSBlocks;
 import galaxyspace.core.prefab.blocks.DungeonBlocks;
-import galaxyspace.core.registers.blocks.GSBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;

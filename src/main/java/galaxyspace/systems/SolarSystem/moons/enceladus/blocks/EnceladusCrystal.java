@@ -2,7 +2,7 @@ package galaxyspace.systems.SolarSystem.moons.enceladus.blocks;
 
 import java.util.Random;
 
-import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.GSItems;
 import galaxyspace.systems.SolarSystem.moons.enceladus.tile.TileEntityBlockCrystallTE;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;

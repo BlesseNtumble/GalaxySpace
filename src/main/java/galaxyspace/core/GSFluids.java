@@ -1,8 +1,7 @@
-package galaxyspace.core.registers.fluids;
+package galaxyspace.core;
 
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.prefab.blocks.BlockFluidGS;
-import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.systems.SolarSystem.moons.titan.blocks.BlockLiquidEthaneMethane;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import net.minecraft.block.Block;

@@ -1,7 +1,7 @@
 package galaxyspace.systems.SolarSystem.moons.enceladus.world.gen;
 
+import galaxyspace.core.GSBlocks;
 import galaxyspace.core.configs.GSConfigCore;
-import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.systems.SolarSystem.moons.enceladus.blocks.EnceladusBlocks.EnumEnceladusBlocks;
 import galaxyspace.systems.SolarSystem.moons.enceladus.blocks.EnceladusCrystal;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;

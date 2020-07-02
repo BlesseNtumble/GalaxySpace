@@ -1,4 +1,4 @@
-package galaxyspace.core.util.researches;
+package galaxyspace.api;
 
 import java.util.Set;
 

@@ -12,14 +12,14 @@ import org.lwjgl.opengl.GL11;
 
 import asmodeuscore.core.utils.ACAttributePlayer;
 import galaxyspace.GalaxySpace;
+import galaxyspace.core.GSItems;
+import galaxyspace.core.GSPotions;
 import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.configs.GSConfigSchematics;
 import galaxyspace.core.handler.capabilities.GSStatsCapability;
 import galaxyspace.core.handler.capabilities.StatsCapability;
 import galaxyspace.core.network.packet.GSPacketSimple;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
-import galaxyspace.core.registers.items.GSItems;
-import galaxyspace.core.registers.potions.GSPotions;
 import galaxyspace.core.util.GSCreativeTabs;
 import micdoodle8.mods.galacticraft.api.vector.BlockVec3;
 import micdoodle8.mods.galacticraft.core.GCItems;
@@ -98,7 +98,11 @@ public class ItemBasicGS extends Item implements ISortableItem{
 		"methane_ice_crystal",		// 25
 		"hydrogen_ice_crystal",		// 26
 		"dry_ice_crystal",			// 27
-		//"geo_scanner"				// 28
+		"plutonium_shard",			// 28
+		"plutonium_pellet"			// 29
+		//"small_gen_field",		
+		//"empty_plasma_cell",		
+		//"filled_plasma_cell"		
 		//"raw_plastic", 				
 		//"plastic_stick"				
 	};

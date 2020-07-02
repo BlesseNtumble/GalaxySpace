@@ -1,4 +1,4 @@
-package galaxyspace.core.registers.potions;
+package galaxyspace.core;
 
 import galaxyspace.core.prefab.potions.AntiRadiation;
 import galaxyspace.core.util.GSUtils;

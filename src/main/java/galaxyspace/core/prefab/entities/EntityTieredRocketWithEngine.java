@@ -5,7 +5,7 @@ import java.util.List;
 import asmodeuscore.api.entity.ICustomEngine;
 import asmodeuscore.core.astronomy.SpaceData.Engine_Type;
 import galaxyspace.GalaxySpace;
-import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.GSItems;
 import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemSpaceSuit;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvLandingPad;

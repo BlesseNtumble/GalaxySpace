@@ -1,7 +1,7 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.blocks;
 
 import asmodeuscore.api.item.IShiftDescription;
-import galaxyspace.core.registers.blocks.GSBlocks;
+import galaxyspace.core.GSBlocks;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvLandingPadSingle;
 import micdoodle8.mods.galacticraft.api.block.IPartialSealableBlock;
 import micdoodle8.mods.galacticraft.core.blocks.BlockAdvancedTile;

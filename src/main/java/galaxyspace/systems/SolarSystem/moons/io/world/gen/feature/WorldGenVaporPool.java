@@ -2,7 +2,7 @@ package galaxyspace.systems.SolarSystem.moons.io.world.gen.feature;
 
 import java.util.Random;
 
-import galaxyspace.core.registers.blocks.GSBlocks;
+import galaxyspace.core.GSBlocks;
 import galaxyspace.systems.SolarSystem.moons.io.blocks.IoBlocks;
 import micdoodle8.mods.galacticraft.planets.venus.VenusBlocks;
 import net.minecraft.block.state.IBlockState;

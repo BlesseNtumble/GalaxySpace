@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+import galaxyspace.core.GSBlocks;
+import galaxyspace.core.GSFluids;
+import galaxyspace.core.GSItems;
 import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.configs.GSConfigSchematics;
-import galaxyspace.core.registers.blocks.GSBlocks;
-import galaxyspace.core.registers.fluids.GSFluids;
-import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.core.util.GSRecipeUtil;
 import galaxyspace.systems.SolarSystem.moons.miranda.blocks.MirandaBlocks;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;

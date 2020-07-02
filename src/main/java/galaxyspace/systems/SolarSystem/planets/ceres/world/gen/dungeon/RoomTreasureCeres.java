@@ -5,7 +5,7 @@ import java.util.Random;
 import asmodeuscore.core.astronomy.dimension.world.gen.dungeons.standart.DungeonConfiguration;
 import asmodeuscore.core.astronomy.dimension.world.gen.dungeons.standart.RoomTreasure;
 import galaxyspace.GalaxySpace;
-import galaxyspace.core.registers.blocks.GSBlocks;
+import galaxyspace.core.GSBlocks;
 import galaxyspace.systems.SolarSystem.planets.ceres.blocks.BlockTier4TreasureChest;
 import galaxyspace.systems.SolarSystem.planets.ceres.blocks.CeresBlocks;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;

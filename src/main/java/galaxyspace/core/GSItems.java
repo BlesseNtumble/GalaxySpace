@@ -1,4 +1,4 @@
-package galaxyspace.core.registers.items;
+package galaxyspace.core;
 
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.configs.GSConfigCore;
@@ -12,7 +12,7 @@ import galaxyspace.core.prefab.items.rockets.ItemFluidCargoRocket;
 import galaxyspace.core.prefab.items.rockets.ItemTier4Rocket;
 import galaxyspace.core.prefab.items.rockets.ItemTier5Rocket;
 import galaxyspace.core.prefab.items.rockets.ItemTier6Rocket;
-import galaxyspace.core.registers.fluids.GSFluids;
+import galaxyspace.systems.SolarSystem.planets.mars.items.ItemMarsRover;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBattery;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemCompressedPlates;
@@ -72,6 +72,7 @@ public class GSItems {
 	public static Item ROCKET_TIER_5 = new ItemTier5Rocket("rocket_tier_5");
 	public static Item ROCKET_TIER_6 = new ItemTier6Rocket("rocket_tier_6");
 	public static Item ROCKET_FLUID_CRAGO = new ItemFluidCargoRocket("rocket_fluid_cargo");
+	public static Item MARS_ROVER = new ItemMarsRover("mars_rover");
 	
 	public static Item ADVANCED_BATTERY = new ItemBattery("advanced_battery", 60000);
 	public static Item MODERN_BATTERY = new ItemBattery("modern_battery", 120000);
@@ -140,6 +141,7 @@ public class GSItems {
 		registerItem(ROCKET_TIER_5);
 		registerItem(ROCKET_TIER_6);
 		//registerItem(ROCKET_FLUID_CRAGO);
+		registerItem(MARS_ROVER);
 		
 		registerItem(SPACE_SUIT_HELMET);
 		registerItem(SPACE_SUIT_BODY);

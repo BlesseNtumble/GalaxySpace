@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import galaxyspace.core.GSBlocks;
 import galaxyspace.core.prefab.blocks.GSBlockMulti;
-import galaxyspace.core.registers.blocks.GSBlocks;
 import micdoodle8.mods.galacticraft.api.entity.IDockable;
 import micdoodle8.mods.galacticraft.api.entity.IFuelable;
 import micdoodle8.mods.galacticraft.api.entity.ILandable;

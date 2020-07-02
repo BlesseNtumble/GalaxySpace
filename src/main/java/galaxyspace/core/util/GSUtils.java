@@ -12,8 +12,8 @@ import java.util.HashSet;
 import java.util.List;
 
 import galaxyspace.GalaxySpace;
-import galaxyspace.core.registers.fluids.GSFluids;
-import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.GSFluids;
+import galaxyspace.core.GSItems;
 import micdoodle8.mods.galacticraft.api.block.IPartialSealableBlock;
 import micdoodle8.mods.galacticraft.api.prefab.entity.EntityTieredRocket;
 import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;

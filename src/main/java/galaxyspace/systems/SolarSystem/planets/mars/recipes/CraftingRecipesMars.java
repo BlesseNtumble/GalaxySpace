@@ -1,6 +1,6 @@
 package galaxyspace.systems.SolarSystem.planets.mars.recipes;
 
-import galaxyspace.core.registers.blocks.GSBlocks;
+import galaxyspace.core.GSBlocks;
 import galaxyspace.systems.SolarSystem.planets.overworld.recipes.RecyclerRecipes;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;

@@ -2,9 +2,9 @@ package galaxyspace.core.client.gui.book.pages.blocks;
 
 import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
 import galaxyspace.api.IPage;
+import galaxyspace.core.GSBlocks;
 import galaxyspace.core.client.gui.book.BookRegister;
 import galaxyspace.core.client.gui.book.pages.Page_AssemblerCraft;
-import galaxyspace.core.registers.blocks.GSBlocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 

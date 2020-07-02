@@ -3,6 +3,7 @@ package galaxyspace.core.util.researches;
 import java.util.HashSet;
 import java.util.Set;
 
+import galaxyspace.api.IResearch;
 import net.minecraft.item.ItemStack;
 
 public class BaseResearch implements IResearch{

@@ -67,7 +67,7 @@ public class ItemTier4Rocket extends Item implements IHoldableItem, ISortableIte
     @Override
     public CreativeTabs getCreativeTab()
     {
-        return GSCreativeTabs.GSRocketTab;
+        return GSCreativeTabs.GSVehiclesTab;
     }
 
     @Override

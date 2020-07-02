@@ -7,5 +7,5 @@ public class GSCreativeTabs {
 	public static CreativeTabGC GSBlocksTab;
     public static CreativeTabGC GSItemsTab;
     public static CreativeTabGC GSArmorTab;
-    public static CreativeTabGC GSRocketTab;
+    public static CreativeTabGC GSVehiclesTab;
 }

@@ -2,7 +2,7 @@ package galaxyspace.core.prefab.potions;
 
 import asmodeuscore.core.utils.ACAttributePlayer;
 import galaxyspace.GalaxySpace;
-import galaxyspace.core.registers.potions.GSPotions;
+import galaxyspace.core.GSPotions;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.entity.EntityLivingBase;

@@ -64,7 +64,7 @@ public class ItemFluidCargoRocket  extends Item implements IHoldableItem, ISorta
     @Override
     public CreativeTabs getCreativeTab()
     {
-        return GSCreativeTabs.GSRocketTab;
+        return GSCreativeTabs.GSVehiclesTab;
     }
 
     @Override

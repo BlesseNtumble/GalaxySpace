@@ -3,7 +3,7 @@ package galaxyspace.systems.SolarSystem.planets.overworld.gui.schematics;
 import org.lwjgl.opengl.GL11;
 
 import galaxyspace.GalaxySpace;
-import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.GSItems;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics.ContainerSchematicOxTank;
 import micdoodle8.mods.galacticraft.api.recipe.ISchematicResultPage;
 import micdoodle8.mods.galacticraft.api.recipe.SchematicRegistry;

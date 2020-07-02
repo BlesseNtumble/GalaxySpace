@@ -11,8 +11,8 @@ import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_CaveGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_OreGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
+import galaxyspace.core.GSBlocks;
 import galaxyspace.core.prefab.world.gen.we.biomes.WE_BaseBiome;
-import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.systems.SolarSystem.SolarSystemBodies;
 import galaxyspace.systems.SolarSystem.planets.ceres.world.gen.BiomeProviderCeres;
@@ -233,7 +233,7 @@ public class WorldProviderHaumea_WE extends WE_WorldProviderSpace implements IPr
 
 	@Override
 	protected float getThermalValueMod() {
-		return 0.15F;
+		return 0.12F;
 	}
 
 	@Override

@@ -2,7 +2,7 @@ package galaxyspace.systems.SolarSystem.planets.overworld.tile;
 
 import java.util.ArrayList;
 
-import galaxyspace.core.registers.blocks.GSBlocks;
+import galaxyspace.core.GSBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;

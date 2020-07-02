@@ -6,10 +6,10 @@ import java.util.List;
 import org.lwjgl.opengl.GL11;
 
 import galaxyspace.GalaxySpace;
+import galaxyspace.core.GSItems;
 import galaxyspace.core.network.packet.GSPacketSimple;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
 import galaxyspace.core.prefab.inventory.SlotUpgrades;
-import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerLiquidSeparator;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityLiquidSeparator;

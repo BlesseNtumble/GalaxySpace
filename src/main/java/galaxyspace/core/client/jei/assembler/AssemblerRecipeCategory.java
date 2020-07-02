@@ -5,9 +5,9 @@ import java.util.List;
 import javax.annotation.Nonnull;
 
 import galaxyspace.GalaxySpace;
+import galaxyspace.core.GSBlocks;
 import galaxyspace.core.client.jei.GSRecipeCategories;
 import galaxyspace.core.client.jei.GalaxySpaceJEI;
-import galaxyspace.core.registers.blocks.GSBlocks;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;

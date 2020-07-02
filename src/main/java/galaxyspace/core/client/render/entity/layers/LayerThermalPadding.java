@@ -3,7 +3,7 @@ package galaxyspace.core.client.render.entity.layers;
 import org.lwjgl.opengl.GL11;
 
 import galaxyspace.GalaxySpace;
-import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.GSItems;
 import galaxyspace.core.util.GSConstants;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemThermalPaddingBase;
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;

@@ -4,8 +4,8 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import galaxyspace.core.GSFluids;
 import galaxyspace.core.configs.GSConfigCore;
-import galaxyspace.core.registers.fluids.GSFluids;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;

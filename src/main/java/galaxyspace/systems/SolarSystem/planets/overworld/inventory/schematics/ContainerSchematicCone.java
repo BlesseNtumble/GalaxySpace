@@ -1,7 +1,7 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics;
 
-import galaxyspace.core.registers.blocks.GSBlocks;
-import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.GSBlocks;
+import galaxyspace.core.GSItems;
 import galaxyspace.core.util.GSRecipeUtil;
 import galaxyspace.core.util.GSUtils;
 import micdoodle8.mods.galacticraft.core.GCBlocks;

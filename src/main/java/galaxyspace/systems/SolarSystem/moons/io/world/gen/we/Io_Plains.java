@@ -2,7 +2,7 @@ package galaxyspace.systems.SolarSystem.moons.io.world.gen.we;
 
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
-import galaxyspace.core.registers.blocks.GSBlocks;
+import galaxyspace.core.GSBlocks;
 import net.minecraft.init.Blocks;
 
 public class Io_Plains extends WE_Biome{

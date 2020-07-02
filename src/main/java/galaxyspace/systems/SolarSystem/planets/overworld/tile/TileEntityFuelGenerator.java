@@ -6,8 +6,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import galaxyspace.core.GSBlocks;
 import galaxyspace.core.configs.GSConfigEnergy;
-import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.systems.SolarSystem.moons.io.blocks.IoBlocks;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockFuelGenerator;
 import micdoodle8.mods.galacticraft.api.transmission.NetworkType;

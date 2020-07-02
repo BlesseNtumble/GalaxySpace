@@ -6,10 +6,10 @@ import javax.annotation.Nullable;
 
 import asmodeuscore.core.astronomy.SpaceData.Engine_Type;
 import galaxyspace.api.item.IModificationItem;
+import galaxyspace.core.GSBlocks;
 import galaxyspace.core.prefab.entities.EntityTier4Rocket;
 import galaxyspace.core.prefab.entities.EntityTier5Rocket;
 import galaxyspace.core.prefab.items.modules.ItemModule;
-import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.core.util.GSCreativeTabs;
 import galaxyspace.core.util.GSUtils.Module_Type;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.modules.IonEngine;
@@ -66,7 +66,7 @@ public class ItemTier5Rocket extends Item implements IHoldableItem, ISortableIte
     @Override
     public CreativeTabs getCreativeTab()
     {
-        return GSCreativeTabs.GSRocketTab;
+        return GSCreativeTabs.GSVehiclesTab;
     }
 
     @Override

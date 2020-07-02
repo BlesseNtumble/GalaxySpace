@@ -1,6 +1,6 @@
 package galaxyspace.systems.SolarSystem.moons.ganymede.world.gen;
 
-import galaxyspace.core.registers.blocks.GSBlocks;
+import galaxyspace.core.GSBlocks;
 import galaxyspace.systems.SolarSystem.moons.ganymede.blocks.GanymedeBlocks;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.MapGenBaseMeta;
 import net.minecraft.block.state.IBlockState;

@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 import galaxyspace.GalaxySpace;
-import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.GSItems;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockAssembler;
 import galaxyspace.systems.SolarSystem.planets.overworld.recipes.AssemblyRecipes;
 import micdoodle8.mods.galacticraft.api.recipe.ShapedRecipesGC;

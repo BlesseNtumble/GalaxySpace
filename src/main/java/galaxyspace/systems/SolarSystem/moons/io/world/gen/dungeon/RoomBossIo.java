@@ -3,8 +3,8 @@ package galaxyspace.systems.SolarSystem.moons.io.world.gen.dungeon;
 import java.util.Random;
 
 import asmodeuscore.core.astronomy.dimension.world.gen.dungeons.standart.DungeonConfiguration;
+import galaxyspace.core.GSBlocks;
 import galaxyspace.core.prefab.blocks.DungeonBlocks;
-import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.systems.SolarSystem.planets.ceres.blocks.CeresBlocks;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityDungeonSpawner;

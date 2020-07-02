@@ -2,8 +2,8 @@ package galaxyspace.systems.SolarSystem.planets.overworld.tile;
 
 import javax.annotation.Nullable;
 
-import galaxyspace.core.registers.fluids.GSFluids;
-import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.GSFluids;
+import galaxyspace.core.GSItems;
 import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockUniversalRecycler;
 import galaxyspace.systems.SolarSystem.planets.overworld.recipes.RecyclerRecipes;

@@ -1,8 +1,8 @@
 package galaxyspace.systems.SolarSystem.moons.io.world.gen;
 
 import asmodeuscore.core.astronomy.dimension.world.gen.WorldGenLakes;
+import galaxyspace.core.GSBlocks;
 import galaxyspace.core.configs.GSConfigCore;
-import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.systems.SolarSystem.moons.io.blocks.IoBlocks;
 import galaxyspace.systems.SolarSystem.moons.io.world.gen.feature.WorldGenVaporPool;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;

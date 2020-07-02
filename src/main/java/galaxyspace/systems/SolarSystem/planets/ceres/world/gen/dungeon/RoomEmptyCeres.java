@@ -6,7 +6,7 @@ import asmodeuscore.core.astronomy.dimension.world.gen.dungeons.standart.Dungeon
 import asmodeuscore.core.astronomy.dimension.world.gen.dungeons.standart.DungeonStart;
 import asmodeuscore.core.astronomy.dimension.world.gen.dungeons.standart.Piece;
 import asmodeuscore.core.astronomy.dimension.world.gen.dungeons.standart.SizedPiece;
-import galaxyspace.core.registers.blocks.GSBlocks;
+import galaxyspace.core.GSBlocks;
 import galaxyspace.systems.SolarSystem.planets.ceres.blocks.CeresBlocks;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;

@@ -4,8 +4,8 @@ import java.util.List;
 
 import asmodeuscore.core.astronomy.SpaceData.Engine_Type;
 import galaxyspace.GalaxySpace;
-import galaxyspace.core.registers.blocks.GSBlocks;
-import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.GSBlocks;
+import galaxyspace.core.GSItems;
 import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockAdvancedLandingPadFull;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvLandingPad;
