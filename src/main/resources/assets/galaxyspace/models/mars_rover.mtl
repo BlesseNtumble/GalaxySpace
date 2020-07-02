@@ -1,0 +1,8 @@
+# Blender MTL File: 'rover.blend'
+# Material Count: 1
+
+newmtl mat
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+d 1.000000
+map_Kd galaxyspace:model/mars_rover

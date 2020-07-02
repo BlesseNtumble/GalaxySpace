@@ -9,10 +9,15 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Logger;
 
 import asmodeuscore.api.space.IBookPage;
+import asmodeuscore.core.astronomy.BodiesHelper;
 import asmodeuscore.core.utils.BookUtils;
 import galaxyspace.api.IBodies;
 import galaxyspace.api.IBodiesHandler;
 import galaxyspace.api.IPage;
+import galaxyspace.core.GSBlocks;
+import galaxyspace.core.GSFluids;
+import galaxyspace.core.GSItems;
+import galaxyspace.core.GSPotions;
 import galaxyspace.core.client.gui.book.BookRegister;
 import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.configs.GSConfigDimensions;
@@ -30,10 +35,6 @@ import galaxyspace.core.prefab.entities.EntityTier4Rocket;
 import galaxyspace.core.prefab.entities.EntityTier5Rocket;
 import galaxyspace.core.prefab.entities.EntityTier6Rocket;
 import galaxyspace.core.proxy.CommonProxy;
-import galaxyspace.core.registers.blocks.GSBlocks;
-import galaxyspace.core.registers.fluids.GSFluids;
-import galaxyspace.core.registers.items.GSItems;
-import galaxyspace.core.registers.potions.GSPotions;
 import galaxyspace.core.util.GSCreativeTabs;
 import galaxyspace.core.util.GSThreadVersionCheck;
 import galaxyspace.core.util.researches.ResearchUtil;
@@ -48,6 +49,7 @@ import galaxyspace.systems.SolarSystem.moons.io.tile.TileEntityTreasureChestIo;
 import galaxyspace.systems.SolarSystem.planets.ceres.entities.EntityBossBlaze;
 import galaxyspace.systems.SolarSystem.planets.ceres.tile.TileEntityDungeonSpawnerCeres;
 import galaxyspace.systems.SolarSystem.planets.ceres.tile.TileEntityTreasureChestCeres;
+import galaxyspace.systems.SolarSystem.planets.mars.entities.EntityMarsRover;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvCircuitFabricator;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvLandingPad;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvLandingPadSingle;
@@ -104,7 +106,7 @@ import net.minecraftforge.fml.relauncher.Side;
 @Mod(
 		   modid = GalaxySpace.MODID,
 		   version = GalaxySpace.VERSION,
-		   dependencies = Constants.DEPENDENCIES_FORGE + "required-after:galacticraftcore@[4.0.2.261,]; required-after:galacticraftplanets; required-after:asmodeuscore@[0.0.17,)",
+		   dependencies = Constants.DEPENDENCIES_FORGE + "required-after:galacticraftcore@[4.0.2.261,]; required-after:galacticraftplanets; required-after:asmodeuscore@[0.0.17]",
 		   acceptedMinecraftVersions = Constants.MCVERSION,
 		   name = GalaxySpace.NAME,
 		   guiFactory = "galaxyspace.core.client.gui.GSConfigGuiFactory"
@@ -153,6 +155,7 @@ public class GalaxySpace
 				e.printStackTrace();
 			}
     	}  
+    	
     }
     
     @EventHandler
@@ -168,6 +171,8 @@ public class GalaxySpace
     	debug = GSConfigCore.enableDebug;
     	log = event.getModLog();
     	 
+    	BodiesHelper.setMaxTier(6);
+    	
     	GSBlocks.initialize();
     	GSFluids.initialize(); 
     	GSItems.initialize();
@@ -185,7 +190,6 @@ public class GalaxySpace
 		}
 		
 		ResearchUtil.initResearches();
-		
 		if(event.getSide() == Side.CLIENT)
 	    	for (ASMData data : event.getAsmData().getAll(IPage.class.getName())) {
 				IBookPage page;
@@ -196,7 +200,6 @@ public class GalaxySpace
 					e.printStackTrace();
 				}
 			}
-		
 		GSCapabilityStatsHandler.register();
     }
     
@@ -227,7 +230,7 @@ public class GalaxySpace
     	GSCreativeTabs.GSBlocksTab = new CreativeTabGC(CreativeTabs.getNextID(), "galaxyspace_blocks", new ItemStack(GSBlocks.ASSEMBLER), null);
         GSCreativeTabs.GSItemsTab = new CreativeTabGC(CreativeTabs.getNextID(), "galaxyspace_items", new ItemStack(GSItems.INGOTS), null);
         GSCreativeTabs.GSArmorTab = new CreativeTabGC(CreativeTabs.getNextID(), "galaxyspace_armor", new ItemStack(GSItems.SPACE_SUIT_BODY), null);
-        GSCreativeTabs.GSRocketTab = new CreativeTabGC(CreativeTabs.getNextID(), "galaxyspace_rocket", new ItemStack(GSItems.ROCKET_TIER_4), null);
+        GSCreativeTabs.GSVehiclesTab = new CreativeTabGC(CreativeTabs.getNextID(), "galaxyspace_rocket", new ItemStack(GSItems.ROCKET_TIER_4), null);
     }
 	
     @EventHandler
@@ -268,6 +271,7 @@ public class GalaxySpace
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityTier6Rocket.class, "rocket_tier_6", 150, 1, false);
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityCustomCargoRocket.class, "rocket_fluid_cargo", 150, 1, false);
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityIceSpike.class, "ice_spike", 40, 100, true);
+    	GCCoreUtil.registerGalacticraftNonMobEntity(EntityMarsRover.class, "mars_rover", 150, 1, false);
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityLaserBeam.class, "laser_beam", 40, 100, false);
     	//GCCoreUtil.registerGalacticraftNonMobEntity(GSEntityMeteor.class, "GS Meteor", 150, 5, true);    	
     }
