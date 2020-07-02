@@ -68,6 +68,7 @@ public class ACentauriSystemBodies implements IBodies {
 		GalaxyRegistry.registerSolarSystem(aCentauriSystem);
 		
 		centauri_b = BodiesHelper.registerExPlanet(aCentauriSystem, "centauri_b", GalaxySpace.ASSET_PREFIX, 0.3F);
+		centauri_b.setRingColorRGB(0.0F, 0.0F, 0.0F);
 		BodiesHelper.setOrbitData(centauri_b, (float) Math.PI, 1.5F, 1000F);
 		GalaxyRegistry.registerPlanet(centauri_b);
 		
