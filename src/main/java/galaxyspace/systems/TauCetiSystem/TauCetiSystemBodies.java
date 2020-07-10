@@ -8,14 +8,20 @@ import asmodeuscore.api.dimension.IAdvancedSpace.TypeBody;
 import asmodeuscore.core.astronomy.BodiesData;
 import asmodeuscore.core.astronomy.BodiesHelper;
 import asmodeuscore.core.astronomy.BodiesHelper.Galaxies;
+import asmodeuscore.core.astronomy.dimension.world.gen.ACBiome;
 import galaxyspace.GalaxySpace;
 import galaxyspace.api.IBodies;
 import galaxyspace.api.IBodiesHandler;
+import galaxyspace.core.util.GSDimensions;
 import galaxyspace.systems.TauCetiSystem.core.configs.TCConfigCore;
+import galaxyspace.systems.TauCetiSystem.planets.tauceti_f.dimensions.TeleportTypeTauCeti_F;
+import galaxyspace.systems.TauCetiSystem.planets.tauceti_f.dimensions.WorldProviderTauCeti_F_WE;
+import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
 import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -33,7 +39,7 @@ public class TauCetiSystemBodies implements IBodies{
 	
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {	
-		TauCetiSystem = BodiesHelper.registerSolarSystem(GalaxySpace.ASSET_PREFIX, "tauceti", Galaxies.MILKYWAY, new Vector3(-3.0F, 2.5F, 0.0F), "tauceti", 0.75F);
+		TauCetiSystem = BodiesHelper.registerSolarSystem(GalaxySpace.ASSET_PREFIX, "tauceti", Galaxies.MILKYWAY, new Vector3(-3.0F, 3.0F, 0.0F), "tauceti", 0.75F);
 		GalaxyRegistry.registerSolarSystem(TauCetiSystem);
 		
 		TauCeti_G = BodiesHelper.registerExPlanet(TauCetiSystem, "tauceti_g", GalaxySpace.ASSET_PREFIX, 0.25F);
@@ -50,7 +56,12 @@ public class TauCetiSystemBodies implements IBodies{
 		
 		TauCeti_F = BodiesHelper.registerExPlanet(TauCetiSystem, "tauceti_f", GalaxySpace.ASSET_PREFIX, 1.5F);
 		BodiesHelper.setOrbitData(TauCeti_F, (float) Math.PI / 4, 1.25F, 60F);
+		BodiesHelper.setPlanetData(TauCeti_F, 3, 36000L, BodiesHelper.calculateGravity(7.8F), false);
+		BodiesHelper.setProviderData(TauCeti_F, WorldProviderTauCeti_F_WE.class, -1338, 6, ACBiome.ACSpace);
 		GalaxyRegistry.registerPlanet(TauCeti_F);
+		
+		GalacticraftRegistry.registerTeleportType(WorldProviderTauCeti_F_WE.class, new TeleportTypeTauCeti_F());		
+		
 	}
 
 	@Override
@@ -60,7 +71,10 @@ public class TauCetiSystemBodies implements IBodies{
 	@Override
 	public void postInit(FMLPostInitializationEvent event) {	
 		BodiesData data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.YELLOW);
-		BodiesHelper.registerBodyData(TauCetiSystem.getMainStar(), data);
+		BodiesHelper.registerBodyData(TauCetiSystem.getMainStar(), data);		
+		
+
+		GSDimensions.TAU_CETI_F = WorldUtil.getDimensionTypeById(-1338);
 	}
 
 	@Override
