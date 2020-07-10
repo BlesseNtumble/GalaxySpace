@@ -52,6 +52,7 @@ public class CraftingRecipesOverworld {
 	private static String plateTin = GSConfigCore.enablePlateOreDict ? "plateTin" : "compressedTin";
 	private static String plateDesh = GSConfigCore.enablePlateOreDict ? "plateDesh" : "compressedDesh";
 	private static String plateAluminum = GSConfigCore.enablePlateOreDict ? "plateAluminum" : "compressedAluminum";
+	private static String blockCopper = "blockCopper";
 	
 	public static void loadRecipes() {
 		addBlockRecipes();
@@ -110,7 +111,7 @@ public class CraftingRecipesOverworld {
 	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.HYDROPONIC_BASE, 1, 0), new Object[] { "ABC", "DED", "DFD", 'A', new ItemStack(GCItems.basicItem, 1, 20), 'B', new ItemStack(GCBlocks.fluidTank, 1, 0), 'C', new ItemStack(GCItems.oxygenConcentrator, 1, 0), 'D', plateSteel, 'E', new ItemStack(GSBlocks.MACHINE_FRAMES, 1, 0), 'F', new ItemStack(GCBlocks.aluminumWire, 1, 1)});
 	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.HYDROPONIC_FARM, 1, 0), new Object[] { "XXX", "XCX", "VBV", 'X', new ItemStack(Blocks.GLASS, 1, 0), 'B', new ItemStack(GSBlocks.MACHINE_FRAMES, 1, 0), 'C', "dirt", 'V', new ItemStack(GCBlocks.aluminumWire, 1, 1)});
 
-	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.RADIATION_STABILISER, 1, 0), new Object[] { "XYX", "ZCZ", "XBX", 'X', new ItemStack(GSItems.BASIC, 1, 3), 'B', new ItemStack(GSItems.BASIC, 1, 5), 'C', new ItemStack(GSBlocks.MACHINE_FRAMES, 1, 0), 'Z', new ItemStack(GCBlocks.aluminumWire, 1, 1), 'Y', new ItemStack(GCBlocks.basicBlock, 1, 9)});
+	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.RADIATION_STABILISER, 1, 0), new Object[] { "XYX", "ZCZ", "XBX", 'X', new ItemStack(GSItems.BASIC, 1, 3), 'B', new ItemStack(GSItems.BASIC, 1, 5), 'C', new ItemStack(GSBlocks.MACHINE_FRAMES, 1, 0), 'Z', new ItemStack(GCBlocks.aluminumWire, 1, 1), 'Y', blockCopper});
 	  
 	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.PANEL_CONTROLLER, 1, 0), new Object[] { "XXX", "ZCV", "NBN", 'X', plateTitanium, 'B', new ItemStack(GSItems.BASIC, 1, 3), 'C', new ItemStack(GSBlocks.MACHINE_FRAMES, 1, 2), 'N', new ItemStack(GCBlocks.aluminumWire, 1, 1), 'Z', new ItemStack(GSItems.BASIC, 1, 5), 'V', new ItemStack(GCBlocks.screen, 1, 0)});
 
@@ -283,7 +284,6 @@ public class CraftingRecipesOverworld {
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSBlocks.MERCURY_BLOCKS, 1, 0), ItemStack.EMPTY, new FluidStack(GSFluids.Helium3, 100));
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSBlocks.MERCURY_BLOCKS, 1, 2), new ItemStack(GSItems.BASIC, 1, 7), 35, null);
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(VenusBlocks.venusBlock, 20, 0), new ItemStack(VenusBlocks.venusBlock, 1, 8), 50, null);
-	   //RecyclerRecipes.recycling().addNewRecipe(FluidUtil.getFilledBucket(FluidRegistry.getFluidStack("oil", 1)), new ItemStack(GSItems.BASIC, 1, 20), 50, FluidRegistry.getFluidStack("fuel", 1000));
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSItems.BASIC, 1, 23), ItemStack.EMPTY, FluidRegistry.getFluidStack("oxygen", 25));
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSItems.BASIC, 1, 24), ItemStack.EMPTY, FluidRegistry.getFluidStack("nitrogen", 20));
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSItems.BASIC, 1, 25), ItemStack.EMPTY, FluidRegistry.getFluidStack("methane", 20));
