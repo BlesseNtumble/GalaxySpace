@@ -56,12 +56,7 @@ public class WorldProviderTriton_WE extends WE_WorldProviderSpace implements IPr
     public Class<? extends IChunkGenerator> getChunkProviderClass() {
     	return WE_ChunkProviderSpace.class;
     }
-    
-    @Override 
-    public Class<? extends BiomeProvider> getBiomeProviderClass() { 
-    	return BiomeProviderTriton.class; 
-    }
-    
+       
     @Override
     public Vector3 getFogColor()
     {

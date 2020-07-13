@@ -87,11 +87,6 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
     }
     
     @Override 
-    public Class<? extends BiomeProvider> getBiomeProviderClass() { 
-    	return BiomeProviderBarnarda_C.class; 
-    }
-    
-    @Override 
     @SideOnly(Side.CLIENT)
     public float getCloudHeight()
     {
@@ -321,7 +316,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Forest(-2.9D, 2.9D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(-2.5D, 2.5D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Swampland(-2.4D, 2.4D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Jungle(-2.3D, 2.3D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Jungle(-1.9D, 1.9D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Dunes(-1.4D, 1.4D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-1.0D, 1.0D, 100, 2.8D, 4));	
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-0.8D, 0.8D, 180, 2.4D, 4));

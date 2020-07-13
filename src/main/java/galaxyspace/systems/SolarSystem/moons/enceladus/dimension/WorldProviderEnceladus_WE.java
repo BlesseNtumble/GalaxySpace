@@ -61,12 +61,7 @@ public class WorldProviderEnceladus_WE extends WE_WorldProviderSpace implements 
     public Class<? extends IChunkGenerator> getChunkProviderClass() {
     	return WE_ChunkProviderSpace.class;
     }
-    
-    @Override 
-    public Class<? extends BiomeProvider> getBiomeProviderClass() { 
-    	return BiomeProviderEnceladus.class; 
-    }
-    
+       
     @Override
     public Vector3 getFogColor() { return new Vector3(0, 0, 0); }
     

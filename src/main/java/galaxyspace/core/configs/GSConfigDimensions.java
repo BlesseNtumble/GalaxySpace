@@ -19,7 +19,7 @@ public class GSConfigDimensions
 {
     public static boolean loaded;
 
-    static Configuration config;
+    public static Configuration config;
 
     public GSConfigDimensions(File file)
     {

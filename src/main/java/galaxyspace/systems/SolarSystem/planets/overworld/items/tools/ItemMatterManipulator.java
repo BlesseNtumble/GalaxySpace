@@ -4,14 +4,25 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import galaxyspace.core.prefab.entities.EntityIceSpike;
+import org.lwjgl.opengl.GL11;
+
+import galaxyspace.GalaxySpace;
+import galaxyspace.core.prefab.entities.EntityLaserBeam;
 import galaxyspace.core.util.GSCreativeTabs;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.GlStateManager.DestFactor;
+import net.minecraft.client.renderer.GlStateManager.SourceFactor;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -20,18 +31,20 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemTerraManipulator extends Item {
+public class ItemMatterManipulator extends Item {
 
 	public static int DISTANCE = 15;
 	
-	public ItemTerraManipulator()
+	public ItemMatterManipulator()
 	{
 		this.setMaxDamage(1000);
 		this.setMaxStackSize(1);
@@ -99,26 +112,28 @@ public class ItemTerraManipulator extends Item {
 			
 			//MODE: DIG
 			
-			if(ray != null && i % 1 == 0) {
-				IBlockState block = world.getBlockState(ray.getBlockPos());
+			if(ray != null && i >= 2) {
+				for(BlockPos pos : ray.getBlockPos().getAllInBox(ray.getBlockPos().add(-1,0,-1), ray.getBlockPos().add(1, 0, 1))) {
+					IBlockState block = world.getBlockState(pos);
 				
-				EntityIceSpike beam = new EntityIceSpike(world, player);
-				beam.posY = player.posY + (double)(player.height / 2.0F) + 0.5D;
-				beam.shoot(player, player.rotationPitch, player.rotationYawHead, 0.0F, 0.8F, 0.0F);
+				//EntityLaserBeam beam = new EntityLaserBeam(world, player, ray);
+				//beam.posY = player.posY + (double)(player.height / 2.0F) + 0.5D;
+				//beam.shoot(player, player.rotationPitch, player.rotationYawHead, 0.0F, 0.8F, 0.0F);
 				//beam.shoot(player.posX, player.posY, player.posZ, 0.8F, 0.0F);
-				world.spawnEntity(beam);
+				//world.spawnEntity(beam);
 				
-				if(!world.isRemote && block.isBlockNormalCube())
-				{						
-					if(player.inventory.getFirstEmptyStack() > 0)
-						player.inventory.addItemStackToInventory(new ItemStack(Item.getItemFromBlock(block.getBlock())));
-					world.destroyBlock(ray.getBlockPos(), false);
-				}
-								
+					if(!world.isRemote && block.isBlockNormalCube() && block.getBlock() != Blocks.BEDROCK)
+					{						
+						if(player.inventory.getFirstEmptyStack() > 0)
+							for(ItemStack stacks : world.getBlockState(pos).getBlock().getDrops(world, pos, world.getBlockState(pos), 0))
+								player.inventory.addItemStackToInventory(stacks);
+						world.destroyBlock(pos, false);
+					}
+				}			
 				//return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
 			}	
 			
-			
+			/*
 			if(i % 5 == 0) {
 	
 				EntityIceSpike entitysmallfireball = new EntityIceSpike(world, player);
@@ -127,7 +142,7 @@ public class ItemTerraManipulator extends Item {
 				world.spawnEntity(entitysmallfireball);				
 				
 			}
-			
+			*/
 			stack.getTagCompound().setInteger("timer", 1);
 			player.setActiveHand(hand);
 			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
@@ -146,7 +161,7 @@ public class ItemTerraManipulator extends Item {
 			{
 				if(entityplayer.getActiveItemStack().getTagCompound().hasKey("timer"))
 				{
-					entityplayer.getActiveItemStack().getTagCompound().setInteger("timer", 1);
+					entityplayer.getActiveItemStack().getTagCompound().setInteger("timer", 0);
 				}
 			}
 		}
@@ -163,4 +178,33 @@ public class ItemTerraManipulator extends Item {
     {
         return EnumAction.NONE;
     }
+	
+	@SideOnly(Side.CLIENT)
+	public static void drawLine(BlockPos start, BlockPos end, double x, double y, double z)
+	{		
+		Vec3d start1 = new Vec3d(start);
+		Vec3d end1 = new Vec3d(end);
+		Vec3d posDiff = end1.subtract(start1);
+		GlStateManager.pushMatrix();
+		GlStateManager.glLineWidth(2F);
+		GlStateManager.disableTexture2D();
+		GlStateManager.disableLighting();
+		GlStateManager.translate(-x, -y, -z);
+		
+		GlStateManager.enableBlend();
+		GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bb = tessellator.getBuffer();
+        //GalaxySpace.instance.debug(start1 + " | " + end1 + " | " + posDiff);
+		bb.begin(GL11.GL_LINES, DefaultVertexFormats.POSITION_COLOR);
+		bb.pos(x, y, z).color(1, 0, 0, 1F).endVertex();
+		bb.pos(x + posDiff.x, y + posDiff.y, z + posDiff.z).color(1, 1, 1, 0.5F).endVertex();
+		tessellator.draw();
+		
+		GlStateManager.disableBlend();
+		GlStateManager.enableLighting();
+		GlStateManager.enableTexture2D();
+		GlStateManager.popMatrix();
+	
+	}
 }

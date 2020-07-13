@@ -24,7 +24,7 @@ import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
 import galaxyspace.core.util.GSThreadVersionCheck;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemGeologicalScanner;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemTerraManipulator;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemMatterManipulator;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import micdoodle8.mods.galacticraft.core.util.ColorUtil;
@@ -49,12 +49,14 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
@@ -158,7 +160,7 @@ public class GSClientTickHandler {
 			ItemStack mainhand = player.getHeldItemMainhand();
 			ItemStack offhand = player.getHeldItemOffhand();
 			
-			if(!mainhand.isEmpty() && mainhand.getItem() instanceof ItemTerraManipulator || !offhand.isEmpty() && offhand.getItem() instanceof ItemTerraManipulator) {
+			if(!mainhand.isEmpty() && mainhand.getItem() instanceof ItemMatterManipulator || !offhand.isEmpty() && offhand.getItem() instanceof ItemMatterManipulator) {
 				ModelBase mdl = event.getRenderer().getMainModel();
 				
 				if (mdl instanceof ModelPlayer) {
@@ -247,7 +249,8 @@ public class GSClientTickHandler {
         			GL11.glPushMatrix();
         			//GlStateManager.disableLighting();
         			for(int i = 0; i < k; i++)
-        				minecraft.fontRenderer.drawStringWithShadow(s[i], 10, 28 + i*10, ColorUtil.to32BitColor(255, 255, 255, 255));
+        				if(!minecraft.gameSettings.hideGUI)
+        					minecraft.fontRenderer.drawStringWithShadow(s[i], 10, 28 + i*10, ColorUtil.to32BitColor(255, 255, 255, 255));
         			//GlStateManager.enableLighting();
         			GL11.glPopMatrix();
 
@@ -358,6 +361,15 @@ public class GSClientTickHandler {
         		tess.draw();
 	    		GlStateManager.popMatrix();*/
 			}
+		}
+		
+		if(stack.getItem() instanceof ItemMatterManipulator)
+		{
+			RayTraceResult ray = ItemBasicGS.getRay(player.getEntityWorld(), player, false);
+    		if(ray != null && ray.hitVec.distanceTo(player.getPositionVector()) < 15.0F)
+    		{
+    			ItemMatterManipulator.drawLine(player.getPosition().add(0, player.getEyeHeight(), 0), ray.getBlockPos(), player.posX, player.posY, player.posZ);
+    		}
 		}
 	}
 	

@@ -59,12 +59,7 @@ public class WorldProviderHaumea_WE extends WE_WorldProviderSpace implements IPr
     public Class<? extends IChunkGenerator> getChunkProviderClass() {
     	return WE_ChunkProviderSpace.class;
     }
-    
-    @Override 
-    public Class<? extends BiomeProvider> getBiomeProviderClass() { 
-    	return BiomeProviderCeres.class; 
-    }
-    
+
     @Override
     public Vector3 getFogColor()
     {

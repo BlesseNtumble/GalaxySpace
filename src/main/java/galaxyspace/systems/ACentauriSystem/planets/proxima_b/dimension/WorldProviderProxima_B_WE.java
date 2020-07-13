@@ -85,12 +85,7 @@ public class WorldProviderProxima_B_WE extends WE_WorldProviderSpace implements 
         return WE_ChunkProviderSpace.class;
 
     }
-    
-    @Override 
-    public Class<? extends BiomeProvider> getBiomeProviderClass() { 
-    	return BiomeProviderProxima_B.class; 
-    }
-    
+
     @Nullable
     @SideOnly(Side.CLIENT)
     public float[] calcSunriseSunsetColors(float celestialAngle, float partialTicks)

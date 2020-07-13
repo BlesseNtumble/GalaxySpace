@@ -29,7 +29,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemJetpack
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemSpaceSuit;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemThermalPaddingBase;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemGeologicalScanner;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemTerraManipulator;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemMatterManipulator;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
@@ -106,7 +106,7 @@ public class GSItems {
 	public static Item COBALT_PICKAXE = new ItemPickaxeGS("cobalt_pickaxe", COBALT_TOOLS, false);
 	
 	public static Item JETPACK = new ItemJetpack(SPACESUIT_TIER_1, EntityEquipmentSlot.CHEST);
-	public static Item TERRA_MANIPULATOR = new ItemTerraManipulator();
+	public static Item MATTER_MANIPULATOR = new ItemMatterManipulator();
 	public static Item GEOLOGICAL_SCANNER = new ItemGeologicalScanner();
 	
 	public static void initialize()
@@ -163,7 +163,7 @@ public class GSItems {
 		registerItem(COBALT_HOE);
 		
 		registerItem(JETPACK);
-		//registerItem(TERRA_MANIPULATOR);
+		//registerItem(MATTER_MANIPULATOR);
 		registerItem(GEOLOGICAL_SCANNER);
 		
 		GalacticraftCore.proxy.registerCanister(new PartialCanister(HYDROGEN_CANISTER, GalaxySpace.MODID, "hydrogen_canister", 6));

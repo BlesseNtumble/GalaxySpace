@@ -106,7 +106,7 @@ import net.minecraftforge.fml.relauncher.Side;
 @Mod(
 		   modid = GalaxySpace.MODID,
 		   version = GalaxySpace.VERSION,
-		   dependencies = Constants.DEPENDENCIES_FORGE + "required-after:galacticraftcore@[4.0.2.261,]; required-after:galacticraftplanets; required-after:asmodeuscore@[0.0.17]",
+		   dependencies = Constants.DEPENDENCIES_FORGE + "required-after:galacticraftcore@[4.0.2.261,]; required-after:galacticraftplanets; required-after:asmodeuscore@[0.0.17,)",
 		   acceptedMinecraftVersions = Constants.MCVERSION,
 		   name = GalaxySpace.NAME,
 		   guiFactory = "galaxyspace.core.client.gui.GSConfigGuiFactory"
@@ -343,21 +343,7 @@ public class GalaxySpace
     
     @EventBusSubscriber(modid = MODID)
     public static class RegistrationHandler
-    {
-    	@SubscribeEvent
-    	public void onConfigChanged(ConfigChangedEvent event) {
-    		if (event.getModID().equals(GalaxySpace.MODID)) {
-    			ConfigManager.sync(ASSET_PREFIX, Type.INSTANCE);
-    			GSConfigCore.syncConfig(true);
-    			GSConfigDimensions.syncConfig(true);
-    			GSConfigSchematics.syncConfig(true);
-    			GSConfigEnergy.syncConfig(true);
-    			ACConfigCore.syncConfig(true);
-    			ACConfigDimensions.syncConfig(true);
-    			BRConfigCore.syncConfig(true);
-    			BRConfigDimensions.syncConfig(true);
-    		}
-    	}
+    {    	
     	
     	@SubscribeEvent
     	public static void registerModels(ModelRegistryEvent event) {

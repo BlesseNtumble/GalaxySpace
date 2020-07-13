@@ -52,17 +52,18 @@ public class Enceladus_Plains extends WE_Biome {
 	@Override
 	public void decorateBiome(World world, Random rand, int x, int z)
 	{
-		int randPosX = x + rand.nextInt(16) + 8;
-		int randPosY = rand.nextInt(80);
-		int randPosZ = x + rand.nextInt(16) + 8;
+		int randPosX;
+		int randPosY;
+		int randPosZ;
 
-    	for (int i = 0; i < 50; i++) {
+    	for (int i = 0; i < 30; i++) {
 			 
 	        randPosX = x + rand.nextInt(16) + 8;
-	        randPosY = rand.nextInt(80);
-	        randPosZ = x + rand.nextInt(16) + 8;
+	        randPosY = rand.nextInt(120);
+	        randPosZ = z + rand.nextInt(16) + 8;
        
 	        BlockPos pos = new BlockPos(randPosX, randPosY, randPosZ);
+	       
 	        if (world.getBlockState(pos.down()) == GSBlocks.ENCELADUS_BLOCKS.getStateFromMeta(EnumEnceladusBlocks.ENCELADUS_GRUNT.getMeta()) && world.isAirBlock(pos))
 	        {	        	
 	        	world.setBlockState(pos, GSBlocks.ENCELADUS_CRYSTAL.getDefaultState().withProperty(EnceladusCrystal.FACING, EnumFacing.HORIZONTALS[rand.nextInt(4)]));	  

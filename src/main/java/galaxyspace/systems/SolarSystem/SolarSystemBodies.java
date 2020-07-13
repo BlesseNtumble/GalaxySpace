@@ -13,10 +13,10 @@ import asmodeuscore.core.prefab.celestialbody.ExPlanet;
 import galaxyspace.GalaxySpace;
 import galaxyspace.api.IBodies;
 import galaxyspace.api.IBodiesHandler;
+import galaxyspace.core.GSBlocks;
+import galaxyspace.core.GSItems;
 import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.configs.GSConfigDimensions;
-import galaxyspace.core.registers.blocks.GSBlocks;
-import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.core.util.GSConstants;
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.systems.SolarSystem.moons.callisto.dimension.TeleportTypeCallisto;
@@ -111,6 +111,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @IBodiesHandler
 public class SolarSystemBodies implements IBodies{
+		
 	public static Planet planetMercury;
 
 	public static Planet planetCeres;
@@ -302,7 +303,8 @@ public class SolarSystemBodies implements IBodies{
 		BodiesHelper.setOrbitData(rheyaSaturn, (float) Math.PI / 3, 0.0017F, 220F);
 		GalaxyRegistry.registerMoon(rheyaSaturn);
 		
-		titanSaturn = BodiesHelper.registerExMoon(planetSaturn, "enceladus", GalaxySpace.ASSET_PREFIX, 35F);
+		titanSaturn = BodiesHelper.registerExMoon(planetSaturn, "titan", GalaxySpace.ASSET_PREFIX, 35F);
+		titanSaturn.atmosphereComponent(EnumAtmosphericGas.NITROGEN);
 		BodiesHelper.setOrbitData(titanSaturn, (float)Math.PI / 5, 0.0017F, 280F);
 		BodiesHelper.setAtmosphere(titanSaturn, false, false, false, -4.0F, 1.0F, 0.0F);
 		BodiesHelper.setPlanetData(titanSaturn, 0, 105500L, 0.058F, false);
@@ -317,22 +319,22 @@ public class SolarSystemBodies implements IBodies{
 		BodiesHelper.setOrbitData(mirandaUranus, (float)Math.PI, 0.0017F, 20F);
 		BodiesHelper.setAtmosphere(mirandaUranus, false, false, false, -5.0F, 0.0F, 0.0F);
 		BodiesHelper.setPlanetData(mirandaUranus, 0, 33500L, 0.057F, true);
-		BodiesHelper.setProviderData(mirandaUranus, WorldProviderMiranda.class, GSConfigDimensions.dimensionIDMiranda, 5);
+		BodiesHelper.setProviderData(mirandaUranus, WorldProviderMiranda.class, GSConfigDimensions.dimensionIDMiranda, 5, ACBiome.ACSpace, ACBiome.ACSpaceLowPlains, ACBiome.ACSpaceMidHills);
 		GalaxyRegistry.registerMoon(mirandaUranus);
 			
-		arielUranus = BodiesHelper.registerExMoon(planetSaturn, "ariel", GalaxySpace.ASSET_PREFIX, 15F);
+		arielUranus = BodiesHelper.registerExMoon(planetUranus, "ariel", GalaxySpace.ASSET_PREFIX, 15F);
 		BodiesHelper.setOrbitData(arielUranus, (float) Math.PI / 2, 0.0017F, 50F);
 		GalaxyRegistry.registerMoon(arielUranus);
 		
-		umbrielUranus = BodiesHelper.registerExMoon(planetSaturn, "umbriel", GalaxySpace.ASSET_PREFIX, 20F);
+		umbrielUranus = BodiesHelper.registerExMoon(planetUranus, "umbriel", GalaxySpace.ASSET_PREFIX, 20F);
 		BodiesHelper.setOrbitData(umbrielUranus, (float) Math.PI / 3, 0.0017F, 120F);
 		GalaxyRegistry.registerMoon(umbrielUranus);
 		
-		titaniaUranus = BodiesHelper.registerExMoon(planetSaturn, "titania", GalaxySpace.ASSET_PREFIX, 25F);
+		titaniaUranus = BodiesHelper.registerExMoon(planetUranus, "titania", GalaxySpace.ASSET_PREFIX, 25F);
 		BodiesHelper.setOrbitData(titaniaUranus, (float) Math.PI / 4, 0.0017F, 180F);
 		GalaxyRegistry.registerMoon(titaniaUranus);
 		
-		oberonUranus = BodiesHelper.registerExMoon(planetSaturn, "oberon", GalaxySpace.ASSET_PREFIX, 30F);
+		oberonUranus = BodiesHelper.registerExMoon(planetUranus, "oberon", GalaxySpace.ASSET_PREFIX, 30F);
 		BodiesHelper.setOrbitData(oberonUranus, (float) Math.PI / 4, 0.0017F, 220F);
 		GalaxyRegistry.registerMoon(oberonUranus);
 		
@@ -371,6 +373,7 @@ public class SolarSystemBodies implements IBodies{
 		
 		registryteleport();
 		registrycelestial(); 		
+		
 	}
 	
 	public void init(FMLInitializationEvent event)

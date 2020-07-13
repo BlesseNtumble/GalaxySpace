@@ -1,127 +1,208 @@
 package galaxyspace.core.client.render.entity;
 
-import galaxyspace.core.prefab.entities.EntityLaserBeam;
+import org.lwjgl.opengl.GL11;
+
+import galaxyspace.core.util.GSTrace;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemMatterManipulator;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderDragon;
-import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class RenderLaserBeam extends Render<EntityLaserBeam>{
-
-	public RenderLaserBeam(RenderManager renderManager) {
-		super(renderManager);
-		
-	}
-
-	@Override
-	public void doRender(EntityLaserBeam entity, double x, double y, double z, float entityYaw, float partialTicks) {
-/*
-		double distance = 10;
-		double distance_start = Math.min(1.0d, distance);
-		
-		int maxTicks = 100;
-		 
-		float prog = ((float)entity.ticksExisted)/((float)maxTicks);
-		double width = 15.0F * (Math.sin(Math.sqrt(prog)*Math.PI))*2;		
-		
-		GlStateManager.pushMatrix();
-		GlStateManager.enableRescaleNormal();
-		GlStateManager.enableBlend();
-		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+@SideOnly(Side.CLIENT)
+public class RenderLaserBeam<T extends EntityLivingBase>
+{
+	
+	public void onRenderWorldLast(RenderWorldLastEvent event)
+	{
+		GlStateManager.disableLighting();
 		GlStateManager.disableCull();
-		GlStateManager.depthMask(false);
-		GlStateManager.translate(x, y, z);
-		//GlStateManager.rotate(entity.rotationYaw-90F, 0.0F, 1.0F, 0.0F);              
-       // GlStateManager.rotate(entity.rotationPitch, 0.0F, 0.0F, 1.0F);
-        
-        
-		GlStateManager.rotate(entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * partialTicks - 90.0F, 0.0F, 1.0F, 0.0F);
-        GlStateManager.rotate(entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks, 0.0F, 0.0F, 1.0F);
-		
-        
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder bufferbuilder = tessellator.getBuffer();
-        
-        distance*=80.0D;
-        distance_start*=80.0D;
-        float f10 = 0.0125F;
-        
-        float rot_x = 45f+(prog*180f);
+		GlStateManager.enableBlend();
+		GlStateManager.tryBlendFuncSeparate(GL11.GL_ONE, GL11.GL_ONE, 0, 0);
 
-        //GlStateManager.rotate(rot_x+90f , 1.0F, 0.0F, 0.0F);
-        GlStateManager.scale(f10, f10, f10);
-        float brightness = (float) Math.sin(Math.sqrt(prog)*Math.PI);
-        /*
-        if (distance > distance_start) {
-        	GlStateManager.pushMatrix();
-	        for (int i = 0; i < 2; ++i)
-	        {
-	            GlStateManager.rotate(90.0F, 1.0F, 0.0F, 0.0F);
-	            GlStateManager.glNormal3f(0.0F, 0.0F, f10);
-	            bufferbuilder.begin(7, DefaultVertexFormats.POSITION_COLOR);
-	           
-	            bufferbuilder.pos(distance_start, -width, 0.0D).color(1.0f, 1.0f, 1.0f, brightness).endVertex();
-	            bufferbuilder.pos(0, -width, 0.0D).color(1.0f, 1.0f, 1.0f, brightness).endVertex();
-	            bufferbuilder.pos(0, width, 0.0D).color(1.0f, 1.0f, 1.0f, brightness).endVertex();
-	            bufferbuilder.pos(distance_start, width, 0.0D).color(1.0f, 1.0f, 1.0f, brightness).endVertex();
-	            tessellator.draw();
-	            
-	        }
-	        GlStateManager.popMatrix();
-        }
-        
-        
-        GlStateManager.glNormal3f(0.05625F, 0.0F, 0.0F);
-        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-        bufferbuilder.pos(-7.0D, -2.0D, -2.0D).tex(0.0D, 0.15625D).endVertex();
-        bufferbuilder.pos(-7.0D, -2.0D, 2.0D).tex(0.15625D, 0.15625D).endVertex();
-        bufferbuilder.pos(-7.0D, 2.0D, 2.0D).tex(0.15625D, 0.3125D).endVertex();
-        bufferbuilder.pos(-7.0D, 2.0D, -2.0D).tex(0.0D, 0.3125D).endVertex();
-        tessellator.draw();
-        GlStateManager.glNormal3f(-0.05625F, 0.0F, 0.0F);
-        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-        bufferbuilder.pos(-7.0D, 2.0D, -2.0D).tex(0.0D, 0.15625D).endVertex();
-        bufferbuilder.pos(-7.0D, 2.0D, 2.0D).tex(0.15625D, 0.15625D).endVertex();
-        bufferbuilder.pos(-7.0D, -2.0D, 2.0D).tex(0.15625D, 0.3125D).endVertex();
-        bufferbuilder.pos(-7.0D, -2.0D, -2.0D).tex(0.0D, 0.3125D).endVertex();
-        tessellator.draw();
-        
-        GlStateManager.depthMask(true);
-        GlStateManager.enableCull();
-        GlStateManager.disableBlend();
-        GlStateManager.disableRescaleNormal();	         
-		GlStateManager.popMatrix();		 */
-		
 		GlStateManager.pushMatrix();
-		GlStateManager.translate(x, y, z);
-		GlStateManager.rotate(180F, 0.0F, 0.0F, 1.0F);
-		BlockPos blockpos = entity.rayTrace(16, partialTicks).getBlockPos();
-		
-		float f1 = MathHelper.sin(partialTicks * 0.2F) / 2.0F + 0.5F;
-        f1 = f1 * f1 + f1;
-
-		if (blockpos != null)
-        {
-            this.bindTexture(RenderDragon.ENDERCRYSTAL_BEAM_TEXTURES);
-            float f2 = (float)blockpos.getX() + 0.5F;
-            float f3 = (float)blockpos.getY() + 0.5F;
-            float f4 = (float)blockpos.getZ() + 0.5F;
-            double d0 = (double)f2 - entity.posX;
-            double d1 = (double)f3 - entity.posY;
-            double d2 = (double)f4 - entity.posZ;
-            RenderDragon.renderCrystalBeams(x + d0, y - 0.3D + (double)(f1 * 0.4F) + d1, z + d2, partialTicks, (double)f2, (double)f3, (double)f4, (int) entity.ticksExisted, entity.posX, entity.posY, entity.posZ);
-        } 
-		
+		GlStateManager.translate(-Minecraft.getMinecraft().player.posX, -Minecraft.getMinecraft().player.posY, -Minecraft.getMinecraft().player.posZ);
+		renderClient(event.getPartialTicks());
+		renderOthers(event.getPartialTicks());
 		GlStateManager.popMatrix();
-	    super.doRender(entity, x, y, z, entityYaw, partialTicks);
+
+		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GlStateManager.disableBlend();
+		GlStateManager.enableCull();
 	}
 	
-	@Override
-	protected ResourceLocation getEntityTexture(EntityLaserBeam entity) {
-		return null;
+	public void renderOthers(float ticks)
+	{
+		Minecraft.getMinecraft().world.getLoadedEntityList().stream()
+				.filter(o -> o instanceof EntityPlayer)
+				.filter(player -> !player.equals(Minecraft.getMinecraft().player))
+				.forEach(o -> {
+					EntityPlayer player = (EntityPlayer)o;
+					if (shouldRenderBeam(player))
+					{
+						renderRaycastedBeam(player.getPositionEyes(ticks).addVector(0, player.getEyeHeight(), 0), player.getLook(0), new Vec3d(-0.5, -0.3, 1), player);
+					}
+					else
+					{
+						//stopWeaponSound(player);
+					}
+				});
+	}
+	
+	public void renderClient(float ticks)
+	{
+		EntityPlayerSP player = Minecraft.getMinecraft().player;
+
+		if (shouldRenderBeam(player))
+		{
+			Vec3d pos = player.getPositionEyes(1);
+			Vec3d look = player.getLook(0);
+			renderRaycastedBeam(pos, look, new Vec3d(-0.1, -0.1, 0.15), player);
+		}
+		else
+		{
+			//stopWeaponSound(player);
+		}
+	}
+	
+	protected boolean shouldRenderBeam(EntityPlayer entity)
+	{
+		return entity.isHandActive() &&
+				entity.getActiveItemStack() != null &&
+				(entity.getActiveItemStack().getItem() instanceof ItemMatterManipulator);
+	}
+	
+	protected void onBeamRaycastHit(RayTraceResult hit, EntityPlayer caster)
+	{
+		ItemStack weaponStack = caster.getActiveItemStack();
+		if (weaponStack != null && weaponStack.getItem() instanceof ItemMatterManipulator)
+		{
+			//((EnergyWeapon)weaponStack.getItem()).onProjectileHit(hit, weaponStack, caster.worldObj, 1);
+			if (weaponStack.getItem() instanceof ItemMatterManipulator && hit.typeOfHit == RayTraceResult.Type.BLOCK)
+			{
+				GlStateManager.pushMatrix();
+				//RenderUtils.applyColorWithMultipy(getBeamColor(caster), 0.5f + (float)(1 + Math.sin(caster.worldObj.getWorldTime() * 0.5f)) * 0.5f);
+				//Minecraft.getMinecraft().renderEngine.bindTexture(TileEntityRendererStation.glowTexture);
+				GlStateManager.translate(hit.getBlockPos().getX() + 0.5, hit.getBlockPos().getY() + 0.5, hit.getBlockPos().getZ() + 0.5);
+				GlStateManager.translate(hit.sideHit.getDirectionVec().getX() * 0.5, hit.sideHit.getDirectionVec().getY() * 0.5, hit.sideHit.getDirectionVec().getZ() * 0.5);
+				if (hit.sideHit == EnumFacing.SOUTH)
+				{
+					GlStateManager.rotate(90, 1, 0, 0);
+
+				}
+				else if (hit.sideHit == EnumFacing.NORTH)
+				{
+					GlStateManager.rotate(90, -1, 0, 0);
+				}
+				else if (hit.sideHit == EnumFacing.EAST)
+				{
+					GlStateManager.rotate(90, 0, 0, -1);
+				}
+				else if (hit.sideHit == EnumFacing.WEST)
+				{
+					GlStateManager.rotate(90, 0, 0, 1);
+				}
+				else if (hit.sideHit == EnumFacing.DOWN)
+				{
+					GlStateManager.rotate(180, 1, 0, 0);
+				}
+				GlStateManager.scale(1, 1.5 + Math.sin(caster.world.getWorldTime() * 0.5) * 0.5, 1);
+				GlStateManager.popMatrix();
+			}
+		}
+	}
+	
+	protected void onBeamRender(EntityPlayer caster)
+	{
+		
+	}
+	
+	protected float getBeamMaxDistance(EntityPlayer caster)
+	{
+		return 15.0F;
+	}
+	
+	protected float getBeamThickness(EntityPlayer caster)
+	{
+		return 0.05F;
+	}
+	
+	protected boolean renderRaycastedBeam(Vec3d direction, Vec3d offset, EntityPlayer caster)
+	{
+		return renderRaycastedBeam(caster.getPositionEyes(1), direction, offset, caster);
+	}
+
+	protected boolean renderRaycastedBeam(Vec3d position, Vec3d direction, Vec3d offset, EntityPlayer caster)
+	{
+		double maxDistance = getBeamMaxDistance(caster);
+
+		RayTraceResult hit = GSTrace.rayTrace(position, caster.world, maxDistance, 0, new Vec3d(0, 0, 0), false, true, direction, caster);
+		if (hit != null && hit.typeOfHit != RayTraceResult.Type.MISS)
+		{
+			renderBeam(position, hit.hitVec, offset, null, getBeamThickness(caster), caster);
+			onBeamRender(caster);
+			onBeamRaycastHit(hit, caster);
+			return true;
+		}
+		else
+		{
+
+			renderBeam(position, position.addVector(direction.x * maxDistance, direction.y * maxDistance, direction.z * maxDistance), offset, null, getBeamThickness(caster), caster);
+			onBeamRender(caster);
+		}
+		return false;
+	}
+
+	protected void renderBeam(Vec3d from, Vec3d to, Vec3d offest, ResourceLocation texture, float tickness, EntityPlayer viewer)
+	{
+		if (texture != null)
+		{
+			Minecraft.getMinecraft().renderEngine.bindTexture(texture);
+		}
+
+		GlStateManager.color(0.0F, 1.0F, 1.0F);
+		//GlStateManager.disableCull();
+		//GlStateManager.enableBlend();
+		//GlStateManager.blendFunc(GL_ONE, GL_ONE);
+		//GlStateManager.disableLighting();
+		double distance = from.subtract(to).lengthVector();
+		double v = -viewer.world.getWorldTime() * 0.2;
+
+		GlStateManager.pushMatrix();
+		GlStateManager.translate(from.x, from.y, from.z);
+		GlStateManager.rotate(-viewer.getRotationYawHead(), 0, 1, 0);
+		GlStateManager.rotate(viewer.rotationPitch, 1, 0, 0);
+		GlStateManager.translate(offest.x, offest.y, offest.z);
+		Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder wr = tessellator.getBuffer();
+		wr.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+		wr.pos(tickness, 0, 0).tex(0, v).endVertex();
+		wr.pos(tickness, 0, distance).tex(0, v + distance * 1.5).endVertex();
+		wr.pos(-tickness, 0, distance).tex(1, v + distance * 1.5).endVertex();
+		wr.pos(-tickness, 0, 0).tex(1, v).endVertex();
+
+		wr.pos(0, tickness, 0).tex(0, v).endVertex();
+		wr.pos(0, tickness, distance).tex(0, v + distance * 1.5).endVertex();
+		wr.pos(0, -tickness, distance).tex(1, v + distance * 1.5).endVertex();
+		wr.pos(0, -tickness, 0).tex(1, v).endVertex();
+		Tessellator.getInstance().draw();
+		GlStateManager.popMatrix();
+
+		//GlStateManager.enableCull();
+		//GlStateManager.disableBlend();
+		//GlStateManager.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
 }

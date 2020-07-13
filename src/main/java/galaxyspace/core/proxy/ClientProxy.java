@@ -221,7 +221,7 @@ public class ClientProxy extends CommonProxy{
 	            	if(resource.getResourcePath().equals("dungeon_blocks")) {
 	            		
 		            	if(resource.getVariant().contains("ceres_bricks"))	{            	
-		            		event.getModelRegistry().putObject(resource, new BakedModelFullbright(event.getModelRegistry().getObject(resource), "galaxyspace:blocks/solarsystem/ceres/ceres_bricks_layer", 80, 0.45D));
+		            		event.getModelRegistry().putObject(resource, new BakedModelFullbright(event.getModelRegistry().getObject(resource), "galaxyspace:blocks/solarsystem/ceres/ceres_bricks_layer", 250, 0.45D));
 		            		continue;
 		            	}
 		            	
@@ -452,7 +452,7 @@ public class ClientProxy extends CommonProxy{
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SPACE_SUIT_BOOTS, 0, "armor/" + GSItems.SPACE_SUIT_BOOTS.getUnlocalizedName().substring(5));
 		
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.JETPACK, 0, "armor/" + GSItems.JETPACK.getUnlocalizedName().substring(5));
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.TERRA_MANIPULATOR, 0, "tools/" + GSItems.TERRA_MANIPULATOR.getUnlocalizedName().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.MATTER_MANIPULATOR, 0, "tools/" + GSItems.MATTER_MANIPULATOR.getUnlocalizedName().substring(5));
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.GEOLOGICAL_SCANNER, 0, "tools/" + GSItems.GEOLOGICAL_SCANNER.getUnlocalizedName().substring(5));
 		
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_HELMET, 0, "armor/" + GSItems.COBALT_HELMET.getUnlocalizedName().substring(5));
@@ -669,7 +669,7 @@ public class ClientProxy extends CommonProxy{
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(GSBlocks.DUNGEON_BLOCKS), 0, new ModelResourceLocation("galaxyspace:ceres_bricks", "inventory"));
         ModelLoader.setCustomModelResourceLocation(GSItems.JETPACK, 0, new ModelResourceLocation("galaxyspace:armor/jetpack", "inventory"));
    
-        ModelLoader.setCustomModelResourceLocation(GSItems.TERRA_MANIPULATOR, 0, new ModelResourceLocation("galaxyspace:tools/matter_manipulator", "inventory"));
+        ModelLoader.setCustomModelResourceLocation(GSItems.MATTER_MANIPULATOR, 0, new ModelResourceLocation("galaxyspace:tools/matter_manipulator", "inventory"));
         
         for(IBodies list : GalaxySpace.bodies)
 			if(list.canRegister()) 
@@ -710,7 +710,7 @@ public class ClientProxy extends CommonProxy{
 		RenderingRegistry.registerEntityRenderingHandler(EntityBossGhast.class, (RenderManager manager) -> new RenderBossGhast(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityMarsRover.class, (RenderManager manager) -> new RenderMarsRover(manager));
 		
-		RenderingRegistry.registerEntityRenderingHandler(EntityLaserBeam.class, (RenderManager manager) -> new RenderLaserBeam(manager));	
+		//RenderingRegistry.registerEntityRenderingHandler(EntityLaserBeam.class, (RenderManager manager) -> new RenderLaserBeam(manager));	
     }
 	
 	public void register_event(Object obj)

@@ -177,7 +177,7 @@ public class GSBlocks {
 		registerBlock(SOLARWIND_PANEL, GSItemBlockDesc.class);
 		registerBlock(ADVANCED_CIRCUIT_FABRICATOR, GSItemBlockDesc.class);
 		registerBlock(PLANET_SHIELD, GSItemBlockDesc.class);
-		registerBlock(RESEARCH_TABLE, GSItemBlockDesc.class);
+		//registerBlock(RESEARCH_TABLE, GSItemBlockDesc.class);
 		
 		registerBlock(DUNGEON_BLOCKS, ItemBlockDungeonBlocks.class);
 		registerBlock(TREASURE_CHEST_TIER_4, GSItemBlockDesc.class);		

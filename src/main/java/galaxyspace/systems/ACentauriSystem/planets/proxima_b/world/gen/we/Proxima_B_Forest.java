@@ -122,7 +122,7 @@ public class Proxima_B_Forest extends WE_Biome {
 		
     	if (rand.nextInt(50) == 0)
         {
-    		int l2 = world.getTopSolidOrLiquidBlock(new BlockPos(kx, 0, kz)).getY() - 20 - rand.nextInt(25);
+    		int l2 = world.getHeight(new BlockPos(kx, 0, kz)).getY() - 20 - rand.nextInt(25);
     		new WorldGenPool(ACBlocks.PROXIMA_B_BLOCKS.getDefaultState().withProperty(Proxima_B_Blocks.BASIC_TYPE, Proxima_B_Blocks.EnumBlockProximaB.STONE), GCFluids.fluidOil.getBlock().getDefaultState(), 5).generate(world, rand, new BlockPos(x, l2, z));
         }
 	}

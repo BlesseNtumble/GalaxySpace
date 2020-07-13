@@ -102,7 +102,10 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.config.ConfigManager;
+import net.minecraftforge.common.config.Config.Type;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
@@ -141,6 +144,33 @@ public class GSEventHandler {
 		items_to_change.add(new ItemsToChange(new ItemStack(Items.WATER_BUCKET), Blocks.AIR.getDefaultState(), true).setOxygenCheck(false));
 		block_to_change.add(new BlockToChange(Blocks.WATER.getDefaultState(), Blocks.AIR.getDefaultState(), Blocks.ICE.getDefaultState(), 0.0F, true).setParticle("waterbubbles").setOxygenCheck(false));
 		block_to_change.add(new BlockToChange(Blocks.LEAVES.getStateFromMeta(0), Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), 0.5F, true).setParticle("waterbubbles"));
+	}
+	
+	@SubscribeEvent
+	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
+		if (event.getModID().equals(GalaxySpace.MODID)) {
+			ConfigManager.sync(GalaxySpace.MODID, Type.INSTANCE);
+			GSConfigCore.config.save();    			
+			GSConfigDimensions.config.save();    			
+			GSConfigSchematics.config.save();    			
+			GSConfigEnergy.config.save();    			
+			ACConfigCore.config.save();    			
+			ACConfigDimensions.config.save();
+			BRConfigCore.config.save();
+			BRConfigDimensions.config.save();
+
+			GSConfigCore.syncConfig(true);
+			GSConfigDimensions.syncConfig(true);
+			GSConfigSchematics.syncConfig(true);
+			GSConfigEnergy.syncConfig(true);
+			ACConfigCore.syncConfig(true);
+			ACConfigDimensions.syncConfig(true);
+			BRConfigCore.syncConfig(true);
+			BRConfigDimensions.syncConfig(true);
+			
+			GalaxySpace.debug = GSConfigCore.enableDebug;			
+			GalaxySpace.instance.debug("reload");
+		}
 	}
 	
 	@SubscribeEvent
@@ -238,7 +268,7 @@ public class GSEventHandler {
 	@SubscribeEvent 
 	public void onSetBlock(SetBlockEvent e) {
 		
-		if(!e.world.isRemote && e.world.provider instanceof IGalacticraftWorldProvider)
+		if(e.world != null && !e.world.isRemote && e.world.provider instanceof IGalacticraftWorldProvider && e.pos != null)
 		{
 			float thermal = ((IGalacticraftWorldProvider)e.world.provider).getThermalLevelModifier();
 			AxisAlignedBB bb = new AxisAlignedBB(e.pos.getX()-1,e.pos.getY()-1,e.pos.getZ()-1, e.pos.getX()+1,e.pos.getY()+2,e.pos.getZ()+1);
@@ -408,7 +438,7 @@ public class GSEventHandler {
 		ItemStack i = event.getItemStack();
 				
 		if(!world.isRemote && GalaxySpace.debug) 
-			GalaxySpace.instance.debug(Item.REGISTRY.getNameForObject(i.getItem()) + " | " + i.getUnlocalizedName());
+			GalaxySpace.instance.debug(Item.REGISTRY.getNameForObject(i.getItem()) + " | " + i.getUnlocalizedName() + " | " + Biome.getBiome(Biome.getIdForBiome(world.getBiomeForCoordsBody(event.getPos()))));
 		
 					
 		if(!world.isRemote && GSConfigCore.enableHardMode && !player.capabilities.isCreativeMode)

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
+import galaxyspace.GalaxySpace;
 import galaxyspace.core.GSBlocks;
 import galaxyspace.core.prefab.entities.EntityEvolvedColdBlaze;
 import galaxyspace.systems.SolarSystem.moons.enceladus.blocks.EnceladusCrystal;
@@ -30,7 +31,7 @@ public class Enceladus_Mountains extends WE_Biome {
 		biomeScaleX             = 280.0D;
 		biomeScaleY             =   1.7D;
 		biomeSurfaceHeight      =     120;
-		biomeInterpolateQuality =     2;
+		biomeInterpolateQuality =     10;
 		
 		//-//
 		decorateChunkGen_List.clear();		
@@ -53,17 +54,19 @@ public class Enceladus_Mountains extends WE_Biome {
 	@Override
 	public void decorateBiome(World world, Random rand, int x, int z)
 	{
-		int randPosX = x + rand.nextInt(16) + 8;
-		int randPosY = rand.nextInt(80);
-		int randPosZ = x + rand.nextInt(16) + 8;
+		int randPosX;
+		int randPosY;
+		int randPosZ;
 
+		//GalaxySpace.instance.debug(x + " | " + z);
     	for (int i = 0; i < 50; i++) {
 			 
 	        randPosX = x + rand.nextInt(16) + 8;
-	        randPosY = rand.nextInt(80);
-	        randPosZ = x + rand.nextInt(16) + 8;
+	        randPosY = rand.nextInt(120);
+	        randPosZ = z + rand.nextInt(16) + 8;
        
 	        BlockPos pos = new BlockPos(randPosX, randPosY, randPosZ);
+	        
 	        if (world.getBlockState(pos.down()) == GSBlocks.ENCELADUS_BLOCKS.getStateFromMeta(EnumEnceladusBlocks.ENCELADUS_GRUNT.getMeta()) && world.isAirBlock(pos))
 	        {	        	
 	        	world.setBlockState(pos, GSBlocks.ENCELADUS_CRYSTAL.getDefaultState().withProperty(EnceladusCrystal.FACING, EnumFacing.HORIZONTALS[rand.nextInt(4)]));	  

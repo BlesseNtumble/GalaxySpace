@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.FMLLog;
 public class BRConfigCore {
     public static boolean loaded;
 
-    static Configuration config;
+    public static Configuration config;
 
     public BRConfigCore(File file)
     {

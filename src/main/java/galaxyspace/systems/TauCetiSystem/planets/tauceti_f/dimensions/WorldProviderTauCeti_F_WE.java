@@ -79,11 +79,6 @@ public class WorldProviderTauCeti_F_WE extends WE_WorldProviderSpace {
     }
     
     @Override 
-    public Class<? extends BiomeProvider> getBiomeProviderClass() { 
-    	return BiomeProviderBase.class; 
-    }
-    
-    @Override 
     @SideOnly(Side.CLIENT)
     public float getCloudHeight()
     {

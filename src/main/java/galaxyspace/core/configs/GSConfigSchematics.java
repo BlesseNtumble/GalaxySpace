@@ -19,7 +19,7 @@ public class GSConfigSchematics
 {
     public static boolean loaded;
 
-    static Configuration config;
+    public static Configuration config;
 
     public GSConfigSchematics(File file)
     {
@@ -65,37 +65,37 @@ public class GSConfigSchematics
             
             prop = config.get(Constants.CONFIG_CATEGORY_SCHEMATIC, "idSchematicCone", 11);
             prop.setComment("Schematic ID for Cone (Rocket Detail), must be unique.");
-            prop.setLanguageKey("gc.configgui.idSchematicCone");
+            prop.setLanguageKey("gc.configgui.idSchematicCone").setRequiresMcRestart(false);
             idSchematicCone = prop.getInt(11);
             propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_SCHEMATIC, "idSchematicBody", 12);
             prop.setComment("Schematic ID for Body (Rocket Detail), must be unique.");
-            prop.setLanguageKey("gc.configgui.idSchematicBody");
+            prop.setLanguageKey("gc.configgui.idSchematicBody").setRequiresMcRestart(false);
             idSchematicBody = prop.getInt(12);
             propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_SCHEMATIC, "idSchematicEngine", 13);
             prop.setComment("Schematic ID for Engine (Rocket Detail), must be unique.");
-            prop.setLanguageKey("gc.configgui.idSchematicEngine");
+            prop.setLanguageKey("gc.configgui.idSchematicEngine").setRequiresMcRestart(false);
             idSchematicEngine = prop.getInt(13);
             propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_SCHEMATIC, "idSchematicBooster", 14);
             prop.setComment("Schematic ID for Booster (Rocket Detail), must be unique.");
-            prop.setLanguageKey("gc.configgui.idSchematicBooster");
+            prop.setLanguageKey("gc.configgui.idSchematicBooster").setRequiresMcRestart(false);
             idSchematicBooster = prop.getInt(14);
             propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_SCHEMATIC, "idSchematicFins", 15);
             prop.setComment("Schematic ID for Fins (Rocket Detail), must be unique.");
-            prop.setLanguageKey("gc.configgui.idSchematicFins");
+            prop.setLanguageKey("gc.configgui.idSchematicFins").setRequiresMcRestart(false);
             idSchematicFins = prop.getInt(15);
             propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_SCHEMATIC, "idSchematicOxTank", 16);
             prop.setComment("Schematic ID for Oxygen PPE Tank, must be unique.");
-            prop.setLanguageKey("gc.configgui.idSchematicOxTank");
+            prop.setLanguageKey("gc.configgui.idSchematicOxTank").setRequiresMcRestart(false);
             idSchematicOxTank = prop.getInt(16);
             propOrder.add(prop.getName());
             
