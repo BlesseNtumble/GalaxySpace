@@ -19,6 +19,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityLiquidEx
 import micdoodle8.mods.galacticraft.api.recipe.CircuitFabricatorRecipes;
 import micdoodle8.mods.galacticraft.api.recipe.CompressorRecipes;
 import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
+import micdoodle8.mods.galacticraft.api.recipe.ShapelessOreRecipeGC;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.recipe.NasaWorkbenchRecipe;
@@ -194,6 +195,7 @@ public class CraftingRecipesOverworld {
 	   RecipeUtil.addRecipe(new ItemStack(GSItems.BASIC, 1, 22), new Object[] { "XZX", "CYC", "XZX", 'X', new ItemStack(VenusItems.basicItem, 1, 4), 'Y', new ItemStack(GSItems.BASIC, 1, 17), 'Z', new ItemStack(GSItems.BASIC, 1, 8), 'C', new ItemStack(GSItems.BASIC, 1, 21)});
 		  
 	   RecipeUtil.addCustomRecipe(new ShapedRecipeNBT(new ItemStack(GSItems.BASIC, 1, 20), ItemBasicGS.getRecipe()));
+	   RecipeUtil.addCustomRecipe(new ShapedRecipeNBT(new ItemStack(GSItems.BASIC, 1, 28), ItemBasicGS.getColonistKitRecipe()));
    }
 
    private static void addBlockSmelting() {
@@ -289,6 +291,9 @@ public class CraftingRecipesOverworld {
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSItems.BASIC, 1, 25), ItemStack.EMPTY, FluidRegistry.getFluidStack("methane", 20));
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSItems.BASIC, 1, 26), ItemStack.EMPTY, FluidRegistry.getFluidStack("hydrogen", 20));
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSItems.BASIC, 1, 27), ItemStack.EMPTY, new FluidStack(FluidRegistry.WATER, 50));
+	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSBlocks.ENCELADUS_BLOCKS, 1, 0), new ItemStack(Items.SNOWBALL, 4, 0), new FluidStack(FluidRegistry.WATER, 200));
+	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSBlocks.ENCELADUS_CRYSTAL, 1, 0), new ItemStack(GSItems.BASIC, 4, 8), null);
+		  
    }
       
    

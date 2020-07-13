@@ -1,14 +1,8 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.items;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.annotation.Nullable;
-
-import org.lwjgl.opengl.GL11;
 
 import asmodeuscore.core.utils.ACAttributePlayer;
 import galaxyspace.GalaxySpace;
@@ -21,23 +15,18 @@ import galaxyspace.core.handler.capabilities.StatsCapability;
 import galaxyspace.core.network.packet.GSPacketSimple;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
 import galaxyspace.core.util.GSCreativeTabs;
-import micdoodle8.mods.galacticraft.api.vector.BlockVec3;
+import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.items.IClickableItem;
 import micdoodle8.mods.galacticraft.core.items.ISortableItem;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryItem;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
-import micdoodle8.mods.galacticraft.planets.GalacticraftPlanets;
 import micdoodle8.mods.galacticraft.planets.asteroids.blocks.AsteroidBlocks;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import micdoodle8.mods.galacticraft.planets.asteroids.tile.TileEntityShortRangeTelepad;
+import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
@@ -45,7 +34,6 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
@@ -53,15 +41,12 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -98,8 +83,9 @@ public class ItemBasicGS extends Item implements ISortableItem{
 		"methane_ice_crystal",		// 25
 		"hydrogen_ice_crystal",		// 26
 		"dry_ice_crystal",			// 27
-		"plutonium_shard",			// 28
-		"plutonium_pellet"			// 29
+		"colonist_kit"				// 28
+		//"plutonium_shard",			// 29
+		//"plutonium_pellet",			// 30
 		//"small_gen_field",		
 		//"empty_plasma_cell",		
 		//"filled_plasma_cell"		
@@ -214,7 +200,6 @@ public class ItemBasicGS extends Item implements ISortableItem{
 		}
 		else if(stack.getItemDamage() == 27)
 		{
-			
 		}
 		/*
 		else if(stack.getItemDamage() == 28)
@@ -337,13 +322,47 @@ public class ItemBasicGS extends Item implements ISortableItem{
 	                }
 	            }
 
-	            stack.setCount(0);
+	            stack.shrink(1);
 	            return new ActionResult<>(EnumActionResult.SUCCESS, stack);
 	        }
     	}
+		else if(stack.getItemDamage() == 28)
+		{
+			if (player instanceof EntityPlayerMP)
+	        {
+				ItemStack[] stacks = new ItemStack[] {
+						new ItemStack(GCBlocks.oxygenDistributor, 1), new ItemStack(GCBlocks.oxygenCollector, 1), new ItemStack(GCBlocks.oxygenCompressor, 1), 
+						new ItemStack(GCBlocks.solarPanel, 1, 4),  new ItemStack(GSItems.BASIC, 1, 20),  new ItemStack(GCBlocks.solarPanel, 1, 4),
+						new ItemStack(GCBlocks.machineTiered, 1, 0), new ItemStack(MarsBlocks.machine, 1, 0), new ItemStack(GCBlocks.machineBase2, 1, 8)
+				};
+				
+				for(ItemStack items : stacks)				
+					ItemHandlerHelper.giveItemToPlayer(player, items, 0);
+				
+				stack.shrink(1);
+	            return new ActionResult<>(EnumActionResult.SUCCESS, stack);				
+	        }
+		}
 		return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
 	}
 
+	public static Object[] getColonistKitRecipe()
+	{
+		ItemStack[] stacks = new ItemStack[] {
+				new ItemStack(GCBlocks.oxygenDistributor, 1), new ItemStack(GCBlocks.oxygenCollector, 1), new ItemStack(GCBlocks.oxygenCompressor, 1), 
+				new ItemStack(GCBlocks.solarPanel, 1, 4), new ItemStack(GSItems.BASIC, 1, 20), new ItemStack(GCBlocks.solarPanel, 1, 4), 
+				new ItemStack(GCBlocks.machineTiered, 1, 0), new ItemStack(MarsBlocks.machine, 1, 0), new ItemStack(GCBlocks.machineBase2, 1, 8)
+		};
+		
+		Object[] result = new Object[]{ "ABC", "DEF", "GHI", 'A', null, 'B', null, 'C', null, 'D', null, 'E', null, 'F', null, 'G', null, 'H', null, 'I', null };
+		for (int i = 0; i < stacks.length; i++)
+        {
+			result [i * 2 + 4] = stacks[i];
+        }
+		
+		return result;
+	}
+	
 	//EMERGENCY KIT
 	public static ItemStack getContents(int slot)
     {
