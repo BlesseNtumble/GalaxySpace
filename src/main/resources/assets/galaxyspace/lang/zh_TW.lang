@@ -456,7 +456,7 @@ gs.update.changelog=Changelog
 #|/////////////////////////////////////////|
 #|||||||||||||Space suit Modoles|||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-
+gui.module.available_modules=可用模組:
 gui.module.caninstall=可在改造桌中安裝模組.
 gui.module.list=模組列表:
 gui.module.sensor=感測眼鏡
