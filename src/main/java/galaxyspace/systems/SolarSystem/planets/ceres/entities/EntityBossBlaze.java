@@ -57,7 +57,7 @@ public class EntityBossBlaze extends EntityBossBase implements IEntityBreathable
     public EntityBossBlaze(World par1World)
     {
         super(par1World);
-        this.setSize(1.5F, 7.0F);
+        this.setSize(2.0F, 5.0F);
         this.isImmuneToFire = true;
         
         this.tasks.addTask(4, new EntityBossBlaze.AIFireballAttack(this));
@@ -129,10 +129,12 @@ public class EntityBossBlaze extends EntityBossBase implements IEntityBreathable
     	if (!this.world.isRemote)
         {
     		for (int i = 0; i < Math.min(2, this.ticksExisted); i++) {
+    			
     			EntityIceSpike entitysmallfireball = new EntityIceSpike(this.world, this);
     			entitysmallfireball.posY = this.posY + (double)(this.height / 2.0F) + 1.5D;
-    			entitysmallfireball.shoot(this, this.rotationPitch + rand.nextInt(360), this.rotationYawHead + rand.nextInt(360), 0.0F, 0.8F, 1.0F);
+    			entitysmallfireball.shoot(this, this.rotationPitch + this.ticksExisted % 40, this.rotationYawHead + rand.nextInt(360), 0.0F, 0.8F, 1.0F);
     			this.world.spawnEntity(entitysmallfireball);
+    			
     		}
             if (this.deathTicks == 100)
             {
@@ -374,13 +376,13 @@ public class EntityBossBlaze extends EntityBossBase implements IEntityBreathable
                             */
                             EntityIceSpike entitysmallfireball = new EntityIceSpike(this.blaze.world, this.blaze);
                             entitysmallfireball.posY = this.blaze.posY + (double)(this.blaze.height / 2.0F) + 1.6D;
-                            entitysmallfireball.shoot(this.blaze, this.blaze.rotationPitch + 10, this.blaze.rotationYawHead, 1.0F, 0.8F, 1.0F);
+                            entitysmallfireball.shoot(this.blaze, this.blaze.rotationPitch, this.blaze.rotationYawHead, 1.0F, 0.8F, 1.0F);
                             this.blaze.world.spawnEntity(entitysmallfireball);
                         }
                     }
                 }
 
-                this.blaze.getLookHelper().setLookPositionWithEntity(entitylivingbase, 10.0F, 10.0F);
+                this.blaze.getLookHelper().setLookPositionWithEntity(entitylivingbase, 10.0F, 60.0F);
             }
             else
             {
