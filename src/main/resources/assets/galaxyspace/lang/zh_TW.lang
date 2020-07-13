@@ -389,6 +389,7 @@ effect.antiradiation=抗輻射
 |/////////////////////////////////////////|
 #|||||||||||||||||GUI||||||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+gui.available_modules.desc=可用模組:
 gui.schematic_oxtanks.desc=Oxygen EPP Tank
 
 gui.tier1.desc=一階
@@ -458,8 +459,6 @@ gs.update.changelog=Changelog
 
 gui.module.caninstall=可在改造桌中安裝模組.
 gui.module.list=模組列表:
-gui.module.available_modules=可用模組:
-
 gui.module.sensor=感測眼鏡
 gui.module.sensor.desc=在頭盔上增加了感測眼鏡。 掃描玩家周圍的區域，然後在螢幕上顯示礦石。還突出顯示怪物。
 gui.module.nightvision=夜視
