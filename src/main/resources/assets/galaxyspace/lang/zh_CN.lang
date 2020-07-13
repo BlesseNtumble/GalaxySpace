@@ -394,6 +394,7 @@ effect.antiradiation=抗辐射
 |/////////////////////////////////////////|
 #|||||||||||||||||GUI||||||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+gui.available_modules.desc=允许安装模块数量:
 gui.schematic_oxtanks.desc=环保型氧气罐
 
 gui.tier1.desc=1阶
@@ -463,7 +464,6 @@ gs.update.changelog=更新日志
 
 gui.module.caninstall=可在改装台中安装模块
 gui.module.list=当前模块列表
-gui.module.available_modules=允许安装模块数量:
 
 gui.module.sensor=探测目镜
 gui.module.sensor.desc=为头盔添加探测目镜，能够扫描玩家周围的矿物以及高亮标示敌对生物。
