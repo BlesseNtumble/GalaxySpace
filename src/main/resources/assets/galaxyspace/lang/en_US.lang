@@ -523,6 +523,9 @@ item_group.galaxyspace_rocket=GalaxySpace: Rockets
 entity.evolved_boss_blaze.name=Evolved Boss Blaze
 entity.evolved_coldblaze.name=Evolved Ice Blaze
 entity.evolved_boss_ghast.name=Evolved Boss Ghast
+entity.rocket_tier_4.name=Tier 4 Rocket
+entity.rocket_tier_5.name=Tier 5 Rocket
+entity.rocket_tier_6.name=Tier 6 Rocket
 |/////////////////////////////////////////|
 #||||||||||||Celestial Bodies||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
@@ -554,9 +557,9 @@ planet.kuiperbelt=Kuiper Belt
 planet.haumea=Haumea
 
 satellite.spacestation.venus=Venus Atmospheric Space Station
-solarsystem.acentauri=a Centauri
-star.centauri_a=a Centauri A
-planet.centauri_b=a Centauri B
+solarsystem.acentauri=α Centauri
+star.centauri_a=α Centauri A
+planet.centauri_b=α Centauri B
 
 solarsystem.proxima=Proxima Centauri
 star.proxima=Proxima Centauri
