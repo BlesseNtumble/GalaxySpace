@@ -447,7 +447,7 @@ gs.update.changelog=Changelog
 #|/////////////////////////////////////////|
 #|||||||||||||SpaceSuit Modules|||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-
+gui.module.available_modules=利用可能なモジュール:
 gui.module.caninstall=改造作業台でモジュール追加が可能.
 gui.module.list=取り付け済みモジュール一覧:
 
