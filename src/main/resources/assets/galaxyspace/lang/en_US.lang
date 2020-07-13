@@ -476,6 +476,7 @@ gs.update.changelog=Changelog
 #|/////////////////////////////////////////|
 #|||||||||||||SpaceSuit Modules|||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+gui.module.available_modules=Available modules:
 gui.module.caninstall=Can install modules in Modification Table.
 gui.module.list=List Modules:
 
