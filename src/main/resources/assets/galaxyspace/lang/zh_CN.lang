@@ -461,7 +461,7 @@ gs.update.changelog=更新日志
 #|/////////////////////////////////////////|
 #|||||||||||||SpaceSuit Modules|||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-
+gui.module.available_modules=允许安装模块数量:
 gui.module.caninstall=可在改装台中安装模块
 gui.module.list=当前模块列表
 
