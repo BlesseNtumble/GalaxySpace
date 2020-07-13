@@ -380,6 +380,7 @@ effect.antiradiation=抗放射線効果
 |/////////////////////////////////////////|
 #|||||||||||||||||GUI||||||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+gui.available_modules.desc=利用可能なモジュール:
 gui.schematic_oxtanks.desc=エコ酸素タンク
 
 gui.tier1.desc=レベル1
@@ -446,10 +447,9 @@ gs.update.changelog=Changelog
 #|/////////////////////////////////////////|
 #|||||||||||||SpaceSuit Modules|||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-
+gui.module.available_modules=利用可能なモジュール:
 gui.module.caninstall=改造作業台でモジュール追加が可能.
 gui.module.list=取り付け済みモジュール一覧:
-gui.module.available_modules=利用可能なモジュール:
 
 gui.module.sensor=センサーゴーグル
 gui.module.sensor.desc=センサーゴーグルを取り付ける. 周囲をスキャンし、鉱石の位置の表示&モンスターのハイライトを行う.
