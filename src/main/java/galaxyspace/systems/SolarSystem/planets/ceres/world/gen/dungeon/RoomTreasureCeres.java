@@ -108,7 +108,7 @@ public class RoomTreasureCeres extends RoomTreasure
                             TileEntityTreasureChest treasureChest = (TileEntityTreasureChest) worldIn.getTileEntity(blockpos);
                             if (treasureChest != null)
                             {
-                                ResourceLocation chesttype = TABLE_TIER_4_DUNGEON;
+                                ResourceLocation chesttype = CERESCHEST;
                                 if (worldIn.provider instanceof IGalacticraftWorldProvider)
                                 {
                                     chesttype = ((IGalacticraftWorldProvider)worldIn.provider).getDungeonChestType();

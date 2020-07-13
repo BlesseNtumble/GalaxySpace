@@ -20,7 +20,7 @@ public class RenderBossBlaze extends RenderLiving<EntityBossBlaze>
 
 	public RenderBossBlaze(RenderManager renderManagerIn)
 	{
-		super(renderManagerIn, new ModelBlaze(), 1.0F);
+		super(renderManagerIn, new ModelBlaze(), 4.0F);
 	}
 	
     @Override

@@ -83,6 +83,24 @@
                         }
                     ]
                 },
+				{
+                    "type": "item",
+                    "name": "galaxyspace:gs_basic",
+                    "weight": 4,
+                    "functions": [
+                        {
+                            "function": "set_data",
+                            "data": 21
+                        },
+                        {
+                            "function": "minecraft:set_count",
+                            "count": {
+                                "min": 2,
+                                "max": 4
+                            }
+                        }
+                    ]
+                },
                 {
                     "type": "item",
                     "name": "galacticraftplanets:desh_boots",
@@ -113,11 +131,6 @@
                             "data": 1001
                         }
                     ]
-                },
-                {
-                    "type": "item",
-                    "name": "galacticraftplanets:bucket_sulphuric_acid",
-                    "weight": 4
                 },
                 {
                     "type": "item",
