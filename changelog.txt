@@ -1,23 +1,35 @@
 ///Changelog///
 #ru
-r.1. Фикс кол-во дропа алмазов с Венерианской руды.
-r.2. Фикс краша из-за неправильного рецепта в Жидкостном Сепараторе.
-r.3. Улучшенное небо на Земле теперь по стандарту выключено в новом конфиге.
-r.4. Переделана логика Портативного Ядерного Реактора.
-r.5. Убраны Урановые слитки. Добавлены Урановые стержни.
-r.6. Переписаны модули для костюма. Добавлены новые модули.
-r.7. Изменено GUI Модификационного стола (backport from 1.12.2)
-r.8. Добавлен конфиг на отключение изображений на небе.
-r.9. Исправлена ЕРР кислородная канистра.
-r.10. Добавлена канистра Обогащенного топлива.
+r.1. Исправлен дюп жидкостей в сепараторе через BC трубы.
+r.2. Добавлено ограничение установки многоблоков на y = 255.
+r.3. Космический костюм теперь заряжается в энергохранителях из других модов.
+r.4. Исправлен модуль высого шага в космических ботинках.
+r.5. Сапфир более не является топливом.
+r.6. Добавлен конфиг на отключение новой системы уровней ракет.
+r.7. Ветровая Турбина теперь крафтится из алюминиевых слитков других модов.
+r.8. Адаптация под последний билд GC4 (504).
+r.9. Исправлены эвенты для растительности в космосе.
+r.10. Исправлено исчезновение канистр в Улучшенном Загрузчике Топлива.
+r.11. Исправлена замена Обогащенного Гелием Водорода из посадочных модулей на обычное топливо.
+r.12. Добавлены канистры большим объемом для переноса кислорода.
+r.13. Добавлен механим - Кислородный Наполнитель.
+r.14. Добавлен конфиг на отключение ракет в аддоне.
+r.15. Барнарда С.
+r.16. Барнарда Е.
 #en
-e.1. Fixed number of drop of diamonds from Venus ore.
-e.2. Fixed crash due to incorrect recipe in Liquid Separator.
-e.3. Improved sky on Earth is now off by standard in the new config.
-e.4. Reworked logic of Portable Nuclear Reactor.
-e.5. Uranium ingots removed. Uranium rods added.
-e.6. The modules for the spacesuit are rewritten. New modules added.
-e.7. Modified GUI Modification table (backport from 1.12.2)
-e.8. Added config to disable images in the sky.
-e.9. Fixed EPP oxygen canister.
-e.10. Enriched fuel canister added.
+e.1. Fixed dupe of liquids in the separator through the BC pipes.
+e.2. Added limit of place multiblocks to y >= 255.
+e.3. Space suit is now charged in energy modules from other mods.
+e.4. Fixed high step module in space boots.
+e.5. Sapphire is no longer a fuel.
+e.6. Added config to disable the new rockets level system.
+e.7. The Wind Turbine is now craftable from aluminum ingots of other mods.
+e.8. Adaptation for the latest build GC4 (504).
+e.9. Fixed events for plants in space
+e.10. Fixed the disappearance of canisters in the Advanced Fuel Loader.
+e.11. Fixed replacement of Enriched Helium-Hydrogen from landing modules with regular fuel.
+e.12. Added large volume oxygen canisters.
+e.13. Added mechanism - Oxygen Filler.
+e.14. Added config to disable rockets in the addon.
+e.15. Barnard C.
+e.16. Barnard E
