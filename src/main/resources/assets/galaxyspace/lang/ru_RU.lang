@@ -300,6 +300,7 @@ item.nitrogen_ice_crystal.name=Азотный Ледяной Осколок
 item.methane_ice_crystal.name=Метановый Ледяной Осколок
 item.hydrogen_ice_crystal.name=Водородный Ледяной Осколок
 item.dry_ice_crystal.name=Осколок Сухого Льда
+item.colonist_kit.name=Набор Колониста
 
 item.module_expander.name=Модуль "Расширение"
 item.module_stabiliser.name=Модуль "Стабилизация"
@@ -343,6 +344,7 @@ item.hh_canister.name=Канистра Обогащенного Гелием В�
 
 item.violet_reeds.name=Фиолетовый Тростник
 item.water_grass.name=Лишайник
+item.tree_juice.name=Древесный Сок
 item.yellow_fruits.name=Желтые Фрукты
 #|/////////////////////////////////////////|
 #|||||||||||||Armors\Weapons||||||||||||||||
@@ -501,7 +503,7 @@ entity.rocket_tier_6.name=Ракета 6-го уровня
 #|/////////////////////////////////////////|
 #|||||||||||||Celestial Bodies||||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-
+#Solar System
 planet.ceres=Церера
 moon.phobos=Фобос
 moon.deimos=Деймос
@@ -527,9 +529,9 @@ planet.pluto=Плутон
 moon.charon=Харон
 planet.kuiperbelt=Пояс Койпера
 planet.haumea=Хаумеа
-
 satellite.spacestation.venus=Венерианская Атмосферная Станция
 
+#aCentauri System
 solarsystem.acentauri=α Центавра
 star.centauri_a=α Центавра A
 planet.centauri_b=α Центавра B
@@ -538,6 +540,7 @@ solarsystem.proxima=Проксима Центавра
 star.proxima=Проксима Центавра
 planet.proxima_b=Проксима B
 
+#Barnard's System
 solarsystem.barnards=Барнарда
 star.barnarda_a=Барнарда А
 planet.barnarda_b=Барнарда B
@@ -547,6 +550,14 @@ planet.barnarda_e=Барнарда E
 moon.barnarda_b1=Кольцо Планеты
 moon.barnarda_c1=Барнарда C1
 moon.barnarda_c2=Барнарда C2
+
+#Tau Ceti System
+solarsystem.tauceti=Тау Кита
+star.tauceti=Тау Кита A
+planet.tauceti_g=Тау Кита G
+planet.tauceti_h=Тау Кита H
+planet.tauceti_e=Тау Кита E
+planet.tauceti_f=Тау Кита F
 
 #|/////////////////////////////////////////|
 #|||||||||||||||||||Book||||||||||||||||||||

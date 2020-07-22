@@ -76,6 +76,7 @@ public class BRBlocks {
 		OreDictionary.registerOre("oreQuartz", new ItemStack(BARNARDA_C_ORES, 1, 10));	
 		OreDictionary.registerOre("oreCobaltum", new ItemStack(BARNARDA_C_ORES, 1, 11));	
 		OreDictionary.registerOre("oreNickel", new ItemStack(BARNARDA_C_ORES, 1, 12));	
+		
 	}
 	
 	public static void registerBlock(Block block, Class<? extends ItemBlock> itemClass)

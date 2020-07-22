@@ -204,7 +204,7 @@ public class ClientProxy extends CommonProxy{
     {
     	Quat4f rot = TRSRTransformation.quatFromXYZDegrees(new Vector3f(30, 225, 0));
         replaceModelDefault(event, "hydroponic_farm", "hydroponic_farm.obj", ImmutableList.of("ferma_2"), ItemRendererHydroponicFarm.class, new TRSRTransformation(new javax.vecmath.Vector3f(0.7F, 0.1F, 0.0F), rot, new javax.vecmath.Vector3f(0.2604F, 0.2604F, 0.2604F), new javax.vecmath.Quat4f()), "inventory", "normal");
-        replaceModelDefault(event, "rockets/rocket_t4", "tier4rocket.obj", ImmutableList.of("Base"), ItemModelRocketT4.class, TRSRTransformation.identity());
+        replaceModelDefault(event, "rockets/rocket_t4", "tier4rocketGS.obj", ImmutableList.of("Base", "NoseCone", "Rocket", "Booster1", "Booster2", "Booster3", "Booster4"), ItemModelRocketT4.class, TRSRTransformation.identity());
         replaceModelDefault(event, "rockets/rocket_t5", "tier5rocket.obj", ImmutableList.of("Base"), ItemModelRocketT5.class, TRSRTransformation.identity());
         replaceModelDefault(event, "rockets/rocket_t6", "tier6rocket.obj", ImmutableList.of("Base"), ItemModelRocketT6.class, TRSRTransformation.identity());
         replaceModelDefault(event, "rockets/rocket_cargo", "cargo_rocket.obj", ImmutableList.of("Rocket"), ItemModelCargoRocket.class, TRSRTransformation.identity());
@@ -249,6 +249,7 @@ public class ClientProxy extends CommonProxy{
 		GalaxySpace.proxy.registerTexture(event, "model/hydroponic_farm");	
 		//GalaxySpace.proxy.registerTexture(event, "model/matter_manipulator");	
 		GalaxySpace.proxy.registerTexture(event, "model/rocket_tier_4");
+		GalaxySpace.proxy.registerTexture(event, "model/rocket_tier_4_launch");
 		GalaxySpace.proxy.registerTexture(event, "model/rocket_tier_5");	
 		GalaxySpace.proxy.registerTexture(event, "model/rocket_tier_6");			
 		GalaxySpace.proxy.registerTexture(event, "model/cargo_rocket");	
@@ -465,6 +466,7 @@ public class ClientProxy extends CommonProxy{
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_PICKAXE, 0, "tools/" + GSItems.COBALT_PICKAXE.getUnlocalizedName().substring(5));
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_SPADE, 0, "tools/" + GSItems.COBALT_SPADE.getUnlocalizedName().substring(5));
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_HOE, 0, "tools/" + GSItems.COBALT_HOE.getUnlocalizedName().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.PLASMA_SWORD, 0, "tools/" + GSItems.PLASMA_SWORD.getUnlocalizedName().substring(5));
 		
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SCHEMATICS, 0, "schematics/" + "schematic_cone");
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SCHEMATICS, 1, "schematics/" + "schematic_body");
@@ -478,7 +480,7 @@ public class ClientProxy extends CommonProxy{
 		
 		if(GCCoreUtil.isDeobfuscated()) {
 			//GSUtils.addItemJsonFiles(GSItems.JETPACK, "armor/", GSItems.JETPACK.getUnlocalizedName().substring(5));		
-			//GSUtils.addItemJsonFiles(GSItems.COBALT_SPADE, "tools/", GSItems.COBALT_SPADE.getUnlocalizedName().substring(5));		
+			//GSUtils.addItemJsonFiles(GSItems.PLASMA_SWORD, "tools/", GSItems.PLASMA_SWORD.getUnlocalizedName().substring(5));		
 			//GSUtils.addItemJsonFiles(GSItems.COBALT_HOE, "tools/", GSItems.COBALT_HOE.getUnlocalizedName().substring(5));		
 			//GSUtils.addItemJsonFiles(GSItems.COBALT_LEGS, "armor/", GSItems.COBALT_LEGS.getUnlocalizedName().substring(5));		
 			//GSUtils.addItemJsonFiles(GSItems.COBALT_BOOTS, "armor/", GSItems.COBALT_BOOTS.getUnlocalizedName().substring(5));		
@@ -603,6 +605,7 @@ public class ClientProxy extends CommonProxy{
         addVariant("cobalt_pickaxe", "tools/", "cobalt_pickaxe");
         addVariant("cobalt_spade", "tools/", "cobalt_spade");
         addVariant("cobalt_hoe", "tools/", "cobalt_hoe");
+        //addVariant("plasma_sword", "tools/", "plasma_sword");
         
         addVariant("advanced_battery", "batteries/", "advanced_battery");
         addVariant("modern_battery", "batteries/", "modern_battery");
@@ -700,9 +703,9 @@ public class ClientProxy extends CommonProxy{
 	
 	public static void registerEntityRenderers()
     {
-		RenderingRegistry.registerEntityRenderingHandler(EntityTier4Rocket.class, (RenderManager manager) -> new RenderRockets(manager, "tier4rocket"));
-		RenderingRegistry.registerEntityRenderingHandler(EntityTier5Rocket.class, (RenderManager manager) -> new RenderRockets(manager, "tier5rocket"));
-		RenderingRegistry.registerEntityRenderingHandler(EntityTier6Rocket.class, (RenderManager manager) -> new RenderRockets(manager, "tier6rocket"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityTier4Rocket.class, (RenderManager manager) -> new RenderRockets(manager, "tier4rocketGS", "Base", "NoseCone", "Rocket", "Booster1", "Booster2", "Booster3", "Booster4"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityTier5Rocket.class, (RenderManager manager) -> new RenderRockets(manager, "tier5rocket", "Base"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityTier6Rocket.class, (RenderManager manager) -> new RenderRockets(manager, "tier6rocket", "Base"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityCustomCargoRocket.class, (RenderManager manager) -> new RenderCargoRockets(manager, "rockets/rocket_cargo"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBossBlaze.class, (RenderManager manager) -> new RenderBossBlaze(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityIceSpike.class, (RenderManager manager) -> new RenderIceSpike(manager));

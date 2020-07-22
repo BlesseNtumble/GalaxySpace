@@ -345,7 +345,7 @@ public class GSEventHandler {
 				//IC2 WIND TURBINE
 				if(world.provider instanceof IGalacticraftWorldProvider && ((IGalacticraftWorldProvider)world.provider).hasNoAtmosphere() && ((IGalacticraftWorldProvider)world.provider).getWindLevel() <= 0.0F) {
 					if(stack.getItem() == Item.getByNameOrId("ic2:te") && (stack.getItemDamage() == 11 || stack.getItemDamage() == 21)) {
-						player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.cant_place")));	
+						player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.status.nowind.name") + "! " + GCCoreUtil.translate("gui.message.cant_place")));	
 						event.setCanceled(true);
 					}
 				}

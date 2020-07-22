@@ -199,7 +199,7 @@ public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProv
 		
 		((WE_ChunkProviderSpace)cp).CRATER_PROB = 2000;
 		
-		WE_Biome.setBiomeMap(cp, 1.5D, 4, 1200.0D, 1.0D);	
+		WE_Biome.setBiomeMap(cp, 1.5D, 4, 2000.0D, 1.0D);	
 		
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
 		terrainGenerator.worldStoneBlock = MarsBlocks.marsBlock.getStateFromMeta(9); 

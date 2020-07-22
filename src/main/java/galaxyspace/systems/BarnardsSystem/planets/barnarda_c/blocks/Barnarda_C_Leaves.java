@@ -62,7 +62,7 @@ public class Barnarda_C_Leaves extends BlockLeaves {
 	@Override
     public int damageDropped(IBlockState state)
     {
-        return 0;
+        return 12;
     }
 	
 	@Override

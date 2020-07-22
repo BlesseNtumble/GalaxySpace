@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.GSItems;
+import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
@@ -34,7 +35,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class IoBlocks extends Block implements ISortableBlock{
+public class IoBlocks extends Block implements ISortableBlock, ITerraformableBlock{
 
 	public static final PropertyEnum<EnumIoBlocks> BASIC_TYPE = PropertyEnum.create("type", EnumIoBlocks.class);
 
@@ -261,6 +262,12 @@ public class IoBlocks extends Block implements ISortableBlock{
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, BASIC_TYPE);
+	}
+
+	@Override
+	public boolean isTerraformable(World world, BlockPos pos) {
+		if(world.getBlockState(pos).getBlock().getMetaFromState(world.getBlockState(pos)) <= 2) return true;
+		return false;
 	}
 
 }

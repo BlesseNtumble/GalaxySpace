@@ -53,7 +53,7 @@ public class GSThreadVersionCheck extends Thread
 			return;
 		}
 
-		while (this.count < 3)
+		while (this.count < 1)
 		{
 			try
 			{
@@ -78,24 +78,24 @@ public class GSThreadVersionCheck extends Thread
 							remoteBuildVer = Integer.parseInt(str2[2]);
 						}
 
-						GSUtils.changelog.clear();
-						GSUtils.start();
-						
+
 						if (remoteMajVer >= GalaxySpace.major_version && remoteMinVer >= GalaxySpace.minor_version && remoteBuildVer > GalaxySpace.build_version)
 						{
 							this.newversion = true;
 							Thread.sleep(5000);
-
-							if (sideToCheck.equals(Side.CLIENT))
-							{
+							
+							if (sideToCheck.equals(Side.CLIENT)) {
+								GSUtils.changelog.clear();
+								GSUtils.start();	
+							
 								FMLClientHandler.instance().getClient().player.sendMessage(new TextComponentString(EnumColor.GREY + "New " + EnumColor.DARK_AQUA + GalaxySpace.NAME + EnumColor.GREY + " version available! v" + String.valueOf(remoteMajVer) + "." + String.valueOf(remoteMinVer) + "." +String.valueOf(remoteBuildVer) + EnumColor.DARK_BLUE + " http://micdoodle8.com/"));
 							}
 							else if (sideToCheck.equals(Side.SERVER))
 							{
 								GalaxySpace.info("New version available! v" + String.valueOf(remoteMajVer) + "." + String.valueOf(remoteMinVer) + "." + String.valueOf(remoteBuildVer) + " ");
-							
 							}
 						}
+						
 					}
 				}
 			}

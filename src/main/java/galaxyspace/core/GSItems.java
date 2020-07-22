@@ -30,6 +30,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemSpaceSu
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemThermalPaddingBase;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemGeologicalScanner;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemMatterManipulator;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemPlasmaSword;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
@@ -49,9 +50,11 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class GSItems {
 	
-	public static ArmorMaterial SPACESUIT_TIER_1 = EnumHelper.addArmorMaterial("SPACESUIT", "", 18, new int[] {2, 4, 5, 2}, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
+	public static ArmorMaterial SPACESUIT_TIER_1 = EnumHelper.addArmorMaterial("SPACESUIT", "", 18, new int[] {3, 6, 7, 3}, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
 	public static ArmorMaterial COBALT = EnumHelper.addArmorMaterial("COBALT", "", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
 	public static ToolMaterial COBALT_TOOLS = EnumHelper.addToolMaterial("cobalt", 2, 250, 6.0F, 2.0F, 14);
+	public static ToolMaterial PLASMA_TOOLS = EnumHelper.addToolMaterial("plasma", 3, 1500, 8.0F, 4.0F, 0);
+	
 	
 	public static Item BASIC = new ItemBasicGS();
 	public static Item INGOTS = new ItemIngots();
@@ -104,6 +107,8 @@ public class GSItems {
 	public static Item COBALT_SPADE = new ItemSpadeGS("cobalt_spade", COBALT_TOOLS);
 	public static Item COBALT_HOE = new ItemHoeGS("cobalt_hoe", COBALT_TOOLS);
 	public static Item COBALT_PICKAXE = new ItemPickaxeGS("cobalt_pickaxe", COBALT_TOOLS, false);
+	
+	public static Item PLASMA_SWORD = new ItemPlasmaSword();
 	
 	public static Item JETPACK = new ItemJetpack(SPACESUIT_TIER_1, EntityEquipmentSlot.CHEST);
 	public static Item MATTER_MANIPULATOR = new ItemMatterManipulator();
@@ -161,6 +166,8 @@ public class GSItems {
 		registerItem(COBALT_PICKAXE);
 		registerItem(COBALT_SPADE);
 		registerItem(COBALT_HOE);
+		
+		//registerItem(PLASMA_SWORD);
 		
 		registerItem(JETPACK);
 		//registerItem(MATTER_MANIPULATOR);

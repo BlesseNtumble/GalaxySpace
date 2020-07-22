@@ -1,15 +1,15 @@
 package galaxyspace.core.client.render.entity;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 import org.lwjgl.opengl.GL11;
 
 import com.google.common.base.Function;
-import com.google.common.collect.ImmutableList;
 
 import galaxyspace.GalaxySpace;
 import micdoodle8.mods.galacticraft.api.prefab.entity.EntityAutoRocket;
-import micdoodle8.mods.galacticraft.api.prefab.entity.EntityTieredRocket;
 import micdoodle8.mods.galacticraft.core.client.model.OBJLoaderGC;
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
 import net.minecraft.client.Minecraft;
@@ -33,12 +33,14 @@ public class RenderRockets extends Render<EntityAutoRocket>
 {
     private OBJModel.OBJBakedModel rocketModel;
     private String model;
-
-    public RenderRockets(RenderManager manager, String model)
+    private List<String> parts;
+    
+    public RenderRockets(RenderManager manager, String model, String... parts)
     {
         super(manager);
         this.model = model;
         this.shadowSize = 2F;
+        this.parts = Arrays.asList(parts);
     }
 
     private void updateModel()
@@ -49,7 +51,7 @@ public class RenderRockets extends Render<EntityAutoRocket>
             {
                 IModel model = OBJLoaderGC.instance.loadModel(new ResourceLocation(GalaxySpace.ASSET_PREFIX, this.model + ".obj"));
                 Function<ResourceLocation, TextureAtlasSprite> spriteFunction = location -> Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
-                this.rocketModel = (OBJModel.OBJBakedModel) model.bake(new OBJModel.OBJState(ImmutableList.of("Base"), false), DefaultVertexFormats.ITEM, spriteFunction);
+                this.rocketModel = (OBJModel.OBJBakedModel) model.bake(new OBJModel.OBJState(this.parts, false), DefaultVertexFormats.ITEM, spriteFunction);
             }
             catch (IOException e)
             {
@@ -71,7 +73,7 @@ public class RenderRockets extends Render<EntityAutoRocket>
         float pitch = entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks + 180;
         GlStateManager.disableRescaleNormal();
         GlStateManager.pushMatrix();
-        
+        GlStateManager.disableCull();
         GlStateManager.translate((float) x, (float) y, (float) z);
         GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
         GlStateManager.rotate(180.0F - entityYaw, 0.0F, 1.0F, 0.0F);
@@ -101,10 +103,10 @@ public class RenderRockets extends Render<EntityAutoRocket>
 		//GlStateManager.scale(-1.0F, -1.0F, 1.0F);
 		GlStateManager.scale(0.8F, 0.8F, 0.8F);
         ClientUtil.drawBakedModel(this.rocketModel);
-
+		
         GlStateManager.enableTexture2D();
         GlStateManager.enableLighting();
-        
+        GlStateManager.enableCull();
         GlStateManager.color(1F, 1F, 1F);
         GlStateManager.popMatrix();
         //RenderHelper.enableStandardItemLighting();
