@@ -20,6 +20,8 @@ import org.lwjgl.util.glu.Project;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 
+import asmodeuscore.AsmodeusCore;
+import asmodeuscore.core.utils.Utils;
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.util.GSThreadVersionCheck;
 import net.minecraft.client.Minecraft;
@@ -645,8 +647,8 @@ public class GSGuiMainMenu extends GuiScreen implements GuiYesNoCallback
         GL11.glColor4f(0.0F, 0.6F, 1.0F, 0.8F);
         this.drawTexturedModalRect(-10, this.height - 20 * brandings.size(), 220, 112, 299, 60, 222, 374 / 2 - 50, true, false, 512, 512);
        
-        this.drawTexturedModalRect(this.width - 240, this.height - 45, 194, 224 / 2 - 30, 299, 60, 222, 374 / 2 - 50, false, false, 512, 512);
-        this.drawTexturedModalRect(this.width - 54, this.height - 63, 85, 224 / 2 - 30, 359, 60, 60, 374 / 2 - 50, false, false, 512, 512);
+        this.drawTexturedModalRect(this.width - 240, this.height - 55, 194, 224 / 2 - 30, 299, 60, 222, 374 / 2 - 50, false, false, 512, 512);
+        this.drawTexturedModalRect(this.width - 54, this.height - 73, 85, 224 / 2 - 30, 359, 60, 60, 374 / 2 - 50, false, false, 512, 512);
         
         //this.drawTexturedModalRect(-20, this.height - 225, 119, 84, 299, 60, 122, 114, true, false, 512, 512);
         //this.drawTexturedModalRect(-20, this.height - 141, 119, 54, 299, 330, 122, 84, true, false, 512, 512);
@@ -678,6 +680,9 @@ public class GSGuiMainMenu extends GuiScreen implements GuiYesNoCallback
         this.drawString(this.fontRenderer, s1, 2, this.height - 10, -1);
 
         this.drawString(this.fontRenderer, "Ver. " + GalaxySpace.VERSION, this.width - this.fontRenderer.getStringWidth(GalaxySpace.VERSION) - 35, this.height / 2 - 53, -1);
+        
+        this.drawString(this.fontRenderer, "AsmodeusCore", this.width - 85 , this.height - 45, Utils.getIntColorWHC(0, 250, 200, 255));
+        this.drawString(this.fontRenderer, "Ver. " + AsmodeusCore.VERSION, this.width - AsmodeusCore.VERSION.length() * 5 - 35 , this.height - 35, -1);
 
         if (this.field_92025_p != null && this.field_92025_p.length() > 0)
         {
