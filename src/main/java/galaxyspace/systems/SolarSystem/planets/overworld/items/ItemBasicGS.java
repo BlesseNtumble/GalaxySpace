@@ -34,6 +34,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
@@ -230,12 +231,24 @@ public class ItemBasicGS extends Item implements ISortableItem{
 			}
 			
 		}*/
+		else if(stack.getItemDamage() == 4)
+		{
+			RayTraceResult ray = this.getRay(world, player, true);
+			if (ray != null && ItemDye.applyBonemeal(stack, world, ray.getBlockPos(), player, hand)) {
+				if (!world.isRemote) {
+					world.playEvent(2005, ray.getBlockPos(), 0);
+				}
+
+				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
+			}
+			return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
+		}
 		else if(stack.getItemDamage() == 6)
 		{
-			StatsCapability gs_stats = GSStatsCapability.get(player);
+			/*StatsCapability gs_stats = GSStatsCapability.get(player);
 			gs_stats.setKnowledgeResearch(1, 6);
 			GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_UPDATE_RESEARCH, player.world, new Object[] {1, 6}), (EntityPlayerMP) player);
-			
+			*/
 			
 			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
 		}	
