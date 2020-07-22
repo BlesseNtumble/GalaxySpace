@@ -11,7 +11,7 @@ import org.lwjgl.opengl.GL11;
 import asmodeuscore.api.dimension.IAdvancedSpace;
 import asmodeuscore.api.space.IExBody;
 import asmodeuscore.core.astronomy.BodiesData;
-import asmodeuscore.core.astronomy.BodiesHelper;
+import asmodeuscore.core.astronomy.BodiesRegistry;
 import asmodeuscore.core.astronomy.gui.book.Page_WithScroll;
 import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
 import galaxyspace.GalaxySpace;
@@ -203,7 +203,7 @@ public class Page_Systems extends Page_WithScroll {
 					if(gcdim instanceof IAdvancedSpace)					
 						infos.add(GCCoreUtil.translate("gui.message.windenergy") + " " + Math.round(((IAdvancedSpace)dim).getSolarWindMultiplier() * 1000) / 1000F);
 					
-					BodiesData data = BodiesHelper.getData().get(selected_body);
+					BodiesData data = BodiesRegistry.getData().get(selected_body);
 					if(data != null)
 					{									
 						infos.add(GCCoreUtil.translate("gui.message.atmopressure") + " " + data.getPressurePlanet());
@@ -289,7 +289,7 @@ public class Page_Systems extends Page_WithScroll {
 					if(gcdim instanceof IAdvancedSpace)					
 						infos.add(GCCoreUtil.translate("gui.message.windenergy") + " " + Math.round(((IAdvancedSpace)dim).getSolarWindMultiplier() * 1000) / 1000F);
 					
-					BodiesData data = BodiesHelper.getData().get(selected_moon);
+					BodiesData data = BodiesRegistry.getData().get(selected_moon);
 					if(data != null)
 					{									
 						infos.add(GCCoreUtil.translate("gui.message.atmopressure") + " " + data.getPressurePlanet());

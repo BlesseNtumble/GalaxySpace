@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Logger;
 
 import asmodeuscore.api.space.IBookPage;
-import asmodeuscore.core.astronomy.BodiesHelper;
+import asmodeuscore.core.astronomy.BodiesRegistry;
 import asmodeuscore.core.utils.BookUtils;
 import galaxyspace.api.IBodies;
 import galaxyspace.api.IBodiesHandler;
@@ -171,7 +171,7 @@ public class GalaxySpace
     	debug = GSConfigCore.enableDebug;
     	log = event.getModLog();
     	 
-    	BodiesHelper.setMaxTier(6);
+    	BodiesRegistry.setMaxTier(6);
     	
     	GSBlocks.initialize();
     	GSFluids.initialize(); 

@@ -3,7 +3,7 @@ package galaxyspace.core.client.gui.overlay;
 import org.lwjgl.opengl.GL11;
 
 import asmodeuscore.AsmodeusCore;
-import asmodeuscore.core.astronomy.BodiesHelper;
+import asmodeuscore.core.astronomy.BodiesRegistry;
 import asmodeuscore.core.astronomy.gui.overlay.OverlayDetectors;
 import galaxyspace.GalaxySpace;
 import galaxyspace.api.item.IModificationItem;
