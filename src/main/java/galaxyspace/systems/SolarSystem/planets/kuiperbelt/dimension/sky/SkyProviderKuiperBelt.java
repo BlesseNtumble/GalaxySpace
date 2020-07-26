@@ -1,6 +1,8 @@
 package galaxyspace.systems.SolarSystem.planets.kuiperbelt.dimension.sky;
 
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
+import asmodeuscore.core.astronomy.sky.SkyProviderBaseOld;
 import galaxyspace.GalaxySpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -35,13 +37,13 @@ public class SkyProviderKuiperBelt extends SkyProviderBase
 	}
 
 	@Override
-	protected int modeLight() {
-		return 0;
+	protected ModeLight modeLight() {
+		return ModeLight.DEFAULT;
 	}
 
 	@Override
-	protected Vector3 colorSunAura() {
-		return new Vector3(150, 150, 150);
+	protected StarColor colorSunAura() {
+		return StarColor.WHITE;
 	}
 
 	@Override
@@ -56,6 +58,6 @@ public class SkyProviderKuiperBelt extends SkyProviderBase
 	public boolean enableRenderPlanet() {return false;}
 	
 	@Override
-	public int addSizeAura() {return -2;}
+	public int expandSizeAura() {return -2;}
 
 }

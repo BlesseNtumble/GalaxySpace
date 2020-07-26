@@ -5,30 +5,31 @@ import java.util.Random;
 import org.lwjgl.opengl.GL11;
 
 import asmodeuscore.api.dimension.IAdvancedSpace;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProvider;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_PerlinNoise;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProvider;
 import asmodeuscore.core.astronomy.gui.book.ACGuiGuideBook;
 import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
+import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
+import asmodeuscore.core.utils.worldengine.WE_PerlinNoise;
+import asmodeuscore.core.utils.worldengine.WE_WorldProvider;
 import galaxyspace.GalaxySpace;
 import galaxyspace.api.item.IJetpackArmor;
+import galaxyspace.api.item.IModificationItem;
 import galaxyspace.core.client.gui.GSGuiMainMenu;
 import galaxyspace.core.client.gui.book.pages.general.Page_ActualUpdate;
 import galaxyspace.core.client.gui.overlay.OverlaySpaceSuit;
 import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.network.packet.GSPacketSimple;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
-import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.core.util.GSThreadVersionCheck;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemGeologicalScanner;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemTerraManipulator;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemMatterManipulator;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import micdoodle8.mods.galacticraft.core.util.ColorUtil;
+import micdoodle8.mods.galacticraft.core.util.EnumColor;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
-import micdoodle8.mods.galacticraft.planets.GalacticraftPlanets;
+import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -40,21 +41,18 @@ import net.minecraft.client.model.ModelPlayer;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHandSide;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -69,7 +67,7 @@ public class GSClientTickHandler {
 
 	public Minecraft mc = FMLClientHandler.instance().getClient();
 	public Random rand;
-	
+		
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void onGuiOpenEvent(GuiOpenEvent event)
@@ -82,6 +80,26 @@ public class GSClientTickHandler {
 		{
 			event.gui = new GSGuiRocketInventory(mc.thePlayer.inventory, (EntityTier4Rocket) mc.thePlayer.ridingEntity, ((EntityTier4Rocket) mc.thePlayer.ridingEntity).getType());
 		}*/		
+	}
+	
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void onToolTip(ItemTooltipEvent e) {
+		if(e.getItemStack().getItem() instanceof IModificationItem)
+		{
+			if(((IModificationItem)e.getItemStack().getItem()).getType(e.getItemStack()) != null) {
+				//e.getToolTip().add("");
+				e.getToolTip().add(1, EnumColor.AQUA + GCCoreUtil.translate("gui.module.caninstall"));
+			}
+		}
+		
+		if(e.getItemStack().isItemEqual(new ItemStack(MarsItems.schematic, 1, 0)))
+		{
+			if(GSConfigCore.enableAdvancedRocketCraft) {
+				//e.getToolTip().add("");
+				e.getToolTip().add(1, EnumColor.RED + "Disabled. See new recipe in JEI/NEI!");
+			}
+		}
 	}
 	
 	@SubscribeEvent
@@ -126,20 +144,21 @@ public class GSClientTickHandler {
 	
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=false)
-	public void onLivingRender(RenderLivingEvent.Pre event) {
+	public void onLivingRender(RenderLivingEvent.Post event) {
 		if (event.getEntity() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.getEntity();
 			
 			ItemStack mainhand = player.getHeldItemMainhand();
 			ItemStack offhand = player.getHeldItemOffhand();
 			
-			if(!mainhand.isEmpty() && mainhand.getItem() instanceof ItemTerraManipulator || !offhand.isEmpty() && offhand.getItem() instanceof ItemTerraManipulator) {
+			if(!mainhand.isEmpty() && mainhand.getItem() instanceof ItemMatterManipulator || !offhand.isEmpty() && offhand.getItem() instanceof ItemMatterManipulator) {
 				ModelBase mdl = event.getRenderer().getMainModel();
 				
 				if (mdl instanceof ModelPlayer) {
 			 		ModelPlayer model = (ModelPlayer) mdl;
 			 		if (player.getPrimaryHand()==EnumHandSide.RIGHT) {
-			 			model.rightArmPose = ArmPose.BOW_AND_ARROW;
+			 			model.bipedRightArm.rotateAngleY = -0.1F + model.bipedHead.rotateAngleY;
+			 			//model.rightArmPose = ArmPose.BOW_AND_ARROW;
 			 		} else {
 			 			model.leftArmPose = ArmPose.BOW_AND_ARROW;
 			 		}
@@ -166,7 +185,7 @@ public class GSClientTickHandler {
         			OverlayRocketHelp.renderSpaceshipOverlay();
         		}*/
         		
-        		if(minecraft.inGameHasFocus && !minecraft.gameSettings.hideGUI && GalaxySpace.debug)
+        		if(minecraft.currentScreen == null && GalaxySpace.debug)
         		{
         			
         			long t1 = player.world.provider instanceof WorldProviderSpace ? ((WorldProviderSpace) player.world.provider).getDayLength() : 24000;
@@ -214,6 +233,7 @@ public class GSClientTickHandler {
         					"Is World Engine Provider: " + (isWE ? "Yes" : "No"),
         					"[WE] Biome Perlin Count: " + count
         					
+        					
         			};
             			
         			int k = 3;
@@ -221,7 +241,8 @@ public class GSClientTickHandler {
         			GL11.glPushMatrix();
         			//GlStateManager.disableLighting();
         			for(int i = 0; i < k; i++)
-        				minecraft.fontRenderer.drawStringWithShadow(s[i], 10, 28 + i*10, ColorUtil.to32BitColor(255, 255, 255, 255));
+        				if(!minecraft.gameSettings.hideGUI)
+        					minecraft.fontRenderer.drawStringWithShadow(s[i], 10, 28 + i*10, ColorUtil.to32BitColor(255, 255, 255, 255));
         			//GlStateManager.enableLighting();
         			GL11.glPopMatrix();
 
@@ -244,6 +265,7 @@ public class GSClientTickHandler {
 		
 	}
 	*/
+	 
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
     public void renderBlocks(RenderWorldLastEvent e) {
@@ -332,6 +354,15 @@ public class GSClientTickHandler {
         		tess.draw();
 	    		GlStateManager.popMatrix();*/
 			}
+		}
+		
+		if(stack.getItem() instanceof ItemMatterManipulator)
+		{
+			RayTraceResult ray = ItemBasicGS.getRay(player.getEntityWorld(), player, false);
+    		if(ray != null && ray.hitVec.distanceTo(player.getPositionVector()) < 15.0F)
+    		{
+    			ItemMatterManipulator.drawLine(player.getPosition().add(0, player.getEyeHeight(), 0), ray.getBlockPos(), player.posX, player.posY, player.posZ);
+    		}
 		}
 	}
 	

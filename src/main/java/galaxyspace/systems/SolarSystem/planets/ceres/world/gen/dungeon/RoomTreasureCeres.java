@@ -5,7 +5,7 @@ import java.util.Random;
 import asmodeuscore.core.astronomy.dimension.world.gen.dungeons.standart.DungeonConfiguration;
 import asmodeuscore.core.astronomy.dimension.world.gen.dungeons.standart.RoomTreasure;
 import galaxyspace.GalaxySpace;
-import galaxyspace.core.registers.blocks.GSBlocks;
+import galaxyspace.core.GSBlocks;
 import galaxyspace.systems.SolarSystem.planets.ceres.blocks.BlockTier4TreasureChest;
 import galaxyspace.systems.SolarSystem.planets.ceres.blocks.CeresBlocks;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
@@ -108,7 +108,7 @@ public class RoomTreasureCeres extends RoomTreasure
                             TileEntityTreasureChest treasureChest = (TileEntityTreasureChest) worldIn.getTileEntity(blockpos);
                             if (treasureChest != null)
                             {
-                                ResourceLocation chesttype = TABLE_TIER_4_DUNGEON;
+                                ResourceLocation chesttype = CERESCHEST;
                                 if (worldIn.provider instanceof IGalacticraftWorldProvider)
                                 {
                                     chesttype = ((IGalacticraftWorldProvider)worldIn.provider).getDungeonChestType();

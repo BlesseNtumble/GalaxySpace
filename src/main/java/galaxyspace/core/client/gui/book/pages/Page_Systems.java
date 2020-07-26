@@ -8,16 +8,13 @@ import java.util.Map;
 
 import org.lwjgl.opengl.GL11;
 
-import asmodeuscore.AsmodeusCore;
 import asmodeuscore.api.dimension.IAdvancedSpace;
+import asmodeuscore.api.space.IExBody;
 import asmodeuscore.core.astronomy.BodiesData;
-import asmodeuscore.core.astronomy.BodiesHelper;
+import asmodeuscore.core.astronomy.BodiesRegistry;
 import asmodeuscore.core.astronomy.gui.book.Page_WithScroll;
 import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
 import galaxyspace.GalaxySpace;
-import galaxyspace.core.registers.blocks.GSBlocks;
-import galaxyspace.core.registers.items.GSItems;
-import galaxyspace.systems.SolarSystem.SolarSystemBodies;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
 import micdoodle8.mods.galacticraft.api.galaxies.Moon;
@@ -26,25 +23,10 @@ import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import micdoodle8.mods.galacticraft.api.world.ISolarLevel;
-import micdoodle8.mods.galacticraft.core.GCBlocks;
-import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.util.ColorUtil;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
-import micdoodle8.mods.galacticraft.planets.asteroids.AsteroidsModule;
-import micdoodle8.mods.galacticraft.planets.asteroids.blocks.AsteroidBlocks;
-import micdoodle8.mods.galacticraft.planets.mars.MarsModule;
-import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
-import micdoodle8.mods.galacticraft.planets.venus.VenusBlocks;
-import micdoodle8.mods.galacticraft.planets.venus.VenusModule;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldProvider;
@@ -221,11 +203,18 @@ public class Page_Systems extends Page_WithScroll {
 					if(gcdim instanceof IAdvancedSpace)					
 						infos.add(GCCoreUtil.translate("gui.message.windenergy") + " " + Math.round(((IAdvancedSpace)dim).getSolarWindMultiplier() * 1000) / 1000F);
 					
-					BodiesData data = BodiesHelper.getData().get(selected_body);
+					BodiesData data = BodiesRegistry.getData().get(selected_body);
 					if(data != null)
 					{									
 						infos.add(GCCoreUtil.translate("gui.message.atmopressure") + " " + data.getPressurePlanet());
 						infos.add(GCCoreUtil.translate("gui.message.solarradiation") + " " + data.getSolarRadiationPlanet());
+					}
+					
+					if(selected_body instanceof IExBody)
+					{
+						infos.add(GCCoreUtil.translate("gui.message.atmopressure") + " " + ((IExBody)selected_body).getAtmosphericPressure());
+						infos.add(GCCoreUtil.translate("gui.message.solarradiation") + " " + ((IExBody)selected_body).isSolarRadiation());
+					
 					}
 					
 					infos.add(GCCoreUtil.translate("gui.message.breathableatmo") + " " + gcdim.hasBreathableAtmosphere());
@@ -300,12 +289,21 @@ public class Page_Systems extends Page_WithScroll {
 					if(gcdim instanceof IAdvancedSpace)					
 						infos.add(GCCoreUtil.translate("gui.message.windenergy") + " " + Math.round(((IAdvancedSpace)dim).getSolarWindMultiplier() * 1000) / 1000F);
 					
-					BodiesData data = BodiesHelper.getData().get(selected_moon);
+					BodiesData data = BodiesRegistry.getData().get(selected_moon);
 					if(data != null)
 					{									
 						infos.add(GCCoreUtil.translate("gui.message.atmopressure") + " " + data.getPressurePlanet());
 						infos.add(GCCoreUtil.translate("gui.message.solarradiation") + " " + data.getSolarRadiationPlanet());
 					}
+					
+					/*
+					if(selected_body instanceof ExPlanet)
+					{
+						infos.add(GCCoreUtil.translate("gui.message.atmopressure") + " " + ((ExPlanet)selected_moon).getAtmosphericPressure());
+						infos.add(GCCoreUtil.translate("gui.message.solarradiation") + " " + ((ExPlanet)selected_moon).isSolarRadiation());
+					
+					}
+					*/
 					
 					infos.add(GCCoreUtil.translate("gui.message.breathableatmo") + " " + gcdim.hasBreathableAtmosphere());
 					infos.add("");

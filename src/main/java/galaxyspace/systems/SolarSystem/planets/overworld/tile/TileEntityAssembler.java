@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
-import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.GalaxySpace;
+import galaxyspace.core.GSItems;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockAssembler;
 import galaxyspace.systems.SolarSystem.planets.overworld.recipes.AssemblyRecipes;
 import micdoodle8.mods.galacticraft.api.recipe.ShapedRecipesGC;
@@ -356,7 +357,7 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements ISided
         {
             return itemStack != null && ItemElectricBase.isElectricItem(itemStack.getItem());
         }
-        else if (slotID >= 2)
+        else if (slotID >= 6)
         {
         	
         	/*if (this.producingStack != null)
@@ -364,7 +365,7 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements ISided
                 ItemStack stackInSlot = this.getStackInSlot(slotID);
                 return stackInSlot != null && stackInSlot.isItemEqual(itemStack);
         	}*/
-        	return this.isItemCompressorInput(itemStack, slotID - 2);
+        	return true;//this.isItemCompressorInput(itemStack, slotID - 6);
         }
 
         return false;
@@ -378,10 +379,10 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements ISided
             return new int[] { 1 };
         }
     	
-    	int[] slots = new int[] { 7, 8, 9, 10, 11, 12, 13 };
+    	int[] slots = new int[] { 6, 7, 8, 9, 10, 11, 12, 13, 14 };
     	ArrayList<Integer> removeSlots = new ArrayList();
     	
-    	for (int i = 2; i < 11; i++)
+    	for (int i = 6; i < 14; i++)
     	{
 			if (removeSlots.contains(i)) continue;
 			
@@ -490,6 +491,9 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements ISided
                     {
                         if ( OreDictionary.itemMatches((ItemStack)next, stack, false)) match++;
                         
+
+                        //GalaxySpace.instance.debug("" + (ItemStack)next);
+                        
                     }
                     else if (next instanceof ArrayList)
                     {
@@ -507,7 +511,6 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements ISided
                 }
                 
                 
-                
                 if (match == 0) continue;
                 
                 if (match == 1) return true;
@@ -520,6 +523,7 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements ISided
                 	if (!inMatrix.isEmpty() && inMatrix.isItemEqual(stack))
                 		slotsFilled++;
                 }
+                
                 if (slotsFilled < match)
                 {
                 	return this.getStackInSlot(id + 3).isEmpty();

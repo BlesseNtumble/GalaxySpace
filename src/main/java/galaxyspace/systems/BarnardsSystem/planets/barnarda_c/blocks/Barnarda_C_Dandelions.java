@@ -10,6 +10,7 @@ import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTr
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRItems;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
@@ -38,11 +39,13 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class Barnarda_C_Dandelions extends Block implements IGrowable, IShearable{
+public class Barnarda_C_Dandelions extends BlockBush implements IGrowable, IShearable {
 
 	public static final PropertyEnum<EnumBlockDandelions> BASIC_TYPE = PropertyEnum.create("type", EnumBlockDandelions.class);
 	
@@ -221,7 +224,13 @@ public class Barnarda_C_Dandelions extends Block implements IGrowable, IShearabl
 			}
 		}
 		
-		if(world.isAirBlock(pos.down()))
+		if(state != this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.LEAVES_BALLS) && world.isAirBlock(pos.down()))
+		{
+			this.dropBlockAsItem(world, pos, world.getBlockState(pos), 0);
+			world.destroyBlock(pos, false);
+		}
+		
+		if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.LEAVES_BALLS) && world.isAirBlock(pos.up()))
 		{
 			this.dropBlockAsItem(world, pos, world.getBlockState(pos), 0);
 			world.destroyBlock(pos, false);
@@ -229,10 +238,10 @@ public class Barnarda_C_Dandelions extends Block implements IGrowable, IShearabl
 		
     }
 	
-	private void canPlaceAt(IBlockState state, World world, BlockPos pos, EnumBlockDandelions type, IBlockState... valide)
+	private void canPlaceAt(IBlockState state, World world, BlockPos pos, EntityLivingBase placer, EnumBlockDandelions type, IBlockState... valide)
 	{
 		
-		if(state == this.getDefaultState().withProperty(BASIC_TYPE, type))
+		if(!world.isRemote && state == this.getDefaultState().withProperty(BASIC_TYPE, type))
 		{
 			//GalaxySpace.debug("123");
 			boolean is_forriden = true;
@@ -240,15 +249,20 @@ public class Barnarda_C_Dandelions extends Block implements IGrowable, IShearabl
 				if(world.getBlockState(pos.down()) == block)
 					is_forriden = false;
 				
-			if(is_forriden)
+			if(is_forriden) {
 				world.destroyBlock(pos, true);
+				if(placer instanceof EntityPlayer && !((EntityPlayer) placer).capabilities.isCreativeMode)
+					world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(this.getDefaultState().getBlock(), 1, this.getMetaFromState(state))));
+			}
 		}		
 	}
 	
 	@Override
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {		
-		canPlaceAt(state, world, pos, EnumBlockDandelions.REEDS, BRBlocks.BARNARDA_C_GRASS.getDefaultState(), this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS));
+		canPlaceAt(state, world, pos, placer, EnumBlockDandelions.REEDS, BRBlocks.BARNARDA_C_GRASS.getDefaultState(), this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS));
+		
+		canPlaceAt(state, world, pos, placer, EnumBlockDandelions.VIOLET_TREE_SAPLING, BRBlocks.BARNARDA_C_GRASS.getDefaultState(), BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(0));
 		
 		if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.DESERT_DOWN))
 		{
@@ -505,4 +519,17 @@ public class Barnarda_C_Dandelions extends Block implements IGrowable, IShearabl
 	{		
 		return new BlockStateContainer(this, BASIC_TYPE);
 	}
+	
+	@Override
+	public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
+    {
+		return true;
+    }
+	
+	@Override
+	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+    {
+		return true;
+    }
+
 }

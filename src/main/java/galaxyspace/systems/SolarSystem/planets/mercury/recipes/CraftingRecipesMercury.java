@@ -1,7 +1,7 @@
 package galaxyspace.systems.SolarSystem.planets.mercury.recipes;
 
-import galaxyspace.core.registers.blocks.GSBlocks;
-import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.GSBlocks;
+import galaxyspace.core.GSItems;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;

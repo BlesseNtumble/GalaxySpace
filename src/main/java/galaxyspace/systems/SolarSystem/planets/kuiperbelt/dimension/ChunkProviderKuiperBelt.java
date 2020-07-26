@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 import asmodeuscore.core.astronomy.dimension.world.gen.ACBiome;
-import galaxyspace.core.registers.blocks.GSBlocks;
+import galaxyspace.core.GSBlocks;
 import micdoodle8.mods.galacticraft.api.vector.BlockVec3;
 import micdoodle8.mods.galacticraft.api.world.ChunkProviderBase;
 import micdoodle8.mods.galacticraft.core.perlin.NoiseModule;

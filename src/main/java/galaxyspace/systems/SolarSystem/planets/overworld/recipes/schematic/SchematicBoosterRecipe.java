@@ -2,7 +2,7 @@ package galaxyspace.systems.SolarSystem.planets.overworld.recipes.schematic;
 
 import java.util.HashMap;
 
-import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.GSItems;
 import galaxyspace.core.util.GSRecipeUtil;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCItems;

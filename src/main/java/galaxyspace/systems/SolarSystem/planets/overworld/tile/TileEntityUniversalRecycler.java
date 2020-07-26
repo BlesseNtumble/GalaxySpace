@@ -2,8 +2,8 @@ package galaxyspace.systems.SolarSystem.planets.overworld.tile;
 
 import javax.annotation.Nullable;
 
-import galaxyspace.core.registers.fluids.GSFluids;
-import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.GSFluids;
+import galaxyspace.core.GSItems;
 import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockUniversalRecycler;
 import galaxyspace.systems.SolarSystem.planets.overworld.recipes.RecyclerRecipes;
@@ -45,10 +45,10 @@ public class TileEntityUniversalRecycler extends TileBaseElectricBlockWithInvent
     private final int tankCapacity = 3000;
     @NetworkedField(targetSide = Side.CLIENT)
     public FluidTank waterTank = new FluidTank(this.tankCapacity);
-    @NetworkedField(targetSide = Side.CLIENT)
+    /*@NetworkedField(targetSide = Side.CLIENT)
     public FluidTank waterTank1 = new FluidTank(this.tankCapacity);
     @NetworkedField(targetSide = Side.CLIENT)
-    public FluidTank waterTank2 = new FluidTank(this.tankCapacity);
+    public FluidTank waterTank2 = new FluidTank(this.tankCapacity);*/
          
     public TileEntityUniversalRecycler()
     {
@@ -254,12 +254,12 @@ public class TileEntityUniversalRecycler extends TileBaseElectricBlockWithInvent
         
         if (par1NBTTagCompound.hasKey("waterTank"))        
             this.waterTank.readFromNBT(par1NBTTagCompound.getCompoundTag("waterTank"));
-        
+       /* 
         if (par1NBTTagCompound.hasKey("waterTank1"))        
         	this.waterTank1.readFromNBT(par1NBTTagCompound.getCompoundTag("waterTank1"));
         
         if (par1NBTTagCompound.hasKey("waterTank2"))        
-        	this.waterTank2.readFromNBT(par1NBTTagCompound.getCompoundTag("waterTank2"));
+        	this.waterTank2.readFromNBT(par1NBTTagCompound.getCompoundTag("waterTank2"));*/
         
     }
 
@@ -273,12 +273,12 @@ public class TileEntityUniversalRecycler extends TileBaseElectricBlockWithInvent
         if (this.waterTank.getFluid() != null)        
             par1NBTTagCompound.setTag("waterTank", this.waterTank.writeToNBT(new NBTTagCompound()));
        
-        if (this.waterTank1.getFluid() != null)        
+      /*  if (this.waterTank1.getFluid() != null)        
         	par1NBTTagCompound.setTag("waterTank1", this.waterTank1.writeToNBT(new NBTTagCompound()));
         
         if (this.waterTank2.getFluid() != null)        
         	par1NBTTagCompound.setTag("waterTank2", this.waterTank2.writeToNBT(new NBTTagCompound()));
-        
+        */
         return par1NBTTagCompound;
     }
            

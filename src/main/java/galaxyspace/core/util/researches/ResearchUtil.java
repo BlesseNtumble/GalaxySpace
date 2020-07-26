@@ -7,12 +7,14 @@ import javax.annotation.Nonnull;
 
 import com.google.common.collect.ImmutableList;
 
-public class ResearchUtil {
+import galaxyspace.api.IResearch;
+import galaxyspace.core.prefab.researches.TestResearch;
 
-	private static List<IResearch> list = new ArrayList<IResearch>();
-	
+public class ResearchUtil {
+		
 	//private static Map<String, Set<IResearch>> know_research_list = new HashMap<String, Set<IResearch>>();
 	
+	private static List<IResearch> list = new ArrayList<IResearch>();
 	public static void initResearches()
 	{
 		addReserach(new TestResearch(1));

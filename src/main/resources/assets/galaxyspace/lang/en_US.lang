@@ -346,6 +346,7 @@ item.nitrogen_ice_crystal.name=Nitrogen Ice Shard
 item.methane_ice_crystal.name=Methane Ice Shard
 item.hydrogen_ice_crystal.name=Hydrogen Ice Shard
 item.dry_ice_crystal.name=Dry Ice Shard
+item.colonist_kit.name=Colonist Kit
 
 item.module_expander.name=Module "Expander"
 item.module_stabiliser.name=Module "Stabilization"
@@ -389,6 +390,7 @@ item.hh_canister.name=Helium-Hydrogen Canister
 
 item.violet_reeds.name=Violet Reeds
 item.water_grass.name=Water Grass
+item.tree_juice.name=Tree Juice
 item.yellow_fruits.name=Yellow Fruits
 |/////////////////////////////////////////|
 #||||||||||||||||||Fluids||||||||||||||||||
@@ -507,7 +509,6 @@ gui.module.active=Active module
 gui.module.passive=Passive module
 gui.module.empty_slot=Empty slot. Place item in slot.
 
-
 |/////////////////////////////////////////|
 #||||||||||||||Creative Tabs|||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
@@ -523,6 +524,9 @@ item_group.galaxyspace_rocket=GalaxySpace: Rockets
 entity.evolved_boss_blaze.name=Evolved Boss Blaze
 entity.evolved_coldblaze.name=Evolved Ice Blaze
 entity.evolved_boss_ghast.name=Evolved Boss Ghast
+entity.rocket_tier_4.name=Tier 4 Rocket
+entity.rocket_tier_5.name=Tier 5 Rocket
+entity.rocket_tier_6.name=Tier 6 Rocket
 |/////////////////////////////////////////|
 #||||||||||||Celestial Bodies||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
@@ -552,16 +556,18 @@ planet.pluto=Pluto
 moon.charon=Charon
 planet.kuiperbelt=Kuiper Belt
 planet.haumea=Haumea
-
 satellite.spacestation.venus=Venus Atmospheric Space Station
-solarsystem.acentauri=a Centauri
-star.centauri_a=a Centauri A
-planet.centauri_b=a Centauri B
+
+#aCentauri System
+solarsystem.acentauri=α Centauri
+star.centauri_a=α Centauri A
+planet.centauri_b=α Centauri B
 
 solarsystem.proxima=Proxima Centauri
 star.proxima=Proxima Centauri
 planet.proxima_b=Proxima B
 
+#Barnard's System
 solarsystem.barnards=Barnard's System
 star.barnarda_a=Barnarda A
 planet.barnarda_b=Barnarda B
@@ -571,6 +577,14 @@ planet.barnarda_e=Barnarda E
 moon.barnarda_b1=Planet Ring
 moon.barnarda_c1=Barnarda C1
 moon.barnarda_c2=Barnarda C2
+
+#Tau Ceti System
+solarsystem.tauceti=Tau Ceti
+star.tauceti=Tau Ceti A
+planet.tauceti_g=Tau Ceti G
+planet.tauceti_h=Tau Ceti H
+planet.tauceti_e=Tau Ceti E
+planet.tauceti_f=Tau Ceti F
 #|/////////////////////////////////////////|
 #|||||||||||||||||||Book||||||||||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|

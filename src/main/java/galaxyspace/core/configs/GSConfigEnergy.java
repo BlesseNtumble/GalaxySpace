@@ -19,7 +19,7 @@ public class GSConfigEnergy
 {
     public static boolean loaded;
 
-    static Configuration config;
+    public static Configuration config;
 
     public GSConfigEnergy(File file)
     {
@@ -56,37 +56,37 @@ public class GSConfigEnergy
             
             prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "coefficientFuelGenerator", coefficientFuelGenerator);
             prop.setComment("Fuel Generator power factor");
-            prop.setLanguageKey("gc.configgui.coefficientFuelGenerator").setRequiresMcRestart(true);
+            prop.setLanguageKey("gc.configgui.coefficientFuelGenerator").setRequiresMcRestart(false);
             coefficientFuelGenerator = (float) prop.getDouble();
             propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "coefficientThermodynamicGenerator", coefficientThermodynamicGenerator);
             prop.setComment("Thermodynamic Generator power factor");
-            prop.setLanguageKey("gc.configgui.coefficientThermodynamicGenerator").setRequiresMcRestart(true);
+            prop.setLanguageKey("gc.configgui.coefficientThermodynamicGenerator").setRequiresMcRestart(false);
             coefficientThermodynamicGenerator = (float) prop.getDouble();
             propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "coefficientSolarWindPanel", coefficientSolarWindPanel);
             prop.setComment("Solar Wind Panel power factor");
-            prop.setLanguageKey("gc.configgui.coefficientSolarWindPanel").setRequiresMcRestart(true);
+            prop.setLanguageKey("gc.configgui.coefficientSolarWindPanel").setRequiresMcRestart(false);
             coefficientSolarWindPanel = (float) prop.getDouble();
             propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "coefficientSolarPanel", coefficientSolarPanel);
             prop.setComment("Gybrid Solar Panel power factor");
-            prop.setLanguageKey("gc.configgui.coefficientSolarPanel").setRequiresMcRestart(true);
+            prop.setLanguageKey("gc.configgui.coefficientSolarPanel").setRequiresMcRestart(false);
             coefficientSolarPanel = (float) prop.getDouble();
             propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "coefficientWindTurbine", coefficientWindTurbine);
             prop.setComment("Wind Turbine power factor");
-            prop.setLanguageKey("gc.configgui.coefficientWindTurbine").setRequiresMcRestart(true);
+            prop.setLanguageKey("gc.configgui.coefficientWindTurbine").setRequiresMcRestart(false);
             coefficientWindTurbine = (float) prop.getDouble();
             propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "coefficientSpeedRocketAssembly", coefficientSpeedRocketAssembly);
             prop.setComment("Rocket Assembly craft speed factor");
-            prop.setLanguageKey("gc.configgui.coefficientSpeedRocketAssembly").setRequiresMcRestart(true);
+            prop.setLanguageKey("gc.configgui.coefficientSpeedRocketAssembly").setRequiresMcRestart(false);
             coefficientSpeedRocketAssembly = (float) prop.getDouble();
             propOrder.add(prop.getName());
             

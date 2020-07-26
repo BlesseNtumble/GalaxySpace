@@ -507,6 +507,9 @@ item_group.galaxyspace_rocket=星空|火箭
 entity.evolved_boss_blaze.name=烈焰人之王（进化体）
 entity.evolved_coldblaze.name=冰焰人
 entity.evolved_boss_ghast.name=恶魂之王（进化体）
+entity.rocket_tier_4.name=4阶火箭
+entity.rocket_tier_5.name=5阶火箭
+entity.rocket_tier_6.name=6阶火箭
 |/////////////////////////////////////////|
 #||||||||||||Celestial Bodies||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|

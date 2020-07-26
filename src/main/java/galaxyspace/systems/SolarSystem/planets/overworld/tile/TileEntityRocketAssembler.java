@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+import galaxyspace.core.GSItems;
 import galaxyspace.core.configs.GSConfigEnergy;
-import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockRocketAssembler;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.RocketAssemblyInventory;
 import galaxyspace.systems.SolarSystem.planets.overworld.recipes.RocketAssemblyRecipes;

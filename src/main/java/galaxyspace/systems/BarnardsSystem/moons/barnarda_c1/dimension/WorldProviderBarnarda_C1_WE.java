@@ -6,47 +6,30 @@ import javax.annotation.Nullable;
 
 import asmodeuscore.api.dimension.IProviderFog;
 import asmodeuscore.api.dimension.IProviderFreeze;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProvider;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProvider;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_CaveGen;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_RavineGen;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_TerrainGenerator;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_BiomeProvider;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_CaveGen;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_RavineGen;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
 import galaxyspace.core.prefab.world.gen.we.biomes.WE_BaseBiome;
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.BarnardsSystem.BarnardsSystemBodies;
-import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
-import galaxyspace.systems.BarnardsSystem.moons.barnarda_c1.world.gen.BiomeDecoratorBarnarda_C1;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.sky.SkyProviderBarnarda_C;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.BiomeDecoratorBarnarda_C;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.BiomeProviderBarnarda_C;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Beach;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_DeepOcean;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Dunes;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Forest;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Mountains;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Ocean;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Plains;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_River;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_SnowPlains;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Swampland;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
-import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
-import net.minecraft.world.EnumSkyBlock;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
@@ -55,7 +38,7 @@ import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WorldProviderBarnarda_C1_WE extends WE_WorldProvider implements IProviderFreeze, IProviderFog{
+public class WorldProviderBarnarda_C1_WE extends WE_WorldProviderSpace implements IProviderFreeze, IProviderFog{
 	@Override
     public double getHorizon() {
         return 44.0D;
@@ -80,12 +63,7 @@ public class WorldProviderBarnarda_C1_WE extends WE_WorldProvider implements IPr
     public float getSoundVolReductionAmount() {
         return Float.MIN_VALUE;
     }
-    
-    @Override
-    public boolean canRainOrSnow() {
-        return true;
-    }
-    
+
     @Override
     public boolean canSnowAt(BlockPos pos, boolean checkLight)
     {
@@ -99,13 +77,13 @@ public class WorldProviderBarnarda_C1_WE extends WE_WorldProvider implements IPr
 
     @Override
     public Class<? extends IChunkGenerator> getChunkProviderClass() {
-        return WE_ChunkProvider.class;
+        return WE_ChunkProviderSpace.class;
 
     }
     
     @Override 
     public Class<? extends BiomeProvider> getBiomeProviderClass() { 
-    	return BiomeProviderBarnarda_C.class; 
+    	return WE_BiomeProvider.class; 
     }
     
     @Override 
@@ -263,7 +241,7 @@ public class WorldProviderBarnarda_C1_WE extends WE_WorldProvider implements IPr
 		cp.createChunkGen_InXYZ_List.clear(); 
 		cp.decorateChunkGen_List .clear(); 
 		
-		WE_Biome.setBiomeMap(cp, 1.6D, 4, 1400.0D, 1.0D);	
+		WE_Biome.setBiomeMap(cp, 1.4D, 4, 6400.0D, 1.0D);	
 
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
 		terrainGenerator.worldStoneBlock = Blocks.STONE.getDefaultState(); 
@@ -289,7 +267,7 @@ public class WorldProviderBarnarda_C1_WE extends WE_WorldProvider implements IPr
 		rg.range = 32;
 		cp.createChunkGen_List.add(rg);
 		
-		cp.worldGenerators.clear();
+		((WE_ChunkProviderSpace)cp).worldGenerators.clear();
 		cp.biomesList.clear();
 		
 		WE_BiomeLayer layer = new WE_BiomeLayer();
@@ -304,11 +282,6 @@ public class WorldProviderBarnarda_C1_WE extends WE_WorldProvider implements IPr
 		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-2.0D, 2.0D, 1.5F, 4, 40, 3, layer));
 	}
 	
-	@Override
-	public BiomeDecoratorSpace getDecorator() {
-		return new BiomeDecoratorBarnarda_C1();
-	}
-
 	@Override
 	public boolean enableAdvancedThermalLevel() {
 		return true;

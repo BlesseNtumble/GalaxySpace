@@ -2,7 +2,9 @@ package galaxyspace.systems.SolarSystem.planets.mars.dimension.sky;
 
 import org.lwjgl.opengl.GL11;
 
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
+import asmodeuscore.core.astronomy.sky.SkyProviderBaseOld;
 import galaxyspace.GalaxySpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -20,43 +22,44 @@ public class SkyProviderMars  extends SkyProviderBase
 	@Override
 	protected void rendererSky(Tessellator tessellator, BufferBuilder worldRenderer, float f10, float ticks) {
 		
-		
-			GL11.glPopMatrix();
-	        GL11.glPushMatrix();
-	        
-	        GL11.glEnable(GL11.GL_BLEND);
-	       // OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE, GL11.GL_ONE, GL11.GL_ZERO);
-	        
-	        f10 = 3.5F;
-	        GL11.glScalef(0.8F, 0.8F, 0.8F);
+		GL11.glPushMatrix();
 
-	        GL11.glRotatef(this.mc.world.getCelestialAngle(ticks) * 360.0F, 0.0F, 0.0F, 1.0F);	        
-	        GL11.glRotatef(80.0F, 0.0F, 0.0F, 1.0F);	
-	        GL11.glRotatef(40.0F, 1.0F, 0.0F, 0.0F);	
-	        
-	        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
-	        FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.phobosTexture);
-	        worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-	        worldRenderer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
-	        worldRenderer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
-	        worldRenderer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
-	        worldRenderer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
-	        tessellator.draw();
-	        
-	        f10 = 1.5F;
-	        GL11.glScalef(0.8F, 0.8F, 0.8F);
-	        GL11.glRotatef(-80.0F, 1.0F, 0.0F, 0.0F);  
-	        GL11.glRotatef(140.0F, 0.0F, 0.0F, 1.0F);	
-	        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
-	        FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.deimosTexture);
-	        worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-	        worldRenderer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
-	        worldRenderer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
-	        worldRenderer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
-	        worldRenderer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
-	        tessellator.draw();
-        
-	        GL11.glDisable(GL11.GL_BLEND);
+		GL11.glEnable(GL11.GL_BLEND);
+		// OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE, GL11.GL_ONE,
+		// GL11.GL_ZERO);
+
+		f10 = 3.5F;
+		GL11.glScalef(0.8F, 0.8F, 0.8F);
+
+		GL11.glRotatef(this.mc.world.getCelestialAngle(ticks) * 360.0F, 0.0F, 0.0F, 1.0F);
+		GL11.glRotatef(80.0F, 0.0F, 0.0F, 1.0F);
+		GL11.glRotatef(40.0F, 1.0F, 0.0F, 0.0F);
+
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.phobosTexture);
+		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+		worldRenderer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
+		worldRenderer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
+		worldRenderer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
+		worldRenderer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
+		tessellator.draw();
+
+		f10 = 1.5F;
+		GL11.glScalef(0.8F, 0.8F, 0.8F);
+		GL11.glRotatef(-80.0F, 1.0F, 0.0F, 0.0F);
+		GL11.glRotatef(140.0F, 0.0F, 0.0F, 1.0F);
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.deimosTexture);
+		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+		worldRenderer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
+		worldRenderer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
+		worldRenderer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
+		worldRenderer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
+		tessellator.draw();
+
+		GL11.glDisable(GL11.GL_BLEND);
+
+		GL11.glPopMatrix();
 	}
 
 	@Override
@@ -80,13 +83,13 @@ public class SkyProviderMars  extends SkyProviderBase
 	}
 
 	@Override
-	protected int modeLight() {
-		return 0;
+	protected ModeLight modeLight() {
+		return ModeLight.DEFAULT;
 	}
 
 	@Override
-	protected Vector3 colorSunAura() {
-		return new Vector3(150, 150, 150);
+	protected StarColor colorSunAura() {
+		return StarColor.WHITE;
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.schematics;
 
-import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.GSItems;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.schematics.GuiSchematicOxTank;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics.ContainerSchematicOxTank;
 import micdoodle8.mods.galacticraft.api.recipe.SchematicPage;

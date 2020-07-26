@@ -2,7 +2,9 @@ package galaxyspace.systems.SolarSystem.moons.moon.dimension.sky;
 
 import org.lwjgl.opengl.GL11;
 
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
+import asmodeuscore.core.astronomy.sky.SkyProviderBaseOld;
 import galaxyspace.GalaxySpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.Constants;
@@ -16,14 +18,14 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.FMLClientHandler;
 
-public class SkyProviderMoon extends SkyProviderBase {
+public class SkyProviderMoon extends SkyProviderBase{
 
 	private static final ResourceLocation overworldTexture = new ResourceLocation(Constants.ASSET_PREFIX, "textures/gui/celestialbodies/earth.png");
     
 	@Override
 	protected void rendererSky(Tessellator tessellator, BufferBuilder worldRenderer, float f10, float partialTicks) {
 		
-		GL11.glPopMatrix();
+		
 		GL11.glPushMatrix();
 
 		if (!ClientProxyCore.overworldTextureRequestSent)
@@ -61,12 +63,13 @@ public class SkyProviderMoon extends SkyProviderBase {
         f10 = 11.0F;
         float f = 0.59F;
         this.renderAtmo(tessellator, 0, 0F, f10 + 2.2F, new Vector3(88 / 255.0F * f, 122 / 255.0F * f, 180 / 255.0F * f));
-        //GL11.glPushMatrix();
+
+        GL11.glPopMatrix();
 	}
 
 	@Override
-	protected int modeLight() {
-		return 1;
+	protected ModeLight modeLight() {
+		return ModeLight.ALWAYS_LIGHT;
 	}
 
 	@Override
@@ -90,8 +93,8 @@ public class SkyProviderMoon extends SkyProviderBase {
 	}
 
 	@Override
-	protected Vector3 colorSunAura() {
-		return new Vector3(150, 150, 150);
+	protected StarColor colorSunAura() {
+		return StarColor.WHITE;
 	}
 
 	@Override

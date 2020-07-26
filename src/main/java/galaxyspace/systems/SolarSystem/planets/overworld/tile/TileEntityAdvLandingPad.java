@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import galaxyspace.core.GSBlocks;
 import galaxyspace.core.prefab.blocks.GSBlockMulti;
-import galaxyspace.core.registers.blocks.GSBlocks;
+import micdoodle8.mods.galacticraft.api.entity.ICargoEntity;
+import micdoodle8.mods.galacticraft.api.entity.ICargoEntity.EnumCargoLoadingState;
+import micdoodle8.mods.galacticraft.api.entity.ICargoEntity.RemovalResult;
 import micdoodle8.mods.galacticraft.api.entity.IDockable;
 import micdoodle8.mods.galacticraft.api.entity.IFuelable;
 import micdoodle8.mods.galacticraft.api.entity.ILandable;
@@ -19,6 +22,7 @@ import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityLaunchController
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -29,7 +33,7 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TileEntityAdvLandingPad extends TileEntityMulti implements IMultiBlock, IFuelable, IFuelDock{
+public class TileEntityAdvLandingPad extends TileEntityMulti implements IMultiBlock, IFuelable, IFuelDock, ICargoEntity {
 
 	private IDockable dockedEntity;
     private boolean initialised;
@@ -221,6 +225,24 @@ public class TileEntityAdvLandingPad extends TileEntityMulti implements IMultiBl
 				((TileEntityLaunchController) tile).setAttachedPad(this);
 			}
 		}
+	}
+	
+	@Override
+	public EnumCargoLoadingState addCargo(ItemStack itemStack, boolean doAdd) {
+		if (this.dockedEntity != null) {
+			return this.dockedEntity.addCargo(itemStack, doAdd);
+		}
+
+		return EnumCargoLoadingState.NOTARGET;
+	}
+
+	@Override
+	public RemovalResult removeCargo(boolean doRemove) {
+		if (this.dockedEntity != null) {
+			return this.dockedEntity.removeCargo(doRemove);
+		}
+
+		return new RemovalResult(EnumCargoLoadingState.NOTARGET, ItemStack.EMPTY);
 	}
 	
 	@Override

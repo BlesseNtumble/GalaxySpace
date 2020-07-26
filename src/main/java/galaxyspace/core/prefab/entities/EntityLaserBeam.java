@@ -10,6 +10,7 @@ public class EntityLaserBeam extends EntityThrowable {
 
 	protected EntityLivingBase shooter;
 	private int lifetime = 20*2;
+	private RayTraceResult trace;
 	
 	public EntityLaserBeam(World worldIn) {
 		super(worldIn);
@@ -24,9 +25,10 @@ public class EntityLaserBeam extends EntityThrowable {
         super(world, x, y, z);
     }
 
-    public EntityLaserBeam(World world, EntityLivingBase entity) 
+    public EntityLaserBeam(World world, EntityLivingBase entity, RayTraceResult trace) 
     {
         super(world, entity);
+        this.trace = trace;
     }
 
 	@Override
@@ -40,12 +42,15 @@ public class EntityLaserBeam extends EntityThrowable {
 			GalaxySpace.debug(this.rotationYaw + " | " + this.rotationPitch);*/
 	}
 	
-
+	public RayTraceResult getTrace()
+	{
+		return this.trace;
+	}
 	
 	@Override
     protected float getGravityVelocity()
     {
-        return 0.003F;
+        return 0.0F;
     }
 
 	@Override
@@ -56,7 +61,7 @@ public class EntityLaserBeam extends EntityThrowable {
 					
 			if(state != null)
 			{
-				this.world.createExplosion(null, result.getBlockPos().getX(), result.getBlockPos().getY(), result.getBlockPos().getZ(), 5, true);
+				this.world.createExplosion(null, result.getBlockPos().getX(), result.getBlockPos().getY(), result.getBlockPos().getZ(), 5, false);
 			}			
 		}
 		

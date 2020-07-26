@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.FMLLog;
 public class ACConfigDimensions {
     public static boolean loaded;
 
-    static Configuration config;
+    public static Configuration config;
 
     public ACConfigDimensions(File file)
     {

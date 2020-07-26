@@ -1,5 +1,6 @@
 package galaxyspace.systems.SolarSystem.satellites.mars.dimension.sky;
 
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import galaxyspace.GalaxySpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
@@ -21,8 +22,8 @@ public class SkyProviderMarsSS extends SkyProviderBase{
 	}
 
 	@Override
-	protected int modeLight() {
-		return 0;
+	protected ModeLight modeLight() {
+		return ModeLight.DEFAULT;
 	}
 
 	@Override
@@ -46,8 +47,8 @@ public class SkyProviderMarsSS extends SkyProviderBase{
 	}
 
 	@Override
-	protected Vector3 colorSunAura() {
-		return null;
+	protected StarColor colorSunAura() {
+		return StarColor.WHITE;
 	}
 
 	@Override

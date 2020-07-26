@@ -1,7 +1,7 @@
 package galaxyspace.systems.SolarSystem.moons.miranda.recipes;
 
-import galaxyspace.core.registers.blocks.GSBlocks;
-import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.GSBlocks;
+import galaxyspace.core.GSItems;
 import galaxyspace.systems.SolarSystem.planets.overworld.recipes.RecyclerRecipes;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

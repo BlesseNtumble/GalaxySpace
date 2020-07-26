@@ -1,6 +1,7 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines;
 
 import asmodeuscore.api.item.IShiftDescription;
+import galaxyspace.GalaxySpace;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityWindSolarPanel;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.blocks.BlockAdvancedTile;
@@ -58,7 +59,7 @@ public class BlockSolarWindPanel extends BlockAdvancedTile implements IShiftDesc
 	public boolean onMachineActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
 		//playerIn.openGui(GalaxySpace.instance, -1, world, pos.getX(), pos.getY(), pos.getZ());
 		TileEntityWindSolarPanel tile = (TileEntityWindSolarPanel) world.getTileEntity(pos);
-		String x = EnumColor.DARK_GREEN + "[INFO] Generate: " + (int) tile.generateWatts + " gJ/t" + " | " + tile.getSolarBoost();
+		String x = EnumColor.DARK_GREEN + "[INFO] Generate: " + (int) tile.generateWatts + " gJ/t" + (GalaxySpace.debug ? (" | " + tile.getSolarBoost()) : "");
 		
 		
 		if(world.isRemote) 

@@ -455,12 +455,13 @@ public class WorldProviderKuiperBelt extends WorldProviderAdvancedSpace implemen
     @Override
     public double getSolarEnergyMultiplier()
     {
-        if (this.solarMultiplier < 0D)
+        /*if (this.solarMultiplier < 0D)
         {
             double s = this.getSolarSize();
             this.solarMultiplier = s * s * s * ConfigManagerCore.spaceStationEnergyScalar;
         }
-        return this.solarMultiplier;
+        return this.solarMultiplier;*/
+    	return super.getSolarEnergyMultiplier();
     }
 
     private static class AsteroidData

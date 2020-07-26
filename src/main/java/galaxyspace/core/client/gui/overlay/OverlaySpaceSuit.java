@@ -3,7 +3,7 @@ package galaxyspace.core.client.gui.overlay;
 import org.lwjgl.opengl.GL11;
 
 import asmodeuscore.AsmodeusCore;
-import asmodeuscore.core.astronomy.BodiesHelper;
+import asmodeuscore.core.astronomy.BodiesRegistry;
 import asmodeuscore.core.astronomy.gui.overlay.OverlayDetectors;
 import galaxyspace.GalaxySpace;
 import galaxyspace.api.item.IModificationItem;
@@ -56,6 +56,21 @@ public class OverlaySpaceSuit extends Overlay {
 		{
 			if(!stack.isEmpty() && stack.getItem() instanceof ItemSpaceSuit)
 			{	
+				boolean hasModule = false;
+				ItemStack module = ItemStack.EMPTY;
+				
+				if(((IModificationItem)stack.getItem()).getAvailableModules() != null)
+					for(ItemModule modules : ((IModificationItem)stack.getItem()).getAvailableModules())
+					{
+						if(stack.getTagCompound().hasKey(modules.getName()) && modules.isActiveModule()) {
+							
+							hasModule = stack.getTagCompound().getBoolean(modules.getName());	
+							module = modules.getIcon();
+						}						
+					}
+				
+				if(module.isEmpty()) continue; 
+				
 				hasSuit = true;
 				break;
 			}

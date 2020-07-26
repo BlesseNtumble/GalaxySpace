@@ -2,7 +2,9 @@ package galaxyspace.systems.SolarSystem.planets.ceres.dimension.sky;
 
 import org.lwjgl.opengl.GL11;
 
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
+import asmodeuscore.core.astronomy.sky.SkyProviderBaseOld;
 import galaxyspace.GalaxySpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.Constants;
@@ -27,7 +29,7 @@ public class SkyProviderCeres extends SkyProviderBase
 		
 		for(int i = 0; i < 3; i++)
         {
-			GL11.glPopMatrix();
+			
 	        GL11.glPushMatrix();
 	        GL11.glEnable(GL11.GL_BLEND);
 	        
@@ -36,7 +38,7 @@ public class SkyProviderCeres extends SkyProviderBase
 	        //GL11.glRotatef(-180.0F, 1.0F, 0.0F, 0.0F);
 	        GL11.glRotatef(-90.0f, 0.0F, 0.0F, 1.0F);
 	        //GL11.glRotatef(-90.0f, 1.0F, 0.0F, 0.0F);
-	        GL11.glRotatef(this.mc.world.getCelestialAngle(this.ticks) * 360.0F, 0.0F, 0.0F, 1.0F);
+	        GL11.glRotatef(this.mc.world.getCelestialAngle(ticks) * 360.0F, 0.0F, 0.0F, 1.0F);
 	        GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.4F);
 	        FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.meteorpoleTexture);
 	        worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
@@ -46,16 +48,15 @@ public class SkyProviderCeres extends SkyProviderBase
 	        worldRenderer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
 	        tessellator.draw();
 	        GL11.glDisable(GL11.GL_BLEND);
-	       
+	        GL11.glPopMatrix();
         }
 		
-		GL11.glPopMatrix();
 		GL11.glPushMatrix();
 		//JUPITER
 		f10 = 5.0F;
 		GL11.glScalef(0.8F, 0.6F, 0.8F);
 		GL11.glRotatef(90.0f, 1.0F, 0.0F, 0.0F);
-		GL11.glRotatef(this.mc.world.getCelestialAngle(this.ticks) * 360.0F, 0.0F, 1.0F, 0.0F);
+		GL11.glRotatef(this.mc.world.getCelestialAngle(ticks) * 360.0F, 0.0F, 1.0F, 0.0F);
 		//GL11.glRotatef(-this.mc.world.getCelestialAngle(this.ticks) * 360.0F * 0.02F, 0.0F, 0.0F, 1.0F);
 		GL11.glColor4f(0.2F, 0.2F, 0.2F, 1.0F);
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.jupiterTexture);
@@ -77,7 +78,7 @@ public class SkyProviderCeres extends SkyProviderBase
 		GL11.glScalef(0.8F, 0.6F, 0.8F);
 		GL11.glRotatef(30.0f, 1.0F, 0.0F, 0.0F);
 		//GL11.glRotatef(90.0f, 0.0F, 0.0F, 1.0F);
-		GL11.glRotatef(this.mc.world.getCelestialAngle(this.ticks) * 360.0F, 0.0F, 0.0F, 1.0F);
+		GL11.glRotatef(this.mc.world.getCelestialAngle(ticks) * 360.0F, 0.0F, 0.0F, 1.0F);
 		GL11.glRotatef(188F, 0.0F, 0.0F, 1.0F);
 		
 		GL11.glColor4f(0.2F, 0.2F, 0.2F, 1.0F);
@@ -92,6 +93,7 @@ public class SkyProviderCeres extends SkyProviderBase
 		f = 0.3F;
 		//this.renderAtmo(tessellator, 0.0F, 0.0F, f10 - 0.5F, new Vector3(120 / 255.0F * f, 110 / 255.0F * f, 120 / 255.0F * f));
 
+		GL11.glPopMatrix();
 	}
 
 	@Override
@@ -115,13 +117,13 @@ public class SkyProviderCeres extends SkyProviderBase
 	}
 
 	@Override
-	protected int modeLight() {
-		return 0;
+	protected ModeLight modeLight() {
+		return ModeLight.DEFAULT;
 	}
 
 	@Override
-	protected Vector3 colorSunAura() {
-		return new Vector3(150, 150, 150);
+	protected StarColor colorSunAura() {
+		return StarColor.WHITE;
 	}
 
 	@Override

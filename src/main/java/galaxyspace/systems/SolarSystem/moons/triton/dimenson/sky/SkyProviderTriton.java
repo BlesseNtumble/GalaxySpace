@@ -2,7 +2,9 @@ package galaxyspace.systems.SolarSystem.moons.triton.dimenson.sky;
 
 import org.lwjgl.opengl.GL11;
 
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
+import asmodeuscore.core.astronomy.sky.SkyProviderBaseOld;
 import galaxyspace.GalaxySpace;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
@@ -19,7 +21,7 @@ public class SkyProviderTriton extends SkyProviderBase {
 	
 	@Override
 	protected void rendererSky(Tessellator tessellator, BufferBuilder worldRenderer, float f10, float ticks) {	
-		GL11.glPopMatrix();
+		
 		GL11.glPushMatrix();
 		
 		f10 = 10.0F;
@@ -43,9 +45,9 @@ public class SkyProviderTriton extends SkyProviderBase {
 		this.renderAtmo(tessellator, 0.0F, 0.0F, f10 - 1.5F, new Vector3(120 / 255.0F * f, 160 / 255.0F * f, 180 / 255.0F * f));
 		GL11.glEnable(GL11.GL_TEXTURE_2D);	
 		
-		long mod = ((WorldProviderSpace) this.mc.world.provider).getDayLength() / 24000;
-        long time = this.mc.player.getEntityWorld().getWorldTime() % ((WorldProviderSpace) this.mc.world.provider).getDayLength();
-		double k = (time / 8) / mod;
+		
+        long time = this.mc.player.getEntityWorld().getWorldTime() % getDayLenght();
+		double k = (time / 8) / (getDayLenght() / 24000L);
 
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glColor4f(0.0F, 0.0F, 0.0F, 0.95F);
@@ -70,11 +72,12 @@ public class SkyProviderTriton extends SkyProviderBase {
 		}
 		tessellator.draw();
 	    GL11.glDisable(GL11.GL_BLEND);
+	    GL11.glPopMatrix();
 	}
 
 	@Override
-	protected int modeLight() {
-		return 0;
+	protected ModeLight modeLight() {
+		return ModeLight.DEFAULT;
 	}
 
 	@Override
@@ -98,8 +101,8 @@ public class SkyProviderTriton extends SkyProviderBase {
 	}
 
 	@Override
-	protected Vector3 colorSunAura() {
-		return new Vector3(150, 150, 150);
+	protected StarColor colorSunAura() {
+		return StarColor.WHITE;
 	}
 
 	@Override

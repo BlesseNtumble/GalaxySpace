@@ -50,6 +50,7 @@ public class TileEntityPanelController extends TileBaseUniversalElectricalSource
 		this.inventory = NonNullList.withSize(1, ItemStack.EMPTY);
     }
 	
+	
 	@Override
 	public void update() {
 		
@@ -74,7 +75,7 @@ public class TileEntityPanelController extends TileBaseUniversalElectricalSource
 					xMin = 1; xMax = distance - 1;
 					zMin = -2; zMax = 3;
 					
-					for(int x = 0; x <= distance; x++)
+					x: for(int x = 0; x <= distance; x++)
 						for(int z = -2; z <= 2; z++)
 						{
 							if(x <= distance - 1) 
@@ -83,9 +84,16 @@ public class TileEntityPanelController extends TileBaseUniversalElectricalSource
 								
 								if(this.world.getBlockState(pos).getBlock() instanceof BlockSingleSolarPanel)
 								{		
-									if(this.world.canBlockSeeSky(pos.up()))
+									boolean flag = true;
+									if(x > 1 && !(this.world.getBlockState(pos.west()).getBlock() instanceof BlockSingleSolarPanel))
 									{
-										
+										flag = false;										
+									}
+									
+									if(!flag) break x;
+									
+									if(flag && this.world.canBlockSeeSky(pos.up()))
+									{										
 										panels.put(pos, ((BlockSingleSolarPanel)world.getBlockState(pos).getBlock()).getTier());																										
 									}
 								}
@@ -93,12 +101,42 @@ public class TileEntityPanelController extends TileBaseUniversalElectricalSource
 						}
 					
 					break;
+				case WEST:
+					xMin = -distance + 1; xMax = 0;
+					zMin = -2; zMax = 3;
+					
+					x: for(int x = xMax; x >= xMin; x--)
+						for(int z = -2; z <= 2; z++)
+						{
+							
+							BlockPos pos = new BlockPos(this.getPos().getX() + x, this.getPos().getY(), this.getPos().getZ() + z);
+								
+							if(this.world.getBlockState(pos).getBlock() instanceof BlockSingleSolarPanel)
+							{		
+								boolean flag = true;
+								if(x < -2 && !(this.world.getBlockState(pos.east()).getBlock() instanceof BlockSingleSolarPanel))
+								{
+									flag = false;										
+								}
+									
+								if(!flag) break x;
+									
+								if(flag && this.world.canBlockSeeSky(pos.up()))
+								{										
+									panels.put(pos, ((BlockSingleSolarPanel)world.getBlockState(pos).getBlock()).getTier());																										
+								}
+							}
+							
+						}
+					
+					break;
+					
 				case NORTH:
 					xMin = -2; xMax = 3;
 					zMin = -distance + 1; zMax = 0;
 					
 					for(int x = -2; x <= 2; x++)
-						for(int z = zMin; z <= zMax - 1; z++)
+						z: for(int z = zMax; z >= zMin; z--)
 						{
 							if(z >= zMin) 
 							{
@@ -106,10 +144,17 @@ public class TileEntityPanelController extends TileBaseUniversalElectricalSource
 								
 								if(this.world.getBlockState(pos).getBlock() instanceof BlockSingleSolarPanel)
 								{		
-									if(this.world.canBlockSeeSky(pos.up()))
+									boolean flag = true;
+									if(z < -1 && !(this.world.getBlockState(pos.south()).getBlock() instanceof BlockSingleSolarPanel))
 									{
-							
-										panels.put(pos, ((BlockSingleSolarPanel)world.getBlockState(pos).getBlock()).getTier());																	
+										flag = false;										
+									}
+									
+									if(!flag) break z;
+									
+									if(flag && this.world.canBlockSeeSky(pos.up()))
+									{										
+										panels.put(pos, ((BlockSingleSolarPanel)world.getBlockState(pos).getBlock()).getTier());																										
 									}
 								}
 							}
@@ -119,45 +164,28 @@ public class TileEntityPanelController extends TileBaseUniversalElectricalSource
 					xMin = -2; xMax = 3;
 					zMin = 1; zMax = distance - 1;
 					
-					for(int x = -2; x <= 2; x++)
-						for(int z = 0; z <= distance; z++)
+					 for(int x = -2; x <= 2; x++)
+						x: for(int z = zMin; z <= zMax; z++)
 						{
-							if(z <= distance - 1) 
-							{
-								BlockPos pos = new BlockPos(this.getPos().getX() + x, this.getPos().getY(), this.getPos().getZ() + z);
+							BlockPos pos = new BlockPos(this.getPos().getX() + x, this.getPos().getY(), this.getPos().getZ() + z);
 								
-								if(this.world.getBlockState(pos).getBlock() instanceof BlockSingleSolarPanel)
-								{		
-									if(this.world.canBlockSeeSky(pos.up()))
-									{							
-										panels.put(pos, ((BlockSingleSolarPanel)world.getBlockState(pos).getBlock()).getTier());																		
-									}
+							if(this.world.getBlockState(pos).getBlock() instanceof BlockSingleSolarPanel)
+							{		
+								boolean flag = true;
+								if(z > 1 && !(this.world.getBlockState(pos.north()).getBlock() instanceof BlockSingleSolarPanel))
+								{
+									flag = false;										
 								}
-							}
-						}
-					break;
-				case WEST:
-					xMin = -distance + 1; xMax = 0;
-					zMin = -2; zMax = 3;
-					
-					for(int x = -distance; x <= 0; x++)
-						for(int z = -2; z <= 2; z++)
-						{
-							if(x >= -distance + 1) 
-							{
-								BlockPos pos = new BlockPos(this.getPos().getX() + x, this.getPos().getY(), this.getPos().getZ() + z);
-								
-								if(this.world.getBlockState(pos).getBlock() instanceof BlockSingleSolarPanel)
-								{		
-									if(this.world.canBlockSeeSky(pos.up()))
-									{
-										panels.put(pos, ((BlockSingleSolarPanel)world.getBlockState(pos).getBlock()).getTier());
-									}
+									
+								if(!flag) break x;
+									
+								if(flag && this.world.canBlockSeeSky(pos.up()))
+								{										
+									panels.put(pos, ((BlockSingleSolarPanel)world.getBlockState(pos).getBlock()).getTier());																										
 								}
-							}
+							}						
 						}
-					
-					break;
+					break;				
 				default:
 					break;					
 			}
@@ -202,8 +230,11 @@ public class TileEntityPanelController extends TileBaseUniversalElectricalSource
 				
 				//GalaxySpace.debug(t2_count + "");
 				
-				this.heatGJperTick = MathHelper.floor((0.01F * difference * difference * (9 * (Math.abs(difference) * 500.0F)) * this.getSolarBoost() + (1 * t2_count * 0.5F)) * (panels.size() * GSConfigEnergy.coefficientSolarPanel) / 5);
-						//(panels.size() + 2 * GSConfigEnergy.coefficientSolarPanel) * getSolarBoost();
+				this.heatGJperTick = (MathHelper.floor((0.01F * difference * difference * (9 * (Math.abs(difference) * (500.0F)) + (t2_count * 100)) 
+						* this.getSolarBoost()) * 0.25 * (panels.size() * GSConfigEnergy.coefficientSolarPanel) / 5)) 
+						;
+				
+				//(panels.size() + 2 * GSConfigEnergy.coefficientSolarPanel) * getSolarBoost();
 			}
 			else
 			{

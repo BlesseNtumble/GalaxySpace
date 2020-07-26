@@ -2,7 +2,7 @@ package galaxyspace.systems.SolarSystem.planets.overworld.tile;
 
 import java.util.ArrayList;
 
-import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.GSItems;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockAdvCircuitFabricator;
 import micdoodle8.mods.galacticraft.api.recipe.CircuitFabricatorRecipes;
 import micdoodle8.mods.galacticraft.api.world.IZeroGDimension;

@@ -4,8 +4,8 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import galaxyspace.core.GSFluids;
 import galaxyspace.core.configs.GSConfigCore;
-import galaxyspace.core.registers.fluids.GSFluids;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -22,7 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class BlockLiquidEthaneMethane extends BlockFluidClassic{
 
 	public BlockLiquidEthaneMethane() {
-		super(GSFluids.LiquidEthaneMethane, GSFluids.methaneMaterial);
+		super(GSFluids.LiquidEthaneMethane, GSFluids.LEMethane);
 		this.setQuantaPerBlock(9);
         //this.setLightLevel(0.1F);
         //this.needsRandomTick = true;

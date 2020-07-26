@@ -4,8 +4,8 @@ import java.util.Random;
 
 import asmodeuscore.core.astronomy.dimension.world.gen.dungeons.standart.DungeonConfiguration;
 import galaxyspace.GalaxySpace;
+import galaxyspace.core.GSBlocks;
 import galaxyspace.core.prefab.blocks.DungeonBlocks;
-import galaxyspace.core.registers.blocks.GSBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -30,7 +30,7 @@ public class RoomEntranceIo extends SizedPieceIo
     	this.setCoordBaseMode(EnumFacing.SOUTH);
 
         this.boundingBox = new StructureBoundingBox(blockPosX - range, configuration.getYPosition() - 5, blockPosZ - range, blockPosX + range - 1, 150, blockPosZ + range);
-        GalaxySpace.debug(blockPosX  + " | " + blockPosZ);
+        GalaxySpace.instance.debug(blockPosX  + " | " + blockPosZ);
     }
 
     @Override

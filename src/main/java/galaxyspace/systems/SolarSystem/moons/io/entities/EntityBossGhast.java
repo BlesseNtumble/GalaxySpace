@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Random;
 
 import galaxyspace.GalaxySpace;
+import galaxyspace.core.GSItems;
 import galaxyspace.core.prefab.entities.EntityFlyBossBase;
 import galaxyspace.core.prefab.entities.EntityIceSpike;
-import galaxyspace.core.registers.items.GSItems;
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
@@ -87,23 +87,15 @@ public class EntityBossGhast extends EntityFlyBossBase implements IMob, IEntityB
     @Override
     public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
     {
-        if (this.getIsInvulnerable())
-        {
-            return false;
-        }
-        else if ("fireball".equals(par1DamageSource.getDamageType()) && this.getAttackingEntity() instanceof EntityPlayer)
+        if ("fireball".equals(par1DamageSource.getDamageType()) && this.getAttackingEntity() instanceof EntityPlayer)
         {
             super.attackEntityFrom(par1DamageSource, 5.0F);
           
             return true;
         }
-        else if(par2 > 3.0F) {
-        	return super.attackEntityFrom(par1DamageSource, 4.0F);
-        }
-        else
-        {
-            return false;
-        }
+        
+        return false;
+        
     }
 
     @Override

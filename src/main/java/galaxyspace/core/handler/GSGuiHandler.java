@@ -3,7 +3,6 @@ package galaxyspace.core.handler;
 import asmodeuscore.core.astronomy.gui.book.ACGuiGuideBook;
 import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiAdvCircuitFabricator;
-import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiAdvElectricCompressor;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiAssembler;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiFuelGenerator;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiGravitationModule;
@@ -21,7 +20,6 @@ import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiRocketAssembler;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiUniversalRecycler;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiWindGenerator;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerAdvCircuitFabricator;
-import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerAdvElectricCompressor;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerAssembler;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerFuelGenerator;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerGravitationModule;
@@ -39,7 +37,6 @@ import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerRock
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerUniversalRecycler;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerWindGenerator;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvCircuitFabricator;
-import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvElectricCompressor;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvOxygenStorageModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAssembler;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityFuelGenerator;
@@ -141,10 +138,7 @@ public class GSGuiHandler implements IGuiHandler{
         	else if (tile instanceof TileEntityAdvOxygenStorageModule)
         		return new ContainerOxygenStorageModule(player.inventory, (TileEntityAdvOxygenStorageModule) tile);
         	
-        	else if (tile instanceof TileEntityAdvElectricCompressor)
-        		return new ContainerAdvElectricCompressor(player.inventory, (TileEntityAdvElectricCompressor) tile);
-        	
-        	else if (tile instanceof TileEntityAdvCircuitFabricator)
+            else if (tile instanceof TileEntityAdvCircuitFabricator)
         		return new ContainerAdvCircuitFabricator(player.inventory, (TileEntityAdvCircuitFabricator) tile);
         	
         	else if (tile instanceof TileEntityResearchTable)
@@ -222,9 +216,6 @@ public class GSGuiHandler implements IGuiHandler{
         	
         	else if (tile instanceof TileEntityAdvOxygenStorageModule)            
         		return new GuiOxygenStorageModule(player.inventory, (TileEntityAdvOxygenStorageModule) tile);
-        	
-        	else if (tile instanceof TileEntityAdvElectricCompressor)            
-        		return new GuiAdvElectricCompressor(player.inventory, (TileEntityAdvElectricCompressor) tile);
         	
         	else if (tile instanceof TileEntityAdvCircuitFabricator)            
         		return new GuiAdvCircuitFabricator(player.inventory, (TileEntityAdvCircuitFabricator) tile);

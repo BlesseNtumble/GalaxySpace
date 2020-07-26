@@ -1,7 +1,7 @@
 package galaxyspace.systems.SolarSystem.moons.ganymede.recipes;
 
-import galaxyspace.core.registers.blocks.GSBlocks;
-import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.GSBlocks;
+import galaxyspace.core.GSItems;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;

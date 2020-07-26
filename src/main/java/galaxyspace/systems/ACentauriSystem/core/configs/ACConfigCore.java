@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.FMLLog;
 public class ACConfigCore {
     public static boolean loaded;
 
-    static Configuration config;
+    public static Configuration config;
 
     public ACConfigCore(File file)
     {

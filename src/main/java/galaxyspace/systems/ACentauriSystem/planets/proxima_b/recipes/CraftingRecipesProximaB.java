@@ -1,6 +1,6 @@
 package galaxyspace.systems.ACentauriSystem.planets.proxima_b.recipes;
 
-import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.GSItems;
 import galaxyspace.systems.ACentauriSystem.core.registers.blocks.ACBlocks;
 import galaxyspace.systems.SolarSystem.planets.overworld.recipes.RecyclerRecipes;
 import micdoodle8.mods.galacticraft.core.GCItems;

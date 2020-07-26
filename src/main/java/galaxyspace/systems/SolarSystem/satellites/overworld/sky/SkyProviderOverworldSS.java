@@ -1,13 +1,13 @@
 package galaxyspace.systems.SolarSystem.satellites.overworld.sky;
 
-import asmodeuscore.core.astronomy.sky.SkyProviderBase;
+import asmodeuscore.core.astronomy.sky.SkyProviderBaseOld;
 import galaxyspace.GalaxySpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
 
-public class SkyProviderOverworldSS extends SkyProviderBase{
+public class SkyProviderOverworldSS extends SkyProviderBaseOld{
 	
 	@Override
 	protected void rendererSky(Tessellator tessellator, BufferBuilder buffer, float f10, float ticks) {

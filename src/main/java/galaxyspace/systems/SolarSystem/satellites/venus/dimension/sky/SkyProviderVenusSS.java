@@ -2,6 +2,7 @@ package galaxyspace.systems.SolarSystem.satellites.venus.dimension.sky;
 
 import org.lwjgl.opengl.GL11;
 
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import galaxyspace.GalaxySpace;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
@@ -23,7 +24,7 @@ public class SkyProviderVenusSS extends SkyProviderBase{
     
 	@Override
 	protected void rendererSky(Tessellator tessellator, BufferBuilder worldRenderer, float f10, float ticks) {
-		GL11.glPopMatrix();
+		
         GL11.glPushMatrix();
         //GL11.glEnable(GL11.GL_BLEND);
         //OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE, GL11.GL_ONE, GL11.GL_ZERO);
@@ -55,7 +56,7 @@ public class SkyProviderVenusSS extends SkyProviderBase{
 		GL11.glRotatef(90F, 0.0F, 1.0F, 0.0F);
 		
 		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION);
-		GalaxySpace.debug(k + " | " + (f10 - k) + " | " + mod);
+		GalaxySpace.instance.debug(k + " | " + (f10 - k) + " | " + mod);
 		if(k >= 0 && k <= f10 * 2) {
 					
 			worldRenderer.pos(-f10, -100.0D, f10 - k).endVertex();
@@ -84,12 +85,12 @@ public class SkyProviderVenusSS extends SkyProviderBase{
 		
 		tessellator.draw();
 	    GL11.glDisable(GL11.GL_BLEND);
-	
+	    GL11.glPopMatrix();
 	}
 
 	@Override
-	protected int modeLight() {
-		return 0;
+	protected ModeLight modeLight() {
+		return ModeLight.DEFAULT;
 	}
 
 	@Override
@@ -113,7 +114,7 @@ public class SkyProviderVenusSS extends SkyProviderBase{
 	}
 
 	@Override
-	protected Vector3 colorSunAura() {
+	protected StarColor colorSunAura() {
 		return null;
 	}
 

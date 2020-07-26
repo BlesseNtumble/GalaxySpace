@@ -2,7 +2,7 @@ package galaxyspace.systems.SolarSystem.planets.ceres.blocks;
 
 import java.util.Random;
 
-import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.GSItems;
 import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;

@@ -3,7 +3,7 @@ package galaxyspace.systems.SolarSystem.moons.io.world.gen.dungeon;
 import java.util.Random;
 
 import asmodeuscore.core.astronomy.dimension.world.gen.dungeons.standart.DungeonConfiguration;
-import galaxyspace.core.registers.blocks.GSBlocks;
+import galaxyspace.core.GSBlocks;
 import galaxyspace.systems.SolarSystem.planets.ceres.blocks.CeresBlocks;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;

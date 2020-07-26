@@ -1,5 +1,7 @@
 package galaxyspace.core.integration.crafttweaker;
 
+import java.util.ArrayList;
+
 import crafttweaker.IAction;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
@@ -20,8 +22,11 @@ public class ActionAssemblerRecipes {
 		
 		@Override
 		public void apply() {
-			ItemStack[] staks = CraftTweakerMC.getItemStacks(inputs);
-			AssemblyRecipes.addRecipe(CraftTweakerMC.getItemStack(output), (Object)staks);
+			ArrayList list = new ArrayList();
+			for(ItemStack stack : CraftTweakerMC.getItemStacks(inputs))
+				list.add(stack);
+			
+			AssemblyRecipes.addShapelessRecipe(CraftTweakerMC.getItemStack(output), list.toArray());
 		}
 
 		@Override

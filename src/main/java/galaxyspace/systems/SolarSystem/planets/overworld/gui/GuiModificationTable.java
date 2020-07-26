@@ -235,7 +235,7 @@ public class GuiModificationTable extends GuiContainerGC{
 					this.fontRenderer.drawSplitString(s, containerWidth + 180, containerHeight + 40, 80,	0xFFFFFF);
 					
 					
-					GlStateManager.enableLighting();
+					//GlStateManager.enableLighting();
 					
 					ItemStack[] stacks = actual_list.get(i).getItemsForModule();//GSUtils.getItemsForModules(this.actual_list.get(i).getName());
 			        	
@@ -281,6 +281,8 @@ public class GuiModificationTable extends GuiContainerGC{
 							RenderHelper.disableStandardItemLighting();
 						}
 					}
+					
+					GlStateManager.enableLighting();
 				}
 				
 				if(i >= 3 && i % 3 == 0) 

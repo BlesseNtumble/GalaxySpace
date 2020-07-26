@@ -19,7 +19,7 @@ import net.minecraftforge.fml.common.FMLLog;
 
 public class GSConfigCore
 {
-    static Configuration config;
+    public static Configuration config;
 
     public GSConfigCore(File file)
     {
@@ -28,12 +28,10 @@ public class GSConfigCore
     }
 
     public static boolean enableCheckVersion;
-    public static boolean enableMusic;
-    
+
     public static boolean enableOresGeneration;
     public static boolean enableDungeonsGeneration;
     public static boolean enableNewMenu;
-    public static boolean enableFogVenus;
     public static boolean enableSkyOverworld;
     public static boolean enableGSMars;
     public static boolean enableOverworldOres;
@@ -55,7 +53,6 @@ public class GSConfigCore
     public static boolean enableAdvancedThermalSystem;
     
     public static String spacesuit_pos = "center";
-    public static boolean spacesuit_small_button;
     
     public static boolean enableDebug;
     
@@ -91,15 +88,9 @@ public class GSConfigCore
 
             prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableCheckVersion", true);
             prop.setComment("Enable/Disable Check Version.");
-            prop.setLanguageKey("gc.configgui.enableCheckVersion").setRequiresMcRestart(true);
+            prop.setLanguageKey("gc.configgui.enableCheckVersion").setRequiresMcRestart(false);
             enableCheckVersion = prop.getBoolean(true);
             propOrder.add(prop.getName());         
-            
-            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableMusic", true);
-            prop.setComment("Enable/Disable new music on GS Planets/Moons.");
-            prop.setLanguageKey("gc.configgui.enableMusic").setRequiresMcRestart(true);
-            enableMusic = prop.getBoolean(true);
-            propOrder.add(prop.getName());      
             
             prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableAdvancedRocketCraft", true);
             prop.setComment("Enable/Disable advanced craft for rocket tier 2-3.");
@@ -109,49 +100,49 @@ public class GSConfigCore
             
             prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableAdvancedThermalSystem", true);
             prop.setComment("Enable/Disable advanced thermal system on celestial bodies.");
-            prop.setLanguageKey("gc.configgui.enableAdvancedThermalSystem").setRequiresMcRestart(true);
+            prop.setLanguageKey("gc.configgui.enableAdvancedThermalSystem").setRequiresMcRestart(false);
             enableAdvancedThermalSystem = prop.getBoolean(true);
             propOrder.add(prop.getName());    
             
             prop = config.get(Constants.CONFIG_CATEGORY_WORLDGEN, "enableOverworldOres", true);
             prop.setComment("Enable/Disable Generation Ores on Overworld.");
-            prop.setLanguageKey("gc.configgui.enableOverworldOres").setRequiresMcRestart(true);
+            prop.setLanguageKey("gc.configgui.enableOverworldOres").setRequiresMcRestart(false);
             enableOverworldOres = prop.getBoolean(true);
             propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_WORLDGEN, "enableOresGeneration", true);
             prop.setComment("Enable/Disable Generation Ores on Planets/Moon (Global Config).");
-            prop.setLanguageKey("gc.configgui.enableOresGeneration").setRequiresMcRestart(true);
+            prop.setLanguageKey("gc.configgui.enableOresGeneration").setRequiresMcRestart(false);
             enableOresGeneration = prop.getBoolean(true);
             propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_WORLDGEN, "enableDungeonsGeneration", true);
             prop.setComment("Enable/Disable Dungeons Generation on Planets/Moon (Global Config).");
-            prop.setLanguageKey("gc.configgui.enableDungeonsGeneration").setRequiresMcRestart(true);
+            prop.setLanguageKey("gc.configgui.enableDungeonsGeneration").setRequiresMcRestart(false);
             enableDungeonsGeneration = prop.getBoolean(true);
             propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "enableRadiationSystem", true);
             prop.setComment("Enable/Disable solar radiation system.");
-            prop.setLanguageKey("gc.configgui.enableRadiationSystem").setRequiresMcRestart(true);
+            prop.setLanguageKey("gc.configgui.enableRadiationSystem").setRequiresMcRestart(false);
             enableRadiationSystem = prop.getBoolean(true);
             propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "enablePressureSystem", true);
             prop.setComment("Enable/Disable atmosphere pressure system.");
-            prop.setLanguageKey("gc.configgui.enablePressureSystem").setRequiresMcRestart(true);
+            prop.setLanguageKey("gc.configgui.enablePressureSystem").setRequiresMcRestart(false);
             enablePressureSystem = prop.getBoolean(true);
             propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableNewMenu", true);
             prop.setComment("Enable/Disable new Main Menu.");
-            prop.setLanguageKey("gc.configgui.enableNewMenu").setRequiresMcRestart(true);
+            prop.setLanguageKey("gc.configgui.enableNewMenu").setRequiresMcRestart(false);
             enableNewMenu = prop.getBoolean(true);
             propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "enableMethaneParticle", true);
             prop.setComment("Enable/Disable Methane Particles.");
-            prop.setLanguageKey("gc.configgui.enableMethaneParticle").setRequiresMcRestart(true);
+            prop.setLanguageKey("gc.configgui.enableMethaneParticle").setRequiresMcRestart(false);
             enableMethaneParticle = prop.getBoolean(true);
             propOrder.add(prop.getName());   
             
@@ -167,28 +158,23 @@ public class GSConfigCore
             prop.setLanguageKey("gc.configgui.otherModOreGenIDs");
             oregenIDs = prop.getStringList();
             propOrder.add(prop.getName());
-            */
-            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "enableFogVenus", true);
-            prop.setComment("Enable/Disable Fog on Venus.");
-            prop.setLanguageKey("gc.configgui.enableFogVenus").setRequiresMcRestart(true);
-            enableFogVenus = prop.getBoolean(true);
-            propOrder.add(prop.getName());
+            
             
             prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "enableSkyOverworld", true);
             prop.setComment("Enable/Disable new render sky on Overworld.");
             prop.setLanguageKey("gc.configgui.enableSkyOverworld").setRequiresMcRestart(true);
             enableSkyOverworld = prop.getBoolean(true);
             propOrder.add(prop.getName());
-            
+            */
             prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "idSolarRadiation", idSolarRadiation);
             prop.setComment("ID Potion 'Solar Radiation'");
-            prop.setLanguageKey("gc.configgui.idSolarRadiation").setRequiresMcRestart(true);
+            prop.setLanguageKey("gc.configgui.idSolarRadiation").setRequiresMcRestart(false);
             idSolarRadiation = prop.getInt();
             propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "idAntiRadiation", idAntiRadiation);
             prop.setComment("ID Potion 'Anti Radiation'");
-            prop.setLanguageKey("gc.configgui.idAntiRadiation").setRequiresMcRestart(true);
+            prop.setLanguageKey("gc.configgui.idAntiRadiation").setRequiresMcRestart(false);
             idAntiRadiation = prop.getInt();
             propOrder.add(prop.getName());
             
@@ -200,7 +186,7 @@ public class GSConfigCore
             
             prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "guiIDGuideBook", guiIDGuideBook);
             prop.setComment("ID gui for Guide Book.");
-            prop.setLanguageKey("gc.configgui.guiIDGuideBook").setRequiresMcRestart(true);
+            prop.setLanguageKey("gc.configgui.guiIDGuideBook").setRequiresMcRestart(false);
             guiIDGuideBook = prop.getInt();
             propOrder.add(prop.getName());
                           
@@ -224,7 +210,7 @@ public class GSConfigCore
             
             prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enablePlateOreDict", true);
             prop.setComment("Enable/Disable register OreDict for GC Compressed Plate");
-            prop.setLanguageKey("gc.configgui.enablePlateOreDict").setRequiresMcRestart(true);
+            prop.setLanguageKey("gc.configgui.enablePlateOreDict").setRequiresMcRestart(false);
             enablePlateOreDict = prop.getBoolean(true);
             propOrder.add(prop.getName());
             
@@ -233,16 +219,10 @@ public class GSConfigCore
             prop.setLanguageKey("gc.configgui.enableSpaceSuitHUD").setRequiresMcRestart(false);
             enableSpaceSuitHUD = prop.getBoolean(true);
             propOrder.add(prop.getName());
-           
-            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "spacesuit_small_button", false);
-            prop.setComment("Enable/Disable small text for spacesuit HUD.");
-            prop.setLanguageKey("gc.configgui.spacesuit_small_button").setRequiresMcRestart(true);
-            spacesuit_small_button = prop.getBoolean(false);
-            propOrder.add(prop.getName());   
             
             prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "spacesuit_pos", spacesuit_pos);
             prop.setComment("Set HUD position. (up or top, center, down or bottom)");
-            prop.setLanguageKey("gc.configgui.spacesuit_pos");
+            prop.setLanguageKey("gc.configgui.spacesuit_pos").setRequiresMcRestart(false);
             spacesuit_pos = prop.getString();
             propOrder.add(prop.getName());   
             
@@ -264,7 +244,7 @@ public class GSConfigCore
             		});
             
             prop.setComment("List armor with protect radiation and pressure. Format: 'modid:item' ");
-            prop.setLanguageKey("gc.configgui.armorIDs").setRequiresMcRestart(true);
+            prop.setLanguageKey("gc.configgui.armorIDs").setRequiresMcRestart(false);
             radiation_armor = prop.getStringList();
             propOrder.add(prop.getName());
                         
@@ -298,10 +278,8 @@ public class GSConfigCore
             
             config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 
-            if (config.hasChanged())
-            {
-                config.save();
-            }
+            config.save();
+            
         }
         catch (final Exception e)
         {

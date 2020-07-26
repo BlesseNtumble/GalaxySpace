@@ -2,7 +2,7 @@ package galaxyspace.systems.SolarSystem.planets.overworld.blocks;
 
 import java.util.Random;
 
-import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.GSItems;
 import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
 import net.minecraft.block.Block;

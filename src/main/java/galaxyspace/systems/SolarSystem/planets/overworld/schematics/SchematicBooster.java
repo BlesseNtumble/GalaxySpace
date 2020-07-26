@@ -1,7 +1,7 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.schematics;
 
+import galaxyspace.core.GSItems;
 import galaxyspace.core.configs.GSConfigSchematics;
-import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.schematics.GuiSchematicBooster;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics.ContainerSchematicBooster;
 import micdoodle8.mods.galacticraft.api.recipe.SchematicPage;

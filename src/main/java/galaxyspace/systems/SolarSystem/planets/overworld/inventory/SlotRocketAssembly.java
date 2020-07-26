@@ -1,6 +1,6 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.inventory;
 
-import galaxyspace.core.registers.items.GSItems;
+import galaxyspace.core.GSItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;

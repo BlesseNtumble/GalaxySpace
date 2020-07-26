@@ -3,23 +3,23 @@ package galaxyspace.systems.SolarSystem.moons.enceladus.dimension;
 import java.util.List;
 
 import asmodeuscore.api.dimension.IProviderFreeze;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProvider;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProvider;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_CaveGen;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_RavineGen;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_TerrainGenerator;
-import galaxyspace.core.registers.blocks.GSBlocks;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_CaveGen;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_OreGen;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_RavineGen;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
+import galaxyspace.core.GSBlocks;
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.systems.SolarSystem.SolarSystemBodies;
 import galaxyspace.systems.SolarSystem.moons.enceladus.dimension.sky.SkyProviderEnceladus;
-import galaxyspace.systems.SolarSystem.moons.enceladus.world.gen.BiomeDecoratorEnceladus;
 import galaxyspace.systems.SolarSystem.moons.enceladus.world.gen.BiomeProviderEnceladus;
 import galaxyspace.systems.SolarSystem.moons.enceladus.world.gen.we.Enceladus_Mountains;
 import galaxyspace.systems.SolarSystem.moons.enceladus.world.gen.we.Enceladus_Plains;
 import galaxyspace.systems.SolarSystem.moons.enceladus.world.gen.we.Enceladus_Ravine;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
@@ -36,7 +36,7 @@ import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WorldProviderEnceladus_WE extends WE_WorldProvider implements IProviderFreeze{
+public class WorldProviderEnceladus_WE extends WE_WorldProviderSpace implements IProviderFreeze{
 	
     @Override
     public double getHorizon()   { return 44.0D; }
@@ -55,21 +55,13 @@ public class WorldProviderEnceladus_WE extends WE_WorldProvider implements IProv
     public float getSoundVolReductionAmount() { return Float.MAX_VALUE; }
 
     @Override
-    public boolean canRainOrSnow() { return false; } 
-
-    @Override
     public CelestialBody getCelestialBody() { return SolarSystemBodies.enceladusSaturn; }
 
     @Override
     public Class<? extends IChunkGenerator> getChunkProviderClass() {
-    	return WE_ChunkProvider.class;
+    	return WE_ChunkProviderSpace.class;
     }
-    
-    @Override 
-    public Class<? extends BiomeProvider> getBiomeProviderClass() { 
-    	return BiomeProviderEnceladus.class; 
-    }
-    
+       
     @Override
     public Vector3 getFogColor() { return new Vector3(0, 0, 0); }
     
@@ -177,7 +169,12 @@ public class WorldProviderEnceladus_WE extends WE_WorldProvider implements IProv
 		rg.lavaMaxY = 0;
 		cp.createChunkGen_List.add(rg);
 		
-		cp.worldGenerators.clear();
+		WE_OreGen standardOres = new WE_OreGen();
+		//Coal
+		standardOres.add(GSBlocks.ENCELADUS_BLOCKS.getStateFromMeta(2), terrainGenerator.worldStoneBlock, 10, 10, 120, 20);
+		cp.decorateChunkGen_List.add(standardOres);
+		
+		((WE_ChunkProviderSpace)cp).worldGenerators.clear();
 		cp.biomesList.clear();
 		
 		WE_Biome.addBiomeToGeneration(cp, new Enceladus_Plains());	
@@ -186,13 +183,8 @@ public class WorldProviderEnceladus_WE extends WE_WorldProvider implements IProv
 	}
 
 	@Override
-	public BiomeDecoratorSpace getDecorator() {
-		return new BiomeDecoratorEnceladus();
-	}
-
-	@Override
 	public boolean enableAdvancedThermalLevel() {
-		return false;
+		return true;
 	}
 
 	@Override

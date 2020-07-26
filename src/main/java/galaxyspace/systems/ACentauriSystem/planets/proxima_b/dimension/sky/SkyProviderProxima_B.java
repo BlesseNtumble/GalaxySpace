@@ -2,7 +2,9 @@ package galaxyspace.systems.ACentauriSystem.planets.proxima_b.dimension.sky;
 
 import org.lwjgl.opengl.GL11;
 
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
+import asmodeuscore.core.astronomy.sky.SkyProviderBaseOld;
 import galaxyspace.GalaxySpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -19,54 +21,29 @@ public class SkyProviderProxima_B extends SkyProviderBase {
 	private ResourceLocation acentauri_b = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/celestialbodies/acentauri/centauri_b.png");
 		
 	@Override
-	protected void rendererSky(Tessellator tessellator, BufferBuilder worldRenderer, float f10, float ticks) {
+	protected void rendererSky(Tessellator tessellator, BufferBuilder worldRenderer, float size, float ticks) {
 		
-		//GL11.glPopMatrix();
-        //GL11.glPushMatrix();
-
-		World world = mc.world;
-		int phase = world.provider.getMoonPhase(world.getWorldTime());
-		
-		
-		f10 = 0.8F;
-		GL11.glScalef(0.6F, 0.6F, 0.6F);
-		GL11.glRotatef(120F, 1.0F, 0.0F, 0.0F);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.acentauri_a);
-
-		if (phase != 0 && phase != 6) {
-			worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-			worldRenderer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
-			worldRenderer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
-			worldRenderer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
-			worldRenderer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
-			tessellator.draw();
-		}
-
-		f10 = 0.5F;
-		GL11.glScalef(0.6F, 0.6F, 0.6F);
-		GL11.glRotatef(1F, 0.0F, 0.0F, 1.0F);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.acentauri_b);
-
-		if (phase != 0 && phase != 6) {
-			worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-			worldRenderer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
-			worldRenderer.pos(f10, -100.0D, f10).tex(1.0, 1.0).endVertex();
-			worldRenderer.pos(f10, -100.0D, -f10).tex(1.0, 0).endVertex();
-			worldRenderer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
-			tessellator.draw();
-		}
-		
-        GL11.glPushMatrix();
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
-        GL11.glShadeModel(GL11.GL_SMOOTH);
-        GL11.glEnable(GL11.GL_BLEND);
-        OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-        GL11.glRotatef(180F, 1.0F, 0.0F, 0.0F);
-        this.renderSunAura(tessellator, 0.0F, 0.8F);
-        GL11.glRotatef(4F, 0.0F, 0.0F, 1.0F);
-        this.renderSunAura(tessellator, 0.0F, 0.5F);
+		GL11.glPushMatrix();		
+			World world = mc.world;
+			int phase = world.provider.getMoonPhase(world.getWorldTime());
+			
+			GL11.glRotatef(this.mc.world.getCelestialAngle(ticks) * 360.0F, 0.0F, 0.0F, 1.0F);         
+			this.renderImage(acentauri_a, -90F, 182F, 35F, 2.0F);
+			this.renderImage(acentauri_b, -90F, 180F, 40F, 1.5F);
+			
+			GL11.glPushMatrix();
+	        GL11.glShadeModel(GL11.GL_SMOOTH);
+	        GL11.glEnable(GL11.GL_BLEND);
+	        OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+	        
+	        GL11.glRotatef(35F, 1.0F, 0.0F, 0.0F);
+	        GL11.glRotatef(2F, 0.0F, 0.0F, 1.0F);
+			this.renderSunAura(tessellator, 0.0F, 0.8F);
+			GL11.glRotatef(5F, 1.0F, 0.0F, 0.0F);
+			GL11.glRotatef(-2F, 0.0F, 0.0F, 1.0F);
+			this.renderSunAura(tessellator, 0.0F, 0.5F);
+			GL11.glDisable(GL11.GL_BLEND);
+			GL11.glPopMatrix();
         GL11.glPopMatrix();
 	}
 
@@ -91,18 +68,21 @@ public class SkyProviderProxima_B extends SkyProviderBase {
 	}
 
 	@Override
-	protected int modeLight() {
+	protected ModeLight modeLight() {
+		/*
 		switch(mc.world.provider.getMoonPhase(mc.world.getWorldTime()))
 		{
 			case 0:
 			case 6:	return 2;
 			default: return 0;
-		}
+		}*/
+		
+		return ModeLight.DEFAULT;
 	}
 
 	@Override
-	protected Vector3 colorSunAura() {
-		return new Vector3(255, 140, 100);
+	protected StarColor colorSunAura() {
+		return StarColor.ORANGE;
 	}
 
 	@Override
@@ -114,7 +94,7 @@ public class SkyProviderProxima_B extends SkyProviderBase {
 	public boolean enableSmoothRender() {return false;}
 	
 	@Override
-	public int addSizeAura() {return 35;}
+	public int expandSizeAura() {return 25;}
 	
 	@Override
 	public boolean enableLargeSunAura() {return true;}

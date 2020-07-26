@@ -1,0 +1,10 @@
+# Blender MTL File: 'tier4rocketGS.blend'
+# Material Count: 1
+
+newmtl steel
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+d 1.000000
+illum 2
+map_Kd galaxyspace:model/rocket_tier_4_launch
+

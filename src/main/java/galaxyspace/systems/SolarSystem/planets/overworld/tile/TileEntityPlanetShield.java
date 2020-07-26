@@ -3,8 +3,8 @@ package galaxyspace.systems.SolarSystem.planets.overworld.tile;
 import java.util.HashSet;
 import java.util.List;
 
+import galaxyspace.core.GSItems;
 import galaxyspace.core.prefab.entities.EntityIceSpike;
-import galaxyspace.core.registers.items.GSItems;
 import io.netty.buffer.ByteBuf;
 import micdoodle8.mods.galacticraft.api.vector.BlockVec3Dim;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;

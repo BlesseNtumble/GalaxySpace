@@ -1,14 +1,14 @@
 package galaxyspace.systems.SolarSystem.moons.io.world.gen.we;
 
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_Biome;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.standardcustomgen.WE_BiomeLayer;
-import galaxyspace.core.registers.blocks.GSBlocks;
+import asmodeuscore.core.utils.worldengine.WE_Biome;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
+import galaxyspace.core.GSBlocks;
 import net.minecraft.init.Blocks;
 
 public class Io_Volcano extends WE_Biome {
 	
 	public Io_Volcano() {
-		super(new BiomeProperties("io_volcano"), new int[] {0xFFFFFF, 0xFFFFFF, 0x00FF00});
+		super(new BiomeProperties("io_volcano"), new int[] {0x00CC00, 0xFFFFFF, 0x00CC00});
 		
 		biomeMinValueOnMap      =   0.5D;
 		biomeMaxValueOnMap      =   1.0D;
