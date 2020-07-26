@@ -39,12 +39,12 @@ public class Barnarda_C_Plains extends WE_Biome {
 		decorateChunkGen_List.clear();		
 		createChunkGen_InXZ_List.clear();
 		
-		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntitySheep.class, 10, 1, 4));
-		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityChicken.class, 10, 1, 4));
+		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntitySheep.class, 4, 3, 7));
+		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityChicken.class, 4, 3, 7));
 		
-		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityZombie.class, 10, 1, 4));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityZombie.class, 10, 2, 6));
 		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySpider.class, 10, 1, 4));
-		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySkeleton.class, 10, 1, 4));
+		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySkeleton.class, 10, 2, 6));
 		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 10, 1, 1));
 						
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();

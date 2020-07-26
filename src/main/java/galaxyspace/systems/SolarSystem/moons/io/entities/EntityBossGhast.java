@@ -87,23 +87,15 @@ public class EntityBossGhast extends EntityFlyBossBase implements IMob, IEntityB
     @Override
     public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
     {
-        if (this.getIsInvulnerable())
-        {
-            return false;
-        }
-        else if ("fireball".equals(par1DamageSource.getDamageType()) && this.getAttackingEntity() instanceof EntityPlayer)
+        if ("fireball".equals(par1DamageSource.getDamageType()) && this.getAttackingEntity() instanceof EntityPlayer)
         {
             super.attackEntityFrom(par1DamageSource, 5.0F);
           
             return true;
         }
-        else if(par2 > 3.0F) {
-        	return super.attackEntityFrom(par1DamageSource, 4.0F);
-        }
-        else
-        {
-            return false;
-        }
+        
+        return false;
+        
     }
 
     @Override

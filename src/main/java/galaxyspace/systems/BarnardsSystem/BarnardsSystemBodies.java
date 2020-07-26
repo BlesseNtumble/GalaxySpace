@@ -8,7 +8,9 @@ import asmodeuscore.api.dimension.IAdvancedSpace.TypeBody;
 import asmodeuscore.core.astronomy.BodiesData;
 import asmodeuscore.core.astronomy.BodiesRegistry;
 import asmodeuscore.core.astronomy.BodiesRegistry.Galaxies;
+import asmodeuscore.core.astronomy.dimension.world.gen.ACBiome;
 import asmodeuscore.core.handler.ColorBlockHandler;
+import asmodeuscore.core.utils.worldengine.WE_Biome;
 import galaxyspace.GalaxySpace;
 import galaxyspace.api.IBodies;
 import galaxyspace.api.IBodiesHandler;
@@ -92,7 +94,7 @@ public class BarnardsSystemBodies implements IBodies {
 		BodiesRegistry.setOrbitData(Barnarda_C, (float) Math.PI * 2, 1.0F, 6.9F);
 		BodiesRegistry.setAtmosphere(Barnarda_C, true, true, false, 0.0F, 1.0F, 1.0F);
 		BodiesRegistry.setPlanetData(Barnarda_C, 3, 29000, BodiesRegistry.calculateGravity(8.5F), false);
-		BodiesRegistry.setProviderData(Barnarda_C, WorldProviderBarnarda_C_WE.class, BRConfigDimensions.dimensionIDBarnardaC, 6);
+		BodiesRegistry.setProviderData(Barnarda_C, WorldProviderBarnarda_C_WE.class, BRConfigDimensions.dimensionIDBarnardaC, 6, ACBiome.ACSpace);
 		GalaxyRegistry.registerPlanet(Barnarda_C);
 		
 		Barnarda_C1 = BodiesRegistry.registerExMoon(Barnarda_C, "barnarda_c1", GalaxySpace.ASSET_PREFIX, 10.75F);

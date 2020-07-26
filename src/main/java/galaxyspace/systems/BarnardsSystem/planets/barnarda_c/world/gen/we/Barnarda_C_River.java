@@ -17,12 +17,12 @@ public class Barnarda_C_River extends WE_Biome {
 				
 		biomeMinValueOnMap      =  	min;
 		biomeMaxValueOnMap      =   max;
-		biomePersistence        =   1.1D;
+		biomePersistence        =   1.0D;
 		biomeNumberOfOctaves    =      4;
 		biomeScaleX             = 280.0D;
 		biomeScaleY             =   1.7D;
-		biomeSurfaceHeight      =     50;
-		biomeInterpolateQuality =     30;
+		biomeSurfaceHeight      =     60;
+		biomeInterpolateQuality =     15;
 		biomeTemerature = 0.4F;
 		//-//
 		decorateChunkGen_List.clear();		

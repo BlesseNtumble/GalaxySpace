@@ -57,13 +57,13 @@ public class EntityTier4Rocket extends EntityTieredRocketWithEngine
     @Override
     public double getMountedYOffset()
     {
-        return 0.75D;
+        return 3.75D;
     }
 
     @Override
     public float getRotateOffset()
     {
-        return 2.25F;
+        return 3.25F;
     }
 
     @Override

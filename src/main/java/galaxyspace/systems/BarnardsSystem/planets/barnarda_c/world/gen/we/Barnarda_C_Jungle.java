@@ -22,6 +22,7 @@ import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntitySquid;
@@ -48,9 +49,8 @@ public class Barnarda_C_Jungle extends WE_Biome {
 		decorateChunkGen_List.clear();		
 		createChunkGen_InXZ_List.clear();
 		
-		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntitySheep.class, 10, 1, 2));
-		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityChicken.class, 10, 1, 2));
-		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityPig.class, 10, 1, 2));
+		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityChicken.class, 10, 4, 4));
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityOcelot.class, 2, 1, 1));
 		
 		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityZombie.class, 10, 1, 2));
 		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySpider.class, 10, 1, 2));

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import asmodeuscore.AsmodeusCore;
 import asmodeuscore.api.dimension.IProviderFreeze;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
@@ -17,7 +18,6 @@ import galaxyspace.core.util.GSDimensions;
 import galaxyspace.systems.BarnardsSystem.BarnardsSystemBodies;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.sky.SkyProviderBarnarda_C;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.BiomeProviderBarnarda_C;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Beach;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_DeepOcean;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Dunes;
@@ -37,7 +37,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
-import net.minecraft.world.biome.BiomeProvider;
+import net.minecraft.world.WorldEntitySpawner;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
@@ -243,8 +243,6 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
 		cp.decorateChunkGen_List .clear(); 
 		((WE_ChunkProviderSpace)cp).worldGenerators.clear();
 		
-		WE_Biome.setBiomeMap(cp, 1.5D, 4, 6400.0D, 1.0D);	
-
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
 		terrainGenerator.worldStoneBlock = BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(1); 
 		terrainGenerator.worldSeaGen = true;
@@ -314,7 +312,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Beach(-3.5D, 3.5D, 1));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Plains(-3.4D, 3.4D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Forest(-2.9D, 2.9D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(-2.5D, 2.5D));
+		//WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(-2.5D, 2.5D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Swampland(-2.4D, 2.4D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Jungle(-1.9D, 1.9D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Dunes(-1.4D, 1.4D));
@@ -324,6 +322,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-0.3D, 0.3D, 100, 2.8D, 4));	
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(-0.0D, 0.0D, true));
 		
+		WE_Biome.setBiomeMap(cp, 0.8D, 4, cp.biomesList.size() * 350D, 3.0D);	
 		/*
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_DeepOcean(-4D, 4D));	
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(-3.9D, 3.9D, false));
@@ -357,6 +356,12 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
 	@Override
 	public void onPopulate(int cX, int cZ) {
 		
+		int x = cX << 4;
+        int z = cZ << 4;
+        if(AsmodeusCore.build_version < 18) {
+	        WE_Biome b = WE_Biome.getBiomeAt(this.chunk_provider, x, z);
+			WorldEntitySpawner.performWorldGenSpawning(this.world, b, x + 8, z + 8, 16, 16, this.world.rand);
+	    }
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import asmodeuscore.api.dimension.IProviderFog;
 import asmodeuscore.api.dimension.IProviderFreeze;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_BiomeProvider;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
 import asmodeuscore.core.utils.worldengine.WE_Biome;
@@ -19,7 +20,6 @@ import galaxyspace.core.util.GSDimensions;
 import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.BarnardsSystem.BarnardsSystemBodies;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.sky.SkyProviderBarnarda_C;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.BiomeProviderBarnarda_C;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
@@ -83,7 +83,7 @@ public class WorldProviderBarnarda_C1_WE extends WE_WorldProviderSpace implement
     
     @Override 
     public Class<? extends BiomeProvider> getBiomeProviderClass() { 
-    	return BiomeProviderBarnarda_C.class; 
+    	return WE_BiomeProvider.class; 
     }
     
     @Override 

@@ -45,16 +45,16 @@ public class Barnarda_C_Forest extends WE_Biome {
 		decorateChunkGen_List.clear();		
 		createChunkGen_InXZ_List.clear();
 		
-		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntitySheep.class, 10, 1, 2));
-		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityChicken.class, 10, 1, 2));
-		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityPig.class, 10, 1, 2));
+		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntitySheep.class, 3, 3, 7));
+		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityChicken.class, 5, 3, 7));
+		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityPig.class, 4, 3, 7));
 		
 		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityZombie.class, 10, 1, 2));
 		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySpider.class, 10, 1, 2));
 		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySkeleton.class, 10, 1, 2));
 		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 10, 1, 1));
 		
-		this.spawnableWaterCreatureList.add(new Biome.SpawnListEntry(EntitySquid.class, 10, 1, 3));
+		this.spawnableWaterCreatureList.add(new Biome.SpawnListEntry(EntitySquid.class, 40, 1, 7));
 		
 		
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();
@@ -162,6 +162,6 @@ public class Barnarda_C_Forest extends WE_Biome {
 				world.setBlockState(pos, BRBlocks.BARNARDA_C_DANDELIONS.getDefaultState().withProperty(Barnarda_C_Dandelions.BASIC_TYPE, Barnarda_C_Dandelions.EnumBlockDandelions.LIGHT_BALLS));
 			}
     	}
-	}
+	}	
 }
 

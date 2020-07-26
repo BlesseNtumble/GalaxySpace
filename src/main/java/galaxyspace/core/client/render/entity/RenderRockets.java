@@ -9,6 +9,8 @@ import org.lwjgl.opengl.GL11;
 import com.google.common.base.Function;
 
 import galaxyspace.GalaxySpace;
+import galaxyspace.core.prefab.entities.EntityTier5Rocket;
+import galaxyspace.core.prefab.entities.EntityTier6Rocket;
 import micdoodle8.mods.galacticraft.api.prefab.entity.EntityAutoRocket;
 import micdoodle8.mods.galacticraft.core.client.model.OBJLoaderGC;
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
@@ -76,7 +78,7 @@ public class RenderRockets extends Render<EntityAutoRocket>
         GlStateManager.disableCull();
         GlStateManager.translate((float) x, (float) y, (float) z);
         GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
-        GlStateManager.rotate(180.0F - entityYaw, 0.0F, 1.0F, 0.0F);
+        GlStateManager.rotate(0.0F + entityYaw, 0.0F, 1.0F, 0.0F);
         GlStateManager.rotate(pitch, 0.0F, 0.0F, 1.0F);
         GlStateManager.translate(0.0F, entity.getRenderOffsetY(), 0.0F);
         float rollAmplitude = entity.rollAmplitude / 3 - partialTicks;

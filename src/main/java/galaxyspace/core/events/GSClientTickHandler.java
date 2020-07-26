@@ -7,14 +7,12 @@ import org.lwjgl.opengl.GL11;
 import asmodeuscore.api.dimension.IAdvancedSpace;
 import asmodeuscore.core.astronomy.gui.book.ACGuiGuideBook;
 import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
-import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
 import asmodeuscore.core.utils.worldengine.WE_PerlinNoise;
 import asmodeuscore.core.utils.worldengine.WE_WorldProvider;
 import galaxyspace.GalaxySpace;
 import galaxyspace.api.item.IJetpackArmor;
 import galaxyspace.api.item.IModificationItem;
-import galaxyspace.core.GSItems;
 import galaxyspace.core.client.gui.GSGuiMainMenu;
 import galaxyspace.core.client.gui.book.pages.general.Page_ActualUpdate;
 import galaxyspace.core.client.gui.overlay.OverlaySpaceSuit;
@@ -31,7 +29,6 @@ import micdoodle8.mods.galacticraft.core.util.ColorUtil;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
-import micdoodle8.mods.galacticraft.planets.GalacticraftPlanets;
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -44,20 +41,14 @@ import net.minecraft.client.model.ModelPlayer;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHandSide;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
-import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
@@ -242,6 +233,7 @@ public class GSClientTickHandler {
         					"Is World Engine Provider: " + (isWE ? "Yes" : "No"),
         					"[WE] Biome Perlin Count: " + count
         					
+        					
         			};
             			
         			int k = 3;
@@ -273,6 +265,7 @@ public class GSClientTickHandler {
 		
 	}
 	*/
+	 
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
     public void renderBlocks(RenderWorldLastEvent e) {

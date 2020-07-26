@@ -47,7 +47,7 @@ public class Barnarda_C_Mountains extends WE_Biome {
 		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySkeleton.class, 10, 1, 2));
 		this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEnderman.class, 10, 1, 2));
 		
-		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityCow.class, 10, 1, 4));
+		this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityCow.class, 4, 4, 4));
 		
 		WE_BiomeLayer standardBiomeLayers = new WE_BiomeLayer();
 		standardBiomeLayers.add(BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(3), BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(1), -256, 0,   -5, -1,  true);
