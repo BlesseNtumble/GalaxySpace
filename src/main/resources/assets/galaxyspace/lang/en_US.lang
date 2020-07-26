@@ -407,6 +407,7 @@ effect.antiradiation=Antiradiation Effect
 |/////////////////////////////////////////|
 #|||||||||||||||||GUI||||||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+gui.available_modules.desc=Available modules:
 gui.schematic_oxtanks.desc=Oxygen EPP Tank
 
 gui.tier1.desc=Tier 1
@@ -477,10 +478,9 @@ gs.update.changelog=Changelog
 #|/////////////////////////////////////////|
 #|||||||||||||SpaceSuit Modules|||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-
+gui.module.available_modules=Available modules:
 gui.module.caninstall=Can install modules in Modification Table.
 gui.module.list=List Modules:
-gui.module.available_modules=Available modules:
 
 gui.module.sensor=Sensor Glasses
 gui.module.sensor.desc=Added sensory glasses to the helmet. Scan the area around the player and display the ore on the screen. Also highlight the monsters.
