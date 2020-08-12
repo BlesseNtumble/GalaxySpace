@@ -117,8 +117,8 @@ public class Barnarda_C_Jungle extends WE_Biome {
 		}
 		
 		for(int i = 0; i < 16; i++){
-			randPosX = x + rand.nextInt(16) + 10;
-			randPosZ = z + rand.nextInt(16) + 10;
+			randPosX = x + rand.nextInt(16) + 8;
+			randPosZ = z + rand.nextInt(16) + 8;
 			pos = world.getHeight(new BlockPos(randPosX, 0, randPosZ));
 			
 			if(world.getBlockState(pos.down()) == BRBlocks.BARNARDA_C_GRASS.getDefaultState().withProperty(Barnarda_C_Grass.BASIC_TYPE, Barnarda_C_Grass.EnumBlockGrass.GRASS))

@@ -276,7 +276,9 @@ public class GSEventHandler {
 			for(BlockToChange block : block_to_change)
 			{			
 				if(block.only_gs_dim && !(e.world.provider instanceof IProviderFreeze))
-					continue;				
+					continue;		
+				
+				if(e.world.provider instanceof IProviderFreeze && !((IProviderFreeze)e.world.provider).isFreeze()) continue;
 				
 				if(block.need_check_temp) { 
 					if((e.block == block.state || e.block.getMaterial() == block.state.getMaterial()) && !OxygenUtil.isAABBInBreathableAirBlock(e.world, bb, true))
@@ -372,7 +374,7 @@ public class GSEventHandler {
 						{
 							if(!OxygenUtil.isAABBInBreathableAirBlock(world, bb, ore.need_check_temp))
 							{
-								player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.needoxygen" + (ore.need_check_temp ? "thermal" : ""))));				   
+								player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.needoxygen")));				   
 								event.setCanceled(true);
 							}
 						}						

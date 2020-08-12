@@ -75,8 +75,7 @@ public class Barnarda_C_Forest extends WE_Biome {
 		lakes.lakeBlock = Blocks.LAVA.getDefaultState();
 		lakes.iceGen = false;
 		lakes.chunksForLake = 100;
-		decorateChunkGen_List.add(lakes);	
-		
+		decorateChunkGen_List.add(lakes);		
 	}
 	
 	@Override

@@ -46,8 +46,8 @@ public class SkyProviderTriton extends SkyProviderBase {
 		GL11.glEnable(GL11.GL_TEXTURE_2D);	
 		
 		
-        long time = this.mc.player.getEntityWorld().getWorldTime() % getDayLenght();
-		double k = (time / 8) / (getDayLenght() / 24000L);
+        long time = this.mc.player.getEntityWorld().getWorldTime() % getDayLength();
+		double k = (time / 8) / (getDayLength() / 24000L);
 
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glColor4f(0.0F, 0.0F, 0.0F, 0.95F);

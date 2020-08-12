@@ -60,7 +60,7 @@ public class WorldProviderTriton_WE extends WE_WorldProviderSpace implements IPr
     @Override
     public Vector3 getFogColor()
     {
-    	float f = 0.6F - this.getStarBrightness(1.0F);
+    	float f = 1.0F - this.getStarBrightness(1.0F);
     	return new Vector3(104 / 255.0F * f, 104 / 255.0F * f, 104 / 255.0F * f);
     }
 

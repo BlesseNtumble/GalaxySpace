@@ -39,7 +39,6 @@ public class Barnarda_C_Blocks  extends Block implements ISortableBlock, ITerraf
     {
         super(Material.ROCK);
         this.setUnlocalizedName("barnarda_c_blocks");
-        this.setSoundType(SoundType.STONE);
         this.setHarvestLevel("pickaxe", 0, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.STONE));
         this.setHarvestLevel("pickaxe", 0, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.COBBLESTONE));
         this.setHarvestLevel("pickaxe", 0, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.STONE_BRICKS));

@@ -92,9 +92,11 @@ public class RocketAssemblerRecipeCategory implements IRecipeCategory
         this.slot.draw(minecraft, 59, 105);
         
         
-        this.slot.draw(minecraft, 88, 22);
-        this.slot.draw(minecraft, 109, 22);
-        this.slot.draw(minecraft, 130, 22);
+        this.slot.draw(minecraft, 75, 22);
+        
+        this.slot.draw(minecraft, 98, 22);
+        this.slot.draw(minecraft, 119, 22);
+        this.slot.draw(minecraft, 140, 22);
         
         this.resultslot.draw(minecraft, 126, 61);
     }
@@ -118,9 +120,10 @@ public class RocketAssemblerRecipeCategory implements IRecipeCategory
        
         itemstacks.init(8, false, 134, 69);
         
-        itemstacks.init(9, true, 89, 23);
-        itemstacks.init(10, true, 110, 23);
-        itemstacks.init(11, true, 131, 23);
+        itemstacks.init(9, true, 76, 23);
+        itemstacks.init(10, true, 99, 23);
+        itemstacks.init(11, true, 120, 23);
+        itemstacks.init(12, true, 141, 23);
         
         itemstacks.set(ingredients);
     }

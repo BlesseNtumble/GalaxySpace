@@ -116,7 +116,7 @@ public class GalaxySpace
 {
 	public static final int major_version = 2;
 	public static final int minor_version = 0;
-	public static final int build_version = 14;
+	public static final int build_version = 15;
 	
 	public static final String NAME = "GalaxySpace";
 	public static final String MODID = "galaxyspace";

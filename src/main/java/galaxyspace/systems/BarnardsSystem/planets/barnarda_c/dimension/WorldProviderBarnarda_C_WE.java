@@ -312,7 +312,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Beach(-3.5D, 3.5D, 1));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Plains(-3.4D, 3.4D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Forest(-2.9D, 2.9D));
-		//WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(-2.5D, 2.5D));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(-2.5D, 2.5D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Swampland(-2.4D, 2.4D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Jungle(-1.9D, 1.9D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Dunes(-1.4D, 1.4D));
@@ -355,13 +355,6 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
 
 	@Override
 	public void onPopulate(int cX, int cZ) {
-		
-		int x = cX << 4;
-        int z = cZ << 4;
-        if(AsmodeusCore.build_version < 18) {
-	        WE_Biome b = WE_Biome.getBiomeAt(this.chunk_provider, x, z);
-			WorldEntitySpawner.performWorldGenSpawning(this.world, b, x + 8, z + 8, 16, 16, this.world.rand);
-	    }
 	}
 
 	@Override

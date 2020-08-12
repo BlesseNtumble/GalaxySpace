@@ -191,7 +191,7 @@ public class GSClientTickHandler {
         			long t1 = player.world.provider instanceof WorldProviderSpace ? ((WorldProviderSpace) player.world.provider).getDayLength() : 24000;
         			long time = player.world.getWorldTime() % (t1 > 0 ? t1 : 1);
         		
-        			float temp = player.world.provider instanceof IGalacticraftWorldProvider ? ((IGalacticraftWorldProvider) player.world.provider).getCelestialBody().atmosphere.thermalLevel() : 1.0F;
+        			float temp = player.world.provider instanceof IGalacticraftWorldProvider ? ((IGalacticraftWorldProvider) player.world.provider).getThermalLevelModifier() : 1.0F;
         			boolean isWE = player.getEntityWorld().provider instanceof WE_WorldProvider;
         			double count = 0;
         			

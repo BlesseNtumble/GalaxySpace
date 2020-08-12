@@ -5,6 +5,8 @@ import java.util.Random;
 import asmodeuscore.core.astronomy.dimension.world.gen.dungeons.standart.DungeonConfiguration;
 import galaxyspace.core.GSBlocks;
 import galaxyspace.core.prefab.blocks.DungeonBlocks;
+import galaxyspace.systems.SolarSystem.moons.io.blocks.IoBlocks;
+import galaxyspace.systems.SolarSystem.moons.io.blocks.IoBlocks.EnumIoBlocks;
 import galaxyspace.systems.SolarSystem.planets.ceres.blocks.CeresBlocks;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityDungeonSpawner;
@@ -136,7 +138,7 @@ public class RoomBossIo extends SizedPieceIo
                                     this.setBlockState(worldIn, Blocks.LAVA.getDefaultState(), i, j - 1, k, chunkBox);
                                 }
                         		else
-                        			this.setBlockState(worldIn, this.configuration.getOtherBlock(true), i, j, k, boundingBox);
+                        			this.setBlockState(worldIn, GSBlocks.IO_BLOCKS.getDefaultState().withProperty(IoBlocks.BASIC_TYPE, EnumIoBlocks.IO_DUNGEON_FLOOR), i, j, k, boundingBox);
                            	}                        	
                         	else if(j == this.sizeY)
                         	{
@@ -146,7 +148,7 @@ public class RoomBossIo extends SizedPieceIo
                                 }
                                 else
                                 {
-                                	this.setBlockState(worldIn, this.configuration.getOtherBlock(false), i, j, k, boundingBox);
+                                	this.setBlockState(worldIn, GSBlocks.IO_BLOCKS.getDefaultState().withProperty(IoBlocks.BASIC_TYPE, EnumIoBlocks.IO_DUNGEON_TOP), i, j, k, boundingBox);
 
                                 }
                         	}

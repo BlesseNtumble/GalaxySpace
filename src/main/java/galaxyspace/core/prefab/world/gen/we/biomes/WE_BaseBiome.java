@@ -24,6 +24,10 @@ public class WE_BaseBiome extends WE_Biome {
 	 * @param 
 	 *
 	 */
+	public WE_BaseBiome(double max, double persistance, int octaves, int height, int intquility, WE_BiomeLayer layers, IWorldGenerator... gens) {
+		this(0.0D, max, persistance, octaves, height, intquility, layers, gens);	
+		setAbsoluteValue();
+	}
 	
 	public WE_BaseBiome(double min, double max, double persistance, int octaves, int height, int intquility, WE_BiomeLayer layers, IWorldGenerator... gens) {
 		super(new BiomeProperties("we_basebiome"), colors);

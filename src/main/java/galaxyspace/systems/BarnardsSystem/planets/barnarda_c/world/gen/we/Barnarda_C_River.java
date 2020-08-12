@@ -21,7 +21,7 @@ public class Barnarda_C_River extends WE_Biome {
 		biomeNumberOfOctaves    =      4;
 		biomeScaleX             = 280.0D;
 		biomeScaleY             =   1.7D;
-		biomeSurfaceHeight      =     60;
+		biomeSurfaceHeight      =     50;
 		biomeInterpolateQuality =     15;
 		biomeTemerature = 0.4F;
 		//-//

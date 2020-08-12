@@ -145,7 +145,7 @@ public class TileEntityRocketAssembler extends TileBaseElectricBlockWithInventor
         if (this.canCompress())
         {        	
             ItemStack resultItemStack = this.producingStack;
-
+/*
             if(!this.getInventory().get(2).isEmpty())
             {
             	if(!resultItemStack.hasTagCompound()) 
@@ -169,7 +169,7 @@ public class TileEntityRocketAssembler extends TileBaseElectricBlockWithInventor
             	}
             	
             	this.getInventory().set(2, ItemStack.EMPTY);
-            }
+            }*/
             if (this.getInventory().get(slot).isEmpty())
             {
             	this.getInventory().set(slot, resultItemStack);
