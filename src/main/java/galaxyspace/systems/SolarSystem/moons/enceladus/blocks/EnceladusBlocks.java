@@ -2,6 +2,7 @@ package galaxyspace.systems.SolarSystem.moons.enceladus.blocks;
 
 import java.util.Random;
 
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Blocks.EnumBlockBarnardaC;
 import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
 import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
@@ -34,11 +35,24 @@ public class EnceladusBlocks extends Block implements IDetectableResource, ISort
         super(Material.ROCK);
         this.setUnlocalizedName("enceladusblocks");
         this.setSoundType(SoundType.STONE); 
-        this.setHarvestLevel("spade", 2, this.getDefaultState().withProperty(BASIC_TYPE, EnumEnceladusBlocks.ENCELADUS_SNOW));
+        this.setHarvestLevel("shovel", 1, this.getDefaultState().withProperty(BASIC_TYPE, EnumEnceladusBlocks.ENCELADUS_SNOW));
         this.setHarvestLevel("pickaxe", 2, this.getDefaultState().withProperty(BASIC_TYPE, EnumEnceladusBlocks.ENCELADUS_GRUNT));
         this.setHarvestLevel("pickaxe", 2, this.getDefaultState().withProperty(BASIC_TYPE, EnumEnceladusBlocks.ENCELADUS_COAL_ORE));
     }
 
+	@Override
+	public float getBlockHardness(IBlockState state, World worldIn, BlockPos pos)
+    {
+
+		EnumEnceladusBlocks type = ((EnumEnceladusBlocks) state.getValue(BASIC_TYPE));
+		
+		switch (type)
+        {
+			case ENCELADUS_SNOW: return 0.2F;
+			default: return this.blockHardness;        
+        }
+    }
+	
 	@SideOnly(Side.CLIENT)
     @Override
     public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
