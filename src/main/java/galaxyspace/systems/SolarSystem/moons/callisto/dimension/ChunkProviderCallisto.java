@@ -102,7 +102,7 @@ public class ChunkProviderCallisto extends ChunkProviderSpaceLakes {
 	
 	@Override
 	protected BlockMetaPair getDirtBlock() {
-		return new BlockMetaPair(GSBlocks.SURFACE_ICE, (byte) 0);
+		return new BlockMetaPair(GSBlocks.SURFACE_ICE, (byte) 4);
 	}
 	
 	@Override

@@ -10,7 +10,7 @@ import net.minecraft.world.chunk.ChunkPrimer;
 
 public class MapGenSnowGanymede extends MapGenBaseMeta{
 
-	public IBlockState icelayerBlock = GSBlocks.SURFACE_ICE.getDefaultState();
+	public IBlockState icelayerBlock = GSBlocks.SURFACE_ICE.getStateFromMeta(4);
 	
 	@Override
 	public void generate(World world, int chunkX, int chunkZ, ChunkPrimer primer) {
