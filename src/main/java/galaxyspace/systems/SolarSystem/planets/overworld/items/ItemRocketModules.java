@@ -27,7 +27,10 @@ public class ItemRocketModules extends Item implements ISortableItem {
 		"ion_engine",
 		"plasma_engine",
 		"sublight_engine",
-		"blackhole_engine"
+		"blackhole_engine",
+		"license_t4",
+		"license_t5",
+		"license_t6"
 	};
 		
 	public ItemRocketModules() {
@@ -53,6 +56,10 @@ public class ItemRocketModules extends Item implements ISortableItem {
     public void addInformation(ItemStack stack, @Nullable World world, List<String> list, ITooltipFlag flagIn)
     {		
 		list.add(GCCoreUtil.translate("gui.module.desc"));	
+		
+		int meta = stack.getItemDamage();
+		if(meta >= 8) 
+			list.add(GCCoreUtil.translate("gui.tier" + (meta - 4) + ".desc"));
     }
 	
 	@Override

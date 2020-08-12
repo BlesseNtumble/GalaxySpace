@@ -45,9 +45,10 @@ public class ContainerRocketAssembler extends Container
         //Stabilizers
         this.addSlotToContainer(new SlotRocketAssembly(tileEntity.rocketCraftMatrix, 8, 16, 120));        
         this.addSlotToContainer(new SlotRocketAssembly(tileEntity.rocketCraftMatrix, 9, 64, 120));
+        this.addSlotToContainer(new SlotRocketAssembly(tileEntity.rocketCraftMatrix, 10, 100, 35));
         
         for (int i = 0; i < 3; ++i)
-        	this.addSlotToContainer(new SlotRocketAssembly(tileEntity.rocketCraftMatrix, 10 + i, 95 + (21*i), 35));        
+        	this.addSlotToContainer(new SlotRocketAssembly(tileEntity.rocketCraftMatrix, 11 + i, 130 + (21*i), 35));        
         
         //for (int i = 0; i < 3; ++i)
        // this.addSlotToContainer(new Slot(tileEntity, 2, 85 + 21 * 4, 35));        
@@ -107,9 +108,9 @@ public class ContainerRocketAssembler extends Container
             ItemStack var4 = var3.getStack();
             var2 = var4.copy();
 
-            if (par1 <= 12)
+            if (par1 <= 14)
             {
-                if (!this.mergeItemStack(var4, 12, this.inventorySlots.size(), false))
+                if (!this.mergeItemStack(var4, 14, this.inventorySlots.size(), false))
                 {
                     return ItemStack.EMPTY;
                 }
@@ -192,7 +193,14 @@ public class ContainerRocketAssembler extends Container
                 }  
                 else if (var4.getItem() == Item.getItemFromBlock(Blocks.CHEST))
                 {
-                	if (!this.mergeOneItem(var4, 10, 13, false))
+                	if (!this.mergeItemStack(var4, 10, 13, false))
+                    {
+                        return ItemStack.EMPTY;
+                    }
+                }
+                else if (var4.getItem() == GSItems.ROCKET_MODULES)
+                {
+                	if (!this.mergeItemStack(var4, 13, 14, false))
                     {
                         return ItemStack.EMPTY;
                     }
@@ -219,7 +227,7 @@ public class ContainerRocketAssembler extends Container
 
         return var2;
     }
-    
+    /*
     protected boolean mergeOneItem(ItemStack par1ItemStack, int par2, int par3, boolean par4)
     {
         boolean flag1 = false;
@@ -236,7 +244,7 @@ public class ContainerRocketAssembler extends Container
                 if (slotStack == null)
                 {
                     ItemStack stackOneItem = par1ItemStack.copy();
-                    stackOneItem.setCount(1);;
+                    stackOneItem.setCount(1);
                     par1ItemStack.shrink(1);
                     slot.putStack(stackOneItem);
                     slot.onSlotChanged();
@@ -247,5 +255,5 @@ public class ContainerRocketAssembler extends Container
         }
 
         return flag1;
-    }
+    }*/
 }

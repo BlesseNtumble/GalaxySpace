@@ -165,14 +165,14 @@ public class GuiRocketAssembler extends GuiContainerGC
 	        if(!(this.inventorySlots.getSlot(i).inventory instanceof InventoryPlayer))
 	        {		   
 	        	
-	        	if(slot.slotNumber == 10 || slot.slotNumber == 11 || slot.slotNumber == 12)
+	        	if(slot.slotNumber == 11 || slot.slotNumber == 12 || slot.slotNumber == 13)
 		        {
 		        	color[0] = 0.2F; //R
 			        color[1] = 1.0F; //G
 			        color[2] = 0.0F; //B	        
 			        
 		        }
-	        	else if(slot.slotNumber >= 13)
+	        	else if(slot.slotNumber == 10)
 		        {
 			        color[0] = 1.0F; //R
 			        color[1] = 0.0F; //G
@@ -191,7 +191,7 @@ public class GuiRocketAssembler extends GuiContainerGC
 	        		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 	 	        	this.drawTexturedModalRect(containerWidth + x - 9, containerHeight + y - 9, 215, 144, 34, 34);
 	        	}
-	 	        else if(slot.slotNumber < 13)
+	 	        else if(slot.slotNumber != 10)
 	 	        	this.drawTexturedModalRect(containerWidth + x - 2, containerHeight + y - 3, 207, 182, 20, 21);
 	 	        else
 	 	        	this.drawTexturedModalRect(containerWidth + x - 2, containerHeight + y - 3, 207, 203, 20, 21);

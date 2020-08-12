@@ -1,5 +1,6 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.recipes;
 
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -22,6 +23,7 @@ import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
 import micdoodle8.mods.galacticraft.api.recipe.ShapelessOreRecipeGC;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCItems;
+import micdoodle8.mods.galacticraft.core.entities.EntityAlienVillager;
 import micdoodle8.mods.galacticraft.core.recipe.NasaWorkbenchRecipe;
 import micdoodle8.mods.galacticraft.core.recipe.ShapedRecipeNBT;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityDeconstructor;
@@ -41,6 +43,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.oredict.OreDictionary;
 
 
@@ -196,6 +199,8 @@ public class CraftingRecipesOverworld {
 		  
 	   RecipeUtil.addCustomRecipe(new ShapedRecipeNBT(new ItemStack(GSItems.BASIC, 1, 20), ItemBasicGS.getRecipe()));
 	   RecipeUtil.addCustomRecipe(new ShapedRecipeNBT(new ItemStack(GSItems.BASIC, 1, 28), ItemBasicGS.getColonistKitRecipe()));
+  
+	   
    }
 
    private static void addBlockSmelting() {
@@ -267,10 +272,10 @@ public class CraftingRecipesOverworld {
    
    private static void addRocketAssembly() {
 	   if(GSConfigCore.enableAdvancedRocketCraft)
-		   addRocketRecipe(AsteroidsItems.tier3Rocket, GSItems.ROCKET_PARTS, 0);
-	   addRocketRecipe(GSItems.ROCKET_TIER_4, GSItems.ROCKET_PARTS, 5);
-	   addRocketRecipe(GSItems.ROCKET_TIER_5, GSItems.ROCKET_PARTS, 10);
-	   addRocketRecipe(GSItems.ROCKET_TIER_6, GSItems.ROCKET_PARTS, 15);	  
+		   addRocketRecipe(AsteroidsItems.tier3Rocket, GSItems.ROCKET_PARTS, 0, ItemStack.EMPTY);
+	   addRocketRecipe(GSItems.ROCKET_TIER_4, GSItems.ROCKET_PARTS, 5, new ItemStack(GSItems.ROCKET_MODULES, 1, 8));
+	   addRocketRecipe(GSItems.ROCKET_TIER_5, GSItems.ROCKET_PARTS, 10, new ItemStack(GSItems.ROCKET_MODULES, 1, 9));
+	   addRocketRecipe(GSItems.ROCKET_TIER_6, GSItems.ROCKET_PARTS, 15, new ItemStack(GSItems.ROCKET_MODULES, 1, 10));	  
    }
    
    private static void addRecycler() {
@@ -363,11 +368,11 @@ public class CraftingRecipesOverworld {
 
    }
    
-   private static void addRocketRecipe(Item rocket, Item parts, int metafirstparts)
+   private static void addRocketRecipe(Item rocket, Item parts, int metafirstparts, ItemStack key)
    {
-	   RocketAssemblyRecipes.addShapelessRecipe(new ItemStack(rocket, 1, 0), new ItemStack(parts, 1, metafirstparts), new ItemStack(parts, 1, metafirstparts + 1), new ItemStack(parts, 1, metafirstparts + 1), new ItemStack(parts, 1, metafirstparts + 2), new ItemStack(parts, 1, metafirstparts + 3), new ItemStack(parts, 1, metafirstparts + 3), new ItemStack(parts, 1, metafirstparts + 4), new ItemStack(parts, 1, metafirstparts + 4));
-	   RocketAssemblyRecipes.addShapelessRecipe(new ItemStack(rocket, 1, 1), new ItemStack(parts, 1, metafirstparts), new ItemStack(parts, 1, metafirstparts + 1), new ItemStack(parts, 1, metafirstparts + 1),	new ItemStack(parts, 1, metafirstparts + 2), new ItemStack(parts, 1, metafirstparts + 3), new ItemStack(parts, 1, metafirstparts + 3), new ItemStack(parts, 1, metafirstparts + 4),	new ItemStack(parts, 1, metafirstparts + 4), new ItemStack(Blocks.CHEST, 1, 0)); 
-	   RocketAssemblyRecipes.addShapelessRecipe(new ItemStack(rocket, 1, 2), new ItemStack(parts, 1, metafirstparts), new ItemStack(parts, 1, metafirstparts + 1), new ItemStack(parts, 1, metafirstparts + 1),	new ItemStack(parts, 1, metafirstparts + 2), new ItemStack(parts, 1, metafirstparts + 3), new ItemStack(parts, 1, metafirstparts + 3), new ItemStack(parts, 1, metafirstparts + 4), new ItemStack(parts, 1, metafirstparts + 4), new ItemStack(Blocks.CHEST, 1, 0), new ItemStack(Blocks.CHEST, 1, 0)); 
-	   RocketAssemblyRecipes.addShapelessRecipe(new ItemStack(rocket, 1, 3), new ItemStack(parts, 1, metafirstparts), new ItemStack(parts, 1, metafirstparts + 1), new ItemStack(parts, 1, metafirstparts + 1),	new ItemStack(parts, 1, metafirstparts + 2), new ItemStack(parts, 1, metafirstparts + 3), new ItemStack(parts, 1, metafirstparts + 3), new ItemStack(parts, 1, metafirstparts + 4), new ItemStack(parts, 1, metafirstparts + 4), new ItemStack(Blocks.CHEST, 1, 0), new ItemStack(Blocks.CHEST, 1, 0), new ItemStack(Blocks.CHEST, 1, 0)); 
+	   RocketAssemblyRecipes.addShapelessRecipe(new ItemStack(rocket, 1, 0), new ItemStack(parts, 1, metafirstparts), new ItemStack(parts, 1, metafirstparts + 1), new ItemStack(parts, 1, metafirstparts + 1), new ItemStack(parts, 1, metafirstparts + 2), new ItemStack(parts, 1, metafirstparts + 3), new ItemStack(parts, 1, metafirstparts + 3), new ItemStack(parts, 1, metafirstparts + 4), new ItemStack(parts, 1, metafirstparts + 4), key);
+	   RocketAssemblyRecipes.addShapelessRecipe(new ItemStack(rocket, 1, 1), new ItemStack(parts, 1, metafirstparts), new ItemStack(parts, 1, metafirstparts + 1), new ItemStack(parts, 1, metafirstparts + 1),	new ItemStack(parts, 1, metafirstparts + 2), new ItemStack(parts, 1, metafirstparts + 3), new ItemStack(parts, 1, metafirstparts + 3), new ItemStack(parts, 1, metafirstparts + 4),	new ItemStack(parts, 1, metafirstparts + 4), key, new ItemStack(Blocks.CHEST, 1, 0)); 
+	   RocketAssemblyRecipes.addShapelessRecipe(new ItemStack(rocket, 1, 2), new ItemStack(parts, 1, metafirstparts), new ItemStack(parts, 1, metafirstparts + 1), new ItemStack(parts, 1, metafirstparts + 1),	new ItemStack(parts, 1, metafirstparts + 2), new ItemStack(parts, 1, metafirstparts + 3), new ItemStack(parts, 1, metafirstparts + 3), new ItemStack(parts, 1, metafirstparts + 4), new ItemStack(parts, 1, metafirstparts + 4), key, new ItemStack(Blocks.CHEST, 1, 0), new ItemStack(Blocks.CHEST, 1, 0)); 
+	   RocketAssemblyRecipes.addShapelessRecipe(new ItemStack(rocket, 1, 3), new ItemStack(parts, 1, metafirstparts), new ItemStack(parts, 1, metafirstparts + 1), new ItemStack(parts, 1, metafirstparts + 1),	new ItemStack(parts, 1, metafirstparts + 2), new ItemStack(parts, 1, metafirstparts + 3), new ItemStack(parts, 1, metafirstparts + 3), new ItemStack(parts, 1, metafirstparts + 4), new ItemStack(parts, 1, metafirstparts + 4), key, new ItemStack(Blocks.CHEST, 1, 0), new ItemStack(Blocks.CHEST, 1, 0), new ItemStack(Blocks.CHEST, 1, 0)); 
    }
 }

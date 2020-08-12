@@ -62,10 +62,14 @@ public class SlotRocketAssembly extends Slot
         			|| par1ItemStack.getItem() == GSItems.ROCKET_PARTS && par1ItemStack.getItemDamage() == 19
         			|| par1ItemStack.getItem() == GSItems.ROCKET_PARTS && par1ItemStack.getItemDamage() == 24;
         	
-        	case 10: return par1ItemStack.getItem() == Item.getItemFromBlock(Blocks.CHEST);
+        	case 10: return 
+        			par1ItemStack.getItem() == GSItems.ROCKET_MODULES && par1ItemStack.getItemDamage() == 8
+        			|| par1ItemStack.getItem() == GSItems.ROCKET_MODULES && par1ItemStack.getItemDamage() == 9
+        			|| par1ItemStack.getItem() == GSItems.ROCKET_MODULES && par1ItemStack.getItemDamage() == 10;
+        	
         	case 11: return par1ItemStack.getItem() == Item.getItemFromBlock(Blocks.CHEST);
         	case 12: return par1ItemStack.getItem() == Item.getItemFromBlock(Blocks.CHEST);
-        	
+        	case 13: return par1ItemStack.getItem() == Item.getItemFromBlock(Blocks.CHEST);
         }
 
         return false;
