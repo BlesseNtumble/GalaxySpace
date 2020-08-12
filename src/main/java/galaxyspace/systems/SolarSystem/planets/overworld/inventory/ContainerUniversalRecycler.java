@@ -81,12 +81,12 @@ public class ContainerUniversalRecycler extends Container
 
             if (par1 <= 3)
             {
-                if (!this.mergeItemStack(var4, 3, 35, true))
+                if (!this.mergeItemStack(var4, 4, 35, true))
                 {
                     return ItemStack.EMPTY;
                 }
 
-                if (par1 == 1)
+                if (par1 == 3)
                 {
                 	var3.onSlotChange(var4, var2);
                 }
