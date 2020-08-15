@@ -53,12 +53,12 @@ tile.futureglass_brown.name=Brown Future Glass
 tile.futureglass_blue.name=Blue Future Glass
 tile.futureglass_purple.name=Purple Future Glass
 tile.futureglass_cyan.name=Cyan Future Glass
-tile.futureglass_lightgray.name=Light gray Future Glass
+tile.futureglass_lightgray.name=Light Gray Future Glass
 tile.futureglass_gray.name=Gray Future Glass
 tile.futureglass_pink.name=Pink Future Glass
 tile.futureglass_lime.name=Lime Future Glass
 tile.futureglass_yellow.name=Yellow Future Glass
-tile.futureglass_lightblue.name=Light blue Future Glass
+tile.futureglass_lightblue.name=Light Blue Future Glass
 tile.futureglass_magneta.name=Magneta Future Glass
 tile.futureglass_orange.name=Orange Future Glass
 tile.futureglass_white.name=White Future Glass
@@ -196,7 +196,7 @@ tile.fuel_generator.name=Fuel Generator
 tile.fuel_generator.desc=Fuel Generator consumes fuel and produces a good amount of energy. A good option for fuel magnates.
 
 tile.modern_solarpanel.name=Hybrid Solar Panel
-tile.modern_solarpanel.desc=Covered with gold hybrid panel, produces twice as much energy as the Advanced panel.
+tile.modern_solarpanel.desc=A Hybrid Solar Panel using gold-platted panels, produces twice as much energy as the Advanced panel.
 
 tile.gravitation_module.name=Gravity Module
 tile.gravitation_module.desc=Creates Earth-like gravity within custom radius in all directions.
@@ -220,10 +220,10 @@ tile.rocket_assembler.name=Rocket Assembly
 tile.rocket_assembler.desc=Collects rockets from components made in the NASA workbench.
 
 tile.hydroponic_base.name=Hydroponic Base
-tile.hydroponic_base.desc=Base block for Hydroponic Farm. Above install the farm block.
+tile.hydroponic_base.desc=Base block for Hydroponic Farm. Install the Hydroponic Farm Block on top of this machine.
 
 tile.hydroponic_farm.name=Hydroponic Farm Block
-tile.hydroponic_farm.desc=Installed on top of the Hydroponic Base. It is necessary for the operation of the hydroponic farm. You can set up to 3 blocks up.
+tile.hydroponic_farm.desc=Installed on top of the Hydroponic Base. It is necessary for the operation of the hydroponic farm. You can set up to 3 blocks high.
 
 tile.radiation_stabiliser.name=Magnetic Field Generator
 tile.radiation_stabiliser.desc=Creates a field that protects against solar radiation. Supports the module to extend the range.
@@ -232,41 +232,41 @@ tile.panel_controller.name=Controller Mini-panels
 tile.panel_controller.desc=Takes energy from the nearby solar mini-panels. You can see zone by pressing Shift + Right Click on this block.
 
 tile.single_solarpanel.name=Solar Mini-Panel
-tile.single_solarpanel.desc=A single variant a solar panel. Requires Controller Mini-panels.
+tile.single_solarpanel.desc=A single variant a solar panel. Requires Mini-panels Controller.
 
 tile.modern_single_solarpanel.name=Modern Solar Mini-Panel
-tile.modern_single_solarpanel.desc=More efficient panel than normal. Requires Controller Mini-panels.
+tile.modern_single_solarpanel.desc=More efficient panel than normal. Requires Mini-panels Controller.
 
 tile.modern_storage_module.name=Modern Energy Cluster
 tile.modern_storage_module.desc=The modern version of the Energy Cluster. It may store a large amount of energy.
 
 tile.modification_table.name=Modification Table
-tile.modification_table.desc=Allows you to install modules in a modification items.
+tile.modification_table.desc=Allows you to install modules to items that support modules.
 
 tile.gas_burner.name=Gas Burner
 tile.gas_burner.desc=Burns supplied gas.
 
 tile.oxygen_storage_module_1.name=Oxygen Storage Cluster
-tile.oxygen_storage_module_1.desc=Improved version of Oxygen Storage. It can store 4 times more oxygen.
+tile.oxygen_storage_module_1.desc=Improved Oxygen Storage. It can store 4 times more oxygen.
 
-tile.solarwind_panel.name=Solarwind Panel
-tile.solarwind_panel.desc=Converts the solar wind into energy. Don't work on a planet's with atmosphere.
+tile.solarwind_panel.name=Solar-Wind Panel
+tile.solarwind_panel.desc=Converts solar wind into energy. Does not work on a planet's with atmosphere.
 
 tile.advanced_landing_pad.name=Advanced Landing Pad
 tile.advanced_landing_pad.desc=Advanced landing pad for rockets. Size 5x5.
 
 tile.adv_circuit_fabricator.name=Advanced Circuit Fabricator
-tile.adv_circuit_fabricator.desc=Advanced version circuit fabricator. More effectively 2 times. Supports modules.
+tile.adv_circuit_fabricator.desc=Advanced version of the Circuit Fabricator. 2x more effective. Supports modules.
 
 tile.adv_electric_compressor.name=Advanced Electric Compressor
-tile.adv_electric_compressor.desc=Advanced version electric compressor. More effectively 2 times. Supports modules.
+tile.adv_electric_compressor.desc=Advanced version of the Electric Compressor. 2x more effective. Supports modules.
 
-tile.planet_shield.name=Planetar Shield
+tile.planet_shield.name=Planetary Shield
 tile.planet_shield.desc=Protects the area from falling meteorites.
 
 tile.port_nuclear_reactor.name=[WIP] Portable Nuclear Reactor
 
-tile.basic_frame.name=Based Machine Frame
+tile.basic_frame.name=Basic Machine Frame
 tile.advance_frame.name=Advanced Machine Frame
 tile.modern_frame.name=Modern Machine Frame
 tile.coefficient.desc=Coefficient of generation
@@ -276,10 +276,10 @@ tile.ceres_bricks.name=Ceres Dungeon Brick
 tile.io_bricks.name=Io Dungeon Brick
 
 tile.treasure_t4.name=Treasure Chest Tier 4
-tile.treasure_t4.desc=Treasure Chests 4th tier will be generated at Ceres Dungeons. Available to open after kill the final boss.
+tile.treasure_t4.desc=Treasure Chests 4th tier will be generated at Ceres Dungeons. Available after killing the final boss.
 
 tile.treasure_t5.name=Treasure Chest Tier 5
-tile.treasure_t5.desc=Treasure Chests 5th tier will be generated at Io Dungeons. Available to open after kill the final boss.
+tile.treasure_t5.desc=Treasure Chests 5th tier will be generated at Io Dungeons. Available after killing the final boss.
 
 |/////////////////////////////////////////|
 #|||||||||||||||||Items||||||||||||||||||||
@@ -296,14 +296,14 @@ item.rocket_tier_6.name=Tier 6 Rocket
 
 item.space_suit_head.name=SpaceSuit Helmet
 item.space_suit_chest.name=SpaceSuit Chestplate
-item.space_suit_legs.name=SpaceSuit Leggins
+item.space_suit_legs.name=SpaceSuit Leggings
 item.space_suit_feet.name=SpaceSuit Boots
 
 item.jetpack.name=Electric Jetpack
 
 item.cobalt_helmet.name=Cobalt Helmet
 item.cobalt_chest.name=Cobalt Chestplate
-item.cobalt_legs.name=Cobalt Leggins
+item.cobalt_legs.name=Cobalt Leggings
 item.cobalt_boots.name=Cobalt Boots
 
 item.cobalt_axe.name=Cobalt Axe
@@ -329,7 +329,7 @@ item.dolomite_crystal.name=Dolomite Crystal
 item.dolomite_meal.name=Dolomite Meal
 item.wafer_modern.name=Modern Wafer
 item.hematite.name=Hematite
-item.antiradiation_tablets.name=Antiradiation Tablets
+item.antiradiation_tablets.name=Anti Radiation Tablets
 item.schematic_box.name=Schematics Box
 item.module_base.name=Blank Module
 item.blank_schematic.name=Blank Schematic
@@ -338,7 +338,7 @@ item.meteoric_iron_fragments.name=Meteoric Iron Fragments
 item.uranium_fragments.name=Uranium
 item.temp_shield_control.name=Prototype Controller Shield
 item.ice_bucket.name=Bucket with Ice
-item.emergency_portable_teleport.name=Emergency Portable Teleport
+item.emergency_portable_teleport.name=Portable Emergency Teleport
 item.guide_book.name=[WIP] Info-Pad
 item.advanced_emergency_kit.name=Advanced Emergency Kit
 item.oxygen_ice_crystal.name=Oxygen Ice Shard
@@ -355,9 +355,9 @@ item.module_energy.name=Module "Energy"
 
 item.module_small_fuelcanister.name=Small Fuel Canister
 item.module_smallcanister.name=Blank Fuel Tank
-item.module_lander_1.name=Lander Tier 1
-item.module_lander_2.name=Lander Tier 2
-item.module_lander_3.name=Lander Tier 3
+item.module_lander_1.name=Tier 1 Lander
+item.module_lander_2.name=Tier 2 Lander
+item.module_lander_3.name=Tier 3 Lander
 item.ion_engine.name=Ion Engine
 item.plasma_engine.name=[WIP] Plasma Engine
 item.sublight_engine.name=Sublight Engine
@@ -402,11 +402,12 @@ fluid.heliumhydrogen=Liquid Helium-Hydrogen
 |/////////////////////////////////////////|
 #||||||||||||||||Potions|||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-effect.antiradiation=Antiradiation Effect
+effect.antiradiation=Anti Radiation Effect
 
 |/////////////////////////////////////////|
 #|||||||||||||||||GUI||||||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+gui.available_modules.desc=Available modules:
 gui.schematic_oxtanks.desc=Oxygen EPP Tank
 
 gui.tier1.desc=Tier 1
@@ -417,24 +418,24 @@ gui.tier5.desc=Tier 5
 gui.tier6.desc=Tier 6
 
 gui.bonemeal.desc=It seems that this item works similarly to bone meal.
-gui.schematic_box.desc=Contains basic schemes for rockets. Use Right Click with held this item.
+gui.schematic_box.desc=Contains basic schematics for rockets. Use Right Click when holding this item.
 
-gui.spacesuit.desc=High strength suit. It stabilizes atmospheric pressure and add protect from solar radiation.
+gui.spacesuit.desc=High strength suit. It stabilizes atmospheric pressure and adds protection from solar radiation.
 gui.spacesuit_helmet.desc=Helmet allows for longer under water.
 
 gui.module_expander.desc=Slot for the module "Expander". Increases the range of the magnetic field.
 gui.module_pressure.desc=Slot for the module "Stabilization". Creates a protective layer that stabilizes atmospheric pressure.
-gui.temp_shield_control.desc=Provides protection against corrosion of atmosphere, but degrade over time.
+gui.temp_shield_control.desc=Provides protection against atmospheric corrosion, but degrade over time.
 gui.emergency_portable_teleport.desc=Emergency teleport to anchor point. Works with HP < 6. Shift+Right Click on teleport allows you to snap a point, on any block - enable/disable.
 gui.planet_shield_stability_1.desc=If installed the module "Stabilization"
 gui.planet_shield_stability_2.desc=the shield will collect meteorite fragments in this slot.
-gui.ice_bucket.desc=You can get it by clicking Right Mouse Click on the ice with an empty bucket.
+gui.ice_bucket.desc=You can get it by Right Clicking on the ice with an empty bucket.
 
 gui.not_attached.desc=Not attached
 gui.attached.desc=Attached:
 gui.enabled.desc=Enabled
 gui.charge=Charge:
-gui.message.now_noshield=You shield controller destroyed!
+gui.message.now_noshield=Your shield controller was destroyed!
 
 gui.module.desc=Rocket Module
 gui.status.nolava.name=No Lava
@@ -445,27 +446,27 @@ gui.status.nofuelgenerator.name=No Fuel
 gui.status.nowind.name=No Wind
 gui.status.wind.name=Wind
 gui.status.nowater.name=No Water
-gui.message.needfrequencyModule=Hey! I need have Frequency Module!
+gui.message.needfrequencyModule=Hey! you need a Frequency Module!
 gui.message.active_pressure_shield.name=Active shield from atm. pressure.
 
 gui.message.needoxygen=Oxygen is necessary to perform this action.
-gui.message.needoxygenthermal=Oxygen and thermal control is necessary to perform this action.
-gui.message.needoxygen.food=Oxygen is necessary to use earth food!
-gui.message.needoxygenandthermal.food=Oxygen and thermal control is necessary to use earth food!
+gui.message.needoxygenthermal=Oxygen and thermal control is required to perform this action.
+gui.message.needoxygen.food=Oxygen is required to use earth food!
+gui.message.needoxygenandthermal.food=Oxygen and thermal control is required to use earth food!
 gui.message.invalid_teleport_conf=Invalid teleport configuration or no energy.
-gui.message.cant_place=Can't this place.
+gui.message.cant_place=Can't place this.
  
 gui.message.noradiation=You not have solar radiation! It's good!
 gui.message.emergency_teleport=Emergency teleport successfully used. Coordinates:
 gui.message.can_find_in_dungeon=Can find in dungeons.
 
-gui.message.need_advanced_lp.desc=Can place only on Advanced Landing Pad.
+gui.message.need_advanced_lp.desc=Can only place on Advanced Landing Pad.
 gui.message.engine_type.name=Engine Type:
 gui.message.effect_visible.name=Effects visible
 gui.message.resources=Available Resources:
 
-gui.tank.passive_oxygen_regen.desc1=Passively generate oxygen
-gui.tank.passive_oxygen_regen.desc2=if the player is in a suitable sphere (bubble, sealed room).
+gui.tank.passive_oxygen_regen.desc1=Passively generates oxygen
+gui.tank.passive_oxygen_regen.desc2=if the player is in a suitable oxygen filled sphere (bubble, sealed room).
 
 gui.gravity.radius.name=Radius of action:
 
@@ -477,32 +478,31 @@ gs.update.changelog=Changelog
 #|/////////////////////////////////////////|
 #|||||||||||||SpaceSuit Modules|||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-
+gui.module.available_modules=Available modules:
 gui.module.caninstall=Can install modules in Modification Table.
 gui.module.list=List Modules:
-gui.module.available_modules=Available modules:
 
 gui.module.sensor=Sensor Glasses
-gui.module.sensor.desc=Added sensory glasses to the helmet. Scan the area around the player and display the ore on the screen. Also highlight the monsters.
+gui.module.sensor.desc=Added sensory glasses to the helmet. Scans the nearby and displays the ores on the screen. Also highlights monsters.
 gui.module.nightvision=Night Vision
 gui.module.nightvision.desc=Lets see in the dark. Useful for studies of dark places, and with no torchs.
 gui.module.jetpack=Electric Jetpack
 gui.module.jetpack.desc=Inserted jetpack. Allows you to flit like a butterfly, until the charge in the chestplate runs out.
 gui.module.speed=Run Boosters
-gui.module.speed.desc=Installing accelerators allowed to slightly increase the speed of running. Now you can run away from the enemy even faster!
+gui.module.speed.desc=Installing accelerators slightly increases your running speed. Now you can run away from the enemy even faster!
 gui.module.gravity=Gravity Force
-gui.module.gravity.desc=The layer of magnesium plates, as it turned out, gave the effect of gravity. Adaptation on the planets is now much better!
+gui.module.gravity.desc=The layer of magnesium plates, as it turned out, gives the effect of gravity. Adaptation on the planets is now much better!
 gui.module.stepassist=Increased Step
 gui.module.stepassist.desc=It would seem that the installation of the slimeball will lead nowhere ... But now you can run in blocks, the word is running up the stairs!
 gui.module.jump=High Jump
-gui.module.jump.desc=Installing the pistons was one of the good ideas. Now your jump is 2 times higher than usual!
+gui.module.jump.desc=Installing pistons was a good idea! Now you can jump 2 times higher than usual!
 gui.module.energy=Advanced Battery
-gui.module.energy.desc=Increases the maximum energy supply by 2 times.
+gui.module.energy.desc=Doubles the maximum energy supply limit.
 gui.module.protection=Protection
-gui.module.protection.desc=Cobalt inserts in the suit gave him great protection against damage.
+gui.module.protection.desc=Cobalt inserts in the suit gives you great protection against damage.
 
 gui.module.sublight_engine=Sublight Engine
-gui.module.sublight_engine.desc=The engine of the new generation. Lets leave the current star system.
+gui.module.sublight_engine.desc=New Generation spacecraft engine. Allows space travel between Solar Systems.
 
 gui.message.forrbiden_modules.name=Incompatible with:
 gui.module.active=Active module
@@ -606,10 +606,10 @@ book.page.actual_update.name=Actual Update
 #|/////////////////////////////////////////|
 #||||||||||||Book-Celestial Bodies||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-book.page.star.sol.desc=!c_ySol - Yellow dwarf. !c_wThe native star of humans.
+book.page.star.sol.desc=!c_ySol - Yellow dwarf. !c_wThe native star human civilization.
 book.page.solarsystem.sol.asteroids=The asteroid belt is a massive cluster of asteroids orbiting the sun. Most asteroids contain a large amount of minerals.
 book.page.solarsystem.sol.ceres=Ceres is a dwarf planet in the Asteroid Belt. It contains copious amounts of meteoric iron and dolomite crystals.
-book.page.solarsystem.sol.jupiter=Jupiter - Gas giant with stone moons that are available to the reachable.
+book.page.solarsystem.sol.jupiter=Jupiter - Gas giant with many moons that are available to be explored.
 book.page.solarsystem.sol.callisto=Callisto - the farthest moon of Jupiter.
 
 book.page.star.barnarda_a.desc=!c_yBarnarda A - Orange dwarf. !c_wA nearby star relative to the sun.
@@ -625,6 +625,6 @@ book.page.solarsystem.barnards.barnarda_e=Barnarda E - The distant gas giant.
 #|||||||||||||||Book-Mechanics||||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 book.page.solar_radiation.name=Solar Radiation
-book.page.solar_radiation.text=Solar Radiation - negative effect that gradually kills the player. !nWhen the radiation scale crosses the  !c_rred !c_wborder - effect is activated. !nIf a player is in a shelter or underground, the radiation does not accumulate and decreases, if the scale has crossed the !c_rred !c_wborder. !n!nRemove the remaining radiation by using !c_gAntiradiation tablets. !c_w!nProtect yourself from radiation by wearing a !c_oSpacesuit !c_wor being inside a bubble from a !c_oMagnetic Field Generator.  
+book.page.solar_radiation.text=Solar Radiation - A negative effect that gradually kills the player. !nWhen the radiation scale crosses the  !c_rred !c_wborder - effect is activated. !nIf a player is in a shelter or underground, the radiation does not accumulate and decreases, if the scale has crossed the !c_rred !c_wborder. !n!nRemove the remaining radiation by using !c_gAnti Radiation tablets. !c_w!nProtect yourself from radiation by wearing a !c_oSpacesuit !c_wor being inside a bubble from a !c_oMagnetic Field Generator.  
 book.page.atmosphere_pressure.name=Atmosphere Pressure
 book.page.atmosphere_pressure.text=Atmospheric pressure is one of the main problems of the colonization of planets with the atmosphere. !nWith a !c_rlarge !c_watmospheric pressure, the player manifests various effects, such as: nausea, blindness and slowness. !n!nWith !c_ohigh !c_watmospheric pressure, the player begins to lose his health. !nIf the pressure scale is !c_ymaximal !c_w- the player is waiting for instant death. !nProtect yourself from radiation by wearing a !c_oSpacesuit !c_wor being inside a border from a !c_oGravity Module. 
