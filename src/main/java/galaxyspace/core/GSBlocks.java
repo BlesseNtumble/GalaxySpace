@@ -237,7 +237,7 @@ public class GSBlocks {
 		OreDictionary.registerOre("oreAluminum", new ItemStack(MARS_ORES, 1, 5));
 		
 		OreDictionary.registerOre("oreDolomite", new ItemStack(CERES_BLOCKS, 1, 2));
-		OreDictionary.registerOre("oreMeteroricIron", new ItemStack(CERES_BLOCKS, 1, 3));
+		OreDictionary.registerOre("oreMeteoricIron", new ItemStack(CERES_BLOCKS, 1, 3));
 		
 		OreDictionary.registerOre("oreAluminum", new ItemStack(HAUMEA_BLOCKS, 1, 3));
 		
