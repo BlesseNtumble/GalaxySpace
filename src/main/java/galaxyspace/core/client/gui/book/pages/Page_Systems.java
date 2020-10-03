@@ -10,8 +10,7 @@ import org.lwjgl.opengl.GL11;
 
 import asmodeuscore.api.dimension.IAdvancedSpace;
 import asmodeuscore.api.space.IExBody;
-import asmodeuscore.core.astronomy.BodiesData;
-import asmodeuscore.core.astronomy.BodiesRegistry;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
 import asmodeuscore.core.astronomy.gui.book.Page_WithScroll;
 import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
 import galaxyspace.GalaxySpace;
@@ -187,12 +186,16 @@ public class Page_Systems extends Page_WithScroll {
                 {
 					IGalacticraftWorldProvider gcdim = (IGalacticraftWorldProvider) dim;
 					
+					
 					List<String> infos = new ArrayList<String>(); 
 					
 					float grav = (0.1F - ((IGalacticraftWorldProvider)dim).getGravity()) * 1000 ;
 					if(((IGalacticraftWorldProvider)dim).getGravity() == 0.0F) grav = 0.0F;
 										
-					infos.add(GCCoreUtil.translate("gui.message.daylength") + " " + ((WorldProviderSpace) gcdim).getDayLength() / 1000 + "h " + ((WorldProviderSpace) gcdim).getDayLength() % 1000 + "m");
+					if(dim instanceof WorldProviderSpace)
+						infos.add(GCCoreUtil.translate("gui.message.daylength") + " " + ((WorldProviderSpace) gcdim).getDayLength() / 1000 + "h " + ((WorldProviderSpace) gcdim).getDayLength() % 1000 + "m");
+					if(dim instanceof WE_WorldProviderSpace)
+						infos.add(GCCoreUtil.translate("gui.message.daylength") + " " + ((WE_WorldProviderSpace) gcdim).getDayLength() / 1000 + "h " + ((WE_WorldProviderSpace) gcdim).getDayLength() % 1000 + "m");
 					infos.add("Distance from star: " + selected_body.getRelativeDistanceFromCenter().unScaledDistance);
 					infos.add(GCCoreUtil.translate("gui.message.gravity") + " " + (int)grav + "%");
 					infos.add(GCCoreUtil.translate("gui.message.temperature") + " " + gcdim.getCelestialBody().atmosphere.thermalLevel() * 20 + " C");
@@ -203,11 +206,11 @@ public class Page_Systems extends Page_WithScroll {
 					if(gcdim instanceof IAdvancedSpace)					
 						infos.add(GCCoreUtil.translate("gui.message.windenergy") + " " + Math.round(((IAdvancedSpace)dim).getSolarWindMultiplier() * 1000) / 1000F);
 					
-					BodiesData data = BodiesRegistry.getData().get(selected_body);
-					if(data != null)
-					{									
-						infos.add(GCCoreUtil.translate("gui.message.atmopressure") + " " + data.getPressurePlanet());
-						infos.add(GCCoreUtil.translate("gui.message.solarradiation") + " " + data.getSolarRadiationPlanet());
+					//BodiesData data = BodiesRegistry.getData().get(selected_body);
+					if(gcdim.getCelestialBody() instanceof IExBody) {
+						IExBody body = (IExBody) gcdim.getCelestialBody();
+						infos.add(GCCoreUtil.translate("gui.message.atmopressure") + " " + body.getAtmosphericPressure());
+						infos.add(GCCoreUtil.translate("gui.message.solarradiation") + " " + body.isSolarRadiation());
 					}
 					
 					if(selected_body instanceof IExBody)
@@ -289,11 +292,10 @@ public class Page_Systems extends Page_WithScroll {
 					if(gcdim instanceof IAdvancedSpace)					
 						infos.add(GCCoreUtil.translate("gui.message.windenergy") + " " + Math.round(((IAdvancedSpace)dim).getSolarWindMultiplier() * 1000) / 1000F);
 					
-					BodiesData data = BodiesRegistry.getData().get(selected_moon);
-					if(data != null)
-					{									
-						infos.add(GCCoreUtil.translate("gui.message.atmopressure") + " " + data.getPressurePlanet());
-						infos.add(GCCoreUtil.translate("gui.message.solarradiation") + " " + data.getSolarRadiationPlanet());
+					if(gcdim.getCelestialBody() instanceof IExBody) {
+						IExBody body = (IExBody) gcdim.getCelestialBody();
+						infos.add(GCCoreUtil.translate("gui.message.atmopressure") + " " + body.getAtmosphericPressure());
+						infos.add(GCCoreUtil.translate("gui.message.solarradiation") + " " + body.isSolarRadiation());
 					}
 					
 					/*
