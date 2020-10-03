@@ -5,6 +5,7 @@
 		"type=europa_brown_ice": { "model": "galaxyspace:europa_brown_ice"}, 
 		"type=europa_emerald_ore": { "model": "galaxyspace:europa_emerald_ore"}, 
 		"type=europa_silicon_ore": { "model": "galaxyspace:europa_silicon_ore"}, 
-		"type=europa_aluminum_ore": { "model": "galaxyspace:europa_aluminum_ore"}
+		"type=europa_aluminum_ore": { "model": "galaxyspace:europa_aluminum_ore"},
+		"type=europa_surface_ice_2": { "model": "galaxyspace:europa_surface_ice_2"}
 	} 
 }

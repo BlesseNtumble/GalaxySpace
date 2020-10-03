@@ -105,7 +105,8 @@ public class EuropaBlocks extends Block implements ISortableBlock{
 		EUROPA_BROWN_ICE(2, "europa_brown_ice"),
 		EUROPA_EMERALD_ORE(3, "europa_emerald_ore"),
 		EUROPA_SILICON_ORE(4, "europa_silicon_ore"),
-		EUROPA_ALUMINUM_ORE(5, "europa_aluminum_ore");
+		EUROPA_ALUMINUM_ORE(5, "europa_aluminum_ore"),
+		EUROPA_SURFACE_ICE2(6, "europa_surface_ice_2");
 
 
 		private final int meta;
