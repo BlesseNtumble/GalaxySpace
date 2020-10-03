@@ -5,6 +5,7 @@ import java.util.Random;
 import org.lwjgl.opengl.GL11;
 
 import asmodeuscore.api.dimension.IAdvancedSpace;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
 import asmodeuscore.core.astronomy.gui.book.ACGuiGuideBook;
 import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
 import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
@@ -205,8 +206,8 @@ public class GSClientTickHandler {
 		        					persistance, chunk.biomemapNumberOfOctaves)
 		        				* chunk.biomemapScaleY;
 	        			}
-        			}
-        			
+        			}        			
+       			
         			String[] s = { 
         					GalaxySpace.NAME + " " + GalaxySpace.VERSION + " DEBUG Mode",
         					"MC Version: 1.12.2",
@@ -223,7 +224,7 @@ public class GSClientTickHandler {
         					"Dimension: " + player.world.provider.getDimensionType().getName() + " (ID: " + player.world.provider.getDimensionType().getId() + ")",
         					"Temperature: " + temp + "F",
         					"Biome: " + player.world.getBiomeForCoordsBody(new BlockPos((int)player.posX, (int)player.posY, (int)player.posZ)).getBiomeName(),
-        					"Current Time: " + time + " | Day Length: " + (player.world.provider instanceof WorldProviderSpace ? ((WorldProviderSpace) player.world.provider).getDayLength() : "24000") + " | Total Time: " + player.world.getWorldTime(),
+        					"Current Time: " + time + " | Day Length: " + (player.world.provider instanceof WorldProviderSpace ? ((WorldProviderSpace) player.world.provider).getDayLength() : player.world.provider instanceof WE_WorldProviderSpace ?  ((WE_WorldProviderSpace) player.world.provider).getDayLength() : "24000") + " | Total Time: " + player.world.getWorldTime(),
         					"Moon Phase: " + player.world.getMoonPhase(),
         					"Chunk Pos: x" + player.getEntityWorld().getChunkFromBlockCoords(player.getPosition()).x + " z" + player.getEntityWorld().getChunkFromBlockCoords(player.getPosition()).z,
         					"",

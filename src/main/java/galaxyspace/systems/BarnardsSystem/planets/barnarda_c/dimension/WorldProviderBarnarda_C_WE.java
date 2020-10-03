@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import asmodeuscore.AsmodeusCore;
 import asmodeuscore.api.dimension.IProviderFreeze;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
@@ -17,6 +16,7 @@ import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.systems.BarnardsSystem.BarnardsSystemBodies;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.sky.CloudProviderBarnardaC;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.sky.SkyProviderBarnarda_C;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Beach;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_DeepOcean;
@@ -31,13 +31,15 @@ import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnar
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Swampland;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import micdoodle8.mods.galacticraft.core.event.EventHandlerGC;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
-import net.minecraft.world.WorldEntitySpawner;
+import net.minecraft.world.WorldProvider.WorldSleepResult;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
@@ -92,13 +94,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
     {
         return 180.0F;
     }
-    
-	@Override
-	public boolean canRespawnHere()
-	{
-		return true;
-	}
-	
+
     @Nullable
     @SideOnly(Side.CLIENT)
     public float[] calcSunriseSunsetColors(float celestialAngle, float partialTicks)
@@ -198,6 +194,10 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
     
     @Override
     public IRenderHandler getCloudRenderer(){
+    	
+    	if(super.getCloudRenderer() == null)
+    		this.setCloudRenderer(new CloudProviderBarnardaC());
+    	
         return super.getCloudRenderer();
     }
     
@@ -232,7 +232,19 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
 	
 		return GSDimensions.BARNARDA_C;
 	}
+	
+	@Override
+    public boolean canRespawnHere()
+    {
+    	EventHandlerGC.bedActivated = false;
+    	return true;
+    }
 
+	public WorldSleepResult canSleepAt(net.minecraft.entity.player.EntityPlayer player, BlockPos pos)
+    {
+        return (this.canRespawnHere()) ? WorldSleepResult.ALLOW : WorldSleepResult.BED_EXPLODES;
+    }
+	
 	@Override
 	public void genSettings(WE_ChunkProvider cp) {		
 		chunk = cp;

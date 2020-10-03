@@ -43,10 +43,14 @@ public class WorldProviderEuropa extends WorldProviderAdvancedSpace implements I
 
     }
 
- 
 
     @Override
+    public boolean isFreeze()
+	{
+		return false;
+	}
 
+    @Override
     public double getFuelUsageMultiplier() {
 
         return 0.8;

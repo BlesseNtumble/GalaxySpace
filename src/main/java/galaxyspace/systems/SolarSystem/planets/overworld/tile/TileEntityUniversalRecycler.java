@@ -218,14 +218,11 @@ public class TileEntityUniversalRecycler extends TileBaseElectricBlockWithInvent
     			}
 	    		else
 	    		{
-	    			if(this.getInventory().get(3).isEmpty())
+	    			if(this.world.rand.nextInt(100) <= recipe.getChance()) 
 	    			{
-	    				if(this.world.rand.nextInt(100) <= recipe.getChance()) 
-	    					this.getInventory().set(3, recipe.getOutput().copy());	
-	    			}
-	    			else if(this.getInventory().get(3).isItemEqual(recipe.getOutput()))
-	    			{
-	    				if(this.world.rand.nextInt(100) <= recipe.getChance()) 
+	    				if(this.getInventory().get(3).isEmpty())	    				
+	    					this.getInventory().set(3, recipe.getOutput().copy());		    			
+	    				else if(this.getInventory().get(3).isItemEqual(recipe.getOutput()))	    				 
 	    					this.getInventory().get(3).grow(recipe.getOutput().getCount());
 	    			}
 	    		}

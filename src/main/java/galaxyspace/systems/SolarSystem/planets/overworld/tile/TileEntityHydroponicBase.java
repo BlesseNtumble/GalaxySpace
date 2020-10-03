@@ -55,7 +55,7 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
     public int processTicks_2 = 0;
 	
     
-    private final int tankCapacity = 3000;
+    private final int tankCapacity = 16000;
     @NetworkedField(targetSide = Side.CLIENT)
 	public FluidTank waterTank = new FluidTank(this.tankCapacity);    
 
@@ -342,7 +342,7 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
 				{
 					if(this.getInventory().get(i*2+1).isEmpty()) {
 						ItemStack stack = seed.getProduct(false).copy();
-						stack.setCount(1 + (seed.hasRandCount[0] ? rand.nextInt(3) : 0));						
+						stack.setCount(stack.getCount() + (seed.hasRandCount[0] ? rand.nextInt(3) : 0));						
 						this.getInventory().set(i*2+1, stack);						
 					}
 					else 
@@ -353,7 +353,7 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
 						
 						if(this.getInventory().get(i+8).isEmpty()) {
 							ItemStack stack = seed.getProduct(true).copy();
-							stack.setCount(1 + (seed.hasRandCount[1] ? rand.nextInt(3) : 0));
+							stack.setCount(stack.getCount() + (seed.hasRandCount[1] ? rand.nextInt(3) : 0));
 							this.getInventory().set(i+8, stack);
 						}
 						else {

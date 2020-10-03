@@ -2,9 +2,9 @@ package galaxyspace.systems.SolarSystem.moons.europa.dimension.sky;
 
 import org.lwjgl.opengl.GL11;
 
-import asmodeuscore.core.astronomy.sky.SkyProviderBaseOld;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
+import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import galaxyspace.GalaxySpace;
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
@@ -12,7 +12,7 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.FMLClientHandler;
 
-public class SkyProviderEuropa extends SkyProviderBaseOld
+public class SkyProviderEuropa extends SkyProviderBase
 {
 
 	private static final ResourceLocation jupiterTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/celestialbodies/sol/jupiter.png");
@@ -25,10 +25,11 @@ public class SkyProviderEuropa extends SkyProviderBaseOld
 	@Override
 	protected void rendererSky(Tessellator tessellator, BufferBuilder worldRenderer, float f10, float ticks) {
 		
-		GL11.glPopMatrix();
+		if(inWater(this.mc.player) ) return;
+		 
 	    GL11.glPushMatrix();
 
-	    long daylength = ((WorldProviderSpace) this.mc.world.provider).getDayLength();
+	    long daylength = getDayLength();
 	    
 		f10 = 1.5F;
 		GL11.glScalef(0.8F, 0.8F, 0.8F);
@@ -63,7 +64,7 @@ public class SkyProviderEuropa extends SkyProviderBaseOld
 
         GL11.glPopMatrix();
         
-        float x = (float) (40 * (Math.sin((this.mc.world.getCelestialAngle(this.ticks) * 360.0F) / 10.0F)));
+        float x = (float) (40 * (Math.sin((this.mc.world.getCelestialAngle(ticks) * 360.0F) / 10.0F)));
         if(wait == 0 && (x >= 40F || x <= -40F)) 
         {
         	wait = 150;
@@ -107,6 +108,7 @@ public class SkyProviderEuropa extends SkyProviderBaseOld
 		worldRenderer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
 		tessellator.draw();
 		GL11.glPopMatrix(); 
+		
 		if(test)
 		{
 			GL11.glPushMatrix();
@@ -128,7 +130,7 @@ public class SkyProviderEuropa extends SkyProviderBaseOld
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
 			GL11.glPopMatrix(); 
 		}
-		GL11.glPushMatrix();
+
 	}
 
 	@Override
@@ -152,13 +154,8 @@ public class SkyProviderEuropa extends SkyProviderBaseOld
 	}
 
 	@Override
-	protected int modeLight() {
-		return 0;
-	}
-
-	@Override
-	protected Vector3 colorSunAura() {
-		return new Vector3(150, 150, 150);
+	protected StarColor colorSunAura() {
+		return StarColor.WHITE;
 	}
 
 	@Override
@@ -168,5 +165,10 @@ public class SkyProviderEuropa extends SkyProviderBaseOld
 	
 	@Override
 	public boolean enableSmoothRender() {return true;}
+
+	@Override
+	protected ModeLight modeLight() {
+		return ModeLight.DEFAULT;
+	}
 
 }
