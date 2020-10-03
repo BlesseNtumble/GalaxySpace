@@ -7,7 +7,6 @@ import javax.annotation.Nullable;
 import asmodeuscore.core.astronomy.SpaceData.Engine_Type;
 import galaxyspace.api.item.IModificationItem;
 import galaxyspace.core.GSBlocks;
-import galaxyspace.core.prefab.entities.EntityTier4Rocket;
 import galaxyspace.core.prefab.entities.EntityTier5Rocket;
 import galaxyspace.core.prefab.items.modules.ItemModule;
 import galaxyspace.core.util.GSCreativeTabs;

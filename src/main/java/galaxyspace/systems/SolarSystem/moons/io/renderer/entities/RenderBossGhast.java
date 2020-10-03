@@ -4,8 +4,6 @@ import org.lwjgl.opengl.GL11;
 
 import galaxyspace.GalaxySpace;
 import galaxyspace.systems.SolarSystem.moons.io.entities.EntityBossGhast;
-import galaxyspace.systems.SolarSystem.planets.ceres.entities.EntityBossBlaze;
-import net.minecraft.client.model.ModelBlaze;
 import net.minecraft.client.model.ModelGhast;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;

@@ -1,17 +1,10 @@
 package galaxyspace.core.client.fx;
 
-import java.util.List;
-
-import galaxyspace.GalaxySpace;
 import galaxyspace.systems.SolarSystem.moons.triton.dimenson.WorldProviderTriton_WE;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;

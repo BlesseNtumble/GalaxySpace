@@ -2,7 +2,6 @@ package galaxyspace.systems.SolarSystem.planets.kuiperbelt.dimension.sky;
 
 import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
-import asmodeuscore.core.astronomy.sky.SkyProviderBaseOld;
 import galaxyspace.GalaxySpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;

@@ -2,6 +2,8 @@ package galaxyspace.systems.BarnardsSystem;
 
 import java.io.File;
 
+import asmodeuscore.api.IBodies;
+import asmodeuscore.api.IBodiesHandler;
 import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
 import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.api.dimension.IAdvancedSpace.TypeBody;
@@ -10,10 +12,7 @@ import asmodeuscore.core.astronomy.BodiesRegistry;
 import asmodeuscore.core.astronomy.BodiesRegistry.Galaxies;
 import asmodeuscore.core.astronomy.dimension.world.gen.ACBiome;
 import asmodeuscore.core.handler.ColorBlockHandler;
-import asmodeuscore.core.utils.worldengine.WE_Biome;
 import galaxyspace.GalaxySpace;
-import galaxyspace.api.IBodies;
-import galaxyspace.api.IBodiesHandler;
 import galaxyspace.core.proxy.ClientProxy;
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.core.util.GSUtils;
@@ -48,7 +47,6 @@ import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -93,7 +91,7 @@ public class BarnardsSystemBodies implements IBodies {
 		Barnarda_C.atmosphereComponent(EnumAtmosphericGas.CO2).atmosphereComponent(EnumAtmosphericGas.OXYGEN).atmosphereComponent(EnumAtmosphericGas.ARGON);
 		BodiesRegistry.setOrbitData(Barnarda_C, (float) Math.PI * 2, 1.0F, 6.9F);
 		BodiesRegistry.setAtmosphere(Barnarda_C, true, true, false, 0.0F, 1.0F, 1.0F);
-		BodiesRegistry.setPlanetData(Barnarda_C, 3, 29000, BodiesRegistry.calculateGravity(8.5F), false);
+		BodiesRegistry.setPlanetData(Barnarda_C, 3F, 29000, BodiesRegistry.calculateGravity(8.5F), false);
 		BodiesRegistry.setProviderData(Barnarda_C, WorldProviderBarnarda_C_WE.class, BRConfigDimensions.dimensionIDBarnardaC, 6, ACBiome.ACSpace);
 		GalaxyRegistry.registerPlanet(Barnarda_C);
 		
@@ -138,13 +136,13 @@ public class BarnardsSystemBodies implements IBodies {
 		registrycelestial();
 	    registryteleport();
 	    
-	    ColorBlockHandler.addBlock(BRBlocks.BARNARDA_C_GRASS);
-	    ColorBlockHandler.addLeavesBlock(Blocks.LEAVES);
-	    ColorBlockHandler.addLeavesBlock(Blocks.LEAVES2);
-	    ColorBlockHandler.addLeavesBlock(Blocks.VINE);
-		ColorBlockHandler.addBlockWithColor(BRBlocks.BARNARDA_C_WATER_GRASS, 0x88CC44);
-		ColorBlockHandler.addWaterBlock(Blocks.WATER);
-		ColorBlockHandler.addWaterBlock(Blocks.FLOWING_WATER);
+	    ColorBlockHandler.addBlock(BRBlocks.BARNARDA_C_GRASS.getDefaultState());
+	    ColorBlockHandler.addLeavesBlock(Blocks.LEAVES.getDefaultState());
+	    ColorBlockHandler.addLeavesBlock(Blocks.LEAVES2.getDefaultState());
+	    ColorBlockHandler.addLeavesBlock(Blocks.VINE.getDefaultState());
+		ColorBlockHandler.addBlockWithColor(BRBlocks.BARNARDA_C_WATER_GRASS.getDefaultState(), 0x88CC44);
+		ColorBlockHandler.addWaterBlock(Blocks.WATER.getDefaultState());
+		ColorBlockHandler.addWaterBlock(Blocks.FLOWING_WATER.getDefaultState());
 	}
 
 	@Override

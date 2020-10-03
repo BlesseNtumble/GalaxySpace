@@ -3,10 +3,7 @@ package galaxyspace.core.client.gui.book.pages.general;
 import asmodeuscore.api.space.IBookPage;
 import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
 import galaxyspace.api.IPage;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 @IPage

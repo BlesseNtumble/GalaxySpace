@@ -19,7 +19,6 @@ import galaxyspace.systems.SolarSystem.planets.mars.world.gen.we.Mars_High_Plain
 import galaxyspace.systems.SolarSystem.planets.mars.world.gen.we.Mars_Mountains;
 import galaxyspace.systems.SolarSystem.planets.mars.world.gen.we.Mars_Plains;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;

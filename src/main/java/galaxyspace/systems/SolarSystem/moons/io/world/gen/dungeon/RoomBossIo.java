@@ -7,7 +7,6 @@ import galaxyspace.core.GSBlocks;
 import galaxyspace.core.prefab.blocks.DungeonBlocks;
 import galaxyspace.systems.SolarSystem.moons.io.blocks.IoBlocks;
 import galaxyspace.systems.SolarSystem.moons.io.blocks.IoBlocks.EnumIoBlocks;
-import galaxyspace.systems.SolarSystem.planets.ceres.blocks.CeresBlocks;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityDungeonSpawner;
 import net.minecraft.init.Blocks;

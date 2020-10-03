@@ -3,7 +3,6 @@ package galaxyspace.core.integration.crafttweaker;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
-import galaxyspace.systems.SolarSystem.planets.overworld.recipes.AssemblyRecipes;
 import galaxyspace.systems.SolarSystem.planets.overworld.recipes.RocketAssemblyRecipes;
 import net.minecraft.item.ItemStack;
 

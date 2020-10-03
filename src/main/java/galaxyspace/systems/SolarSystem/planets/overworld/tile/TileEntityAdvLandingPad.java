@@ -7,8 +7,6 @@ import java.util.List;
 import galaxyspace.core.GSBlocks;
 import galaxyspace.core.prefab.blocks.GSBlockMulti;
 import micdoodle8.mods.galacticraft.api.entity.ICargoEntity;
-import micdoodle8.mods.galacticraft.api.entity.ICargoEntity.EnumCargoLoadingState;
-import micdoodle8.mods.galacticraft.api.entity.ICargoEntity.RemovalResult;
 import micdoodle8.mods.galacticraft.api.entity.IDockable;
 import micdoodle8.mods.galacticraft.api.entity.IFuelable;
 import micdoodle8.mods.galacticraft.api.entity.ILandable;

@@ -6,7 +6,6 @@ import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTr
 import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTree_Forest2;
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
-import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_OreGen;
 import galaxyspace.core.prefab.world.gen.we.WE_LakesGen;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Blocks;
@@ -18,7 +17,6 @@ import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntitySquid;

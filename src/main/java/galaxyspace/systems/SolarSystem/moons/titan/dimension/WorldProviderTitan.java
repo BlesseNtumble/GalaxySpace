@@ -249,12 +249,6 @@ public class WorldProviderTitan extends WorldProviderAdvancedSpace implements IP
 	public int getFogColor(int x, int y, int z) {
 		return GSUtils.getColor(224, 174, 132, 1);
 	}
-	
-	@Override
-    public ClassBody getClassBody()
-    {
-    	return ClassBody.TITAN;
-    }
 
 	@Override
 	public void weatherSounds(int j, Minecraft mc, World world, BlockPos blockpos, double xx, double yy, double zz,	Random random) {

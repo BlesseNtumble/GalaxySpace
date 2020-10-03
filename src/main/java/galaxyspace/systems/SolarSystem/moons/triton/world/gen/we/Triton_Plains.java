@@ -4,7 +4,6 @@ import java.util.Random;
 
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
-import galaxyspace.GalaxySpace;
 import galaxyspace.core.GSBlocks;
 import galaxyspace.core.prefab.entities.EntityEvolvedColdBlaze;
 import galaxyspace.systems.SolarSystem.moons.triton.blocks.TritonBlocks;
@@ -17,7 +16,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.BiomeProperties;
 
 public class Triton_Plains extends WE_Biome {
 	

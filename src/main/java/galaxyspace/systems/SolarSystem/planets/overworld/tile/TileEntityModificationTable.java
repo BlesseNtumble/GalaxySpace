@@ -1,10 +1,6 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.tile;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import galaxyspace.api.item.IModificationItem;
-import galaxyspace.core.prefab.items.modules.ItemModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemSpaceSuit;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseElectricBlockWithInventory;
 import net.minecraft.inventory.ItemStackHelper;

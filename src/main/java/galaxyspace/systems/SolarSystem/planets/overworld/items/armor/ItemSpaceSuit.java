@@ -8,9 +8,9 @@ import org.lwjgl.input.Keyboard;
 
 import asmodeuscore.api.item.IItemPressurized;
 import asmodeuscore.api.item.IItemRadiation;
+import asmodeuscore.core.client.render.ModelOBJArmor;
 import galaxyspace.api.item.IJetpackArmor;
 import galaxyspace.api.item.IModificationItem;
-import galaxyspace.core.client.models.ModelOBJArmor;
 import galaxyspace.core.prefab.items.ItemElectricArmor;
 import galaxyspace.core.prefab.items.modules.ItemModule;
 import galaxyspace.core.util.GSCreativeTabs;

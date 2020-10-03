@@ -8,11 +8,12 @@ import java.util.List;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Logger;
 
+import asmodeuscore.AsmodeusCore;
+import asmodeuscore.api.IBodies;
+import asmodeuscore.api.IBodiesHandler;
 import asmodeuscore.api.space.IBookPage;
 import asmodeuscore.core.astronomy.BodiesRegistry;
 import asmodeuscore.core.utils.BookUtils;
-import galaxyspace.api.IBodies;
-import galaxyspace.api.IBodiesHandler;
 import galaxyspace.api.IPage;
 import galaxyspace.core.GSBlocks;
 import galaxyspace.core.GSFluids;
@@ -38,10 +39,6 @@ import galaxyspace.core.proxy.CommonProxy;
 import galaxyspace.core.util.GSCreativeTabs;
 import galaxyspace.core.util.GSThreadVersionCheck;
 import galaxyspace.core.util.researches.ResearchUtil;
-import galaxyspace.systems.ACentauriSystem.core.configs.ACConfigCore;
-import galaxyspace.systems.ACentauriSystem.core.configs.ACConfigDimensions;
-import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigCore;
-import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigDimensions;
 import galaxyspace.systems.SolarSystem.moons.enceladus.tile.TileEntityBlockCrystallTE;
 import galaxyspace.systems.SolarSystem.moons.io.entities.EntityBossGhast;
 import galaxyspace.systems.SolarSystem.moons.io.tile.TileEntityDungeonSpawnerIo;
@@ -81,11 +78,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.common.config.Config.Type;
-import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -106,7 +100,7 @@ import net.minecraftforge.fml.relauncher.Side;
 @Mod(
 		   modid = GalaxySpace.MODID,
 		   version = GalaxySpace.VERSION,
-		   dependencies = Constants.DEPENDENCIES_FORGE + "required-after:galacticraftcore@[4.0.2.261,]; required-after:galacticraftplanets; required-after:asmodeuscore@[0.0.17,)",
+		   dependencies = Constants.DEPENDENCIES_FORGE + "required-after:galacticraftcore@[4.0.2.261,]; required-after:galacticraftplanets; required-after:asmodeuscore@[0.0.19,)",
 		   acceptedMinecraftVersions = Constants.MCVERSION,
 		   name = GalaxySpace.NAME,
 		   guiFactory = "galaxyspace.core.client.gui.GSConfigGuiFactory"
@@ -131,33 +125,18 @@ public class GalaxySpace
     
     @Instance(GalaxySpace.MODID)
     public static GalaxySpace instance;
-
+    
     @SidedProxy(clientSide="galaxyspace.core.proxy.ClientProxy", serverSide="galaxyspace.core.proxy.CommonProxy")
     public static CommonProxy proxy;
 
-    public static List<IBodies> bodies = new ArrayList<IBodies>();
+    //public static List<IBodies> bodies = new ArrayList<IBodies>();
     
     private List<IBookPage> pages = new ArrayList<IBookPage>();
     
     static {    	
         FluidRegistry.enableUniversalBucket();
     }
-    
-    @EventHandler
-    public void construct(FMLConstructionEvent event) 
-    {    	
-    	for (ASMData data : event.getASMHarvestedData().getAll(IBodiesHandler.class.getName())) {
-    		IBodies body;
-    		try {
-    			body = (IBodies) Class.forName(data.getClassName()).newInstance();	
-    			bodies.add(body);
-    		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-    	}  
-    	
-    }
-    
+   
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) 
     {    	
@@ -181,14 +160,14 @@ public class GalaxySpace
     	proxy.preload(event);		
     	proxy.register_event(new GSEventHandler());		
 
-		for(IBodies list : bodies)
+    	for(IBodies list : AsmodeusCore.bodies)
 		{
 			list.preInitialization(event);
 			
     		if(list.canRegister()) 
     			list.preInit(event);
 		}
-		
+    	
 		ResearchUtil.initResearches();
 		if(event.getSide() == Side.CLIENT)
 	    	for (ASMData data : event.getAsmData().getAll(IPage.class.getName())) {
@@ -217,10 +196,10 @@ public class GalaxySpace
 		//AchievementList.load();
 
         // TODO Register Planets: -------------------------------
-    	
-    	for(IBodies list : bodies)
+    	for(IBodies list : AsmodeusCore.bodies)
     		if(list.canRegister()) 
     			list.init(event);
+    	
      	    	
     	if(event.getSide() == Side.CLIENT) {
     		BookRegister.registerCatergories();
@@ -237,7 +216,8 @@ public class GalaxySpace
     public void postInit(FMLPostInitializationEvent event) {
     	proxy.postload();
     	
-    	for(IBodies list : bodies)
+
+    	for(IBodies list : AsmodeusCore.bodies)
     		if(list.canRegister()) 
     			list.postInit(event);
     	
@@ -358,7 +338,7 @@ public class GalaxySpace
     		GSBlocks.oreDictRegistration();
     		GSItems.oreDictRegistration();
     		
-    		for(IBodies list : bodies)
+    		for(IBodies list : AsmodeusCore.bodies)
     			if(list.canRegister()) 
     				list.registerItems(event);
         }
@@ -366,7 +346,7 @@ public class GalaxySpace
     	@SubscribeEvent(priority = EventPriority.LOWEST)
         public static void registerRecipes(RegistryEvent.Register<IRecipe> event)
         {
-    		for(IBodies list : bodies)
+    		for(IBodies list : AsmodeusCore.bodies)
     			if(list.canRegister()) 
     				list.registerRecipes();
         }

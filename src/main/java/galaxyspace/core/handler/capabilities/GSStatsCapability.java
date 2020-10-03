@@ -4,7 +4,6 @@ import java.lang.ref.WeakReference;
 
 import galaxyspace.GalaxySpace;
 import micdoodle8.mods.galacticraft.core.util.GCLog;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 

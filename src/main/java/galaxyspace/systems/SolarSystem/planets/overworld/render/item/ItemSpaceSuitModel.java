@@ -6,8 +6,8 @@ import org.lwjgl.opengl.GL11;
 
 import com.google.common.collect.ImmutableList;
 
+import asmodeuscore.core.client.render.ModelOBJArmor;
 import galaxyspace.GalaxySpace;
-import galaxyspace.core.client.models.ModelOBJArmor;
 import micdoodle8.mods.galacticraft.core.client.model.OBJLoaderGC;
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
 import net.minecraft.client.Minecraft;

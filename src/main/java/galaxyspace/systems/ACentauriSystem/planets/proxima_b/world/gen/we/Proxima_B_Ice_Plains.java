@@ -5,7 +5,6 @@ import java.util.Random;
 import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTree_BigJungle;
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
-import galaxyspace.GalaxySpace;
 import galaxyspace.core.prefab.entities.EntityEvolvedColdBlaze;
 import galaxyspace.core.prefab.world.gen.WorldGenPool;
 import galaxyspace.systems.ACentauriSystem.core.registers.blocks.ACBlocks;

@@ -9,7 +9,6 @@ import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSpider;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedZombie;
 import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import net.minecraft.init.Blocks;
-import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.Biome;
 
 public class Mars_Triangle_Mountains extends WE_Biome {

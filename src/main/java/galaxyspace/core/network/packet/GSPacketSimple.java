@@ -7,7 +7,6 @@ import java.util.List;
 import org.lwjgl.opengl.GL11;
 
 import asmodeuscore.core.utils.worldengine.WE_WorldProvider;
-import galaxyspace.GalaxySpace;
 import galaxyspace.api.item.IModificationItem;
 import galaxyspace.api.tile.ITileEffects;
 import galaxyspace.core.events.GSEventHandler;

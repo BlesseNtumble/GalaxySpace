@@ -9,8 +9,6 @@ import org.lwjgl.opengl.GL11;
 import com.google.common.base.Function;
 
 import galaxyspace.GalaxySpace;
-import galaxyspace.core.prefab.entities.EntityTier5Rocket;
-import galaxyspace.core.prefab.entities.EntityTier6Rocket;
 import micdoodle8.mods.galacticraft.api.prefab.entity.EntityAutoRocket;
 import micdoodle8.mods.galacticraft.core.client.model.OBJLoaderGC;
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;

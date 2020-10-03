@@ -10,7 +10,6 @@ import galaxyspace.GalaxySpace;
 import galaxyspace.api.IResearch;
 import galaxyspace.core.handler.capabilities.GSStatsCapabilityClient;
 import galaxyspace.core.handler.capabilities.StatsCapabilityClient;
-import galaxyspace.core.util.GSUtils;
 import galaxyspace.core.util.researches.ResearchUtil;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerResearchTable;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityResearchTable;

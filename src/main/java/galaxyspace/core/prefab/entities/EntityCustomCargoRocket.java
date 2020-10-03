@@ -32,10 +32,8 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldServer;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fml.common.network.ByteBufUtils;
 
 public class EntityCustomCargoRocket extends EntityAutoRocket implements IRocketType, IWorldTransferCallback {
 	public EnumRocketType rocketType;

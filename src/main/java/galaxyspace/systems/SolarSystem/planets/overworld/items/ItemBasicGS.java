@@ -10,10 +10,6 @@ import galaxyspace.core.GSItems;
 import galaxyspace.core.GSPotions;
 import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.configs.GSConfigSchematics;
-import galaxyspace.core.handler.capabilities.GSStatsCapability;
-import galaxyspace.core.handler.capabilities.StatsCapability;
-import galaxyspace.core.network.packet.GSPacketSimple;
-import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
 import galaxyspace.core.util.GSCreativeTabs;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCItems;
@@ -54,45 +50,81 @@ import net.minecraftforge.items.ItemHandlerHelper;
 
 public class ItemBasicGS extends Item implements ISortableItem{
 
-	public static String[] names = 
-	{ 
-		"module_smallcanister", 	// 0
-		"part_solarflares",		 	// 1
-		"solarflares",				// 2
-		"dolomite_crystal", 		// 3
-		"dolomite_meal", 			// 4
-		"wafer_modern", 			// 5
-		"hematite", 				// 6
-		"sulfur", 					// 7
-		"unknow_crystal", 			// 8
-		"antiradiation_tablets", 	// 9
-		"schematic_box",			// 10
-		"module_base",				// 11
-		"volcanic_stone", 			// 12
-		"meteoric_iron_fragments",  // 13
-		"blank_schematic", 			// 14
-		"uranium_fragments",		// 15
-		"temp_shield_control", 		// 16
-		"ice_bucket",				// 17		
-		"emergency_portable_teleport", // 18
-		"guide_book", 				// 19
-		"advanced_emergency_kit",	// 20
-		"thermal_cloth_t3",			// 21
-		"thermal_cloth_t4",			// 22
-		"oxygen_ice_crystal",		// 23
-		"nitrogen_ice_crystal",		// 24
-		"methane_ice_crystal",		// 25
-		"hydrogen_ice_crystal",		// 26
-		"dry_ice_crystal",			// 27
-		"colonist_kit"				// 28
-		//"plutonium_shard",			// 29
-		//"plutonium_pellet",			// 30
-		//"small_gen_field",		
-		//"empty_plasma_cell",		
-		//"filled_plasma_cell"		
-		//"raw_plastic", 				
-		//"plastic_stick"				
-	};
+	public enum BasicItems {
+		
+		MODULE_SMALLCANISTER(0),
+		PART_SOLARFLARES(1),
+		SOLARFLARES(2),
+		DOLOMITE_CRYSTAL(3),
+		DOLOMITE_MEAL(4),
+		WAFER_MODERN(5),
+		HEMATITE(6),
+		SULFUR(7),
+		UNKNOW_CRYSTAL(8),
+		ANTIRADIATION_TABLETS(9),
+		SCHEMATIC_BOX(10),
+		MODULE_BASE(11),
+		VOLCANIC_STONE(12),
+		METEORIC_IRON_FRAGMENTS(13),
+		BLANK_SCHEMATIC(14),
+		URANIUM_FRAGMENTS(15),
+		TEMP_SHIELD_CONTROL(16),
+		ICE_BUCKET(17),
+		EMERGENCY_PORTABLE_TELEPORT(18),
+		GUIDE_BOOK(19),
+		ADVANCED_EMERGENCY_KIT(20),
+		THERMAL_CLOTH_T3(21),
+		THERMAL_CLOTH_T4(22),
+		OXYGEN_ICE_CRYSTAL(23),
+		NITROGEN_ICE_CRYSTAL(24),
+		METHANE_ICE_CRYSTAL(25),
+		HYDROGEN_ICE_CRYSTAL(26),
+		DRY_ICE_CRYSTAL(27),
+		COLONIST_KIT(28),
+		EMPTY_PLASMA_CELL(29),
+		FILLED_PLASMA_CELL(30);
+		
+		int meta;
+	
+		BasicItems(int meta)
+		{
+			this.meta = meta;
+		}
+		
+		public String getName()
+		{
+			return this.name().toLowerCase();
+		}
+		
+		public ItemStack getItemStack()
+		{
+			return getItemStack(1);
+		}
+		
+		public ItemStack getItemStack(int count)
+		{
+			return new ItemStack(GSItems.BASIC, count, meta);
+		}
+		
+		public int getMeta()
+		{
+			return this.meta;
+		}		
+		
+		
+	}	
+	
+	public static String[] getEnumNames()
+	{
+		
+		String[] s = new String[BasicItems.values().length];
+		for(int i = 0; i < BasicItems.values().length; i++)
+		{
+			s[i] = BasicItems.values()[i].getName();
+		}
+		
+		return s;
+	}
 	
 	public static int SHIELD_TIME = 10 * 60;
 	private static final int SIZE = 9;
@@ -111,9 +143,9 @@ public class ItemBasicGS extends Item implements ISortableItem{
     {
     	if (tab == GSCreativeTabs.GSItemsTab || tab == CreativeTabs.SEARCH)
         {
-	        for (int i = 0; i < this.names.length; i++)
+	        for (int i = 0; i < BasicItems.values().length; i++)
 	        {
-	        	if(!this.names[i].equals("null"))
+	        	if(!BasicItems.values()[i].getName().equals("null"))
 	        		list.add(new ItemStack(this, 1, i));
 	        }
         }
@@ -123,15 +155,15 @@ public class ItemBasicGS extends Item implements ISortableItem{
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> list, ITooltipFlag flagIn) {
 		int n = stack.getItemDamage();
-		if (n == 4)
+		if (n == BasicItems.DOLOMITE_MEAL.getMeta())
 			list.add(GCCoreUtil.translate("gui.bonemeal.desc"));
-		else if (n == 10)
+		else if (n == BasicItems.SCHEMATIC_BOX.getMeta())
 			list.add(GCCoreUtil.translate("gui.schematic_box.desc"));
-		else if (n == 14 && !GSConfigSchematics.enableDuplicateSchematic)
+		else if (n == BasicItems.BLANK_SCHEMATIC.getMeta() && !GSConfigSchematics.enableDuplicateSchematic)
 		{
 			list.add(EnumColor.DARK_RED + "Disabled in config.");
 		}
-		else if (n == 16)
+		else if (n == BasicItems.TEMP_SHIELD_CONTROL.getMeta())
 		{
 			int time = this.SHIELD_TIME;
 			if (stack.hasTagCompound())
@@ -148,7 +180,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
 			list.add(GCCoreUtil.translate("gui.charge") + " " + time + " " + GCCoreUtil.translate("gui.seconds"));
 			
 		}
-		if(n == 18)
+		if(n == BasicItems.EMERGENCY_PORTABLE_TELEPORT.getMeta())
 		{
 			list.add(GCCoreUtil.translate("gui.emergency_portable_teleport.desc"));
 			list.add("");
@@ -173,8 +205,8 @@ public class ItemBasicGS extends Item implements ISortableItem{
     @Override
     public String getUnlocalizedName(ItemStack stack)
     {
-    	if(stack.getItemDamage() == 21 || stack.getItemDamage() == 22) return "item.thermal_cloth";
-    	return "item." + this.names[stack.getItemDamage()];
+    	if(stack.getItemDamage() == BasicItems.THERMAL_CLOTH_T3.getMeta() || stack.getItemDamage() == BasicItems.THERMAL_CLOTH_T4.getMeta()) return "item.thermal_cloth";
+    	return "item." + BasicItems.values()[stack.getItemDamage()].getName();
     }
 
     @Override
@@ -192,18 +224,12 @@ public class ItemBasicGS extends Item implements ISortableItem{
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
 	{
 		ItemStack stack = player.getHeldItem(hand);
-		
-		
-		
-		if(world.isRemote)
-		{			
+				
+		if(world.isRemote)					
 			return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
-		}
-		else if(stack.getItemDamage() == 27)
-		{
-		}
+		
 		/*
-		else if(stack.getItemDamage() == 28)
+		if(stack.getItemDamage() == 28)
 		{
 			RayTraceResult ray = this.getRay(world, player, true);
 			Map<IBlockState, Integer> blocks = new HashMap<IBlockState, Integer>();
@@ -231,7 +257,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
 			}
 			
 		}*/
-		else if(stack.getItemDamage() == 4)
+		if(stack.getItemDamage() == BasicItems.DOLOMITE_MEAL.getMeta())
 		{
 			RayTraceResult ray = this.getRay(world, player, true);
 			if (ray != null && ItemDye.applyBonemeal(stack, world, ray.getBlockPos(), player, hand)) {
@@ -252,14 +278,14 @@ public class ItemBasicGS extends Item implements ISortableItem{
 			
 			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
 		}	
-		else if(stack.getItemDamage() == 19)
+		else if(stack.getItemDamage() == BasicItems.GUIDE_BOOK.getMeta())
 		{
 			player.openGui(GalaxySpace.MODID, GSConfigCore.guiIDGuideBook, world, 0, 0, 0);
 			
 			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
 		}		
 		
-		else if(stack.getItemDamage() == 9)
+		else if(stack.getItemDamage() == BasicItems.ANTIRADIATION_TABLETS.getMeta())
 		{
 			IAttributeInstance lvl = player.getEntityAttribute(ACAttributePlayer.RADIATION_LVL);
 			if(lvl.getAttributeValue() > 0) {
@@ -274,7 +300,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
     		}
 		}
 		
-		else if(stack.getItemDamage() == 10)
+		else if(stack.getItemDamage() == BasicItems.SCHEMATIC_BOX.getMeta())
     	{
 
 			for (int i = 0; i < 5; i++)
@@ -287,7 +313,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
 			stack.shrink(1);
 			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
     	}
-		else if(stack.getItemDamage() == 18)
+		else if(stack.getItemDamage() == BasicItems.EMERGENCY_PORTABLE_TELEPORT.getMeta())
 		{
 			if(!player.isSneaking())
 				return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
@@ -317,7 +343,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
 			}
 			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
 		}		
-		else if(stack.getItemDamage() == 20)
+		else if(stack.getItemDamage() == BasicItems.ADVANCED_EMERGENCY_KIT.getMeta())
     	{			
 			if (player instanceof EntityPlayerMP)
 	        {
@@ -339,7 +365,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
 	            return new ActionResult<>(EnumActionResult.SUCCESS, stack);
 	        }
     	}
-		else if(stack.getItemDamage() == 28)
+		else if(stack.getItemDamage() == BasicItems.COLONIST_KIT.getMeta())
 		{
 			if (player instanceof EntityPlayerMP)
 	        {
@@ -408,7 +434,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
     @Override
     public int getItemBurnTime(ItemStack itemStack)
     {
-    	if(itemStack.getItemDamage() == 12) return 128000;
+    	if(itemStack.getItemDamage() == BasicItems.VOLCANIC_STONE.getMeta()) return 128000;
         return -1;
     }
     

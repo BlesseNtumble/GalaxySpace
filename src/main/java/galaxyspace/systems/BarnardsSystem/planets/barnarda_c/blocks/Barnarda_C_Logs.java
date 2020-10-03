@@ -2,6 +2,7 @@ package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks;
 
 import java.util.Random;
 
+import galaxyspace.core.prefab.items.ItemAxeGS;
 import galaxyspace.core.util.GSCreativeTabs;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
 import galaxyspace.systems.BarnardsSystem.core.registers.BRItems;
@@ -71,7 +72,7 @@ public class Barnarda_C_Logs extends Block implements ISortableBlock {
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		
-		if(!world.isRemote && world.getBlockState(pos) == BRBlocks.BARNARDA_C_VIOLET_GLOW_LOG.getStateFromMeta(0) && player.getHeldItem(hand).getItem() instanceof ItemAxe) {
+		if(!world.isRemote && world.getBlockState(pos) == BRBlocks.BARNARDA_C_VIOLET_GLOW_LOG.getStateFromMeta(0) && (player.getHeldItem(hand).getItem() instanceof ItemAxe || player.getHeldItem(hand).getItem() instanceof ItemAxeGS)) {
 			world.setBlockState(pos, BRBlocks.BARNARDA_C_VIOLET_LOG.getStateFromMeta(0));
 			world.spawnEntity(new EntityItem(world, player.posX, player.posY, player.posZ, new ItemStack(BRItems.BASIC, 1, 2)));
 			return false;

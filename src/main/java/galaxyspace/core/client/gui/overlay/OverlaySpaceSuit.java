@@ -3,15 +3,12 @@ package galaxyspace.core.client.gui.overlay;
 import org.lwjgl.opengl.GL11;
 
 import asmodeuscore.AsmodeusCore;
-import asmodeuscore.core.astronomy.BodiesRegistry;
 import asmodeuscore.core.astronomy.gui.overlay.OverlayDetectors;
-import galaxyspace.GalaxySpace;
 import galaxyspace.api.item.IModificationItem;
 import galaxyspace.core.client.GSKeyHandlerClient;
 import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.prefab.items.modules.ItemModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemSpaceSuit;
-import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import micdoodle8.mods.galacticraft.core.client.gui.overlay.Overlay;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStatsClient;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;

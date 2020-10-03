@@ -2,7 +2,6 @@ package galaxyspace.systems.SolarSystem.planets.overworld.dimension.sky;
 
 import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
-import asmodeuscore.core.astronomy.sky.SkyProviderBaseOld;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;

@@ -3,7 +3,6 @@ package galaxyspace.core.client.render.tile;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import galaxyspace.GalaxySpace;
 import micdoodle8.mods.galacticraft.core.client.model.block.ModelTreasureChest;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityTreasureChest;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

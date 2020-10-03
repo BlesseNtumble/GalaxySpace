@@ -11,7 +11,6 @@ import asmodeuscore.core.astronomy.dimension.world.gen.ChunkProviderSpaceLakes;
 import asmodeuscore.core.astronomy.dimension.world.gen.dungeons.standart.DungeonConfiguration;
 import galaxyspace.core.GSBlocks;
 import galaxyspace.core.configs.GSConfigCore;
-import galaxyspace.core.prefab.blocks.DungeonBlocks;
 import galaxyspace.systems.SolarSystem.moons.io.blocks.IoBlocks;
 import galaxyspace.systems.SolarSystem.moons.io.world.gen.BiomeDecoratorIo;
 import galaxyspace.systems.SolarSystem.moons.io.world.gen.MapGenDungeonIo;

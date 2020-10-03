@@ -3,17 +3,6 @@ package galaxyspace.core.prefab.world.gen.we.biomes;
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.additions.WE_CreateChunkGen_InXZ;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
-import galaxyspace.core.prefab.world.gen.we.WE_LakesGen;
-import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
-import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.entity.monster.EntitySpider;
-import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntitySheep;
-import net.minecraft.init.Blocks;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.BiomeProperties;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class WE_BaseBiome extends WE_Biome {

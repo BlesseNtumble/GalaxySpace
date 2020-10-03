@@ -6,7 +6,6 @@ import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 
 import galaxyspace.GalaxySpace;
-import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.planets.mars.entities.EntityMarsRover;
 import micdoodle8.mods.galacticraft.core.client.model.OBJLoaderGC;
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;

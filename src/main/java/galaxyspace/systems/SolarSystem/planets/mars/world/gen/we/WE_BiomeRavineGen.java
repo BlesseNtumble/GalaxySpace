@@ -6,7 +6,6 @@ import java.util.Random;
 
 import asmodeuscore.core.utils.worldengine.additions.WE_CreateChunkGen_InXZ;
 import asmodeuscore.core.utils.worldengine.additions.WE_GeneratorData;
-import galaxyspace.GalaxySpace;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;

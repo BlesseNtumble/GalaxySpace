@@ -7,7 +7,6 @@ import java.util.List;
 
 import asmodeuscore.api.dimension.IProviderFreeze;
 import asmodeuscore.core.astronomy.dimension.world.gen.WorldProviderAdvancedSpace;
-import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.systems.SolarSystem.SolarSystemBodies;
 import galaxyspace.systems.SolarSystem.planets.ceres.dimension.sky.SkyProviderCeres;

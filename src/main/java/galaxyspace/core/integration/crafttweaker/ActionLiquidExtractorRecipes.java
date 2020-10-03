@@ -2,13 +2,9 @@ package galaxyspace.core.integration.crafttweaker;
 
 import crafttweaker.IAction;
 import crafttweaker.api.block.IBlock;
-import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.liquid.ILiquidStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
-import galaxyspace.systems.SolarSystem.planets.overworld.recipes.AssemblyRecipes;
-import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityFuelGenerator;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityLiquidExtractor;
-import net.minecraft.item.ItemStack;
 
 public class ActionLiquidExtractorRecipes {
 

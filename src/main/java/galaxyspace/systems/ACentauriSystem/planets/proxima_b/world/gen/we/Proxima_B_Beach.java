@@ -2,20 +2,13 @@ package galaxyspace.systems.ACentauriSystem.planets.proxima_b.world.gen.we;
 
 import java.util.Random;
 
-import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTree_BigJungle;
-import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTree_BigJungle2;
-import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTree_Forest;
-import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTree_Forest2;
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
-import galaxyspace.core.prefab.entities.EntityEvolvedColdBlaze;
 import galaxyspace.core.prefab.world.gen.WorldGenPool;
 import galaxyspace.systems.ACentauriSystem.core.registers.blocks.ACBlocks;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.blocks.Proxima_B_Blocks;
 import micdoodle8.mods.galacticraft.core.GCFluids;
-import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedEnderman;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSkeleton;
-import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSpider;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedZombie;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;

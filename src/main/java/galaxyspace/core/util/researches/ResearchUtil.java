@@ -3,8 +3,6 @@ package galaxyspace.core.util.researches;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Nonnull;
-
 import com.google.common.collect.ImmutableList;
 
 import galaxyspace.api.IResearch;

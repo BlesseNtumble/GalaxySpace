@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import galaxyspace.systems.SolarSystem.moons.io.entities.EntityBossGhast;
-import galaxyspace.systems.SolarSystem.planets.ceres.entities.EntityBossBlaze;
 import micdoodle8.mods.galacticraft.core.client.sounds.GCSounds;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSkeleton;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSpider;

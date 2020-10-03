@@ -4,13 +4,11 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import asmodeuscore.core.astronomy.SpaceData.Engine_Type;
 import galaxyspace.api.item.IModificationItem;
 import galaxyspace.core.prefab.entities.EntityCustomCargoRocket;
 import galaxyspace.core.prefab.items.modules.ItemModule;
 import galaxyspace.core.util.GSCreativeTabs;
 import galaxyspace.core.util.GSUtils.Module_Type;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.modules.IonEngine;
 import micdoodle8.mods.galacticraft.api.entity.IRocketType.EnumRocketType;
 import micdoodle8.mods.galacticraft.api.item.IHoldableItem;
 import micdoodle8.mods.galacticraft.core.GCBlocks;

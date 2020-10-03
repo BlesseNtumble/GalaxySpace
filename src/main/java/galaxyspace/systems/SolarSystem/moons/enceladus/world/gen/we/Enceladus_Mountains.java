@@ -4,11 +4,10 @@ import java.util.Random;
 
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
-import galaxyspace.GalaxySpace;
 import galaxyspace.core.GSBlocks;
 import galaxyspace.core.prefab.entities.EntityEvolvedColdBlaze;
-import galaxyspace.systems.SolarSystem.moons.enceladus.blocks.EnceladusCrystal;
 import galaxyspace.systems.SolarSystem.moons.enceladus.blocks.EnceladusBlocks.EnumEnceladusBlocks;
+import galaxyspace.systems.SolarSystem.moons.enceladus.blocks.EnceladusCrystal;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedEnderman;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSkeleton;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSpider;

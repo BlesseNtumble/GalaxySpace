@@ -4,11 +4,7 @@ import crafttweaker.IAction;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.liquid.ILiquidStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
-import crafttweaker.mc1120.item.MCItemStack;
-import galaxyspace.systems.SolarSystem.planets.overworld.recipes.AssemblyRecipes;
 import galaxyspace.systems.SolarSystem.planets.overworld.recipes.RecyclerRecipes;
-import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityFuelGenerator;
-import net.minecraft.item.ItemStack;
 
 public class ActionRecyclerRecipes {
 
