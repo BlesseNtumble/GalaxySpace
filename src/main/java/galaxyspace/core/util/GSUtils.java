@@ -25,7 +25,6 @@ import micdoodle8.mods.galacticraft.core.fluid.OxygenPressureProtocol;
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.FluidUtil;
-import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEnchantmentTable;
@@ -69,6 +68,7 @@ public class GSUtils {
 	private static HashSet<BlockPos> checked;
 	
 	public enum Module_Type {
+		PLASMA_TOOLS,
 		SPACESUIT,
 		ROCKET,
 		OXYGEN_TANK,

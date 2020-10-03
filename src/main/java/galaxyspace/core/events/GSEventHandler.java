@@ -5,15 +5,14 @@ import java.util.List;
 
 import asmodeuscore.api.dimension.IAdvancedSpace;
 import asmodeuscore.api.dimension.IProviderFreeze;
-import asmodeuscore.api.item.IItemPressurized;
 import asmodeuscore.api.item.IItemSpaceFood;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
 import asmodeuscore.core.event.AsmodeusEvent;
 import asmodeuscore.core.event.PressureEvent;
 import asmodeuscore.core.event.RadiationEvent;
 import asmodeuscore.core.handler.LightningStormHandler;
 import galaxyspace.GalaxySpace;
 import galaxyspace.api.item.IJetpackArmor;
-import galaxyspace.api.item.IModificationItem;
 import galaxyspace.core.GSBlocks;
 import galaxyspace.core.GSItems;
 import galaxyspace.core.configs.GSConfigCore;
@@ -42,7 +41,7 @@ import galaxyspace.systems.SolarSystem.planets.mars.dimension.WorldProviderMars_
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemSpaceSuit;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemThermalPaddingBase;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.modules.Protection;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemPlasmaSword;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitationModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityPlanetShield;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityRadiationStabiliser;
@@ -52,12 +51,11 @@ import micdoodle8.mods.galacticraft.api.inventory.AccessInventoryGC;
 import micdoodle8.mods.galacticraft.api.inventory.IInventoryGC;
 import micdoodle8.mods.galacticraft.api.item.EnumExtendedInventorySlot;
 import micdoodle8.mods.galacticraft.api.prefab.entity.EntityTieredRocket;
+import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 import micdoodle8.mods.galacticraft.api.vector.BlockVec3Dim;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
-import micdoodle8.mods.galacticraft.core.Constants;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
-import micdoodle8.mods.galacticraft.core.blocks.BlockAirLockWall;
 import micdoodle8.mods.galacticraft.core.entities.EntityLanderBase;
 import micdoodle8.mods.galacticraft.core.entities.EntityMeteor;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler;
@@ -68,14 +66,15 @@ import micdoodle8.mods.galacticraft.core.items.ItemTier1Rocket;
 import micdoodle8.mods.galacticraft.core.util.CompatibilityManager;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
+import micdoodle8.mods.galacticraft.core.util.FluidUtil;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
 import micdoodle8.mods.galacticraft.core.world.gen.WorldGenMinableMeta;
+import micdoodle8.mods.galacticraft.core.wrappers.IFluidHandlerWrapper;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.ItemTier3Rocket;
 import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import micdoodle8.mods.galacticraft.planets.mars.dimension.WorldProviderMars;
 import micdoodle8.mods.galacticraft.planets.mars.items.ItemTier2Rocket;
-import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -89,7 +88,6 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
@@ -102,23 +100,24 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.common.config.Config.Type;
+import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.world.BlockEvent.BreakEvent;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -242,7 +241,28 @@ public class GSEventHandler {
 	}
 	
 	@SubscribeEvent
+	public void onAttack(AttackEntityEvent e)
+	{
+		
+		
+		
+	}
+	
+	@SubscribeEvent
 	public void onDamage(LivingDamageEvent e) {
+		if(e.getSource().getTrueSource() instanceof EntityPlayerMP)
+		{
+			EntityPlayerMP player = (EntityPlayerMP) e.getSource().getTrueSource();
+			
+			ItemStack stack = player.getHeldItemMainhand();
+			
+			if(stack.getItem() instanceof ItemPlasmaSword && stack.getTagCompound().getFloat(ItemPlasmaSword.heat) >= 10.0F) {
+				player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.overheat")));
+				
+				e.setCanceled(true);
+			}
+		}
+		
 		if(e.getEntityLiving() instanceof EntityPlayerMP)
 		{
 			EntityPlayerMP player = (EntityPlayerMP) e.getEntityLiving();
@@ -305,17 +325,6 @@ public class GSEventHandler {
 		}
 	}
 	
-	@SubscribeEvent 
-	public void onBreakBlock(BreakEvent e) {
-		World world = e.getWorld();
-		BlockPos pos = e.getPos();
-		/*
-		if(world.getBlockState(pos).getBlock() instanceof BlockIce)
-		{
-			world.setBlockToAir(pos);
-		}*/
-	}
-	
 	@SubscribeEvent
 	public void onInteract(PlayerInteractEvent.RightClickBlock event)
 	{		
@@ -370,6 +379,10 @@ public class GSEventHandler {
 				{					
 					if(stack.getItem().equals(ore.itemstack.getItem()) && !((IGalacticraftWorldProvider)world.provider).hasBreathableAtmosphere())
 					{		
+						if(FluidUtil.isFilledContainer(stack) && world.getTileEntity(event.getPos()) != null)
+							if(world.getTileEntity(event.getPos()) instanceof IFluidHandlerWrapper || world.getTileEntity(event.getPos()) instanceof IFluidHandler)
+								return;
+						
 						if(ore.need_check_oxygen)
 						{
 							if(!OxygenUtil.isAABBInBreathableAirBlock(world, bb, ore.need_check_temp))
@@ -760,7 +773,7 @@ public class GSEventHandler {
 		{
 			EntityPlayerMP player = (EntityPlayerMP) living;
 			World world = player.getEntityWorld();
-			int level = event.getPressureLevel();
+			float level = event.getPressureLevel();
 			
 			if(!player.capabilities.isCreativeMode && GSConfigCore.enablePressureSystem)
         	{

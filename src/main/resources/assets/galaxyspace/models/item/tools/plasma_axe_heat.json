@@ -2,7 +2,7 @@
 	"parent": "item/generated",  
 	"textures": 
 	{ 
-		"layer0" : "galaxyspace:items/tools/plasma_sword"
+		"layer0" : "galaxyspace:items/tools/plasma_axe_heat"
 	},
 	"display": {
 		"thirdperson_righthand": {
@@ -25,13 +25,5 @@
             "translation": [ 1.13, 3.2, 1.13 ],
             "scale": [ 0.68, 0.68, 0.68 ]
         }
-	},
-	"overrides": [
-        {
-            "predicate": {
-                "heat": 1
-            },
-            "model": "galaxyspace:item/tools/plasma_sword_heat"
-        }
-	]
+	}
 }

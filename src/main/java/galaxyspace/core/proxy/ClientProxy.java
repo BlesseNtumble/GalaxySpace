@@ -10,8 +10,9 @@ import javax.vecmath.Vector3f;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 
+import asmodeuscore.AsmodeusCore;
+import asmodeuscore.api.IBodies;
 import galaxyspace.GalaxySpace;
-import galaxyspace.api.IBodies;
 import galaxyspace.core.GSBlocks;
 import galaxyspace.core.GSFluids;
 import galaxyspace.core.GSItems;
@@ -22,7 +23,6 @@ import galaxyspace.core.client.models.BakedModelFullbright;
 import galaxyspace.core.client.render.entity.RenderCargoRockets;
 import galaxyspace.core.client.render.entity.RenderEvolvedColdBlaze;
 import galaxyspace.core.client.render.entity.RenderIceSpike;
-import galaxyspace.core.client.render.entity.RenderLaserBeam;
 import galaxyspace.core.client.render.entity.RenderRockets;
 import galaxyspace.core.client.render.entity.layers.LayerOxygenTank;
 import galaxyspace.core.client.render.entity.layers.LayerThermalPadding;
@@ -37,7 +37,6 @@ import galaxyspace.core.prefab.blocks.DungeonBlocks;
 import galaxyspace.core.prefab.entities.EntityCustomCargoRocket;
 import galaxyspace.core.prefab.entities.EntityEvolvedColdBlaze;
 import galaxyspace.core.prefab.entities.EntityIceSpike;
-import galaxyspace.core.prefab.entities.EntityLaserBeam;
 import galaxyspace.core.prefab.entities.EntityTier4Rocket;
 import galaxyspace.core.prefab.entities.EntityTier5Rocket;
 import galaxyspace.core.prefab.entities.EntityTier6Rocket;
@@ -71,6 +70,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockMachineFram
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockOres;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockSurfaceIce;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS.BasicItems;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemCompressedPlates;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemHeavyDutyPlates;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemIngots;
@@ -397,10 +397,10 @@ public class ClientProxy extends CommonProxy{
 		
 		// -------------------------- ITEMS ------------------------------------
 		int i = 0;
-		for(String basic : ItemBasicGS.names)
+		for(BasicItems basic : ItemBasicGS.BasicItems.values())
 		{
-			if(basic.equals("null")) { i++; continue; }
-			ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.BASIC, i++, "basic/" + basic);
+			if(basic.getName().equals("null")) { i++; continue; }
+			ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.BASIC, i++, "basic/" + basic.getName());
 		}
 		
 		i = 0;
@@ -467,8 +467,11 @@ public class ClientProxy extends CommonProxy{
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_PICKAXE, 0, "tools/" + GSItems.COBALT_PICKAXE.getUnlocalizedName().substring(5));
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_SPADE, 0, "tools/" + GSItems.COBALT_SPADE.getUnlocalizedName().substring(5));
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_HOE, 0, "tools/" + GSItems.COBALT_HOE.getUnlocalizedName().substring(5));
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.PLASMA_SWORD, 0, "tools/" + GSItems.PLASMA_SWORD.getUnlocalizedName().substring(5));
 		
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.PLASMA_SWORD, 0, "tools/" + GSItems.PLASMA_SWORD.getUnlocalizedName().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.PLASMA_AXE, 0, "tools/" + GSItems.PLASMA_AXE.getUnlocalizedName().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.PLASMA_PICKAXE, 0, "tools/" + GSItems.PLASMA_PICKAXE.getUnlocalizedName().substring(5));
+	
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SCHEMATICS, 0, "schematics/" + "schematic_cone");
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SCHEMATICS, 1, "schematics/" + "schematic_body");
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SCHEMATICS, 2, "schematics/" + "schematic_engine");
@@ -485,10 +488,10 @@ public class ClientProxy extends CommonProxy{
 			//GSUtils.addItemJsonFiles(GSItems.COBALT_HOE, "tools/", GSItems.COBALT_HOE.getUnlocalizedName().substring(5));		
 			//GSUtils.addItemJsonFiles(GSItems.COBALT_LEGS, "armor/", GSItems.COBALT_LEGS.getUnlocalizedName().substring(5));		
 			//GSUtils.addItemJsonFiles(GSItems.COBALT_BOOTS, "armor/", GSItems.COBALT_BOOTS.getUnlocalizedName().substring(5));		
-			GSUtils.addItemMetadataJsonFiles(GSItems.BASIC, ItemBasicGS.names, "basic/");
+			GSUtils.addItemMetadataJsonFiles(GSItems.ROCKET_MODULES, ItemRocketModules.names, "rocket_modules/");
 		}
 		
-		for(IBodies list : GalaxySpace.bodies)
+		for(IBodies list : AsmodeusCore.bodies)
 			if(list.canRegister()) 
 				list.registerRender();
 
@@ -510,10 +513,17 @@ public class ClientProxy extends CommonProxy{
     	addVariant("ceresblocks", "", "ceres_grunt", "ceres_subgrunt", "ceres_dolomite_ore", "ceres_meteoriciron_ore", "ceres_dungeon_top", "ceres_dungeon_floor");
     	addVariant("plutoblocks", "", "pluto_grunt_1", "pluto_grunt_2", "pluto_grunt_3", "pluto_grunt_4", "pluto_subgrunt", "pluto_stone");
     	addVariant("ioblocks", "", "io_grunt", "io_stone", "io_ash", "io_copper_ore", "io_sulfur_ore", "io_volcanic_ore", "io_lava_geyser", "io_sulfur_geyser", "io_top", "io_floor", "io_dungeon_bricks");
-    	addVariant("europablocks", "", "europa_grunt", "europa_stone", "europa_brown_ice", "europa_emerald_ore", "europa_silicon_ore", "europa_aluminum_ore");
+    	//addVariant("europablocks", "", "europa_grunt", "europa_stone", "europa_brown_ice", "europa_emerald_ore", "europa_silicon_ore", "europa_aluminum_ore");
     	addVariant("ganymedeblocks", "", "ganymede_grunt", "ganymede_stone", "ganymede_magnesium_ore", "ganymede_titanium_ore");
     	addVariant("callistoblocks", "", "callisto_grunt", "callisto_stone");
     	addVariant("enceladusblocks", "", "enceladus_snow", "enceladus_grunt", "enceladus_coal_ore");
+    	
+    	
+    	blocks = new String[EuropaBlocks.EnumEuropaBlocks.values().length];
+    	for(int i = 0; i < blocks.length; i++)
+    		blocks[i] = EuropaBlocks.EnumEuropaBlocks.byMetadata(i).getName();
+    	
+    	addVariant("europablocks", "", blocks);
     	
     	blocks = new String[TitanBlocks.EnumTitanBlocks.values().length];
     	for(int i = 0; i < blocks.length; i++)
@@ -606,7 +616,10 @@ public class ClientProxy extends CommonProxy{
         addVariant("cobalt_pickaxe", "tools/", "cobalt_pickaxe");
         addVariant("cobalt_spade", "tools/", "cobalt_spade");
         addVariant("cobalt_hoe", "tools/", "cobalt_hoe");
-        //addVariant("plasma_sword", "tools/", "plasma_sword");
+        
+        addVariant("plasma_sword", "tools/", "plasma_sword");
+        addVariant("plasma_axe", "tools/", "plasma_axe");
+        addVariant("plasma_pickaxe", "tools/", "plasma_pickaxe");
         
         addVariant("advanced_battery", "batteries/", "advanced_battery");
         addVariant("modern_battery", "batteries/", "modern_battery");
@@ -627,7 +640,8 @@ public class ClientProxy extends CommonProxy{
         addVariant("cobalt_legs", "armor/", "cobalt_legs");
         addVariant("cobalt_boots", "armor/", "cobalt_boots");
         
-        addVariant("gs_basic", "basic/", ItemBasicGS.names);
+        
+        addVariant("gs_basic", "basic/", ItemBasicGS.getEnumNames());
         addVariant("ingots", "ingots/", ItemIngots.names);        
         addVariant("hdp", "hdp/", ItemHeavyDutyPlates.names);
         addVariant("compressed_plates", "compressed_plates/", ItemCompressedPlates.names);
@@ -675,7 +689,7 @@ public class ClientProxy extends CommonProxy{
    
         ModelLoader.setCustomModelResourceLocation(GSItems.MATTER_MANIPULATOR, 0, new ModelResourceLocation("galaxyspace:tools/matter_manipulator", "inventory"));
         
-        for(IBodies list : GalaxySpace.bodies)
+        for(IBodies list : AsmodeusCore.bodies)
 			if(list.canRegister()) 
 				list.registerVariant();
     }
