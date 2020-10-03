@@ -96,15 +96,29 @@ public class TileEntityHydroponicFarmRenderer extends TileEntitySpecialRenderer<
 			sprite = texMap.getAtlasSprite("minecraft" + ":blocks/melon_stem_disconnected");
 			GL11.glColor3f(1.0F, 1.0F, 0.0F);
 		}
+		if(block == Blocks.CACTUS)
+		{
+			TextureMap texMap = Minecraft.getMinecraft().getTextureMapBlocks();
+			sprite = texMap.getAtlasSprite("minecraft" + ":blocks/cactus_side");
+			GL11.glColor3f(1.0F, 1.0F, 1.0F);
+		}
+		if(block == Blocks.BROWN_MUSHROOM)
+		{
+			TextureMap texMap = Minecraft.getMinecraft().getTextureMapBlocks();
+			sprite = texMap.getAtlasSprite("minecraft" + ":blocks/mushroom_brown");
+			GL11.glColor3f(1.0F, 1.0F, 1.0F);
+		}
 		this.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-		
-		Tessellator tessellator = Tessellator.getInstance();
-		BufferBuilder bufferbuilder = tessellator.getBuffer();
 		
 		double d3 = (double) sprite.getMinU();
 		double d4 = (double) sprite.getMinV();
 		double d5 = (double) sprite.getMaxU();
 		double d6 = (double) sprite.getMaxV();
+		
+		Tessellator tessellator = Tessellator.getInstance();
+		BufferBuilder bufferbuilder = tessellator.getBuffer();
+		
+		
 		
 		double d7 = x + 0.5D - 0.25D;
         double d8 = x + 0.5D + 0.25D;
