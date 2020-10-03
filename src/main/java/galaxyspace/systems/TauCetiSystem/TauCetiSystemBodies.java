@@ -2,6 +2,8 @@ package galaxyspace.systems.TauCetiSystem;
 
 import java.io.File;
 
+import asmodeuscore.api.IBodies;
+import asmodeuscore.api.IBodiesHandler;
 import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
 import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.api.dimension.IAdvancedSpace.TypeBody;
@@ -9,11 +11,15 @@ import asmodeuscore.core.astronomy.BodiesData;
 import asmodeuscore.core.astronomy.BodiesRegistry;
 import asmodeuscore.core.astronomy.BodiesRegistry.Galaxies;
 import asmodeuscore.core.astronomy.dimension.world.gen.ACBiome;
+import asmodeuscore.core.handler.ColorBlockHandler;
 import galaxyspace.GalaxySpace;
-import galaxyspace.api.IBodies;
-import galaxyspace.api.IBodiesHandler;
+import galaxyspace.core.proxy.ClientProxy;
 import galaxyspace.core.util.GSDimensions;
+import galaxyspace.core.util.GSUtils;
+import galaxyspace.systems.TauCetiSystem.core.TCBlocks;
 import galaxyspace.systems.TauCetiSystem.core.configs.TCConfigCore;
+import galaxyspace.systems.TauCetiSystem.planets.tauceti_f.blocks.TauCeti_F_Blocks;
+import galaxyspace.systems.TauCetiSystem.planets.tauceti_f.blocks.TauCeti_F_Blocks.EnumBlockTauCetiF;
 import galaxyspace.systems.TauCetiSystem.planets.tauceti_f.dimensions.TeleportTypeTauCeti_F;
 import galaxyspace.systems.TauCetiSystem.planets.tauceti_f.dimensions.WorldProviderTauCeti_F_WE;
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
@@ -21,6 +27,8 @@ import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
 import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import micdoodle8.mods.galacticraft.core.util.ClientUtil;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -56,12 +64,16 @@ public class TauCetiSystemBodies implements IBodies{
 		
 		TauCeti_F = BodiesRegistry.registerExPlanet(TauCetiSystem, "tauceti_f", GalaxySpace.ASSET_PREFIX, 1.5F);
 		BodiesRegistry.setOrbitData(TauCeti_F, (float) Math.PI / 4, 1.25F, 60F);
-		BodiesRegistry.setPlanetData(TauCeti_F, 3, 36000L, BodiesRegistry.calculateGravity(7.8F), false);
-		//BodiesHelper.setProviderData(TauCeti_F, WorldProviderTauCeti_F_WE.class, -1338, 6, ACBiome.ACSpace);
+		BodiesRegistry.setPlanetData(TauCeti_F, 8.0F, 3, 36000L, BodiesRegistry.calculateGravity(7.8F), false);
+		BodiesRegistry.setProviderData(TauCeti_F, WorldProviderTauCeti_F_WE.class, -1338, 6, ACBiome.ACSpace);
 		GalaxyRegistry.registerPlanet(TauCeti_F);
 		
-		//GalacticraftRegistry.registerTeleportType(WorldProviderTauCeti_F_WE.class, new TeleportTypeTauCeti_F());		
+		GalacticraftRegistry.registerTeleportType(WorldProviderTauCeti_F_WE.class, new TeleportTypeTauCeti_F());		
 		
+		
+		TCBlocks.initialize();
+		
+		ColorBlockHandler.addBlock(TCBlocks.TAUCETI_F_BLOCKS.getStateFromMeta(1));
 	}
 
 	@Override
@@ -74,7 +86,7 @@ public class TauCetiSystemBodies implements IBodies{
 		BodiesRegistry.registerBodyData(TauCetiSystem.getMainStar(), data);		
 		
 
-		//GSDimensions.TAU_CETI_F = WorldUtil.getDimensionTypeById(-1338);
+		GSDimensions.TAU_CETI_F = WorldUtil.getDimensionTypeById(-1338);
 	}
 
 	@Override
@@ -82,11 +94,26 @@ public class TauCetiSystemBodies implements IBodies{
 	}
 
 	@Override
-	public void registerRender() {		
+	public void registerRender() {	
+
+		String[] name = new String[EnumBlockTauCetiF.values().length];
+		for (EnumBlockTauCetiF blockBasic : EnumBlockTauCetiF.values()) {        
+			if(blockBasic.getName() != null) name[blockBasic.getMeta()] = blockBasic.getName();
+			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, TCBlocks.TAUCETI_F_BLOCKS, blockBasic.getMeta(), "tauceti/" + blockBasic.getName());
+		}
+		if(GCCoreUtil.isDeobfuscated())
+			GSUtils.addBlockMetadataJsonFiles(TCBlocks.TAUCETI_F_BLOCKS, name, TauCeti_F_Blocks.BASIC_TYPE.getName(), "tauceti/");
+		
 	}
 
 	@Override
-	public void registerVariant() {		
+	public void registerVariant() {	
+		
+		String[] blocks = new String[EnumBlockTauCetiF.values().length];
+	    for(int i = 0; i < blocks.length; i++)
+	    	blocks[i] = EnumBlockTauCetiF.byMetadata(i).getName(); 
+	    	
+		ClientProxy.addVariant("tauceti_f_blocks", "tauceti/", blocks);
 	}
 	
 	@Override

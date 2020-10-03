@@ -1,0 +1,7 @@
+{ 
+	"variants": { 
+		"type=tauceti_f_dirt": { "model": "galaxyspace:tauceti/tauceti_f_dirt"}, 
+		"type=tauceti_f_grass": { "model": "galaxyspace:tauceti/tauceti_f_grass"}, 
+		"type=tauceti_f_stone": { "model": "galaxyspace:tauceti/tauceti_f_stone"}
+	} 
+}

@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import asmodeuscore.core.astronomy.dimension.world.gen.BiomeProviderBase;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
 import asmodeuscore.core.utils.worldengine.WE_Biome;
@@ -16,6 +15,7 @@ import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator
 import galaxyspace.core.prefab.world.gen.we.biomes.WE_BaseBiome;
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.systems.TauCetiSystem.TauCetiSystemBodies;
+import galaxyspace.systems.TauCetiSystem.core.TCBlocks;
 import galaxyspace.systems.TauCetiSystem.planets.tauceti_f.dimensions.sky.SkyProviderTauCeti_F;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
@@ -27,7 +27,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
-import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
@@ -116,20 +115,6 @@ public class WorldProviderTauCeti_F_WE extends WE_WorldProviderSpace {
             return null;
         }*/
     }
-    /*
-    @Override
-    @SideOnly(Side.CLIENT)
-    public Vector3 getFogColor() {
-    	
-    	float f = 1.0F - this.getStarBrightness(1.0F);
-        return new Vector3(86 / 255.0F * f, 180 / 255.0F * f, 240 / 255.0F * f);
-    }
-
-    @Override
-    public Vector3 getSkyColor() {
-    	float f = 0.6F - this.getStarBrightness(1.0F);
-        return new Vector3(100 / 255.0F * f, 220 / 255.0F * f, 250 / 255.0F * f);
-    }*/
     
     @Override
     @SideOnly(Side.CLIENT)
@@ -233,32 +218,34 @@ public class WorldProviderTauCeti_F_WE extends WE_WorldProviderSpace {
 		cp.createChunkGen_InXYZ_List.clear(); 
 		cp.decorateChunkGen_List .clear(); 
 		
-		WE_Biome.setBiomeMap(cp, 1.6D, 4, 1500.0D, 1.0D);	
+		WE_Biome.setBiomeMap(cp, 1.8D, 4, 2500.0D, 2.4D);	
 
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
-		terrainGenerator.worldStoneBlock = Blocks.STONE.getDefaultState(); 
+		terrainGenerator.worldStoneBlock = TCBlocks.TAUCETI_F_BLOCKS.getStateFromMeta(0); 
 		terrainGenerator.worldSeaGen = true;
 		terrainGenerator.worldSeaGenBlock = Blocks.WATER.getDefaultState();
-		terrainGenerator.worldSeaGenMaxY = 125;
+		terrainGenerator.worldSeaGenMaxY = 100;
 		cp.createChunkGen_List.add(terrainGenerator);
 		
 		//-// 
 		WE_CaveGen cg = new WE_CaveGen(); 
 		cg.replaceBlocksList .clear(); 
 		cg.addReplacingBlock(terrainGenerator.worldStoneBlock); 
-		cg.lavaMaxY = 15;
+		cg.lavaMaxY = 0;
 		cg.range = 32;
-		cg.maxY = terrainGenerator.worldSeaGenMaxY;
+		cg.d6_range = 2.5D;
+		cg.frequency = 10;
+		cg.maxY = 80;
 		cg.caveBlock = terrainGenerator.worldSeaGenBlock;
 		cg.ignoreLiquid = true;
 		cp.createChunkGen_List.add(cg); 
 		//-// 
 		 
 		WE_RavineGen rg = new WE_RavineGen();
-		rg.replaceBlocksList    .clear();
+		rg.replaceBlocksList.clear();
 		rg.addReplacingBlock(terrainGenerator.worldStoneBlock);
 		rg.lavaBlock = Blocks.LAVA.getDefaultState();
-		rg.lavaMaxY = 15;		
+		rg.lavaMaxY = 0;		
 		rg.range = 32;
 		rg.caveBlock = terrainGenerator.worldSeaGenBlock;
 		rg.ignoreLiquid = true;
@@ -272,9 +259,11 @@ public class WorldProviderTauCeti_F_WE extends WE_WorldProviderSpace {
 		//layer.add(Blocks.PACKED_ICE.getDefaultState(), terrainGenerator.worldStoneBlock, -256, 0,   -4, -10,  true);
 		//layer.add(Blocks.SNOW.getDefaultState(), Blocks.PACKED_ICE.getDefaultState(), -256, 0,   -2, -1,  false);
 		
-		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(0D, 0D, 5.4F, 2, 60, 2, layer).setColors(0x00FF00, 0xFFFFFF, 0x00FF00));	
-		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-0.3D, 0.3D, 1.9F, 4, 90, 3, layer).setColors(0x00FF00, 0xFFFFFF, 0x00FF00));	
-		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-0.9D, 0.9D, 1.5F, 4, 135, 15, layer).setColors(0x00FF00, 0xFFFFFF, 0x00FF00));	
+		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(0D, 1.8F, 4, 100, 35, layer).setColors(0x00FF00, 0xFF0000, 0x00FF00));	
+		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(0.5D, 2.4F, 4, 80, 35, layer).setColors(0x00FF00, 0x0FFF00, 0x00FF00));	
+		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(5D, 2.6F, 4, 50, 30, layer).setColors(0x00FF00, 0x00FF00, 0x00FF00));	
+		//WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-0.3D, 0.3D, 1.9F, 4, 90, 3, layer).setColors(0x00FF00, 0xFF0000, 0x00FF00));	
+		//WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-0.9D, 0.9D, 1.5F, 4, 135, 15, layer).setColors(0x00FF00, 0xFF0000, 0x00FF00));	
 	}
 	
 	@Override

@@ -1,0 +1,10 @@
+{ 
+	"parent": "block/grass",
+    "textures": {
+		"particle": "galaxyspace:blocks/taucetisystem/tauceti_f/dirt",
+        "bottom": "galaxyspace:blocks/taucetisystem/tauceti_f/dirt",
+        "top": "galaxyspace:blocks/taucetisystem/tauceti_f/grass_top",
+        "side": "galaxyspace:blocks/taucetisystem/tauceti_f/grass_side",
+        "overlay": "galaxyspace:blocks/taucetisystem/tauceti_f/grass_side_overlay"
+    }
+}
