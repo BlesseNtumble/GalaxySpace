@@ -2,7 +2,7 @@
 	"forge_marker": 1,
 	"defaults": {
 		"textures": { 
-			"bottom": "galaxyspace:blocks/overworld/gravitation_module_bottom",
+			"bottom": "galacticraftcore:blocks/machine_input",
 			"top": "galaxyspace:blocks/overworld/gravitation_module_top",
 			"side": "galaxyspace:blocks/overworld/gravitation_module_side",
 			"particle": "galaxyspace:blocks/overworld/gravitation_module_side"

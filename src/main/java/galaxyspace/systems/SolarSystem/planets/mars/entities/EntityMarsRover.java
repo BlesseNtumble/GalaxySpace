@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvLandingPad;
 import io.netty.buffer.ByteBuf;
 import micdoodle8.mods.galacticraft.api.entity.ICameraZoomEntity;
 import micdoodle8.mods.galacticraft.api.entity.IDockable;
@@ -156,7 +157,7 @@ public class EntityMarsRover extends Entity implements ICameraZoomEntity, IInven
     @Override
     public double getMountedYOffset()
     {
-        return this.height - 3.0D;
+        return 13.0D;
     }
 
     @Override
@@ -821,7 +822,7 @@ public class EntityMarsRover extends Entity implements ICameraZoomEntity, IInven
     @Override
     public boolean isDockValid(IFuelDock dock)
     {
-        return dock instanceof TileEntityBuggyFueler;
+        return dock instanceof TileEntityAdvLandingPad;
     }
 
     @Override

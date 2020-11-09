@@ -520,7 +520,7 @@ public class SolarSystemBodies implements IBodies{
 		data = new BodiesData(null, BodiesRegistry.calculateGravity(5.37F), 0, 24660, false);
 		BodiesRegistry.registerBodyData(MarsModule.planetMars, data);
 		    	
-		data = new BodiesData(null, 0, 0, 0, true);
+		data = new BodiesData(ClassBody.ASTEROID, 0, 0, 0, true);
 		BodiesRegistry.registerBodyData(AsteroidsModule.planetAsteroids, data);
     	
 	   	////MOONS

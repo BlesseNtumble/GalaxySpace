@@ -54,7 +54,7 @@ public class TileEntityAdvLandingPad extends TileEntityMulti implements IMultiBl
 			final List<Entity> list = this.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.getPos().getX() - 0.5D, this.getPos().getY(), this.getPos().getZ() - 0.5D, this.getPos().getX() + 0.5D, this.getPos().getY() + 1.0D, this.getPos().getZ() + 0.5D));
 
 			boolean docked = false;
-
+/*
 			for (final Object o : list) {
 				if (o instanceof IDockable && !((Entity) o).isDead) {
 					final IDockable fuelable = (IDockable) o;
@@ -67,6 +67,7 @@ public class TileEntityAdvLandingPad extends TileEntityMulti implements IMultiBl
 								((ILandable) fuelable).landEntity(this.getPos());
 							} else {
 								fuelable.setPad(this);
+								this.dockedEntity.setPad(this);
 							}
 						}
 
@@ -74,8 +75,30 @@ public class TileEntityAdvLandingPad extends TileEntityMulti implements IMultiBl
 					}
 				}
 			}
+*/
+			 for (final Object o : list)
+	           {
+	                if (o != null && o instanceof IDockable && !this.world.isRemote)
+	                {
+	                    final IDockable fuelable = (IDockable) o;
 
+	                    if (fuelable.isDockValid(this))
+	                    {
+	                        this.dockedEntity = fuelable;
+
+	                        this.dockedEntity.setPad(this);
+
+	                        docked = true;
+	                    }
+	                }
+	          }
+			 
 			if (!docked) {
+				if (this.dockedEntity != null)
+                {
+                    this.dockedEntity.setPad(null);
+                }
+				
 				this.dockedEntity = null;
 			}
 		}
@@ -219,6 +242,7 @@ public class TileEntityAdvLandingPad extends TileEntityMulti implements IMultiBl
 		if (tile instanceof ILandingPadAttachable
 				&& ((ILandingPadAttachable) tile).canAttachToLandingPad(this.world, this.getPos())) {
 			connectedTiles.add((ILandingPadAttachable) tile);
+			
 			if (GalacticraftCore.isPlanetsLoaded && tile instanceof TileEntityLaunchController) {
 				((TileEntityLaunchController) tile).setAttachedPad(this);
 			}

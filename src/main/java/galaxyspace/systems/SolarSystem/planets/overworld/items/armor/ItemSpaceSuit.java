@@ -414,7 +414,9 @@ public class ItemSpaceSuit extends ItemElectricArmor implements IArmorCorrosionR
 	public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot) {
 		if(source.isUnblockable()) 
 			return new ISpecialArmor.ArmorProperties(0, 0.0, 0);
-		return new ISpecialArmor.ArmorProperties(1, 0.16, Integer.MAX_VALUE);
+		
+		
+		return new ISpecialArmor.ArmorProperties(0, 0.16, Integer.MAX_VALUE);
 	}
 	
 	@Override
@@ -425,7 +427,7 @@ public class ItemSpaceSuit extends ItemElectricArmor implements IArmorCorrosionR
 	@Override
 	public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot) {
 		
-		this.discharge(stack, 5, true);		
+		//this.discharge(stack, 5, true);		
 	}
 	
 	@Override

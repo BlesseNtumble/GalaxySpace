@@ -11,6 +11,7 @@ import galaxyspace.GalaxySpace;
 import micdoodle8.mods.galacticraft.core.client.model.OBJLoaderGC;
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -24,22 +25,83 @@ import net.minecraftforge.client.model.obj.OBJModel.OBJBakedModel;
 
 public  class ItemSpaceSuitModel extends ModelOBJArmor {
 
-	public OBJBakedModel G;
-	public OBJBakedModel Gru;
-	public OBJBakedModel P2;
-	public OBJBakedModel L2;
-	public OBJBakedModel P3;
-	public OBJBakedModel L3;
+	public static OBJBakedModel G;
+	public static OBJBakedModel Gru;
+	public static OBJBakedModel P2;
+	public static OBJBakedModel L2;
+	public static OBJBakedModel P3;
+	public static OBJBakedModel L3;
 	
-	public OBJBakedModel wing1, wing2, corp;
+	public static OBJBakedModel wing1, wing2, corp;
 
 	private final int partType;
 	
 	public float color[] = new float[3];
 	
-	private void updateModels()
+	public static int helmetList, bodyList, leftArmList, rightArmList, leftLegList, rightLegList, jetpackList;
+	
+	static {
+
+		updateModels();
+		
+		int displayLists = GLAllocation.generateDisplayLists(7);
+		helmetList = displayLists;
+		bodyList = displayLists + 1;
+		leftArmList = displayLists + 2;
+		rightArmList = displayLists + 3;
+		leftLegList = displayLists + 4;
+		rightLegList = displayLists + 5;
+		jetpackList = displayLists + 6;
+		
+		GL11.glPushMatrix();
+			GL11.glNewList(helmetList, GL11.GL_COMPILE);
+			ClientUtil.drawBakedModel(G);
+			GL11.glEndList();
+        GL11.glPopMatrix();
+        
+        GL11.glPushMatrix();
+			GL11.glNewList(bodyList, GL11.GL_COMPILE);
+			ClientUtil.drawBakedModel(Gru);
+			GL11.glEndList();
+		GL11.glPopMatrix();
+		
+		GL11.glPushMatrix();
+			GL11.glNewList(leftArmList, GL11.GL_COMPILE);
+			ClientUtil.drawBakedModel(L2);
+			GL11.glEndList();
+		GL11.glPopMatrix();
+		
+		GL11.glPushMatrix();
+			GL11.glNewList(rightArmList, GL11.GL_COMPILE);
+			ClientUtil.drawBakedModel(P2);
+			GL11.glEndList();
+		GL11.glPopMatrix();
+		
+		GL11.glPushMatrix();
+			GL11.glNewList(leftLegList, GL11.GL_COMPILE);
+			ClientUtil.drawBakedModel(L3);
+			GL11.glEndList();
+		GL11.glPopMatrix();
+		
+		GL11.glPushMatrix();
+			GL11.glNewList(rightLegList, GL11.GL_COMPILE);
+			ClientUtil.drawBakedModel(P3);
+			GL11.glEndList();
+		GL11.glPopMatrix();
+
+		GL11.glPushMatrix();
+			GL11.glNewList(jetpackList, GL11.GL_COMPILE);
+			ClientUtil.drawBakedModel(corp);
+			ClientUtil.drawBakedModel(wing2);
+			GL11.glRotatef(10.0F, 0.0F, 0.0F, 1.0F);
+			ClientUtil.drawBakedModel(wing1);	
+			GL11.glEndList();
+		GL11.glPopMatrix();
+	}
+	
+	private static void updateModels()
     {
-		if (this.G == null)
+		if (G == null)
         {
 			try
             {
@@ -79,7 +141,8 @@ public  class ItemSpaceSuitModel extends ModelOBJArmor {
 		color[1] = 1.0F;
 		color[2] = 1.0F;
 		
-		this.updateModels();
+		
+		
 	}
 
 	@Override
@@ -99,7 +162,6 @@ public  class ItemSpaceSuitModel extends ModelOBJArmor {
 	@Override
 	public void partHead(Entity entity) {
 		if (partType == 3) {
-			if (Minecraft.getMinecraft().player.getActivePotionEffect(MobEffects.INVISIBILITY) != null) return;
 			
 			GL11.glTranslatef(0F, -1.9F, 0F);
 			//GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
@@ -120,10 +182,9 @@ public  class ItemSpaceSuitModel extends ModelOBJArmor {
 			else
 				GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
 			GL11.glScalef(0.75F, 0.78F, 0.75F);
-			//Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 			GL11.glColor3f(color[0], color[1], color[2]);
-			ClientUtil.drawBakedModel(G);
 			
+			GL11.glCallList(this.helmetList);
 			
 		}
 	}
@@ -131,14 +192,12 @@ public  class ItemSpaceSuitModel extends ModelOBJArmor {
 	@Override
 	public void partBody() {
 		if (partType == 2 || partType == 5) {
-			if (Minecraft.getMinecraft().player.getActivePotionEffect(MobEffects.INVISIBILITY) != null) return;
 			
 			GL11.glTranslatef(0F, -1.75F, 0F);
 			GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
 			GL11.glScalef(0.75F, 0.75F, 0.75F);
-			//Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 			GL11.glColor3f(color[0], color[1], color[2]);
-			ClientUtil.drawBakedModel(Gru);
+			GL11.glCallList(this.bodyList);
 		}
 		
 		if(partType == 5 || partType == 6)
@@ -146,17 +205,8 @@ public  class ItemSpaceSuitModel extends ModelOBJArmor {
 		
 			if(partType == 5) GL11.glTranslatef(0F, 1.9F, 0F);
 			else GL11.glTranslatef(0F, -0.3F, -0.7F);
-			//Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-			ClientUtil.drawBakedModel(corp);
-			ClientUtil.drawBakedModel(wing2);
-			GL11.glRotatef(10.0F, 0.0F, 0.0F, 1.0F);
-			ClientUtil.drawBakedModel(wing1);
-			
-			
-		//	Minecraft.getMinecraft().renderEngine.bindTexture(textureJet);
-		//	modelJet.renderPart("wing1");
-		//	modelJet.renderPart("wing2");
-		//	modelJet.renderPart("corp");
+				
+			GL11.glCallList(this.jetpackList);
 		}
 			
 		
@@ -165,56 +215,48 @@ public  class ItemSpaceSuitModel extends ModelOBJArmor {
 	@Override
 	public void partRightArm() {
 		if (partType == 2 || partType == 5) {
-			if (Minecraft.getMinecraft().player.getActivePotionEffect(MobEffects.INVISIBILITY) != null) return;
 			
 			GL11.glTranslatef(0.375F, -1.6F, 0F);
 			GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
 			GL11.glScalef(0.75F, 0.75F, 0.75F);
-			//Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 			GL11.glColor3f(color[0], color[1], color[2]);
-			ClientUtil.drawBakedModel(P2);
+			GL11.glCallList(this.rightArmList);
 		}
 	}
 
 	@Override
 	public void partLeftArm() {
 		if (partType == 2 || partType == 5) {
-			if (Minecraft.getMinecraft().player.getActivePotionEffect(MobEffects.INVISIBILITY) != null) return;
 			
 			GL11.glTranslatef(-0.375F, -1.6F, 0F);
 			GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
 			GL11.glScalef(0.75F, 0.75F, 0.75F);
-			//Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 			GL11.glColor3f(color[0], color[1], color[2]);
-			ClientUtil.drawBakedModel(L2);
+			GL11.glCallList(this.leftArmList);
 		}
 	}
 
 	@Override
 	public void partRightLeg() {
 		if (partType == 1) {
-			if (Minecraft.getMinecraft().player.getActivePotionEffect(MobEffects.INVISIBILITY) != null) return;
 			
 			GL11.glTranslatef(0.125F, -0.75F, 0F);
 			GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
 			GL11.glScalef(0.75F, 0.75F, 0.75F);
-			//Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 			GL11.glColor3f(color[0], color[1], color[2]);
-			ClientUtil.drawBakedModel(P3);
+			GL11.glCallList(this.rightLegList);
 		}
 	}
 
 	@Override
 	public void partLeftLeg() {
 		if (partType == 1) {
-			if (Minecraft.getMinecraft().player.getActivePotionEffect(MobEffects.INVISIBILITY) != null) return;
 			
 			GL11.glTranslatef(-0.125F, -0.75F, 0F);
 			GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
 			GL11.glScalef(0.75F, 0.75F, 0.75F);
-			//Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 			GL11.glColor3f(color[0], color[1], color[2]);
-			ClientUtil.drawBakedModel(L3);
+			GL11.glCallList(this.leftLegList);
 		}
 	}
 }

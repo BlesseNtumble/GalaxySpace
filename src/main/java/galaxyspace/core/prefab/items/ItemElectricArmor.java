@@ -64,7 +64,7 @@ public class ItemElectricArmor extends ItemArmor implements IEnergyContainerItem
 	
 	@Override
 	public void onCreated(ItemStack itemStack, World world, EntityPlayer player) {
-		this.setElectricity(itemStack, 0.0F);			   
+		this.setElectricity(itemStack, 1.0F);			   
 	}
 	
 	@Override
@@ -123,9 +123,9 @@ public class ItemElectricArmor extends ItemArmor implements IEnergyContainerItem
 	public void setElectricity(ItemStack stack, float joules) {
 		if(!stack.hasTagCompound()) { stack.setTagCompound(new NBTTagCompound());}
 
-		float electricityStored = Math.max(Math.min(joules, this.getMaxElectricityStored(stack)), 0.0F);
+		float electricityStored = Math.max(Math.min(joules, this.getMaxElectricityStored(stack)), 1.0F);
 		stack.getTagCompound().setFloat("electricity", electricityStored);
-		stack.setItemDamage((int) ((float) stack.getMaxDamage()	- electricityStored / this.getMaxElectricityStored(stack) * (float) stack.getMaxDamage()));
+		stack.setItemDamage((int) (stack.getMaxDamage()	- electricityStored / this.getMaxElectricityStored(stack) * (float) stack.getMaxDamage()) - 1);
 
 	}
 	

@@ -133,7 +133,7 @@ public class BlockGravitationModule extends BlockAdvancedTile implements IShiftD
         TileEntity tile = worldIn.getTileEntity(pos);        
         
         if(tile != null) {
-        	boolean energyLevel = ((TileEntityGravitationModule) tile).hasEnoughEnergyToRun;
+        	boolean energyLevel = ((TileEntityGravitationModule) tile).hasEnoughEnergyToRun && !((TileEntityGravitationModule) tile).disabled;
         	return state.withProperty(STATUS, energyLevel);
         }
         return state;

@@ -86,7 +86,7 @@ public class RenderMarsRover extends Render<EntityMarsRover>
     public void doRender(EntityMarsRover entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         float pitch = entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks;
-        float xrotation = entity.lastTickPosY > entity.posY ? -15F : entity.lastTickPosY < entity.posY ? 15F : 0F;
+        float xrotation = 0F;//entity.lastTickPosY - 0.4F > entity.posY ? -15F : entity.lastTickPosY - 0.4F < entity.posY ? 15F : 0F;
         GlStateManager.disableRescaleNormal();
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, z);

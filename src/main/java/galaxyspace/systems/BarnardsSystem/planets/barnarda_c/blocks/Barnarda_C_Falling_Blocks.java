@@ -33,6 +33,7 @@ public class Barnarda_C_Falling_Blocks extends BlockFalling implements ISortable
 		super();
 		this.setUnlocalizedName("barnarda_c_falling_blocks");
 		this.setSoundType(SoundType.SAND);
+		this.setHardness(0.6F);
     }
 	
 	@Override
