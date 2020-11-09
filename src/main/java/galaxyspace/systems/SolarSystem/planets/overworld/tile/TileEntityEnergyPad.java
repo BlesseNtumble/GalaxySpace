@@ -1,0 +1,191 @@
+package galaxyspace.systems.SolarSystem.planets.overworld.tile;
+
+import java.util.HashSet;
+import java.util.List;
+
+import javax.annotation.Nullable;
+
+import cofh.redstoneflux.api.IEnergyContainerItem;
+import galaxyspace.api.tile.ITileEffects;
+import galaxyspace.core.GSItems;
+import ic2.api.item.ElectricItem;
+import ic2.api.item.IElectricItem;
+import ic2.api.item.ISpecialElectricItem;
+import mekanism.api.energy.IEnergizedItem;
+import micdoodle8.mods.galacticraft.api.entity.IAntiGrav;
+import micdoodle8.mods.galacticraft.api.item.IArmorGravity;
+import micdoodle8.mods.galacticraft.api.item.IItemElectricBase;
+import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
+import micdoodle8.mods.galacticraft.api.vector.BlockVec3Dim;
+import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
+import micdoodle8.mods.galacticraft.core.dimension.WorldProviderSpaceStation;
+import micdoodle8.mods.galacticraft.core.energy.EnergyConfigHandler;
+import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
+import micdoodle8.mods.galacticraft.core.energy.tile.EnergyStorageTile;
+import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseElectricBlockWithInventory;
+import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
+import micdoodle8.mods.miccore.Annotations.NetworkedField;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.ItemStackHelper;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+
+public class TileEntityEnergyPad extends TileBaseElectricBlockWithInventory {
+	
+	public static int PROCESS_TIME_REQUIRED = 130;
+
+	@NetworkedField(targetSide = Side.CLIENT)
+	public int processTimeRequired = 1;
+
+	@NetworkedField(targetSide = Side.CLIENT)
+	public static int processTicks = 0;
+
+	public TileEntityEnergyPad() {
+	
+		super("tile.energy_pad.name");
+
+		this.storage.setCapacity(15000);
+		this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 60 : 45);
+		this.inventory = NonNullList.withSize(1, ItemStack.EMPTY);
+    }
+
+	@Override
+	public void update() {
+		super.update();
+		
+		//Freezing
+		if (this.world.rand.nextInt(4) == 0) 
+			this.world.notifyLightSet(this.getPos());
+		
+		if (this.canProcess() && !this.disabled) {
+			if (this.hasEnoughEnergyToRun) {
+				//this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 90  : 75);
+                
+			}
+		}
+	}
+	
+	public static boolean canProcess()
+    {
+    	return true;
+    }
+	
+	public void smeltItem(EntityPlayer player) {	
+		if(this.hasEnoughEnergyToRun && this.storage.getEnergyStoredGC() > 100D)
+		{
+			for(ItemStack stack : player.inventory.armorInventory) 		
+				if(chargeItem(stack, 350D)) break;		
+		
+			for(ItemStack stack : player.inventory.mainInventory)		
+				if(chargeItem(stack, 350D)) break;
+		}
+	}
+		
+	private boolean chargeItem(ItemStack stack, double count)
+	{
+		if(stack.getItem() instanceof IItemElectricBase)
+		{
+			IItemElectricBase item = (IItemElectricBase)stack.getItem();
+			if(item.getElectricityStored(stack) < item.getMaxElectricityStored(stack)) {
+				item.recharge(stack, (float)count, true);
+				return true;
+			}
+		}
+		
+		if(EnergyConfigHandler.isIndustrialCraft2Loaded())			
+			if(stack.getItem() instanceof IElectricItem)	
+				if(ElectricItem.manager.getCharge(stack) < ElectricItem.manager.getMaxCharge(stack)) {
+					ElectricItem.manager.charge(stack, count, 4, false, false);		
+					return true;
+				}
+		
+		if(EnergyConfigHandler.isMekanismLoaded())
+			if(stack.getItem() instanceof IEnergizedItem)
+			{
+				IEnergizedItem item = (IEnergizedItem)stack.getItem();
+				if(item.getEnergy(stack) < item.getMaxEnergy(stack)) {
+					item.setEnergy(stack, item.getEnergy(stack) + count);
+					return true;
+				}
+			}
+		
+		if(EnergyConfigHandler.isRFAPILoaded())
+			if(stack.getItem() instanceof IEnergyContainerItem)
+			{
+				IEnergyContainerItem item = (IEnergyContainerItem)stack.getItem();
+				if(item.getEnergyStored(stack) < item.getMaxEnergyStored(stack)) {
+					item.extractEnergy(stack, (int)count, false);
+					return true;
+				}
+			}
+		
+		return false;
+	}
+	
+	@Override
+    public void readFromNBT(NBTTagCompound par1NBTTagCompound)
+    {
+        super.readFromNBT(par1NBTTagCompound);
+        this.processTicks = par1NBTTagCompound.getInteger("smeltingTicks");
+        
+        ItemStackHelper.loadAllItems(par1NBTTagCompound, this.getInventory());
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound par1NBTTagCompound)
+    {       
+    	super.writeToNBT(par1NBTTagCompound);
+        par1NBTTagCompound.setInteger("smeltingTicks", this.processTicks);              
+        ItemStackHelper.saveAllItems(par1NBTTagCompound, this.getInventory());
+        
+		return par1NBTTagCompound;
+    }
+
+    @Override
+    public boolean isItemValidForSlot(int slotID, ItemStack itemStack)
+    {
+    	return true;
+    }
+    
+    @Override
+    public boolean shouldUseEnergy()
+    {
+        return this.canProcess();
+    }
+	
+	@Override
+	public EnumFacing getFront() {
+		return EnumFacing.DOWN;
+	}
+	
+	@Override
+	public EnumFacing getElectricInputDirection() {
+		return EnumFacing.DOWN;
+	}
+	
+	@Override
+	public boolean canConnect(EnumFacing direction, NetworkType type) {
+		if (direction == null) {
+			return false;
+		}
+		if (type == NetworkType.POWER) {
+			return direction == this.getElectricInputDirection();
+		}
+		return false;
+	}
+	
+	@Override
+	public int[] getSlotsForFace(EnumFacing side) {
+		return null;
+	}
+}

@@ -388,11 +388,12 @@ public class ClientProxy extends CommonProxy{
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.OXYGEN_STORAGE_MODULE);
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.SOLARWIND_PANEL);
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.ADVANCED_CIRCUIT_FABRICATOR);
+		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.ENERGY_PAD);
 		
 		if(GCCoreUtil.isDeobfuscated()) 
 		{
 			//GSUtils.addBlockJsonFiles(GSBlocks.SOLARWIND_PANEL, "overworld/");
-			//GSUtils.addBlockJsonFiles(GSBlocks.HYDROPONIC_FARM, "overworld/");
+			//GSUtils.addBlockJsonFiles(GSBlocks.ENERGY_PAD, "overworld/");
 		}
 		
 		// -------------------------- ITEMS ------------------------------------

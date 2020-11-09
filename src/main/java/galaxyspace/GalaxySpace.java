@@ -52,6 +52,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvLandi
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvLandingPadSingle;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvOxygenStorageModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAssembler;
+import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityEnergyPad;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityFuelGenerator;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGasBurner;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitationModule;
@@ -286,6 +287,7 @@ public class GalaxySpace
     	GameRegistry.registerTileEntity(TileEntityAdvOxygenStorageModule.class, "GS Oxygen Storage Module");
     	GameRegistry.registerTileEntity(TileEntityWindSolarPanel.class, "GS Solar Wind Panel");
     	GameRegistry.registerTileEntity(TileEntityAdvCircuitFabricator.class, "GS Advanced Circuit Fabricator");
+    	GameRegistry.registerTileEntity(TileEntityEnergyPad.class, "GS Energy Pad");
     	GameRegistry.registerTileEntity(TileEntityResearchTable.class, "GS Research Table");
 /*    	
     	GameRegistry.registerTileEntity(TileEntityAdvOxygenSealer.class, "GS Oxygen Sealer");

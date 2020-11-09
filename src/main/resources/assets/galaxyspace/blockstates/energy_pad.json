@@ -1,0 +1,22 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"textures": { 
+			"bottom": "galacticraftcore:blocks/machine_input",
+			"top": "galaxyspace:blocks/overworld/energy_pad_top",
+			"side": "galaxyspace:blocks/overworld/energy_pad_side",
+			"particle": "galaxyspace:blocks/overworld/energy_pad_top"
+		}
+	},
+	"variants": {
+		"status":
+		{
+			"true": 
+			{ 
+				"model" : "galaxyspace:energy_pad", 
+				"textures": { "top": "galaxyspace:blocks/overworld/energy_pad_top_on" }
+			},
+			"false": { "model" : "galaxyspace:energy_pad"}
+		}
+	}
+}

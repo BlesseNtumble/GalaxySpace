@@ -45,6 +45,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockOres;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockSurfaceIce;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockAdvCircuitFabricator;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockAssembler;
+import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockEnergyPad;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockFuelGenerator;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockGasBurner;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockGravitationModule;
@@ -115,6 +116,7 @@ public class GSBlocks {
 	public static final Block SOLARWIND_PANEL = new BlockSolarWindPanel();
 	public static final Block ADVANCED_CIRCUIT_FABRICATOR = new BlockAdvCircuitFabricator();
 	public static final Block RESEARCH_TABLE = new BlockResearchTable();
+	public static final Block ENERGY_PAD = new BlockEnergyPad();
 	
 	public static final Block FAKE_BLOCK = new GSBlockMulti();
 	
@@ -177,6 +179,7 @@ public class GSBlocks {
 		registerBlock(SOLARWIND_PANEL, GSItemBlockDesc.class);
 		registerBlock(ADVANCED_CIRCUIT_FABRICATOR, GSItemBlockDesc.class);
 		registerBlock(PLANET_SHIELD, GSItemBlockDesc.class);
+		registerBlock(ENERGY_PAD, GSItemBlockDesc.class);
 		//registerBlock(RESEARCH_TABLE, GSItemBlockDesc.class);
 		
 		registerBlock(DUNGEON_BLOCKS, ItemBlockDungeonBlocks.class);
@@ -237,7 +240,7 @@ public class GSBlocks {
 		OreDictionary.registerOre("oreAluminum", new ItemStack(MARS_ORES, 1, 5));
 		
 		OreDictionary.registerOre("oreDolomite", new ItemStack(CERES_BLOCKS, 1, 2));
-		OreDictionary.registerOre("oreMeteoricIron", new ItemStack(CERES_BLOCKS, 1, 3));
+		OreDictionary.registerOre("oreMeteroricIron", new ItemStack(CERES_BLOCKS, 1, 3));
 		
 		OreDictionary.registerOre("oreAluminum", new ItemStack(HAUMEA_BLOCKS, 1, 3));
 		
