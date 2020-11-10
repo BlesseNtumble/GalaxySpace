@@ -282,7 +282,7 @@ public class CraftingRecipesOverworld {
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(MarsBlocks.marsBlock, 20, 5), BasicItems.HEMATITE.getItemStack(), null);
 	   RecyclerRecipes.recycling().addNewRecipe(BasicItems.SULFUR.getItemStack(), new ItemStack(Items.GUNPOWDER, 1, 0), new FluidStack(FluidRegistry.getFluid("sulphuricacid"), 20));
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSBlocks.SURFACE_ICE, 1), ItemStack.EMPTY, new FluidStack(FluidRegistry.WATER, 100));
-	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSBlocks.EUROPA_BLOCKS, 1, 2), BasicItems.HEMATITE.getItemStack(), 50, new FluidStack(FluidRegistry.WATER, 100));
+	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSBlocks.EUROPA_BLOCKS, 1, 2), BasicItems.HEMATITE.getItemStack(), 20, new FluidStack(FluidRegistry.WATER, 100));
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSBlocks.MERCURY_BLOCKS, 1, 0), ItemStack.EMPTY, new FluidStack(GSFluids.Helium3, 100));
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSBlocks.MERCURY_BLOCKS, 1, 2), BasicItems.SULFUR.getItemStack(), 35, null);
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(VenusBlocks.venusBlock, 20, 0), new ItemStack(VenusBlocks.venusBlock, 1, 8), 50, null);
