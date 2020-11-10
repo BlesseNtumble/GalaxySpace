@@ -50,12 +50,16 @@ public class TileEntityEnergyPad extends TileBaseElectricBlockWithInventory {
 	@NetworkedField(targetSide = Side.CLIENT)
 	public static int processTicks = 0;
 
+	@NetworkedField(targetSide = Side.CLIENT)
+	public boolean isCollide;
+	
 	public TileEntityEnergyPad() {
 	
 		super("tile.energy_pad.name");
 
 		this.storage.setCapacity(15000);
-		this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 60 : 45);
+		this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 45 : 25);
+		this.storage.setMaxReceive(500F);
 		this.inventory = NonNullList.withSize(1, ItemStack.EMPTY);
     }
 
@@ -70,8 +74,12 @@ public class TileEntityEnergyPad extends TileBaseElectricBlockWithInventory {
 		if (this.canProcess() && !this.disabled) {
 			if (this.hasEnoughEnergyToRun) {
 				//this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 90  : 75);
-                
+				//if (this.world.rand.nextInt(4) == 0) 
+					//this.isCollide = false;
+				
 			}
+			else this.isCollide = false;
+				
 		}
 	}
 	
@@ -79,6 +87,21 @@ public class TileEntityEnergyPad extends TileBaseElectricBlockWithInventory {
     {
     	return true;
     }
+	
+	@Override
+    @Nullable
+    public SPacketUpdateTileEntity getUpdatePacket()    
+    {
+    	NBTTagCompound nbttagcompound = new NBTTagCompound();
+    	writeToNBT(nbttagcompound);
+    	return new SPacketUpdateTileEntity(pos, 1, nbttagcompound);
+    }
+	
+	@Override
+	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
+		super.onDataPacket(net, packet);
+		readFromNBT(packet.getNbtCompound());		
+	}
 	
 	public void smeltItem(EntityPlayer player) {	
 		if(this.hasEnoughEnergyToRun && this.storage.getEnergyStoredGC() > 100D)
@@ -88,7 +111,22 @@ public class TileEntityEnergyPad extends TileBaseElectricBlockWithInventory {
 		
 			for(ItemStack stack : player.inventory.mainInventory)		
 				if(chargeItem(stack, 350D)) break;
+			
 		}
+		isCollide = isCollideTile(player);	
+	}
+	
+	private boolean isCollideTile(@Nullable EntityPlayer player)
+	{		
+		if(player != null && this.hasEnoughEnergyToRun)
+		{
+			double dis = getPos().distanceSqToCenter(player.posX, player.posY, player.posZ);
+			if(player.getPosition().equals(getPos()))			
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 		
 	private boolean chargeItem(ItemStack stack, double count)
@@ -137,6 +175,7 @@ public class TileEntityEnergyPad extends TileBaseElectricBlockWithInventory {
     {
         super.readFromNBT(par1NBTTagCompound);
         this.processTicks = par1NBTTagCompound.getInteger("smeltingTicks");
+        this.isCollide = par1NBTTagCompound.getBoolean("isCollide");
         
         ItemStackHelper.loadAllItems(par1NBTTagCompound, this.getInventory());
     }
@@ -145,7 +184,8 @@ public class TileEntityEnergyPad extends TileBaseElectricBlockWithInventory {
     public NBTTagCompound writeToNBT(NBTTagCompound par1NBTTagCompound)
     {       
     	super.writeToNBT(par1NBTTagCompound);
-        par1NBTTagCompound.setInteger("smeltingTicks", this.processTicks);              
+        par1NBTTagCompound.setInteger("smeltingTicks", this.processTicks);    
+        par1NBTTagCompound.setBoolean("isCollide", this.isCollide);
         ItemStackHelper.saveAllItems(par1NBTTagCompound, this.getInventory());
         
 		return par1NBTTagCompound;

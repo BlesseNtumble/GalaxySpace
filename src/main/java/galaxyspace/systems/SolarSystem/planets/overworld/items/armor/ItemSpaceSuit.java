@@ -427,7 +427,7 @@ public class ItemSpaceSuit extends ItemElectricArmor implements IArmorCorrosionR
 	@Override
 	public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot) {
 		
-		//this.discharge(stack, 5, true);		
+		this.discharge(stack, 5, true);		
 	}
 	
 	@Override

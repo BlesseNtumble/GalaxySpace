@@ -38,6 +38,7 @@ public class EuropaBlocks extends Block implements ISortableBlock{
         this.setUnlocalizedName("europablocks");
         this.setSoundType(SoundType.STONE); 
         this.setHarvestLevel("pickaxe", 2);
+        this.setHardness(0.4F);
     }
 
 	@SideOnly(Side.CLIENT)

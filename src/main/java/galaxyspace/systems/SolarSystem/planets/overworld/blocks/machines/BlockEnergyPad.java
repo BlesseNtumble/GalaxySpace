@@ -84,7 +84,8 @@ public class BlockEnergyPad extends BlockAdvancedTile implements IShiftDescripti
 		{
 			if(entity instanceof EntityPlayer)
 			{
-				TileEntityEnergyPad tile = (TileEntityEnergyPad) world.getTileEntity(pos);   
+				TileEntityEnergyPad tile = (TileEntityEnergyPad) world.getTileEntity(pos);
+				
 				EntityPlayer player = (EntityPlayer) entity;
 				if(tile.hasEnoughEnergyToRun)
 					for(int i = 0; i < 5; i++)
@@ -98,7 +99,7 @@ public class BlockEnergyPad extends BlockAdvancedTile implements IShiftDescripti
 				TileEntityEnergyPad tile = (TileEntityEnergyPad) world.getTileEntity(pos);    
 				EntityPlayer player = (EntityPlayer) entity;
 				
-				tile.smeltItem(player);				
+				tile.smeltItem(player);			
 			}
 		}
     }
@@ -106,7 +107,7 @@ public class BlockEnergyPad extends BlockAdvancedTile implements IShiftDescripti
 	@Override
     public boolean onMachineActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        playerIn.openGui(GalaxySpace.instance, -1, world, pos.getX(), pos.getY(), pos.getZ());
+        //playerIn.openGui(GalaxySpace.instance, -1, world, pos.getX(), pos.getY(), pos.getZ());
         return true;
     }
 	
@@ -163,7 +164,8 @@ public class BlockEnergyPad extends BlockAdvancedTile implements IShiftDescripti
         TileEntity tile = worldIn.getTileEntity(pos);        
         
         if(tile != null) {
-        	boolean energyLevel = ((TileEntityEnergyPad) tile).hasEnoughEnergyToRun;
+			
+        	boolean energyLevel = ((TileEntityEnergyPad) tile).isCollide;
         	return state.withProperty(STATUS, energyLevel);
         }
         return state;

@@ -269,7 +269,7 @@ public class SolarSystemBodies implements IBodies{
 		europaJupiter = BodiesRegistry.registerExMoon(planetJupiter, "europa", GalaxySpace.ASSET_PREFIX, 15F);
 		BodiesRegistry.setOrbitData(europaJupiter, (float)Math.PI, 0.0017F, 100F);
 		BodiesRegistry.setAtmosphere(europaJupiter, false, false, false, -2.0F, 0.0F, 0.0F);
-		BodiesRegistry.setPlanetData(europaJupiter, 0F, 58000L, 0.062F, true);
+		BodiesRegistry.setPlanetData(europaJupiter, 0.2F, 0F, 58000L, 0.062F, true);
 		BodiesRegistry.setProviderData(europaJupiter, WorldProviderEuropa_WE.class, GSConfigDimensions.dimensionIDEuropa, 4);
 		GalaxyRegistry.registerMoon(europaJupiter);
 		
@@ -390,9 +390,10 @@ public class SolarSystemBodies implements IBodies{
     	// TODO Rings ---------------------------------
 		VenusModule.planetVenus.setRelativeDistanceFromCenter(new CelestialBody.ScalableDistance(0.745F, 0.74F)).setRingColorRGB(0.0F, 0.4F, 0.9F);
 		GalacticraftCore.satelliteSpaceStation.setRingColorRGB(0.0F, 0.4F, 0.9F);	
+		GalacticraftCore.planetOverworld.setRingColorRGB(0.0F, 1.1F, 0.0F);
 		GalacticraftCore.moonMoon.setRingColorRGB(0.0F, 0.4F, 0.9F);	
 		MarsModule.planetMars.setRingColorRGB(0.0F, 0.4F, 0.9F);
-		if(GSConfigCore.enableWorldEngine && GSConfigCore.enableGSMars) {
+		if(GSConfigCore.enableWorldEngine && GSConfigCore.enableMarsWorldEngine) {
 			MarsModule.planetMars.setDimensionInfo(ConfigManagerMars.dimensionIDMars, WorldProviderMars_WE.class, true);
 			MarsModule.planetMars.setAtmosphere(new AtmosphereInfo(false, false, false, -2.0F, 1.0F, 0.1F));
 			MarsModule.planetMars.atmosphereComponent(EnumAtmosphericGas.CO2).atmosphereComponent(EnumAtmosphericGas.ARGON).atmosphereComponent(EnumAtmosphericGas.NITROGEN);
@@ -547,7 +548,7 @@ public class SolarSystemBodies implements IBodies{
 	
 		GalacticraftRegistry.registerTeleportType(WorldProviderMercury.class, new TeleportTypeMercury());	
 		
-		if(GSConfigCore.enableWorldEngine && GSConfigCore.enableGSMars)
+		if(GSConfigCore.enableWorldEngine && GSConfigCore.enableMarsWorldEngine)
 			GalacticraftRegistry.registerTeleportType(WorldProviderMars_WE.class, new TeleportTypeMars());
 		
 		

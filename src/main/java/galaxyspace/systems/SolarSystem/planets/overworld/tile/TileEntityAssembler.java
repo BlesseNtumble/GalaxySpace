@@ -370,57 +370,74 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements ISided
         return false;
     }
 
+
     @Override
     public int[] getSlotsForFace(EnumFacing side)
     {
-    	if (side == EnumFacing.DOWN)
+        if (side == EnumFacing.DOWN)
         {
             return new int[] { 1 };
         }
-    	
-    	int[] slots = new int[] { 6, 7, 8, 9, 10, 11, 12, 13, 14 };
-    	ArrayList<Integer> removeSlots = new ArrayList();
-    	
-    	for (int i = 6; i < 14; i++)
-    	{
-			if (removeSlots.contains(i)) continue;
-			
-    		ItemStack stack1 = this.getStackInSlot(i);
-    		if (stack1.isEmpty()) continue;
-    		
-    		for (int j = i + 1; j < 11; j++)
-    		{
-    			if (removeSlots.contains(j)) continue;
-    			
-    			ItemStack stack2 = this.getStackInSlot(j);
-    			if (stack2.isEmpty()) continue;
-    			
-    			if (stack1.isItemEqual(stack2))
-    			{
-    				if (stack2.getCount() >= stack1.getCount())
-    					removeSlots.add(j);
-    				else
-    					removeSlots.add(i);
-    				break;
-    			}
-    		}
-    	}
-    	
-    	if (removeSlots.size() > 0)
-    	{
-    		int[] returnSlots = new int[slots.length - removeSlots.size()];
-        	int j = 0;
-        	for (int i = 0; i < slots.length; i++)
-        	{
-    			if (i > 0 && removeSlots.contains(slots[i])) { continue; }
-    			returnSlots[j] = slots[i];
-    			j++;    			
-        	}
-        	
-        	return returnSlots;
-    	}
-    	
-    	return slots;
+        int[] slots = new int[] { 0, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        ArrayList<Integer> removeSlots = new ArrayList<>();
+
+        for (int i = 2; i < 11; i++)
+        {
+            if (removeSlots.contains(i))
+            {
+                continue;
+            }
+            ItemStack stack1 = this.getStackInSlot(i);
+            if (stack1.isEmpty())
+            {
+                continue;
+            }
+
+            for (int j = i + 1; j < 11; j++)
+            {
+                if (removeSlots.contains(j))
+                {
+                    continue;
+                }
+                ItemStack stack2 = this.getStackInSlot(j);
+                if (stack2.isEmpty())
+                {
+                    continue;
+                }
+
+                if (stack1.isItemEqual(stack2))
+                {
+                    if (stack2.getCount() >= stack1.getCount())
+                    {
+                        removeSlots.add(j);
+                    }
+                    else
+                    {
+                        removeSlots.add(i);
+                    }
+                    break;
+                }
+            }
+        }
+
+        if (removeSlots.size() > 0)
+        {
+            int[] returnSlots = new int[slots.length - removeSlots.size()];
+            int j = 0;
+            for (int i = 0; i < slots.length; i++)
+            {
+                if (i > 0 && removeSlots.contains(slots[i]))
+                {
+                    continue;
+                }
+                returnSlots[j] = slots[i];
+                j++;
+            }
+
+            return returnSlots;
+        }
+
+        return slots;
     }
 
     @Override
