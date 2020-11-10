@@ -721,7 +721,7 @@ public class GSEventHandler {
 	@SubscribeEvent
     public void onPlanetDecorated(GCCoreEventPopulate.Post event)
     {
-		if(event.world.provider instanceof WorldProviderMars || event.world.provider instanceof WorldProviderMars_WE)
+		if(GSConfigCore.enableMarsNewOres && (event.world.provider instanceof WorldProviderMars || event.world.provider instanceof WorldProviderMars_WE))
 		{
 			genOre(event.world, event.pos, new WorldGenMinableMeta(GSBlocks.MARS_ORES, 4, 0, true, MarsBlocks.marsBlock, 9), 6, 4, 18);	//diamond		
 			genOre(event.world, event.pos, new WorldGenMinableMeta(GSBlocks.MARS_ORES, 6, 1, true, MarsBlocks.marsBlock, 9), 10, 6, 30); //gold
@@ -775,19 +775,22 @@ public class GSEventHandler {
 			World world = player.getEntityWorld();
 			float level = event.getPressureLevel();
 			
-			if(!player.capabilities.isCreativeMode && GSConfigCore.enablePressureSystem)
+			if(!player.capabilities.isCreativeMode)
         	{
-				if(!AsmodeusEvent.getPressureArmor(player) && !this.getProtectArmor(player))
-	        	{
-	        		if(!this.inGravityZone(world, player, true)) 
-        			{	        
-	        			
-	        			if(player.ticksExisted % 50 == 0) {
+				if(!GSConfigCore.enablePressureSystem)
+					event.setCanceled(true);
+				
+				if(this.getProtectArmor(player))
+					event.setCanceled(true);
+	        	
+	        	if(this.inGravityZone(world, player, true)) 
+	        		event.setCanceled(true);
+	        		/*	if(player.ticksExisted % 50 == 0) {
 		        			if(level > 10) player.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 10*20));					       
 					        if(level > 35) player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 10*20));
 					        if(level > 25) player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 280, 4));		        			
 		        			if(level > 45) player.attackEntityFrom(GSDamageSource.pressure, 2.5F);
-	        			}	        			
+	        			}	*/        			
 	        			
 				        /*
 				        if(GSConfigCore.enableHardMode)
@@ -803,8 +806,8 @@ public class GSEventHandler {
 		        				player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 280, 4));
 		        			} 				        				        				
 		        		}*/
-        			}	        		
-	        	}	
+        				        		
+	        	
         	}
 		}
 	}

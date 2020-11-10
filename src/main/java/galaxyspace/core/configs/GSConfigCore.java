@@ -33,7 +33,8 @@ public class GSConfigCore
     public static boolean enableDungeonsGeneration;
     public static boolean enableNewMenu;
     public static boolean enableSkyOverworld;
-    public static boolean enableGSMars;
+    public static boolean enableMarsWorldEngine;
+    public static boolean enableMarsNewOres;
     public static boolean enableOverworldOres;
 
     public static int idSolarRadiation = 29;
@@ -146,11 +147,17 @@ public class GSConfigCore
             enableMethaneParticle = prop.getBoolean(true);
             propOrder.add(prop.getName());   
             
-            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "enableGSMars", true);
-            prop.setComment("Enable/Disable Mars with new generations.");
-            prop.setLanguageKey("gc.configgui.enableGCMars").setRequiresMcRestart(true);
-            enableGSMars = prop.getBoolean(true);
-            propOrder.add(prop.getName());     
+            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "enableMarsNewOres", true);
+            prop.setComment("Enable/Disable New Mars oregen (diamonds, coal, gold, etc).");
+            prop.setLanguageKey("gc.configgui.enableMarsNewOres").setRequiresMcRestart(true);
+            enableMarsNewOres = prop.getBoolean(true);
+            propOrder.add(prop.getName());    
+            
+            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "enableMarsWorldEngine", true);
+            prop.setComment("Enable/Disable New Mars worldgen (WE).");
+            prop.setLanguageKey("gc.configgui.enableMarsWorldEngine").setRequiresMcRestart(true);
+            enableMarsWorldEngine = prop.getBoolean(true);
+            propOrder.add(prop.getName());  
             /*
             prop = config.get(Constants.CONFIG_CATEGORY_WORLDGEN, "Other mods ores for GC to generate on GS planets", new String [] { });
             prop.setComment("Enter IDs of other mods' ores here for Galacticraft to generate them on GalaxySpace planets. Format is BlockName or BlockName:metadata. Use optional parameters at end of each line: /RARE /UNCOMMON or /COMMON for rarity in a chunk; /DEEP /SHALLOW or /BOTH for height; /SINGLE /STANDARD or /LARGE for clump size; /XTRARANDOM for ores sometimes there sometimes not at all.  /ONLYMOON or /ONLYMARS if wanted on one planet only.  If nothing specified, defaults are /COMMON, /BOTH and /STANDARD.  Repeat lines to generate a huge quantity of ores.");
