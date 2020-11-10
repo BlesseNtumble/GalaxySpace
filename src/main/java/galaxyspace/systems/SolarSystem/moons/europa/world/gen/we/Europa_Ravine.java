@@ -15,6 +15,7 @@ import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedEnderman;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSkeleton;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSpider;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedZombie;
+import micdoodle8.mods.galacticraft.core.world.gen.WorldGenMinableMeta;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -32,7 +33,7 @@ public class Europa_Ravine extends WE_Biome {
 		biomePersistence        =   1.2D;
 		biomeNumberOfOctaves    =      4;
 		biomeScaleX             = 280.0D;
-		biomeScaleY             =   1.7D;
+		biomeScaleY             =   1.5D;
 		biomeSurfaceHeight      =     70;
 		biomeInterpolateQuality =     2;
 		
@@ -44,8 +45,10 @@ public class Europa_Ravine extends WE_Biome {
 		spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEvolvedColdBlaze.class, 10, 1, 4));
 		
 		WE_BiomeLayer layer = new WE_BiomeLayer();
-		layer.add(Blocks.PACKED_ICE.getDefaultState(), tg.worldStoneBlock, -256, 0,   65, -6,  true);
-		layer.add(Blocks.PACKED_ICE.getDefaultState(), Blocks.PACKED_ICE.getDefaultState(), -256, 0,   -2, -1,  true);
+		layer.add(Blocks.PACKED_ICE.getDefaultState(), tg.worldStoneBlock, -256, 0, -15, -3,  true);
+		layer.add(Blocks.WATER.getDefaultState(), tg.worldStoneBlock, -256, 0,  -63, 0,  true);
+		
+		//layer.add(Blocks.PACKED_ICE.getDefaultState(), Blocks.PACKED_ICE.getDefaultState(), -256, 0,   -2, -1,  true);
 		layer.add(Blocks.BEDROCK.getDefaultState(), 0, 2, 0, 0, true);
 		
 		
@@ -59,21 +62,30 @@ public class Europa_Ravine extends WE_Biome {
 		int randPosY;
 		int randPosZ;
 
-		for (int i = 0; i < 30; i++) {
+		for (int i = 0; i < 12; i++) {
 			 
 	        randPosX = x + rand.nextInt(16);
 	        //randPosY = rand.nextInt(120);
 	        randPosZ = z + rand.nextInt(16);
 	        BlockPos pos = world.getHeight(new BlockPos(randPosX, 0, randPosZ));
 	    	if(world.isAreaLoaded(pos, 13, false) && world.isAirBlock(pos.up())) {
-	    		new WorldGenMinable(GSBlocks.SURFACE_ICE.getDefaultState().withProperty(BlockSurfaceIce.BASIC_TYPE, BlockSurfaceIce.EnumBlockIce.DRY_ICE), 35,
+	    		new WorldGenMinable(GSBlocks.SURFACE_ICE.getDefaultState().withProperty(BlockSurfaceIce.BASIC_TYPE, BlockSurfaceIce.EnumBlockIce.DRY_ICE), 25,
 	    				new BlockPredicate(
 	    						Blocks.PACKED_ICE.getDefaultState()
 	    				)).generate(world, rand, pos);
 	    	}
     	}
 		
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 12; i++) {
+    		randPosX = x + rand.nextInt(16);
+	        randPosY = rand.nextInt(110);
+	        randPosZ = z + rand.nextInt(16);
+	        BlockPos pos = new BlockPos(randPosX, randPosY, randPosZ);
+	        
+	        new WorldGenMinableMeta(GSBlocks.EUROPA_BLOCKS, 30, 2, true, Blocks.PACKED_ICE, 0).generate(world, rand, pos);
+		}
+		
+		if(world.rand.nextInt(3) == 0) {
     		randPosX = x + rand.nextInt(16) + 8;
 	        //randPosY = rand.nextInt(120);
 	        randPosZ = z + rand.nextInt(16) + 8;
@@ -83,9 +95,24 @@ public class Europa_Ravine extends WE_Biome {
 	        
 	        if (world.getBlockState(pos.down()) == Blocks.PACKED_ICE.getDefaultState() && world.isAirBlock(pos))
 	        {	        	
-	        	//or(BlockPos pos1 : pos.getAllInBox(1, 0, 1, -1, 0, -1))
-	        		//world.setBlockState(pos1, Blocks.BEDROCK.getDefaultState(), 2);
+	        	boolean check = true;
+	        	pos = pos.down();
 	        	
+	        	for(BlockPos pos1 : pos.getAllInBox(pos.add(-1, 0, -1), pos.add(1, 0, 1)))
+	        		if(world.isAirBlock(pos1)) {
+	        			check = false;
+	        			break;
+	        		}
+	        	
+	        	if(check) {
+	        		world.setBlockState(pos, GSBlocks.EUROPA_UWGEYSER.getDefaultState());
+	        		
+	        		for(int i = 1; i < 15; i++)
+	        			world.setBlockState(pos.down(i), Blocks.WATER.getDefaultState());
+	        		 
+	        	}
+	        			
+	        
 	        	//world.setBlockState(pos.down(), GSBlocks.EUROPA_UWGEYSER.getDefaultState(), 2);	  
 	        }
     	}

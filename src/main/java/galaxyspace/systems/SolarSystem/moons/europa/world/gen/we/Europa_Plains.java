@@ -41,8 +41,12 @@ public class Europa_Plains extends WE_Biome {
 		spawnableMonsterList.add(new Biome.SpawnListEntry(EntityEvolvedColdBlaze.class, 10, 1, 4));
 		
 		WE_BiomeLayer layer = new WE_BiomeLayer();
-		layer.add(Blocks.PACKED_ICE.getDefaultState(), tg.worldStoneBlock, -256, 0,   65, -6,  true);
+		
+		layer.add(Blocks.PACKED_ICE.getDefaultState(), tg.worldStoneBlock, -256, 0, -55, -1,  true);
+		
 		layer.add(GSBlocks.SURFACE_ICE.getStateFromMeta(4), Blocks.PACKED_ICE.getDefaultState(), -256, 0,   -2, -1,  true);
+			
+		layer.add(Blocks.WATER.getDefaultState(), tg.worldStoneBlock, -256, 0,  -100, 0,  true);
 		layer.add(Blocks.BEDROCK.getDefaultState(), 0, 2, 0, 0, true);
 		
 		

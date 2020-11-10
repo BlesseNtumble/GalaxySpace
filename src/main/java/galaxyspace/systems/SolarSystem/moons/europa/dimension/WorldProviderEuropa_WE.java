@@ -5,6 +5,7 @@ import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderS
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_OreGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
 import galaxyspace.core.GSBlocks;
 import galaxyspace.core.prefab.world.gen.we.biomes.WE_BaseBiome;
@@ -160,20 +161,19 @@ public class WorldProviderEuropa_WE extends WE_WorldProviderSpace {
 		WE_Biome.setBiomeMap(cp, 1.0D, 4, 1300.0D, 6.0D);
 		
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
-		terrainGenerator.worldStoneBlock = Blocks.WATER.getDefaultState();
+		terrainGenerator.worldStoneBlock = GSBlocks.EUROPA_BLOCKS.getStateFromMeta(1);
 		terrainGenerator.worldSeaGen = false;
 		terrainGenerator.worldSeaGenMaxY = 64;
 		cp.createChunkGen_List.add(terrainGenerator);
 		
-
-		WE_BiomeLayer layer = new WE_BiomeLayer();
-		layer.add(Blocks.PACKED_ICE.getDefaultState(), terrainGenerator.worldStoneBlock, -256, 0,   65, -6,  true);
-		layer.add(GSBlocks.SURFACE_ICE.getStateFromMeta(4), Blocks.PACKED_ICE.getDefaultState(), -256, 0,   -2, -1,  true);
-		layer.add(Blocks.BEDROCK.getDefaultState(), 0, 2, 0, 0, true);
-		
+		WE_OreGen standardOres = new WE_OreGen();
+		standardOres.add(GSBlocks.EUROPA_BLOCKS.getStateFromMeta(3), terrainGenerator.worldStoneBlock, 2, 1, 8, 4);
+		standardOres.add(GSBlocks.EUROPA_BLOCKS.getStateFromMeta(4), terrainGenerator.worldStoneBlock, 6, 1, 25, 6);
+		standardOres.add(GSBlocks.EUROPA_BLOCKS.getStateFromMeta(5), terrainGenerator.worldStoneBlock, 8, 1, 45, 8);
+		cp.decorateChunkGen_List.add(standardOres);
 		
 		WE_Biome.addBiomeToGeneration(cp, new Europa_Ravine(terrainGenerator));
-		WE_Biome.addBiomeToGeneration(cp, new Europa_Plains(terrainGenerator, 0.4D));
+		WE_Biome.addBiomeToGeneration(cp, new Europa_Plains(terrainGenerator, 0.35D));
 		WE_Biome.addBiomeToGeneration(cp, new Europa_HillPlains(terrainGenerator, 1.0D));
 		WE_Biome.addBiomeToGeneration(cp, new Europa_Spikes(terrainGenerator));
 		WE_Biome.addBiomeToGeneration(cp, new Europa_Plains(terrainGenerator, 5.0D));
