@@ -143,7 +143,7 @@ public class GSGuiHandler implements IGuiHandler{
         	
         	else if (tile instanceof TileEntityResearchTable)
         		return new ContainerResearchTable(player.inventory, (TileEntityResearchTable) tile);
-        	
+
         }
        
         
@@ -221,8 +221,8 @@ public class GSGuiHandler implements IGuiHandler{
         		return new GuiAdvCircuitFabricator(player.inventory, (TileEntityAdvCircuitFabricator) tile);
         	
         	else if (tile instanceof TileEntityResearchTable)            
-        		return new GuiResearchTable(player.inventory, (TileEntityResearchTable) tile);
-        	
+        		return new GuiResearchTable(player.inventory, (TileEntityResearchTable) tile);        	
+
         }
         return null;
     }

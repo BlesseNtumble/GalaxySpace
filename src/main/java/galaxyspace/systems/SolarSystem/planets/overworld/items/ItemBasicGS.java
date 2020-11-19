@@ -1,5 +1,6 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.items;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -23,8 +24,12 @@ import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import micdoodle8.mods.galacticraft.planets.asteroids.tile.TileEntityShortRangeTelepad;
 import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFence;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,17 +38,23 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagDouble;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -206,7 +217,9 @@ public class ItemBasicGS extends Item implements ISortableItem{
     public String getUnlocalizedName(ItemStack stack)
     {
     	if(stack.getItemDamage() == BasicItems.THERMAL_CLOTH_T3.getMeta() || stack.getItemDamage() == BasicItems.THERMAL_CLOTH_T4.getMeta()) return "item.thermal_cloth";
-    	return "item." + BasicItems.values()[stack.getItemDamage()].getName();
+    	
+    	int meta = stack.getItemDamage() > BasicItems.values().length-1 ? 0 : stack.getItemDamage();
+    	return "item." + BasicItems.values()[meta].getName();
     }
 
     @Override
@@ -384,7 +397,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
 		}
 		return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
 	}
-
+	
 	public static Object[] getColonistKitRecipe()
 	{
 		ItemStack[] stacks = new ItemStack[] {

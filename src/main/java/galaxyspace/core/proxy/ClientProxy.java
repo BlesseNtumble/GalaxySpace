@@ -20,6 +20,7 @@ import galaxyspace.core.client.GSKeyHandlerClient;
 import galaxyspace.core.client.fx.GSEffectHandler;
 import galaxyspace.core.client.models.BakedModelBrightFour;
 import galaxyspace.core.client.models.BakedModelFullbright;
+import galaxyspace.core.client.render.entity.RenderAstroWolf;
 import galaxyspace.core.client.render.entity.RenderCargoRockets;
 import galaxyspace.core.client.render.entity.RenderEvolvedColdBlaze;
 import galaxyspace.core.client.render.entity.RenderIceSpike;
@@ -34,6 +35,7 @@ import galaxyspace.core.events.GSClientTickHandler;
 import galaxyspace.core.handler.GSMapHandler;
 import galaxyspace.core.handler.GSSkyProviderHandler;
 import galaxyspace.core.prefab.blocks.DungeonBlocks;
+import galaxyspace.core.prefab.entities.EntityAstroWolf;
 import galaxyspace.core.prefab.entities.EntityCustomCargoRocket;
 import galaxyspace.core.prefab.entities.EntityEvolvedColdBlaze;
 import galaxyspace.core.prefab.entities.EntityIceSpike;
@@ -729,6 +731,7 @@ public class ClientProxy extends CommonProxy{
 		RenderingRegistry.registerEntityRenderingHandler(EntityEvolvedColdBlaze.class, (RenderManager manager) -> new RenderEvolvedColdBlaze(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBossGhast.class, (RenderManager manager) -> new RenderBossGhast(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityMarsRover.class, (RenderManager manager) -> new RenderMarsRover(manager));
+		RenderingRegistry.registerEntityRenderingHandler(EntityAstroWolf.class, (RenderManager manager) -> new RenderAstroWolf(manager));
 		
 		//RenderingRegistry.registerEntityRenderingHandler(EntityLaserBeam.class, (RenderManager manager) -> new RenderLaserBeam(manager));	
     }

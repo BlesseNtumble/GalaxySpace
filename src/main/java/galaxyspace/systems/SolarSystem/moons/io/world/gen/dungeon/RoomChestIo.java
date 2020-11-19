@@ -35,15 +35,15 @@ public class RoomChestIo extends RoomEmptyIo{
 	public boolean addComponentParts(World worldIn, Random rand, StructureBoundingBox boundingBox) {
 		if (super.addComponentParts(worldIn, rand, boundingBox)) {
 			int chestX = this.sizeX / 2;
-			int chestY = 3;
+			int chestY = 1;
 			int chestZ = this.sizeZ / 2;
 			
 
 			for(int x = -2; x < 3; x++)
 				for(int z = -2; z < 3; z++)
 				{
-					if((x == -3 || x == 2) && (z == -3 || z == 2))
-						this.setBlockState(worldIn, Blocks.PACKED_ICE.getDefaultState(), chestX + x, 1, chestZ + z, boundingBox);
+					//if((x == -3 || x == 2) && (z == -3 || z == 2))
+						//this.setBlockState(worldIn, Blocks.PACKED_ICE.getDefaultState(), chestX + x, 1, chestZ + z, boundingBox);
 					
 					/*for(int y = 0; y < 2; y++) {
 						if(x % 2 != 0 && z % 2 != 0) 
@@ -73,14 +73,14 @@ public class RoomChestIo extends RoomEmptyIo{
 				}
 				chest.setLootTable(chesttype, rand.nextLong());
 			}
-			
+			/*
 			this.setBlockState(worldIn, Blocks.MOB_SPAWNER.getDefaultState(), chestX, chestY - 1, chestZ, boundingBox);
-			TileEntityMobSpawner spawner = (TileEntityMobSpawner) worldIn.getTileEntity(blockpos.up());
+			TileEntityMobSpawner spawner = (TileEntityMobSpawner) worldIn.getTileEntity(new BlockPos(chestX, chestY - 1, chestZ));
 			  
 			if (spawner != null)
             {
                 spawner.getSpawnerBaseLogic().setEntityId(getMob(rand));
-            }
+            }*/
 			
 			return true;
 		}

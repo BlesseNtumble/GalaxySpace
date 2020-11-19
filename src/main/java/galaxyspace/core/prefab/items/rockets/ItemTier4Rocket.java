@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import asmodeuscore.core.astronomy.SpaceData.Engine_Type;
 import galaxyspace.api.item.IModificationItem;
+import galaxyspace.core.GSBlocks;
 import galaxyspace.core.prefab.entities.EntityTier4Rocket;
 import galaxyspace.core.prefab.items.modules.ItemModule;
 import galaxyspace.core.util.GSCreativeTabs;
@@ -13,6 +14,7 @@ import galaxyspace.core.util.GSUtils.Module_Type;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.modules.IonEngine;
 import micdoodle8.mods.galacticraft.api.entity.IRocketType.EnumRocketType;
 import micdoodle8.mods.galacticraft.api.item.IHoldableItem;
+import micdoodle8.mods.galacticraft.api.tile.IFuelDock;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCFluids;
 import micdoodle8.mods.galacticraft.core.items.ISortableItem;
@@ -93,7 +95,7 @@ public class ItemTier4Rocket extends Item implements IHoldableItem, ISortableIte
                     final Block id = state.getBlock();
                     int meta = id.getMetaFromState(state);
 
-                    if (id == GCBlocks.landingPadFull && meta == 0)
+                    if (id == GCBlocks.landingPadFull && meta == 0 || id == GSBlocks.ADVANCED_LANDING_PAD && meta == 0)
                     {
                         padFound = true;
                         tile = worldIn.getTileEntity(pos1);
@@ -215,9 +217,9 @@ public class ItemTier4Rocket extends Item implements IHoldableItem, ISortableIte
     public static boolean placeRocketOnPad(ItemStack stack, World worldIn, TileEntity tile, float centerX, float centerY, float centerZ)
     {
         //Check whether there is already a rocket on the pad
-        if (tile instanceof TileEntityLandingPad)
+        if (tile instanceof IFuelDock)
         {
-            if (((TileEntityLandingPad) tile).getDockedEntity() != null)
+            if (((IFuelDock) tile).getDockedEntity() != null)
             {
                 return false;
             }

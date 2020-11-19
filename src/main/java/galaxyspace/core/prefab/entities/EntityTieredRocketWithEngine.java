@@ -279,7 +279,7 @@ public abstract class EntityTieredRocketWithEngine extends EntityTieredRocket im
     @Override
     public boolean isDockValid(IFuelDock dock)
     {
-        return dock instanceof TileEntityLandingPad;
+        return dock instanceof IFuelDock;
     }
     
     @Override
