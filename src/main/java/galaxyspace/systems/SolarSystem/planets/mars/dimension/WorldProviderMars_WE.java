@@ -85,7 +85,7 @@ public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProv
     public Vector3 getFogColor()
     {
         float f = 1.0F - this.getStarBrightness(1.0F);
-        return new Vector3(210F / 255F * f, 120F / 255F * f, 59F / 255F * f);        
+        return new Vector3(210F / 255F * f, 170F / 255F * f, 129F / 255F * f);        
     }
 
     @Override
