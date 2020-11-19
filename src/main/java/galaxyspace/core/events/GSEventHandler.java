@@ -26,6 +26,7 @@ import galaxyspace.core.handler.capabilities.GSStatsCapability;
 import galaxyspace.core.handler.capabilities.StatsCapability;
 import galaxyspace.core.network.packet.GSPacketSimple;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
+import galaxyspace.core.prefab.entities.EntityAstroWolf;
 import galaxyspace.core.prefab.items.rockets.ItemTier4Rocket;
 import galaxyspace.core.prefab.items.rockets.ItemTier5Rocket;
 import galaxyspace.core.prefab.items.rockets.ItemTier6Rocket;
@@ -56,6 +57,8 @@ import micdoodle8.mods.galacticraft.api.vector.BlockVec3Dim;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
+import micdoodle8.mods.galacticraft.core.GCItems;
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.entities.EntityLanderBase;
 import micdoodle8.mods.galacticraft.core.entities.EntityMeteor;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler;
@@ -63,6 +66,7 @@ import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler.EnumMod
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler.ThermalArmorEvent;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
 import micdoodle8.mods.galacticraft.core.items.ItemTier1Rocket;
+import micdoodle8.mods.galacticraft.core.tile.TileEntityFuelLoader;
 import micdoodle8.mods.galacticraft.core.util.CompatibilityManager;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
@@ -75,11 +79,14 @@ import micdoodle8.mods.galacticraft.planets.asteroids.items.ItemTier3Rocket;
 import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import micdoodle8.mods.galacticraft.planets.mars.dimension.WorldProviderMars;
 import micdoodle8.mods.galacticraft.planets.mars.items.ItemTier2Rocket;
+import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityLaunchController;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
@@ -118,6 +125,7 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -362,6 +370,10 @@ public class GSEventHandler {
 				}
 			}
 			
+			if (GalacticraftCore.isPlanetsLoaded && world.getTileEntity(event.getPos()) instanceof TileEntityFuelLoader) {
+				TileEntityFuelLoader tile = (TileEntityFuelLoader) world.getTileEntity(event.getPos());
+				System.out.println(tile.attachedFuelable);
+			}
 			//ICE BUCKET
 			if(block == Blocks.ICE && stack.getItem() == Items.BUCKET)
 			{				
@@ -440,9 +452,39 @@ public class GSEventHandler {
 		}
 	}
 
+	@SubscribeEvent
+	public void onEntityInteract(PlayerInteractEvent.EntityInteract event)
+	{
+		EntityPlayer player = event.getEntityPlayer();
+		
+		if(!event.getWorld().isRemote) {
+			
+			ItemStack stack = event.getItemStack();
+			//if(stack.isItemEqual(ItemBasicGS.BasicItems.ANIMAL_CELL.getItemStack()))
+			//{
+				//stack.setTagCompound(new NBTTagCompound());				
+			//}
+				
+			if(event.getTarget() instanceof EntityWolf && !(event.getTarget() instanceof EntityAstroWolf))
+			{
+				EntityWolf wolf = (EntityWolf) event.getTarget();
+				if(wolf.isTamed() && event.getItemStack().getItem() == GCItems.oxMask)
+				{
+					EntityAstroWolf astrowolf = new EntityAstroWolf(wolf.getEntityWorld());
+					astrowolf.setOwnerId(wolf.getOwnerId());
+					astrowolf.setTamed(wolf.isTamed());
+					astrowolf.setAngry(wolf.isAngry());
+					astrowolf.setHealth(wolf.getHealth());
+					astrowolf.setPositionAndRotation(wolf.posX, wolf.posY, wolf.posZ, wolf.rotationYaw, wolf.rotationPitch);		
+					event.getTarget().setDead();
+					event.getWorld().spawnEntity(astrowolf);
+				}
+			}
+		}
+	}
 	
 	@SubscribeEvent
-	public void onEntityInteract(PlayerInteractEvent event)
+	public void onInteract(PlayerInteractEvent event)
 	{
 		World world = event.getWorld();
 		if (world == null) {
