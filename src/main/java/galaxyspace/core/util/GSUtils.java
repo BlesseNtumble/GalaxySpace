@@ -14,6 +14,7 @@ import java.util.List;
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.GSFluids;
 import galaxyspace.core.GSItems;
+import galaxyspace.core.client.gui.entity.GuiAstroWolfInventory;
 import galaxyspace.core.network.packet.GSPacketSimple;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
 import galaxyspace.core.prefab.entities.EntityAstroWolf;
@@ -52,6 +53,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
@@ -67,6 +69,8 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.relauncher.Side;
 
 public class GSUtils {
 	
@@ -786,15 +790,27 @@ public class GSUtils {
         return ItemStack.EMPTY;
     }
 	
-	public static void openAstroWolfInventory(EntityPlayerMP player, EntityAstroWolf wolf) {
-    	player.getNextWindowId();
-        player.closeContainer();
-        int windowId = player.currentWindowId;
-        
-        //GalaxySpace.proxy.openAstroWolfGUI(player, wolf);
-        //GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_OPEN_CUSTOM_GUI, GCCoreUtil.getDimensionID(player.world), new Object[] { windowId, 0, wolf.getEntityId() }), player);
-        player.openContainer = new ContainerAstroWolf(player.inventory, wolf, player);
-        player.openContainer.windowId = windowId;
-        player.openContainer.addListener(player);
+	public static void openAstroWolfInventory(EntityPlayer player, EntityAstroWolf wolf) {
+		if(player instanceof EntityPlayerMP) {
+			EntityPlayerMP playerMP = (EntityPlayerMP)player;
+			ContainerAstroWolf cont = new ContainerAstroWolf(player.inventory, wolf, player);
+			if(cont != null) {
+				playerMP.getNextWindowId();
+				playerMP.closeContainer();
+				
+				int windowId = playerMP.currentWindowId;
+				int wolfId = wolf.getEntityId();
+				
+				GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_OPEN_ASTRO_WOLF_GUI, GCCoreUtil.getDimensionID(playerMP.world), new Object[] { windowId, wolfId }), playerMP);
+			
+				playerMP.openContainer = cont;
+				playerMP.openContainer.windowId = windowId;
+				playerMP.openContainer.addListener(playerMP);
+				
+			}
+		} else if(FMLCommonHandler.instance().getSide().equals(Side.CLIENT)) {
+			GuiAstroWolfInventory gui = new GuiAstroWolfInventory(player, wolf);
+			FMLCommonHandler.instance().showGuiScreen(gui);
+		}
     }
 }

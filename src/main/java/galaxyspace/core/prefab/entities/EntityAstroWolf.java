@@ -44,12 +44,8 @@ public class EntityAstroWolf extends EntityWolf implements IEntityBreathable {
 		System.out.println(this.wolfInventory.getStackInSlot(0));
 		
 		if(player.isSneaking()) {
-			if (player == this.getOwner() && this.isTamed() && world.isRemote)	{			
-				//GSUtils.openAstroWolfInventory((EntityPlayerMP) player, this);
-				//GalaxySpace.proxy.openAstroWolfGUI(player, this);
-				//Minecraft.getMinecraft().displayGuiScreen(new GuiAstroWolfInventory(player, this));
-				
-				GalaxySpace.packetPipeline.sendToServer(new GSPacketSimple(GSEnumSimplePacket.S_OPEN_ASTRO_WOLF_INV, GCCoreUtil.getDimensionID(this.world), new Object[] { this.getEntityId() }));
+			if (player == this.getOwner() && this.isTamed() && !world.isRemote)	{
+				GSUtils.openAstroWolfInventory(player, this);
 			}
 			return true;
 		}

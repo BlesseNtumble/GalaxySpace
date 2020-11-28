@@ -76,14 +76,14 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         S_CHANGE_FLIGHT_STATE(Side.SERVER, Boolean.class),
         S_REVERSE_SEPATATOR(Side.SERVER, BlockVec3.class),   
         S_UPDATE_NBT_ITEM_ON_GUI(Side.SERVER, BlockVec3.class, String.class),
-        S_UPDATE_NBT_ITEM_IN_ARMOR(Side.SERVER, Integer.class, String.class), 
-        S_OPEN_ASTRO_WOLF_INV(Side.SERVER, Integer.class),
+        S_UPDATE_NBT_ITEM_IN_ARMOR(Side.SERVER, Integer.class, String.class),
         //CLIENT
         C_UPDATE_WORLD(Side.CLIENT),
     	C_UPDATE_RESEARCHES(Side.CLIENT, Integer[].class),
     	C_UPDATE_RESEARCH(Side.CLIENT, Integer.class, Integer.class), // id, count
     	C_GLOW_BLOCK(Side.CLIENT, BlockVec3.class, Integer.class),
-    	C_OPEN_CUSTOM_GUI(Side.CLIENT, Integer.class, Integer.class, Integer.class);
+    	C_OPEN_CUSTOM_GUI(Side.CLIENT, Integer.class, Integer.class, Integer.class),
+    	C_OPEN_ASTRO_WOLF_GUI(Side.CLIENT, Integer.class, Integer.class); // windowID, wolfID
         
         private Side targetSide;
         private Class<?>[] decodeAs;
@@ -314,6 +314,16 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         			gs_stats_client.setKnowledgeResearch(id, count);
         		
         		break;
+        	case C_OPEN_ASTRO_WOLF_GUI:
+        		int windowID = (int)this.data.get(0);
+        		int wolfID = (int)this.data.get(1);
+        		EntityAstroWolf wolf = (EntityAstroWolf)player.world.getEntityByID(wolfID);
+        		
+        		GSUtils.openAstroWolfInventory(player, wolf);
+        		
+        		player.openContainer.windowId = windowID;
+        		
+        		break;
         	default:
         		break;
         }
@@ -334,18 +344,6 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         
         switch (this.type)
         {       
-        case S_OPEN_ASTRO_WOLF_INV:
-            Entity entity = player.world.getEntityByID((Integer) this.data.get(0));
-            if(entity instanceof EntityAstroWolf) {
-            	EntityAstroWolf wolf = (EntityAstroWolf) entity;
-
-				if (player == wolf.getOwner() && !wolf.world.isRemote) {
-					GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_OPEN_CUSTOM_GUI, GCCoreUtil.getDimensionID(player.world), new Object[] { playerBase.currentWindowId, 0, wolf.getEntityId() }), playerBase);
-					GSUtils.openAstroWolfInventory(playerBase, wolf);
-			        
-				}
-            }
-            break;
         case S_CHANGE_FLIGHT_STATE:
         	boolean state = (boolean) this.data.get(0);
         	GSEventHandler.enableFlight(player, state);
