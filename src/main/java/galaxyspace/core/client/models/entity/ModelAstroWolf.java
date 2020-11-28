@@ -1,6 +1,8 @@
 package galaxyspace.core.client.models.entity;
 
 import galaxyspace.core.prefab.entities.EntityAstroWolf;
+import micdoodle8.mods.galacticraft.core.GCItems;
+import micdoodle8.mods.galacticraft.core.items.ItemOxygenTank;
 import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
@@ -42,6 +44,7 @@ public class ModelAstroWolf extends ModelBase
     public ModelRenderer tube1_3;
     public ModelRenderer tube1_4;
     public ModelRenderer tube1_5;
+    public ModelRenderer oxBallon;
     
     public ModelAstroWolf()
     {
@@ -108,6 +111,10 @@ public class ModelAstroWolf extends ModelBase
         this.tube1_5 = new ModelRenderer(this, 51, 20);
         this.tube1_5.setRotationPoint(-0.5F, 9.0F, -1.0F);
         this.tube1_5.addBox(0.0F, 0.0F, 0.0F, 1, 1, 1, 0.0F);
+        
+        this.oxBallon = new ModelRenderer(this, 51, 20);
+        this.oxBallon.setRotationPoint(-1.0F, 9.0F, 0.0F);
+        this.oxBallon.addBox(0.0F, 0.0F, 0.0F, 2, 2, 5, 0.0F);
     }
 
     /**
@@ -137,7 +144,7 @@ public class ModelAstroWolf extends ModelBase
             this.wolfLeg4.render(scale);
             this.wolfTail.renderWithRotation(scale);
             this.wolfMane.render(scale);
-            if(!OxygenUtil.isAABBInBreathableAirBlock(entitywolf)) {
+            if(entitywolf.wolfInventory.getStackInSlot(0).getItem() == GCItems.oxMask && !OxygenUtil.isAABBInBreathableAirBlock(entitywolf)) {
 	            this.wolfHelmet.renderWithRotation(scale);
 	            this.tube1.render(scale);
 	            this.tube2.render(scale);
@@ -148,6 +155,10 @@ public class ModelAstroWolf extends ModelBase
 	            this.tube1_4.render(scale);
 	            this.tube1_5.render(scale);
             }
+            
+            if(entitywolf.wolfInventory.getStackInSlot(2).getItem() instanceof ItemOxygenTank)
+            	this.oxBallon.render(scale);
+            
             GlStateManager.popMatrix();
         }
         else
@@ -160,7 +171,7 @@ public class ModelAstroWolf extends ModelBase
             this.wolfLeg4.render(scale);
             this.wolfTail.renderWithRotation(scale);
             this.wolfMane.render(scale);
-            if(!OxygenUtil.isAABBInBreathableAirBlock(entitywolf)) {
+            if(entitywolf.wolfInventory.getStackInSlot(0).getItem() == GCItems.oxMask && !OxygenUtil.isAABBInBreathableAirBlock(entitywolf)) {
 	            this.wolfHelmet.render(scale);
 	            this.tube1.render(scale);
 	            this.tube2.render(scale);
@@ -171,6 +182,8 @@ public class ModelAstroWolf extends ModelBase
 	            this.tube1_4.render(scale);
 	            this.tube1_5.render(scale);
             }
+            if(entitywolf.wolfInventory.getStackInSlot(2).getItem() instanceof ItemOxygenTank)
+            	this.oxBallon.render(scale);
         }
     }
 
@@ -216,6 +229,12 @@ public class ModelAstroWolf extends ModelBase
             this.tube2.offsetZ = 0.03F;
             this.tube2.offsetY = 0.18F;
             this.tube3.offsetY = 0.22F;
+            
+            this.oxBallon.rotateAngleX = 14.95F;
+            this.oxBallon.rotateAngleY = 0F;
+            this.oxBallon.offsetX = 0F;
+            this.oxBallon.offsetY = 0.55F;
+            this.oxBallon.offsetZ = 0.25F;
         }
         else
         {
@@ -241,6 +260,12 @@ public class ModelAstroWolf extends ModelBase
             this.tube2.offsetZ = 0.0F;
             this.tube2.offsetY = 0.0F;
             this.tube3.offsetY = 0.0F;
+            
+            this.oxBallon.rotateAngleX = 0F;
+            this.oxBallon.rotateAngleY = 3.15F;
+            this.oxBallon.offsetX = 0.13F;
+            this.oxBallon.offsetY = 0F;
+            this.oxBallon.offsetZ = 0.4F;
         }
 
         this.wolfHeadMain.rotateAngleZ = entitywolf.getInterestedAngle(partialTickTime) + entitywolf.getShakeAngle(partialTickTime, 0.0F);

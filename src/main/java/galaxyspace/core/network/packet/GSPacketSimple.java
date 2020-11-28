@@ -7,33 +7,42 @@ import java.util.List;
 import org.lwjgl.opengl.GL11;
 
 import asmodeuscore.core.utils.worldengine.WE_WorldProvider;
+import galaxyspace.GalaxySpace;
 import galaxyspace.api.item.IModificationItem;
 import galaxyspace.api.tile.ITileEffects;
+import galaxyspace.core.client.gui.entity.GuiAstroWolfInventory;
 import galaxyspace.core.events.GSEventHandler;
 import galaxyspace.core.handler.capabilities.GSStatsCapability;
 import galaxyspace.core.handler.capabilities.GSStatsCapabilityClient;
 import galaxyspace.core.handler.capabilities.StatsCapability;
 import galaxyspace.core.handler.capabilities.StatsCapabilityClient;
+import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
+import galaxyspace.core.prefab.entities.EntityAstroWolf;
 import galaxyspace.core.prefab.items.modules.ItemModule;
+import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemSpaceSuit;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitationModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityLiquidSeparator;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityModificationTable;
 import io.netty.buffer.ByteBuf;
 import micdoodle8.mods.galacticraft.api.vector.BlockVec3;
+import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStatsClient;
 import micdoodle8.mods.galacticraft.core.network.NetworkUtil;
 import micdoodle8.mods.galacticraft.core.network.PacketBase;
+import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.GCLog;
 import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
 import micdoodle8.mods.galacticraft.planets.GalacticraftPlanets;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -68,11 +77,13 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         S_REVERSE_SEPATATOR(Side.SERVER, BlockVec3.class),   
         S_UPDATE_NBT_ITEM_ON_GUI(Side.SERVER, BlockVec3.class, String.class),
         S_UPDATE_NBT_ITEM_IN_ARMOR(Side.SERVER, Integer.class, String.class), 
+        S_OPEN_ASTRO_WOLF_INV(Side.SERVER, Integer.class),
         //CLIENT
         C_UPDATE_WORLD(Side.CLIENT),
     	C_UPDATE_RESEARCHES(Side.CLIENT, Integer[].class),
     	C_UPDATE_RESEARCH(Side.CLIENT, Integer.class, Integer.class), // id, count
-    	C_GLOW_BLOCK(Side.CLIENT, BlockVec3.class, Integer.class);        
+    	C_GLOW_BLOCK(Side.CLIENT, BlockVec3.class, Integer.class),
+    	C_OPEN_CUSTOM_GUI(Side.CLIENT, Integer.class, Integer.class, Integer.class);
         
         private Side targetSide;
         private Class<?>[] decodeAs;
@@ -247,6 +258,27 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         		tess.draw();
         		GlStateManager.popMatrix();
         		break;  
+        	case C_OPEN_CUSTOM_GUI:
+                int entityID = 0;
+                Entity entity = null;
+
+                switch ((Integer) this.data.get(1))
+                {
+	                case 0:
+	                    entityID = (Integer) this.data.get(2);
+	                    entity = player.world.getEntityByID(entityID);
+	
+	                    if (entity != null && entity instanceof EntityAstroWolf && entity.world.isRemote)
+	                    {
+	                    	FMLClientHandler.instance().getClient().displayGuiScreen(new GuiAstroWolfInventory(player, (EntityAstroWolf) entity));
+	                    }
+	                    
+	                    player.openContainer.windowId = (Integer) this.data.get(0);
+	                    break;                
+                }
+
+                GalacticraftCore.packetPipeline.sendToServer(new PacketSimple(PacketSimple.EnumSimplePacket.S_REQUEST_CONTAINER_SLOT_REFRESH, GCCoreUtil.getDimensionID(player.world), new Object[] { player.openContainer.windowId }));
+                break;
         	case C_UPDATE_WORLD:
         		MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
         		
@@ -302,6 +334,18 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         
         switch (this.type)
         {       
+        case S_OPEN_ASTRO_WOLF_INV:
+            Entity entity = player.world.getEntityByID((Integer) this.data.get(0));
+            if(entity instanceof EntityAstroWolf) {
+            	EntityAstroWolf wolf = (EntityAstroWolf) entity;
+
+				if (player == wolf.getOwner() && !wolf.world.isRemote) {
+					GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_OPEN_CUSTOM_GUI, GCCoreUtil.getDimensionID(player.world), new Object[] { playerBase.currentWindowId, 0, wolf.getEntityId() }), playerBase);
+					GSUtils.openAstroWolfInventory(playerBase, wolf);
+			        
+				}
+            }
+            break;
         case S_CHANGE_FLIGHT_STATE:
         	boolean state = (boolean) this.data.get(0);
         	GSEventHandler.enableFlight(player, state);

@@ -4,7 +4,6 @@ import galaxyspace.GalaxySpace;
 import galaxyspace.core.client.models.entity.ModelAstroWolf;
 import galaxyspace.core.client.render.entity.layers.LayerAstroWolfCollar;
 import galaxyspace.core.prefab.entities.EntityAstroWolf;
-import net.minecraft.client.model.ModelWolf;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -19,7 +18,8 @@ public class RenderAstroWolf extends RenderLiving<EntityAstroWolf>
     private static final ResourceLocation WOLF_TEXTURES = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/model/astro_wolf.png");
     private static final ResourceLocation TAMED_WOLF_TEXTURES = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/model/astro_wolf_tame.png");
     private static final ResourceLocation ANRGY_WOLF_TEXTURES = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/model/astro_wolf_angry.png");
-
+    private static final ResourceLocation WOLF_THERMAL = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/model/astro_wolf_thermal.png");
+    
     public RenderAstroWolf(RenderManager p_i47187_1_)
     {
         super(p_i47187_1_, new ModelAstroWolf(), 0.5F);
@@ -55,7 +55,7 @@ public class RenderAstroWolf extends RenderLiving<EntityAstroWolf>
     {
         if (entity.isTamed())
         {
-            return TAMED_WOLF_TEXTURES;
+            return entity.wolfInventory.getStackInSlot(1).isEmpty() ? TAMED_WOLF_TEXTURES : WOLF_THERMAL;
         }
         else
         {

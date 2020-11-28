@@ -14,6 +14,10 @@ import java.util.List;
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.GSFluids;
 import galaxyspace.core.GSItems;
+import galaxyspace.core.network.packet.GSPacketSimple;
+import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
+import galaxyspace.core.prefab.entities.EntityAstroWolf;
+import galaxyspace.core.prefab.inventory.ContainerAstroWolf;
 import micdoodle8.mods.galacticraft.api.block.IPartialSealableBlock;
 import micdoodle8.mods.galacticraft.api.prefab.entity.EntityTieredRocket;
 import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
@@ -25,6 +29,7 @@ import micdoodle8.mods.galacticraft.core.fluid.OxygenPressureProtocol;
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.FluidUtil;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEnchantmentTable;
@@ -47,6 +52,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -291,7 +297,7 @@ public class GSUtils {
             		FluidUtil.tryFillContainer(tank, liquid, stacks, slot, GSItems.HYDROGEN_CANISTER);
             	else if(liquid.getFluid().getName().contains("ethane"))
             		FluidUtil.tryFillContainer(tank, liquid, stacks, slot, GSItems.ETHANE_CANISTER); 
-            	else if(liquid.getFluid().getName().contains("liquidoxygen"))
+            	else if(liquid.getFluid().getName().contains("oxygen"))
             		FluidUtil.tryFillContainer(tank, liquid, stacks, slot, AsteroidsItems.canisterLOX);
             	else if(liquid.getFluid().getName().contains("oil"))
             		FluidUtil.tryFillContainer(tank, liquid, stacks, slot, GCItems.oilCanister);
@@ -756,7 +762,7 @@ public class GSUtils {
 	
 	public static void renderDebugGui(GuiContainer gui, int width, int height)
 	{
-		boolean enable = true;
+		boolean enable = GalaxySpace.debug;
 		
 		if(enable)
 			for(int i = 0; i < gui.inventorySlots.inventorySlots.size(); i++)
@@ -778,5 +784,17 @@ public class GSUtils {
         }
 
         return ItemStack.EMPTY;
+    }
+	
+	public static void openAstroWolfInventory(EntityPlayerMP player, EntityAstroWolf wolf) {
+    	player.getNextWindowId();
+        player.closeContainer();
+        int windowId = player.currentWindowId;
+        
+        //GalaxySpace.proxy.openAstroWolfGUI(player, wolf);
+        //GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_OPEN_CUSTOM_GUI, GCCoreUtil.getDimensionID(player.world), new Object[] { windowId, 0, wolf.getEntityId() }), player);
+        player.openContainer = new ContainerAstroWolf(player.inventory, wolf, player);
+        player.openContainer.windowId = windowId;
+        player.openContainer.addListener(player);
     }
 }
