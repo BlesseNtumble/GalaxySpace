@@ -5,6 +5,7 @@ import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -16,15 +17,13 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 
 public class InventoryAstroWolf implements IInventory
 {
-    private NonNullList<ItemStack> stacks = NonNullList.withSize(4, ItemStack.EMPTY);
+    private NonNullList<ItemStack> stacks = NonNullList.withSize(3, ItemStack.EMPTY);
     private EntityAstroWolf wolf;
     public Container currentContainer;
 
     public InventoryAstroWolf(EntityAstroWolf wolf)
     {
         this.wolf = wolf;
-        
-        System.out.println(wolf.world.isRemote + " | " + FMLCommonHandler.instance().getSide());
     }
     
     @Override
@@ -33,6 +32,11 @@ public class InventoryAstroWolf implements IInventory
         return this.stacks.size();
     }
 
+    public NonNullList<ItemStack> getInventory()
+    {
+    	return this.stacks;
+    }
+    
     @Override
     public ItemStack getStackInSlot(int par1)
     {
@@ -48,93 +52,34 @@ public class InventoryAstroWolf implements IInventory
     @Override
     public ItemStack removeStackFromSlot(int par1)
     {
-        if (!this.stacks.get(par1).isEmpty())
-        {
-            final ItemStack var2 = this.stacks.get(par1);
-            this.stacks.set(par1, ItemStack.EMPTY);
-            this.markDirty();
-            return var2;
-        }
-        else
-        {
-            return ItemStack.EMPTY;
-        }
-    }
-/*
-    private void removeInventoryBagContents()
-    {
-        if (this.currentContainer instanceof ContainerSlimeling)
-        {
-        	ContainerSlimeling.removeSlots((ContainerSlimeling) this.currentContainer);
-        }
-
-        for (int i = 2; i < this.stacks.size(); i++)
-        {
-            if (!this.stacks.get(i).isEmpty())
-            {
-                if (!this.wolf.world.isRemote)
-                {
-                    this.wolf.entityDropItem(this.stacks.get(i), 0.5F);
-                }
-
-                this.stacks.set(i, ItemStack.EMPTY);
-            }
-        }
-    }
-    */
-    @Override
-    public ItemStack decrStackSize(int par1, int par2)
-    {
-    	if (!this.stacks.get(par1).isEmpty())
-        {
-            ItemStack var3;
-
-            //It's a removal of the Slimeling Inventory Bag
-          /*  if (par1 == 1 && this.stacks.get(par1).getCount() <= par2)
-            {
-            	//this.removeInventoryBagContents();
-                var3 = this.stacks.get(par1);
-                this.stacks.set(par1, ItemStack.EMPTY);
-                this.markDirty();
-                return var3;
-            }
-            else*/
-            //Normal case of decrStackSize for a slot
-            {
-                var3 = this.stacks.get(par1).splitStack(par2);
-
-                if (this.stacks.get(par1).isEmpty())
-                {
-                	//Not sure if this is necessary again, given the above?
-                	/*if (par1 == 1)
-                    {
-                		this.removeInventoryBagContents();
-                    }*/
-
-                    this.stacks.set(par1, ItemStack.EMPTY);
-                }
-
-                this.markDirty();
-                return var3;
-            }
-        }
-        else
-        {
-            return ItemStack.EMPTY;
-        }
+    	 return ItemStackHelper.getAndRemove(this.stacks, par1);
     }
 
     @Override
-    public void setInventorySlotContents(int par1, ItemStack par2ItemStack)
+    public ItemStack decrStackSize(int index, int count)
     {
-    	/*
-        if (par1 == 1 && (par2ItemStack.isEmpty() && !this.stacks.get(par1).isEmpty() || !ItemStack.areItemStacksEqual(par2ItemStack, this.stacks.get(par1))))
-        {
-            ContainerSlimeling.addAdditionalSlots((ContainerSlimeling) this.currentContainer, this.wolf, par2ItemStack);
-        }
-*/
-        this.stacks.set(par1, par2ItemStack);
-        this.markDirty();
+    	 ItemStack itemstack = ItemStackHelper.getAndSplit(this.stacks, index, count);
+
+         if (!itemstack.isEmpty())
+         {
+             this.markDirty();
+         }
+
+         return itemstack;
+     
+    }
+
+    @Override
+    public void setInventorySlotContents(int index, ItemStack stack)
+    {
+    	 this.stacks.set(index, stack);
+
+         if (stack.getCount() > this.getInventoryStackLimit())
+         {
+             stack.setCount(this.getInventoryStackLimit());
+         }
+
+         this.markDirty();
     }
 
     @Override
@@ -150,7 +95,7 @@ public class InventoryAstroWolf implements IInventory
 
         return true;
     }
-
+/*
     public void readFromNBT(NBTTagList tagList)
     {
         if (tagList == null || tagList.tagCount() <= 0)
@@ -172,37 +117,33 @@ public class InventoryAstroWolf implements IInventory
             }
         }
         
-        System.out.println(stacks);
     }
 
     public NBTTagList writeToNBT(NBTTagList tagList)
     {
-        NBTTagCompound nbttagcompound;
+        NBTTagCompound nbttagcompound = new NBTTagCompound();
 
         for (int i = 0; i < this.stacks.size(); ++i)
         {
             if (!this.stacks.get(i).isEmpty())
-            {
-                nbttagcompound = new NBTTagCompound();
+            {                
                 nbttagcompound.setByte("Slot", (byte) i);
                 this.stacks.get(i).writeToNBT(nbttagcompound);
                 tagList.appendTag(nbttagcompound);
             }
         }
-
-        System.out.println(stacks);
         return tagList;
     }
-
+*/
     @Override
     public int getInventoryStackLimit()
     {
-        return 64;
+        return 1;
     }
 
     @Override
     public void markDirty()
-    {
+    {    	
     }
 
     @Override

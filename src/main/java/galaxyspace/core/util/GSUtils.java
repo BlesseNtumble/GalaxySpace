@@ -790,6 +790,8 @@ public class GSUtils {
         return ItemStack.EMPTY;
     }
 	
+	/*
+	
 	public static void openAstroWolfInventory(EntityPlayer player, EntityAstroWolf wolf) {
 		if(player instanceof EntityPlayerMP) {
 			EntityPlayerMP playerMP = (EntityPlayerMP)player;
@@ -812,5 +814,5 @@ public class GSUtils {
 			GuiAstroWolfInventory gui = new GuiAstroWolfInventory(player, wolf);
 			FMLCommonHandler.instance().showGuiScreen(gui);
 		}
-    }
+    }*/
 }

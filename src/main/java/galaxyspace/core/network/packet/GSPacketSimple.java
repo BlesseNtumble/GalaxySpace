@@ -81,9 +81,10 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         C_UPDATE_WORLD(Side.CLIENT),
     	C_UPDATE_RESEARCHES(Side.CLIENT, Integer[].class),
     	C_UPDATE_RESEARCH(Side.CLIENT, Integer.class, Integer.class), // id, count
-    	C_GLOW_BLOCK(Side.CLIENT, BlockVec3.class, Integer.class),
-    	C_OPEN_CUSTOM_GUI(Side.CLIENT, Integer.class, Integer.class, Integer.class),
-    	C_OPEN_ASTRO_WOLF_GUI(Side.CLIENT, Integer.class, Integer.class); // windowID, wolfID
+    	C_GLOW_BLOCK(Side.CLIENT, BlockVec3.class, Integer.class);
+    	
+    	//C_OPEN_CUSTOM_GUI(Side.CLIENT, Integer.class, Integer.class, Integer.class),
+    	//C_OPEN_ASTRO_WOLF_GUI(Side.CLIENT, Integer.class, Integer.class); // windowID, wolfID
         
         private Side targetSide;
         private Class<?>[] decodeAs;
@@ -203,7 +204,7 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         }*/
         switch (this.type)
         {       	
-        	case C_GLOW_BLOCK:
+          	case C_GLOW_BLOCK:
         		BlockVec3 block = (BlockVec3) this.data.get(0);
         		int level = (int) this.data.get(1);
         		GlStateManager.pushMatrix();
@@ -258,7 +259,7 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         		tess.draw();
         		GlStateManager.popMatrix();
         		break;  
-        	case C_OPEN_CUSTOM_GUI:
+        	/*case C_OPEN_CUSTOM_GUI:
                 int entityID = 0;
                 Entity entity = null;
 
@@ -278,7 +279,7 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
                 }
 
                 GalacticraftCore.packetPipeline.sendToServer(new PacketSimple(PacketSimple.EnumSimplePacket.S_REQUEST_CONTAINER_SLOT_REFRESH, GCCoreUtil.getDimensionID(player.world), new Object[] { player.openContainer.windowId }));
-                break;
+                break;*/
         	case C_UPDATE_WORLD:
         		MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
         		
@@ -314,7 +315,7 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         			gs_stats_client.setKnowledgeResearch(id, count);
         		
         		break;
-        	case C_OPEN_ASTRO_WOLF_GUI:
+        	/*case C_OPEN_ASTRO_WOLF_GUI:
         		int windowID = (int)this.data.get(0);
         		int wolfID = (int)this.data.get(1);
         		EntityAstroWolf wolf = (EntityAstroWolf)player.world.getEntityByID(wolfID);
@@ -322,8 +323,9 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         		GSUtils.openAstroWolfInventory(player, wolf);
         		
         		player.openContainer.windowId = windowID;
-        		
-        		break;
+        		GalacticraftCore.packetPipeline.sendToServer(new PacketSimple(PacketSimple.EnumSimplePacket.S_REQUEST_CONTAINER_SLOT_REFRESH, GCCoreUtil.getDimensionID(player.world), new Object[] { player.openContainer.windowId }));
+                 
+        		break;*/
         	default:
         		break;
         }

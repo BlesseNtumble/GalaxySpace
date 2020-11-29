@@ -1,7 +1,10 @@
 package galaxyspace.core.handler;
 
 import asmodeuscore.core.astronomy.gui.book.ACGuiGuideBook;
+import galaxyspace.core.client.gui.entity.GuiAstroWolfInventory;
 import galaxyspace.core.configs.GSConfigCore;
+import galaxyspace.core.prefab.entities.EntityAstroWolf;
+import galaxyspace.core.prefab.inventory.ContainerAstroWolf;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiAdvCircuitFabricator;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiAssembler;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiFuelGenerator;
@@ -90,6 +93,9 @@ public class GSGuiHandler implements IGuiHandler{
         if(ID == GSConfigCore.guiIDGuideBook) 
         	return new ContainerPlayer(player.inventory, false, player);
         
+        if(ID == 1005)
+        	return new ContainerAstroWolf(player.inventory, (EntityAstroWolf) world.getEntityByID(x), player);
+        
         if (tile != null)
         {
         	
@@ -155,6 +161,9 @@ public class GSGuiHandler implements IGuiHandler{
     {
         if (GCCoreUtil.getEffectiveSide() == Side.CLIENT)
         {
+        	if(ID == 1005)
+            	return new GuiAstroWolfInventory(player, (EntityAstroWolf) world.getEntityByID(x));
+            			
             return this.getClientGuiElement(ID, player, world, new BlockPos(x, y, z));
         }
 
@@ -170,6 +179,8 @@ public class GSGuiHandler implements IGuiHandler{
         if(ID == GSConfigCore.guiIDGuideBook) 
         	return new ACGuiGuideBook();
         
+        
+        			
         if (tile != null)
         {
         	if (tile instanceof TileEntityFuelGenerator)            

@@ -17,6 +17,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -28,6 +29,7 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 public class EntityAstroWolf extends EntityWolf implements IEntityBreathable {
 
 	public InventoryAstroWolf wolfInventory = new InventoryAstroWolf(this);
+	private boolean isHelmet;
 	 
 	public EntityAstroWolf(World worldIn) {
 		super(worldIn);
@@ -44,8 +46,9 @@ public class EntityAstroWolf extends EntityWolf implements IEntityBreathable {
 		System.out.println(this.wolfInventory.getStackInSlot(0));
 		
 		if(player.isSneaking()) {
-			if (player == this.getOwner() && this.isTamed() && !world.isRemote)	{
-				GSUtils.openAstroWolfInventory(player, this);
+			if (player == this.getOwner() && this.isTamed())	{
+				player.openGui(GalaxySpace.MODID, 1005, this.world, this.getEntityId(), 0, 0);
+				
 			}
 			return true;
 		}
@@ -57,16 +60,17 @@ public class EntityAstroWolf extends EntityWolf implements IEntityBreathable {
 	@Override
     public void writeEntityToNBT(NBTTagCompound nbt)
     {
-		super.writeEntityToNBT(nbt);		
-		//System.out.println(this.wolfInventory.getStackInSlot(0));
-		nbt.setTag("WolfInventory", this.wolfInventory.writeToNBT(new NBTTagList()));
+		super.writeEntityToNBT(nbt);
+		ItemStackHelper.saveAllItems(nbt, this.wolfInventory.getInventory());
+		//nbt.setTag("WolfInventory", this.wolfInventory.writeToNBT(new NBTTagList()));
     }
 
 	@Override
     public void readEntityFromNBT(NBTTagCompound nbt)
     {
         super.readEntityFromNBT(nbt);
-        this.wolfInventory.readFromNBT(nbt.getTagList("WolfInventory", 0));
+        ItemStackHelper.loadAllItems(nbt, this.wolfInventory.getInventory());
+        //this.wolfInventory.readFromNBT(nbt.getTagList("WolfInventory", 10));
     }
 	
 	@Override
