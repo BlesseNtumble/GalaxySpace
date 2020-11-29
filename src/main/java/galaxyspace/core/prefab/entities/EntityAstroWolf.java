@@ -25,16 +25,38 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityAstroWolf extends EntityWolf implements IEntityBreathable {
 
 	public InventoryAstroWolf wolfInventory = new InventoryAstroWolf(this);
 	private boolean isHelmet;
-	 
+	
+	public boolean needSync = true;
+	
 	public EntityAstroWolf(World worldIn) {
 		super(worldIn);
 	}
-
+	
+	@Override
+	public void onEntityUpdate() {
+		super.onEntityUpdate();
+		if(needSync) {
+			if(FMLCommonHandler.instance().getEffectiveSide().equals(Side.CLIENT)) {
+				GalaxySpace.packetPipeline.sendToServer(new GSPacketSimple(GSEnumSimplePacket.S_UPDATE_WOLF_INV, GCCoreUtil.getDimensionID(world), new Object[] { getEntityId() }));
+				System.out.println("wolf send sync packet");
+			}
+		}
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public void setWolfInventory(InventoryAstroWolf inv) {
+		this.wolfInventory = inv;
+		System.out.println("wolf client setting inventory with: " + inv);
+	}
+	
 	@Override
 	public boolean canBreath() {
 		return true;
@@ -43,12 +65,11 @@ public class EntityAstroWolf extends EntityWolf implements IEntityBreathable {
 	@Override
     public boolean processInteract(EntityPlayer player, EnumHand hand)
     {
-		System.out.println(this.wolfInventory.getStackInSlot(0));
+		System.out.println("sl0: " + this.wolfInventory.getStackInSlot(0));
 		
 		if(player.isSneaking()) {
 			if (player == this.getOwner() && this.isTamed())	{
 				player.openGui(GalaxySpace.MODID, 1005, this.world, this.getEntityId(), 0, 0);
-				
 			}
 			return true;
 		}

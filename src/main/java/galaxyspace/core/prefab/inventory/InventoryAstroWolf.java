@@ -95,6 +95,8 @@ public class InventoryAstroWolf implements IInventory
 
         return true;
     }
+    
+    
 /*
     public void readFromNBT(NBTTagList tagList)
     {

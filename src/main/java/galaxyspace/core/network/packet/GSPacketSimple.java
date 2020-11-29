@@ -18,6 +18,7 @@ import galaxyspace.core.handler.capabilities.StatsCapability;
 import galaxyspace.core.handler.capabilities.StatsCapabilityClient;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
 import galaxyspace.core.prefab.entities.EntityAstroWolf;
+import galaxyspace.core.prefab.inventory.InventoryAstroWolf;
 import galaxyspace.core.prefab.items.modules.ItemModule;
 import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemSpaceSuit;
@@ -45,7 +46,9 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetHandler;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
@@ -77,11 +80,13 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         S_REVERSE_SEPATATOR(Side.SERVER, BlockVec3.class),   
         S_UPDATE_NBT_ITEM_ON_GUI(Side.SERVER, BlockVec3.class, String.class),
         S_UPDATE_NBT_ITEM_IN_ARMOR(Side.SERVER, Integer.class, String.class),
+        S_UPDATE_WOLF_INV(Side.SERVER, Integer.class),
         //CLIENT
         C_UPDATE_WORLD(Side.CLIENT),
     	C_UPDATE_RESEARCHES(Side.CLIENT, Integer[].class),
     	C_UPDATE_RESEARCH(Side.CLIENT, Integer.class, Integer.class), // id, count
-    	C_GLOW_BLOCK(Side.CLIENT, BlockVec3.class, Integer.class);
+    	C_GLOW_BLOCK(Side.CLIENT, BlockVec3.class, Integer.class),
+    	C_UPDATE_WOLF_INV(Side.CLIENT, Integer.class, NBTTagCompound.class);
     	
     	//C_OPEN_CUSTOM_GUI(Side.CLIENT, Integer.class, Integer.class, Integer.class),
     	//C_OPEN_ASTRO_WOLF_GUI(Side.CLIENT, Integer.class, Integer.class); // windowID, wolfID
@@ -204,6 +209,21 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         }*/
         switch (this.type)
         {       	
+        	case C_UPDATE_WOLF_INV:
+        		int wolfID = (int)this.data.get(0);
+        		NBTTagCompound wolfInvTag = (NBTTagCompound)this.data.get(1);
+        		
+        		EntityAstroWolf wolf = (EntityAstroWolf)playerBaseClient.world.getEntityByID(wolfID);
+        		
+        		// set client inventory
+        		if(wolf != null) {
+        			InventoryAstroWolf wolfInv = new InventoryAstroWolf(wolf);
+        			ItemStackHelper.loadAllItems(wolfInvTag, wolfInv.getInventory());
+        		
+        			wolf.setWolfInventory(wolfInv);
+        			wolf.needSync = false;
+        		}
+        	break;
           	case C_GLOW_BLOCK:
         		BlockVec3 block = (BlockVec3) this.data.get(0);
         		int level = (int) this.data.get(1);
@@ -345,7 +365,23 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         TileEntity tileEntity;
         
         switch (this.type)
-        {       
+        {
+        case S_UPDATE_WOLF_INV:
+        	int wolfID = (int)this.data.get(0);
+        	EntityAstroWolf wolf = (EntityAstroWolf)playerBase.world.getEntityByID(wolfID);
+        	
+        	System.out.println("server wolfID: " + wolfID + " wolf: " + wolf);
+        	
+        	// get server wolf inventory and send to client
+        	if(wolf != null) {
+        		InventoryAstroWolf wolfInv = wolf.wolfInventory;
+        		NBTTagCompound wolfInvTag = new NBTTagCompound();
+        		ItemStackHelper.saveAllItems(wolfInvTag, wolfInv.getInventory());
+        	
+        		GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_UPDATE_WOLF_INV, GCCoreUtil.getDimensionID(playerBase.world), new Object[] { wolfID, wolfInvTag }), playerBase);
+        	}
+        	
+        	break;
         case S_CHANGE_FLIGHT_STATE:
         	boolean state = (boolean) this.data.get(0);
         	GSEventHandler.enableFlight(player, state);

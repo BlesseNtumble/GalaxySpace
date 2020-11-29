@@ -144,6 +144,7 @@ public class ModelAstroWolf extends ModelBase
             this.wolfLeg4.render(scale);
             this.wolfTail.renderWithRotation(scale);
             this.wolfMane.render(scale);
+            
             if(entitywolf.wolfInventory.getStackInSlot(0).getItem() == GCItems.oxMask && !OxygenUtil.isAABBInBreathableAirBlock(entitywolf)) {
 	            this.wolfHelmet.renderWithRotation(scale);
 	            this.tube1.render(scale);
