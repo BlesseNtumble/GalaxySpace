@@ -10,6 +10,7 @@ import micdoodle8.mods.galacticraft.planets.mars.dimension.WorldProviderMars;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraft.world.WorldProviderSurface;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
@@ -27,7 +28,15 @@ public class GSSkyProviderHandler {
       EntityPlayerSP player = minecraft.player;
       
       if(world != null) {   
-  	  
+    	  // custom clouds
+    	  if(world.provider instanceof WorldProviderSurface)
+    	  {
+    		  if(world.provider.getCloudRenderer() == null) {
+    			  CustomCloudRender clouds = new CustomCloudRender(new float[] { 40.0F, 100.0F });
+    			  world.provider.setCloudRenderer(clouds);
+    		  }
+    	  }
+    	  
           if(world.provider instanceof WorldProviderMoon) 
           {
               if(world.provider.getSkyRenderer() == null) 
