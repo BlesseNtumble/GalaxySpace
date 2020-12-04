@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import asmodeuscore.api.dimension.IProviderFreeze;
+import asmodeuscore.api.dimension.IProviderFog;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
 import asmodeuscore.core.utils.worldengine.WE_Biome;
@@ -48,7 +48,7 @@ import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProviderFreeze {
+public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProviderFog {
 	
 	private final MapGenDungeon dungeonGenerator = new MapGenDungeonMars(new DungeonConfiguration(MarsBlocks.marsBlock.getDefaultState().withProperty(BlockBasicMars.BASIC_TYPE, BlockBasicMars.EnumBlockBasic.DUNGEON_BRICK), 30, 8, 16, 7, 7, RoomBossMars.class, RoomTreasureMars.class));
 	private final float[] colorsSunriseSunset = new float[4];
@@ -63,7 +63,7 @@ public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProv
     public double getFuelUsageMultiplier() { return 0.8; }
 
     @Override
-    public double getMeteorFrequency() { return 3.0; }
+    public double getMeteorFrequency() { return 1.0; }
  
     @Override
     public float getSoundVolReductionAmount() { return Float.MAX_VALUE; }
@@ -91,7 +91,7 @@ public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProv
     @Override
     public Vector3 getSkyColor()
     {
-        float f = 1.0F - this.getStarBrightness(1.0F);
+        float f = 0.9F - this.getStarBrightness(1.0F);
         return new Vector3(154 / 255.0F * f, 114 / 255.0F * f, 66 / 255.0F * f);
        
     }
@@ -289,6 +289,12 @@ public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProv
 	public void recreateStructures(Chunk chunkIn, int x, int z) {		
 		dungeonGenerator.generate(this.world, x, z, null);
 	}
-	
+
+	@Override
+	public float getFogDensity(int x, int y, int z) {
+		if(this.world.isRaining())			
+			return 0.3F;
+		return 1.0F;
+	}
 
 }

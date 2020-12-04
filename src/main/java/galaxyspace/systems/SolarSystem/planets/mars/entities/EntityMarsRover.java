@@ -22,7 +22,6 @@ import micdoodle8.mods.galacticraft.core.network.PacketEntityUpdate;
 import micdoodle8.mods.galacticraft.core.network.PacketEntityUpdate.IEntityFullSync;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.tick.KeyHandlerClient;
-import micdoodle8.mods.galacticraft.core.tile.TileEntityBuggyFueler;
 import micdoodle8.mods.galacticraft.core.util.FluidUtil;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.model.ModelBase;

@@ -1,34 +1,17 @@
 package galaxyspace.core.client.gui.entity;
 
-import java.io.IOException;
-
-import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.prefab.entities.EntityAstroWolf;
 import galaxyspace.core.prefab.inventory.ContainerAstroWolf;
 import galaxyspace.core.util.GSUtils;
-import micdoodle8.mods.galacticraft.core.util.ColorUtil;
-import micdoodle8.mods.galacticraft.planets.GalacticraftPlanets;
-import micdoodle8.mods.galacticraft.planets.mars.client.gui.GuiSlimeling;
-import micdoodle8.mods.galacticraft.planets.mars.client.gui.GuiSlimelingInventory;
-import micdoodle8.mods.galacticraft.planets.mars.entities.EntitySlimeling;
-import micdoodle8.mods.galacticraft.planets.mars.inventory.ContainerSlimeling;
-import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.PositionedSoundRecord;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -55,6 +38,8 @@ public class GuiAstroWolfInventory extends GuiContainer
         this.wolf = wolf;
         this.xSize = 176;
         this.ySize = 210;
+        
+        
     }
 
     @Override
@@ -66,6 +51,8 @@ public class GuiAstroWolfInventory extends GuiContainer
         final int var6 = (this.height - this.ySize) / 2;
         this.invX = var5 + 151;
         this.invY = var6 + 108;
+        
+        
         
     }
 

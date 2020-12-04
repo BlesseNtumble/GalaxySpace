@@ -7,7 +7,6 @@ import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.inventory.SlotSpecific;
 import micdoodle8.mods.galacticraft.core.items.ItemOxygenTank;
 import micdoodle8.mods.galacticraft.planets.mars.inventory.ContainerSlimeling;
-import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;

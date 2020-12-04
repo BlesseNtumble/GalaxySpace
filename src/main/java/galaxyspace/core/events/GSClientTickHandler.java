@@ -82,7 +82,7 @@ public class GSClientTickHandler {
 			event.gui = new GSGuiRocketInventory(mc.thePlayer.inventory, (EntityTier4Rocket) mc.thePlayer.ridingEntity, ((EntityTier4Rocket) mc.thePlayer.ridingEntity).getType());
 		}*/		
 	}
-	
+
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void onToolTip(ItemTooltipEvent e) {
@@ -109,20 +109,6 @@ public class GSClientTickHandler {
 	{		
 		EntityPlayerSP player = Minecraft.getMinecraft().player;
 		WorldClient world = mc.world;
-
-		if (event.phase == Phase.START)
-		{
-			if (!mc.isGamePaused())
-			{				
-			
-			}	
-			
-			if(player != null)
-			{
-				
-			}
-
-		}
 
 		if(event.phase == Phase.END)
 		{
@@ -212,6 +198,7 @@ public class GSClientTickHandler {
         					GalaxySpace.NAME + " " + GalaxySpace.VERSION + " DEBUG Mode",
         					"MC Version: 1.12.2",
         					"Celestial Body: " + ((player.getEntityWorld().provider instanceof IGalacticraftWorldProvider) ? ((IGalacticraftWorldProvider)player.getEntityWorld().provider).getCelestialBody().getLocalizedName() : "Unnamed"),
+        					"FPS: " + mc.getDebugFPS(),
         					"",
         					"Player Data:",
         					"X: " + (int) player.posX,
@@ -237,7 +224,7 @@ public class GSClientTickHandler {
         					
         			};
             			
-        			int k = 3;
+        			int k = 4;
         			if(mc.gameSettings.isKeyDown(mc.gameSettings.keyBindSneak)) k = s.length;
         			GL11.glPushMatrix();
         			//GlStateManager.disableLighting();

@@ -23,7 +23,7 @@ public class SkyProviderHaumea extends SkyProviderBase
 		GL11.glPushMatrix();
         GL11.glEnable(GL11.GL_BLEND);
         
-		f10 = 550.0F;
+		f10 = 500.0F;
 		GL11.glScalef(0.8F, 0.6F, 0.8F);
 		GL11.glRotatef(80.0f, 1.0F, 0.0F, 0.0F);
 		GL11.glRotatef(this.mc.world.getCelestialAngle(ticks) * 360.0F, 0.0F, 1.0F, 0.0F);

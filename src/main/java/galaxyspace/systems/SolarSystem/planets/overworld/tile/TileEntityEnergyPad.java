@@ -1,32 +1,17 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.tile;
 
-import java.util.HashSet;
-import java.util.List;
-
 import javax.annotation.Nullable;
 
 import cofh.redstoneflux.api.IEnergyContainerItem;
-import galaxyspace.api.tile.ITileEffects;
-import galaxyspace.core.GSItems;
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
-import ic2.api.item.ISpecialElectricItem;
 import mekanism.api.energy.IEnergizedItem;
-import micdoodle8.mods.galacticraft.api.entity.IAntiGrav;
-import micdoodle8.mods.galacticraft.api.item.IArmorGravity;
 import micdoodle8.mods.galacticraft.api.item.IItemElectricBase;
 import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
-import micdoodle8.mods.galacticraft.api.vector.BlockVec3Dim;
-import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
-import micdoodle8.mods.galacticraft.core.dimension.WorldProviderSpaceStation;
 import micdoodle8.mods.galacticraft.core.energy.EnergyConfigHandler;
-import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
-import micdoodle8.mods.galacticraft.core.energy.tile.EnergyStorageTile;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseElectricBlockWithInventory;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
@@ -34,10 +19,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class TileEntityEnergyPad extends TileBaseElectricBlockWithInventory {

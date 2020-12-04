@@ -7,13 +7,10 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 
 public class InventoryAstroWolf implements IInventory
 {
@@ -95,48 +92,7 @@ public class InventoryAstroWolf implements IInventory
 
         return true;
     }
-    
-    
-/*
-    public void readFromNBT(NBTTagList tagList)
-    {
-        if (tagList == null || tagList.tagCount() <= 0)
-        {
-            return;
-        }
 
-        this.stacks = NonNullList.withSize(this.stacks.size(), ItemStack.EMPTY);
-
-        for (int i = 0; i < tagList.tagCount(); ++i)
-        {
-            final NBTTagCompound nbttagcompound = tagList.getCompoundTagAt(i);
-            final int j = nbttagcompound.getByte("Slot") & 255;
-            final ItemStack itemstack = new ItemStack(nbttagcompound);
-
-            if (!itemstack.isEmpty())
-            {
-                this.stacks.set(j, itemstack);
-            }
-        }
-        
-    }
-
-    public NBTTagList writeToNBT(NBTTagList tagList)
-    {
-        NBTTagCompound nbttagcompound = new NBTTagCompound();
-
-        for (int i = 0; i < this.stacks.size(); ++i)
-        {
-            if (!this.stacks.get(i).isEmpty())
-            {                
-                nbttagcompound.setByte("Slot", (byte) i);
-                this.stacks.get(i).writeToNBT(nbttagcompound);
-                tagList.appendTag(nbttagcompound);
-            }
-        }
-        return tagList;
-    }
-*/
     @Override
     public int getInventoryStackLimit()
     {

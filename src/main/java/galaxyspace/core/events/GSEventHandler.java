@@ -6,8 +6,6 @@ import java.util.List;
 import asmodeuscore.api.dimension.IAdvancedSpace;
 import asmodeuscore.api.dimension.IProviderFreeze;
 import asmodeuscore.api.item.IItemSpaceFood;
-import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
-import asmodeuscore.core.event.AsmodeusEvent;
 import asmodeuscore.core.event.PressureEvent;
 import asmodeuscore.core.event.RadiationEvent;
 import asmodeuscore.core.handler.LightningStormHandler;
@@ -52,7 +50,6 @@ import micdoodle8.mods.galacticraft.api.inventory.AccessInventoryGC;
 import micdoodle8.mods.galacticraft.api.inventory.IInventoryGC;
 import micdoodle8.mods.galacticraft.api.item.EnumExtendedInventorySlot;
 import micdoodle8.mods.galacticraft.api.prefab.entity.EntityTieredRocket;
-import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 import micdoodle8.mods.galacticraft.api.vector.BlockVec3Dim;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
@@ -79,12 +76,10 @@ import micdoodle8.mods.galacticraft.planets.asteroids.items.ItemTier3Rocket;
 import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import micdoodle8.mods.galacticraft.planets.mars.dimension.WorldProviderMars;
 import micdoodle8.mods.galacticraft.planets.mars.items.ItemTier2Rocket;
-import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityLaunchController;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
@@ -107,7 +102,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.config.Config.Type;
@@ -119,13 +113,10 @@ import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
-import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -354,7 +345,8 @@ public class GSEventHandler {
 		
 		
 		if(world.isRemote)
-		{				
+		{	
+			
 		}
 		
 		if(!world.isRemote && GSConfigCore.enableHardMode)

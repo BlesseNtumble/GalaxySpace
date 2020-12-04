@@ -242,7 +242,7 @@ public class TileEntityWindSolarPanel extends TileBaseUniversalElectricalSource 
         celestialAngle %= 360;
 
         float difference = (180.0F - Math.abs(this.currentAngle % 180 - celestialAngle)) / 180.0F;
-        return MathHelper.floor((0.01F * difference * difference * (this.solarWindStrength * (Math.abs(difference) * 1000.0F)) * this.getSolarBoost() * 2) * (2 * GSConfigEnergy.coefficientSolarPanel));
+        return MathHelper.floor((0.01F * difference * difference * (this.solarWindStrength * (Math.abs(difference) * 500.0F)) * this.getSolarBoost() * 2) * GSConfigEnergy.coefficientSolarPanel);
     }
 
     public float getSolarBoost()

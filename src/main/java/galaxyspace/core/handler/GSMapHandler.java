@@ -4,18 +4,12 @@ import java.util.Random;
 
 import org.lwjgl.Sys;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.util.vector.Vector3f;
 
 import asmodeuscore.core.astronomy.gui.screen.Base_GuiCelestialSelection;
 import asmodeuscore.core.astronomy.gui.screen.NewGuiCelestialSelection;
 import galaxyspace.GalaxySpace;
 import galaxyspace.systems.SolarSystem.SolarSystemBodies;
 import micdoodle8.mods.galacticraft.api.event.client.CelestialBodyRenderEvent;
-import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
-import micdoodle8.mods.galacticraft.api.galaxies.Moon;
-import micdoodle8.mods.galacticraft.api.galaxies.Planet;
-import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiCelestialSelection;
 import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;

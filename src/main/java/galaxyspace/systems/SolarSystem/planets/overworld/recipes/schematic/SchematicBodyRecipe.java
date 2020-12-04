@@ -15,7 +15,7 @@ public class SchematicBodyRecipe {
 
 	public static void registerRecipeWorkBench()
     {
-		for(int k = 0; k <= 4; k++)
+		for(int k = 0; k <= 3; k++)
         {
 			HashMap<Integer, ItemStack> input = new HashMap<Integer, ItemStack>();
 			
