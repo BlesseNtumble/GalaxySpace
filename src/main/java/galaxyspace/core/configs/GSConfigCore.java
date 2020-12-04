@@ -91,15 +91,21 @@ public class GSConfigCore
             prop.setComment("Enable/Disable Check Version.");
             prop.setLanguageKey("gc.configgui.enableCheckVersion").setRequiresMcRestart(false);
             enableCheckVersion = prop.getBoolean(true);
-            propOrder.add(prop.getName());         
+            propOrder.add(prop.getName());  
             
-            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableAdvancedRocketCraft", true);
+            prop = config.get(Constants.CONFIG_CATEGORY_CLIENT, "enableSkyOverworld", true);
+            prop.setComment("Enable/Disable Advanced Sky Provider on Overworld (Not support shaders).");
+            prop.setLanguageKey("gc.configgui.enableSkyOverworld").setRequiresMcRestart(false);
+            enableSkyOverworld = prop.getBoolean(true);
+            propOrder.add(prop.getName());   
+            
+            prop = config.get(Constants.CONFIG_CATEGORY_DIFFICULTY, "enableAdvancedRocketCraft", true);
             prop.setComment("Enable/Disable advanced craft for rocket tier 2-3.");
             prop.setLanguageKey("gc.configgui.enableAdvancedRocketCraft").setRequiresMcRestart(true);
             enableAdvancedRocketCraft = prop.getBoolean(true);
             propOrder.add(prop.getName());   
             
-            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableAdvancedThermalSystem", true);
+            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "enableAdvancedThermalSystem", true);
             prop.setComment("Enable/Disable advanced thermal system on celestial bodies.");
             prop.setLanguageKey("gc.configgui.enableAdvancedThermalSystem").setRequiresMcRestart(false);
             enableAdvancedThermalSystem = prop.getBoolean(true);
@@ -141,13 +147,13 @@ public class GSConfigCore
             enableNewMenu = prop.getBoolean(true);
             propOrder.add(prop.getName());
             
-            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "enableMethaneParticle", true);
+            prop = config.get(Constants.CONFIG_CATEGORY_CLIENT, "enableMethaneParticle", true);
             prop.setComment("Enable/Disable Methane Particles.");
             prop.setLanguageKey("gc.configgui.enableMethaneParticle").setRequiresMcRestart(false);
             enableMethaneParticle = prop.getBoolean(true);
             propOrder.add(prop.getName());   
             
-            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "enableMarsNewOres", true);
+            prop = config.get(Constants.CONFIG_CATEGORY_WORLDGEN, "enableMarsNewOres", true);
             prop.setComment("Enable/Disable New Mars oregen (diamonds, coal, gold, etc).");
             prop.setLanguageKey("gc.configgui.enableMarsNewOres").setRequiresMcRestart(true);
             enableMarsNewOres = prop.getBoolean(true);
@@ -197,7 +203,7 @@ public class GSConfigCore
             guiIDGuideBook = prop.getInt();
             propOrder.add(prop.getName());
                           
-            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableUnreachable", true);
+            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "enableUnreachable", true);
             prop.setComment("Enable/Disable Unreachable Planets/Moons");
             prop.setLanguageKey("gc.configgui.enableUnreachable").setRequiresMcRestart(true);
             enableUnreachable = prop.getBoolean(true);
@@ -227,7 +233,7 @@ public class GSConfigCore
             enableSpaceSuitHUD = prop.getBoolean(true);
             propOrder.add(prop.getName());
             
-            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "spacesuit_pos", spacesuit_pos);
+            prop = config.get(Constants.CONFIG_CATEGORY_CLIENT, "spacesuit_pos", spacesuit_pos);
             prop.setComment("Set HUD position. (up or top, center, down or bottom)");
             prop.setLanguageKey("gc.configgui.spacesuit_pos").setRequiresMcRestart(false);
             spacesuit_pos = prop.getString();
