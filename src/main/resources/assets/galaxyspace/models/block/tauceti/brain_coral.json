@@ -1,0 +1,4 @@
+{ 
+	"parent": "block/tinted_cross", 
+ 	"textures": { "cross" : "galaxyspace:blocks/taucetisystem/tauceti_f/brain_coral"}
+}

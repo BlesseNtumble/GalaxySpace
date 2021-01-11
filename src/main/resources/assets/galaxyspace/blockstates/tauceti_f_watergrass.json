@@ -1,0 +1,12 @@
+{ 
+	"variants": { 
+		"type=watergrass_red": { "model": "galaxyspace:tauceti/watergrass_red"}, 
+		"type=watergrass_standart_bottom": { "model": "galaxyspace:tauceti/watergrass_standart_bottom"}, 
+		"type=watergrass_standart_middle": { "model": "galaxyspace:tauceti/watergrass_standart_middle"}, 
+		"type=watergrass_standart_top": { "model": "galaxyspace:tauceti/watergrass_standart_top"}, 
+		"type=watergrass_slime_bottom": { "model": "galaxyspace:tauceti/watergrass_slime_bottom"}, 
+		"type=watergrass_slime_top": { "model": "galaxyspace:tauceti/watergrass_slime_top"}, 
+		"type=watergrass_thick_green": { "model": "galaxyspace:tauceti/watergrass_thick_green"}, 
+		"type=kelp": { "model": "galaxyspace:tauceti/kelp"}
+	} 
+}

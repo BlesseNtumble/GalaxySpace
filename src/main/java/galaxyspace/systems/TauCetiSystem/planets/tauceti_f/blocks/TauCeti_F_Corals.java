@@ -1,0 +1,528 @@
+package galaxyspace.systems.TauCetiSystem.planets.tauceti_f.blocks;
+
+import java.util.List;
+import java.util.Random;
+
+import javax.annotation.Nullable;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
+import net.minecraft.block.BlockLiquid;
+import net.minecraft.block.IGrowable;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockFaceShape;
+import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.common.IShearable;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+public class TauCeti_F_Corals extends BlockBush implements IGrowable, IShearable {
+
+	public static final PropertyEnum<EnumBlockCorals> BASIC_TYPE = PropertyEnum.create("type", EnumBlockCorals.class);
+	
+	protected static final AxisAlignedBB TALL_GRASS_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
+
+	public TauCeti_F_Corals()
+	{
+		super(Material.WATER);
+		this.setUnlocalizedName("tauceti_f_corals");
+		this.setTickRandomly(true);
+		this.setHardness(0.0F);
+		this.setSoundType(SoundType.PLANT);
+		this.setDefaultState(getDefaultState().withProperty(BASIC_TYPE, EnumBlockCorals.BRAIN_CORAL).withProperty(BlockLiquid.LEVEL, 15));
+	}
+	
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return TALL_GRASS_AABB;
+    }
+	
+	@Nullable
+	@Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
+    {
+        return NULL_AABB;
+    }
+	
+	@Override
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+    {
+		/*if(getType(state) == EnumBlockDandelions.DESERT_DOWN)
+		{
+			if(entity instanceof EntityLivingBase)
+				entity.attackEntityFrom(DamageSource.CACTUS, 0.5F);
+		}*/
+    }
+
+	
+	@Override
+	public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    {		
+		EnumBlockCorals type = ((EnumBlockCorals) state.getValue(BASIC_TYPE));
+		
+		switch (type)
+        {						
+			default:
+				return Material.GROUND.getMaterialMapColor();
+		
+        }
+    }
+	
+	@Override
+	public Material getMaterial(IBlockState state)
+    {
+		EnumBlockCorals type = ((EnumBlockCorals) state.getValue(BASIC_TYPE));
+		switch(type)
+		{
+			default: return this.blockMaterial;
+		}      
+    }
+	
+	@Override
+	public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+		EnumBlockCorals type = ((EnumBlockCorals) state.getValue(BASIC_TYPE));
+		
+		switch(type)
+		{
+			/*case LEAVES_BALLS: 
+				return 8;
+			case LIGHT_BALLS: 
+				return */
+			default:
+				return state.getLightValue();
+		}
+    }
+	
+	@Override
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+		
+		EnumBlockCorals type = ((EnumBlockCorals) state.getValue(BASIC_TYPE));
+		//if(type == EnumBlockDandelions.REEDS || type == EnumBlockDandelions.REEDS_FRUITS)
+			//return new ItemStack(BRItems.BASIC, 1, 0);
+		
+		return new ItemStack(Item.getItemFromBlock(this), 1, this.getMetaFromState(state));
+	}
+	
+	@SideOnly(Side.CLIENT)
+    @Override
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
+    {
+        for (EnumBlockCorals blockBasic : EnumBlockCorals.values())
+        {
+        	/*if(!blockBasic.equals(blockBasic.DESERT_UP) 
+        			&& !blockBasic.equals(blockBasic.REEDS) 
+        			&& !blockBasic.equals(blockBasic.REEDS_FRUITS)
+        			&& !blockBasic.equals(blockBasic.YELLOW_GRASS_UP))*/
+        		list.add(new ItemStack(this, 1, blockBasic.getMeta()));
+        }
+    }
+	
+	@Override
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		
+		/*EnumBlockDandelions type = ((EnumBlockDandelions) state.getValue(BASIC_TYPE));
+		if(!world.isRemote) {	
+			if(type == EnumBlockDandelions.REEDS_FRUITS) {
+				world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(BRItems.FOODS, 1, 0)));
+				world.setBlockState(pos, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS), 3);
+				return true;	
+			}
+		}
+		*/
+		return false;
+	}
+	
+	@Override
+	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
+    {
+		/*if (!world.isAreaLoaded(pos, 1)) return; // Forge: prevent growing cactus from loading unloaded chunks with block update
+		
+		if (!world.isRemote)
+        {
+			if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS) || state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS_FRUITS))
+			{
+				if(world.isAirBlock(pos.up())) {
+					int length = 1;
+					IBlockState reed1 = this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS);
+					IBlockState reed2 = this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS_FRUITS);
+					
+					while(world.getBlockState(pos.down(length)) == reed1 || world.getBlockState(pos.down(length)) == reed2) 
+						length++;
+							
+					if(length < 4)
+						world.setBlockState(pos.up(), this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS), 3);
+				}
+				if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS))
+					if(rand.nextInt(40) == 0)
+					{
+						world.setBlockState(pos, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS_FRUITS), 3);
+					}
+				
+							
+			}
+			
+			if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.VIOLET_TREE_SAPLING))
+			{
+				if (world.getLightFromNeighbors(pos.up()) >= 9 && rand.nextInt(7) == 0) {
+					this.grow(world, rand, pos, state);
+				}
+			}
+        }*/
+    }	
+	
+	@Override
+	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
+    {
+		//super.neighborChanged(state, world, pos, block, fromPos);
+		//canPlaceAt(state, world, pos, EnumBlockDandelions.REEDS, BRBlocks.BARNARDA_C_GRASS.getDefaultState(), this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS));
+		
+	/*	if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.YELLOW_GRASS_UP))
+		{
+			if(!world.getBlockState(pos.down()).equals(this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.YELLOW_GRASS_DOWN)))
+			{
+				this.dropBlockAsItem(world, pos, world.getBlockState(pos), 0);
+				world.destroyBlock(pos, false);
+			}
+		}
+		
+		
+		if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS))
+		{			
+			if(world.isAirBlock(pos.down()))
+			{
+				this.dropBlockAsItem(world, pos, world.getBlockState(pos), 0);
+				world.destroyBlock(pos, false);
+			}
+		}
+		
+		if(state != this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.LEAVES_BALLS) && world.isAirBlock(pos.down()))
+		{
+			this.dropBlockAsItem(world, pos, world.getBlockState(pos), 0);
+			world.destroyBlock(pos, false);
+		}
+		
+		if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.LEAVES_BALLS) && world.isAirBlock(pos.up()))
+		{
+			this.dropBlockAsItem(world, pos, world.getBlockState(pos), 0);
+			world.destroyBlock(pos, false);
+		}*/
+		
+    }
+	
+	private void canPlaceAt(IBlockState state, World world, BlockPos pos, EntityLivingBase placer, EnumBlockCorals type, IBlockState... valide)
+	{
+		
+		if(!world.isRemote && state == this.getDefaultState().withProperty(BASIC_TYPE, type))
+		{
+			boolean is_forriden = true;
+			for(IBlockState block : valide)
+				if(world.getBlockState(pos.down()) == block)
+					is_forriden = false;
+				
+			if(is_forriden) {
+				world.destroyBlock(pos, true);
+				if(placer instanceof EntityPlayer && !((EntityPlayer) placer).capabilities.isCreativeMode)
+					world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(this.getDefaultState().getBlock(), 1, this.getMetaFromState(state))));
+			}
+		}		
+	}
+	
+	@Override
+	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    {		
+		//canPlaceAt(state, world, pos, placer, EnumBlockDandelions.REEDS, BRBlocks.BARNARDA_C_GRASS.getDefaultState(), this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS));
+		
+		//canPlaceAt(state, world, pos, placer, EnumBlockDandelions.VIOLET_TREE_SAPLING, BRBlocks.BARNARDA_C_GRASS.getDefaultState(), BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(0));
+		
+		/*if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.DESERT_DOWN))
+		{
+			if(world.isAirBlock(pos.up()))
+				world.setBlockState(pos.up(), this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.DESERT_UP));
+		}
+		
+		if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.YELLOW_GRASS_DOWN))
+		{
+			if(world.isAirBlock(pos.up()))
+				world.setBlockState(pos.up(), this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.YELLOW_GRASS_UP));
+		}
+		*/
+		
+    }
+	
+	@Override
+    public void breakBlock(World world, BlockPos pos, IBlockState state)
+    {
+		/*if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.DESERT_UP))
+		{
+			world.destroyBlock(pos.down(), true);
+		}
+		
+		if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.DESERT_DOWN))
+		{
+			if(world.getBlockState(pos.up()) == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.DESERT_UP))
+				world.destroyBlock(pos.up(), true);
+		}
+		
+		if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.YELLOW_GRASS_UP))
+		{
+			if(world.getBlockState(pos.down()) == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.YELLOW_GRASS_DOWN))
+				world.destroyBlock(pos.down(), true);
+		}
+		
+		if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.YELLOW_GRASS_DOWN))
+		{
+			if(world.getBlockState(pos.up()) == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.YELLOW_GRASS_UP))
+				world.destroyBlock(pos.up(), true);
+		}*/
+		super.breakBlock(world, pos, state);
+    }
+
+	@Override
+    public boolean isReplaceable(IBlockAccess world, BlockPos pos)
+    {
+		//if(world.getBlockState(pos) == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS))
+			//return false;
+        return false;
+    }
+	
+	@Override
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) 
+	{
+		EnumBlockCorals type = ((EnumBlockCorals) state.getValue(BASIC_TYPE));
+		
+		switch(type)
+		{
+			/*case GRASS:
+				return Items.WHEAT_SEEDS;
+			case REEDS: 
+			case REEDS_FRUITS: 
+				return BRItems.BASIC;*/
+			default: return null;
+		}
+		
+	}
+	
+	@Override
+	public int damageDropped(IBlockState state) 
+	{
+		EnumBlockCorals type = ((EnumBlockCorals) state.getValue(BASIC_TYPE));
+		
+		switch(type)
+		{
+			/*case GRASS:
+				return 0;
+			case REEDS: 
+			case REEDS_FRUITS: 
+				return 0;*/
+			default: return 0;
+		}
+	}
+	
+	@Override
+	public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
+
+		/*if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.VIOLET_TREE_SAPLING))		
+			return true;*/
+		
+		return false;
+	}
+
+	@Override
+	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
+		
+		/*if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.VIOLET_TREE_SAPLING))		
+			return true;*/		
+		
+		return false;
+	}
+
+	@Override
+	public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
+		
+		/*if(rand.nextInt(7) == 0)
+        {
+            this.generateTree(world, pos, state, rand);
+        }*/
+	}
+/*
+	public void generateTree(World world, BlockPos pos, IBlockState state, Random rand)
+    {
+		if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(world, rand, pos)) return;
+		
+		WorldGenerator tree = new WorldGenTree_Forest(BRBlocks.BARNARDA_C_VIOLET_LOG.getStateFromMeta(0), BRBlocks.BARNARDA_C_LEAVES.getStateFromMeta(0), rand.nextInt(3));
+		WorldGenerator tree_2 = new WorldGenTree_Forest2(BRBlocks.BARNARDA_C_VIOLET_LOG.getStateFromMeta(0), BRBlocks.BARNARDA_C_LEAVES.getStateFromMeta(0), rand.nextInt(3));
+		
+		boolean check = true;
+		for(BlockPos poscheck : BlockPos.getAllInBox(pos.add(-5, 2, -5), pos.add(5, 10, 5)))
+		{
+			if(!world.isAirBlock(poscheck))
+				check = false;
+		}
+		
+		if(check)
+		{
+			if(rand.nextInt(2) == 0)
+				tree.generate(world, rand, pos);
+			else
+				tree_2.generate(world, rand, pos);
+		}
+    }*/
+	
+	
+	@Override
+	public boolean isShearable(ItemStack item, IBlockAccess world, BlockPos pos) {
+		return false;
+	}
+
+	@Override
+	public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
+		return null;
+	}
+	
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
+	}
+
+	@Override
+	public boolean isFullCube(IBlockState state) {		
+		return false;		
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public BlockRenderLayer getBlockLayer() {
+		return BlockRenderLayer.CUTOUT;
+	}
+	
+	@Override
+	public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
+    {
+        return BlockFaceShape.UNDEFINED;
+    }
+	
+	@Override
+	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    {
+        Random rand = world instanceof World ? ((World)world).rand : RANDOM;
+
+        int count = quantityDropped(state, fortune, rand);
+        for (int i = 0; i < count; i++)
+        {
+            Item item = this.getItemDropped(state, rand, fortune);
+            if (item != Items.AIR)
+            {
+            	EnumBlockCorals type = ((EnumBlockCorals) state.getValue(BASIC_TYPE));
+            	
+            	switch (type)
+                {
+        		/*	case GRASS: 
+        				if(rand.nextInt(100) >= 10) break;
+        				drops.add(new ItemStack(item, 1, this.damageDropped(state)));
+        				break;
+        			case LIGHT_BALLS:
+        			case LEAVES_BALLS:
+        				if(rand.nextInt(100) >= 80) break;
+        				drops.add(new ItemStack(Items.GLOWSTONE_DUST, 1, 0));
+        				break;*/
+                	default:
+                		drops.add(new ItemStack(item, 1, this.damageDropped(state)));
+                		break;
+                }
+               
+            }
+        }
+    }
+	
+	private EnumBlockCorals getType(IBlockState state)
+	{
+		return ((EnumBlockCorals) state.getValue(BASIC_TYPE));
+	}
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////
+	public static enum EnumBlockCorals implements IStringSerializable
+    {
+		BRAIN_CORAL(0, "brain_coral"),
+		BRAIN_CORAL_FAN(1, "brain_coral_fan"),
+		BUBBLE_CORAL(2, "bubble_coral"),
+		BUBBLE_CORAL_FAN(3, "bubble_coral_fan"),
+		FIRE_CORAL(4, "fire_coral"),
+		FIRE_CORAL_FAN(5, "fire_coral_fan"),
+		HORN_CORAL(6, "horn_coral"),
+		HORN_CORAL_FAN(7, "horn_coral_fan"),
+		TUBE_CORAL(8, "tube_coral"),
+		TUBE_CORAL_FAN(9, "tube_coral_fan"),
+		SPONGE_CORAL(10, "sponge_coral");
+		
+		private final int meta;
+		private final String name;
+
+		private EnumBlockCorals(int meta, String name) {
+			this.meta = meta;
+			this.name = name;
+		}
+		
+		public int getMeta() { return this.meta; }
+
+		public static EnumBlockCorals byMetadata(int meta) { return values()[meta]; }
+		
+		@Override
+		public String getName() { return this.name; }
+
+    }
+	
+	@Override
+	public IBlockState getStateFromMeta(int meta)
+	{
+		return this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockCorals.byMetadata(meta));
+	}
+	
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		return ((EnumBlockCorals) state.getValue(BASIC_TYPE)).getMeta();
+	}	
+	
+	@Override
+	protected BlockStateContainer createBlockState()
+	{		
+		return new BlockStateContainer(this, new IProperty[] {BlockLiquid.LEVEL, BASIC_TYPE});
+	}
+	
+	@Override
+	public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
+    {
+		return true;
+    }
+	
+	@Override
+	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+    {
+		return true;
+    }
+
+}

@@ -1,0 +1,15 @@
+{ 
+	"variants": { 
+		"type=brain_coral": { "model": "galaxyspace:tauceti/brain_coral"}, 
+		"type=brain_coral_fan": { "model": "galaxyspace:tauceti/brain_coral_fan"}, 
+		"type=bubble_coral": { "model": "galaxyspace:tauceti/bubble_coral"}, 
+		"type=bubble_coral_fan": { "model": "galaxyspace:tauceti/bubble_coral_fan"}, 
+		"type=fire_coral": { "model": "galaxyspace:tauceti/fire_coral"}, 
+		"type=fire_coral_fan": { "model": "galaxyspace:tauceti/fire_coral_fan"}, 
+		"type=horn_coral": { "model": "galaxyspace:tauceti/horn_coral"}, 
+		"type=horn_coral_fan": { "model": "galaxyspace:tauceti/horn_coral_fan"}, 
+		"type=tube_coral": { "model": "galaxyspace:tauceti/tube_coral"}, 
+		"type=tube_coral_fan": { "model": "galaxyspace:tauceti/tube_coral_fan"}, 
+		"type=sponge_coral": { "model": "galaxyspace:tauceti/sponge_coral"}
+	} 
+}

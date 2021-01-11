@@ -31,7 +31,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TauCeti_F_Blocks  extends Block implements ISortableBlock, ITerraformableBlock, IDetectableResource{
+public class TauCeti_F_Blocks  extends Block implements ISortableBlock, ITerraformableBlock, IDetectableResource {
 
 	public static final PropertyEnum<EnumBlockTauCetiF> BASIC_TYPE = PropertyEnum.create("type", EnumBlockTauCetiF.class);
 	

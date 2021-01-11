@@ -1,32 +1,42 @@
 package galaxyspace.systems.TauCetiSystem.planets.tauceti_f.dimensions;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Nullable;
 
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.biome.WE_BaseBiome;
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
+import asmodeuscore.core.utils.worldengine.perlinnoise.PerlinNoise;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_CaveGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_RavineGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
-import galaxyspace.core.prefab.world.gen.we.biomes.WE_BaseBiome;
+import galaxyspace.GalaxySpace;
+import galaxyspace.core.prefab.world.gen.WorldGenCircleBlock;
 import galaxyspace.core.util.GSDimensions;
+import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Falling_Blocks;
 import galaxyspace.systems.TauCetiSystem.TauCetiSystemBodies;
 import galaxyspace.systems.TauCetiSystem.core.TCBlocks;
+import galaxyspace.systems.TauCetiSystem.planets.tauceti_f.blocks.TauCeti_F_Blocks;
 import galaxyspace.systems.TauCetiSystem.planets.tauceti_f.dimensions.sky.SkyProviderTauCeti_F;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
+import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
@@ -218,7 +228,8 @@ public class WorldProviderTauCeti_F_WE extends WE_WorldProviderSpace {
 		cp.createChunkGen_InXYZ_List.clear(); 
 		cp.decorateChunkGen_List .clear(); 
 		
-		WE_Biome.setBiomeMap(cp, 1.8D, 4, 2500.0D, 2.4D);	
+		WE_Biome.setBiomeMap(cp, 1.8D, 4, 2500.0D, 2.0D);	
+		WE_Biome.addPrelinNoise(cp, new PerlinNoise(cp.worldObj.getSeed(), 1.5D, cp.biomemapNumberOfOctaves, 400, cp.biomemapScaleY, 0));
 
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
 		terrainGenerator.worldStoneBlock = TCBlocks.TAUCETI_F_BLOCKS.getStateFromMeta(0); 
@@ -233,9 +244,9 @@ public class WorldProviderTauCeti_F_WE extends WE_WorldProviderSpace {
 		cg.addReplacingBlock(terrainGenerator.worldStoneBlock); 
 		cg.lavaMaxY = 0;
 		cg.range = 32;
-		cg.d6_range = 2.5D;
-		cg.frequency = 10;
-		cg.maxY = 80;
+		cg.d6_range = 4.5D;
+		cg.frequency = 5;
+		cg.maxY = 70;
 		cg.caveBlock = terrainGenerator.worldSeaGenBlock;
 		cg.ignoreLiquid = true;
 		cp.createChunkGen_List.add(cg); 
@@ -255,13 +266,130 @@ public class WorldProviderTauCeti_F_WE extends WE_WorldProviderSpace {
 		cp.biomesList.clear();
 		
 		WE_BiomeLayer layer = new WE_BiomeLayer();
+		layer.add(TCBlocks.TAUCETI_F_BLOCKS.getStateFromMeta(2), terrainGenerator.worldStoneBlock, -256, 0, -4, -1, true);
 		layer.add(Blocks.BEDROCK.getDefaultState(), 0, 0, 1, 2, true);
 		//layer.add(Blocks.PACKED_ICE.getDefaultState(), terrainGenerator.worldStoneBlock, -256, 0,   -4, -10,  true);
 		//layer.add(Blocks.SNOW.getDefaultState(), Blocks.PACKED_ICE.getDefaultState(), -256, 0,   -2, -1,  false);
 		
-		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(0D, 1.8F, 4, 100, 35, layer).setColors(0x00FF00, 0xFF0000, 0x00FF00));	
-		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(0.5D, 2.4F, 4, 80, 35, layer).setColors(0x00FF00, 0x0FFF00, 0x00FF00));	
-		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(5D, 2.6F, 4, 50, 30, layer).setColors(0x00FF00, 0x00FF00, 0x00FF00));	
+		
+		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(0D, 1.4F, 4, 90, 35, layer) {
+			@Override
+			public void decorateBiome(World world, Random rand, int x, int z)
+			{
+				for(int i = 0; i < 80; i++) {
+					int randPosX = x + rand.nextInt(16) + 8;
+					int randPosZ = z + rand.nextInt(16) + 8;
+					for(int y = terrainGenerator.worldSeaGenMaxY; y > 0; y--) {	
+						BlockPos pos = new BlockPos(randPosX, y, randPosZ);
+						if(y < 91 && world.getBlockState(pos).getMaterial() == Material.WATER && world.getBlockState(pos.down()) == TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.STONE))
+							world.setBlockState(pos, TCBlocks.TAUCETI_F_WATERGRASS.getStateFromMeta(0));
+					
+					}
+				}
+				
+				for(int i = 0; i < 2; i++) {
+					int randPosX = x + rand.nextInt(16) + 8;
+					int randPosZ = z + rand.nextInt(16) + 8;
+					for(int y = terrainGenerator.worldSeaGenMaxY; y > 0; y--) {	
+						BlockPos pos = new BlockPos(randPosX, y, randPosZ);
+						if(y < 90 && world.getBlockState(pos).getMaterial() == Material.WATER && world.getBlockState(pos.down()) == TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.STONE))
+						{
+							world.setBlockState(pos, TCBlocks.TAUCETI_F_WATERGRASS.getStateFromMeta(4));
+							world.setBlockState(pos.up(), TCBlocks.TAUCETI_F_WATERGRASS.getStateFromMeta(5));
+						}
+					
+					}
+				}
+			}
+		}.setColors(0x00FF00, 0xFF0000, 0x00FF00));	
+		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(0.8D, 2.4F, 4, 80, 35, layer) {
+			@Override
+			public void decorateBiome(World world, Random rand, int x, int z)
+			{
+				for(int i = 0; i < 10; i++) {
+					int randPosX = x + rand.nextInt(16) + 8;
+					int randPosZ = z + rand.nextInt(16) + 8;
+					for(int y = terrainGenerator.worldSeaGenMaxY; y > 0; y--) {					
+						BlockPos pos = new BlockPos(randPosX, y, randPosZ);					
+						if(world.getBlockState(pos).getMaterial() == Material.WATER && world.getBlockState(pos.down()) == TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.STONE))
+						{
+							int size = rand.nextInt(15) + 1;
+							world.setBlockState(pos, TCBlocks.TAUCETI_F_WATERGRASS.getStateFromMeta(1));
+							
+							
+							for(int l = 1; l < size - 1; l++) 
+								if(l < size - 1 && world.getBlockState(pos.up(l + 1)).getMaterial() == Material.WATER) 
+									world.setBlockState(pos.up(l),  TCBlocks.TAUCETI_F_WATERGRASS.getStateFromMeta(2));
+						
+							if(world.getBlockState(pos.up(size)).getMaterial() == Material.WATER)
+								world.setBlockState(pos.up(size-1),  TCBlocks.TAUCETI_F_WATERGRASS.getStateFromMeta(3));
+							
+
+							break;
+						}
+					}
+				}
+			}
+		}.setColors(0x00FF00, 0x0FFF00, 0x00FF00));	
+		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(2.6D, 2.6F, 4, 60, 10, layer) {
+			@Override
+			public void decorateBiome(World world, Random rand, int x, int z)
+			{}
+		}.setColors(0x00FF00, 0x00FF00, 0x00FF00));	
+		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(4.0D, 1.4F, 4, 40, 15, layer) {
+			@Override
+			public void decorateBiome(World world, Random rand, int x, int z)
+			{
+				for(int i = 0; i < 1; i++) {
+					int randPosX = x + rand.nextInt(16) + 8;
+					int randPosZ = z + rand.nextInt(16) + 8;
+					for(int y = terrainGenerator.worldSeaGenMaxY; y > 0; y--) {	
+						BlockPos pos = new BlockPos(randPosX, y, randPosZ);
+						if(world.getBlockState(pos).getMaterial() == Material.WATER && world.getBlockState(pos.down()) == TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.STONE))
+							new WorldGenCircleBlock(Blocks.DIRT.getDefaultState(), 8, TCBlocks.TAUCETI_F_BLOCKS.getStateFromMeta(2)).generate(world, rand, pos);
+					}		
+				}
+				
+				for(int i = 0; i < 2; i++) {
+					int randPosX = x + rand.nextInt(16) + 8;
+					int randPosZ = z + rand.nextInt(16) + 8;
+					for(int y = terrainGenerator.worldSeaGenMaxY; y > 0; y--) {					
+						BlockPos pos = new BlockPos(randPosX, y, randPosZ);					
+						if(y > 35 && world.getBlockState(pos).getMaterial() == Material.WATER && world.getBlockState(pos.down()) == TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.STONE))
+						{
+							int size = rand.nextInt(15) + 1;
+							world.setBlockState(pos, TCBlocks.TAUCETI_F_WATERGRASS.getStateFromMeta(1));
+							
+							
+							for(int l = 1; l < size - 1; l++) 
+								if(l < size - 1 && world.getBlockState(pos.up(l + 1)).getMaterial() == Material.WATER) 
+									world.setBlockState(pos.up(l),  TCBlocks.TAUCETI_F_WATERGRASS.getStateFromMeta(2));
+						
+							if(world.getBlockState(pos.up(size)).getMaterial() == Material.WATER)
+								world.setBlockState(pos.up(size-1),  TCBlocks.TAUCETI_F_WATERGRASS.getStateFromMeta(3));
+							
+
+							break;
+						}
+					}
+				}
+				
+				for(int i = 0; i < 50; i++) {
+					int randPosX = x + rand.nextInt(16) + 8;
+					int randPosZ = z + rand.nextInt(16) + 8;
+					for(int y = terrainGenerator.worldSeaGenMaxY; y > 0; y--) {	
+						BlockPos pos = new BlockPos(randPosX, y, randPosZ);
+						if(y > 35 && world.getBlockState(pos).getMaterial() == Material.WATER && world.getBlockState(pos.down()) == TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.STONE))
+							world.setBlockState(pos, TCBlocks.TAUCETI_F_WATERGRASS.getStateFromMeta(6));
+					
+					}
+				}
+				
+				
+			}
+		}.setColors(0x00FF00, 0xFFFF00, 0x00FF00));	
+		//WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(1.0D, 1.6F, 4, 40, 15, layer).setPrelinNoiseID(1).setColors(0x00FF00, 0xFF00FF, 0x00FF00));	
+		
 		//WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-0.3D, 0.3D, 1.9F, 4, 90, 3, layer).setColors(0x00FF00, 0xFF0000, 0x00FF00));	
 		//WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-0.9D, 0.9D, 1.5F, 4, 135, 15, layer).setColors(0x00FF00, 0xFF0000, 0x00FF00));	
 	}
@@ -289,5 +417,13 @@ public class WorldProviderTauCeti_F_WE extends WE_WorldProviderSpace {
 	@Override
 	public void recreateStructures(Chunk chunkIn, int x, int z) {		
 	}
+
+	@Override
+	public float getThermalLevelModifier(EntityPlayer player) { 
+		//if(player.posY < 80) 
+			//return 1.0F;
+		
+		return this.getThermalLevelModifier();
+	};
 
 }
