@@ -32,7 +32,7 @@ public class GSConfigCore
     public static boolean enableOresGeneration;
     public static boolean enableDungeonsGeneration;
     public static boolean enableNewMenu;
-    public static boolean enableSkyOverworld;
+    
     public static boolean enableMarsWorldEngine;
     public static boolean enableMarsNewOres;
     public static boolean enableOverworldOres;
@@ -91,13 +91,7 @@ public class GSConfigCore
             prop.setComment("Enable/Disable Check Version.");
             prop.setLanguageKey("gc.configgui.enableCheckVersion").setRequiresMcRestart(false);
             enableCheckVersion = prop.getBoolean(true);
-            propOrder.add(prop.getName());  
-            
-            prop = config.get(Constants.CONFIG_CATEGORY_CLIENT, "enableSkyOverworld", true);
-            prop.setComment("Enable/Disable Advanced Sky Provider on Overworld (Not support shaders).");
-            prop.setLanguageKey("gc.configgui.enableSkyOverworld").setRequiresMcRestart(false);
-            enableSkyOverworld = prop.getBoolean(true);
-            propOrder.add(prop.getName());   
+            propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_DIFFICULTY, "enableAdvancedRocketCraft", true);
             prop.setComment("Enable/Disable advanced craft for rocket tier 2-3.");

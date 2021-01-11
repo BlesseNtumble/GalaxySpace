@@ -61,7 +61,7 @@ public class BarnardsSystemBodies implements IBodies {
 	}
 	
 	public static SolarSystem BarnardsSystem;
-	public static Planet Barnarda_B, Barnarda_C, Barnarda_D, Barnarda_E;
+	public static Planet Barnarda_B, Barnarda_C, Barnarda_ABelt, Barnarda_E;
 	public static Moon Barnarda_B1, Barnarda_C1, Barnarda_C2;
 	
 	@Override
@@ -110,10 +110,10 @@ public class BarnardsSystemBodies implements IBodies {
 		//BodiesHelper.setProviderData(Barnarda_C1, WorldProviderBarnarda_C2_WE.class, BRConfigDimensions.dimensionIDBarnardaC2, 1);
 		GalaxyRegistry.registerMoon(Barnarda_C2);
 		
-		Barnarda_D = BodiesRegistry.registerExPlanet(BarnardsSystem, "barnarda_d", GalaxySpace.ASSET_PREFIX, 1.25F);
-		Barnarda_D.setRelativeDistanceFromCenter(new ScalableDistance(1.25F, 1.0F)).setRingColorRGB(1.1F, 0.0F, 0.0F);
-		BodiesRegistry.setOrbitData(Barnarda_D, (float) Math.PI / 2, 1.0F, 105.9F);
-		GalaxyRegistry.registerPlanet(Barnarda_D);
+		Barnarda_ABelt = BodiesRegistry.registerExPlanet(BarnardsSystem, "barnarda_d", GalaxySpace.ASSET_PREFIX, 1.25F);
+		Barnarda_ABelt.setRelativeDistanceFromCenter(new ScalableDistance(1.25F, 1.0F)).setRingColorRGB(1.1F, 0.0F, 0.0F);
+		BodiesRegistry.setOrbitData(Barnarda_ABelt, (float) Math.PI / 2, 1.0F, 105.9F);
+		GalaxyRegistry.registerPlanet(Barnarda_ABelt);
 		
 		Barnarda_E = BodiesRegistry.registerExPlanet(BarnardsSystem, "barnarda_e", GalaxySpace.ASSET_PREFIX, 1.5F);
 		BodiesRegistry.setOrbitData(Barnarda_E, (float) Math.PI, 1.0F, 15.9F);

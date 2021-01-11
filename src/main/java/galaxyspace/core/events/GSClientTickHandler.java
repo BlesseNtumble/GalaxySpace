@@ -7,6 +7,7 @@ import org.lwjgl.opengl.GL11;
 import asmodeuscore.api.dimension.IAdvancedSpace;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
 import asmodeuscore.core.astronomy.gui.book.ACGuiGuideBook;
+import asmodeuscore.core.handler.ColorBlockHandler;
 import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
 import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
 import asmodeuscore.core.utils.worldengine.WE_PerlinNoise;
@@ -50,6 +51,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.World;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
@@ -182,9 +184,9 @@ public class GSClientTickHandler {
         			boolean isWE = player.getEntityWorld().provider instanceof WE_WorldProvider;
         			double count = 0;
         			
+        			World world = ColorBlockHandler.world;
         			if(isWE) {
-	        			WE_ChunkProvider chunk = ((WE_WorldProvider)player.world.provider).chunk_provider;
-	        			
+	        			WE_ChunkProvider chunk = ((WE_WorldProvider)world.provider).chunk_provider;
 	        			if(chunk != null) {
 		        			double scaleX = chunk.biomemapScaleX;
 		        			double persistance = chunk.biomemapPersistence;

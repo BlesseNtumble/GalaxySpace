@@ -43,7 +43,7 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WorldProviderProxima_B_WE extends WE_WorldProviderSpace implements IProviderFreeze, IProviderFog {
+public class WorldProviderProxima_B_WE extends WE_WorldProviderSpace implements IProviderFog {
 	
 	private final float[] colorsSunriseSunset = new float[4];
 	public static WE_ChunkProvider chunk;
@@ -112,8 +112,8 @@ public class WorldProviderProxima_B_WE extends WE_WorldProviderSpace implements 
     @Override
     @SideOnly(Side.CLIENT)
     public Vector3 getFogColor() {
-    	float f = 0.6F - this.getStarBrightness(1.0F);
-        return new Vector3(66 / 255.0F * f, 90 / 255.0F * f, 110 / 255.0F * f);
+    	float f = 1.0F - this.getStarBrightness(1.0F);
+        return new Vector3(66 / 255.0F * f, 70 / 255.0F * f, 80 / 255.0F * f);
     }
 
     @Override
@@ -154,7 +154,7 @@ public class WorldProviderProxima_B_WE extends WE_WorldProviderSpace implements 
             var3 = 1.0F;
         }
 
-        return var3 * var3 * 0.1F + 0.3F;    	
+        return var3 * var3 * 0.1F + 0.1F;    	
     }
    
     @Override
@@ -165,7 +165,7 @@ public class WorldProviderProxima_B_WE extends WE_WorldProviderSpace implements 
        f2 = MathHelper.clamp(f2, 0.0F, 1.0F);
 
        f2 = 1.2F - f2;
-       return f2 * 0.3F;
+       return f2 * 0.8F;
     }
     
     @Override
@@ -287,10 +287,12 @@ public class WorldProviderProxima_B_WE extends WE_WorldProviderSpace implements 
 		if (player != null)
 		{
 			int phase = this.getMoonPhase(this.getWorldTime());
-			if(skyLight > 0 && sunBrightness > 0.07f && phase != 0 && phase != 6) {
+			
+			if(sunBrightness > 0.4f && phase != 0 && phase != 6 && !this.world.isRaining()) {
 								
-				colors[0] = colors[0] + skyLight + 0.3F;				
-				colors[1] = colors[1] + skyLight / 6;	
+				//colors[0] = colors[0] + skyLight + 0.8F;				
+				colors[1] = colors[1] - skyLight / 1.6F;	
+				colors[2] = colors[2] - skyLight / 1.6F;	
 			}				
 		}
 	}
@@ -313,13 +315,13 @@ public class WorldProviderProxima_B_WE extends WE_WorldProviderSpace implements 
 		
 		switch(this.getMoonPhase(this.getWorldTime()))
 		{
-			case 0: return 0.35F;
-			case 1: return 0.75F;
+			case 0: return 0.45F;
+			case 1: return 0.95F;
 			
-			case 3: return 0.95F;
+			case 3: return 0.85F;
 			
-			case 5: return 0.5F;
-			case 6: return 0.2F;
+			case 5: return 0.6F;
+			case 6: return 0.3F;
 			
 			default: return 1.0F;
 		}

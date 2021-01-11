@@ -22,11 +22,7 @@ public class WorldGenCircleBlock extends WorldGenerator
 
     public boolean generate(World worldIn, Random rand, BlockPos position)
     {
-        if (worldIn.getBlockState(position).getMaterial() == Material.WATER)
-        {
-            return false;
-        }
-        else
+    	
         {
             int i = rand.nextInt(this.radius - 2) + 2;
             //int j = 2;
@@ -55,7 +51,7 @@ public class WorldGenCircleBlock extends WorldGenerator
                 }
             }
 
-            return true;
         }
+        return true;
     }
 }
