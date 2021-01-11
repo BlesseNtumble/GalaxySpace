@@ -10,7 +10,10 @@ import galaxyspace.core.GSItems;
 import galaxyspace.core.GSPotions;
 import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.configs.GSConfigSchematics;
+import galaxyspace.core.network.packet.GSPacketSimple;
+import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
 import galaxyspace.core.util.GSCreativeTabs;
+import galaxyspace.core.util.GSUtils;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.items.IClickableItem;
@@ -25,8 +28,11 @@ import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
@@ -38,8 +44,10 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.RayTraceResult.Type;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
@@ -82,9 +90,11 @@ public class ItemBasicGS extends Item implements ISortableItem{
 		DRY_ICE_CRYSTAL(27),
 		COLONIST_KIT(28),
 		EMPTY_PLASMA_CELL(29),
-		FILLED_PLASMA_CELL(30);
+		FILLED_PLASMA_CELL(30),
+		WOLF_THERMAL_SUIT(31),
+		ANIMAL_CAGE(32);
 		
-		int meta;
+		private int meta;
 	
 		BasicItems(int meta)
 		{
@@ -126,7 +136,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
 		return s;
 	}
 	
-	public static int SHIELD_TIME = 10 * 60;
+	public static final int SHIELD_TIME = 10 * 60;
 	private static final int SIZE = 9;
 	
 	public ItemBasicGS()
@@ -153,7 +163,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> list, ITooltipFlag flagIn) {
+	public void addInformation(ItemStack stack, @Nullable World world, List<String> list, ITooltipFlag flagIn) {
 		int n = stack.getItemDamage();
 		if (n == BasicItems.DOLOMITE_MEAL.getMeta())
 			list.add(GCCoreUtil.translate("gui.bonemeal.desc"));
@@ -180,7 +190,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
 			list.add(GCCoreUtil.translate("gui.charge") + " " + time + " " + GCCoreUtil.translate("gui.seconds"));
 			
 		}
-		if(n == BasicItems.EMERGENCY_PORTABLE_TELEPORT.getMeta())
+		else if(n == BasicItems.EMERGENCY_PORTABLE_TELEPORT.getMeta())
 		{
 			list.add(GCCoreUtil.translate("gui.emergency_portable_teleport.desc"));
 			list.add("");
@@ -196,6 +206,22 @@ public class ItemBasicGS extends Item implements ISortableItem{
 				if(stack.getTagCompound().getBoolean("turnonoff"))
 				{
 					list.add(GCCoreUtil.translate("gui.enabled.desc"));
+				}
+			}
+		}
+		else if(n == BasicItems.ANIMAL_CAGE.getMeta())
+		{
+			list.add(GCCoreUtil.translate("gui.animal_cage.desc"));
+			
+			if(stack.hasTagCompound())
+			{
+				if(stack.getTagCompound().hasKey("entityData")) {			
+					Entity entity = EntityList.createEntityFromNBT(stack.getTagCompound().getCompoundTag("entityData"), world);
+					list.add(GCCoreUtil.translate("gui.animal_cage_stored.desc") + " " + EnumColor.BRIGHT_GREEN + entity.getDisplayName().getFormattedText());
+				}
+				if(stack.getTagCompound().hasKey("destroyedLvl"))
+				{
+					list.add(stack.getTagCompound().getInteger("destroyedLvl") + "");
 				}
 			}
 		}
@@ -226,7 +252,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
 	{
 		ItemStack stack = player.getHeldItem(hand);
-				
+		
 		if(world.isRemote)					
 			return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
 		
@@ -384,9 +410,80 @@ public class ItemBasicGS extends Item implements ISortableItem{
 	            return new ActionResult<>(EnumActionResult.SUCCESS, stack);				
 	        }
 		}
+		else if(stack.getItemDamage() == BasicItems.ANIMAL_CAGE.getMeta())
+		{
+			if(!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
+			
+			if(!stack.getTagCompound().hasKey("hasMob")) stack.getTagCompound().setBoolean("hasMob", false);
+			if(!stack.getTagCompound().hasKey("destroyedLvl")) stack.getTagCompound().setInteger("destroyedLvl", 0);
+
+			if(!stack.getTagCompound().getBoolean("hasMob")) {
+				
+				//RayTraceResult ray = player.rayTrace(5, player.ticksExisted);//this.getRay(world, player, false);
+				if(player instanceof EntityPlayerMP) {
+					GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_GET_CAGE_ENTITY, GCCoreUtil.getDimensionID(player.world)), (EntityPlayerMP) player);
+				}
+				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
+				
+			}
+			else {
+				RayTraceResult result = this.getRay(world, player, false);
+				if(result != null && result.typeOfHit != null) {
+					if(result.typeOfHit == Type.BLOCK && stack.getTagCompound().hasKey("entityData")) {				    	
+			        	
+						Entity entity = EntityList.createEntityFromNBT(stack.getTagCompound().getCompoundTag("entityData"), player.world);
+    		
+						if(entity instanceof EntityAnimal) {
+							BlockPos pos = result.getBlockPos();
+							entity.dimension = player.dimension;
+							entity.world = player.world;
+							entity.setPosition(pos.getX(), pos.getY() + 1.0D, pos.getZ());
+							if(!world.isRemote) {
+								world.spawnEntity(entity);
+							}
+							entity = null;
+
+							stack.getTagCompound().setBoolean("hasMob", false);
+							stack.getTagCompound().removeTag("entityData");
+							if(stack.getTagCompound().getInteger("destroyedLvl") < 2)
+								stack.getTagCompound().setInteger("destroyedLvl", stack.getTagCompound().getInteger("destroyedLvl") + 1);
+							else
+								stack.splitStack(1);
+							
+							return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
+						}
+					}
+				}
+			}
+		}
 		return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
 	}
 	
+	@Override
+	public boolean showDurabilityBar(ItemStack stack) {
+		if(stack.getItemDamage() == BasicItems.ANIMAL_CAGE.getMeta())
+		{
+			if(stack.hasTagCompound())
+			{
+				return stack.getTagCompound().getInteger("destroyedLvl") >= 0;
+			}
+		}
+		return stack.isItemDamaged();
+	}
+
+	@Override
+	public double getDurabilityForDisplay(ItemStack stack) {
+		
+		if(stack.getItemDamage() == BasicItems.ANIMAL_CAGE.getMeta())
+		{
+			if(stack.hasTagCompound())
+			{
+				return (stack.getTagCompound().getInteger("destroyedLvl") / 10D) / 0.31D;
+			}
+		}
+		return (double) stack.getItemDamage() / (double) stack.getMaxDamage();
+	}
+	    
 	public static Object[] getColonistKitRecipe()
 	{
 		ItemStack[] stacks = new ItemStack[] {

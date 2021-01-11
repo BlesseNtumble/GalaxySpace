@@ -3,6 +3,7 @@ package galaxyspace.core.prefab.inventory;
 import java.util.Collections;
 
 import galaxyspace.core.prefab.entities.EntityAstroWolf;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS.BasicItems;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.inventory.SlotSpecific;
 import micdoodle8.mods.galacticraft.core.items.ItemOxygenTank;
@@ -30,7 +31,7 @@ public class ContainerAstroWolf extends Container
     public static void addSlots(ContainerAstroWolf container, InventoryPlayer playerInventory, EntityAstroWolf wolf)
     {
     	container.addSlotToContainer(new SlotSpecific(wolf.wolfInventory, 0, 6, 15, new ItemStack(GCItems.oxMask)));
-        container.addSlotToContainer(new Slot(wolf.wolfInventory, 1, 6, 35));
+        container.addSlotToContainer(new SlotSpecific(wolf.wolfInventory, 1, 6, 35, BasicItems.WOLF_THERMAL_SUIT.getItemStack()));
         container.addSlotToContainer(new SlotSpecific(wolf.wolfInventory, 2, 6, 55, ItemOxygenTank.class));
 
         int var3;

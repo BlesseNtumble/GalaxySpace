@@ -3,11 +3,7 @@ package galaxyspace.core.client.render.entity;
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.client.models.entity.ModelAstroWolf;
 import galaxyspace.core.client.render.entity.layers.LayerAstroWolfCollar;
-import galaxyspace.core.network.packet.GSPacketSimple;
-import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
 import galaxyspace.core.prefab.entities.EntityAstroWolf;
-import galaxyspace.core.prefab.inventory.InventoryAstroWolf;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -42,7 +38,7 @@ public class RenderAstroWolf extends RenderLiving<EntityAstroWolf>
      * Renders the desired {@code T} type Entity.
      */
     public void doRender(EntityAstroWolf entity, double x, double y, double z, float entityYaw, float partialTicks)
-    {	
+    {
         if (entity.isWolfWet())
         {
             float f = entity.getBrightness() * entity.getShadingWhileWet(partialTicks);

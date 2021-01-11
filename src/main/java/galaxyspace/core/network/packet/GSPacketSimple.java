@@ -18,6 +18,7 @@ import galaxyspace.core.handler.capabilities.StatsCapabilityClient;
 import galaxyspace.core.prefab.entities.EntityAstroWolf;
 import galaxyspace.core.prefab.inventory.InventoryAstroWolf;
 import galaxyspace.core.prefab.items.modules.ItemModule;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemSpaceSuit;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitationModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityLiquidSeparator;
@@ -32,11 +33,14 @@ import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.GCLog;
 import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
 import micdoodle8.mods.galacticraft.planets.GalacticraftPlanets;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.ItemStackHelper;
@@ -49,6 +53,8 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.RayTraceResult.Type;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -74,12 +80,15 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         S_UPDATE_NBT_ITEM_ON_GUI(Side.SERVER, BlockVec3.class, String.class),
         S_UPDATE_NBT_ITEM_IN_ARMOR(Side.SERVER, Integer.class, String.class),
         S_UPDATE_WOLF_INV(Side.SERVER, Integer.class),
+        S_GET_CAGE_ENTITY(Side.SERVER, Integer.class),
+        
         //CLIENT
         C_UPDATE_WORLD(Side.CLIENT),
     	C_UPDATE_RESEARCHES(Side.CLIENT, Integer[].class),
     	C_UPDATE_RESEARCH(Side.CLIENT, Integer.class, Integer.class), // id, count
     	C_GLOW_BLOCK(Side.CLIENT, BlockVec3.class, Integer.class),
-    	C_UPDATE_WOLF_INV(Side.CLIENT, Integer.class, NBTTagCompound.class);
+    	C_UPDATE_WOLF_INV(Side.CLIENT, Integer.class, NBTTagCompound.class),
+    	C_GET_CAGE_ENTITY(Side.CLIENT);
     	
     	//C_OPEN_CUSTOM_GUI(Side.CLIENT, Integer.class, Integer.class, Integer.class),
     	//C_OPEN_ASTRO_WOLF_GUI(Side.CLIENT, Integer.class, Integer.class); // windowID, wolfID
@@ -202,6 +211,16 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         }*/
         switch (this.type)
         {       	
+        	case C_GET_CAGE_ENTITY:
+        		RayTraceResult result = Minecraft.getMinecraft().objectMouseOver;
+        		if(result != null && result.typeOfHit != null) {
+        			if(result.typeOfHit == Type.ENTITY) {
+        				Entity entity = result.entityHit;
+        				GalaxySpace.packetPipeline.sendToServer(new GSPacketSimple(GSEnumSimplePacket.S_GET_CAGE_ENTITY, GCCoreUtil.getDimensionID(player.world), entity.getEntityId()));
+        				//Main.network.sendToServer(new SGetEntity(entity.getEntityId()));
+        			}
+        		}
+        	break;
         	case C_UPDATE_WOLF_INV:
         		int wolfID = (int)this.data.get(0);
         		NBTTagCompound wolfInvTag = (NBTTagCompound)this.data.get(1);
@@ -359,11 +378,25 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         
         switch (this.type)
         {
+        case S_GET_CAGE_ENTITY:
+        	int entityID = (int)this.data.get(0);
+        	
+        	Entity entity = player.world.getEntityByID(entityID);    		
+    		Entity copyEntity = EntityList.createEntityFromNBT(entity.serializeNBT(), player.world);
+    		
+    		if(!entity.isDead) 
+    			entity.setDead();
+    		
+    		ItemStack stackM = player.getHeldItemMainhand();
+    		ItemStack stackO = player.getHeldItemOffhand();
+    		
+    		stackM.getTagCompound().setBoolean("hasMob", true);
+    		stackM.getTagCompound().setTag("entityData", entity.serializeNBT());    		
+
+        	break;
         case S_UPDATE_WOLF_INV:
         	int wolfID = (int)this.data.get(0);
         	EntityAstroWolf wolf = (EntityAstroWolf)playerBase.world.getEntityByID(wolfID);
-        	
-        	System.out.println("server wolfID: " + wolfID + " wolf: " + wolf);
         	
         	// get server wolf inventory and send to client
         	if(wolf != null) {

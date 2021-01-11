@@ -6,6 +6,8 @@ import galaxyspace.GalaxySpace;
 import galaxyspace.core.prefab.entities.EntityAstroWolf;
 import galaxyspace.core.prefab.inventory.ContainerAstroWolf;
 import galaxyspace.core.util.GSUtils;
+import micdoodle8.mods.galacticraft.core.util.EnumColor;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.GlStateManager;
@@ -50,10 +52,7 @@ public class GuiAstroWolfInventory extends GuiContainer
         final int var5 = (this.width - this.xSize) / 2;
         final int var6 = (this.height - this.ySize) / 2;
         this.invX = var5 + 151;
-        this.invY = var6 + 108;
-        
-        
-        
+        this.invY = var6 + 108;     
     }
 
     @Override
@@ -80,9 +79,16 @@ public class GuiAstroWolfInventory extends GuiContainer
         final int containerHeight = (this.height - this.ySize) / 2;
         this.mc.renderEngine.bindTexture(wolfGui);
         this.drawTexturedModalRect(containerWidth, containerHeight, 0, 0, this.xSize, this.ySize);
-
+        this.drawString(fontRenderer, GCCoreUtil.translate("entity.astro_wolf.name"), containerWidth + 35, containerHeight + 3, 0xFFFFFF);
+ 
+        this.drawString(fontRenderer, GCCoreUtil.translate("item.oxygen_mask.name") + ": " + localeBoolean(!this.wolf.wolfInventory.getStackInSlot(0).isEmpty()), containerWidth + 80, containerHeight + 20, 0xFFFFFF);
+        this.drawString(fontRenderer, GCCoreUtil.translate("gui.message.thermal_status.name").substring(0, 7) + ": " + localeBoolean(!this.wolf.wolfInventory.getStackInSlot(1).isEmpty()), containerWidth + 80, containerHeight + 30, 0xFFFFFF);
+        
+        if(!this.wolf.wolfInventory.getStackInSlot(2).isEmpty())
+        	this.drawString(fontRenderer, GCCoreUtil.translate("gui.oxygen_storage.desc.1") + ": " + EnumColor.BRIGHT_GREEN + (this.wolf.wolfInventory.getStackInSlot(2).getMaxDamage() - this.wolf.wolfInventory.getStackInSlot(2).getItemDamage()), containerWidth + 80, containerHeight + 50, 0xFFFFFF);
+        
         GlStateManager.pushMatrix();
-
+        GlStateManager.color(1.0F, 1.0F, 1.0F);
         GuiInventory.drawEntityOnScreen(containerWidth + 51, containerHeight + 60, 25, (float)(containerWidth + 51) - this.mousePosx, (float)(containerHeight + 75 - 50) - this.mousePosY, this.wolf);
     
         // Slots       
@@ -101,5 +107,10 @@ public class GuiAstroWolfInventory extends GuiContainer
         GSUtils.renderDebugGui(this, containerWidth, containerHeight);
         GlStateManager.popMatrix();
     }
+    
+    private String localeBoolean(boolean bol)
+	{
+		return bol ? EnumColor.BRIGHT_GREEN + GCCoreUtil.translate("gui.message.yes") : EnumColor.RED + GCCoreUtil.translate("gui.message.no");		
+	}
 }
 
