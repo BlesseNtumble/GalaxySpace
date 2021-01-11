@@ -1,5 +1,6 @@
 package galaxyspace.systems.SolarSystem.planets.mars.dimension;
 
+import java.awt.Color;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -295,6 +296,11 @@ public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProv
 		if(this.world.isRaining())			
 			return 0.3F;
 		return 1.0F;
+	}
+
+	@Override
+	public int getFogColor(int x, int y, int z) {
+		return new Color(0.5F, 0.2F, 0.1f).getRGB();
 	}
 
 }
