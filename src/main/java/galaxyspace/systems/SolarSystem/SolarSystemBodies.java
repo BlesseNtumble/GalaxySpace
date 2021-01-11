@@ -81,6 +81,7 @@ import micdoodle8.mods.galacticraft.api.galaxies.Moon;
 import micdoodle8.mods.galacticraft.api.galaxies.Planet;
 import micdoodle8.mods.galacticraft.api.galaxies.Satellite;
 import micdoodle8.mods.galacticraft.api.galaxies.SolarSystem;
+import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody.ScalableDistance;
 import micdoodle8.mods.galacticraft.api.item.EnumExtendedInventorySlot;
 import micdoodle8.mods.galacticraft.api.recipe.ISchematicPage;
 import micdoodle8.mods.galacticraft.api.recipe.SchematicRegistry;
@@ -236,13 +237,14 @@ public class SolarSystemBodies implements IBodies{
 		
 		planetKuiperBelt = (ExPlanet) BodiesRegistry.registerExPlanet(sol, "kuiperbelt", GalaxySpace.ASSET_PREFIX, 3.25F).setRingColorRGB(1.1F, 0.0F, 0.0F);
 		planetKuiperBelt.setClassPlanet(ClassBody.ASTEROID);
+		planetKuiperBelt.setRelativeDistanceFromCenter(new ScalableDistance(3.5F, 3.2F));
 		BodiesRegistry.setOrbitData(planetKuiperBelt, 1.0F, 1.0F, 300F);
 		BodiesRegistry.setAtmosphere(planetKuiperBelt, false, false, false, -12.0F, 0.0F, 0.0F);
 		BodiesRegistry.setPlanetData(planetKuiperBelt, 0F, 0, 0, true);
 		BodiesRegistry.setProviderData(planetKuiperBelt, WorldProviderKuiperBelt.class, GSConfigDimensions.dimensionIDKuiperBelt, 6, ACBiome.ACSpace);
 		GalaxyRegistry.registerPlanet(planetKuiperBelt);
 		
-		planetHaumea = BodiesRegistry.registerExPlanet(sol, "haumea", GalaxySpace.ASSET_PREFIX, 3.5F);
+		planetHaumea = BodiesRegistry.registerExPlanet(sol, "haumea", GalaxySpace.ASSET_PREFIX, 3.75F);
 		BodiesRegistry.setOrbitData(planetHaumea, (float) Math.PI + 1.64F, 1.0F, 392.9F);
 		BodiesRegistry.setAtmosphere(planetHaumea, false, false, false, -12.0F, 0.0F, 0.0F);
 		BodiesRegistry.setPlanetData(planetHaumea, 0F, 12000, BodiesRegistry.calculateGravity(2.02F), true);
