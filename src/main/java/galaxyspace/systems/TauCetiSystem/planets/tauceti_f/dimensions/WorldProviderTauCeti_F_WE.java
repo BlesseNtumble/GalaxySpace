@@ -301,7 +301,7 @@ public class WorldProviderTauCeti_F_WE extends WE_WorldProviderSpace {
 					}
 				}
 			}
-		}.setColors(0x00FF00, 0xFF0000, 0x00FF00));	
+		}.setColors(0x00FF00, 0x11FF66, 0x00FF00));	
 		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(0.8D, 2.4F, 4, 80, 35, layer) {
 			@Override
 			public void decorateBiome(World world, Random rand, int x, int z)
@@ -330,12 +330,12 @@ public class WorldProviderTauCeti_F_WE extends WE_WorldProviderSpace {
 					}
 				}
 			}
-		}.setColors(0x00FF00, 0x0FFF00, 0x00FF00));	
+		}.setColors(0x00FF00, 0x11FF66, 0x00FF00));	
 		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(2.6D, 2.6F, 4, 60, 10, layer) {
 			@Override
 			public void decorateBiome(World world, Random rand, int x, int z)
 			{}
-		}.setColors(0x00FF00, 0x00FF00, 0x00FF00));	
+		}.setColors(0x00FF00, 0x11FF66, 0x00FF00));	
 		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(4.0D, 1.4F, 4, 40, 15, layer) {
 			@Override
 			public void decorateBiome(World world, Random rand, int x, int z)
@@ -387,7 +387,7 @@ public class WorldProviderTauCeti_F_WE extends WE_WorldProviderSpace {
 				
 				
 			}
-		}.setColors(0x00FF00, 0xFFFF00, 0x00FF00));	
+		}.setColors(0x00FF00, 0x11FF66, 0x00FF00));	
 		//WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(1.0D, 1.6F, 4, 40, 15, layer).setPrelinNoiseID(1).setColors(0x00FF00, 0xFF00FF, 0x00FF00));	
 		
 		//WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-0.3D, 0.3D, 1.9F, 4, 90, 3, layer).setColors(0x00FF00, 0xFF0000, 0x00FF00));	
