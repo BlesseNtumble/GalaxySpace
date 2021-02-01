@@ -82,9 +82,9 @@ public class EntityEvolvedColdBlaze extends EntityMob implements IEntityBreathab
 
         if (this.world.isRemote)
         {
-            if (this.rand.nextInt(24) == 0 && !this.isSilent())
+            if (this.rand.nextInt(14) == 0 && !this.isSilent())
             {
-                this.world.playSound(this.posX + 0.5D, this.posY + 0.5D, this.posZ + 0.5D, SoundEvents.ENTITY_BLAZE_BURN, this.getSoundCategory(), 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F, false);
+                this.world.playSound(this.posX + 0.5D, this.posY + 0.5D, this.posZ + 0.5D, SoundEvents.BLOCK_SNOW_STEP, this.getSoundCategory(), 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F, false);
             }
 
             for (int i = 0; i < 2; ++i)
