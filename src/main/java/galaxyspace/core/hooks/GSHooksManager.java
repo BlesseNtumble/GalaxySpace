@@ -1,35 +1,65 @@
 package galaxyspace.core.hooks;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import asmodeuscore.api.dimension.IAdvancedSpace;
+import galaxyspace.GalaxySpace;
+import galaxyspace.core.GSItems;
 import galaxyspace.core.events.SetBlockEvent;
 import galaxyspace.core.hooklib.asm.Hook;
 import galaxyspace.core.hooklib.asm.ReturnCondition;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS.BasicItems;
+import micdoodle8.mods.galacticraft.api.entity.IDockable;
 import micdoodle8.mods.galacticraft.api.item.IItemThermal;
+import micdoodle8.mods.galacticraft.api.prefab.entity.EntityAutoRocket;
+import micdoodle8.mods.galacticraft.api.tile.IFuelDock;
+import micdoodle8.mods.galacticraft.api.vector.BlockVec3;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
+import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
+import micdoodle8.mods.galacticraft.core.blocks.BlockLandingPadFull;
+import micdoodle8.mods.galacticraft.core.entities.EntityAlienVillager;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
+import micdoodle8.mods.galacticraft.core.items.ItemBasic;
+import micdoodle8.mods.galacticraft.core.items.ItemCanisterGeneric;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
 import micdoodle8.mods.galacticraft.core.util.CompatibilityManager;
 import micdoodle8.mods.galacticraft.core.util.DamageSourceGC;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
+import micdoodle8.mods.galacticraft.core.util.GCLog;
 import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
+import micdoodle8.mods.galacticraft.core.world.ChunkLoadingCallback;
+import micdoodle8.mods.galacticraft.planets.mars.ConfigManagerMars;
+import micdoodle8.mods.galacticraft.planets.mars.network.PacketSimpleMars;
+import micdoodle8.mods.galacticraft.planets.mars.network.PacketSimpleMars.EnumSimplePacketMars;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityGasLiquefier;
+import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityLaunchController;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityMethaneSynthesizer;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.village.MerchantRecipeList;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.ForgeChunkManager;
+import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 public class GSHooksManager {
 	
@@ -259,7 +289,7 @@ public class GSHooksManager {
             handler.normaliseThermalLevel(player, playerStats, 3);
         }
     }
-/*
+
 	private static List<BlockPos> connectedPads = new ArrayList<BlockPos>();
 	private static Ticket chunkLoadTicket;
 	
@@ -304,7 +334,6 @@ public class GSHooksManager {
                         BlockPos coords = connectedPads.get(i);
                         Block block = te.getWorld().getBlockState(coords).getBlock();
                         TileEntity tile = te.getWorld().getTileEntity(coords);
-                        
                         
                         if (!(tile instanceof IFuelDock))
                         {
@@ -358,8 +387,9 @@ public class GSHooksManager {
 
                     if (tile instanceof IFuelDock)
                     {
-                        if (te.getPos().getX() + x >> 4 != te.getPos().getX() >> 4 || te.getPos().getZ() + z >> 4 != te.getPos().getZ() >> 4)
+                    	if (te.getPos().getX() + x >> 4 != te.getPos().getX() >> 4 || te.getPos().getZ() + z >> 4 != te.getPos().getZ() >> 4)
                         {
+                        	
                             connectedPads.add(new BlockPos(te.getPos().getX() + x, te.getPos().getY(), te.getPos().getZ() + z));
                         	//ReflectionHelper.setPrivateValue(TileEntityLaunchController.class, te, connectedPads, "connectedPads");
                             
@@ -384,7 +414,7 @@ public class GSHooksManager {
     public static boolean canAttachToLandingPad(TileEntityLaunchController te, IBlockAccess world, BlockPos pos)
     {
         TileEntity tile = world.getTileEntity(pos);
-
+        //GalaxySpace.instance.debug(tile);
         return tile instanceof IFuelDock;
     }
 	
@@ -394,6 +424,7 @@ public class GSHooksManager {
     {
         if (te.attachedDock instanceof IFuelDock)
         {
+       	
         	IFuelDock pad = ((IFuelDock) te.attachedDock);
             IDockable rocket = pad.getDockedEntity();
             if (rocket instanceof EntityAutoRocket)
@@ -401,5 +432,168 @@ public class GSHooksManager {
                 ((EntityAutoRocket) rocket).updateControllerSettings(pad);
             }
         }
-    }*/
+    }
+	
+	@Hook(returnCondition = ReturnCondition.ALWAYS)
+	public static boolean setTarget(EntityAutoRocket rocket, boolean doSet, int destFreq)
+    {
+		Class<?> controllerClass = ReflectionHelper.getPrivateValue(EntityAutoRocket.class, rocket, "controllerClass");
+    	
+		
+        WorldServer[] servers = GCCoreUtil.getWorldServerList(rocket.world);
+        if (!GalacticraftCore.isPlanetsLoaded || controllerClass == null)
+        {
+            return false;
+        }
+
+        for (int i = 0; i < servers.length; i++)
+        {
+            WorldServer world = servers[i];
+
+            try
+            {
+                for (TileEntity tile : new ArrayList<TileEntity>(world.loadedTileEntityList))
+                {
+                    if (!controllerClass.isInstance(tile))
+                        continue;
+
+                    tile = world.getTileEntity(tile.getPos());
+                    if (!controllerClass.isInstance(tile))
+                			continue;
+
+                		int controllerFrequency = controllerClass.getField("frequency").getInt(tile);
+
+                		if (destFreq == controllerFrequency)
+                		{
+                			boolean targetSet = false;
+                			
+                			blockLoop:
+                				for (int x = -3; x <= 4; x++)
+                				{
+                					for (int z = -3; z <= 4; z++)
+                					{
+                                        BlockPos pos = new BlockPos(tile.getPos().add(x, 0, z));
+                						Block block = world.getBlockState(pos).getBlock();
+                						TileEntity tileen = world.getTileEntity(pos);
+                	                        
+                						//if (block instanceof BlockLandingPadFull)
+                						if (tileen instanceof IFuelDock)
+                						{
+                							System.out.println(block);
+                							if (doSet)
+                							{
+                								rocket.targetVec = pos;
+                							}
+                							targetSet = true;
+                							break blockLoop;
+                						}
+                					}
+                				}
+
+                			if (doSet)
+                			{
+                				rocket.targetDimension = tile.getWorld().provider.getDimension();
+                			}
+
+                			if (!targetSet)
+                			{
+                				if (doSet)
+                				{
+                					rocket.targetVec = null;
+                				}
+
+                				return false;
+                			}
+                			else
+                			{
+                				return true;
+                			}
+                		}
+                	}
+                }
+            catch (Exception e)
+            {
+            	e.printStackTrace();
+            }
+        }
+
+        return false;
+    }
+	
+	@Hook(returnCondition = ReturnCondition.ALWAYS)
+	public static boolean setFrequency(EntityAutoRocket rocket)
+    {
+		Class<?> controllerClass = ReflectionHelper.getPrivateValue(EntityAutoRocket.class, rocket, "controllerClass");
+		BlockVec3 activeLaunchController  = ReflectionHelper.getPrivateValue(EntityAutoRocket.class, rocket, "activeLaunchController");
+        if (!GalacticraftCore.isPlanetsLoaded || controllerClass == null)
+        {
+            return false;
+        }
+
+        if (activeLaunchController != null)
+                                {
+            TileEntity launchController = activeLaunchController.getTileEntity(rocket.world);
+            if (controllerClass.isInstance(launchController))
+                                {
+                                    try
+                                    {
+                                Boolean b = (Boolean) controllerClass.getMethod("validFrequency").invoke(launchController);
+
+                                if (b != null && b)
+                                {
+                                    int controllerFrequency = controllerClass.getField("destFrequency").getInt(launchController);
+                                    boolean foundPad = setTarget(rocket, false, controllerFrequency);
+                                   
+                                    if (foundPad)
+                                    {
+                                        rocket.destinationFrequency = controllerFrequency;
+                                        GCLog.debug("Rocket under launch control: going to target frequency " + controllerFrequency);
+                                        return true;
+                                    }
+                                }
+                            }
+                        catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+        rocket.destinationFrequency = -1;
+        return false;
+    }
+	
+	  private static final EntityAlienVillager.ITradeList[] DEFAULT_TRADE_LIST_MAP = new EntityAlienVillager.ITradeList[] {
+			  	new EntityAlienVillager.ItemAndEmeraldToItem(new ItemStack(GCItems.schematic, 1, 1), new EntityAlienVillager.PriceInfo(40, 55), BasicItems.SCHEMATIC_BOX.getItemStack()),
+	            
+			  
+			  	new EntityAlienVillager.ListItemForEmeralds(new ItemStack(GCItems.oxMask, 1, 0), new EntityAlienVillager.PriceInfo(1, 2)),
+	            new EntityAlienVillager.ListItemForEmeralds(new ItemStack(GCItems.oxTankLight, 1, 235), new EntityAlienVillager.PriceInfo(3, 4)),
+	            new EntityAlienVillager.ListItemForEmeralds(new ItemStack(GCItems.oxygenGear, 1, 0), new EntityAlienVillager.PriceInfo(3, 4)),
+	            new EntityAlienVillager.ListItemForEmeralds(new ItemStack(GCItems.fuelCanister, 1, 317), new EntityAlienVillager.PriceInfo(3, 4)),
+	            new EntityAlienVillager.ListItemForEmeralds(new ItemStack(GCItems.parachute, 1, 0), new EntityAlienVillager.PriceInfo(1, 2)),
+	            new EntityAlienVillager.ListItemForEmeralds(new ItemStack(GCItems.battery, 1, 58), new EntityAlienVillager.PriceInfo(2, 4)),
+	            new EntityAlienVillager.ItemAndEmeraldToItem(new ItemStack(GCItems.oilCanister, 1, ItemCanisterGeneric.EMPTY), new EntityAlienVillager.PriceInfo(1, 1), new ItemStack(GCItems.foodItem, 1, 1)), //carrots = also yields a tin!
+	            new EntityAlienVillager.ListItemForEmeralds(new ItemStack(GCItems.basicItem, 1, ItemBasic.WAFER_BASIC), new EntityAlienVillager.PriceInfo(3, 4)),
+	            new EntityAlienVillager.ItemAndEmeraldToItem(new ItemStack(GCItems.schematic, 1, 0), new EntityAlienVillager.PriceInfo(3, 5), new ItemStack(GCItems.schematic, 1, 1)), //Exchange buggy and rocket schematics
+	            new EntityAlienVillager.ItemAndEmeraldToItem(new ItemStack(GCItems.schematic, 1, 1), new EntityAlienVillager.PriceInfo(3, 5), new ItemStack(GCItems.schematic, 1, 0)), //Exchange buggy and rocket schematics
+	            new EntityAlienVillager.ItemAndEmeraldToItem(new ItemStack(GCItems.basicItem, 2, 3), new EntityAlienVillager.PriceInfo(1, 1), new ItemStack(GCItems.basicItem, 1, 6)), //Compressed Tin - needed to craft a Fuel Loader
+	            new EntityAlienVillager.ItemAndEmeraldToItem(new ItemStack(GCItems.basicItem, 2, 4), new EntityAlienVillager.PriceInfo(1, 1), new ItemStack(GCItems.basicItem, 1, 7)), //Compressed Copper - needed to craft a Fuel Loader
+	            new EntityAlienVillager.EmeraldForItems(new ItemStack(Blocks.SAPLING, 1, 3), new EntityAlienVillager.PriceInfo(11, 39)) //The one thing Alien Villagers don't have and can't get is jungle trees...
+	  };
+	  
+	@Hook(returnCondition = ReturnCondition.ALWAYS)
+	public static void populateBuyingList(EntityAlienVillager e) {
+		MerchantRecipeList buyingList =  ReflectionHelper.getPrivateValue(EntityAlienVillager.class, e, "buyingList");
+		if (buyingList == null) {
+			buyingList = new MerchantRecipeList();
+		}
+
+		for (EntityAlienVillager.ITradeList tradeList : DEFAULT_TRADE_LIST_MAP) {
+			tradeList.modifyMerchantRecipeList(buyingList, e.getEntityWorld().rand);
+		}
+		
+		ReflectionHelper.setPrivateValue(EntityAlienVillager.class, e, buyingList, "buyingList");
+	}
+
 }
