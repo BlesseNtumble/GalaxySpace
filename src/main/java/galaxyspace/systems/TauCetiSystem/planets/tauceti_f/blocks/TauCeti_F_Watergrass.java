@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import galaxyspace.GalaxySpace;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockLiquid;
@@ -279,17 +280,22 @@ public class TauCeti_F_Watergrass extends BlockBush implements IGrowable, IShear
 	@Override
     public void breakBlock(World world, BlockPos pos, IBlockState state)
     {
-		/*if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.DESERT_UP))
-		{
-			world.destroyBlock(pos.down(), true);
+		
+		if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.WATERGRASS_STANDART_BOTTOM) ||
+				state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.WATERGRASS_STANDART_MIDDLE)) {
+			int i = 1;
+			
+			while(world.getBlockState(pos.up(i)).getBlock() == this)			
+				world.destroyBlock(pos.up(i++), true);		
+				
 		}
 		
-		if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.DESERT_DOWN))
+		if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.WATERGRASS_SLIME_BOTTOM))
 		{
-			if(world.getBlockState(pos.up()) == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.DESERT_UP))
+			if(world.getBlockState(pos.up()) == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.WATERGRASS_SLIME_TOP))
 				world.destroyBlock(pos.up(), true);
 		}
-		
+		/*
 		if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.YELLOW_GRASS_UP))
 		{
 			if(world.getBlockState(pos.down()) == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.YELLOW_GRASS_DOWN))

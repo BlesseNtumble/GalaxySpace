@@ -89,6 +89,9 @@ public abstract class EntityTieredRocketWithEngine extends EntityTieredRocket im
        	   
         }
         
+       // if(!world.isRemote)
+        	//System.out.println(this.autoLaunchSetting);
+        
         if (this.launchPhase >= EnumLaunchPhase.LAUNCHED.ordinal() && this.hasValidFuel())
         {
             if (this.launchPhase == EnumLaunchPhase.LAUNCHED.ordinal())

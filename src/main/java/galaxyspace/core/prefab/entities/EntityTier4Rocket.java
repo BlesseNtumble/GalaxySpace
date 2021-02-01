@@ -1,14 +1,29 @@
 package galaxyspace.core.prefab.entities;
 
 import asmodeuscore.core.astronomy.SpaceData.Engine_Type;
+import galaxyspace.core.GSBlocks;
 import galaxyspace.core.GSItems;
+import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockAdvancedLandingPadFull;
+import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvLandingPad;
+import micdoodle8.mods.galacticraft.api.prefab.entity.EntitySpaceshipBase.RocketLaunchEvent;
+import micdoodle8.mods.galacticraft.api.tile.IFuelDock;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import micdoodle8.mods.galacticraft.api.world.IOrbitDimension;
 import micdoodle8.mods.galacticraft.core.Constants;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
+import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
+import micdoodle8.mods.galacticraft.core.event.EventLandingPadRemoval;
+import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 
 public class EntityTier4Rocket extends EntityTieredRocketWithEngine
 {
@@ -59,6 +74,80 @@ public class EntityTier4Rocket extends EntityTieredRocketWithEngine
         return 0.0D;
     }
 
+    @Override
+    public void onLaunch()
+    {
+    	MinecraftForge.EVENT_BUS.post(new RocketLaunchEvent(this));
+    	
+    	
+    	 if (!this.world.isRemote)
+         {
+         	GCPlayerStats stats = null;
+         	
+         	if (!this.getPassengers().isEmpty())
+         	{
+         	    for (Entity player : this.getPassengers())
+         	    {
+         	        if (player instanceof EntityPlayerMP)
+         	        {
+         	            stats = GCPlayerStats.get(player);
+                        stats.setLaunchpadStack(null);
+
+         	            if (!(this.world.provider instanceof IOrbitDimension))
+         	            {
+         	                stats.setCoordsTeleportedFromX(player.posX);
+         	                stats.setCoordsTeleportedFromZ(player.posZ);
+         	            }
+         	        }
+         	    }
+
+         	    Entity playerMain = this.getPassengers().get(0);
+         	    if (playerMain instanceof EntityPlayerMP)
+         	        stats = GCPlayerStats.get(playerMain);
+         	}
+
+         	
+             int amountRemoved = 0;
+
+             PADSEARCH:
+             for (int x = MathHelper.floor(this.posX) - 2; x <= MathHelper.floor(this.posX) + 3; x++)
+             {
+                 for (int y = MathHelper.floor(this.posY) - 3; y <= MathHelper.floor(this.posY) + 1; y++)
+                 {
+                     for (int z = MathHelper.floor(this.posZ) - 2; z <= MathHelper.floor(this.posZ) + 3; z++)
+                     {
+                         BlockPos pos = new BlockPos(x, y, z);
+                         final Block block = this.world.getBlockState(pos).getBlock();
+
+                         if (block != null && block instanceof BlockAdvancedLandingPadFull)
+                         {
+                             if (amountRemoved < 25)
+                             {
+                                 EventLandingPadRemoval event = new EventLandingPadRemoval(this.world, pos);
+                                 MinecraftForge.EVENT_BUS.post(event);
+
+                                 if (event.allow)
+                                 {
+                                     this.world.setBlockToAir(pos);
+                                     amountRemoved = 25;
+                                 }
+                                 break PADSEARCH;
+                             }
+                         }
+                     }
+                 }
+             }
+
+             //Set the player's launchpad item for return on landing - or null if launchpads not removed
+             if (stats != null && amountRemoved == 25)
+             {
+                 stats.setLaunchpadStack(new ItemStack(GSBlocks.ADVANCED_LANDING_PAD_SINGLE, 25, 0));
+             }
+
+             this.playSound(SoundEvents.ENTITY_ITEM_PICKUP, 0.2F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+         }
+    }
+    
     @Override
     protected void spawnParticles(boolean launched)
     {
@@ -143,19 +232,13 @@ public class EntityTier4Rocket extends EntityTieredRocketWithEngine
     {
         return 2200;
     }
-   
-/*
+    
     @Override
-    public List<ItemStack> getItemsDropped(List<ItemStack> droppedItems)
+    public boolean isDockValid(IFuelDock dock)
     {
-        super.getItemsDropped(droppedItems);
-        ItemStack rocket = new ItemStack(GSItems.ROCKET_TIER_4, 1, this.rocketType.getIndex());
-        rocket.setTagCompound(new NBTTagCompound());
-        rocket.getTagCompound().setInteger("RocketFuel", this.fuelTank.getFluidAmount());
-        droppedItems.add(rocket);
-        return droppedItems;
+        return dock instanceof IFuelDock;
     }
-*/
+   
     @Override
     public float getRenderOffsetY()
     {

@@ -9,7 +9,6 @@ import galaxyspace.core.prefab.blocks.GSBlockMulti;
 import micdoodle8.mods.galacticraft.api.entity.ICargoEntity;
 import micdoodle8.mods.galacticraft.api.entity.IDockable;
 import micdoodle8.mods.galacticraft.api.entity.IFuelable;
-import micdoodle8.mods.galacticraft.api.entity.ILandable;
 import micdoodle8.mods.galacticraft.api.tile.IFuelDock;
 import micdoodle8.mods.galacticraft.api.tile.ILandingPadAttachable;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
@@ -217,16 +216,16 @@ public class TileEntityAdvLandingPad extends TileEntityMulti implements IMultiBl
     {
         HashSet<ILandingPadAttachable> connectedTiles = new HashSet<ILandingPadAttachable>();
 
-        for (int x = this.getPos().getX() - 2; x < this.getPos().getX() + 3; x++)
+        for (int x = this.getPos().getX() -2; x < this.getPos().getX() + 3; x++)
         {
-        	this.testConnectedTile(x, this.getPos().getZ() - 2, connectedTiles);
-        	this.testConnectedTile(x, this.getPos().getZ() + 2, connectedTiles);
+        	this.testConnectedTile(x, this.getPos().getZ() - 3, connectedTiles);
+        	this.testConnectedTile(x, this.getPos().getZ() + 3, connectedTiles);
         }
 
         for (int z = this.getPos().getZ() -2; z < this.getPos().getZ() + 3; z++)
-                {
-        	this.testConnectedTile(this.getPos().getX() - 2, z, connectedTiles);
-        	this.testConnectedTile(this.getPos().getX() + 2, z, connectedTiles);
+        {
+        	this.testConnectedTile(this.getPos().getX() - 3, z, connectedTiles);
+        	this.testConnectedTile(this.getPos().getX() + 3, z, connectedTiles);
         }
 
         return connectedTiles;
@@ -234,6 +233,7 @@ public class TileEntityAdvLandingPad extends TileEntityMulti implements IMultiBl
     
 	private void testConnectedTile(int x, int z, HashSet<ILandingPadAttachable> connectedTiles) {
 		BlockPos testPos = new BlockPos(x, this.getPos().getY(), z);
+	
 		if (!this.world.isBlockLoaded(testPos, false))
 			return;
 
@@ -242,6 +242,7 @@ public class TileEntityAdvLandingPad extends TileEntityMulti implements IMultiBl
 		if (tile instanceof ILandingPadAttachable
 				&& ((ILandingPadAttachable) tile).canAttachToLandingPad(this.world, this.getPos())) {
 			connectedTiles.add((ILandingPadAttachable) tile);
+			
 			
 			if (GalacticraftCore.isPlanetsLoaded && tile instanceof TileEntityLaunchController) {
 				((TileEntityLaunchController) tile).setAttachedPad(this);
@@ -281,6 +282,7 @@ public class TileEntityAdvLandingPad extends TileEntityMulti implements IMultiBl
 
         if (tile != null && tile instanceof ILandingPadAttachable)
         {
+        	
             return ((ILandingPadAttachable) tile).canAttachToLandingPad(world, this.getPos());
         }
 
