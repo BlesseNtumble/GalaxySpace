@@ -192,11 +192,16 @@ public class CraftingRecipesOverworld {
 	  
 	   RecipeUtil.addRecipe(BasicItems.THERMAL_CLOTH_T3.getItemStack(), new Object[] { "XZX", "CYC", "XZX", 'X', BasicItems.DOLOMITE_MEAL.getItemStack(), 'Y', new ItemStack(AsteroidsItems.canisterLN2, 1, 1), 'Z', BasicItems.VOLCANIC_STONE.getItemStack(), 'C', new ItemStack(VenusItems.basicItem, 1, 3)});
 	   RecipeUtil.addRecipe(BasicItems.THERMAL_CLOTH_T4.getItemStack(), new Object[] { "XZX", "CYC", "XZX", 'X', new ItemStack(VenusItems.basicItem, 1, 4), 'Y', BasicItems.ICE_BUCKET.getItemStack(), 'Z', BasicItems.UNKNOW_CRYSTAL.getItemStack(), 'C', BasicItems.THERMAL_CLOTH_T3.getItemStack()});
+	  
+	   RecipeUtil.addRecipe(BasicItems.WOLF_THERMAL_SUIT.getItemStack(), new Object[] { "X X", "XXX", "X X", 'X', new ItemStack(AsteroidsItems.basicItem, 1, 7)});
+	   RecipeUtil.addRecipe(BasicItems.ANIMAL_CAGE.getItemStack(), new Object[] { "XXX", "ZYX", "XXX", 'X', plateSteel, 'Z', new ItemStack(GCBlocks.grating, 1, 0), 'Y', new ItemStack(Blocks.CARPET, 1, OreDictionary.WILDCARD_VALUE)});
 		  
 	   RecipeUtil.addCustomRecipe(new ShapedRecipeNBT(BasicItems.ADVANCED_EMERGENCY_KIT.getItemStack(), ItemBasicGS.getRecipe()));
 	   RecipeUtil.addCustomRecipe(new ShapedRecipeNBT(BasicItems.COLONIST_KIT.getItemStack(), ItemBasicGS.getColonistKitRecipe()));
   
-	   
+	   RecipeUtil.addRecipe(new ItemStack(GSItems.ROCKET_MODULES, 1, 8), new Object[] {"XY ", "   ", "   ", 'X', BasicItems.BLANK_SCHEMATIC.getItemStack(), 'Y', new ItemStack(AsteroidsItems.tier3Rocket, 1, OreDictionary.WILDCARD_VALUE)});
+	   RecipeUtil.addRecipe(new ItemStack(GSItems.ROCKET_MODULES, 1, 9), new Object[] {"XY ", "   ", "   ", 'X', BasicItems.BLANK_SCHEMATIC.getItemStack(), 'Y', new ItemStack(GSItems.ROCKET_TIER_4, 1, OreDictionary.WILDCARD_VALUE)});
+	   RecipeUtil.addRecipe(new ItemStack(GSItems.ROCKET_MODULES, 1, 10), new Object[] {"XY ", "   ", "   ", 'X', BasicItems.BLANK_SCHEMATIC.getItemStack(), 'Y', new ItemStack(GSItems.ROCKET_TIER_5, 1, OreDictionary.WILDCARD_VALUE)});
    }
 
    private static void addBlockSmelting() {
