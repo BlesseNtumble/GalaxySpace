@@ -206,8 +206,8 @@ public class ClientProxy extends CommonProxy{
     {
     	Quat4f rot = TRSRTransformation.quatFromXYZDegrees(new Vector3f(30, 225, 0));
         replaceModelDefault(event, "hydroponic_farm", "hydroponic_farm.obj", ImmutableList.of("ferma_2"), ItemRendererHydroponicFarm.class, new TRSRTransformation(new javax.vecmath.Vector3f(0.7F, 0.1F, 0.0F), rot, new javax.vecmath.Vector3f(0.2604F, 0.2604F, 0.2604F), new javax.vecmath.Quat4f()), "inventory", "normal");
-        //replaceModelDefault(event, "rockets/rocket_t4", "tier4rocket.obj", ImmutableList.of("Base"), ItemModelRocketT4.class, TRSRTransformation.identity());
-        replaceModelDefault(event, "rockets/rocket_t4", "tier4rocketGS.obj", ImmutableList.of("Base", "NoseCone", "Rocket", "Booster1", "Booster2", "Booster3", "Booster4"), ItemModelRocketT4.class, TRSRTransformation.identity());
+        replaceModelDefault(event, "rockets/rocket_t4", "tier4rocket.obj", ImmutableList.of("Base"), ItemModelRocketT4.class, TRSRTransformation.identity());
+        //replaceModelDefault(event, "rockets/rocket_t4", "tier4rocketGS.obj", ImmutableList.of("Base", "NoseCone", "Rocket", "Booster1", "Booster2", "Booster3", "Booster4"), ItemModelRocketT4.class, TRSRTransformation.identity());
         replaceModelDefault(event, "rockets/rocket_t5", "tier5rocket.obj", ImmutableList.of("Base"), ItemModelRocketT5.class, TRSRTransformation.identity());
         replaceModelDefault(event, "rockets/rocket_t6", "tier6rocket.obj", ImmutableList.of("Base"), ItemModelRocketT6.class, TRSRTransformation.identity());
         replaceModelDefault(event, "rockets/rocket_cargo", "cargo_rocket.obj", ImmutableList.of("Rocket"), ItemModelCargoRocket.class, TRSRTransformation.identity());
@@ -721,8 +721,8 @@ public class ClientProxy extends CommonProxy{
 	
 	public static void registerEntityRenderers()
     {
-		//RenderingRegistry.registerEntityRenderingHandler(EntityTier4Rocket.class, (RenderManager manager) -> new RenderRockets(manager, "tier4rocket", "Base"));
-		RenderingRegistry.registerEntityRenderingHandler(EntityTier4Rocket.class, (RenderManager manager) -> new RenderRockets(manager, "tier4rocketGS", "Base", "NoseCone", "Rocket", "Booster1", "Booster2", "Booster3", "Booster4"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityTier4Rocket.class, (RenderManager manager) -> new RenderRockets(manager, "tier4rocket", "Base"));
+		//RenderingRegistry.registerEntityRenderingHandler(EntityTier4Rocket.class, (RenderManager manager) -> new RenderRockets(manager, "tier4rocketGS", "Base", "NoseCone", "Rocket", "Booster1", "Booster2", "Booster3", "Booster4"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityTier5Rocket.class, (RenderManager manager) -> new RenderRockets(manager, "tier5rocket", "Base"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityTier6Rocket.class, (RenderManager manager) -> new RenderRockets(manager, "tier6rocket", "Base"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityCustomCargoRocket.class, (RenderManager manager) -> new RenderCargoRockets(manager, "rockets/rocket_cargo"));
