@@ -186,6 +186,29 @@ tile.barnarda_c_violet_sapling.name=Violet Tree Sapling
 tile.barnarda_c_leaves_1.name=Barnarda C Leaves
 tile.barnarda_c_farmland.name=Barnarda C Farmland
 
+tile.tauceti_f_grass.name=Tau Ceti F Grass
+tile.tauceti_f_dirt.name=Tau Ceti F Dirt
+tile.tauceti_f_stone.name=Tau Ceti F Stone
+tile.watergrass_red.name=Red Algae
+tile.watergrass_standart_bottom.name=Algae Base
+tile.watergrass_standart_middle.name=Algae
+tile.watergrass_standart_top.name=Algae Top
+tile.watergrass_slime_bottom.name=Slime Algae Base
+tile.watergrass_slime_top.name=Slime Algae Top
+tile.watergrass_thick_green.name=Thick Algae 
+tile.kelp.name=Small Kelp
+tile.brain_coral.name=Brain Coral
+tile.brain_coral_fan.name=Brain Coral Fan
+tile.bubble_coral.name=Bubble Coral
+tile.bubble_coral_fan.name=Bubble Coral Fan
+tile.fire_coral.name=Fire Coral
+tile.fire_coral_fan.name=Fire Coral Fan
+tile.horn_coral.name=Horn Coral
+tile.horn_coral_fan.name=Horn Coral Fan
+tile.tube_coral.name=Tube Coral
+tile.tube_coral_fan.name=Tube Coral Fan
+tile.sponge_coral.name=Sponge Coral
+
 |/////////////////////////////////////////|
 #||||||||||||Tile Description||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
@@ -263,6 +286,9 @@ tile.adv_electric_compressor.desc=Advanced version of the Electric Compressor. 2
 
 tile.planet_shield.name=Planetary Shield
 tile.planet_shield.desc=Protects the area from falling meteorites.
+
+tile.energy_pad.name=Energy Pad
+tile.energy_pad.desc=Charges all electrical items in the inventory and items on the player.
 
 tile.port_nuclear_reactor.name=[WIP] Portable Nuclear Reactor
 
@@ -347,6 +373,10 @@ item.methane_ice_crystal.name=Methane Ice Shard
 item.hydrogen_ice_crystal.name=Hydrogen Ice Shard
 item.dry_ice_crystal.name=Dry Ice Shard
 item.colonist_kit.name=Colonist Kit
+item.empty_plasma_cell.name=Empty Plasma Cell
+item.filled_plasma_cell.name=Filled Plasma Cell
+item.wolf_thermal_suit.name=Wolf Thermal Suit
+item.animal_cage.name=Animal Cage
 
 item.module_expander.name=Module "Expander"
 item.module_stabiliser.name=Module "Stabilization"
@@ -362,6 +392,9 @@ item.ion_engine.name=Ion Engine
 item.plasma_engine.name=[WIP] Plasma Engine
 item.sublight_engine.name=Sublight Engine
 item.blackhole_engine.name=[WIP] Black Hole Engine
+item.license_t4.name=Rocket License
+item.license_t5.name=Rocket License
+item.license_t6.name=Rocket License
  
 item.rocket_cone.name=Durable Nose Cone
 item.rocket_body.name=Durable Rocket Body
@@ -430,6 +463,8 @@ gui.emergency_portable_teleport.desc=Emergency teleport to anchor point. Works w
 gui.planet_shield_stability_1.desc=If installed the module "Stabilization"
 gui.planet_shield_stability_2.desc=the shield will collect meteorite fragments in this slot.
 gui.ice_bucket.desc=You can get it by Right Clicking on the ice with an empty bucket.
+gui.animal_cage.desc=Allows you to carry animals. It is consumed when the animal is released.
+gui.animal_cage_stored.desc=Stored Animal:
 
 gui.not_attached.desc=Not attached
 gui.attached.desc=Attached:
@@ -527,6 +562,7 @@ entity.evolved_boss_ghast.name=Evolved Boss Ghast
 entity.rocket_tier_4.name=Tier 4 Rocket
 entity.rocket_tier_5.name=Tier 5 Rocket
 entity.rocket_tier_6.name=Tier 6 Rocket
+entity.astro_wolf.name=Astro Wolf
 |/////////////////////////////////////////|
 #||||||||||||Celestial Bodies||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
