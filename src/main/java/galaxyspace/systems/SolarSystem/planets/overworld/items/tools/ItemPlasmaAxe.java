@@ -9,6 +9,7 @@ import galaxyspace.core.GSItems;
 import galaxyspace.core.prefab.items.ItemAxeGS;
 import galaxyspace.core.prefab.items.modules.ItemModule;
 import galaxyspace.core.util.GSUtils.Module_Type;
+import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
@@ -73,6 +74,8 @@ public class ItemPlasmaAxe extends ItemAxeGS implements IModificationItem{
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> list, ITooltipFlag flagIn) {
+		list.add(EnumColor.DARK_RED + "[WIP] Content");
+		
 		if(stack.getTagCompound() != null && stack.getTagCompound().hasKey(heat))
 			list.add("Heat: " + String.format("%.1f", stack.getTagCompound().getFloat(heat)));
 	}

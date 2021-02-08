@@ -81,6 +81,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -467,6 +468,8 @@ public class GSEventHandler {
 					astrowolf.setTamed(wolf.isTamed());
 					astrowolf.setAngry(wolf.isAngry());
 					astrowolf.setHealth(wolf.getHealth());
+					astrowolf.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
+					astrowolf.setSitting(wolf.isSitting());
 					astrowolf.setPositionAndRotation(wolf.posX, wolf.posY, wolf.posZ, wolf.rotationYaw, wolf.rotationPitch);		
 					event.getTarget().setDead();
 					event.getWorld().spawnEntity(astrowolf);

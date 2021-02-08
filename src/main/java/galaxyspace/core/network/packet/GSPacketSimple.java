@@ -18,7 +18,6 @@ import galaxyspace.core.handler.capabilities.StatsCapabilityClient;
 import galaxyspace.core.prefab.entities.EntityAstroWolf;
 import galaxyspace.core.prefab.inventory.InventoryAstroWolf;
 import galaxyspace.core.prefab.items.modules.ItemModule;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemSpaceSuit;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitationModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityLiquidSeparator;
@@ -41,6 +40,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.ItemStackHelper;
@@ -216,7 +216,8 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         		if(result != null && result.typeOfHit != null) {
         			if(result.typeOfHit == Type.ENTITY) {
         				Entity entity = result.entityHit;
-        				GalaxySpace.packetPipeline.sendToServer(new GSPacketSimple(GSEnumSimplePacket.S_GET_CAGE_ENTITY, GCCoreUtil.getDimensionID(player.world), entity.getEntityId()));
+        				if(entity instanceof EntityAnimal)
+        					GalaxySpace.packetPipeline.sendToServer(new GSPacketSimple(GSEnumSimplePacket.S_GET_CAGE_ENTITY, GCCoreUtil.getDimensionID(player.world), entity.getEntityId()));
         				//Main.network.sendToServer(new SGetEntity(entity.getEntityId()));
         			}
         		}

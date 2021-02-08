@@ -165,6 +165,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World world, List<String> list, ITooltipFlag flagIn) {
 		int n = stack.getItemDamage();
+			
 		if (n == BasicItems.DOLOMITE_MEAL.getMeta())
 			list.add(GCCoreUtil.translate("gui.bonemeal.desc"));
 		else if (n == BasicItems.SCHEMATIC_BOX.getMeta())
@@ -209,6 +210,10 @@ public class ItemBasicGS extends Item implements ISortableItem{
 				}
 			}
 		}
+		else if(n == BasicItems.EMPTY_PLASMA_CELL.getMeta() || n == BasicItems.FILLED_PLASMA_CELL.getMeta())
+		{
+			list.add(EnumColor.DARK_RED + "[WIP] Content");
+		}
 		else if(n == BasicItems.ANIMAL_CAGE.getMeta())
 		{
 			list.add(GCCoreUtil.translate("gui.animal_cage.desc"));
@@ -219,10 +224,11 @@ public class ItemBasicGS extends Item implements ISortableItem{
 					Entity entity = EntityList.createEntityFromNBT(stack.getTagCompound().getCompoundTag("entityData"), world);
 					list.add(GCCoreUtil.translate("gui.animal_cage_stored.desc") + " " + EnumColor.BRIGHT_GREEN + entity.getDisplayName().getFormattedText());
 				}
-				if(stack.getTagCompound().hasKey("destroyedLvl"))
+				
+				/*if(stack.getTagCompound().hasKey("destroyedLvl"))
 				{
 					list.add(stack.getTagCompound().getInteger("destroyedLvl") + "");
-				}
+				}*/
 			}
 		}
 		
