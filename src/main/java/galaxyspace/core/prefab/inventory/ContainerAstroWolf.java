@@ -110,16 +110,17 @@ public class ContainerAstroWolf extends Container
 				}
 			} 
 			
-			/*if (this.getSlot(1).isItemValid(itemstack1)) {
+			if (this.getSlot(1).isItemValid(itemstack1)) {
 				if (!this.mergeItemStack(itemstack1, 1, 2, false)) {
 					return ItemStack.EMPTY;
 				}
-			} */
+			} 
 			if (this.getSlot(2).isItemValid(itemstack1)) {
 				if (!this.mergeItemStack(itemstack1, 2, 3, false)) {
 					return ItemStack.EMPTY;
 				}
 			} 
+			
 			if (this.wolfInventory.getSizeInventory() <= 3 || !this.mergeItemStack(itemstack1, 3, this.wolfInventory.getSizeInventory(), false)) {
 				return ItemStack.EMPTY;
 			}

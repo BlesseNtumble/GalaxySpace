@@ -84,8 +84,15 @@ public class GuiAstroWolfInventory extends GuiContainer
         this.drawString(fontRenderer, GCCoreUtil.translate("item.oxygen_mask.name") + ": " + localeBoolean(!this.wolf.wolfInventory.getStackInSlot(0).isEmpty()), containerWidth + 80, containerHeight + 20, 0xFFFFFF);
         this.drawString(fontRenderer, GCCoreUtil.translate("gui.message.thermal_status.name").substring(0, 7) + ": " + localeBoolean(!this.wolf.wolfInventory.getStackInSlot(1).isEmpty()), containerWidth + 80, containerHeight + 30, 0xFFFFFF);
         
+        String oxygen = "";
         if(!this.wolf.wolfInventory.getStackInSlot(2).isEmpty())
-        	this.drawString(fontRenderer, GCCoreUtil.translate("gui.oxygen_storage.desc.1") + ": " + EnumColor.BRIGHT_GREEN + (this.wolf.wolfInventory.getStackInSlot(2).getMaxDamage() - this.wolf.wolfInventory.getStackInSlot(2).getItemDamage()), containerWidth + 80, containerHeight + 50, 0xFFFFFF);
+        	oxygen = GCCoreUtil.translate("gui.oxygen_storage.desc.1") + ": " + EnumColor.BRIGHT_GREEN + (this.wolf.wolfInventory.getStackInSlot(2).getMaxDamage() - this.wolf.wolfInventory.getStackInSlot(2).getItemDamage());
+        else
+        	oxygen = GCCoreUtil.translate("gui.oxygen_storage.desc.1") + ": " + EnumColor.DARK_RED + localeBoolean(false);
+        	
+        this.drawString(fontRenderer, oxygen, containerWidth + 80, containerHeight + 40, 0xFFFFFF);
+        
+        this.drawString(fontRenderer, this.wolf.getHealth() + "/" + this.wolf.getMaxHealth(), containerWidth + 29, containerHeight + 20, 0xFFFFFF);
         
         GlStateManager.pushMatrix();
         GlStateManager.color(1.0F, 1.0F, 1.0F);
