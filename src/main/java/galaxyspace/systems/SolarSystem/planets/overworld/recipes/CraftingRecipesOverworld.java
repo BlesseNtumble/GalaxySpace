@@ -272,7 +272,7 @@ public class CraftingRecipesOverworld {
    
    private static void addRocketAssembly() {
 	   if(GSConfigCore.enableAdvancedRocketCraft)
-		   addRocketRecipe(AsteroidsItems.tier3Rocket, GSItems.ROCKET_PARTS, 0, ItemStack.EMPTY);
+		   addRocketRecipe(AsteroidsItems.tier3Rocket, GSItems.ROCKET_PARTS, 0, new ItemStack(GSItems.ROCKET_MODULES, 1, 2));
 	   addRocketRecipe(GSItems.ROCKET_TIER_4, GSItems.ROCKET_PARTS, 5, new ItemStack(GSItems.ROCKET_MODULES, 1, 8));
 	   addRocketRecipe(GSItems.ROCKET_TIER_5, GSItems.ROCKET_PARTS, 10, new ItemStack(GSItems.ROCKET_MODULES, 1, 9));
 	   addRocketRecipe(GSItems.ROCKET_TIER_6, GSItems.ROCKET_PARTS, 15, new ItemStack(GSItems.ROCKET_MODULES, 1, 10));	  
