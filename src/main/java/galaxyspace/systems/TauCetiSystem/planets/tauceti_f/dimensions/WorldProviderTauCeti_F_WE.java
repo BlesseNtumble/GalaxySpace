@@ -425,5 +425,11 @@ public class WorldProviderTauCeti_F_WE extends WE_WorldProviderSpace {
 		
 		return this.getThermalLevelModifier();
 	};
+	
+	@Override
+    public float getSolarSize()
+    {
+        return 1.5F / this.getCelestialBody().getRelativeDistanceFromCenter().unScaledDistance;
+    }
 
 }
