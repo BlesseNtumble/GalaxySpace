@@ -15,6 +15,7 @@ import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.WorldGenT
 import micdoodle8.mods.galacticraft.core.items.ISortableItem;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryItem;
 import net.minecraft.block.BlockLiquid;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
@@ -102,6 +103,10 @@ public class ItemBasicBR extends Item implements ISortableItem{
 						|| iblockstate == BRBlocks.BARNARDA_C_BLOCKS.getDefaultState().withProperty(Barnarda_C_Blocks.BASIC_TYPE, Barnarda_C_Blocks.EnumBlockBarnardaC.DIRT)))
 				{
 					world.setBlockState(blockpos1, BRBlocks.BARNARDA_C_DANDELIONS.getDefaultState().withProperty(Barnarda_C_Dandelions.BASIC_TYPE, Barnarda_C_Dandelions.EnumBlockDandelions.REEDS));
+					SoundType soundtype = iblockstate.getBlock().getSoundType(iblockstate, world, pos, player);
+	                world.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+	                itemstack.shrink(1);
+					
 					return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
 				}
             }

@@ -95,7 +95,9 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.FMLLaunchHandler;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Mod(
 		   modid = GalaxySpace.MODID,
@@ -330,7 +332,6 @@ public class GalaxySpace
     	@SubscribeEvent
     	public static void registerModels(ModelRegistryEvent event) {
     		proxy.registerVariants();
-
     	}    
     	
     	@SubscribeEvent

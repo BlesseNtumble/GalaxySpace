@@ -141,9 +141,8 @@ public class TileEntityRocketAssembler extends TileBaseElectricBlockWithInventor
     
     private void compressIntoSlot(int slot)
     {
-    	
         if (this.canCompress())
-        {        	
+        {      
             ItemStack resultItemStack = this.producingStack;
 /*
             if(!this.getInventory().get(2).isEmpty())

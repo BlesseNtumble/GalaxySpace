@@ -40,6 +40,8 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @IBodiesHandler
 public class TauCetiSystemBodies implements IBodies{
@@ -75,8 +77,11 @@ public class TauCetiSystemBodies implements IBodies{
 		BodiesRegistry.setProviderData(TauCeti_F, WorldProviderTauCeti_F_WE.class, -1338, 6, ACBiome.ACSpace);
 		GalaxyRegistry.registerPlanet(TauCeti_F);
 		
-		GalacticraftRegistry.registerTeleportType(WorldProviderTauCeti_F_WE.class, new TeleportTypeTauCeti_F());		
 		
+		BodiesData data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.YELLOW);
+		BodiesRegistry.registerBodyData(TauCetiSystem.getMainStar(), data);		
+		
+		GalacticraftRegistry.registerTeleportType(WorldProviderTauCeti_F_WE.class, new TeleportTypeTauCeti_F());		
 		
 		TCBlocks.initialize();
 		
@@ -89,10 +94,6 @@ public class TauCetiSystemBodies implements IBodies{
 
 	@Override
 	public void postInit(FMLPostInitializationEvent event) {	
-		BodiesData data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.YELLOW);
-		BodiesRegistry.registerBodyData(TauCetiSystem.getMainStar(), data);		
-		
-
 		GSDimensions.TAU_CETI_F = WorldUtil.getDimensionTypeById(-1338);
 	}
 
@@ -126,6 +127,7 @@ public class TauCetiSystemBodies implements IBodies{
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerVariant() {	
 		
 		String[] blocks = new String[EnumBlockTauCetiF.values().length];

@@ -262,7 +262,7 @@ public class WorldProviderTitan extends WorldProviderAdvancedSpace implements IP
 	@Override
 	public int getSoundInterval(float rainStrength) {
 		int result = 80 - (int)(rainStrength * 88F);
-        return result > 0 ? result : 0;
+        return result > 0 ? result : 1;
 	}
 
 	@Override
