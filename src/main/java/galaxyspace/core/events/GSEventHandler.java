@@ -102,6 +102,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -710,7 +711,7 @@ public class GSEventHandler {
 		        }
 			}
 			
-			if(OxygenUtil.isAABBInBreathableAirBlock(player))
+			if(OxygenUtil.isAABBInBreathableAirBlock(player) || player.world.provider.getDimensionType() == DimensionType.OVERWORLD)
 			{
 				for(int i = 2; i <= 3; i++)
 					if(!inv.getStackInSlot(i).isEmpty() && (inv.getStackInSlot(i).getItem() == GSItems.OXYGENTANK_TIER_EPP || inv.getStackInSlot(i).hasTagCompound() && inv.getStackInSlot(i).getTagCompound().hasKey("epp")))
