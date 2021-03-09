@@ -289,7 +289,7 @@ public class GSHooksManager {
             handler.normaliseThermalLevel(player, playerStats, 3);
         }
     }
-
+/*
 	private static List<BlockPos> connectedPads = new ArrayList<BlockPos>();
 	private static Ticket chunkLoadTicket;
 	
@@ -562,8 +562,8 @@ public class GSHooksManager {
         rocket.destinationFrequency = -1;
         return false;
     }
-	
-	  private static final EntityAlienVillager.ITradeList[] DEFAULT_TRADE_LIST_MAP = new EntityAlienVillager.ITradeList[] {
+	*/
+	private static final EntityAlienVillager.ITradeList[] DEFAULT_TRADE_LIST_MAP = new EntityAlienVillager.ITradeList[] {
 			  	new EntityAlienVillager.ItemAndEmeraldToItem(new ItemStack(GCItems.schematic, 1, 1), new EntityAlienVillager.PriceInfo(40, 55), BasicItems.SCHEMATIC_BOX.getItemStack()),
 	            
 			  
