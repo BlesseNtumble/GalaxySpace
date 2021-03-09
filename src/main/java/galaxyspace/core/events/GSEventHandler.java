@@ -391,7 +391,7 @@ public class GSEventHandler {
 						
 						if(ore.need_check_oxygen)
 						{
-							if(!OxygenUtil.isAABBInBreathableAirBlock(world, bb, ore.need_check_temp))
+							if(!OxygenUtil.isAABBInBreathableAirBlock(world, bb, ore.need_check_temp && (thermal > 1.0F || thermal < -1.0F)))
 							{
 								player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.needoxygen")));				   
 								event.setCanceled(true);
