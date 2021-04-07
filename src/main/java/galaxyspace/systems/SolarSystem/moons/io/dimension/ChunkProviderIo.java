@@ -8,6 +8,7 @@ import com.google.common.collect.Lists;
 
 import asmodeuscore.core.astronomy.dimension.world.gen.ACBiome;
 import asmodeuscore.core.astronomy.dimension.world.gen.ChunkProviderSpaceLakes;
+import asmodeuscore.core.astronomy.dimension.world.gen.MapGenCaves;
 import asmodeuscore.core.astronomy.dimension.world.gen.dungeons.standart.DungeonConfiguration;
 import galaxyspace.core.GSBlocks;
 import galaxyspace.core.configs.GSConfigCore;
@@ -38,7 +39,7 @@ public class ChunkProviderIo extends ChunkProviderSpaceLakes {
 
     private List<MapGenBaseMeta> worldGenerators;
     
-    //private final MapGenCaves caveGenerator = new MapGenCaves(GSBlocks.CERES_BLOCKS, 0, 1, 1);
+    private final MapGenCaves caveGenerator = new MapGenCaves(GSBlocks.IO_BLOCKS.getStateFromMeta(0), GSBlocks.IO_BLOCKS.getStateFromMeta(1));
     
     private IBlockState top = GSBlocks.IO_BLOCKS.getDefaultState().withProperty(IoBlocks.BASIC_TYPE, IoBlocks.EnumIoBlocks.IO_DUNGEON_TOP);
     private IBlockState floor = GSBlocks.IO_BLOCKS.getDefaultState().withProperty(IoBlocks.BASIC_TYPE, IoBlocks.EnumIoBlocks.IO_DUNGEON_FLOOR);
@@ -50,7 +51,7 @@ public class ChunkProviderIo extends ChunkProviderSpaceLakes {
 	protected List<MapGenBaseMeta> getWorldGenerators()
 	{
 		List<MapGenBaseMeta> generators = Lists.newArrayList();
-		//generators.add(this.ravineGenerator);
+		generators.add(this.caveGenerator);
 		
 		return generators;
 	}
