@@ -118,7 +118,7 @@ tile.callisto_stone.name=Callisto Stone
 tile.enceladus_snow.name=Enceladus Ice
 tile.enceladus_grunt.name=Enceladus Subsurface Grunt
 tile.enceladus_coal_ore.name=Coal Ore
-tile.enceladus_crystal.name=Unknow Crystal
+tile.enceladus_crystal.name=Unknown Crystal Cluster
 
 tile.titan_grunt.name=Titan Surface Grunt
 tile.titan_subgrunt.name=Titan Subsurface Grunt
