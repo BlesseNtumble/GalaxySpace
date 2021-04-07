@@ -39,6 +39,7 @@ import micdoodle8.mods.galacticraft.planets.mars.network.PacketSimpleMars.EnumSi
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityGasLiquefier;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityLaunchController;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityMethaneSynthesizer;
+import micdoodle8.mods.galacticraft.planets.venus.dimension.WorldProviderVenus;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -289,6 +290,11 @@ public class GSHooksManager {
             handler.normaliseThermalLevel(player, playerStats, 3);
         }
     }
+
+	@Hook(returnCondition = ReturnCondition.ALWAYS)
+	public static double getSolarEnergyMultiplier(WorldProviderVenus wp) {
+		return 0;
+	}
 /*
 	private static List<BlockPos> connectedPads = new ArrayList<BlockPos>();
 	private static Ticket chunkLoadTicket;
