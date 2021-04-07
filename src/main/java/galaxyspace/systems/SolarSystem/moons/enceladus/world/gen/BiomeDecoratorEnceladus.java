@@ -2,6 +2,7 @@ package galaxyspace.systems.SolarSystem.moons.enceladus.world.gen;
 
 import galaxyspace.core.GSBlocks;
 import galaxyspace.core.configs.GSConfigCore;
+import galaxyspace.systems.SolarSystem.moons.enceladus.blocks.EnceladusBlocks;
 import galaxyspace.systems.SolarSystem.moons.enceladus.blocks.EnceladusBlocks.EnumEnceladusBlocks;
 import galaxyspace.systems.SolarSystem.moons.enceladus.blocks.EnceladusCrystal;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
@@ -38,16 +39,13 @@ public class BiomeDecoratorEnceladus extends BiomeDecoratorSpace
 	        int randPosZ = posZ + rand.nextInt(16) + 8;
        
 	        BlockPos pos = new BlockPos(randPosX, randPosY, randPosZ);
-	        if (this.getCurrentWorld().getBlockState(pos.down()) == GSBlocks.ENCELADUS_BLOCKS.getStateFromMeta(EnumEnceladusBlocks.ENCELADUS_GRUNT.getMeta()) && this.getCurrentWorld().isAirBlock(pos))
+	        if (this.getCurrentWorld().getBlockState(pos) == GSBlocks.ENCELADUS_BLOCKS.getDefaultState().withProperty(EnceladusBlocks.BASIC_TYPE, EnumEnceladusBlocks.ENCELADUS_GRUNT))
 	        {	        	
-	        	this.getCurrentWorld().setBlockState(pos, GSBlocks.ENCELADUS_CRYSTAL.getDefaultState().withProperty(EnceladusCrystal.FACING, EnumFacing.HORIZONTALS[j]));	  
-	        }
-	        
-	        if (this.getCurrentWorld().getBlockState(pos.up()) == GSBlocks.ENCELADUS_BLOCKS.getStateFromMeta(EnumEnceladusBlocks.ENCELADUS_GRUNT.getMeta()) && this.getCurrentWorld().isAirBlock(pos))
-	        {	        	
-	        	this.getCurrentWorld().setBlockState(pos, GSBlocks.ENCELADUS_CRYSTAL.getDefaultState().withProperty(EnceladusCrystal.FACING, EnumFacing.HORIZONTALS[j]));	  
+	        	if(this.getCurrentWorld().isAirBlock(pos.down()))
+	        		this.getCurrentWorld().setBlockState(pos.down(), GSBlocks.ENCELADUS_CRYSTAL.getDefaultState().withProperty(EnceladusCrystal.FACING, EnumFacing.HORIZONTALS[j]));	  
 	        	
-	        	
+	        	if(this.getCurrentWorld().isAirBlock(pos.up()))
+	        		this.getCurrentWorld().setBlockState(pos.up(), GSBlocks.ENCELADUS_CRYSTAL.getDefaultState().withProperty(EnceladusCrystal.FACING, EnumFacing.HORIZONTALS[j]));	  
 	        }
         
 		}

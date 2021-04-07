@@ -7,6 +7,7 @@ import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import galaxyspace.core.GSBlocks;
 import galaxyspace.core.prefab.entities.EntityEvolvedColdBlaze;
 import galaxyspace.systems.SolarSystem.moons.enceladus.blocks.EnceladusBlocks.EnumEnceladusBlocks;
+import galaxyspace.systems.SolarSystem.moons.enceladus.blocks.EnceladusBlocks;
 import galaxyspace.systems.SolarSystem.moons.enceladus.blocks.EnceladusCrystal;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedEnderman;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSkeleton;
@@ -59,25 +60,22 @@ public class Enceladus_Mountains extends WE_Biome {
 
 		//GalaxySpace.instance.debug(x + " | " + z);
     	for (int i = 0; i < 50; i++) {
-			 
-	        randPosX = x + rand.nextInt(16) + 8;
-	        randPosY = rand.nextInt(120);
-	        randPosZ = z + rand.nextInt(16) + 8;
-       
-	        BlockPos pos = new BlockPos(randPosX, randPosY, randPosZ);
-	        
-	        if (world.getBlockState(pos.down()) == GSBlocks.ENCELADUS_BLOCKS.getStateFromMeta(EnumEnceladusBlocks.ENCELADUS_GRUNT.getMeta()) && world.isAirBlock(pos))
-	        {	        	
-	        	world.setBlockState(pos, GSBlocks.ENCELADUS_CRYSTAL.getDefaultState().withProperty(EnceladusCrystal.FACING, EnumFacing.HORIZONTALS[rand.nextInt(4)]));	  
-	        }
-	        
-	        if (world.getBlockState(pos.up()) == GSBlocks.ENCELADUS_BLOCKS.getStateFromMeta(EnumEnceladusBlocks.ENCELADUS_GRUNT.getMeta()) && world.isAirBlock(pos))
-	        {	        	
-	        	world.setBlockState(pos, GSBlocks.ENCELADUS_CRYSTAL.getDefaultState().withProperty(EnceladusCrystal.FACING, EnumFacing.HORIZONTALS[rand.nextInt(4)]));	  
-	        	
-	        	
-	        }
-        
-		}
+    		randPosX = x + rand.nextInt(16) + 8;
+    		randPosY = rand.nextInt(120);
+    		randPosZ = z + rand.nextInt(16) + 8;
+    		
+			for(int j = 1; j < rand.nextInt(3) + 3; j++) {
+		        BlockPos pos = new BlockPos(randPosX + j * (rand.nextBoolean() ? 1 : -1), randPosY, randPosZ + j * (rand.nextBoolean() ? 1 : -1));
+		        if (world.getBlockState(pos.down()) == GSBlocks.ENCELADUS_BLOCKS.getStateFromMeta(EnumEnceladusBlocks.ENCELADUS_GRUNT.getMeta()) && world.isAirBlock(pos))
+		        {	        	
+		        	world.setBlockState(pos, GSBlocks.ENCELADUS_CRYSTAL.getDefaultState().withProperty(EnceladusCrystal.FACING, EnumFacing.HORIZONTALS[rand.nextInt(4)]));	  
+		        }
+		        
+		        if (world.getBlockState(pos.up()) == GSBlocks.ENCELADUS_BLOCKS.getStateFromMeta(EnumEnceladusBlocks.ENCELADUS_GRUNT.getMeta()) && world.isAirBlock(pos))
+		        {	        	
+		        	world.setBlockState(pos, GSBlocks.ENCELADUS_CRYSTAL.getDefaultState().withProperty(EnceladusCrystal.FACING, EnumFacing.HORIZONTALS[rand.nextInt(4)]));	  
+		        }
+			}
+    	}
 	}
 }
