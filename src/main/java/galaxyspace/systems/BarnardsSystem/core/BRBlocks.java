@@ -1,4 +1,4 @@
-package galaxyspace.systems.BarnardsSystem.core.registers;
+package galaxyspace.systems.BarnardsSystem.core;
 
 import galaxyspace.core.prefab.items.GSItemBlockDesc;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Blocks;
@@ -74,7 +74,7 @@ public class BRBlocks {
 		OreDictionary.registerOre("oreTin", new ItemStack(BARNARDA_C_ORES, 1, 8));	
 		OreDictionary.registerOre("oreAluminum", new ItemStack(BARNARDA_C_ORES, 1, 9));	
 		OreDictionary.registerOre("oreQuartz", new ItemStack(BARNARDA_C_ORES, 1, 10));	
-		OreDictionary.registerOre("oreCobaltum", new ItemStack(BARNARDA_C_ORES, 1, 11));	
+		OreDictionary.registerOre("oreCobalt", new ItemStack(BARNARDA_C_ORES, 1, 11));	
 		OreDictionary.registerOre("oreNickel", new ItemStack(BARNARDA_C_ORES, 1, 12));	
 		
 	}

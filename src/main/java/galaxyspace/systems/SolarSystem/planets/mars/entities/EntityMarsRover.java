@@ -85,7 +85,7 @@ public class EntityMarsRover extends Entity implements ICameraZoomEntity, IInven
     private int timeClimbing;
     private boolean shouldClimb;
 
-
+    
 
     public EntityMarsRover(World var1)
     {
@@ -156,7 +156,7 @@ public class EntityMarsRover extends Entity implements ICameraZoomEntity, IInven
     @Override
     public double getMountedYOffset()
     {
-        return 13.0D;
+        return 1.0D;
     }
 
     @Override
@@ -177,7 +177,7 @@ public class EntityMarsRover extends Entity implements ICameraZoomEntity, IInven
         {
             final double offsetX = Math.cos(this.rotationYaw / Constants.RADIANS_TO_DEGREES_D + 114.8) * -0.5D;
             final double offsetZ = Math.sin(this.rotationYaw / Constants.RADIANS_TO_DEGREES_D + 114.8) * -0.5D;
-            passenger.setPosition(this.posX + offsetX, this.posY + 0.4F + passenger.getYOffset(), this.posZ + offsetZ);
+            passenger.setPosition(this.posX + offsetX, this.posY + 0.4F + passenger.getYOffset() + getMountedYOffset(), this.posZ + offsetZ);
         }
     }
 

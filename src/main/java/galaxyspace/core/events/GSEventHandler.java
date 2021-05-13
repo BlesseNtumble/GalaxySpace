@@ -225,10 +225,11 @@ public class GSEventHandler {
         	StatsCapability stats = GSStatsCapability.get(event.player);
         	
         	Integer[] ids = new Integer[256];
-        	for(int i = 0; i < stats.getKnowledgeResearches().length; i++)
+        	for(int i = 0; i < stats.getKnowledgeResearches().length; i++) {
         		ids[i] = stats.getKnowledgeResearches()[i];
-
+        	}
         	GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_UPDATE_RESEARCHES, GCCoreUtil.getDimensionID(event.player.world), new Object[] {ids}), (EntityPlayerMP)event.player);
+
         }
     }	
 		

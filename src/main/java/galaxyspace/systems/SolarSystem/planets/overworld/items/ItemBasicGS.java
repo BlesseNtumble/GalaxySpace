@@ -13,7 +13,6 @@ import galaxyspace.core.configs.GSConfigSchematics;
 import galaxyspace.core.network.packet.GSPacketSimple;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
 import galaxyspace.core.util.GSCreativeTabs;
-import galaxyspace.core.util.GSUtils;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.items.IClickableItem;

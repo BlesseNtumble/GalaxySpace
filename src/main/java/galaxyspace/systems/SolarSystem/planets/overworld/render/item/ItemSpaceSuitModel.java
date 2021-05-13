@@ -183,7 +183,7 @@ public  class ItemSpaceSuitModel extends ModelOBJArmor {
 			GL11.glScalef(0.75F, 0.78F, 0.75F);
 			GL11.glColor3f(color[0], color[1], color[2]);
 			
-			GL11.glCallList(this.helmetList);
+			GL11.glCallList(helmetList);
 			
 		}
 	}
@@ -196,7 +196,7 @@ public  class ItemSpaceSuitModel extends ModelOBJArmor {
 			GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
 			GL11.glScalef(0.75F, 0.75F, 0.75F);
 			GL11.glColor3f(color[0], color[1], color[2]);
-			GL11.glCallList(this.bodyList);
+			GL11.glCallList(bodyList);
 		}
 		
 		if(partType == 5 || partType == 6)
@@ -205,7 +205,7 @@ public  class ItemSpaceSuitModel extends ModelOBJArmor {
 			if(partType == 5) GL11.glTranslatef(0F, 1.9F, 0F);
 			else GL11.glTranslatef(0F, -0.3F, -0.7F);
 				
-			GL11.glCallList(this.jetpackList);
+			GL11.glCallList(jetpackList);
 		}
 			
 		
@@ -219,7 +219,7 @@ public  class ItemSpaceSuitModel extends ModelOBJArmor {
 			GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
 			GL11.glScalef(0.75F, 0.75F, 0.75F);
 			GL11.glColor3f(color[0], color[1], color[2]);
-			GL11.glCallList(this.rightArmList);
+			GL11.glCallList(rightArmList);
 		}
 	}
 
@@ -231,7 +231,7 @@ public  class ItemSpaceSuitModel extends ModelOBJArmor {
 			GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
 			GL11.glScalef(0.75F, 0.75F, 0.75F);
 			GL11.glColor3f(color[0], color[1], color[2]);
-			GL11.glCallList(this.leftArmList);
+			GL11.glCallList(leftArmList);
 		}
 	}
 
@@ -243,7 +243,7 @@ public  class ItemSpaceSuitModel extends ModelOBJArmor {
 			GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
 			GL11.glScalef(0.75F, 0.75F, 0.75F);
 			GL11.glColor3f(color[0], color[1], color[2]);
-			GL11.glCallList(this.rightLegList);
+			GL11.glCallList(rightLegList);
 		}
 	}
 
@@ -255,7 +255,7 @@ public  class ItemSpaceSuitModel extends ModelOBJArmor {
 			GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
 			GL11.glScalef(0.75F, 0.75F, 0.75F);
 			GL11.glColor3f(color[0], color[1], color[2]);
-			GL11.glCallList(this.leftLegList);
+			GL11.glCallList(leftLegList);
 		}
 	}
 }

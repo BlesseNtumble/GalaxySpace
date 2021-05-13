@@ -51,7 +51,6 @@ public class CustomCloudRender extends IRenderHandler implements ISelectiveResou
     private int displayList = -1;
     private VertexBuffer vbo;
     private float[] layersLevels = new float[] {};
-    private float[] color = new float[] {};
     private float[] offsetX = new float[] {};
     private float[] offsetZ = new float[] {};
     private int cloudTickCounter = 0;
@@ -64,7 +63,7 @@ public class CustomCloudRender extends IRenderHandler implements ISelectiveResou
     private int texW;
     private int texH;
 
-    public CustomCloudRender(float[] layersLevels_t, float[] color_t)
+    public CustomCloudRender(float[] layersLevels_t)
     {
         // Resource manager should always be reloadable.
         ((IReloadableResourceManager) mc.getResourceManager()).registerReloadListener(this);
@@ -75,7 +74,6 @@ public class CustomCloudRender extends IRenderHandler implements ISelectiveResou
         	offsetX[i] = new Random().nextInt(1000) + 100.0F;
         	offsetZ[i] = new Random().nextInt(1000) + 100.0F;
         }
-        color = color_t;
     }
 
     private int getScale()
@@ -89,7 +87,7 @@ public class CustomCloudRender extends IRenderHandler implements ISelectiveResou
         return MathHelper.ceil(value / scale) * scale;
     }
 
-    private void vertices(BufferBuilder buffer, float[] color)
+    private void vertices(BufferBuilder buffer)
     {
         boolean fancy = cloudMode == 2;    // Defines whether to hide all but the bottom.
 
@@ -132,18 +130,18 @@ public class CustomCloudRender extends IRenderHandler implements ISelectiveResou
                 float v1 = sectZ1 * sectPx;
 
                 // Bottom
-                buffer.pos(sectX0, 0, sectZ0).tex(u0, v0).color(bCol * color[0], bCol * color[1], bCol * color[2], ALPHA).endVertex();
-                buffer.pos(sectX1, 0, sectZ0).tex(u1, v0).color(bCol * color[0], bCol * color[1], bCol * color[2], ALPHA).endVertex();
-                buffer.pos(sectX1, 0, sectZ1).tex(u1, v1).color(bCol * color[0], bCol * color[1], bCol * color[2], ALPHA).endVertex();
-                buffer.pos(sectX0, 0, sectZ1).tex(u0, v1).color(bCol * color[0], bCol * color[1], bCol * color[2], ALPHA).endVertex();
+                buffer.pos(sectX0, 0, sectZ0).tex(u0, v0).color(bCol, bCol, bCol, ALPHA).endVertex();
+                buffer.pos(sectX1, 0, sectZ0).tex(u1, v0).color(bCol, bCol, bCol, ALPHA).endVertex();
+                buffer.pos(sectX1, 0, sectZ1).tex(u1, v1).color(bCol, bCol, bCol, ALPHA).endVertex();
+                buffer.pos(sectX0, 0, sectZ1).tex(u0, v1).color(bCol, bCol, bCol, ALPHA).endVertex();
 
                 if (fancy)
                 {
                     // Top
-                    buffer.pos(sectX0, HEIGHT, sectZ0).tex(u0, v0).color(1 * color[0], 1 * color[1], 1 * color[2], ALPHA).endVertex();
-                    buffer.pos(sectX0, HEIGHT, sectZ1).tex(u0, v1).color(1 * color[0], 1 * color[1], 1 * color[2], ALPHA).endVertex();
-                    buffer.pos(sectX1, HEIGHT, sectZ1).tex(u1, v1).color(1 * color[0], 1 * color[1], 1 * color[2], ALPHA).endVertex();
-                    buffer.pos(sectX1, HEIGHT, sectZ0).tex(u1, v0).color(1 * color[0], 1 * color[1], 1 * color[2], ALPHA).endVertex();
+                    buffer.pos(sectX0, HEIGHT, sectZ0).tex(u0, v0).color(1, 1, 1, ALPHA).endVertex();
+                    buffer.pos(sectX0, HEIGHT, sectZ1).tex(u0, v1).color(1, 1, 1, ALPHA).endVertex();
+                    buffer.pos(sectX1, HEIGHT, sectZ1).tex(u1, v1).color(1, 1, 1, ALPHA).endVertex();
+                    buffer.pos(sectX1, HEIGHT, sectZ0).tex(u1, v0).color(1, 1, 1, ALPHA).endVertex();
 
                     float slice;
                     float sliceCoord0;
@@ -158,10 +156,10 @@ public class CustomCloudRender extends IRenderHandler implements ISelectiveResou
                         if (slice > -CULL_DIST)
                         {
                             slice += INSET;
-                            buffer.pos(slice, 0,      sectZ1).tex(sliceCoord0, v1).color(0.9F * color[0], 0.9F * color[1], 0.9F * color[2], ALPHA).endVertex();
-                            buffer.pos(slice, HEIGHT, sectZ1).tex(sliceCoord1, v1).color(0.9F * color[0], 0.9F * color[1], 0.9F * color[2], ALPHA).endVertex();
-                            buffer.pos(slice, HEIGHT, sectZ0).tex(sliceCoord1, v0).color(0.9F * color[0], 0.9F * color[1], 0.9F * color[2], ALPHA).endVertex();
-                            buffer.pos(slice, 0,      sectZ0).tex(sliceCoord0, v0).color(0.9F * color[0], 0.9F * color[1], 0.9F * color[2], ALPHA).endVertex();
+                            buffer.pos(slice, 0,      sectZ1).tex(sliceCoord0, v1).color(0.9F, 0.9F, 0.9F, ALPHA).endVertex();
+                            buffer.pos(slice, HEIGHT, sectZ1).tex(sliceCoord1, v1).color(0.9F, 0.9F, 0.9F, ALPHA).endVertex();
+                            buffer.pos(slice, HEIGHT, sectZ0).tex(sliceCoord1, v0).color(0.9F, 0.9F, 0.9F, ALPHA).endVertex();
+                            buffer.pos(slice, 0,      sectZ0).tex(sliceCoord0, v0).color(0.9F, 0.9F, 0.9F, ALPHA).endVertex();
                             slice -= INSET;
                         }
 
@@ -170,10 +168,10 @@ public class CustomCloudRender extends IRenderHandler implements ISelectiveResou
                         if (slice <= CULL_DIST)
                         {
                             slice -= INSET;
-                            buffer.pos(slice, 0,      sectZ0).tex(sliceCoord0, v0).color(0.9F * color[0], 0.9F * color[1], 0.9F * color[2], ALPHA).endVertex();
-                            buffer.pos(slice, HEIGHT, sectZ0).tex(sliceCoord1, v0).color(0.9F * color[0], 0.9F * color[1], 0.9F * color[2], ALPHA).endVertex();
-                            buffer.pos(slice, HEIGHT, sectZ1).tex(sliceCoord1, v1).color(0.9F * color[0], 0.9F * color[1], 0.9F * color[2], ALPHA).endVertex();
-                            buffer.pos(slice, 0,      sectZ1).tex(sliceCoord0, v1).color(0.9F * color[0], 0.9F * color[1], 0.9F * color[2], ALPHA).endVertex();
+                            buffer.pos(slice, 0,      sectZ0).tex(sliceCoord0, v0).color(0.9F, 0.9F, 0.9F, ALPHA).endVertex();
+                            buffer.pos(slice, HEIGHT, sectZ0).tex(sliceCoord1, v0).color(0.9F, 0.9F, 0.9F, ALPHA).endVertex();
+                            buffer.pos(slice, HEIGHT, sectZ1).tex(sliceCoord1, v1).color(0.9F, 0.9F, 0.9F, ALPHA).endVertex();
+                            buffer.pos(slice, 0,      sectZ1).tex(sliceCoord0, v1).color(0.9F, 0.9F, 0.9F, ALPHA).endVertex();
                             slice += INSET;
                         }
                     }
@@ -187,10 +185,10 @@ public class CustomCloudRender extends IRenderHandler implements ISelectiveResou
                         if (slice > -CULL_DIST)
                         {
                             slice += INSET;
-                            buffer.pos(sectX0, 0,      slice).tex(u0, sliceCoord0).color(0.8F * color[0], 0.8F * color[1], 0.8F * color[2], ALPHA).endVertex();
-                            buffer.pos(sectX0, HEIGHT, slice).tex(u0, sliceCoord1).color(0.8F * color[0], 0.8F * color[1], 0.8F * color[2], ALPHA).endVertex();
-                            buffer.pos(sectX1, HEIGHT, slice).tex(u1, sliceCoord1).color(0.8F * color[0], 0.8F * color[1], 0.8F * color[2], ALPHA).endVertex();
-                            buffer.pos(sectX1, 0,      slice).tex(u1, sliceCoord0).color(0.8F * color[0], 0.8F * color[1], 0.8F * color[2], ALPHA).endVertex();
+                            buffer.pos(sectX0, 0,      slice).tex(u0, sliceCoord0).color(0.8F, 0.8F, 0.8F, ALPHA).endVertex();
+                            buffer.pos(sectX0, HEIGHT, slice).tex(u0, sliceCoord1).color(0.8F, 0.8F, 0.8F, ALPHA).endVertex();
+                            buffer.pos(sectX1, HEIGHT, slice).tex(u1, sliceCoord1).color(0.8F, 0.8F, 0.8F, ALPHA).endVertex();
+                            buffer.pos(sectX1, 0,      slice).tex(u1, sliceCoord0).color(0.8F, 0.8F, 0.8F, ALPHA).endVertex();
                             slice -= INSET;
                         }
 
@@ -199,10 +197,10 @@ public class CustomCloudRender extends IRenderHandler implements ISelectiveResou
                         if (slice <= CULL_DIST)
                         {
                             slice -= INSET;
-                            buffer.pos(sectX1, 0,      slice).tex(u1, sliceCoord0).color(0.8F * color[0], 0.8F * color[1], 0.8F * color[2], ALPHA).endVertex();
-                            buffer.pos(sectX1, HEIGHT, slice).tex(u1, sliceCoord1).color(0.8F * color[0], 0.8F * color[1], 0.8F * color[2], ALPHA).endVertex();
-                            buffer.pos(sectX0, HEIGHT, slice).tex(u0, sliceCoord1).color(0.8F * color[0], 0.8F * color[1], 0.8F * color[2], ALPHA).endVertex();
-                            buffer.pos(sectX0, 0,      slice).tex(u0, sliceCoord0).color(0.8F * color[0], 0.8F * color[1], 0.8F * color[2], ALPHA).endVertex();
+                            buffer.pos(sectX1, 0,      slice).tex(u1, sliceCoord0).color(0.8F, 0.8F, 0.8F, ALPHA).endVertex();
+                            buffer.pos(sectX1, HEIGHT, slice).tex(u1, sliceCoord1).color(0.8F, 0.8F, 0.8F, ALPHA).endVertex();
+                            buffer.pos(sectX0, HEIGHT, slice).tex(u0, sliceCoord1).color(0.8F, 0.8F, 0.8F, ALPHA).endVertex();
+                            buffer.pos(sectX0, 0,      slice).tex(u0, sliceCoord0).color(0.8F, 0.8F, 0.8F, ALPHA).endVertex();
                             slice += INSET;
                         }
                     }
@@ -229,7 +227,7 @@ public class CustomCloudRender extends IRenderHandler implements ISelectiveResou
         }
     }
 
-    private void build(float[] color)
+    private void build()
     {
         Tessellator tess = Tessellator.getInstance();
         BufferBuilder buffer = tess.getBuffer();
@@ -239,7 +237,7 @@ public class CustomCloudRender extends IRenderHandler implements ISelectiveResou
         else
             GlStateManager.glNewList(displayList = GLAllocation.generateDisplayLists(1), GL11.GL_COMPILE);
         
-        vertices(buffer, color);
+        vertices(buffer);
 
         if (OpenGlHelper.useVbo())
         {
@@ -264,7 +262,7 @@ public class CustomCloudRender extends IRenderHandler implements ISelectiveResou
         return OpenGlHelper.useVbo() ? vbo != null : displayList >= 0;
     }
 
-    public void checkSettings(float[] color)
+    public void checkSettings()
     {
         boolean newEnabled = ForgeModContainer.forgeCloudsEnabled
                 && mc.gameSettings.shouldRenderClouds() != 0
@@ -283,7 +281,7 @@ public class CustomCloudRender extends IRenderHandler implements ISelectiveResou
         renderDistance = mc.gameSettings.renderDistanceChunks;
         
         if(newEnabled && !isBuilt()) {
-            build(color);
+            build();
         }
     }
 
@@ -473,7 +471,7 @@ public class CustomCloudRender extends IRenderHandler implements ISelectiveResou
 	@Override
 	public void render(float partialTicks, WorldClient world, Minecraft mc) {
 		cloudTickCounter++;
-		checkSettings(color);
+		checkSettings();
 		render(cloudTickCounter, partialTicks, new float[] { 0.0F, 0.0F, 0.0F });
 		for(int i = 0; i < layersLevels.length; i++) {
 			render(cloudTickCounter, partialTicks, new float[] { offsetX[i], layersLevels[i], offsetZ[i] });

@@ -65,7 +65,6 @@ public class ItemSpaceSuit extends ItemElectricArmor implements IArmorCorrosionR
 	public static String[] suit_buttons = new String[] {"helmet_button", "chest_button", "legs_button", "boots_button"};
 	public static boolean[] pressedKey = new boolean[3];
 	
-	private boolean[] key_handler = new boolean[4];
 	private float jumpCharge;
 	
 	public ItemSpaceSuit(ArmorMaterial materialIn, EntityEquipmentSlot armorIndex, int tier) {
@@ -119,14 +118,14 @@ public class ItemSpaceSuit extends ItemElectricArmor implements IArmorCorrosionR
 	{
 		Minecraft mc = Minecraft.getMinecraft();
 		
-		if(mc.gameSettings.keyBindJump.isKeyDown()) this.pressedKey[0] = true;
-		else this.pressedKey[0] = false;
+		if(mc.gameSettings.keyBindJump.isKeyDown()) pressedKey[0] = true;
+		else pressedKey[0] = false;
 		
-		if(mc.gameSettings.keyBindForward.isKeyDown()) this.pressedKey[1] = true;
-		else this.pressedKey[1] = false;
+		if(mc.gameSettings.keyBindForward.isKeyDown()) pressedKey[1] = true;
+		else pressedKey[1] = false;
 		
-		if(mc.gameSettings.keyBindSneak.isKeyDown()) this.pressedKey[2] = true;
-		else this.pressedKey[2] = false;
+		if(mc.gameSettings.keyBindSneak.isKeyDown()) pressedKey[2] = true;
+		else pressedKey[2] = false;
 
 	}
 	
@@ -180,7 +179,7 @@ public class ItemSpaceSuit extends ItemElectricArmor implements IArmorCorrosionR
 			if(getArmorType(itemStack) == EntityEquipmentSlot.FEET)
 			{
 				if(itemStack.getTagCompound().getBoolean(suit_buttons[3])) {
-					if (this.pressedKey[0]) {
+					if (pressedKey[0]) {
 						if (itemStack.getTagCompound().getBoolean("jump") && getElectricityStored(itemStack) >= 5) {
 							if(player.onGround) this.jumpCharge = 1.0f;
 							

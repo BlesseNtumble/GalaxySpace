@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import galaxyspace.core.util.GSCreativeTabs;
-import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks.EnumType;

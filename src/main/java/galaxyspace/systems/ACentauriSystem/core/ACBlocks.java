@@ -1,4 +1,4 @@
-package galaxyspace.systems.ACentauriSystem.core.registers.blocks;
+package galaxyspace.systems.ACentauriSystem.core;
 
 import galaxyspace.core.prefab.items.GSItemBlockDesc;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.blocks.Proxima_B_Blocks;

@@ -3,7 +3,7 @@ package galaxyspace.systems.ACentauriSystem.planets.proxima_b.world.gen.features
 import java.util.Random;
 
 import asmodeuscore.core.astronomy.dimension.world.gen.WorldGenCustomStructure;
-import galaxyspace.systems.ACentauriSystem.core.registers.blocks.ACBlocks;
+import galaxyspace.systems.ACentauriSystem.core.ACBlocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 

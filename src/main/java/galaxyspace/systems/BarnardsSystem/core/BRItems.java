@@ -1,4 +1,4 @@
-package galaxyspace.systems.BarnardsSystem.core.registers;
+package galaxyspace.systems.BarnardsSystem.core;
 
 import galaxyspace.core.GSItems;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.items.ItemBasicBR;

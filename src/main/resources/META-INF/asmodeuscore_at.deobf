@@ -1,7 +1,0 @@
-# Fields
-#public net.minecraft.client.gui.inventory.GuiContainer guiLeft
-
-# Methods
-public net.minecraft.world.chunk.Chunk getBlockLightOpacity(III)I
-
-

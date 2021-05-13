@@ -15,7 +15,7 @@ import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_RavineGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.systems.BarnardsSystem.BarnardsSystemBodies;
-import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.sky.CloudProviderBarnardaC;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.sky.SkyProviderBarnarda_C;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Beach;
@@ -174,10 +174,18 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
     @SideOnly(Side.CLIENT)
     public float getStarBrightness(float par1)
     {
+    	
     	float f = this.world.getCelestialAngle(par1);
         float f1 = 1.0F - (MathHelper.cos(f * ((float)Math.PI * 2F)) * 2.0F + 0.25F);
         f1 = MathHelper.clamp(f1, 0.0F, 1.0F);
+        
+        if(world.isRaining())
+    	{
+    		return f1 * f1 * 0.2F;
+    	}
+        
         return f1 * f1 * 0.5F;   	
+        
     }
     
     @Override

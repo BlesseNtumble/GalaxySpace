@@ -4,8 +4,8 @@ import java.util.Random;
 
 import galaxyspace.core.prefab.items.ItemAxeGS;
 import galaxyspace.core.util.GSCreativeTabs;
-import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
-import galaxyspace.systems.BarnardsSystem.core.registers.BRItems;
+import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.core.BRItems;
 import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
 import net.minecraft.block.Block;

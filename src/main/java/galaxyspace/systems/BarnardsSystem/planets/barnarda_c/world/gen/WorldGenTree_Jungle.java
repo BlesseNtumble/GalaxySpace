@@ -2,7 +2,7 @@ package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen;
 
 import java.util.Random;
 
-import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
 import micdoodle8.mods.galacticraft.core.Constants;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

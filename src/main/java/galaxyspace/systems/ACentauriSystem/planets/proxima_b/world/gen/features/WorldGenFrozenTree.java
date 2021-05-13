@@ -2,7 +2,7 @@ package galaxyspace.systems.ACentauriSystem.planets.proxima_b.world.gen.features
 
 import java.util.Random;
 
-import galaxyspace.systems.ACentauriSystem.core.registers.blocks.ACBlocks;
+import galaxyspace.systems.ACentauriSystem.core.ACBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
