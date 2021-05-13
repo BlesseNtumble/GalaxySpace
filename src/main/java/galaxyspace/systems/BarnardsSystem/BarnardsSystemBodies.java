@@ -16,12 +16,12 @@ import galaxyspace.GalaxySpace;
 import galaxyspace.core.proxy.ClientProxy;
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.core.util.GSUtils;
+import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.core.BRItems;
 import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigCore;
 import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigDimensions;
 import galaxyspace.systems.BarnardsSystem.core.events.BRClientEventHandler;
 import galaxyspace.systems.BarnardsSystem.core.events.BREventHandler;
-import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
-import galaxyspace.systems.BarnardsSystem.core.registers.BRItems;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Blocks.EnumBlockBarnardaC;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Dandelions.EnumBlockDandelions;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Falling_Blocks.EnumFallingBlockBarnardaC;
@@ -91,7 +91,7 @@ public class BarnardsSystemBodies implements IBodies {
 		Barnarda_C.atmosphereComponent(EnumAtmosphericGas.CO2).atmosphereComponent(EnumAtmosphericGas.OXYGEN).atmosphereComponent(EnumAtmosphericGas.ARGON);
 		BodiesRegistry.setOrbitData(Barnarda_C, (float) Math.PI * 2, 1.0F, 6.9F);
 		BodiesRegistry.setAtmosphere(Barnarda_C, true, true, false, 0.0F, 1.0F, 1.0F);
-		BodiesRegistry.setPlanetData(Barnarda_C, 3F, 29000, BodiesRegistry.calculateGravity(8.5F), false);
+		BodiesRegistry.setPlanetData(Barnarda_C, 3F, 24500, BodiesRegistry.calculateGravity(8.5F), false);
 		BodiesRegistry.setProviderData(Barnarda_C, WorldProviderBarnarda_C_WE.class, BRConfigDimensions.dimensionIDBarnardaC, 6, ACBiome.ACSpace);
 		GalaxyRegistry.registerPlanet(Barnarda_C);
 		
@@ -140,6 +140,7 @@ public class BarnardsSystemBodies implements IBodies {
 	    ColorBlockHandler.addLeavesBlock(Blocks.LEAVES.getDefaultState());
 	    ColorBlockHandler.addLeavesBlock(Blocks.LEAVES2.getDefaultState());
 	    ColorBlockHandler.addLeavesBlock(Blocks.VINE.getDefaultState());
+	    ColorBlockHandler.addLeavesBlock(BRBlocks.BARNARDA_C_LEAVES.getDefaultState());
 		ColorBlockHandler.addBlockWithColor(BRBlocks.BARNARDA_C_WATER_GRASS.getDefaultState(), 0x88CC44);
 		ColorBlockHandler.addWaterBlock(Blocks.WATER.getDefaultState());
 		ColorBlockHandler.addWaterBlock(Blocks.FLOWING_WATER.getDefaultState());
