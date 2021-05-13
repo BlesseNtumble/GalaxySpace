@@ -1,25 +1,21 @@
 package galaxyspace.core.hooks;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 import asmodeuscore.api.dimension.IAdvancedSpace;
-import galaxyspace.GalaxySpace;
-import galaxyspace.core.GSItems;
 import galaxyspace.core.events.SetBlockEvent;
 import galaxyspace.core.hooklib.asm.Hook;
 import galaxyspace.core.hooklib.asm.ReturnCondition;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS.BasicItems;
-import micdoodle8.mods.galacticraft.api.entity.IDockable;
+import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.item.IItemThermal;
-import micdoodle8.mods.galacticraft.api.prefab.entity.EntityAutoRocket;
-import micdoodle8.mods.galacticraft.api.tile.IFuelDock;
-import micdoodle8.mods.galacticraft.api.vector.BlockVec3;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.blocks.BlockLandingPadFull;
 import micdoodle8.mods.galacticraft.core.entities.EntityAlienVillager;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
@@ -30,35 +26,22 @@ import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
 import micdoodle8.mods.galacticraft.core.util.CompatibilityManager;
 import micdoodle8.mods.galacticraft.core.util.DamageSourceGC;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
-import micdoodle8.mods.galacticraft.core.util.GCLog;
 import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
-import micdoodle8.mods.galacticraft.core.world.ChunkLoadingCallback;
-import micdoodle8.mods.galacticraft.planets.mars.ConfigManagerMars;
-import micdoodle8.mods.galacticraft.planets.mars.network.PacketSimpleMars;
-import micdoodle8.mods.galacticraft.planets.mars.network.PacketSimpleMars.EnumSimplePacketMars;
+import micdoodle8.mods.galacticraft.planets.mars.entities.EntityCreeperBoss;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityGasLiquefier;
-import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityLaunchController;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityMethaneSynthesizer;
 import micdoodle8.mods.galacticraft.planets.venus.dimension.WorldProviderVenus;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.village.MerchantRecipeList;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
-import net.minecraft.world.WorldServer;
-import net.minecraftforge.common.ForgeChunkManager;
-import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
@@ -294,6 +277,15 @@ public class GSHooksManager {
 	@Hook(returnCondition = ReturnCondition.ALWAYS)
 	public static double getSolarEnergyMultiplier(WorldProviderVenus wp) {
 		return 0;
+	}
+	
+	@Hook(returnCondition = ReturnCondition.ALWAYS)
+	public static ItemStack getGuaranteedLoot(EntityCreeperBoss creeper, Random rand)
+	{
+		  List<ItemStack> stackList = new LinkedList<>();
+	      stackList.addAll(GalacticraftRegistry.getDungeonLoot(2));
+	      
+	      return stackList.get(rand.nextInt(stackList.size())).copy();
 	}
 /*
 	private static List<BlockPos> connectedPads = new ArrayList<BlockPos>();
