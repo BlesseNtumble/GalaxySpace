@@ -512,23 +512,23 @@ public class SolarSystemBodies implements IBodies{
 		BodiesData data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.YELLOW);
 		BodiesRegistry.registerBodyData(GalacticraftCore.solarSystemSol.getMainStar(), data);
 
-		data = new BodiesData(null, BodiesRegistry.calculateGravity(8.88F), 92, 182000, false);
+		data = new BodiesData(null, /*BodiesRegistry.calculateGravity(8.88F),*/ 92, /*182000,*/ false);
 		BodiesRegistry.registerBodyData(VenusModule.planetVenus, data);
 		
-		data = new BodiesData(null, BodiesRegistry.calculateGravity(10.0F), 1, 24000, false);
+		data = new BodiesData(null, /*BodiesRegistry.calculateGravity(10.0F),*/ 1, /*24000,*/false);
 		BodiesRegistry.registerBodyData(GalacticraftCore.planetOverworld, data);		
 		
-		data = new BodiesData(null, BodiesRegistry.calculateGravity(5.37F), 0, 24660, false);
+		data = new BodiesData(null, /*BodiesRegistry.calculateGravity(5.37F),*/ 0, /*24660,*/ false);
 		BodiesRegistry.registerBodyData(MarsModule.planetMars, data);
 		    	
-		data = new BodiesData(ClassBody.ASTEROID, 0, 0, 0, true);
+		data = new BodiesData(ClassBody.ASTEROID, 0, true);
 		BodiesRegistry.registerBodyData(AsteroidsModule.planetAsteroids, data);
     	
 	   	////MOONS
-	   	data = new BodiesData(null, 0.062F, 0, 192000, false);
+	   	data = new BodiesData(null, 0, false);
 		BodiesRegistry.registerBodyData(GalacticraftCore.moonMoon, data);
 		
-		BodiesData unreachableData = new BodiesData(null, 0F, 0, 0, false);	
+		BodiesData unreachableData = new BodiesData(null, 0, false);	
 		BodiesRegistry.registerBodyData(oberonUranus, unreachableData);
 		BodiesRegistry.registerBodyData(proteusNeptune, unreachableData);
 		BodiesRegistry.registerBodyData(mimasSaturn, unreachableData); 	

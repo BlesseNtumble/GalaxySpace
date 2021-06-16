@@ -16,7 +16,7 @@ import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.systems.BarnardsSystem.BarnardsSystemBodies;
 import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.sky.CloudProviderBarnardaC;
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.sky.CloudProviderBarnarda_C;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.sky.SkyProviderBarnarda_C;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Beach;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_DeepOcean;
@@ -203,7 +203,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
     public IRenderHandler getCloudRenderer(){
     	
     	if(super.getCloudRenderer() == null)
-    		this.setCloudRenderer(new CloudProviderBarnardaC());
+    		this.setCloudRenderer(new CloudProviderBarnarda_C());
     	
         return super.getCloudRenderer();
     }

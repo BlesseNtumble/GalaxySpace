@@ -3,11 +3,16 @@ package galaxyspace.systems.SolarSystem.planets.ceres.dimension;
 import java.util.Random;
 
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import micdoodle8.mods.galacticraft.api.world.AtmosphereInfo;
+import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import micdoodle8.mods.galacticraft.api.world.ITeleportType;
 import micdoodle8.mods.galacticraft.core.entities.EntityLander;
+import micdoodle8.mods.galacticraft.core.entities.EntityLanderBase;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
 import micdoodle8.mods.galacticraft.core.util.CompatibilityManager;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
+import micdoodle8.mods.galacticraft.planets.mars.entities.EntityLandingBalloons;
+import micdoodle8.mods.galacticraft.planets.venus.entities.EntityEntryPodVenus;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.World;
@@ -72,7 +77,7 @@ public class TeleportTypeCeres implements ITeleportType{
     }
 
     @Override
-    public void onSpaceDimensionChanged(World newWorld, EntityPlayerMP player, boolean ridingAutoRocket)
+    public void onSpaceDimensionChanged(World world, EntityPlayerMP player, boolean ridingAutoRocket)
     {
         if (!ridingAutoRocket && player != null && GCPlayerStats.get(player).getTeleportCooldown() <= 0)
         {
@@ -81,15 +86,15 @@ public class TeleportTypeCeres implements ITeleportType{
                 player.capabilities.isFlying = false;
             }
 
-            //EntityLandingBalloons lander = new EntityLandingBalloons(player);
-            EntityLander lander = new EntityLander(player);
-
-            if (!newWorld.isRemote)
+            if (!world.isRemote)
             {
-            	boolean previous = CompatibilityManager.forceLoadChunks((WorldServer) newWorld);
+            	EntityLanderBase lander = new EntityLander(player);
+            	
+            	boolean previous = CompatibilityManager.forceLoadChunks((WorldServer) world);     
             	lander.forceSpawn = true;
-                newWorld.spawnEntity(lander);
-                CompatibilityManager.forceLoadChunksEnd((WorldServer) newWorld, previous);
+                world.spawnEntity(lander);
+                
+                CompatibilityManager.forceLoadChunksEnd((WorldServer) world, previous);
             }
 
             GCPlayerStats.get(player).setTeleportCooldown(10);

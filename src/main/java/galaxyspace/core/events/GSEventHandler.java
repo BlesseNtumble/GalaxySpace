@@ -46,6 +46,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityPlanetSh
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityRadiationStabiliser;
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.event.wgen.GCCoreEventPopulate;
+import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
 import micdoodle8.mods.galacticraft.api.inventory.AccessInventoryGC;
 import micdoodle8.mods.galacticraft.api.inventory.IInventoryGC;
 import micdoodle8.mods.galacticraft.api.item.EnumExtendedInventorySlot;

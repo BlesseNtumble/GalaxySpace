@@ -5,7 +5,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class CloudProviderBarnardaC extends CloudProviderBase{
+public class CloudProviderBarnarda_C extends CloudProviderBase{
 
 	@Override
 	public float getCloudMovementSpeed(World world) {
