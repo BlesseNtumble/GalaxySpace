@@ -15,15 +15,6 @@ import galaxyspace.core.prefab.items.ItemElectricArmor;
 import galaxyspace.core.prefab.items.modules.ItemModule;
 import galaxyspace.core.util.GSCreativeTabs;
 import galaxyspace.core.util.GSUtils.Module_Type;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.modules.Energy;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.modules.Gravity;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.modules.Jetpack;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.modules.Jump;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.modules.Nightvision;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.modules.Protection;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.modules.SensorLens;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.modules.Speed;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.modules.Stepassist;
 import galaxyspace.systems.SolarSystem.planets.overworld.render.item.ItemSpaceSuitModel;
 import micdoodle8.mods.galacticraft.api.item.IArmorCorrosionResistant;
 import micdoodle8.mods.galacticraft.api.item.IArmorGravity;
@@ -58,21 +49,19 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemSpaceSuit extends ItemElectricArmor implements IArmorCorrosionResistant, ISensorGlassesArmor, IModificationItem, IJetpackArmor, ISpecialArmor, IArmorGravity, IItemPressurized, IItemRadiation{
+public abstract class ItemSpaceSuit extends ItemElectricArmor implements IArmorCorrosionResistant, ISensorGlassesArmor, IModificationItem, IJetpackArmor, ISpecialArmor, IArmorGravity, IItemPressurized, IItemRadiation{
 
-	private int tier = 0;
 	public static String mod_count = "modification_count";
 	public static String[] suit_buttons = new String[] {"helmet_button", "chest_button", "legs_button", "boots_button"};
 	public static boolean[] pressedKey = new boolean[3];
 	
 	private float jumpCharge;
 	
-	public ItemSpaceSuit(ArmorMaterial materialIn, EntityEquipmentSlot armorIndex, int tier) {
+	public ItemSpaceSuit(String name, ArmorMaterial materialIn, EntityEquipmentSlot armorIndex) {
 		super(materialIn, armorIndex);
-		this.setUnlocalizedName("space_suit_" + armorIndex.toString().toLowerCase());
+		this.setUnlocalizedName(name + "_" + armorIndex.toString().toLowerCase());
 		this.setMaxDamage(200);
 		this.setNoRepair();
-		this.tier = tier;
 	}
 
 	@Override
@@ -107,11 +96,6 @@ public class ItemSpaceSuit extends ItemElectricArmor implements IArmorCorrosionR
 				break;
 			default: break;
 		}
-	}
-	 
-	public int getTier()
-	{
-		return this.tier;
 	}
 	
 	private void pressed()
@@ -202,81 +186,25 @@ public class ItemSpaceSuit extends ItemElectricArmor implements IArmorCorrosionR
 						}
 					}
 				}
-			}
-			/*
-			switch(getArmorType(itemStack))
-			{
-				case HEAD:
-					if(itemStack.getTagCompound().getBoolean(suit_buttons[0])) {
-						if (itemStack.getTagCompound().getBoolean(SpaceSuit_Modules.NIGHTVISION.getName()) && getElectricityStored(itemStack) >= 2) {
-							if(world.rand.nextInt(12) == 0) this.discharge(itemStack, 2, true);
-							player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 20*15, 0, true, false));
-						}
-						if (itemStack.getTagCompound().getBoolean(SpaceSuit_Modules.SENSOR.getName()) && getElectricityStored(itemStack) >= 2) {
-							if(world.rand.nextInt(12) == 0) this.discharge(itemStack, 2, true);
-						}
-					}
-					else
-					{
-						if(player.isPotionActive(MobEffects.NIGHT_VISION)) 
-							player.removeActivePotionEffect(MobEffects.NIGHT_VISION);
-					}
-					break;
-				case LEGS:
-					if(itemStack.getTagCompound().getBoolean(suit_buttons[2])) {
-						if (this.pressedKey[1]) {						
-							if (itemStack.getTagCompound().getBoolean(SpaceSuit_Modules.SPEED.getName()) && getElectricityStored(itemStack) >= 5) {
-								this.discharge(itemStack, 5, true);
-								float speed = 0.12f;
-								if (player.onGround && !player.isInWater())								
-									player.moveRelative(0.0f, 0.0f, 1.0f, speed);
-							}
-						}
-					}
-					break;
-				case FEET:
-					if(itemStack.getTagCompound().getBoolean(suit_buttons[3])) {
-						if (this.pressedKey[0]) {
-							if (itemStack.getTagCompound().getBoolean(SpaceSuit_Modules.GRAVITY.getName()) && getElectricityStored(itemStack) >= 5)
-								this.discharge(itemStack, 5, true);
-							
-							if (itemStack.getTagCompound().getBoolean(SpaceSuit_Modules.JUMP.getName()) && getElectricityStored(itemStack) >= 5) {
-								if(player.onGround) this.jumpCharge = 1.0f;
-								
-								if (player.motionY >= 0.0 && this.jumpCharge > 0.0f && !player.isInWater()) {
-									/*if (this.jumpCharge == 1.0f) {
-		                                player.motionX *= 3.5;
-		                                player.motionZ *= 3.5;
-		                            }*//*
-																	
-									player.fallDistance = 0.3F;
-									this.discharge(itemStack, 5, true);
-									
-									player.motionY += (double)(this.jumpCharge * 0.25f);
-			                        this.jumpCharge = (float)((double)this.jumpCharge * 0.75);	                        
-			                         
-								}
-							}
-							else if (this.jumpCharge < 1.0f) {
-								this.jumpCharge = 0.0f;
-							}
-							
-						}
-					}
-					
-					if (this.pressedKey[1]) {
-						if (itemStack.getTagCompound().getBoolean(SpaceSuit_Modules.STEPASSIST.getName()) && getElectricityStored(itemStack) >= 5)
-							player.stepHeight = 1.5F;
-						else				
-							player.stepHeight = 0.5F;							
-					}
-					
-					break;
-				default:
-					break;
-			
-			}		*/	
+			}			
 		}
+	}
+	
+
+	@Override
+	public float discharge(ItemStack itemStack, float energy, boolean doTransfer) {
+		float thisEnergy = this.getElectricityStored(itemStack);
+		float energyToTransfer = Math.min(Math.min(thisEnergy, energy), this.transferMax);
+
+		if (doTransfer) {
+			//Thx MJRLegend =)
+			if(!itemStack.getTagCompound().hasKey("Unbreakable"))
+				itemStack.getTagCompound().setBoolean("Unbreakable", true);
+			
+			this.setElectricity(itemStack, thisEnergy - energyToTransfer);
+		}
+
+		return energyToTransfer;
 	}
 	
 	@Override
@@ -515,12 +443,12 @@ public class ItemSpaceSuit extends ItemElectricArmor implements IArmorCorrosionR
 	{
 		return Module_Type.SPACESUIT;
 	}
-
+/*
 	@Override
 	public ItemModule[] getAvailableModules() {
 		return new ItemModule[] { new SensorLens(), new Nightvision(), new Jetpack(), new Speed(), new Gravity(), new Stepassist(), new Jump(), new Energy(), new Protection() };
 	}
-
+*/
 	@Override
 	public int getModificationCount(ItemStack stack) {
 		return 2;
