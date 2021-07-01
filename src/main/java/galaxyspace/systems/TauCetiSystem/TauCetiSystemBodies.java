@@ -73,6 +73,7 @@ public class TauCetiSystemBodies implements IBodies{
 		BodiesRegistry.setOrbitData(TauCeti_F, (float) Math.PI / 4, 1.25F, 60F);
 		BodiesRegistry.setPlanetData(TauCeti_F, 4.0F, 3, 36000L, BodiesRegistry.calculateGravity(7.8F), false);
 		BodiesRegistry.setProviderData(TauCeti_F, WorldProviderTauCeti_F_WE.class, -1338, 6, ACBiome.ACSpace);
+		BodiesRegistry.setAtmosphere(TauCeti_F, false, true, false, -0.2F, 3, 1.0F);
 		GalaxyRegistry.registerPlanet(TauCeti_F);
 		
 		
