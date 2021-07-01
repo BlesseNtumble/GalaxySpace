@@ -1,5 +1,8 @@
 package galaxyspace.core.events;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
 
 import org.lwjgl.opengl.GL11;
@@ -9,6 +12,7 @@ import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderS
 import asmodeuscore.core.astronomy.gui.book.ACGuiGuideBook;
 import asmodeuscore.core.handler.ColorBlockHandler;
 import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
+import asmodeuscore.core.utils.Utils;
 import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
 import asmodeuscore.core.utils.worldengine.WE_PerlinNoise;
 import asmodeuscore.core.utils.worldengine.WE_WorldProvider;
@@ -37,6 +41,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped.ArmPose;
 import net.minecraft.client.model.ModelPlayer;
@@ -70,7 +75,9 @@ public class GSClientTickHandler {
 
 	public Minecraft mc = FMLClientHandler.instance().getClient();
 	public Random rand;
-		
+	public static Map<IBlockState, String> blocks = new HashMap<IBlockState, String>();
+	public static int ticks;
+	
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void onGuiOpenEvent(GuiOpenEvent event)
@@ -239,15 +246,39 @@ public class GSClientTickHandler {
         		}
         		GlStateManager.disableLighting();
         		
-        		GL11.glPushMatrix();
+        		GlStateManager.pushMatrix();
         		if(minecraft.inGameHasFocus && !minecraft.gameSettings.hideGUI && GSConfigCore.enableSpaceSuitHUD)
         			OverlaySpaceSuit.renderSpaceSuitOverlay(playerBaseClient);
-        		GL11.glPopMatrix();
-        		        		
+        		GlStateManager.popMatrix();
+        		//System.out.println(ticks);
+        		ScaledResolution scaled = new ScaledResolution(mc);
+        		if(minecraft.inGameHasFocus && !minecraft.gameSettings.hideGUI && ticks > 0) {
+        			GlStateManager.pushMatrix();
+        			int xPos = 10;
+        	        int yPos = scaled.getScaledHeight() / 2 - 50;
+        	        int color = Utils.getIntColorWHC(0, 0, 0, 150-ticks);
+        	        int offsetY = 0;
+        	        mc.fontRenderer.drawStringWithShadow("Geological Scanner Data:", xPos, yPos - 10, 0xFFFFFF);
+        	        for(Entry<IBlockState, String> block : blocks.entrySet()) {
+    					ItemStack item = new ItemStack(Item.getItemFromBlock(block.getKey().getBlock()), 1, block.getKey().getBlock().getMetaFromState(block.getKey()));				
+    					
+        				mc.ingameGUI.drawRect(xPos, yPos + (24 * offsetY), xPos + 180, yPos + 22 + (24 * offsetY), color);
+        				mc.getRenderItem().zLevel = -100;
+        				mc.getRenderItem().renderItemIntoGUI(item, xPos + 3, yPos + (24 * offsetY) + 3);   
+        				mc.fontRenderer.drawStringWithShadow(block.getValue(), xPos + 25, yPos + (24 * offsetY) + 6, 0xFFFFFF);
+        				offsetY++;
+        			}     
+        			
+        			
+        			GlStateManager.popMatrix();        		
+        		}
+        		if(ticks > 0 && player.ticksExisted % 10 == 0)
+    				ticks--;
     			
             }
         }
 	}
+
 	/*
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
@@ -262,7 +293,7 @@ public class GSClientTickHandler {
 		EntityPlayerSP player = Minecraft.getMinecraft().player;
 		ItemStack stack = player.getHeldItemMainhand();
 		
-		if(stack.getItem() instanceof ItemGeologicalScanner && stack.getItemDamage() < stack.getMaxDamage()) {	
+		if(stack.getItem() instanceof ItemGeologicalScanner && stack.getItemDamage() < stack.getMaxDamage() && stack.getTagCompound().getInteger("mode") == 0) {	
 			RayTraceResult ray = ItemBasicGS.getRay(player.getEntityWorld(), player, false);
     		
 			if(ray != null && ray.hitVec.distanceTo(player.getPositionVector()) < 5.0F) {
