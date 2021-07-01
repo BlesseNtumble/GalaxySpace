@@ -100,7 +100,7 @@ import net.minecraftforge.fml.relauncher.Side;
 @Mod(
 		   modid = GalaxySpace.MODID,
 		   version = GalaxySpace.VERSION,
-		   dependencies = Constants.DEPENDENCIES_FORGE + "required-after:galacticraftcore@[4.0.2.261,]; required-after:galacticraftplanets; required-after:asmodeuscore@[0.0.25,)",
+		   dependencies = Constants.DEPENDENCIES_FORGE + "required-after:galacticraftcore@[4.0.2.261,]; required-after:galacticraftplanets; required-after:asmodeuscore@[0.0.26,)",
 		   acceptedMinecraftVersions = Constants.MCVERSION,
 		   name = GalaxySpace.NAME,
 		   guiFactory = "galaxyspace.core.client.gui.GSConfigGuiFactory"
@@ -168,7 +168,6 @@ public class GalaxySpace
     			list.preInit(event);
 		}
     	
-		ResearchUtil.initResearches();
 		if(event.getSide() == Side.CLIENT)
 	    	for (ASMData data : event.getAsmData().getAll(IPage.class.getName())) {
 				IBookPage page;
@@ -193,6 +192,7 @@ public class GalaxySpace
     	
     	this.packetPipeline = GalaxySpaceChannelHandler.init();
     	this.registerEntities();
+    	ResearchUtil.initResearches();
 		//AchievementList.load();
 
         // TODO Register Planets: -------------------------------

@@ -56,7 +56,7 @@ public class SkyProviderVenusSS extends SkyProviderBase{
 		GL11.glRotatef(90F, 0.0F, 1.0F, 0.0F);
 		
 		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION);
-		GalaxySpace.instance.debug(k + " | " + (f10 - k) + " | " + mod);
+		//GalaxySpace.instance.debug(k + " | " + (f10 - k) + " | " + mod);
 		if(k >= 0 && k <= f10 * 2) {
 					
 			worldRenderer.pos(-f10, -100.0D, f10 - k).endVertex();

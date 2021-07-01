@@ -10,6 +10,7 @@ import asmodeuscore.core.utils.worldengine.WE_WorldProvider;
 import galaxyspace.GalaxySpace;
 import galaxyspace.api.item.IModificationItem;
 import galaxyspace.api.tile.ITileEffects;
+import galaxyspace.core.events.GSClientTickHandler;
 import galaxyspace.core.events.GSEventHandler;
 import galaxyspace.core.handler.capabilities.GSStatsCapabilityClient;
 import galaxyspace.core.handler.capabilities.StatsCapability;
@@ -89,7 +90,8 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
     	C_UPDATE_RESEARCH(Side.CLIENT, Integer.class, Integer.class), // id, count
     	C_GLOW_BLOCK(Side.CLIENT, BlockVec3.class, Integer.class),
     	C_UPDATE_WOLF_INV(Side.CLIENT, Integer.class, NBTTagCompound.class),
-    	C_GET_CAGE_ENTITY(Side.CLIENT);
+    	C_GET_CAGE_ENTITY(Side.CLIENT),
+    	C_SHOW_SCANNER_BLOCK(Side.CLIENT, Integer.class);
     	
     	//C_OPEN_CUSTOM_GUI(Side.CLIENT, Integer.class, Integer.class, Integer.class),
     	//C_OPEN_ASTRO_WOLF_GUI(Side.CLIENT, Integer.class, Integer.class); // windowID, wolfID
@@ -238,6 +240,11 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         			wolf.needSync = false;
         		}
         	break;
+        	case C_SHOW_SCANNER_BLOCK:
+        		int index = (int)this.data.get(0);
+        		GSClientTickHandler.ticks = 1000;
+        		
+        		break;
           	case C_GLOW_BLOCK:
         		BlockVec3 block = (BlockVec3) this.data.get(0);
         		int level = (int) this.data.get(1);
@@ -250,7 +257,7 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
                 GlStateManager.enableBlend();
         		GlStateManager.translate(block.x, block.y, block.z);
-        		final Tessellator tess = Tessellator.getInstance();
+        		Tessellator tess = Tessellator.getInstance();
         		BufferBuilder worldRenderer = tess.getBuffer();
         		GlStateManager.color(1.0F, 0.7F, 0.7F, 0.016667F * (12 - level));
         		float cA = -0.01F;

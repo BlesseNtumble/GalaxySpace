@@ -23,7 +23,7 @@ public class SkyProviderProxima_B extends SkyProviderBase {
 		GL11.glPushMatrix();		
 			World world = mc.world;
 			int phase = world.provider.getMoonPhase(world.getWorldTime());
-			
+			GL11.glDisable(GL11.GL_ALPHA_TEST);
 			GL11.glRotatef(this.mc.world.getCelestialAngle(ticks) * 360.0F, 0.0F, 0.0F, 1.0F);   
 			if(phase != 0 && phase != 6) {
 				this.renderImage(acentauri_a, -90F, 182F, 35F, 2.0F);
