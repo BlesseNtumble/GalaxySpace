@@ -105,7 +105,6 @@ import net.minecraftforge.fml.relauncher.Side;
 		   name = GalaxySpace.NAME,
 		   guiFactory = "galaxyspace.core.client.gui.GSConfigGuiFactory"
 		)
-
 public class GalaxySpace
 {
 	public static final int major_version = 2;
