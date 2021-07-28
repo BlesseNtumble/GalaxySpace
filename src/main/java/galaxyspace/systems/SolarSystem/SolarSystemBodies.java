@@ -663,7 +663,8 @@ public class SolarSystemBodies implements IBodies{
     	SchematicBoosterRecipe.registerRecipeWorkBench();
     	SchematicFinsRecipe.registerRecipeWorkBench();
     	SchematicOxTankRecipe.registerRecipeWorkBench();
-    	SchematicTier2Recipe.registerRecipeWorkBench();
+    	if(GSConfigCore.enableAdvancedRocketCraft)
+    		SchematicTier2Recipe.registerRecipeWorkBench();
     	
     	//GalaxySpace.debug("Reg schem recipe");
     }

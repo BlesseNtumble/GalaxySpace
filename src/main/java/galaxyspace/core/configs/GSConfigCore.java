@@ -99,7 +99,7 @@ public class GSConfigCore
             enableAdvancedRocketCraft = prop.getBoolean(true);
             propOrder.add(prop.getName());   
             
-            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "enableAdvancedThermalSystem", true);
+            prop = config.get(Constants.CONFIG_CATEGORY_DIFFICULTY, "enableAdvancedThermalSystem", true);
             prop.setComment("Enable/Disable advanced thermal system on celestial bodies.");
             prop.setLanguageKey("gc.configgui.enableAdvancedThermalSystem").setRequiresMcRestart(false);
             enableAdvancedThermalSystem = prop.getBoolean(true);
@@ -123,19 +123,19 @@ public class GSConfigCore
             enableDungeonsGeneration = prop.getBoolean(true);
             propOrder.add(prop.getName());
             
-            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "enableRadiationSystem", true);
+            prop = config.get(Constants.CONFIG_CATEGORY_DIFFICULTY, "enableRadiationSystem", true);
             prop.setComment("Enable/Disable solar radiation system.");
             prop.setLanguageKey("gc.configgui.enableRadiationSystem").setRequiresMcRestart(false);
             enableRadiationSystem = prop.getBoolean(true);
             propOrder.add(prop.getName());
             
-            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "enablePressureSystem", true);
+            prop = config.get(Constants.CONFIG_CATEGORY_DIFFICULTY, "enablePressureSystem", true);
             prop.setComment("Enable/Disable atmosphere pressure system.");
             prop.setLanguageKey("gc.configgui.enablePressureSystem").setRequiresMcRestart(false);
             enablePressureSystem = prop.getBoolean(true);
             propOrder.add(prop.getName());
             
-            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableNewMenu", true);
+            prop = config.get(Constants.CONFIG_CATEGORY_CLIENT, "enableNewMenu", true);
             prop.setComment("Enable/Disable new Main Menu.");
             prop.setLanguageKey("gc.configgui.enableNewMenu").setRequiresMcRestart(false);
             enableNewMenu = prop.getBoolean(true);
@@ -203,7 +203,7 @@ public class GSConfigCore
             enableUnreachable = prop.getBoolean(true);
             propOrder.add(prop.getName());
             
-            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableHardMode", true);
+            prop = config.get(Constants.CONFIG_CATEGORY_DIFFICULTY, "enableHardMode", true);
             prop.setComment("Enable/Disable Hard Mode (Death of Atm. Pressure)");
             prop.setLanguageKey("gc.configgui.enableHardMode").setRequiresMcRestart(true);
             enableHardMode = prop.getBoolean(true);
@@ -300,14 +300,14 @@ public class GSConfigCore
         list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_DIFFICULTY)).getChildElements());
         list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_GENERAL)).getChildElements());
         list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_CLIENT)).getChildElements());
-        list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_CONTROLS)).getChildElements());
-        list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_COMPATIBILITY)).getChildElements());
+        //list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_CONTROLS)).getChildElements());
+        //list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_COMPATIBILITY)).getChildElements());
         list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_WORLDGEN)).getChildElements());
-        list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_SERVER)).getChildElements());
+        //list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_SERVER)).getChildElements());
         list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_DIMENSIONS)).getChildElements());
-        list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_SCHEMATIC)).getChildElements());
-        list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_ACHIEVEMENTS)).getChildElements());
-        list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_ENTITIES)).getChildElements());
+        //list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_SCHEMATIC)).getChildElements());
+        //list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_ACHIEVEMENTS)).getChildElements());
+        //list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_ENTITIES)).getChildElements());
         list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_KEYS)).getChildElements());
         list.addAll(new ConfigElement(config.getCategory("development")).getChildElements());
 

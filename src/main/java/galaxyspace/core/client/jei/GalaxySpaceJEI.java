@@ -37,6 +37,7 @@ import galaxyspace.core.client.jei.recycler.UniversalRecyclerRecipeWrapper;
 import galaxyspace.core.client.jei.rocketassembler.RocketAssemblerRecipeCategory;
 import galaxyspace.core.client.jei.rocketassembler.RocketAssemblerShapedRecipeWrapper;
 import galaxyspace.core.client.jei.rocketassembler.RocketAssemblerShapelessRecipeWrapper;
+import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.systems.SolarSystem.planets.overworld.recipes.AssemblyRecipes;
 import galaxyspace.systems.SolarSystem.planets.overworld.recipes.RocketAssemblyRecipes;
 import mezz.jei.api.BlankModPlugin;
@@ -64,10 +65,10 @@ public class GalaxySpaceJEI extends BlankModPlugin
     private static IModRegistry registryCached = null;
     private static IRecipeRegistry recipesCached = null;
     
-    private static boolean hiddenSteel = false;
-    private static boolean hiddenAdventure = false;
+    //private static boolean hiddenSteel = false;
+    //private static boolean hiddenAdventure = false;
     public static List<IRecipeWrapper> hidden = new LinkedList<>();
-    private static IRecipeCategory ingotCompressorCategory;
+    //private static IRecipeCategory ingotCompressorCategory;
 
     @Override
     public void register(@Nonnull IModRegistry registry)
@@ -82,7 +83,8 @@ public class GalaxySpaceJEI extends BlankModPlugin
         registry.handleRecipes(INasaWorkbenchRecipe.class, StabiliserRecipeWrapper::new, GSRecipeCategories.STABILISER);
         registry.handleRecipes(INasaWorkbenchRecipe.class, OxTankRecipeWrapper::new, GSRecipeCategories.OX_TANK);
         
-        registry.handleRecipes(INasaWorkbenchRecipe.class, RocketTier2RecipeWrapper::new, GSRecipeCategories.ROCKET_TIER_2);
+        if(GSConfigCore.enableAdvancedRocketCraft)
+        	registry.handleRecipes(INasaWorkbenchRecipe.class, RocketTier2RecipeWrapper::new, GSRecipeCategories.ROCKET_TIER_2);
         
         registry.handleRecipes(ShapedRecipesGC.class, AssemblerShapedRecipeWrapper::new, GSRecipeCategories.ASSEMBLER);
         registry.handleRecipes(ShapelessOreRecipeGC.class, new IRecipeWrapperFactory<ShapelessOreRecipeGC>() {
@@ -106,7 +108,8 @@ public class GalaxySpaceJEI extends BlankModPlugin
         registry.addRecipes(BoosterRecipeMaker.getRecipesList(), GSRecipeCategories.BOOSTER);
         registry.addRecipes(StabiliserRecipeMaker.getRecipesList(), GSRecipeCategories.STABILISER);
         registry.addRecipes(OxTankRecipeMaker.getRecipesList(), GSRecipeCategories.OX_TANK);
-        registry.addRecipes(RocketTier2RecipeMaker.getRecipesList(), GSRecipeCategories.ROCKET_TIER_2);
+        if(GSConfigCore.enableAdvancedRocketCraft)
+        	registry.addRecipes(RocketTier2RecipeMaker.getRecipesList(), GSRecipeCategories.ROCKET_TIER_2);
         
         registry.addRecipeCatalyst(new ItemStack(GSBlocks.ASSEMBLER, 1, 0), GSRecipeCategories.ASSEMBLER);
         registry.addRecipeCatalyst(new ItemStack(GSBlocks.UNIVERSAL_RECYCLER, 1, 0), GSRecipeCategories.UNIVERSAL_RECYCLER);
@@ -145,7 +148,8 @@ public class GalaxySpaceJEI extends BlankModPlugin
         registry.addRecipeCategories(new BoosterRecipeCategory(guiHelper));
         registry.addRecipeCategories(new StabiliserRecipeCategory(guiHelper));
         registry.addRecipeCategories(new OxTankRecipeCategory(guiHelper));
-        registry.addRecipeCategories(new RocketTier2RecipeCategory(guiHelper));
+        if(GSConfigCore.enableAdvancedRocketCraft)
+        	registry.addRecipeCategories(new RocketTier2RecipeCategory(guiHelper));
     }
 
     private void addInformationPages(IModRegistry registry)
@@ -174,9 +178,10 @@ public class GalaxySpaceJEI extends BlankModPlugin
     {    	
         recipesCached = rt.getRecipeRegistry();
        
-        recipesCached.hideRecipeCategory(RecipeCategories.ROCKET_T2_ID);
-        recipesCached.hideRecipeCategory(RecipeCategories.ROCKET_T3_ID);
-        
+        if(GSConfigCore.enableAdvancedRocketCraft) {
+        	recipesCached.hideRecipeCategory(RecipeCategories.ROCKET_T2_ID);
+        	recipesCached.hideRecipeCategory(RecipeCategories.ROCKET_T3_ID);
+        }
     }
 /*
     public static void updateHidden(boolean hideSteel, boolean hideAdventure)

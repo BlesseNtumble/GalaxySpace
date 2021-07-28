@@ -52,6 +52,7 @@ public class CraftingRecipesOverworld {
 	private static String plateTin = GSConfigCore.enablePlateOreDict ? "plateTin" : "compressedTin";
 	private static String plateDesh = GSConfigCore.enablePlateOreDict ? "plateDesh" : "compressedDesh";
 	private static String plateAluminum = GSConfigCore.enablePlateOreDict ? "plateAluminum" : "compressedAluminum";
+	private static String plateCopper = GSConfigCore.enablePlateOreDict ? "plateCopper" : "compressedCopper";
 	private static String blockCopper = "blockCopper";
 	
 	public static void loadRecipes() {
@@ -71,8 +72,8 @@ public class CraftingRecipesOverworld {
 	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.DECO_METALS, 4, 0), new Object[] { "   ", " X ", " Y ", 'X', "plateCobalt", 'Y', Blocks.STONE});
 	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.DECO_METALS, 4, 1), new Object[] { "   ", " X ", " Y ", 'X', "plateMagnesium", 'Y', Blocks.STONE});
 	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.DECO_METALS, 4, 2), new Object[] { "   ", " X ", " Y ", 'X', "plateNickel", 'Y', Blocks.STONE});
-	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.DECO_METALS, 4, 3), new Object[] { "   ", " X ", " Y ", 'X', "plateCopper", 'Y', Blocks.STONE});
-	   
+	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.DECO_METALS, 4, 3), new Object[] { "   ", " X ", " Y ", 'X', plateCopper, 'Y', Blocks.STONE});
+		   
 	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.DECO_METALS, 1, 4), new Object[] { "XXX", "XXX", "XXX", 'X', "ingotCobalt"});
 	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.DECO_METALS, 1, 5), new Object[] { "XXX", "XXX", "XXX", 'X', "ingotNickel"});
 	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.DECO_METALS, 1, 6), new Object[] { "XXX", "XXX", "XXX", 'X', "ingotMagnesium"});
