@@ -88,19 +88,19 @@ public class BarnardsSystemBodies implements IBodies {
 		
 		Barnarda_C = BodiesRegistry.registerExPlanet(BarnardsSystem, "barnarda_c", GalaxySpace.ASSET_PREFIX, 0.75F);
 		Barnarda_C.setRingColorRGB(0.0F, 1.1F, 0.0F);
-		Barnarda_C.atmosphereComponent(EnumAtmosphericGas.CO2).atmosphereComponent(EnumAtmosphericGas.OXYGEN).atmosphereComponent(EnumAtmosphericGas.ARGON);
 		BodiesRegistry.setOrbitData(Barnarda_C, (float) Math.PI * 2, 1.0F, 6.9F);
 		BodiesRegistry.setAtmosphere(Barnarda_C, true, true, false, 0.0F, 1.0F, 1.0F);
 		BodiesRegistry.setPlanetData(Barnarda_C, 3F, 24500, BodiesRegistry.calculateGravity(8.5F), false);
 		BodiesRegistry.setProviderData(Barnarda_C, WorldProviderBarnarda_C_WE.class, BRConfigDimensions.dimensionIDBarnardaC, 6, ACBiome.ACSpace);
+		Barnarda_C.atmosphereComponent(EnumAtmosphericGas.CO2).atmosphereComponent(EnumAtmosphericGas.OXYGEN).atmosphereComponent(EnumAtmosphericGas.ARGON);
 		GalaxyRegistry.registerPlanet(Barnarda_C);
 		
 		Barnarda_C1 = BodiesRegistry.registerExMoon(Barnarda_C, "barnarda_c1", GalaxySpace.ASSET_PREFIX, 10.75F);
-		Barnarda_C1.atmosphereComponent(EnumAtmosphericGas.CO2).atmosphereComponent(EnumAtmosphericGas.NITROGEN).atmosphereComponent(EnumAtmosphericGas.ARGON);
 		BodiesRegistry.setOrbitData(Barnarda_C1, (float) Math.PI / 2, 1.0F, 25.5F);
 		BodiesRegistry.setAtmosphere(Barnarda_C1, false, false, false, -4.0F, 3.0F, 0.0F);
 		BodiesRegistry.setPlanetData(Barnarda_C1, 15F, 45000, BodiesRegistry.calculateGravity(6.5F), false);
 		//BodiesHelper.setProviderData(Barnarda_C1, WorldProviderBarnarda_C1_WE.class, BRConfigDimensions.dimensionIDBarnardaC1, 1);
+		Barnarda_C1.atmosphereComponent(EnumAtmosphericGas.CO2).atmosphereComponent(EnumAtmosphericGas.NITROGEN).atmosphereComponent(EnumAtmosphericGas.ARGON);
 		GalaxyRegistry.registerMoon(Barnarda_C1);
 		
 		Barnarda_C2 = BodiesRegistry.registerExMoon(Barnarda_C, "barnarda_c2", GalaxySpace.ASSET_PREFIX, 19.75F);
