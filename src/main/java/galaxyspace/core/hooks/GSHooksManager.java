@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.Random;
 
 import asmodeuscore.api.dimension.IAdvancedSpace;
+import asmodeuscore.core.hooklib.asm.Hook;
+import asmodeuscore.core.hooklib.asm.ReturnCondition;
+import galaxyspace.api.block.IEnergyGeyser;
 import galaxyspace.core.events.SetBlockEvent;
-import galaxyspace.core.hooklib.asm.Hook;
-import galaxyspace.core.hooklib.asm.ReturnCondition;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS.BasicItems;
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.item.IItemThermal;
+import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import micdoodle8.mods.galacticraft.core.GCItems;
@@ -21,16 +23,21 @@ import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
 import micdoodle8.mods.galacticraft.core.items.ItemBasic;
 import micdoodle8.mods.galacticraft.core.items.ItemCanisterGeneric;
+import micdoodle8.mods.galacticraft.core.network.PacketDynamic;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
 import micdoodle8.mods.galacticraft.core.util.CompatibilityManager;
 import micdoodle8.mods.galacticraft.core.util.DamageSourceGC;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
+import micdoodle8.mods.galacticraft.planets.GalacticraftPlanets;
 import micdoodle8.mods.galacticraft.planets.mars.entities.EntityCreeperBoss;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityGasLiquefier;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityMethaneSynthesizer;
+import micdoodle8.mods.galacticraft.planets.venus.VenusBlocks;
+import micdoodle8.mods.galacticraft.planets.venus.VenusModule;
 import micdoodle8.mods.galacticraft.planets.venus.dimension.WorldProviderVenus;
+import micdoodle8.mods.galacticraft.planets.venus.tile.TileEntityGeothermalGenerator;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
@@ -43,6 +50,8 @@ import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 public class GSHooksManager {
@@ -59,6 +68,10 @@ public class GSHooksManager {
         if (WP instanceof IGalacticraftWorldProvider)
         {
             ArrayList<EnumAtmosphericGas> atmos = ((IGalacticraftWorldProvider) WP).getCelestialBody().atmosphere.composition;
+           
+            if(atmos.contains(EnumAtmosphericGas.CO2))
+            	return 1;
+            /*
             if (atmos.size() > 0)
             {
                 if (atmos.get(0) == EnumAtmosphericGas.CO2)
@@ -80,7 +93,7 @@ public class GSHooksManager {
                     return 1;
                 }
             }
-
+            */
             return 0;
         }
 
@@ -287,6 +300,119 @@ public class GSHooksManager {
 	      
 	      return stackList.get(rand.nextInt(stackList.size())).copy();
 	}
+	
+	@Hook(injectOnLine=59, returnCondition = ReturnCondition.ALWAYS)
+    public static void update(TileEntityGeothermalGenerator te)
+    {		
+		if (te.ticks % 20 == 0)
+        {
+            BlockPos below = te.getPos().down();
+            IBlockState stateBelow = te.getWorld().getBlockState(below);
+
+            boolean lastValidSpout = ReflectionHelper.getPrivateValue(TileEntityGeothermalGenerator.class, te, "validSpout");
+            boolean validSpoutHook = false;
+            ReflectionHelper.setPrivateValue(TileEntityGeothermalGenerator.class, te, validSpoutHook, "validSpout");
+            if (stateBelow.getBlock() instanceof IEnergyGeyser)
+            {
+                BlockPos pos1 = below.down();
+                for (; te.getPos().getY() - pos1.getY() < 20; pos1 = pos1.down())
+                {
+                    IBlockState state = te.getWorld().getBlockState(pos1);
+                    IEnergyGeyser geyser = (IEnergyGeyser) stateBelow.getBlock();
+                    Fluid fluid = geyser.getFluidForWork(te.getWorld(), stateBelow, pos1);
+                    
+                    if (fluid != null && state.getBlock() == fluid.getBlock())
+                    {
+                    	
+                    	validSpoutHook = true;
+                        ReflectionHelper.setPrivateValue(TileEntityGeothermalGenerator.class, te, validSpoutHook, "validSpout");
+                        break;
+                    }
+                    else if (!state.getBlock().isAir(te.getWorld().getBlockState(pos1), te.getWorld(), pos1))
+                    {
+                        // Not valid
+                        break;
+                    }
+                                      
+                }
+                
+            }
+            else if (stateBelow.getBlock() == VenusBlocks.spout)
+            {
+                BlockPos pos1 = below.down();
+                for (; te.getPos().getY() - pos1.getY() < 20; pos1 = pos1.down())
+                {
+                    IBlockState state = te.getWorld().getBlockState(pos1);
+                    if (state.getBlock() == VenusModule.sulphuricAcid.getBlock())
+                    {
+                    	validSpoutHook = true;
+                        ReflectionHelper.setPrivateValue(TileEntityGeothermalGenerator.class, te, validSpoutHook, "validSpout");
+                        break;
+                    }
+                    else if (!state.getBlock().isAir(te.getWorld().getBlockState(pos1), te.getWorld(), pos1))
+                    {
+                        // Not valid
+                        break;
+                    }
+                }
+            }
+
+            if (te.getWorld().isRemote && validSpoutHook != lastValidSpout)
+            {
+                // Update active texture
+                IBlockState state = te.getWorld().getBlockState(te.getPos());
+                te.getWorld().notifyBlockUpdate(te.getPos(), state, state, 3);
+            }
+        }
+		
+		if (!te.getWorld().isRemote)
+        {
+            te.recharge(te.getInventory().get(0));
+
+            if (te.disableCooldown > 0)
+            {
+                te.disableCooldown--;
+            }
+
+            te.generateWatts = Math.min(Math.max(getGenerate(te, ReflectionHelper.getPrivateValue(TileEntityGeothermalGenerator.class, te, "validSpout")), 0), TileEntityGeothermalGenerator.MAX_GENERATE_GJ_PER_TICK);
+        }
+        else
+        {
+            if (te.generateWatts > 0 && te.ticks % ((int) ((float)te.MAX_GENERATE_GJ_PER_TICK / (te.generateWatts + 1)) * 5 + 1) == 0)
+            {
+                double posX = te.getPos().getX() + 0.5;
+                double posY = te.getPos().getY() + 1.0;
+                double posZ = te.getPos().getZ() + 0.5;
+                GalacticraftPlanets.spawnParticle("acidExhaust", new Vector3(posX - 0.25, posY, posZ - 0.25), new Vector3(0.0, 0.025, 0.0));
+                GalacticraftPlanets.spawnParticle("acidExhaust", new Vector3(posX - 0.25, posY, posZ), new Vector3(0.0, 0.025, 0.0));
+                GalacticraftPlanets.spawnParticle("acidExhaust", new Vector3(posX - 0.25, posY, posZ + 0.25), new Vector3(0.0, 0.025, 0.0));
+                GalacticraftPlanets.spawnParticle("acidExhaust", new Vector3(posX, posY, posZ - 0.25), new Vector3(0.0, 0.025, 0.0));
+                GalacticraftPlanets.spawnParticle("acidExhaust", new Vector3(posX, posY, posZ), new Vector3(0.0, 0.025, 0.0));
+                GalacticraftPlanets.spawnParticle("acidExhaust", new Vector3(posX, posY, posZ + 0.25), new Vector3(0.0, 0.025, 0.0));
+                GalacticraftPlanets.spawnParticle("acidExhaust", new Vector3(posX + 0.25, posY, posZ - 0.25), new Vector3(0.0, 0.025, 0.0));
+                GalacticraftPlanets.spawnParticle("acidExhaust", new Vector3(posX + 0.25, posY, posZ), new Vector3(0.0, 0.025, 0.0));
+                GalacticraftPlanets.spawnParticle("acidExhaust", new Vector3(posX + 0.25, posY, posZ + 0.25), new Vector3(0.0, 0.025, 0.0));
+            }
+        }
+
+        te.produce();
+    }
+	
+	private static int getGenerate(TileEntityGeothermalGenerator te, boolean valid)
+    {
+        if (te.getDisabled(0))
+        {
+            return 0;
+        }
+
+        if (!valid)
+        {
+            return 0;
+        }
+
+        int diff = TileEntityGeothermalGenerator.MAX_GENERATE_GJ_PER_TICK - TileEntityGeothermalGenerator.MIN_GENERATE_GJ_PER_TICK;
+        return (int) Math.floor((Math.sin(te.ticks / 50.0F) * 0.5F + 0.5F) * diff + TileEntityGeothermalGenerator.MIN_GENERATE_GJ_PER_TICK);
+    }
 /*
 	private static List<BlockPos> connectedPads = new ArrayList<BlockPos>();
 	private static Ticket chunkLoadTicket;
