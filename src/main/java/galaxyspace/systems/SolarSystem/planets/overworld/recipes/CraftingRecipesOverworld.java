@@ -306,7 +306,8 @@ public class CraftingRecipesOverworld {
    
    private static void addOtherRecipes()
    {
-	   TileEntityLiquidExtractor.addBlockAndFluid(Blocks.PACKED_ICE, new FluidStack(FluidRegistry.WATER, 50));
+	   TileEntityLiquidExtractor.addBlockAndFluid(Blocks.ICE, new FluidStack(FluidRegistry.WATER, 50));
+	   TileEntityLiquidExtractor.addBlockAndFluid(Blocks.PACKED_ICE, new FluidStack(FluidRegistry.WATER, 30));
 	   TileEntityLiquidExtractor.addBlockAndFluid(AsteroidBlocks.blockDenseIce, new FluidStack(FluidRegistry.WATER, 100));
 	   TileEntityLiquidExtractor.addBlockAndFluid(GSBlocks.SURFACE_ICE, new FluidStack(FluidRegistry.WATER, 100));
 	   TileEntityLiquidExtractor.addBlockAndFluid(GSBlocks.MIRANDA_BLOCKS.getDefaultState().withProperty(MirandaBlocks.BASIC_TYPE, MirandaBlocks.EnumMirandaBlocks.MIRANDA_ICE).getBlock(), new FluidStack(FluidRegistry.WATER, 100));
