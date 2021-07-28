@@ -74,6 +74,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBlocksOres;
 import galaxyspace.systems.SolarSystem.planets.pluto.blocks.PlutoBlocks;
 import galaxyspace.systems.SolarSystem.planets.pluto.items.ItemBlocksPluto;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
+import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -276,6 +277,8 @@ public class GSBlocks {
 */
 		OreDictionary.registerOre("blockGlass", new ItemStack(FUTURE_GLASS_BASIC, 1, 0));
 		OreDictionary.registerOre("blockGlass", new ItemStack(FUTURE_GLASS_COLORED, 1, OreDictionary.WILDCARD_VALUE));
+	
+		OreDictionary.registerOre("cobblestone", new ItemStack(MarsBlocks.marsBlock, 1, 4));
 	}
 	
 	public static void registerBlock(Block block, Class<? extends ItemBlock> itemClass)
