@@ -208,7 +208,7 @@ public class TileEntityPanelController extends TileBaseUniversalElectricalSource
 
 		if (!this.world.isRemote)
         {
-			this.produce();
+			
 
 		
 			if (this.world.isDaytime() && (this.world.provider instanceof IGalacticraftWorldProvider || !this.world.isRaining() && !this.world.isThundering()))
@@ -230,7 +230,7 @@ public class TileEntityPanelController extends TileBaseUniversalElectricalSource
 				
 				//GalaxySpace.debug(t2_count + "");
 				
-				this.heatGJperTick = (MathHelper.floor((0.01F * difference * difference * (9 * (Math.abs(difference) * (500.0F)) + (t2_count * 100)) 
+				this.heatGJperTick = (MathHelper.floor((0.03F * difference * difference * (9 * (Math.abs(difference) * (500.0F)) + (t2_count * 300)) 
 						* this.getSolarBoost()) * 0.25 * (panels.size() * GSConfigEnergy.coefficientSolarPanel) / 5)) 
 						;
 				
@@ -241,6 +241,7 @@ public class TileEntityPanelController extends TileBaseUniversalElectricalSource
 				this.heatGJperTick = 0;
 			}
 
+			this.produce();
         }
 		
 		
