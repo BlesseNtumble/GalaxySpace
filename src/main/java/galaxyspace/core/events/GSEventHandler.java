@@ -45,8 +45,8 @@ import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitat
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityPlanetShield;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityRadiationStabiliser;
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
+import micdoodle8.mods.galacticraft.api.event.ZeroGravityEvent;
 import micdoodle8.mods.galacticraft.api.event.wgen.GCCoreEventPopulate;
-import micdoodle8.mods.galacticraft.api.galaxies.GalaxyRegistry;
 import micdoodle8.mods.galacticraft.api.inventory.AccessInventoryGC;
 import micdoodle8.mods.galacticraft.api.inventory.IInventoryGC;
 import micdoodle8.mods.galacticraft.api.item.EnumExtendedInventorySlot;
@@ -133,16 +133,17 @@ public class GSEventHandler {
 	static {
 		OreDictionary.getOres("treeLeaves").forEach((ItemStack stack) -> {
 			
-			items_to_change.add(new ItemsToChange(stack, Blocks.AIR.getDefaultState(), true).setOxygenCheck(true));
+			items_to_change.add(new ItemsToChange(stack, Blocks.AIR.getDefaultState()).setTempCheck(true).setOxygenCheck(true));
 		});
 		
 		OreDictionary.getOres("treeSapling").forEach((ItemStack stack) -> {
 			
 			//block_to_change.add(new BlockToChange(Block.getBlockFromItem(stack.getItem()).getDefaultState(), Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), 0.0F, true));
-			items_to_change.add(new ItemsToChange(stack, Blocks.DEADBUSH.getDefaultState(), true).setOxygenCheck(true));
+			items_to_change.add(new ItemsToChange(stack, Blocks.DEADBUSH.getDefaultState()).setTempCheck(true).setOxygenCheck(true));
 		});
 		
-		items_to_change.add(new ItemsToChange(new ItemStack(Items.WATER_BUCKET), Blocks.AIR.getDefaultState(), true).setOxygenCheck(false));
+		items_to_change.add(new ItemsToChange(new ItemStack(Blocks.FURNACE), Blocks.AIR.getDefaultState()).setOxygenCheck(true));
+		items_to_change.add(new ItemsToChange(new ItemStack(Items.WATER_BUCKET), Blocks.AIR.getDefaultState()).setTempCheck(true).setOxygenCheck(false));
 		block_to_change.add(new BlockToChange(Blocks.WATER.getDefaultState(), Blocks.AIR.getDefaultState(), Blocks.ICE.getDefaultState(), 0.0F, true).setParticle("waterbubbles").setOxygenCheck(false));
 		block_to_change.add(new BlockToChange(Blocks.LEAVES.getStateFromMeta(0), Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), 0.5F, true).setParticle("waterbubbles"));
 	}
@@ -342,7 +343,8 @@ public class GSEventHandler {
 			return;
 		}
 		
-		final Block block = world.getBlockState(event.getPos()).getBlock();
+		final IBlockState state = world.getBlockState(event.getPos());
+		final Block block = state.getBlock();
 		ItemStack stack = event.getItemStack();
 		EntityPlayer player = event.getEntityPlayer();
 			
@@ -353,7 +355,7 @@ public class GSEventHandler {
 			
 		}
 		
-		if(!world.isRemote && GSConfigCore.enableHardMode)
+		if(!world.isRemote && GSConfigCore.enableHardMode && !block.hasTileEntity(state))
 		{		
 			if(CompatibilityManager.isIc2Loaded())
 			{
@@ -783,6 +785,14 @@ public class GSEventHandler {
 	}
 	
 	@SubscribeEvent
+	public void onZeroGravity(ZeroGravityEvent.InFreefall event)
+	{
+		EntityLivingBase entity = event.getEntityLiving();
+		if(inGravityZone(entity.getEntityWorld(), entity, false))
+			event.setCanceled(true);
+	}
+	
+	@SubscribeEvent
 	public void onRadiation(RadiationEvent event)
 	{
 		EntityLivingBase living = (EntityLivingBase) event.getEntity();
@@ -887,7 +897,7 @@ public class GSEventHandler {
 	}
 		
 		
-	public static boolean inGravityZone(World world, EntityPlayer player, boolean checkStabilisationModule)
+	public static boolean inGravityZone(World world, EntityLivingBase player, boolean checkStabilisationModule)
 	{
 		
 		for (final BlockVec3Dim blockVec : TileEntityGravitationModule.loadedTiles)
@@ -1119,11 +1129,11 @@ public class GSEventHandler {
 		private IBlockState replaced;
 		private boolean need_check_temp, need_check_oxygen, only_gs_dim = false;
 		
-		ItemsToChange(ItemStack stack, IBlockState placed, boolean need_check_temp)
+		ItemsToChange(ItemStack stack, IBlockState placed)
 		{
 			this.itemstack = stack;
 			this.replaced = placed;
-			this.need_check_temp = need_check_temp;
+			
 		}
 		
 		public ItemsToChange setOnlyGSDim()
@@ -1135,6 +1145,12 @@ public class GSEventHandler {
 		public ItemsToChange setOxygenCheck(boolean check)
 		{
 			this.need_check_oxygen = check;
+			return this;
+		}
+		
+		public ItemsToChange setTempCheck(boolean check)
+		{
+			this.need_check_temp = check;
 			return this;
 		}
 		

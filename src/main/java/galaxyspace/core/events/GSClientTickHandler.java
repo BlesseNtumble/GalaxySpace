@@ -29,6 +29,7 @@ import galaxyspace.core.util.GSThreadVersionCheck;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemGeologicalScanner;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemMatterManipulator;
+import micdoodle8.mods.galacticraft.api.event.ZeroGravityEvent;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import micdoodle8.mods.galacticraft.core.util.ColorUtil;
@@ -49,6 +50,7 @@ import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -286,6 +288,15 @@ public class GSClientTickHandler {
 		
 	}
 	*/
+	
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void onZeroGravity(ZeroGravityEvent.InFreefall event)
+	{
+		EntityLivingBase entity = event.getEntityLiving();
+		if(GSEventHandler.inGravityZone(entity.getEntityWorld(), entity, false))
+			event.setCanceled(true);
+	}
 	 
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
