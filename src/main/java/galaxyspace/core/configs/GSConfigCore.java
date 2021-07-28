@@ -52,6 +52,7 @@ public class GSConfigCore
     public static boolean enablePressureSystem;
     public static boolean enableAdvancedRocketCraft;
     public static boolean enableAdvancedThermalSystem;
+    public static boolean enableZeroGravityOnAsteroids;
     
     public static String spacesuit_pos = "center";
     
@@ -103,6 +104,12 @@ public class GSConfigCore
             prop.setComment("Enable/Disable advanced thermal system on celestial bodies.");
             prop.setLanguageKey("gc.configgui.enableAdvancedThermalSystem").setRequiresMcRestart(false);
             enableAdvancedThermalSystem = prop.getBoolean(true);
+            propOrder.add(prop.getName());    
+            
+            prop = config.get(Constants.CONFIG_CATEGORY_DIFFICULTY, "enableZeroGravityOnAsteroids", true);
+            prop.setComment("Enable/Disable zero gravity (like Kuiper Belt) on Astreroids.");
+            prop.setLanguageKey("gc.configgui.enableZeroGravityOnAsteroids").setRequiresMcRestart(true);
+            enableZeroGravityOnAsteroids = prop.getBoolean(true);
             propOrder.add(prop.getName());    
             
             prop = config.get(Constants.CONFIG_CATEGORY_WORLDGEN, "enableOverworldOres", true);
