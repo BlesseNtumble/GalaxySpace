@@ -484,7 +484,7 @@ gui.status.nowater.name=No Water
 gui.message.active_pressure_shield.name=Atm. pressure shield is currently active.
 
 gui.message.needoxygen=Oxygen is required to perform this action.
-gui.message.needoxygenthermal=Oxygen and thermal control are required to perform this action.
+gui.message.needthermal=Thermal control are required to perform this action.
 gui.message.needoxygen.food=Oxygen is required to use traditional food. You can use canned food instead.
 gui.message.invalid_teleport_conf=Invalid teleport configuration or no energy.
 gui.message.cant_place=Can't place here.
