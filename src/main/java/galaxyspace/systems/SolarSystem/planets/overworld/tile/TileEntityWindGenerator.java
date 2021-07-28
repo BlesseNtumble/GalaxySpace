@@ -178,7 +178,7 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
         this.getPositions(placedPosition, positions);
         if (positions.size() > 0)
         {
-            ((BlockMulti) GCBlocks.fakeBlock).makeFakeBlock(world, positions.get(0), placedPosition, EnumBlockMultiType.SOLAR_PANEL_0.getMeta());
+            ((BlockMulti) GCBlocks.fakeBlock).makeFakeBlock(world, positions.get(0), placedPosition, EnumBlockMultiType.DISH_LARGE.getMeta());
             positions.remove(0);
         }
         ((BlockMulti) GCBlocks.fakeBlock).makeFakeBlock(world, positions, placedPosition, this.getMultiType());
@@ -188,25 +188,68 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
     public void getPositions(BlockPos placedPosition, List<BlockPos> positions)
     {
         int buildHeight = this.world.getHeight() - 1;
-        int y = placedPosition.getY() + 2; 
+        int y = placedPosition.getY() + 1; 
         if (y > buildHeight)
         {
             return;
         }
+       
         positions.add(new BlockPos(placedPosition.getX(), y, placedPosition.getZ()));
+        positions.add(new BlockPos(placedPosition.getX(), ++y, placedPosition.getZ()));
+        positions.add(new BlockPos(placedPosition.getX(), ++y, placedPosition.getZ()));
 
-        y++;
         if (y > buildHeight)
         {
             return;
         }
+        
+        switch (this.getBlockMetadata()) {
+        	case 0:	
+        		for (int x = -1; x < 2; x++)
+                {
+                    for (int z = -1; z < 2; z++)
+                    {
+                        positions.add(new BlockPos(placedPosition.getX() - 1, y + x, placedPosition.getZ() + z));
+                    }
+                }
+        		break;
+        	case 1:	
+        		for (int x = -1; x < 2; x++)
+                {
+                    for (int z = -1; z < 2; z++)
+                    {
+                        positions.add(new BlockPos(placedPosition.getX() + z, y + x, placedPosition.getZ() - 1));
+                    }
+                }
+        		break;
+        	case 2:	
+        		for (int x = -1; x < 2; x++)
+                {
+                    for (int z = -1; z < 2; z++)
+                    {
+                        positions.add(new BlockPos(placedPosition.getX() + 1, y + x, placedPosition.getZ() + z));
+                    }
+                }
+        		break;
+        	case 3:	
+        		for (int x = -1; x < 2; x++)
+                {
+                    for (int z = -1; z < 2; z++)
+                    {
+                        positions.add(new BlockPos(placedPosition.getX() + z, y + x, placedPosition.getZ() + 1));
+                    }
+                }
+        		break;
+        	
+        }
+        /*
         for (int x = -1; x < 2; x++)
         {
             for (int z = -1; z < 2; z++)
             {
                 positions.add(new BlockPos(placedPosition.getX() + x, y, placedPosition.getZ() + z));
             }
-        }
+        }*/
     }
     
     @Override
@@ -223,7 +266,7 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
             if (stateAt.getBlock() == GCBlocks.fakeBlock)
             {
                 EnumBlockMultiType type = (EnumBlockMultiType) stateAt.getValue(BlockMulti.MULTI_TYPE);
-                if ((type == EnumBlockMultiType.SOLAR_PANEL_0 || type == EnumBlockMultiType.SOLAR_PANEL_1))
+                if ((type == getMultiType()))
                 {
                     if (this.world.isRemote && this.world.rand.nextDouble() < 0.1D)
                     {
@@ -386,6 +429,6 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
 
 	@Override
 	public EnumBlockMultiType getMultiType() {
-		return EnumBlockMultiType.SOLAR_PANEL_0;
+		return EnumBlockMultiType.DISH_LARGE;
 	}
 }
