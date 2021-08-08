@@ -491,6 +491,7 @@ public class ClientProxy extends CommonProxy{
 			//GSUtils.addItemJsonFiles(GSItems.COBALT_HOE, "tools/", GSItems.COBALT_HOE.getUnlocalizedName().substring(5));		
 			//GSUtils.addItemJsonFiles(GSItems.COBALT_LEGS, "armor/", GSItems.COBALT_LEGS.getUnlocalizedName().substring(5));		
 			//GSUtils.addItemJsonFiles(GSItems.COBALT_BOOTS, "armor/", GSItems.COBALT_BOOTS.getUnlocalizedName().substring(5));		
+			GSUtils.addItemMetadataJsonFiles(GSItems.BASIC, ItemBasicGS.getEnumNames(), "basic/");
 			GSUtils.addItemMetadataJsonFiles(GSItems.ROCKET_MODULES, ItemRocketModules.names, "rocket_modules/");
 		}
 		

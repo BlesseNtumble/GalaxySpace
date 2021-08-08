@@ -1,5 +1,11 @@
 { 
 	"parent": "block/block",  
+	"textures": {
+        "particle": "galacticraftcore:blocks/machine",
+        "bottom": "galacticraftcore:blocks/machine_input",
+        "top": "galaxyspace:blocks/overworld/gravitation_module_top",
+        "side": "galaxyspace:blocks/overworld/gravitation_module_side"    
+    },
 	"elements": [
         {   "from": [ 0, 0, 0 ],
             "to": [ 16, 4, 16 ],

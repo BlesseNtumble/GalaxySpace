@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.GSItems;
+import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.util.GSCreativeTabs;
 import micdoodle8.mods.galacticraft.api.recipe.ISchematicItem;
 import micdoodle8.mods.galacticraft.api.recipe.SchematicRegistry;
@@ -53,10 +54,11 @@ public class ItemSchematics extends ItemSchematic implements ISchematicItem, ISo
     {
         if (tab == GSCreativeTabs.GSItemsTab || tab == CreativeTabs.SEARCH)
         {
-            for (int i = 0; i < 7; i++)
-            {
-                list.add(new ItemStack(this, 1, i));
-            }
+        	int i;
+        	
+	        for (i = GSConfigCore.enableAdvancedRocketCraft ? 0 : 5; i < 7; i++)
+	        	list.add(new ItemStack(this, 1, i));
+	            
         }
     }
 	

@@ -54,7 +54,7 @@ public class AssemblyRecipes
         for (hashmap = new HashMap<Character, ItemStack>(); i < inputList.length; i += 2)
         {
             Character character = (Character) inputList[i];
-            ItemStack itemstack1 = null;
+            ItemStack itemstack1 = ItemStack.EMPTY;
 
             if (inputList[i + 1] instanceof Item)
             {
@@ -84,7 +84,7 @@ public class AssemblyRecipes
             }
             else
             {
-                aitemstack[i1] = null;
+                aitemstack[i1] = ItemStack.EMPTY;
             }
         }
 
