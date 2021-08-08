@@ -352,7 +352,7 @@ public class GSEventHandler {
 		
 		if(world.isRemote)
 		{	
-			
+
 		}
 		
 		if(!world.isRemote && GSConfigCore.enableHardMode && !block.hasTileEntity(state))

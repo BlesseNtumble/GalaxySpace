@@ -27,6 +27,11 @@ public class RecyclerRecipes {
 		 this.recipes.add(new RecycleRecipe(stack, result, fluidstack, chance));
 	 }
 	 
+	 public void addNewRecipe(ItemStack stack, ItemStack result, ItemStack result_2, int chance, int chance_2, FluidStack fluidstack)
+	 {
+		 this.recipes.add(new RecycleRecipe(stack, result, result_2, fluidstack, chance, chance_2));
+	 }
+	 
 	 public void removeRecipe(ItemStack stack)
 	 {
 		 recipes.remove(getRecipe(stack));
@@ -48,16 +53,14 @@ public class RecyclerRecipes {
 
 	 public class RecycleRecipe
 	 {
-		 private ItemStack input, output;
+		 private ItemStack input, output, output_2;
 		 private FluidStack fluid;
 		 private int chance_procent = 100;
-		 private boolean chance = false;
+		 private int chance_procent_2 = 100;
 		 
 		 public RecycleRecipe(ItemStack input, ItemStack output, FluidStack fluid)
 		 {
-			 this.input = input;
-			 this.output = output;
-			 this.fluid = fluid;
+			 this(input, output, fluid, 100);
 		 }
 		 
 		 public RecycleRecipe(ItemStack input, ItemStack output, FluidStack fluid, int chance)
@@ -66,17 +69,31 @@ public class RecyclerRecipes {
 			 this.output = output;
 			 this.fluid = fluid;
 			 this.chance_procent = chance;
-			 this.chance = true;
+		 }
+		 
+		 public RecycleRecipe(ItemStack input, ItemStack output, ItemStack output_2, FluidStack fluid, int chance, int chance_2)
+		 {			 
+			 this.input = input;
+			 this.output = output;
+			 this.fluid = fluid;
+			 this.chance_procent = chance;
+			 this.output_2 = output_2;
+			 this.chance_procent_2 = chance_2;
 		 }
 		 
 		 public ItemStack getInput()
 		 {
 			 return this.input;
-		 }
+		 }	
 		 
 		 public ItemStack getOutput()
 		 {
 			 return this.output;
+		 }
+		 
+		 public ItemStack getOutput_2()
+		 {
+			 return this.output_2;
 		 }
 		 
 		 public FluidStack getFluidStack()
@@ -86,12 +103,22 @@ public class RecyclerRecipes {
 		 
 		 public boolean hasChance()
 		 {
-			 return this.chance;
+			 return chance_procent == 100;
 		 }
 		 
 		 public int getChance()
 		 {
 			 return this.chance_procent;
+		 }
+		 
+		 public boolean hasChance_2()
+		 {
+			 return this.chance_procent_2 == 100;
+		 }
+		 
+		 public int getChance_2()
+		 {
+			 return this.chance_procent_2;
 		 }
 	 }
 }

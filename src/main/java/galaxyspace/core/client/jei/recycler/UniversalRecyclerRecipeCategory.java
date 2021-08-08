@@ -13,6 +13,7 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeCategory;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 public class UniversalRecyclerRecipeCategory implements IRecipeCategory<UniversalRecyclerRecipeWrapper>
@@ -23,7 +24,7 @@ public class UniversalRecyclerRecipeCategory implements IRecipeCategory<Universa
     private final IDrawable background, arrow, fluid, fluid_foreground;
     
     @Nonnull
-    private final IDrawable result;
+    private final IDrawable result, result_2;
     
     @Nonnull
     private final String localizedName;
@@ -38,6 +39,7 @@ public class UniversalRecyclerRecipeCategory implements IRecipeCategory<Universa
        	this.fluid_foreground = guiHelper.createDrawable(guiTexture, 212, 66, 20, 42);      
         
         this.result = guiHelper.createDrawable(guiTexture, 192, 26, 20, 20);
+        this.result_2 = guiHelper.createDrawable(guiTexture, 192 + 22, 26, 20, 20);
     }
 
     @Nonnull
@@ -64,8 +66,9 @@ public class UniversalRecyclerRecipeCategory implements IRecipeCategory<Universa
     @Override
     public void drawExtras(Minecraft mc)
     {
-    	this.result.draw(mc, 39, 14);    	
+    	this.result.draw(mc, 19, 34);    	
     	this.result.draw(mc, 89, 34);
+    	this.result.draw(mc, 89 + 22, 34);
     	
     	this.fluid.draw(mc, 145, 22);
     	this.fluid_foreground.draw(mc, 145, 22);
@@ -79,13 +82,18 @@ public class UniversalRecyclerRecipeCategory implements IRecipeCategory<Universa
     {
         IGuiItemStackGroup itemstacks = recipeLayout.getItemStacks();        
         IGuiFluidStackGroup fluidstacks = recipeLayout.getFluidStacks();
+        
+        
                     
         int xOffset = 5;
         int yOffset = 10;
-        itemstacks.init(0, true, 35 + xOffset, 5 + yOffset);        
+        itemstacks.init(0, true, 15 + xOffset, 25 + yOffset);        
         itemstacks.init(1, false, 90, 25 + yOffset);
+        itemstacks.init(2, false, 90 + 22, 25 + yOffset);
 
-        itemstacks.set(ingredients);     
+        itemstacks.set(ingredients);  
+        
+        //System.out.println(ingredients.getInputs(ItemStack.class) + " -> " + ingredients.getOutputs(ItemStack.class));
         
         if(recipe.getFluidStack() != null) {
         	fluidstacks.init(0, true, 147, 24, 16, 38, 1000, false, null);

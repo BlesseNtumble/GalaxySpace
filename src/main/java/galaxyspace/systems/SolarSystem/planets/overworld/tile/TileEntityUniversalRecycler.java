@@ -187,6 +187,16 @@ public class TileEntityUniversalRecycler extends TileEntityUpgradeMachine implem
     				int result = this.getInventory().get(3).getCount() + recipe.getOutput().getCount();
     				return result <= getInventoryStackLimit() && result <= this.getInventory().get(3).getMaxStackSize();
     			}
+    			
+    			if(!recipe.getOutput_2().isEmpty())
+    			{
+    				if (!this.getInventory().get(4).isEmpty() && !this.getInventory().get(4).isItemEqual(recipe.getOutput_2()))
+    					return false;
+    				
+    				int result = this.getInventory().get(4).getCount() + recipe.getOutput_2().getCount();
+    				return result <= getInventoryStackLimit() && result <= this.getInventory().get(4).getMaxStackSize();
+    			}
+
 
     		}
     		else return false;
@@ -208,7 +218,7 @@ public class TileEntityUniversalRecycler extends TileEntityUpgradeMachine implem
     		if(recipe != null)
     		{
     			boolean hasRand = recipe.hasChance();
-    			
+    			boolean hasRand_2 = recipe.hasChance_2();
     				
     			if(!hasRand) 
     			{
@@ -216,6 +226,13 @@ public class TileEntityUniversalRecycler extends TileEntityUpgradeMachine implem
 	           			this.getInventory().set(3, recipe.getOutput().copy());	 
 	    			else if(this.getInventory().get(3).isItemEqual(recipe.getOutput()))
 	    				this.getInventory().get(3).grow(recipe.getOutput().getCount());  
+	    			
+	    			if(!hasRand_2 && !recipe.getOutput_2().isEmpty()) {
+	    				if(this.getInventory().get(4).isEmpty())
+		           			this.getInventory().set(4, recipe.getOutput_2().copy());	 
+		    			else if(this.getInventory().get(4).isItemEqual(recipe.getOutput_2()))
+		    				this.getInventory().get(4).grow(recipe.getOutput_2().getCount());  
+	    			}
     			}
 	    		else
 	    		{
@@ -225,6 +242,14 @@ public class TileEntityUniversalRecycler extends TileEntityUpgradeMachine implem
 	    					this.getInventory().set(3, recipe.getOutput().copy());		    			
 	    				else if(this.getInventory().get(3).isItemEqual(recipe.getOutput()))	    				 
 	    					this.getInventory().get(3).grow(recipe.getOutput().getCount());
+	    				
+	    				if(recipe.getOutput_2() != null && !recipe.getOutput_2().isEmpty() && this.world.rand.nextInt(100) <= recipe.getChance_2()) 
+		    			{
+		    				if(this.getInventory().get(4).isEmpty())	    				
+		    					this.getInventory().set(4, recipe.getOutput_2().copy());		    			
+		    				else if(this.getInventory().get(4).isItemEqual(recipe.getOutput_2()))	    				 
+		    					this.getInventory().get(4).grow(recipe.getOutput_2().getCount());
+		    			}
 	    			}
 	    		}
     				
