@@ -6,6 +6,7 @@ import java.util.List;
 import org.lwjgl.opengl.GL11;
 
 import galaxyspace.GalaxySpace;
+import galaxyspace.core.prefab.inventory.SlotUpgrades;
 import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerWindGenerator;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityWindGenerator;
@@ -115,9 +116,9 @@ public class GuiWindGenerator extends GuiContainerGC
     {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(this.solarGuiTexture);
-        final int var5 = (this.width - this.xSize) / 2;
-        final int var6 = (this.height - this.ySize) / 2;
-        this.drawTexturedModalRect(var5, var6, 0, 0, this.xSize, this.ySize);
+        final int containerWidth = (this.width - this.xSize) / 2;
+        final int containerHeight = (this.height - this.ySize) / 2;
+        this.drawTexturedModalRect(containerWidth, containerHeight, 0, 0, this.xSize, this.ySize);
 
         List<String> electricityDesc = new ArrayList<String>();
         EnergyDisplayHelper.getEnergyDisplayTooltip(this.solarPanel.getEnergyStoredGC(), this.solarPanel.getMaxEnergyStoredGC(), electricityDesc);
@@ -127,18 +128,50 @@ public class GuiWindGenerator extends GuiContainerGC
 
         if (this.solarPanel.getEnergyStoredGC() > 0)
         {
-            this.drawTexturedModalRect(var5 + 83, var6 + 24, 176, 0, 11, 10);
+            this.drawTexturedModalRect(containerWidth + 83, containerHeight + 24, 176, 0, 11, 10);
         }
 
         if (this.solarPanel.generateWatts > 0)
         {
-        	this.drawTexturedModalRect(var5 + 46, var6 + 19, 176, 10, 20, 20);
+        	this.drawTexturedModalRect(containerWidth + 46, containerHeight + 19, 176, 10, 20, 20);
         }
         
-
-        this.drawTexturedModalRect(var5 + 97, var6 + 25, 187, 0, Math.min(this.solarPanel.getScaledElecticalLevel(54), 54), 7);
+        for(int i = 0; i < this.inventorySlots.inventorySlots.size(); i++)
+        {
+	        int x = this.inventorySlots.getSlot(i).xPos;
+	        int y = this.inventorySlots.getSlot(i).yPos;
+	        
+	       /* if(!(this.inventorySlots.getSlot(i).inventory instanceof InventoryPlayer))
+	        {*/
+		        
+		        GL11.glPushMatrix();
+		        switch(i)
+		        {
+		        	case 0:
+		        	{
+		        		//this.drawTexturedModalRect(containerWidth + x - 2, containerHeight + y - 2, 213, 26, 20, 21);	        		 
+		        		break;
+		        	}	        	
+		        	default: 
+		        	{
+		        		this.drawTexturedModalRect(containerWidth + x - 2, containerHeight + y - 2, 176, 33, 20, 21);
+		        		break;
+		        	}	        	
+		        }
+		        
+		        if(this.inventorySlots.getSlot(i) instanceof SlotUpgrades)
+		        {
+	        		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+	        		this.drawTexturedModalRect(containerWidth + x - 2, containerHeight + y - 2, 213, 175, 20, 20);
+	        	}
+		        
+		        GL11.glPopMatrix();
+	        //}
+        }
         
-        if(GalaxySpace.debug) GSUtils.renderDebugGui(this, var5, var6);
+        this.drawTexturedModalRect(containerWidth + 97, containerHeight + 25, 187, 0, Math.min(this.solarPanel.getScaledElecticalLevel(54), 54), 7);
+        
+        if(GalaxySpace.debug) GSUtils.renderDebugGui(this, containerWidth, containerHeight);
     
     }   
   

@@ -91,7 +91,12 @@ public class ItemBasicGS extends Item implements ISortableItem{
 		EMPTY_PLASMA_CELL(29),
 		FILLED_PLASMA_CELL(30),
 		WOLF_THERMAL_SUIT(31),
-		ANIMAL_CAGE(32);
+		ANIMAL_CAGE(32),
+		
+		IRON_FAN(33),
+		STEEL_FAN(34),
+		PLASTIC_FAN(35),
+		CARBON_FAN(36);
 		
 		private int meta;
 	
@@ -137,6 +142,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
 	
 	public static final int SHIELD_TIME = 10 * 60;
 	private static final int SIZE = 9;
+	public static final int[] FANS_DURABILITY = new int[] {10 * 60, 30 * 60, 60 * 60 * 2, 60 * 60 * 6};
 	
 	public ItemBasicGS()
 	{
@@ -159,7 +165,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
 	        }
         }
     }
-
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World world, List<String> list, ITooltipFlag flagIn) {
@@ -228,6 +234,16 @@ public class ItemBasicGS extends Item implements ISortableItem{
 				{
 					list.add(stack.getTagCompound().getInteger("destroyedLvl") + "");
 				}*/
+			}
+		}
+		else if(n >= 33 && n <= 36)
+		{
+			if(stack.hasTagCompound())
+			{
+				if(stack.getTagCompound().hasKey("destroyedLvl"))
+				{
+					list.add("Durability: " + (FANS_DURABILITY[n-33] - stack.getTagCompound().getInteger("destroyedLvl")) + " / " + FANS_DURABILITY[n-33]);
+				}
 			}
 		}
 		
@@ -466,7 +482,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
 	
 	@Override
 	public boolean showDurabilityBar(ItemStack stack) {
-		if(stack.getItemDamage() == BasicItems.ANIMAL_CAGE.getMeta())
+		if(stack.getItemDamage() == BasicItems.ANIMAL_CAGE.getMeta() || (stack.getItemDamage() >= 33 && stack.getItemDamage() <= 36))
 		{
 			if(stack.hasTagCompound())
 			{
@@ -484,6 +500,13 @@ public class ItemBasicGS extends Item implements ISortableItem{
 			if(stack.hasTagCompound())
 			{
 				return (stack.getTagCompound().getInteger("destroyedLvl") / 10D) / 0.31D;
+			}
+		}
+		if(stack.getItemDamage() >= 33 )
+		{
+			if(stack.hasTagCompound())
+			{
+				return (double)stack.getTagCompound().getInteger("destroyedLvl") / (double)FANS_DURABILITY[stack.getItemDamage()-33];
 			}
 		}
 		return (double) stack.getItemDamage() / (double) stack.getMaxDamage();
