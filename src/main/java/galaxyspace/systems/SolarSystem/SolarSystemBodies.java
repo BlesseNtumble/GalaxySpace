@@ -388,6 +388,9 @@ public class SolarSystemBodies implements IBodies{
 	{
 		
     	// TODO Rings ---------------------------------
+		VenusModule.planetVenus.setAtmosphere(new AtmosphereInfo(false, true, true, 5.0F, 2.0F, 54.0F));
+	    VenusModule.planetVenus.atmosphereComponent(EnumAtmosphericGas.CO2).atmosphereComponent(EnumAtmosphericGas.NITROGEN);
+	        
 		VenusModule.planetVenus.setRelativeDistanceFromCenter(new CelestialBody.ScalableDistance(0.745F, 0.74F)).setRingColorRGB(0.0F, 0.4F, 0.9F);
 		GalacticraftCore.satelliteSpaceStation.setRingColorRGB(0.0F, 0.4F, 0.9F);	
 		GalacticraftCore.planetOverworld.setRingColorRGB(0.0F, 1.1F, 0.0F);
@@ -421,14 +424,16 @@ public class SolarSystemBodies implements IBodies{
     	
     	//GalaxyRegistry.getRegisteredPlanets().forEach((s, p) -> GalaxySpace.debug("Planet: " + s  + " | " + p.getWorldProvider()));
         
-    	SchematicRegistry.registerSchematicRecipe(new SchematicCone());
-		SchematicRegistry.registerSchematicRecipe(new SchematicBody());
-		SchematicRegistry.registerSchematicRecipe(new SchematicEngine());
-		SchematicRegistry.registerSchematicRecipe(new SchematicBooster());
-		SchematicRegistry.registerSchematicRecipe(new SchematicFins());
+    	
 		SchematicRegistry.registerSchematicRecipe(new SchematicOxTank());
 		
 		if(GSConfigCore.enableAdvancedRocketCraft) {
+			SchematicRegistry.registerSchematicRecipe(new SchematicCone());
+			SchematicRegistry.registerSchematicRecipe(new SchematicBody());
+			SchematicRegistry.registerSchematicRecipe(new SchematicEngine());
+			SchematicRegistry.registerSchematicRecipe(new SchematicBooster());
+			SchematicRegistry.registerSchematicRecipe(new SchematicFins());
+			
 			for(ISchematicPage page : SchematicRegistry.schematicRecipes)
 			{
 				if(page instanceof SchematicTier2Rocket) {
@@ -482,17 +487,18 @@ public class SolarSystemBodies implements IBodies{
 	
 	private static void registerDungeonLoot()
 	{	    
-		GalacticraftRegistry.addDungeonLoot(1, new ItemStack(GSItems.BASIC, 1, 10));
+		//SCHEMATIC BOX
+		if(GSConfigCore.enableAdvancedRocketCraft) {
+			GalacticraftRegistry.addDungeonLoot(1, new ItemStack(GSItems.BASIC, 1, 10)); //MOON
+			GalacticraftRegistry.addDungeonLoot(2, new ItemStack(GSItems.BASIC, 1, 10)); //MARS
+		}
+		//EPO
 		GalacticraftRegistry.addDungeonLoot(1, new ItemStack(GSItems.SCHEMATICS, 1, 5));
-		
-	    GalacticraftRegistry.getDungeonLoot(2).clear();
-	    GalacticraftRegistry.addDungeonLoot(2, new ItemStack(MarsItems.schematic, 1, 1));	    
-	    GalacticraftRegistry.addDungeonLoot(2, new ItemStack(MarsItems.schematic, 1, 2)); 
-	    GalacticraftRegistry.addDungeonLoot(2, new ItemStack(GSItems.BASIC, 1, 10));
 	    	    
 	    GalacticraftRegistry.addDungeonLoot(4, new ItemStack(GSItems.BASIC, 1, 16));
 	    GalacticraftRegistry.addDungeonLoot(4, new ItemStack(GSItems.BASIC, 1, 18));
-	    GalacticraftRegistry.addDungeonLoot(4, new ItemStack(GSItems.GEOLOGICAL_SCANNER, 1, 100));
+	    
+	    //GalacticraftRegistry.addDungeonLoot(4, new ItemStack(GSItems.GEOLOGICAL_SCANNER, 1, 100));
 	    
 	    GalacticraftRegistry.addDungeonLoot(5, new ItemStack(GSItems.ROCKET_MODULES, 1, 4));
 	    GalacticraftRegistry.addDungeonLoot(5, new ItemStack(GSItems.ROCKET_MODULES, 1, 6));

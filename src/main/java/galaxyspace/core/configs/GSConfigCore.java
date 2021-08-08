@@ -95,7 +95,7 @@ public class GSConfigCore
             propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_DIFFICULTY, "enableAdvancedRocketCraft", true);
-            prop.setComment("Enable/Disable advanced craft for rocket tier 2-3.");
+            prop.setComment("Enable/Disable advanced craft for rocket tier 2-6.");
             prop.setLanguageKey("gc.configgui.enableAdvancedRocketCraft").setRequiresMcRestart(true);
             enableAdvancedRocketCraft = prop.getBoolean(true);
             propOrder.add(prop.getName());   

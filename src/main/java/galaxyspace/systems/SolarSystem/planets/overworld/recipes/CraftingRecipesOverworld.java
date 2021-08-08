@@ -271,6 +271,15 @@ public class CraftingRecipesOverworld {
 		
 	   AssemblyRecipes.addShapelessRecipe(new ItemStack(GSBlocks.ADVANCED_LANDING_PAD_SINGLE, 5, 0), plateTitanium, plateTitanium, plateTitanium, new ItemStack(GSItems.COMPRESSED_PLATES, 1, 4), new ItemStack(GSItems.COMPRESSED_PLATES, 1, 4), new ItemStack(GSItems.COMPRESSED_PLATES, 1, 4), new ItemStack(GCBlocks.basicBlock, 1, 12), new ItemStack(GCBlocks.basicBlock, 1, 12), new ItemStack(GCBlocks.basicBlock, 1, 12));
 		
+	   if(!GSConfigCore.enableAdvancedRocketCraft) {
+		   for(int i = 0; i < 3; i++) {
+			   AssemblyRecipes.addRecipe(new ItemStack(GSItems.ROCKET_PARTS, 1, 5 * i + 5),  new Object[] {" X ", "XYX", "ZWZ", 'X', new ItemStack(GSItems.HDP, 1, i), 'Y', new ItemStack(GCItems.partBuggy, 1, 1), 'Z', new ItemStack(GCBlocks.sealableBlock, 1, 14), 'W', new ItemStack(GCItems.oxTankHeavy, 1, 0)});
+			   AssemblyRecipes.addRecipe(new ItemStack(GSItems.ROCKET_PARTS, 1, 5 * i + 6),  new Object[] {"XYX", "ZCW", "XAX", 'X', new ItemStack(GSItems.HDP, 1, i), 'Y', new ItemStack(GCItems.basicItem, 1, 20), 'Z', new ItemStack(GCItems.oxygenConcentrator, 1, 0), 'C', new ItemStack(GSItems.ROCKET_MODULES, 1, 3), 'W', new ItemStack(GCItems.basicItem, 1, 14), 'A', new ItemStack(AsteroidsItems.basicItem, 1, 1)});
+			   AssemblyRecipes.addRecipe(new ItemStack(GSItems.ROCKET_PARTS, 1, 5 * i + 7),  new Object[] {"XYX", "XCX", "ZWZ", 'X', new ItemStack(GSItems.HDP, 1, i), 'Y', new ItemStack(Items.FLINT_AND_STEEL, 1, 0), 'Z', new ItemStack(GCBlocks.oxygenPipe, 1, 0), 'C', new ItemStack(GSItems.ROCKET_MODULES, 1, 3), 'W', new ItemStack(GSItems.ROCKET_PARTS, 1, 8)});
+			   AssemblyRecipes.addRecipe(new ItemStack(GSItems.ROCKET_PARTS, 1, 5 * i + 8),  new Object[] {"XYX", "XCX", " W ", 'X', new ItemStack(GSItems.HDP, 1, i), 'Y', new ItemStack(GCBlocks.oxygenPipe, 1, 0), 'C', new ItemStack(GCItems.fuelCanister.setContainerItem(null), 1, 1), 'W', new ItemStack(AsteroidsItems.basicItem, 1, 1)});
+			   AssemblyRecipes.addRecipe(new ItemStack(GSItems.ROCKET_PARTS, 1, 5 * i + 9),  new Object[] {" Y ", "XYX", "X X", 'X', new ItemStack(GSItems.HDP, 1, i), 'Y', new ItemStack(AsteroidsItems.basicItem, 1, 5)});
+		   }
+	   }
    }
    
    private static void addRocketAssembly() {
@@ -301,7 +310,8 @@ public class CraftingRecipesOverworld {
 	   RecyclerRecipes.recycling().addNewRecipe(BasicItems.DRY_ICE_CRYSTAL.getItemStack(), ItemStack.EMPTY, new FluidStack(FluidRegistry.WATER, 50));
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSBlocks.ENCELADUS_BLOCKS, 1, 0), new ItemStack(Items.SNOWBALL, 4, 0), new FluidStack(FluidRegistry.WATER, 200));
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSBlocks.ENCELADUS_CRYSTAL, 1, 0), BasicItems.UNKNOW_CRYSTAL.getItemStack(4), null);
-		  
+	   
+	   //RecyclerRecipes.recycling().addNewRecipe(new ItemStack(Items.COAL), new ItemStack(Items.COAL, 1, 1), new ItemStack(Items.DIAMOND), 100, 5, null);
    }
       
    
