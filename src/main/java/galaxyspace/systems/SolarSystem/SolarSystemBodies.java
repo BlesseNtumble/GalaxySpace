@@ -7,12 +7,14 @@ import java.util.Map.Entry;
 import asmodeuscore.api.IBodies;
 import asmodeuscore.api.IBodiesHandler;
 import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarClass;
 import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.api.dimension.IAdvancedSpace.TypeBody;
 import asmodeuscore.core.astronomy.BodiesData;
 import asmodeuscore.core.astronomy.BodiesRegistry;
 import asmodeuscore.core.astronomy.dimension.world.OreGenerator;
 import asmodeuscore.core.astronomy.dimension.world.gen.ACBiome;
+import asmodeuscore.core.prefab.TeleportTypeBody;
 import asmodeuscore.core.prefab.celestialbody.ExPlanet;
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.GSBlocks;
@@ -72,6 +74,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.schematics.SchematicFin
 import galaxyspace.systems.SolarSystem.planets.overworld.schematics.SchematicOxTank;
 import galaxyspace.systems.SolarSystem.planets.pluto.dimension.TeleportTypePluto;
 import galaxyspace.systems.SolarSystem.planets.pluto.dimension.WorldProviderPluto;
+import galaxyspace.systems.SolarSystem.planets.test.dimension.WorldProviderTest_WE2;
 import galaxyspace.systems.SolarSystem.satellites.venus.dimension.TeleportTypeVenusSS;
 import galaxyspace.systems.SolarSystem.satellites.venus.dimension.WorldProviderVenusSS;
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
@@ -132,6 +135,8 @@ public class SolarSystemBodies implements IBodies{
 	public static Planet planetMakemake;
 	public static Planet planetEris;
 	public static Planet planetDeeDee;
+	
+	public static Planet planetTest;
 		
 	public static Moon phobosMars;
 	public static Moon deimosMars;
@@ -379,6 +384,14 @@ public class SolarSystemBodies implements IBodies{
 		//GalaxyRegistry.getRegisteredPlanets().remove(MarsModule.planetMars.getName());
 		//GalaxyRegistry.getRegisteredPlanetIDs().remove(MarsModule.planetMars.getName());
 		
+		if(GalaxySpace.debug) {
+			planetTest = BodiesRegistry.registerExPlanet(sol, "test_planet", GalaxySpace.ASSET_PREFIX, 5.0F);
+			BodiesRegistry.setOrbitData(planetTest, (float) Math.PI + 1.64F, 1.0F, 392.9F);
+			BodiesRegistry.setAtmosphere(planetTest, false, false, false, -12.0F, 0.0F, 0.0F);
+			BodiesRegistry.setPlanetData(planetTest, 0F, 12000, BodiesRegistry.calculateGravity(2.02F), true);
+			BodiesRegistry.setProviderData(planetTest, WorldProviderTest_WE2.class, GSConfigDimensions.dimensionIDTest, 6, ACBiome.ACSpace);
+			GalaxyRegistry.registerPlanet(planetTest);
+		}
 		registryteleport();
 		registrycelestial(); 		
 		
@@ -483,6 +496,10 @@ public class SolarSystemBodies implements IBodies{
 	        }
 			GSDimensions.VENUS_SS_KEEPLOADED = GalacticraftRegistry.registerDimension("Venus Space Station", "_venus_orbit", GSConfigDimensions.idDimensionVenusOrbitStatic, WorldProviderVenusSS.class, true);
 	    }
+        
+
+		BodiesData data = new BodiesData(TypeBody.STAR).setStarClass(StarClass.DWARF).setStarColor(StarColor.YELLOW);
+		BodiesRegistry.registerBodyData(GalacticraftCore.solarSystemSol.getMainStar(), data);
 	}
 	
 	private static void registerDungeonLoot()
@@ -506,19 +523,8 @@ public class SolarSystemBodies implements IBodies{
 	
 	private static void registrycelestial()
 	{
-		/*
-		ItemStack[] suit = new ItemStack[] 
-		{
-			new ItemStack(GSItems.SPACE_SUIT_HELMET, 1, 1),
-			new ItemStack(GSItems.SPACE_SUIT_BODY, 1, 1),
-			new ItemStack(GSItems.SPACE_SUIT_LEGGINS, 1, 1),
-			new ItemStack(GSItems.SPACE_SUIT_BOOTS, 1, 1)
-		};
-		*/
-		BodiesData data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.YELLOW);
-		BodiesRegistry.registerBodyData(GalacticraftCore.solarSystemSol.getMainStar(), data);
 
-		data = new BodiesData(null, /*BodiesRegistry.calculateGravity(8.88F),*/ 92, /*182000,*/ false);
+		BodiesData data = new BodiesData(null, /*BodiesRegistry.calculateGravity(8.88F),*/ 92, /*182000,*/ false);
 		BodiesRegistry.registerBodyData(VenusModule.planetVenus, data);
 		
 		data = new BodiesData(null, /*BodiesRegistry.calculateGravity(10.0F),*/ 1, /*24000,*/false);
@@ -562,6 +568,8 @@ public class SolarSystemBodies implements IBodies{
 		GalacticraftRegistry.registerTeleportType(WorldProviderPluto.class, new TeleportTypePluto());
 		GalacticraftRegistry.registerTeleportType(WorldProviderKuiperBelt.class, new TeleportTypeKuiperBelt());
 		GalacticraftRegistry.registerTeleportType(WorldProviderHaumea_WE.class, new TeleportTypeHaumea());
+		
+		GalacticraftRegistry.registerTeleportType(WorldProviderTest_WE2.class, new TeleportTypeBody());
 		/*GalacticraftRegistry.registerTeleportType(WorldProviderMakemake.class, new TeleportTypeMakemake());*/
 		//GalacticraftRegistry.registerTeleportType(WorldProviderEris.class, new TeleportTypeEris());
 		
@@ -622,6 +630,8 @@ public class SolarSystemBodies implements IBodies{
 		
 		GSDimensions.KUIPER_BELT = WorldUtil.getDimensionTypeById(GSConfigDimensions.dimensionIDKuiperBelt);
 		GSDimensions.HAUMEA = WorldUtil.getDimensionTypeById(GSConfigDimensions.dimensionIDHaumea);
+		
+		GSDimensions.TEST = WorldUtil.getDimensionTypeById(GSConfigDimensions.dimensionIDTest);
 		
 		
 		if(event.getSide() == Side.CLIENT) {
