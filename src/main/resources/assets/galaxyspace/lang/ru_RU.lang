@@ -330,6 +330,12 @@ item.empty_plasma_cell.name=Пустая Плазменная Капсула
 item.filled_plasma_cell.name=Полная Плазменная Капсула
 item.wolf_thermal_suit.name=Собачий Термальный Костюм
 item.animal_cage.name=Клетка для животных
+item.iron_fan.name=Железный Ротор
+item.steel_fan.name=Стальной Ротор
+item.plastic_fan.name=Пластиковый Ротор
+item.carbon_fan.name=Углеродный Ротор
+item.raw_plastic.name=Сырой Пластик
+item.plastic.name=Кусочек Пластика
 
 item.module_expander.name=Модуль "Расширение"
 item.module_stabiliser.name=Модуль "Стабилизация"
@@ -479,6 +485,9 @@ gs.success.name=Актуальная версия:
 gs.update.available=Доступна новая версия!
 gs.update.download=Скачать
 gs.update.changelog=Изменения
+
+gui.rotor_slot_desc.0=Слот для ротора.
+gui.rotor_slot_desc.1=Чем лучше ротор - тем больше энергии он вырабатывает.
 
 #|/////////////////////////////////////////|
 #||||||||||||||||||Modules||||||||||||||||||

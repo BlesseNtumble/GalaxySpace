@@ -374,6 +374,12 @@ item.empty_plasma_cell.name=Empty Plasma Cell
 item.filled_plasma_cell.name=Filled Plasma Cell
 item.wolf_thermal_suit.name=Wolf Thermal Suit
 item.animal_cage.name=Animal Cage
+item.iron_fan.name=Iron Fan
+item.steel_fan.name=Steel Fan
+item.plastic_fan.name=Plastic Fan
+item.carbon_fan.name=Carbon Fan
+item.raw_plastic.name=Raw Plastic
+item.plastic.name=Plastic Fragment
 
 item.module_electrolyse.name=Module "Electrolyser"
 item.module_expander.name=Module "Expander"
@@ -506,6 +512,9 @@ gs.success.name=Available version:
 gs.update.available=New version available!
 gs.update.download=Download
 gs.update.changelog=Changelog
+
+gui.rotor_slot_desc.0=Rotor slot, place rotor here.
+gui.rotor_slot_desc.1=The better the rotor, the more energy it generates.
 
 #|/////////////////////////////////////////|
 #|||||||||||||SpaceSuit Modules|||||||||||||

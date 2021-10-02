@@ -91,12 +91,13 @@ public class ItemBasicGS extends Item implements ISortableItem{
 		EMPTY_PLASMA_CELL(29),
 		FILLED_PLASMA_CELL(30),
 		WOLF_THERMAL_SUIT(31),
-		ANIMAL_CAGE(32),
-		
+		ANIMAL_CAGE(32),		
 		IRON_FAN(33),
 		STEEL_FAN(34),
 		PLASTIC_FAN(35),
-		CARBON_FAN(36);
+		CARBON_FAN(36),
+		RAW_PLASTIC(37),
+		PLASTIC(38);
 		
 		private int meta;
 	
