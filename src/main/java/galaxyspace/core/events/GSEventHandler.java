@@ -355,7 +355,7 @@ public class GSEventHandler {
 
 		}
 		
-		if(!world.isRemote && GSConfigCore.enableHardMode && !block.hasTileEntity(state))
+		if(!world.isRemote && !block.hasTileEntity(state))
 		{		
 			if(CompatibilityManager.isIc2Loaded())
 			{
@@ -367,11 +367,7 @@ public class GSEventHandler {
 					}
 				}
 			}
-			
-			if (GalacticraftCore.isPlanetsLoaded && world.getTileEntity(event.getPos()) instanceof TileEntityFuelLoader) {
-				TileEntityFuelLoader tile = (TileEntityFuelLoader) world.getTileEntity(event.getPos());
-				System.out.println(tile.attachedFuelable);
-			}
+
 			//ICE BUCKET
 			if(block == Blocks.ICE && stack.getItem() == Items.BUCKET)
 			{				
@@ -380,7 +376,7 @@ public class GSEventHandler {
 				world.setBlockToAir(event.getPos());
 			}						
 			
-			if(world.provider instanceof IGalacticraftWorldProvider)
+			if(world.provider instanceof IGalacticraftWorldProvider && GSConfigCore.enableOxygenForPlantsAndFoods)
 			{
 				AxisAlignedBB bb = new AxisAlignedBB(event.getPos().up());
 				float thermal = ((IGalacticraftWorldProvider)world.provider).getThermalLevelModifier();
@@ -410,25 +406,7 @@ public class GSEventHandler {
 								event.setCanceled(true);
 							}
 						}
-						/*
-						if(ore.need_check_temp && (thermal >= 1.5 || thermal < -1.0F)) {
-							
-							if(ore.need_check_oxygen && !OxygenUtil.isAABBInBreathableAirBlock(world, bb, true))
-							{
-								player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.needoxygenthermal")));				   
-								event.setCanceled(true);								
-							}
-							else
-							{
-								player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.needthermal")));				   
-								event.setCanceled(true);		
-							}
-						}
-						else if(ore.need_check_oxygen && !OxygenUtil.isAABBInBreathableAirBlock(world, bb, false)) {
-							player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.needoxygen")));				   
-							event.setCanceled(true);	
-						}
-						*/
+						
 						if(ore.replaced != Blocks.AIR.getDefaultState())
 							if(world.getBlockState(event.getPos()).getBlock().isReplaceable(world, event.getPos()))
 								world.setBlockState(event.getPos(), ore.replaced);
@@ -498,7 +476,7 @@ public class GSEventHandler {
 			GalaxySpace.instance.debug(Item.REGISTRY.getNameForObject(i.getItem()) + " | " + i.getUnlocalizedName() + " | " + Biome.getBiome(Biome.getIdForBiome(world.getBiomeForCoordsBody(event.getPos()))));
 		
 					
-		if(!world.isRemote && GSConfigCore.enableHardMode && !player.capabilities.isCreativeMode)
+		if(!world.isRemote && GSConfigCore.enableOxygenForPlantsAndFoods && !player.capabilities.isCreativeMode)
 		{	
 			if(world.provider instanceof IGalacticraftWorldProvider && !((IGalacticraftWorldProvider)world.provider).hasBreathableAtmosphere())
 			{
@@ -518,24 +496,7 @@ public class GSEventHandler {
 		return !s.isEmpty() && s.getItem() instanceof ItemFood && !(s.getItem() instanceof micdoodle8.mods.galacticraft.core.items.ItemFood) && !(s.getItem() instanceof IItemSpaceFood);
 	}
 
-/*
-	@SubscribeEvent
-    public void onThermalArmorEvent(ThermalArmorEvent event)
-    {
-        if (event.armorStack == null)
-        {
-            event.setArmorAddResult(ThermalArmorEvent.ArmorAddResult.REMOVE);
-            return;
-        }
-        if (event.armorStack.getItem() == GSItems.ThermalPaddingTier2 && event.armorStack.getItemDamage() == event.armorIndex)
-        {
-            event.setArmorAddResult(ThermalArmorEvent.ArmorAddResult.ADD);
-            return;
-        }
-        
-        event.setArmorAddResult(ThermalArmorEvent.ArmorAddResult.NOTHING);
-    }
-	*/
+
 	@SubscribeEvent
 	public void onEntityUpdate(LivingUpdateEvent event)
 	{
@@ -598,12 +559,7 @@ public class GSEventHandler {
 			{
 				player.attackEntityFrom(GSDamageSource.acid, 1.5F);
 			}
-			
-			/*if (solar < 48 || world.provider instanceof WorldProviderMercury && player.posY <= 30)
-			{
-				player.removePotionEffect(GSPotions.radiation.id);
-			}*/
-			
+
 			if(player.world.provider instanceof WorldProviderKuiperBelt && player.posY <= -20)
 			{				
 				player.connection.setPlayerLocation(player.posX, 188, player.posZ, player.rotationYaw, player.rotationPitch);
@@ -629,26 +585,7 @@ public class GSEventHandler {
 					}
 				}
 			}
-			/*
-			for(ItemStack stack : stats.getExtendedInventory().stacks)
-			{
-				if(!player.capabilities.isCreativeMode && stack.getItem() instanceof ItemThermalPaddingBase)
-				{
-					ItemThermalPaddingBase item = (ItemThermalPaddingBase) stack.getItem();
-					
-					if(item.isFreeze() && !player.world.isDaytime())
-						stats.setThermalLevelNormalising(false);
-						stats.setThermalLevel(-22);
-				}
-			}
-			*/
-	        /*if (stats.getShieldControllerInSlot().isEmpty())
-	        {
-	        	GCPlayerHandler.sendGearUpdatePacket(player, EnumModelPacketType.REMOVE, EnumExtendedInventorySlot.SHIELD_CONTROLLER);
-	        }
-	       	else*/ 
 			
-			//THERMAL
 			
 			//
 			if (stats.getShieldControllerInSlot().isItemEqual(new ItemStack(GSItems.BASIC, 1, 16)))
@@ -732,18 +669,6 @@ public class GSEventHandler {
 			}
 		}
 		
-		//}
-		/*if (living instanceof EntityPlayer) 
-		{
-			if(living.worldObj.provider instanceof WorldProviderTCetiE)
-			{
-				if (living.isInWater())
-				{
-					applyReverseWaterMovement(living);				
-				}
-			}
-		}*/
-		
 	}
 	
 	@SubscribeEvent
@@ -809,8 +734,8 @@ public class GSEventHandler {
 					break;
 				}
 			}
-			
-			event.setCanceled(checkAirLock || !GSConfigCore.enableRadiationSystem || this.getProtectArmor(player) || player.getRidingEntity() instanceof EntityLanderBase || player.getRidingEntity() instanceof EntityTieredRocket || this.inRadiationBubble(player.getEntityWorld(), player.posX, player.posY, player.posZ));		
+			if(!player.capabilities.isCreativeMode) 
+				event.setCanceled(checkAirLock || !GSConfigCore.enableRadiationSystem || this.getProtectArmor(player) || player.getRidingEntity() instanceof EntityLanderBase || player.getRidingEntity() instanceof EntityTieredRocket || this.inRadiationBubble(player.getEntityWorld(), player.posX, player.posY, player.posZ));		
 		}
 	}
 	
@@ -825,47 +750,16 @@ public class GSEventHandler {
 			World world = player.getEntityWorld();
 			float level = event.getPressureLevel();
 			
-			if(!player.capabilities.isCreativeMode)
-        	{
-				if(!GSConfigCore.enablePressureSystem)
-					event.setCanceled(true);
-				
-				if(this.getProtectArmor(player))
-					event.setCanceled(true);
-	        	
-	        	if(this.inGravityZone(world, player, true)) 
-	        		event.setCanceled(true);
-	        		/*	if(player.ticksExisted % 50 == 0) {
-		        			if(level > 10) player.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 10*20));					       
-					        if(level > 35) player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 10*20));
-					        if(level > 25) player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 280, 4));		        			
-		        			if(level > 45) player.attackEntityFrom(GSDamageSource.pressure, 2.5F);
-	        			}	*/        			
-	        			
-				        /*
-				        if(GSConfigCore.enableHardMode)
-				        {
-				        	if(level > 35) player.attackEntityFrom(GSDamageSource.pressure, 1.0F);
-				        	if(level > 45) player.attackEntityFrom(GSDamageSource.pressure, 1000.0F);				        			
-				        }
-				        else
-		        		{ 	
-				        	if(level > 25) 
-		        			{
-		        				player.jumpMovementFactor /= 2;//0.5F;
-		        				player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 280, 4));
-		        			} 				        				        				
-		        		}*/
-        				        		
-	        	
-        	}
+			if(!player.capabilities.isCreativeMode)     				        		
+	        	event.setCanceled(!GSConfigCore.enablePressureSystem || this.getProtectArmor(player) || this.inGravityZone(world, player, true) || player.getRidingEntity() instanceof EntityLanderBase || player.getRidingEntity() instanceof EntityTieredRocket);
+        	
 		}
 	}
 	
 	public static boolean getProtectArmor(EntityPlayerMP player)
 	{			
 		boolean[] check = new boolean[4];
-		boolean flag = false;
+		//boolean flag = false;
 		
 		for(String string : GSConfigCore.radiation_armor)
 		{
@@ -999,15 +893,7 @@ public class GSEventHandler {
 	public static boolean isItemStackEqual(ItemStack stack1, ItemStack stack2) {
 		return (!stack1.isEmpty() && stack1.getItem() == stack2.getItem() && (stack1.getItemDamage() == stack2.getItemDamage() || stack2.getItemDamage() == OreDictionary.WILDCARD_VALUE));
 	}
-	/*
-	public static ItemStack changeStackItem(ItemStack stack, Item item) {
-	      ItemStack newStack = new ItemStack(item);
-	      newStack.setItemDamage(stack.getItemDamage());
-	      newStack.stackTagCompound = stack.stackTagCompound;
-	      return newStack;
-	}
-
-	*/	
+	
 	protected void updateSchematics(EntityPlayerMP player, GCPlayerStats playerStats)
     {
        /* SchematicRegistry.addUnlockedPage(player, SchematicRegistry.getMatchingRecipeForID(GSConfigSchematics.idSchematicCone));
