@@ -183,6 +183,7 @@ public class WorldProviderTauCeti_F_WE extends WE_WorldProviderSpace implements 
     }
     
     @Override
+    @SideOnly(Side.CLIENT)
     public IRenderHandler getCloudRenderer(){
     	if(super.getCloudRenderer() == null)
     		this.setCloudRenderer(new CloudProviderTauCeti_F());
@@ -191,6 +192,7 @@ public class WorldProviderTauCeti_F_WE extends WE_WorldProviderSpace implements 
     }
     
     @SideOnly(Side.CLIENT)
+    @Override
     public IRenderHandler getSkyRenderer()
     {
     	if (super.getSkyRenderer() == null)
@@ -451,4 +453,6 @@ public class WorldProviderTauCeti_F_WE extends WE_WorldProviderSpace implements 
 		return 0;
 	}
 
+	@Override
+	public boolean isColorWorld() { return true; }
 }

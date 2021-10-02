@@ -15,13 +15,16 @@ public class GSStatsCapability extends StatsCapability {
 
 	@Override
 	public void saveNBTData(NBTTagCompound nbt) {
-		nbt.setIntArray("gs_knowledge_research", know_res);		
+		nbt.setIntArray("gs_knowledge_research", know_res);	
 	}
 
 	@Override
 	public void loadNBTData(NBTTagCompound nbt) {
 		try {
+			
 			this.know_res = nbt.getIntArray("gs_knowledge_research");
+			
+			
 		} catch (Exception e) {
 			GCLog.severe("Found error in saved Galaxy Space player data for " + player.get().getGameProfile().getName() + " - this should fix itself next relog.");
 			e.printStackTrace();
@@ -34,8 +37,9 @@ public class GSStatsCapability extends StatsCapability {
 	public void copyFrom(StatsCapability oldData, boolean keepInv) {
 		if(oldData.getKnowledgeResearches() != null)
 			this.know_res = oldData.getKnowledgeResearches();
+		
 	}
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	@Override
 	public WeakReference<EntityPlayerMP> getPlayer() {
 		return player;
@@ -55,6 +59,5 @@ public class GSStatsCapability extends StatsCapability {
 	public void setKnowledgeResearch(int id, int k) {
 		this.know_res[id] = k;		
 	}
-
 	
 }

@@ -9,8 +9,6 @@ import galaxyspace.api.IResearch;
 import galaxyspace.core.prefab.researches.TestResearch;
 
 public class ResearchUtil {
-		
-	//private static Map<String, Set<IResearch>> know_research_list = new HashMap<String, Set<IResearch>>();
 	
 	private static List<IResearch> list = new ArrayList<IResearch>();
 	public static void initResearches()
@@ -45,9 +43,5 @@ public class ResearchUtil {
 					 return res;
 		return null;
 	}
-	/*
-	public static Map<String, Set<IResearch>> getResearchList()
-	{
-		return know_research_list;
-	}*/
+
 }

@@ -5,6 +5,7 @@ import java.io.File;
 import asmodeuscore.api.IBodies;
 import asmodeuscore.api.IBodiesHandler;
 import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarClass;
 import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.api.dimension.IAdvancedSpace.TypeBody;
 import asmodeuscore.core.astronomy.BodiesData;
@@ -77,7 +78,7 @@ public class TauCetiSystemBodies implements IBodies{
 		GalaxyRegistry.registerPlanet(TauCeti_F);
 		
 		
-		BodiesData data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.YELLOW);
+		BodiesData data = new BodiesData(TypeBody.STAR).setStarClass(StarClass.DWARF).setStarColor(StarColor.YELLOW);
 		BodiesRegistry.registerBodyData(TauCetiSystem.getMainStar(), data);		
 		
 		GalacticraftRegistry.registerTeleportType(WorldProviderTauCeti_F_WE.class, new TeleportTypeTauCeti_F());		

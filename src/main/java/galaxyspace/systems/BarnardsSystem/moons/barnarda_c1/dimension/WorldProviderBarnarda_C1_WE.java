@@ -275,6 +275,7 @@ public class WorldProviderBarnarda_C1_WE extends WE_WorldProviderSpace implement
 		layer.add(Blocks.PACKED_ICE.getDefaultState(), terrainGenerator.worldStoneBlock, -256, 0,   -4, -10,  true);
 		layer.add(Blocks.SNOW.getDefaultState(), Blocks.PACKED_ICE.getDefaultState(), -256, 0,   -2, -1,  false);
 		
+		
 		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(0D, 0D, 1.5F, 4, 90, 10, layer));	
 		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-0.5D, 0.5D, 2.0F, 6, 150, 3, layer));	
 		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-1.4D, 1.0D, 1.5F, 4, 90, 10, layer));	

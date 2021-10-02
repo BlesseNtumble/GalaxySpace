@@ -5,6 +5,7 @@ import java.io.File;
 import asmodeuscore.api.IBodies;
 import asmodeuscore.api.IBodiesHandler;
 import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarClass;
 import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.api.dimension.IAdvancedSpace.TypeBody;
 import asmodeuscore.core.astronomy.BodiesData;
@@ -55,10 +56,6 @@ import net.minecraftforge.fml.relauncher.Side;
 
 @IBodiesHandler
 public class BarnardsSystemBodies implements IBodies {
-
-	static {
-		
-	}
 	
 	public static SolarSystem BarnardsSystem;
 	public static Planet Barnarda_B, Barnarda_C, Barnarda_ABelt, Barnarda_E;
@@ -161,7 +158,7 @@ public class BarnardsSystemBodies implements IBodies {
 	{	
 		
 
-		BodiesData data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.ORANGE);
+		BodiesData data = new BodiesData(TypeBody.STAR).setStarClass(StarClass.DWARF).setStarColor(StarColor.ORANGE);
 		BodiesRegistry.registerBodyData(BarnardsSystem.getMainStar(), data);
 	}
 	
