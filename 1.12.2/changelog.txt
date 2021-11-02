@@ -1,5 +1,37 @@
 ///Changelog///
 #ru
+r.-----------------------2.0.17----------------------------
+r.1. Отключены солнечные панели на Венере.
+r.2. Добавлена генерация пещер на Ио.
+r.3. Увеличена частота генерации Неизвестных Кристаллов на Энцеладе.
+r.4. Теперь в данже на Марсе лут генерируется вне зависимости от выученных схем.
+r.5. Добавлен рецепт для Зарядочной Панели.
+r.6. Добавлена поддержка бесконечной канистры кислорода для Астро Волка.
+r.7. Добавлена атмосфера на Марсе.
+r.8. Несколько исправлений в lang файлах.
+r.9. Обновлен Геологический Сканер, добавлен рецепт, GUI.
+r.10. Облака, цвет неба, атмосфера на Тау Кита F.
+r.11. Уменьшен температурный диапазон на Марсе.
+r.12. Исправлено бесконечное производство энергии в Топливном Генераторе.
+r.13. Геотермальный генератор работает с гейзерами GS.
+r.14. Добавлен OreDict для булыжников на марсе и хаумеа.
+r.15. Исправлено извлечение воды из льда в Жидкостном Экстракторе.
+r.16. Исправлено "нет атмосферы" на карте галактики.
+r.17. Исправлены рецепты, если enablePlateOredict=true
+r.18. Увеличение выработки энергии с помощью мини-панелей.
+r.19. Исправлены хитбоксы Ветрогенератора.
+r.20. Добавлен конфиг для невесомости на астероидах.
+r.21. Упрощенный крафт для ракет 4-6, если enableAdvancedRocketCraft=false
+r.22. Добавлены роторы для Ветрогенератора.
+r.23. Добавлен второй выход для Универсального Переработчика.
+r.24. Добавлен конфиг для растений и продуктов в безвоздушной среде.
+r.25. Добавлен пластик.
+r.26. Добавлено новое изображение для Барнарды С.
+r.27. Добавлен скафандр легкого типа.
+r.28. Добавлен Фобос.
+r.29. Изменены цвета на Барнарде С.
+r.30. Добавлен экспериментальный режим: Выживание на Барнарде C
+r.31. Добавлен модуль подводного дыхания для скафандра.
 r.-----------------------2.0.16----------------------------
 r.1. Исправлен крафт ракеты 3 уровня.
 r.2. EPP канистра теперь восстанавливает кислород на Земле.
@@ -100,26 +132,39 @@ r.3. Добавлены облака на Проксиму B.
 r.4. Добавлены компоненты атмосферы на Барнарду С.
 r.5. Добавлена генерация гравия на Барнарду С.
 r.6. Исправлены сломанные чанки на Энцеладе.
-r.-----------------------2.0.9-----------------------------
-r.1. Исправлена невозможность потреблять консервы в открытом космосе.
-r.2. Исправлен краш при полете на Миранду.
-r.3. Исправлена работа Универсального Переработчика. Добавлен показатель шанса.
-r.4. Добавлено GUI для Планетарного Щита.
-r.5. Добавлены слота модулей для Планетарного Щита.
-r.6. Преобразованна генерация Энцелада.
-r.7. Исправлен дождь на Титане.
-r.8. Добавлена космическая станция в атмосфере Венеры.
-r.9. Подправлена локализация.
-r.10. Временно отключены энтити для схем.
-r.11. Исправлено отключение кнопки обновления в главном меню.
-r.12. Генератору Магнитного Поля добавлены слота под модули.
-r.13. Добавлено описание слотам для модулей в каждом механизме.
-r.14. Добавлена возможность копировать схемы.
-r.15. Дуговая печь теперь плавит х2 руды аддона.
-r.16. Исправлен рецепт пластины SDHD-120 при выключенном enablePlateOreDict.
-r.17. Добавлена планета Барнарда С.
-r.18. Обновлен минимальный билд GC4 - 215.
 #en
+e.-----------------------2.0.17----------------------------
+e.1. Disabled solar panel on Venus.
+e.2. Added cave gen on IO.
+e.3. Increased unknown crystal gen on Enceladus.
+e.4. In mars dungeon now random loot always, and not after a learned tier 3 rocket.
+e.5. Added recipe for Energy Pad.
+e.6. Added support inf. oxygen tank for Astro Wolf.
+e.7. Added atmoshere color for Mars.
+e.8. Misc. translations fixes.
+e.9. Updated Geological Scanner, added recipe, small gui.
+e.10. Clouds, sky color, atmosphere and etc for Tau Ceti F.
+e.11. Reduced temperature range on Mars.
+e.12. Fixed infinite energy production in Fuel Generator.
+e.13. Geothermal genrator work with other GS geysers.
+e.14. Added OreDict for mars and haumea cobblestones.
+e.15. Fixed draw water from ice in Liquid Extractor.
+e.16. Fixed "no atmothere" on galaxy map.
+e.17. Fixed some recipes, if enablePlateOredict=true
+e.18. Increased energy gen with help mini-panels.
+e.19. Fixed Wind Generator hitboxes.
+e.20. Added config for zero gravity on Asteroids dim.
+e.21. Simplified crafting for rockets 4-6 if enableAdvancedRocketCraft=false
+e.22. Added fans for Wind Generator.
+e.23. Added second output for Recycler.
+e.24. Added config for plants and foods without oxygen.
+e.25. Added plastic.
+e.26. Added new image for Barnarda C.
+e.27. Added spacesuit light type.
+e.28. Added Phobos.
+e.29. Changed colors on Barnarda C.
+e.30. Added experimental mode: Survival on Barnarda C
+e.31. Added water breathing module for space suit.
 e.-----------------------2.0.16----------------------------
 e.1. Fixed craft rocket tier 3.
 e.2. EPP canister now regen on Overworld.
@@ -220,22 +265,6 @@ e.3. Added clouds on Proxima B.
 e.4. Added atmoshperic components on Barnarda C.
 e.5. Added gravel gen on Barnarda C.
 e.6. Fixed broken chunks on Enceladus.
-e.-----------------------2.0.9-----------------------------
-e.1. Fixed the inability to consume canned food in outer space
-e.2. Fixed crash when try land to Miranda.
-e.3. The work of the Universal Recycler has been fixed. Chance indicator added.
-e.4. Added GUI for Planetary Shield.
-e.5. Added module slots for the Planetary Shield.
-e.6. Changed Enceladus generation.
-e.7. Fixed rain on Titan.
-e.8. A space station in the atmosphere of Venus has been added.
-e.9. Fixed localization.
-e.10. Entities for schematics are temporarily disabled.
-e.11. Fixed disabling the update button in the main menu.
-e.12. Added module slots for the Magnetic Field Generator.
-e.13. Added description for module slots in each mechanism.
-e.14. Added the ability to copy schemes.
-e.15. The arc furnace now melts x2 addon ore.
 e.16. Fixed SDHD-120 plate recipe with enablePlateOreDict turned off.
 e.17. Added breathable Barnarda C planet.
 e.18. Update minimum GC4 build - 215.
