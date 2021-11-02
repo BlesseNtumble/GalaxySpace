@@ -54,9 +54,9 @@ import micdoodle8.mods.galacticraft.api.prefab.entity.EntityTieredRocket;
 import micdoodle8.mods.galacticraft.api.vector.BlockVec3Dim;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
+import micdoodle8.mods.galacticraft.api.world.ITeleportType;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCItems;
-import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.entities.EntityLanderBase;
 import micdoodle8.mods.galacticraft.core.entities.EntityMeteor;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler;
@@ -64,13 +64,13 @@ import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler.EnumMod
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler.ThermalArmorEvent;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
 import micdoodle8.mods.galacticraft.core.items.ItemTier1Rocket;
-import micdoodle8.mods.galacticraft.core.tile.TileEntityFuelLoader;
 import micdoodle8.mods.galacticraft.core.util.CompatibilityManager;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.FluidUtil;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
+import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import micdoodle8.mods.galacticraft.core.world.gen.WorldGenMinableMeta;
 import micdoodle8.mods.galacticraft.core.wrappers.IFluidHandlerWrapper;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.ItemTier3Rocket;
@@ -96,16 +96,22 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.play.server.SPacketRespawn;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.DimensionType;
+import net.minecraft.world.GameType;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldProvider;
+import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.config.Config.Type;
 import net.minecraftforge.common.config.ConfigManager;
@@ -116,6 +122,7 @@ import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -127,8 +134,8 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class GSEventHandler {
 
-	private static List<BlockToChange> block_to_change = new ArrayList();
-	private static List<ItemsToChange> items_to_change = new ArrayList();
+	private static List<BlockToChange> block_to_change = new ArrayList<BlockToChange>();
+	private static List<ItemsToChange> items_to_change = new ArrayList<ItemsToChange>();
 		
 	static {
 		OreDictionary.getOres("treeLeaves").forEach((ItemStack stack) -> {
@@ -231,7 +238,7 @@ public class GSEventHandler {
         		ids[i] = stats.getKnowledgeResearches()[i];
         	}
         	GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_UPDATE_RESEARCHES, GCCoreUtil.getDimensionID(event.player.world), new Object[] {ids}), (EntityPlayerMP)event.player);
-
+        	
         }
     }	
 		
@@ -249,7 +256,6 @@ public class GSEventHandler {
 	{
 		
 		
-		
 	}
 	
 	@SubscribeEvent
@@ -257,7 +263,7 @@ public class GSEventHandler {
 		if(e.getSource().getTrueSource() instanceof EntityPlayerMP)
 		{
 			EntityPlayerMP player = (EntityPlayerMP) e.getSource().getTrueSource();
-			
+	
 			ItemStack stack = player.getHeldItemMainhand();
 			
 			if(stack.getItem() instanceof ItemPlasmaSword && stack.getTagCompound().getFloat(ItemPlasmaSword.heat) >= 10.0F) {
@@ -292,7 +298,7 @@ public class GSEventHandler {
 	@SubscribeEvent 
 	public void onSetBlock(SetBlockEvent e) {
 		
-		if(e.world != null && !e.world.isRemote && e.world.provider instanceof IGalacticraftWorldProvider && e.pos != null)
+		if(e.world != null && !e.world.isRemote && e.world.provider instanceof IGalacticraftWorldProvider && e.pos != null && e.block != null)
 		{
 			float thermal = ((IGalacticraftWorldProvider)e.world.provider).getThermalLevelModifier();
 			AxisAlignedBB bb = new AxisAlignedBB(e.pos.getX()-1,e.pos.getY()-1,e.pos.getZ()-1, e.pos.getX()+1,e.pos.getY()+2,e.pos.getZ()+1);
@@ -496,7 +502,74 @@ public class GSEventHandler {
 		return !s.isEmpty() && s.getItem() instanceof ItemFood && !(s.getItem() instanceof micdoodle8.mods.galacticraft.core.items.ItemFood) && !(s.getItem() instanceof IItemSpaceFood);
 	}
 
+	private void survivalMode(EntityPlayerMP player, int dimensionID) {
+		final GCPlayerStats stats = GCPlayerStats.get(player);
+		
+		WorldServer worldOld = (WorldServer) player.world;
+		
+		try {
+			worldOld.getPlayerChunkMap().removePlayer(player);
+		} catch (Exception e) {
+		}
+		
+		worldOld.playerEntities.remove(player);
+        worldOld.updateAllPlayersSleepingFlag();
+        worldOld.loadedEntityList.remove(player);
+        worldOld.onEntityRemoved(player);
+        worldOld.getEntityTracker().untrack(player);
+        
+        if (player.addedToChunk && worldOld.getChunkProvider().chunkExists(player.chunkCoordX, player.chunkCoordZ))
+        {
+            Chunk chunkOld = worldOld.getChunkFromChunkCoords(player.chunkCoordX, player.chunkCoordZ);
+            chunkOld.removeEntity(player);
+            chunkOld.setModified(true);
+        }
+        
+        WorldServer worldNew = getStartWorld(worldOld, dimensionID);
+        int dimID = GCCoreUtil.getDimensionID(worldNew);
+        player.dimension = dimID;
+        player.connection.sendPacket(new SPacketRespawn(dimID, player.world.getDifficulty(), player.world.getWorldInfo().getTerrainType(), player.interactionManager.getGameType()));
+        worldNew.spawnEntity(player);
+        player.setWorld(worldNew);
+        player.mcServer.getPlayerList().preparePlayer(player, (WorldServer) worldOld);
+        
+        player.interactionManager.setWorld((WorldServer) player.world);
+        final ITeleportType type = GalacticraftRegistry.getTeleportTypeForDimension(player.world.provider.getClass());
+        Vector3 spawnPos = type.getPlayerSpawnLocation((WorldServer) player.world, player);
+        ChunkPos pair = player.world.getChunkFromChunkCoords(spawnPos.intX() >> 4, spawnPos.intZ() >> 4).getPos();
+        ((WorldServer) player.world).getChunkProvider().loadChunk(pair.x, pair.z);
+        player.setLocationAndAngles(spawnPos.x, spawnPos.y, spawnPos.z, player.rotationYaw, player.rotationPitch);
+        type.onSpaceDimensionChanged(player.world, player, false);
+        player.setSpawnChunk(new BlockPos(spawnPos.intX(), spawnPos.intY(), spawnPos.intZ()), true, GCCoreUtil.getDimensionID(player.world));
+        
+	}
+	
+	private WorldServer getStartWorld(WorldServer unchanged, int dimID)
+    {
+        if (ConfigManagerCore.challengeSpawnHandling)
+        {
+            WorldProvider wp = WorldUtil.getProviderForDimensionServer(dimID);
+            WorldServer worldNew = (wp == null) ? null : (WorldServer) wp.world;
+            if (worldNew != null)
+            {
+                return worldNew;
+            }
+        }
+        return unchanged;
+    }
 
+
+	@SubscribeEvent
+	public void onPortalCreated(BlockEvent.PortalSpawnEvent e)
+	{
+		World world = e.getWorld();
+		if(world != null) {
+			if(world.provider instanceof IGalacticraftWorldProvider) {
+				e.setCanceled(!((IGalacticraftWorldProvider)world.provider).netherPortalsOperational());
+			}
+		}
+	}
+	
 	@SubscribeEvent
 	public void onEntityUpdate(LivingUpdateEvent event)
 	{
@@ -542,11 +615,26 @@ public class GSEventHandler {
 		if (living instanceof EntityPlayerMP)
 		{
 			EntityPlayerMP player = (EntityPlayerMP)living;			
-			final GCPlayerStats stats = GCPlayerStats.get(player);			
+			final GCPlayerStats stats = GCPlayerStats.get(player);
+			final StatsCapability gsstats = GSStatsCapability.get(player);
 		
 			LightningStormHandler.spawnLightning(player);
-								
-			//this.updateSchematics(player, stats);
+			
+			if(BRConfigCore.enableBarnardsSystems && BRConfigDimensions.enableBarnardaC && BRConfigCore.survivalModeOnBarnarda && !gsstats.isBarnardaSurvivalMode()) { 
+				//survivalMode(player, BRConfigDimensions.dimensionIDBarnardaC);
+				WorldUtil.transferEntityToDimension(player, BRConfigDimensions.dimensionIDBarnardaC, player.getServerWorld());
+				
+				gsstats.setBarnardaSurvivalMode();
+
+				if (player.capabilities.isCreativeMode)
+					player.setGameType(GameType.SURVIVAL);
+
+				player.sendMessage(new TextComponentString(
+						EnumColor.BRIGHT_GREEN + "[BETA] Welcome in survival mode on Barnarda C."));
+				
+			}
+	        	
+        	//this.updateSchematics(player, stats);
 			//this.throwMeteors(player);
 
 			
@@ -632,18 +720,21 @@ public class GSEventHandler {
 			IInventoryGC inv = AccessInventoryGC.getGCInventoryForPlayer(player);
 			if(!stack.isEmpty())
 			{
-				if(stack.getItem() == GSItems.SPACE_SUIT_HELMET && player.isInWater())
+				if(stack.getItem() instanceof ItemSpaceSuit && player.isInWater() && stack.hasTagCompound() && stack.getTagCompound().hasKey("water_breathing"))
 				{
-					int count = 150;
+					int count = 300;
 					int air = player.getAir();
 					for(int i = 2; i <= 3; i++)
 					{
 						if(!inv.getStackInSlot(i).isEmpty() && inv.getStackInSlot(i).getItemDamage() != inv.getStackInSlot(i).getMaxDamage())
 						{
+							
 							if(air < count)
 							{
-								player.setAir(air + count);
-								inv.getStackInSlot(i).setItemDamage(inv.getStackInSlot(i).getItemDamage() + 1);
+								player.setAir(count);
+								
+								if(inv.getStackInSlot(i).getItem() != GCItems.oxygenCanisterInfinite)
+									inv.getStackInSlot(i).setItemDamage(inv.getStackInSlot(i).getItemDamage() + 1);
 							}
 							break;
 						}
