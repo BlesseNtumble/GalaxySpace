@@ -26,7 +26,8 @@ import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemTierKeysChest
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemUpgrades;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemArmorGS;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemJetpack;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemSpaceSuit;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemSpaceSuitLight;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemSpaceSuitTier1;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemThermalPaddingBase;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemGeologicalScanner;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemMatterManipulator;
@@ -52,8 +53,9 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class GSItems {
 	
+	public static ArmorMaterial SPACESUIT_LIGHT = EnumHelper.addArmorMaterial("SPACESUIT_LIGHT", "", 15, new int[] {3, 6, 7, 3}, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
 	public static ArmorMaterial SPACESUIT_TIER_1 = EnumHelper.addArmorMaterial("SPACESUIT", "", 18, new int[] {3, 6, 7, 3}, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
-	public static ArmorMaterial COBALT = EnumHelper.addArmorMaterial("COBALT", "", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
+	public static ArmorMaterial COBALT = EnumHelper.addArmorMaterial("COBALT", "", 13, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
 	public static ToolMaterial COBALT_TOOLS = EnumHelper.addToolMaterial("cobalt", 2, 250, 6.0F, 2.0F, 14);
 	public static ToolMaterial PLASMA_TOOLS = EnumHelper.addToolMaterial("plasma", 3, 1500, 8.0F, 8.0F, 0);
 	
@@ -89,12 +91,19 @@ public class GSItems {
 	public static Item EM_CANISTER = new ItemFluidCanisterGS("em_canister", GSFluids.LiquidEthaneMethane);
 	public static Item HELIUM_CANISTER = new ItemFluidCanisterGS("helium_canister", GSFluids.Helium3);
 	public static Item HELIUM_HYDROGEN_CANISTER = new ItemFluidCanisterGS("hh_canister", GSFluids.HeliumHydrogen);
+	
+	//public static Item PLASTIC_OIL_CANISTER = new ItemFluidCanisterGS("plastic_oil_canister", FluidRegistry.getFluid("oil"), 10001);
 		
 	//ARMOR	
-	public static Item SPACE_SUIT_BODY = new ItemSpaceSuit(SPACESUIT_TIER_1, EntityEquipmentSlot.CHEST, 1);
-	public static Item SPACE_SUIT_LEGGINS = new ItemSpaceSuit(SPACESUIT_TIER_1, EntityEquipmentSlot.LEGS, 1);
-	public static Item SPACE_SUIT_BOOTS = new ItemSpaceSuit(SPACESUIT_TIER_1, EntityEquipmentSlot.FEET, 1);
-	public static Item SPACE_SUIT_HELMET = new ItemSpaceSuit(SPACESUIT_TIER_1, EntityEquipmentSlot.HEAD, 1);
+	public static Item SPACE_SUIT_HELMET = new ItemSpaceSuitTier1(SPACESUIT_TIER_1, EntityEquipmentSlot.HEAD);
+	public static Item SPACE_SUIT_BODY = new ItemSpaceSuitTier1(SPACESUIT_TIER_1, EntityEquipmentSlot.CHEST);
+	public static Item SPACE_SUIT_LEGGINS = new ItemSpaceSuitTier1(SPACESUIT_TIER_1, EntityEquipmentSlot.LEGS);
+	public static Item SPACE_SUIT_BOOTS = new ItemSpaceSuitTier1(SPACESUIT_TIER_1, EntityEquipmentSlot.FEET);
+	
+	public static Item SPACE_SUIT_LIGHT_HELMET = new ItemSpaceSuitLight(SPACESUIT_LIGHT, EntityEquipmentSlot.HEAD);
+	public static Item SPACE_SUIT_LIGHT_BODY = new ItemSpaceSuitLight(SPACESUIT_LIGHT, EntityEquipmentSlot.CHEST);
+	public static Item SPACE_SUIT_LIGHT_LEGGINS = new ItemSpaceSuitLight(SPACESUIT_LIGHT, EntityEquipmentSlot.LEGS);
+	public static Item SPACE_SUIT_LIGHT_BOOTS = new ItemSpaceSuitLight(SPACESUIT_LIGHT, EntityEquipmentSlot.FEET);
 	
 	public static Item COBALT_HELMET = new ItemArmorGS("cobalt_helmet", COBALT, EntityEquipmentSlot.HEAD);
 	public static Item COBALT_CHEST = new ItemArmorGS("cobalt_chest", COBALT, EntityEquipmentSlot.CHEST);
@@ -156,6 +165,11 @@ public class GSItems {
 		registerItem(SPACE_SUIT_BODY);
 		registerItem(SPACE_SUIT_LEGGINS);
 		registerItem(SPACE_SUIT_BOOTS);	
+		
+		registerItem(SPACE_SUIT_LIGHT_HELMET);
+		registerItem(SPACE_SUIT_LIGHT_BODY);
+		registerItem(SPACE_SUIT_LIGHT_LEGGINS);
+		registerItem(SPACE_SUIT_LIGHT_BOOTS);	
 		
 		registerItem(COBALT_HELMET);
 		registerItem(COBALT_CHEST);

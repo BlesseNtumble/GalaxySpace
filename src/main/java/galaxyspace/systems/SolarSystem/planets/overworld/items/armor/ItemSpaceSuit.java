@@ -49,7 +49,7 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class ItemSpaceSuit extends ItemElectricArmor implements IArmorCorrosionResistant, ISensorGlassesArmor, IModificationItem, IJetpackArmor, ISpecialArmor, IArmorGravity, IItemPressurized, IItemRadiation{
+public abstract class ItemSpaceSuit extends ItemElectricArmor implements ISensorGlassesArmor, IModificationItem, IJetpackArmor, ISpecialArmor, IArmorGravity{
 
 	public static String mod_count = "modification_count";
 	public static String[] suit_buttons = new String[] {"helmet_button", "chest_button", "legs_button", "boots_button"};
@@ -211,9 +211,7 @@ public abstract class ItemSpaceSuit extends ItemElectricArmor implements IArmorC
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World world, List<String> list, ITooltipFlag flagIn)
     {		
-		list.addAll(FMLClientHandler.instance().getClient().fontRenderer.listFormattedStringToWidth(GCCoreUtil.translate("gui.spacesuit.desc"), 250));	
-		if(getArmorType(stack).equals(EntityEquipmentSlot.HEAD)) 
-			list.add(EnumColor.DARK_GREEN + GCCoreUtil.translate("gui.spacesuit_helmet.desc"));	
+		addInfo(stack, world, list, flagIn);
 		
 		String color = "";
 		float joules = this.getElectricityStored(stack);
@@ -434,11 +432,6 @@ public abstract class ItemSpaceSuit extends ItemElectricArmor implements IArmorC
 	}
 
 	@Override
-	public float getSolarRadiationProtectModify() {
-		return 1.0F;
-	}
-	
-	@Override
 	public Module_Type getType(ItemStack stack)
 	{
 		return Module_Type.SPACESUIT;
@@ -458,4 +451,6 @@ public abstract class ItemSpaceSuit extends ItemElectricArmor implements IArmorC
 	public int getItemEnchantability() {
 		return 0;
 	}
+	
+	public abstract void addInfo(ItemStack stack, @Nullable World world, List<String> list, ITooltipFlag flagIn);
 }
