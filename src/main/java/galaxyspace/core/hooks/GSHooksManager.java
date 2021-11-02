@@ -319,9 +319,9 @@ public class GSHooksManager {
                 {
                     IBlockState state = te.getWorld().getBlockState(pos1);
                     IEnergyGeyser geyser = (IEnergyGeyser) stateBelow.getBlock();
-                    Fluid fluid = geyser.getFluidForWork(te.getWorld(), stateBelow, pos1);
+                    boolean work = geyser.isWorkGeyser(te.getWorld(), stateBelow, below);
                     
-                    if (fluid != null && state.getBlock() == fluid.getBlock())
+                    if (work)
                     {
                     	
                     	validSpoutHook = true;

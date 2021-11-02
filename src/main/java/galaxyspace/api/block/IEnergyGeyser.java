@@ -6,5 +6,5 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 
 public interface IEnergyGeyser {
-	Fluid getFluidForWork(World world, IBlockState state, BlockPos pos);
+	boolean isWorkGeyser(World world, IBlockState state, BlockPos pos);
 }

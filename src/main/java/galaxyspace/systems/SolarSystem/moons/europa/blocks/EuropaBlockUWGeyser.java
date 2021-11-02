@@ -70,8 +70,8 @@ public class EuropaBlockUWGeyser extends Block implements IEnergyGeyser{
     }
 	
 	@Override
-	public Fluid getFluidForWork(World world, IBlockState state, BlockPos pos) {
-		return FluidRegistry.WATER;
+	public boolean isWorkGeyser(World world, IBlockState state, BlockPos pos) {
+		return world.getBlockState(pos.down()).getBlock() == FluidRegistry.WATER.getBlock();
 	}
 
 }

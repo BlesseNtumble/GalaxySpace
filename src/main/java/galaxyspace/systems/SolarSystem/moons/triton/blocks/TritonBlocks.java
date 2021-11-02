@@ -173,12 +173,12 @@ public class TritonBlocks  extends Block implements ISortableBlock, IEnergyGeyse
 	}
 	
 	@Override
-	public Fluid getFluidForWork(World world, IBlockState state, BlockPos pos) {
+	public boolean isWorkGeyser(World world, IBlockState state, BlockPos pos) {
 		if(state == state.withProperty(BASIC_TYPE, EnumTritonBlocks.TRITON_GEYSER))
-			return FluidRegistry.WATER;
+			return world.getBlockState(pos.down()).getBlock() == FluidRegistry.WATER.getBlock();
 		if(state == state.withProperty(BASIC_TYPE, EnumTritonBlocks.TRITON_GEYSER_2))
-			return FluidRegistry.WATER;
-		return null;
+			return world.getBlockState(pos.down()).getBlock() == FluidRegistry.WATER.getBlock();
+		return false;
 	}
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
