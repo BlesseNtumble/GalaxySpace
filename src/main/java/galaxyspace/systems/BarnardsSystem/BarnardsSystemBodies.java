@@ -138,7 +138,7 @@ public class BarnardsSystemBodies implements IBodies {
 	    ColorBlockHandler.addLeavesBlock(Blocks.LEAVES2.getDefaultState());
 	    ColorBlockHandler.addLeavesBlock(Blocks.VINE.getDefaultState());
 	    ColorBlockHandler.addLeavesBlock(BRBlocks.BARNARDA_C_LEAVES.getDefaultState());
-		ColorBlockHandler.addBlockWithColor(BRBlocks.BARNARDA_C_WATER_GRASS.getDefaultState(), 0x88CC44);
+		ColorBlockHandler.addBlockWithColor(BRBlocks.BARNARDA_C_WATER_GRASS.getDefaultState(), 0x985cff);
 		ColorBlockHandler.addWaterBlock(Blocks.WATER.getDefaultState());
 		ColorBlockHandler.addWaterBlock(Blocks.FLOWING_WATER.getDefaultState());
 	}

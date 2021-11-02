@@ -26,7 +26,7 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 public class Barnarda_C_Mountains extends WE_Biome {
 	
 	public Barnarda_C_Mountains(double min, double max, int height, double per, int octaves) {
-		super(new BiomeProperties("barnarda_c_mountains_" + height), new int[] {0x89AC76, 0x11FF66, 0x985cff});
+		super(new BiomeProperties("barnarda_c_mountains_" + height), new int[] {/*0x89AC76*/ 0x822899, 0x11FF66, 0x985cff});
 			
 		biomeMinValueOnMap      =  	   min;
 		biomeMaxValueOnMap      =      max;
