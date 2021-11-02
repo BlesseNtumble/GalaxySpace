@@ -21,6 +21,8 @@ import galaxyspace.systems.SolarSystem.moons.io.blocks.IoBlocks;
 import galaxyspace.systems.SolarSystem.moons.io.items.ItemBlocksIo;
 import galaxyspace.systems.SolarSystem.moons.miranda.blocks.MirandaBlocks;
 import galaxyspace.systems.SolarSystem.moons.miranda.items.ItemBlocksMiranda;
+import galaxyspace.systems.SolarSystem.moons.phobos.blocks.PhobosBlocks;
+import galaxyspace.systems.SolarSystem.moons.phobos.items.ItemBlocksPhobos;
 import galaxyspace.systems.SolarSystem.moons.titan.blocks.TitanBlocks;
 import galaxyspace.systems.SolarSystem.moons.titan.items.ItemBlocksTitan;
 import galaxyspace.systems.SolarSystem.moons.triton.blocks.TritonBlocks;
@@ -134,6 +136,7 @@ public class GSBlocks {
 	public static final Block PLUTO_BLOCKS = new PlutoBlocks().setHardness(3.0F);
 	public static final Block HAUMEA_BLOCKS = new HaumeaBlocks().setHardness(3.0F);
 	
+	public static final Block PHOBOS_BLOCKS = new PhobosBlocks().setHardness(2.0F);
 	public static final Block IO_BLOCKS = new IoBlocks().setHardness(3.0F);
 	
 	public static final Block EUROPA_BLOCKS = new EuropaBlocks().setHardness(3.0F);
@@ -204,6 +207,7 @@ public class GSBlocks {
 		registerBlock(PLUTO_BLOCKS, ItemBlocksPluto.class);
 		registerBlock(HAUMEA_BLOCKS, ItemBlocksHaumea.class);
 		
+		registerBlock(PHOBOS_BLOCKS, ItemBlocksPhobos.class);
 		registerBlock(IO_BLOCKS, ItemBlocksIo.class);
 		
 		registerBlock(EUROPA_BLOCKS, ItemBlocksEuropa.class);
@@ -279,6 +283,7 @@ public class GSBlocks {
 		OreDictionary.registerOre("blockGlass", new ItemStack(FUTURE_GLASS_COLORED, 1, OreDictionary.WILDCARD_VALUE));
 	
 		OreDictionary.registerOre("cobblestone", new ItemStack(MarsBlocks.marsBlock, 1, 4));
+		OreDictionary.registerOre("cobblestone", new ItemStack(HAUMEA_BLOCKS, 1, 2));
 	}
 	
 	public static void registerBlock(Block block, Class<? extends ItemBlock> itemClass)
