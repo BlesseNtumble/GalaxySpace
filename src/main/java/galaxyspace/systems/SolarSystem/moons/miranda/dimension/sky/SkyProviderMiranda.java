@@ -46,10 +46,10 @@ public class SkyProviderMiranda extends SkyProviderBase
         GL11.glEnable(GL11.GL_ALPHA_TEST);        
         //GL11.glEnable(GL11.GL_BLEND);
         
-		f10 = 107.0F;
-		GL11.glScalef(0.5F, 0.8F, 0.8F);
+		f10 = 106F;
+		GL11.glScalef(0.6F, 1.0F, 1.0F);
         GL11.glRotatef(100.0F, 1.0F, 0.0F, 0.0F);
-        GL11.glTranslatef(80, 0, 13);
+        GL11.glTranslatef(50, 0, 13.5F);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.uranusRingTexture);
 		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);

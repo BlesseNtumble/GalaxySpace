@@ -99,7 +99,8 @@ public class GSClientTickHandler {
 	public void onToolTip(ItemTooltipEvent e) {
 		if(e.getItemStack().getItem() instanceof IModificationItem)
 		{
-			if(((IModificationItem)e.getItemStack().getItem()).getType(e.getItemStack()) != null) {
+			IModificationItem mod = (IModificationItem) e.getItemStack().getItem();
+			if(mod.getType(e.getItemStack()) != null && mod.getAvailableModules() != null) {
 				//e.getToolTip().add("");
 				e.getToolTip().add(1, EnumColor.AQUA + GCCoreUtil.translate("gui.module.caninstall"));
 			}

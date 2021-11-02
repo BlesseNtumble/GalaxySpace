@@ -41,9 +41,7 @@ public class SkyProviderTriton extends SkyProviderBase {
 		
 		float f = 0.9F;
 		this.renderAtmo(tessellator, 0.0F, 0.0F, f10 - 1.5F, new Vector3(120 / 255.0F * f, 160 / 255.0F * f, 180 / 255.0F * f));
-		GL11.glEnable(GL11.GL_TEXTURE_2D);	
-		
-		
+				
         long time = this.mc.player.getEntityWorld().getWorldTime() % getDayLength();
 		double k = (time / 8) / (getDayLength() / 24000L);
 

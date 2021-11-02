@@ -86,6 +86,13 @@ tile.haumea_stone.name=Haumea Stone
 tile.haumea_cobblestone.name=Haumea Cobblestone
 tile.haumea_aluminum_ore.name=Aluminum Ore
 
+tile.phobos_regolite.name=Phobos Regolite
+tile.phobos_stone.name=Phobos Stone
+tile.phobos_iron_ore.name=Iron Ore
+tile.phobos_meteoriciron_ore.name=Meteoric Iron Ore
+tile.phobos_nickel_ore.name=Nickel Ore
+tile.phobos_desh_ore.name=Desh Ore
+
 tile.io_grunt.name=Io Surface Rock
 tile.io_stone.name=Io Stone
 tile.io_ash.name=Io Ash
@@ -323,6 +330,11 @@ item.space_suit_chest.name=SpaceSuit Chestplate
 item.space_suit_legs.name=SpaceSuit Leggings
 item.space_suit_feet.name=SpaceSuit Boots
 
+item.space_suit_light_head.name=Light SpaceSuit Helmet
+item.space_suit_light_chest.name=Light SpaceSuit Chestplate
+item.space_suit_light_legs.name=Light SpaceSuit Leggings
+item.space_suit_light_feet.name=Light SpaceSuit Boots
+
 item.jetpack.name=Electric Jetpack
 
 item.cobalt_helmet.name=Cobalt Helmet
@@ -335,6 +347,10 @@ item.cobalt_hoe.name=Cobalt Hoe
 item.cobalt_pickaxe.name=Cobalt Pickaxe
 item.cobalt_sword.name=Cobalt Sword
 item.cobalt_spade.name=Cobalt Spade
+
+item.plasma_sword.name=Plasma Sword
+item.plasma_axe.name=Plasma Axe
+item.plasma_pickaxe.name=Plasma Pickaxe
 
 item.nickel_ingot.name=Nickel Ingot
 item.cobaltum_ingot.name=Cobalt Ingot
@@ -460,8 +476,12 @@ gui.schematic_box.desc=Contains basic rocket schematics. Use Right Click to open
 gui.gravitation_module_stabilisation_1.desc=With module "Stabilization" installed
 gui.gravitation_module_stabilisation_2.desc=it will stabilize atmospheric pressure.
 
-gui.spacesuit.desc=High strength suit. It stabilizes atmospheric pressure and adds protection from solar radiation.
-gui.spacesuit_helmet.desc=Helmet allows for staying longer underwater.
+gui.spacesuit.type=Space suit type:
+gui.spacesuit.type.1=Light
+gui.spacesuit.type.2=Heavy
+gui.spacesuit.desc.light=Light spacesuit provides protection from solar radiation.
+gui.spacesuit.desc.heavy=Heavy spacesuit provides protection from solar radiation and stabilizes atmospheric pressure.
+
 
 gui.module_expander.desc=Slot for the module "Expander". Increases the range of the magnetic field.
 gui.temp_shield_control.desc=Provides protection against atmospheric corrosion, but degrades over time.
@@ -471,6 +491,7 @@ gui.planet_shield_stability_2.desc=will collect meteorite fragments in this slot
 gui.ice_bucket.desc=You can obtain it by Right Clicking on ice with an empty bucket.
 gui.animal_cage.desc=Allows you to transport animals. It is destroyed when the animal is released.
 gui.animal_cage_stored.desc=Stored Animal:
+gui.plasma_tools.desc=High-tech instruments using plasma. When used, they consume a plasma charge and heat up. Automatically replenish the charge from the capsules in the inventory. Do not break.
 
 gui.not_attached.desc=Not attached
 gui.attached.desc=Attached:
@@ -487,6 +508,7 @@ gui.status.nofuelgenerator.name=No Fuel
 gui.status.nowind.name=No Wind
 gui.status.wind.name=Wind
 gui.status.nowater.name=No Water
+gui.status.heat.name=Heat
 gui.message.active_pressure_shield.name=Atm. pressure shield is currently active.
 
 gui.message.needoxygen=Oxygen is required to perform this action.
@@ -541,6 +563,8 @@ gui.module.energy=Advanced Battery
 gui.module.energy.desc=Doubles the maximum energy supply limit.
 gui.module.protection=Protection
 gui.module.protection.desc=Cobalt inserts in the suit give you extra protection against damage.
+gui.module.water_breathing=Water Breathing
+gui.module.water_breathing.desc=This module will allow you to be underwater much longer, consuming oxygen from your tanks.
 
 gui.module.sublight_engine=Sublight Engine
 gui.module.sublight_engine.desc=Next generation spacecraft engine. Allows space travel between Solar Systems.

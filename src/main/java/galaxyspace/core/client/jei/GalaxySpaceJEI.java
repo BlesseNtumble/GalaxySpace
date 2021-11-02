@@ -110,10 +110,9 @@ public class GalaxySpaceJEI extends BlankModPlugin
 	        registry.addRecipes(EngineRecipeMaker.getRecipesList(), GSRecipeCategories.ENGINE);
 	        registry.addRecipes(BoosterRecipeMaker.getRecipesList(), GSRecipeCategories.BOOSTER);
 	        registry.addRecipes(StabiliserRecipeMaker.getRecipesList(), GSRecipeCategories.STABILISER);
+	        registry.addRecipes(RocketTier2RecipeMaker.getRecipesList(), GSRecipeCategories.ROCKET_TIER_2);
 	    }
         registry.addRecipes(OxTankRecipeMaker.getRecipesList(), GSRecipeCategories.OX_TANK);
-        if(GSConfigCore.enableAdvancedRocketCraft)
-        	registry.addRecipes(RocketTier2RecipeMaker.getRecipesList(), GSRecipeCategories.ROCKET_TIER_2);
         
         registry.addRecipeCatalyst(new ItemStack(GSBlocks.ASSEMBLER, 1, 0), GSRecipeCategories.ASSEMBLER);
         registry.addRecipeCatalyst(new ItemStack(GSBlocks.UNIVERSAL_RECYCLER, 1, 0), GSRecipeCategories.UNIVERSAL_RECYCLER);
@@ -147,15 +146,14 @@ public class GalaxySpaceJEI extends BlankModPlugin
         registry.addRecipeCategories(new RocketAssemblerRecipeCategory(guiHelper));
         registry.addRecipeCategories(new UniversalRecyclerRecipeCategory(guiHelper));
         registry.addRecipeCategories(new OxTankRecipeCategory(guiHelper));
-        if(!GSConfigCore.enableAdvancedRocketCraft) {
+        if(GSConfigCore.enableAdvancedRocketCraft) {
         	registry.addRecipeCategories(new NoseConeRecipeCategory(guiHelper));
         	registry.addRecipeCategories(new BodyRecipeCategory(guiHelper));
         	registry.addRecipeCategories(new EngineRecipeCategory(guiHelper));
         	registry.addRecipeCategories(new BoosterRecipeCategory(guiHelper));
         	registry.addRecipeCategories(new StabiliserRecipeCategory(guiHelper));
-        }
-        else
         	registry.addRecipeCategories(new RocketTier2RecipeCategory(guiHelper));
+        }
     }
 
     private void addInformationPages(IModRegistry registry)

@@ -56,7 +56,7 @@ public class GSConfigCore
     public static boolean enableAdvancedThermalSystem;
     public static boolean enableZeroGravityOnAsteroids;
     public static boolean enableOxygenForPlantsAndFoods;
-    
+       
     //
     
     public static String spacesuit_pos = "center";
@@ -94,7 +94,7 @@ public class GSConfigCore
             prop.setComment("Enable/Disable Check Version.");
             prop.setLanguageKey("gc.configgui.enableCheckVersion").setRequiresMcRestart(false);
             enableCheckVersion = prop.getBoolean(true);
-            propOrder.add(prop.getName());
+            propOrder.add(prop.getName());                    
             
             prop = config.get(GSConstants.HARDMODE_CATEGORY, "enableAdvancedRocketCraft", true);
             prop.setComment("Enable/Disable advanced craft for rocket tier 2-6.");

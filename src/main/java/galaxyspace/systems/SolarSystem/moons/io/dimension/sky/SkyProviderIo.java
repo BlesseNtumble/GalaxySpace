@@ -24,7 +24,6 @@ public class SkyProviderIo extends SkyProviderBase{
 	protected void rendererSky(Tessellator tessellator, BufferBuilder worldRenderer, float f10, float ticks) {
 		
 				
-		GL11.glPopMatrix();
 		GL11.glPushMatrix();
 		
 		long daylength = ((WorldProviderSpace) this.mc.world.provider).getDayLength();
@@ -105,6 +104,7 @@ public class SkyProviderIo extends SkyProviderBase{
         float f = 0.8F;
         this.renderAtmo(tessellator, 0.0F, 0.0F, f10 - 8, new Vector3(120 / 255.0F * f, 110 / 255.0F * f, 120 / 255.0F * f));
 
+		GL11.glPopMatrix();
 	}
 
 	@Override

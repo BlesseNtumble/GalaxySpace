@@ -137,7 +137,7 @@ public class ItemGeologicalScanner extends ItemElectricBase implements ISortable
 
 	@Override
 	public float getMaxElectricityStored(ItemStack theItem) {
-		return 30000;
+		return 60000;
 	}
 	
 }

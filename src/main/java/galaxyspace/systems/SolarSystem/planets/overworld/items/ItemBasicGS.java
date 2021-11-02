@@ -200,6 +200,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
 		else if(n == BasicItems.EMERGENCY_PORTABLE_TELEPORT.getMeta())
 		{
 			list.add(GCCoreUtil.translate("gui.emergency_portable_teleport.desc"));
+			list.add(GCCoreUtil.translate("gui.message.can_find_in_dungeon"));
 			list.add("");
 			if(stack.hasTagCompound()) {
 				if(stack.getTagCompound().getIntArray("position").length <= 0)

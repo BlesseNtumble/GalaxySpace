@@ -25,7 +25,6 @@ public class SkyProviderGanymede extends SkyProviderBase
 	@Override
 	protected void rendererSky(Tessellator tessellator, BufferBuilder worldRenderer, float f10, float ticks) {
 		
-		GL11.glPopMatrix();
 		GL11.glPushMatrix();
 		
 		f10 = 1.8F;
@@ -127,10 +126,10 @@ public class SkyProviderGanymede extends SkyProviderBase
         
 			float f = 0.9F;
 			this.renderAtmo(tessellator, 0.0F, 0.0F, f10 - 7, new Vector3(120 / 255.0F * f, 110 / 255.0F * f, 120 / 255.0F * f));
-			GL11.glEnable(GL11.GL_TEXTURE_2D);
+
 			GL11.glPopMatrix(); 
 		}
-		GL11.glPushMatrix();
+
 	}
 
 	@Override

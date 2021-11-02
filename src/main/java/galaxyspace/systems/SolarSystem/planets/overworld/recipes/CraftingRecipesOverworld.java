@@ -155,6 +155,10 @@ public class CraftingRecipesOverworld {
 	   RecipeUtil.addRecipe(new ItemStack(GSItems.THERMAL_PADDING_4, 1, 2), new Object[] { "XXX", "X X", "X X",'X', BasicItems.THERMAL_CLOTH_T4.getItemStack()});
 	   RecipeUtil.addRecipe(new ItemStack(GSItems.THERMAL_PADDING_4, 1, 3), new Object[] { "X X", "X X", 'X', BasicItems.THERMAL_CLOTH_T4.getItemStack() });
 	   
+	   RecipeUtil.addRecipe(new ItemStack(GSItems.SPACE_SUIT_LIGHT_HELMET), new Object[] { "XVX", "YZY", "XWX", 'X', GCItems.canvas, 'Y', plateAluminum, 'V', new ItemStack(GSItems.ADVANCED_BATTERY, 1, GSItems.ADVANCED_BATTERY.getMaxDamage()), 'Z', new ItemStack(GSItems.COBALT_HELMET), 'W', new ItemStack(Blocks.STAINED_GLASS_PANE, 1, 7)});
+	   RecipeUtil.addRecipe(new ItemStack(GSItems.SPACE_SUIT_LIGHT_BODY), new Object[] { "XVX", "YZY", "XWX", 'X', plateAluminum, 'Y', GCItems.canvas, 'Z', new ItemStack(GSItems.COBALT_CHEST), 'W', "plateNickel", 'V', new ItemStack(GSItems.ADVANCED_BATTERY, 1, GSItems.ADVANCED_BATTERY.getMaxDamage())});
+	   RecipeUtil.addRecipe(new ItemStack(GSItems.SPACE_SUIT_LIGHT_LEGGINS), new Object[] { "XVX", "YZY", "XWX", 'X', plateAluminum, 'Y', GCItems.canvas, 'Z', new ItemStack(GSItems.COBALT_LEGS), 'W', "plateNickel", 'V', new ItemStack(GSItems.ADVANCED_BATTERY, 1, GSItems.ADVANCED_BATTERY.getMaxDamage())});
+	   RecipeUtil.addRecipe(new ItemStack(GSItems.SPACE_SUIT_LIGHT_BOOTS), new Object[] { "WVW", "XZX", "Y Y", 'X', plateAluminum, 'Y', GCItems.canvas, 'Z', new ItemStack(GSItems.COBALT_BOOTS), 'W', "plateNickel", 'V', new ItemStack(GSItems.ADVANCED_BATTERY, 1, GSItems.ADVANCED_BATTERY.getMaxDamage())});
 	   /* 
 	  // int var2 = 100;
 	   for (int var2 = 0; var2 < 100; var2 += 100)
@@ -288,6 +292,7 @@ public class CraftingRecipesOverworld {
 	   
 	   AssemblyRecipes.addRecipe(BasicItems.PLASTIC_FAN.getItemStack(), new Object[] {"XYX", "ZWZ", "XCX", 'X', BasicItems.PLASTIC.getItemStack(), 'Y', new ItemStack(GCBlocks.aluminumWire, 1, 1), 'Z', new ItemStack(GSItems.HDP, 1, 0), 'W', new ItemStack(GSItems.BASIC, 1, 5), 'C', Items.REDSTONE});
 	   AssemblyRecipes.addRecipe(BasicItems.CARBON_FAN.getItemStack(), new Object[] {"X X", " Y ", "X X", 'X', new ItemStack(GSItems.HDP, 1, 2), 'Y', BasicItems.PLASTIC_FAN.getItemStack()});
+	   AssemblyRecipes.addRecipe(new ItemStack(GSItems.GEOLOGICAL_SCANNER, 1, GSItems.GEOLOGICAL_SCANNER.getMaxDamage()), new Object[] {"XYX", "ZCV", "XWX", 'X', new ItemStack(AsteroidsItems.basicItem, 1, 6), 'Y', new ItemStack(GCItems.basicItem, 1, 19), 'Z', BasicItems.WAFER_MODERN.getItemStack(), 'C', new ItemStack(GCBlocks.spaceGlassClear, 1, 0), 'V', GCItems.sensorLens, 'W', new ItemStack(GSItems.ADVANCED_BATTERY, 1, GSItems.ADVANCED_BATTERY.getMaxDamage())});
 	   
    }
    
