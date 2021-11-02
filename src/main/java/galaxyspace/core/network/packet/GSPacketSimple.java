@@ -10,14 +10,15 @@ import asmodeuscore.core.utils.worldengine.WE_WorldProvider;
 import galaxyspace.GalaxySpace;
 import galaxyspace.api.item.IModificationItem;
 import galaxyspace.api.tile.ITileEffects;
+import galaxyspace.core.events.GSClientTickHandler;
 import galaxyspace.core.events.GSEventHandler;
-import galaxyspace.core.handler.capabilities.GSStatsCapability;
 import galaxyspace.core.handler.capabilities.GSStatsCapabilityClient;
 import galaxyspace.core.handler.capabilities.StatsCapability;
 import galaxyspace.core.handler.capabilities.StatsCapabilityClient;
 import galaxyspace.core.prefab.entities.EntityAstroWolf;
 import galaxyspace.core.prefab.inventory.InventoryAstroWolf;
 import galaxyspace.core.prefab.items.modules.ItemModule;
+import galaxyspace.core.util.researches.ResearchUtil;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemSpaceSuit;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitationModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityLiquidSeparator;
@@ -81,6 +82,7 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         S_UPDATE_NBT_ITEM_IN_ARMOR(Side.SERVER, Integer.class, String.class),
         S_UPDATE_WOLF_INV(Side.SERVER, Integer.class),
         S_GET_CAGE_ENTITY(Side.SERVER, Integer.class),
+        S_UPDATE_RESEARCH_USER(Side.SERVER, Integer.class),
         
         //CLIENT
         C_UPDATE_WORLD(Side.CLIENT),
@@ -88,7 +90,8 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
     	C_UPDATE_RESEARCH(Side.CLIENT, Integer.class, Integer.class), // id, count
     	C_GLOW_BLOCK(Side.CLIENT, BlockVec3.class, Integer.class),
     	C_UPDATE_WOLF_INV(Side.CLIENT, Integer.class, NBTTagCompound.class),
-    	C_GET_CAGE_ENTITY(Side.CLIENT);
+    	C_GET_CAGE_ENTITY(Side.CLIENT),
+    	C_SHOW_SCANNER_BLOCK(Side.CLIENT, Integer.class);
     	
     	//C_OPEN_CUSTOM_GUI(Side.CLIENT, Integer.class, Integer.class, Integer.class),
     	//C_OPEN_ASTRO_WOLF_GUI(Side.CLIENT, Integer.class, Integer.class); // windowID, wolfID
@@ -192,14 +195,14 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
     	EntityPlayerSP playerBaseClient = null;
         GCPlayerStatsClient stats = null;
 
-        StatsCapability gs_stats = null;
+        //StatsCapability gs_stats = null;
 		StatsCapabilityClient gs_stats_client = null;
 
         if (player instanceof EntityPlayerSP)
         {
             playerBaseClient = (EntityPlayerSP) player;
             stats = GCPlayerStatsClient.get(playerBaseClient);
-            gs_stats = GSStatsCapability.get(player);
+            //gs_stats = GSStatsCapability.get(player);
             gs_stats_client = GSStatsCapabilityClient.get(playerBaseClient);
         }
         /*else
@@ -237,6 +240,11 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         			wolf.needSync = false;
         		}
         	break;
+        	case C_SHOW_SCANNER_BLOCK:
+        		int index = (int)this.data.get(0);
+        		GSClientTickHandler.ticks = 1000;
+        		
+        		break;
           	case C_GLOW_BLOCK:
         		BlockVec3 block = (BlockVec3) this.data.get(0);
         		int level = (int) this.data.get(1);
@@ -249,7 +257,7 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
                 GlStateManager.enableBlend();
         		GlStateManager.translate(block.x, block.y, block.z);
-        		final Tessellator tess = Tessellator.getInstance();
+        		Tessellator tess = Tessellator.getInstance();
         		BufferBuilder worldRenderer = tess.getBuffer();
         		GlStateManager.color(1.0F, 0.7F, 0.7F, 0.016667F * (12 - level));
         		float cA = -0.01F;
@@ -332,12 +340,10 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         	case C_UPDATE_RESEARCHES:        		
         			if(gs_stats_client != null) 
 	        		{	
-        				int i = 0;
-        				for(Object o : this.data)
-        				{
-        					gs_stats_client.setKnowledgeResearch(i++, (Integer) o);
-        				}	        				
-	        			
+        				int i = 0; 
+        				for(Object id : this.data)
+        					gs_stats_client.setKnowledgeResearch(i++, (int) id);
+        					//System.out.print((int)id + " ");
 	        		}
         		break;
         	case C_UPDATE_RESEARCH:        		
@@ -375,10 +381,62 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         }
         
         GCPlayerStats stats = GCPlayerStats.get(playerBase);
+        StatsCapability gs_stats = StatsCapability.get(playerBase);
+        
         TileEntity tileEntity;
         
         switch (this.type)
         {
+        case S_UPDATE_RESEARCH_USER:
+        	int id = 0;
+    		int count = (int) this.data.get(0);
+    		
+    		
+    		boolean flag = false;
+    		if(count == -1) {
+    			for(int i = 0; i < gs_stats.getKnowledgeResearches().length; i++)
+    				if(gs_stats.getKnowledgeResearches()[i] != 0) {
+    					gs_stats.setKnowledgeResearch(i, 0);
+    					GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_UPDATE_RESEARCH, GCCoreUtil.getDimensionID(playerBase.world), new Object[] {i, 0}), playerBase);        
+    				}
+	        	
+    			
+    			break;
+    		}
+    		for(int i = 0; i < gs_stats.getKnowledgeResearches().length; i++)
+    		{
+    			if(gs_stats.getKnowledgeResearches()[i] == count) 
+    				flag = true;
+    			if(gs_stats.getKnowledgeResearches()[i] == 0) {
+    				id = i;
+    				break;
+    			}
+    		}
+    		
+    		if(ResearchUtil.getResearch(count) == null) 
+    			flag = true;
+    		/*
+    		for(ItemStack stack : ResearchUtil.getResearch(count).getNeedItems())
+    		{
+				for(ItemStack inv : player.inventory.mainInventory) {
+					if(inv.isItemEqual(stack)) { break; }
+					else flag = true;
+				}
+    		}*/
+    		if(!flag) {   			   			
+    			
+	        	
+	        	boolean consumed = false;
+	        	for(ItemStack stack : ResearchUtil.getResearch(count).getNeedItems())
+	        	{
+	        		consumed = GSEventHandler.consumeItemStack(playerBase.inventory, stack);	
+	        	}
+	        	if(consumed || !player.capabilities.isCreativeMode) {
+	        		gs_stats.setKnowledgeResearch(id, count);
+	        		GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_UPDATE_RESEARCH, GCCoreUtil.getDimensionID(playerBase.world), new Object[] {id, count}), playerBase);        
+	        	}//GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_UPDATE_RESEARCHES, GCCoreUtil.getDimensionID(playerBase.world), gs_stats.getKnowledgeResearches()), playerBase);
+	    	}
+        	break;
         case S_GET_CAGE_ENTITY:
         	int entityID = (int)this.data.get(0);
         	

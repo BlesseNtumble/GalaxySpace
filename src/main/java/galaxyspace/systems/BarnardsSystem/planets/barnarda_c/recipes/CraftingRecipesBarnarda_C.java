@@ -1,7 +1,7 @@
 package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.recipes;
 
 import galaxyspace.core.GSItems;
-import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.util.RecipeUtil;
 import net.minecraft.init.Blocks;

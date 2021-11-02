@@ -1,5 +1,6 @@
 package galaxyspace.core.client.gui.book;
 
+import asmodeuscore.AsmodeusCore;
 import asmodeuscore.core.astronomy.gui.book.Page_WithCraftMatrix.Recipe_Type;
 import asmodeuscore.core.utils.BookUtils;
 import asmodeuscore.core.utils.BookUtils.Book_Cateroies;
@@ -7,15 +8,21 @@ import galaxyspace.GalaxySpace;
 import galaxyspace.core.GSBlocks;
 import galaxyspace.core.client.gui.book.pages.bodies.Page_BarnardsSystem;
 import galaxyspace.core.client.gui.book.pages.bodies.Page_ProximaSystem;
+import galaxyspace.core.client.gui.book.pages.bodies.Page_TauCetiSystem;
 import galaxyspace.systems.ACentauriSystem.core.configs.ACConfigCore;
 import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigCore;
 import galaxyspace.systems.SolarSystem.SolarSystemBodies;
+import galaxyspace.systems.TauCetiSystem.core.configs.TCConfigCore;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.EnumHelper;
 
 public class BookRegister {
 
+	public static ResourceLocation starTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/book/star_bg.png");
+	public static ResourceLocation guiTexture = new ResourceLocation(AsmodeusCore.ASSET_PREFIX, "textures/gui/gui.png");
+	
+	
 	public static Recipe_Type ASSEMBLER = EnumHelper.addEnum(Recipe_Type.class, "ASSEMBLER", new Class<?>[]{ItemStack.class}, new ItemStack(GSBlocks.ASSEMBLER));
 	public static Recipe_Type ROCKET_ASSEMBLER = EnumHelper.addEnum(Recipe_Type.class, "ROCKET_ASSEMBLER", new Class<?>[]{ItemStack.class}, new ItemStack(GSBlocks.ROCKET_ASSEMBLER));
 	public static Recipe_Type UNIVERSAL_RECYCLER = EnumHelper.addEnum(Recipe_Type.class, "UNIVERSAL_RECYCLER", new Class<?>[]{ItemStack.class}, new ItemStack(GSBlocks.UNIVERSAL_RECYCLER));
@@ -33,5 +40,7 @@ public class BookRegister {
 			BookUtils.addGuideBookPage(new Page_ProximaSystem());
 		if(BRConfigCore.enableBarnardsSystems)
 			BookUtils.addGuideBookPage(new Page_BarnardsSystem());
+		if(TCConfigCore.enableTauCetiSystems)
+			BookUtils.addGuideBookPage(new Page_TauCetiSystem());
 	}
 }

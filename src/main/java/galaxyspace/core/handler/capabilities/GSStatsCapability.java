@@ -12,16 +12,22 @@ public class GSStatsCapability extends StatsCapability {
 	public int buildFlags = 0;
 
 	private int[] know_res = new int[256];
+	private boolean isBarnardaSurvival;
 
 	@Override
 	public void saveNBTData(NBTTagCompound nbt) {
-		nbt.setIntArray("gs_knowledge_research", know_res);		
+		nbt.setIntArray("gs_knowledge_research", know_res);	
+		nbt.setBoolean("survival_barnarda", isBarnardaSurvival);
 	}
 
 	@Override
 	public void loadNBTData(NBTTagCompound nbt) {
 		try {
+			
 			this.know_res = nbt.getIntArray("gs_knowledge_research");
+			this.isBarnardaSurvival = nbt.getBoolean("survival_barnarda");
+			
+			
 		} catch (Exception e) {
 			GCLog.severe("Found error in saved Galaxy Space player data for " + player.get().getGameProfile().getName() + " - this should fix itself next relog.");
 			e.printStackTrace();
@@ -34,8 +40,11 @@ public class GSStatsCapability extends StatsCapability {
 	public void copyFrom(StatsCapability oldData, boolean keepInv) {
 		if(oldData.getKnowledgeResearches() != null)
 			this.know_res = oldData.getKnowledgeResearches();
+		
+		this.isBarnardaSurvival = oldData.isBarnardaSurvivalMode();
+		
 	}
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	@Override
 	public WeakReference<EntityPlayerMP> getPlayer() {
 		return player;
@@ -56,5 +65,14 @@ public class GSStatsCapability extends StatsCapability {
 		this.know_res[id] = k;		
 	}
 
+	@Override
+	public boolean isBarnardaSurvivalMode() {
+		return this.isBarnardaSurvival;
+	}
+
+	@Override
+	public void setBarnardaSurvivalMode() {
+		this.isBarnardaSurvival = true;		
+	}
 	
 }

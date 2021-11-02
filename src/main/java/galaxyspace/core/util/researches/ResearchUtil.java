@@ -9,15 +9,15 @@ import galaxyspace.api.IResearch;
 import galaxyspace.core.prefab.researches.TestResearch;
 
 public class ResearchUtil {
-		
-	//private static Map<String, Set<IResearch>> know_research_list = new HashMap<String, Set<IResearch>>();
 	
 	private static List<IResearch> list = new ArrayList<IResearch>();
 	public static void initResearches()
 	{
-		addReserach(new TestResearch(1));
-		addReserach(new TestResearch(5));
-		addReserach(new TestResearch(6));
+		addReserach(new TestResearch(1, 15, 15));
+		addReserach(new TestResearch(5, 35, 15));
+		addReserach(new TestResearch(6, 48, 38));
+		addReserach(new TestResearch(10, 55, 38));
+		addReserach(new TestResearch(11, 66, 50));
 	}
 	
 	private static void addReserach(IResearch research)
@@ -35,9 +35,13 @@ public class ResearchUtil {
 		return ImmutableList.copyOf(list);
 	}
 	
-	/*
-	public static Map<String, Set<IResearch>> getResearchList()
+	public static IResearch getResearch(int id)
 	{
-		return know_research_list;
-	}*/
+		if(!list.isEmpty())
+			for(IResearch res : list)
+				if(res.getID() == id)
+					 return res;
+		return null;
+	}
+
 }

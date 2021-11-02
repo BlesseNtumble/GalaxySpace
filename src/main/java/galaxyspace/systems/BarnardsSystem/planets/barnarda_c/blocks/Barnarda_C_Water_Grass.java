@@ -4,7 +4,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import galaxyspace.systems.BarnardsSystem.core.registers.BRItems;
+import galaxyspace.systems.BarnardsSystem.core.BRItems;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.SoundType;

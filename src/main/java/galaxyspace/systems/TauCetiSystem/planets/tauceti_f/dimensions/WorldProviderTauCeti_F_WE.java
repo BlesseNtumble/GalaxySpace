@@ -5,6 +5,8 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import asmodeuscore.api.dimension.IProviderFog;
+import asmodeuscore.api.dimension.IProviderWeather;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.biome.WE_BaseBiome;
@@ -15,18 +17,15 @@ import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_CaveGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_RavineGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
-import galaxyspace.GalaxySpace;
 import galaxyspace.core.prefab.world.gen.WorldGenCircleBlock;
 import galaxyspace.core.util.GSDimensions;
-import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Falling_Blocks;
 import galaxyspace.systems.TauCetiSystem.TauCetiSystemBodies;
 import galaxyspace.systems.TauCetiSystem.core.TCBlocks;
 import galaxyspace.systems.TauCetiSystem.planets.tauceti_f.blocks.TauCeti_F_Blocks;
+import galaxyspace.systems.TauCetiSystem.planets.tauceti_f.dimensions.sky.CloudProviderTauCeti_F;
 import galaxyspace.systems.TauCetiSystem.planets.tauceti_f.dimensions.sky.SkyProviderTauCeti_F;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
-import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -44,7 +43,7 @@ import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WorldProviderTauCeti_F_WE extends WE_WorldProviderSpace {
+public class WorldProviderTauCeti_F_WE extends WE_WorldProviderSpace implements IProviderFog, IProviderWeather {
 	@Override
     public double getHorizon() {
         return 44.0D;
@@ -73,7 +72,7 @@ public class WorldProviderTauCeti_F_WE extends WE_WorldProviderSpace {
     @Override
     public boolean canSnowAt(BlockPos pos, boolean checkLight)
     {
-    	return true;
+    	return false;
     }
         
     @Override
@@ -137,13 +136,13 @@ public class WorldProviderTauCeti_F_WE extends WE_WorldProviderSpace {
     @SideOnly(Side.CLIENT)
     public Vector3 getSkyColor() {
 
-    	float f = 0.5F - this.getStarBrightness(1.0F);
+    	float f = 0.8F - this.getStarBrightness(1.0F);
     	if(world.isRaining())
     	{
     		f = 1.0F;
     		return new Vector3(47 / 255.0F * f, 47 / 255.0F * f, 47 / 255.0F * f);
     	}
-    	return new Vector3(161 / 255.0F * f, 146 / 255.0F * f, 175 / 255.0F * f);
+    	return new Vector3(101 / 255.0F * f, 146 / 255.0F * f, 205 / 255.0F * f);
 
     }
     
@@ -184,11 +183,16 @@ public class WorldProviderTauCeti_F_WE extends WE_WorldProviderSpace {
     }
     
     @Override
+    @SideOnly(Side.CLIENT)
     public IRenderHandler getCloudRenderer(){
-        return new CloudRenderer();
+    	if(super.getCloudRenderer() == null)
+    		this.setCloudRenderer(new CloudProviderTauCeti_F());
+    	
+        return super.getCloudRenderer();
     }
     
     @SideOnly(Side.CLIENT)
+    @Override
     public IRenderHandler getSkyRenderer()
     {
     	if (super.getSkyRenderer() == null)
@@ -432,4 +436,23 @@ public class WorldProviderTauCeti_F_WE extends WE_WorldProviderSpace {
         return 1.5F / this.getCelestialBody().getRelativeDistanceFromCenter().unScaledDistance;
     }
 
+	@Override
+	public float getFogDensity(int x, int y, int z) {
+		if(this.world.isRaining()) return 0.92F;
+		return 0.95F;
+	}
+
+	@Override
+	public double getLightningStormFrequency() {
+		if(this.world.isRaining()) return 1.0F;
+		return 0;
+	}
+
+	@Override
+	public int getYPosLightning() {
+		return 0;
+	}
+
+	@Override
+	public boolean isColorWorld() { return true; }
 }

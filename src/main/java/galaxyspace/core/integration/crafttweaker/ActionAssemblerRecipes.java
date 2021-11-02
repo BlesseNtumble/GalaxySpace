@@ -22,7 +22,7 @@ public class ActionAssemblerRecipes {
 		
 		@Override
 		public void apply() {
-			ArrayList list = new ArrayList();
+			ArrayList<ItemStack> list = new ArrayList<ItemStack>();
 			for(ItemStack stack : CraftTweakerMC.getItemStacks(inputs))
 				list.add(stack);
 			

@@ -1,7 +1,7 @@
 package galaxyspace.core.util.researches;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import galaxyspace.api.IResearch;
 import net.minecraft.item.ItemStack;
@@ -9,8 +9,8 @@ import net.minecraft.item.ItemStack;
 public class BaseResearch implements IResearch{
 
 	private String name;
-	private Set<ItemStack> items_for_need = new HashSet();
-	private Set<ItemStack> unlock_items = new HashSet();
+	private List<ItemStack> items_for_need = new ArrayList<ItemStack>();
+	private List<ItemStack> unlock_items = new ArrayList<ItemStack>();
 	private IResearch[] parents;
 	private int id, need_exp = 0, posX = 0, posY = 0;
 		
@@ -49,7 +49,7 @@ public class BaseResearch implements IResearch{
 	}
 
 	@Override
-	public Set<ItemStack> getNeedItems() {
+	public List<ItemStack> getNeedItems() {
 		return this.items_for_need;
 	}
 
@@ -64,7 +64,7 @@ public class BaseResearch implements IResearch{
 	}
 
 	@Override
-	public Set<ItemStack> getUnlockItems() {
+	public List<ItemStack> getUnlockItems() {
 		return this.unlock_items;
 	}
 
@@ -81,6 +81,16 @@ public class BaseResearch implements IResearch{
 	@Override
 	public int getPosY() {
 		return this.posY;
+	}
+
+	@Override
+	public String getDescription() {
+		return "Test Desc";
+	}
+
+	@Override
+	public int getTextureID() {
+		return 0;
 	}
 
 }

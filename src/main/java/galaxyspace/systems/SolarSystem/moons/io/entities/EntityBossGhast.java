@@ -76,16 +76,19 @@ public class EntityBossGhast extends EntityFlyBossBase implements IMob, IEntityB
     }
     
     @Override
-    public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
+    public boolean attackEntityFrom(DamageSource source, float par2)
     {
-        if ("fireball".equals(par1DamageSource.getDamageType()) && this.getAttackingEntity() instanceof EntityPlayer)
+    	if (this.isEntityInvulnerable(source))
         {
-            super.attackEntityFrom(par1DamageSource, 5.0F);
+            return false;
+        }
+        else if (source.getImmediateSource() instanceof EntityLargeFireball && source.getTrueSource() instanceof EntityPlayer)
+        {
+            super.attackEntityFrom(source, 5.0F);
           
             return true;
         }
-        
-        return false;
+        else return super.attackEntityFrom(source, par2);
         
     }
 
@@ -93,7 +96,7 @@ public class EntityBossGhast extends EntityFlyBossBase implements IMob, IEntityB
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0F * ConfigManagerCore.dungeonBossHealthMod);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(300.0F * ConfigManagerCore.dungeonBossHealthMod);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.05F);
         //this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0F);
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(100.0D);

@@ -183,7 +183,7 @@ public class TileEntityGravitationModule extends TileBaseElectricBlockWithInvent
 		if (this.world.provider instanceof IGalacticraftWorldProvider) {
 			final double g;
 			if (this.world.provider instanceof WorldProviderSpaceStation)
-				g = 0.80665D;
+				g = 1.80665D;
 			else
 				g = (1.0 - ((IGalacticraftWorldProvider) world.provider).getGravity()) / 0.08F;
 
@@ -353,7 +353,7 @@ public class TileEntityGravitationModule extends TileBaseElectricBlockWithInvent
 		return false;
 	}
 	
-	public boolean inGravityZone(World world, EntityPlayer player)
+	public boolean inGravityZone(World world, EntityLivingBase player)
 	{
 		if(player.posX > this.pos.getX() - getGravityRadius() &&
 				player.posY > this.pos.getY() - 4 &&

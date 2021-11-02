@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import asmodeuscore.api.dimension.IProviderFog;
-import asmodeuscore.api.dimension.IProviderFreeze;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
 import asmodeuscore.core.utils.worldengine.WE_Biome;
@@ -17,7 +16,7 @@ import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.ACentauriSystem.ACentauriSystemBodies;
-import galaxyspace.systems.ACentauriSystem.core.registers.blocks.ACBlocks;
+import galaxyspace.systems.ACentauriSystem.core.ACBlocks;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.dimension.sky.SkyProviderProxima_B;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.world.gen.we.Proxima_B_Beach;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.world.gen.we.Proxima_B_Forest;

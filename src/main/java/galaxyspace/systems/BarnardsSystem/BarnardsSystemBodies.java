@@ -5,6 +5,7 @@ import java.io.File;
 import asmodeuscore.api.IBodies;
 import asmodeuscore.api.IBodiesHandler;
 import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarClass;
 import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.api.dimension.IAdvancedSpace.TypeBody;
 import asmodeuscore.core.astronomy.BodiesData;
@@ -16,12 +17,12 @@ import galaxyspace.GalaxySpace;
 import galaxyspace.core.proxy.ClientProxy;
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.core.util.GSUtils;
+import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.core.BRItems;
 import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigCore;
 import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigDimensions;
 import galaxyspace.systems.BarnardsSystem.core.events.BRClientEventHandler;
 import galaxyspace.systems.BarnardsSystem.core.events.BREventHandler;
-import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
-import galaxyspace.systems.BarnardsSystem.core.registers.BRItems;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Blocks.EnumBlockBarnardaC;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Dandelions.EnumBlockDandelions;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Falling_Blocks.EnumFallingBlockBarnardaC;
@@ -55,10 +56,6 @@ import net.minecraftforge.fml.relauncher.Side;
 
 @IBodiesHandler
 public class BarnardsSystemBodies implements IBodies {
-
-	static {
-		
-	}
 	
 	public static SolarSystem BarnardsSystem;
 	public static Planet Barnarda_B, Barnarda_C, Barnarda_ABelt, Barnarda_E;
@@ -88,19 +85,19 @@ public class BarnardsSystemBodies implements IBodies {
 		
 		Barnarda_C = BodiesRegistry.registerExPlanet(BarnardsSystem, "barnarda_c", GalaxySpace.ASSET_PREFIX, 0.75F);
 		Barnarda_C.setRingColorRGB(0.0F, 1.1F, 0.0F);
-		Barnarda_C.atmosphereComponent(EnumAtmosphericGas.CO2).atmosphereComponent(EnumAtmosphericGas.OXYGEN).atmosphereComponent(EnumAtmosphericGas.ARGON);
 		BodiesRegistry.setOrbitData(Barnarda_C, (float) Math.PI * 2, 1.0F, 6.9F);
 		BodiesRegistry.setAtmosphere(Barnarda_C, true, true, false, 0.0F, 1.0F, 1.0F);
-		BodiesRegistry.setPlanetData(Barnarda_C, 3F, 29000, BodiesRegistry.calculateGravity(8.5F), false);
+		BodiesRegistry.setPlanetData(Barnarda_C, 3F, 24500, BodiesRegistry.calculateGravity(8.5F), false);
 		BodiesRegistry.setProviderData(Barnarda_C, WorldProviderBarnarda_C_WE.class, BRConfigDimensions.dimensionIDBarnardaC, 6, ACBiome.ACSpace);
+		Barnarda_C.atmosphereComponent(EnumAtmosphericGas.CO2).atmosphereComponent(EnumAtmosphericGas.OXYGEN).atmosphereComponent(EnumAtmosphericGas.ARGON);
 		GalaxyRegistry.registerPlanet(Barnarda_C);
 		
 		Barnarda_C1 = BodiesRegistry.registerExMoon(Barnarda_C, "barnarda_c1", GalaxySpace.ASSET_PREFIX, 10.75F);
-		Barnarda_C1.atmosphereComponent(EnumAtmosphericGas.CO2).atmosphereComponent(EnumAtmosphericGas.NITROGEN).atmosphereComponent(EnumAtmosphericGas.ARGON);
 		BodiesRegistry.setOrbitData(Barnarda_C1, (float) Math.PI / 2, 1.0F, 25.5F);
 		BodiesRegistry.setAtmosphere(Barnarda_C1, false, false, false, -4.0F, 3.0F, 0.0F);
 		BodiesRegistry.setPlanetData(Barnarda_C1, 15F, 45000, BodiesRegistry.calculateGravity(6.5F), false);
 		//BodiesHelper.setProviderData(Barnarda_C1, WorldProviderBarnarda_C1_WE.class, BRConfigDimensions.dimensionIDBarnardaC1, 1);
+		Barnarda_C1.atmosphereComponent(EnumAtmosphericGas.CO2).atmosphereComponent(EnumAtmosphericGas.NITROGEN).atmosphereComponent(EnumAtmosphericGas.ARGON);
 		GalaxyRegistry.registerMoon(Barnarda_C1);
 		
 		Barnarda_C2 = BodiesRegistry.registerExMoon(Barnarda_C, "barnarda_c2", GalaxySpace.ASSET_PREFIX, 19.75F);
@@ -140,7 +137,8 @@ public class BarnardsSystemBodies implements IBodies {
 	    ColorBlockHandler.addLeavesBlock(Blocks.LEAVES.getDefaultState());
 	    ColorBlockHandler.addLeavesBlock(Blocks.LEAVES2.getDefaultState());
 	    ColorBlockHandler.addLeavesBlock(Blocks.VINE.getDefaultState());
-		ColorBlockHandler.addBlockWithColor(BRBlocks.BARNARDA_C_WATER_GRASS.getDefaultState(), 0x88CC44);
+	    ColorBlockHandler.addLeavesBlock(BRBlocks.BARNARDA_C_LEAVES.getDefaultState());
+		ColorBlockHandler.addBlockWithColor(BRBlocks.BARNARDA_C_WATER_GRASS.getDefaultState(), 0x985cff);
 		ColorBlockHandler.addWaterBlock(Blocks.WATER.getDefaultState());
 		ColorBlockHandler.addWaterBlock(Blocks.FLOWING_WATER.getDefaultState());
 	}
@@ -160,7 +158,7 @@ public class BarnardsSystemBodies implements IBodies {
 	{	
 		
 
-		BodiesData data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.ORANGE);
+		BodiesData data = new BodiesData(TypeBody.STAR).setStarClass(StarClass.DWARF).setStarColor(StarColor.ORANGE);
 		BodiesRegistry.registerBodyData(BarnardsSystem.getMainStar(), data);
 	}
 	

@@ -15,7 +15,7 @@ public class UniversalRecyclerRecipeMaker
     	    	
     	for(RecycleRecipe entry : RecyclerRecipes.recycling().getRecipes())
     	{    
-    		recipes.add(new UniversalRecyclerRecipeWrapper(entry.getInput(), entry.getOutput(), entry.getFluidStack(), entry.getChance()));
+    		recipes.add(new UniversalRecyclerRecipeWrapper(entry.getInput(), entry.getOutput(), entry.getOutput_2(), entry.getFluidStack(), entry.getChance(), entry.getChance_2()));
     	}
     	
         return recipes;

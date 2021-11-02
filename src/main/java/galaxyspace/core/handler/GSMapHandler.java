@@ -5,7 +5,6 @@ import java.util.Random;
 import org.lwjgl.Sys;
 import org.lwjgl.opengl.GL11;
 
-import asmodeuscore.core.astronomy.gui.screen.Base_GuiCelestialSelection;
 import asmodeuscore.core.astronomy.gui.screen.NewGuiCelestialSelection;
 import galaxyspace.GalaxySpace;
 import galaxyspace.systems.SolarSystem.SolarSystemBodies;
@@ -55,31 +54,31 @@ public class GSMapHandler
     @SubscribeEvent
     public void onRenderPlanetPost(CelestialBodyRenderEvent.Post event)
     {
-    	
-        if (minecraft.currentScreen instanceof Base_GuiCelestialSelection)
+    	/*
+        if (minecraft.currentScreen instanceof GuiCelestialSelection)
         {
 
         	if (event.celestialBody == SolarSystemBodies.planetSaturn)
         	{
                 minecraft.renderEngine.bindTexture(ClientProxyCore.saturnRingTexture);
-                float size = ((Base_GuiCelestialSelection)minecraft.currentScreen).getWidthForCelestialBody(event.celestialBody) / 6.0F;
-                ((Base_GuiCelestialSelection)minecraft.currentScreen).drawTexturedModalRect(-7.5F * size, -1.75F * size, 16.0F * size, 3.5F * size, 0, 0, 30, 2, false, false, 30, 7);
+                float size = ((GuiCelestialSelection)minecraft.currentScreen).getWidthForCelestialBody(event.celestialBody) / 6.0F;
+                ((GuiCelestialSelection)minecraft.currentScreen).drawTexturedModalRect(-7.5F * size, -1.75F * size, 16.0F * size, 3.5F * size, 0, 0, 30, 2, false, false, 30, 7);
         	}
         	else if (event.celestialBody == SolarSystemBodies.planetUranus)
         	{
                 minecraft.renderEngine.bindTexture(ClientProxyCore.uranusRingTexture);
-                float size = ((Base_GuiCelestialSelection)minecraft.currentScreen).getWidthForCelestialBody(event.celestialBody) / 6.0F;
-                ((Base_GuiCelestialSelection)minecraft.currentScreen).drawTexturedModalRect(-1.75F * size, -7.0F * size, 8.5F * size, 16.0F * size, 0, 0, 28, 7, false, false, 28, 7);
+                float size = ((GuiCelestialSelection)minecraft.currentScreen).getWidthForCelestialBody(event.celestialBody) / 6.0F;
+                ((GuiCelestialSelection)minecraft.currentScreen).drawTexturedModalRect(-1.75F * size, -7.0F * size, 8.5F * size, 16.0F * size, 0, 0, 28, 7, false, false, 28, 7);
         	}
         	else if (event.celestialBody == SolarSystemBodies.planetHaumea)
         	{
                 minecraft.renderEngine.bindTexture(haumeaRingTexture);
-                float size = ((Base_GuiCelestialSelection)minecraft.currentScreen).getWidthForCelestialBody(event.celestialBody) / 6.0F;
+                float size = ((GuiCelestialSelection)minecraft.currentScreen).getWidthForCelestialBody(event.celestialBody) / 6.0F;
                 GL11.glRotatef(45F, 0, 0, 1);
-                ((Base_GuiCelestialSelection)minecraft.currentScreen).drawTexturedModalRect(-4.45F * size, -8.0F * size, 9.5F * size, 16.0F * size, 0, 0, 28, 7, false, false, 28, 7);
+                ((GuiCelestialSelection)minecraft.currentScreen).drawTexturedModalRect(-4.45F * size, -8.0F * size, 9.5F * size, 16.0F * size, 0, 0, 28, 7, false, false, 28, 7);
         	}
         }
-        
+        */
         //FIXME TEMP
         if (minecraft.currentScreen instanceof NewGuiCelestialSelection)
         {

@@ -21,4 +21,7 @@ public abstract class StatsCapability {
 	
 	public abstract int[] getKnowledgeResearches();
 	public abstract void setKnowledgeResearch(int id, int k);
+	
+	public abstract boolean isBarnardaSurvivalMode();
+	public abstract void setBarnardaSurvivalMode();
 }

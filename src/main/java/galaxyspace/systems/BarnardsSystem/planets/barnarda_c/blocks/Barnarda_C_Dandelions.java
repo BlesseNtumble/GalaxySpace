@@ -7,8 +7,8 @@ import javax.annotation.Nullable;
 
 import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTree_Forest;
 import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTree_Forest2;
-import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
-import galaxyspace.systems.BarnardsSystem.core.registers.BRItems;
+import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.core.BRItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;

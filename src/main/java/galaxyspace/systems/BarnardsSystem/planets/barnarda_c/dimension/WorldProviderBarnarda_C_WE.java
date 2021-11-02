@@ -9,14 +9,15 @@ import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderS
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
+import asmodeuscore.core.utils.worldengine.perlinnoise.PerlinNoise;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_CaveGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_OreGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_RavineGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.systems.BarnardsSystem.BarnardsSystemBodies;
-import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.sky.CloudProviderBarnardaC;
+import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.sky.CloudProviderBarnarda_C;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.sky.SkyProviderBarnarda_C;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Beach;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_DeepOcean;
@@ -174,10 +175,18 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
     @SideOnly(Side.CLIENT)
     public float getStarBrightness(float par1)
     {
+    	
     	float f = this.world.getCelestialAngle(par1);
         float f1 = 1.0F - (MathHelper.cos(f * ((float)Math.PI * 2F)) * 2.0F + 0.25F);
         f1 = MathHelper.clamp(f1, 0.0F, 1.0F);
+        
+        if(world.isRaining())
+    	{
+    		return f1 * f1 * 0.2F;
+    	}
+        
         return f1 * f1 * 0.5F;   	
+        
     }
     
     @Override
@@ -195,7 +204,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
     public IRenderHandler getCloudRenderer(){
     	
     	if(super.getCloudRenderer() == null)
-    		this.setCloudRenderer(new CloudProviderBarnardaC());
+    		this.setCloudRenderer(new CloudProviderBarnarda_C());
     	
         return super.getCloudRenderer();
     }
@@ -238,6 +247,16 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
     	EventHandlerGC.bedActivated = false;
     	return true;
     }
+	
+	@Override
+    public boolean isSurfaceWorld()
+    {
+		if(this.world == null) return false;
+		
+		if(!this.world.isRemote) return false;
+		
+        return true; //this.world.isRemote;
+    }
 
 	public WorldSleepResult canSleepAt(net.minecraft.entity.player.EntityPlayer player, BlockPos pos)
     {
@@ -253,6 +272,8 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
 		cp.createChunkGen_InXYZ_List.clear(); 
 		cp.decorateChunkGen_List .clear(); 
 		((WE_ChunkProviderSpace)cp).worldGenerators.clear();
+		
+
 		
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
 		terrainGenerator.worldStoneBlock = BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(1); 
@@ -318,6 +339,8 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
 		cp.decorateChunkGen_List.add(standardOres);
 		
 		cp.biomesList.clear();
+		//WE_Biome.addPrelinNoise(cp, new PerlinNoise(cp.worldObj.getSeed(), 1.0D, 1, 100D, .5D, 0));
+		
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_DeepOcean(-4D, 4D));	
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(-3.8D, 3.8D, false));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Beach(-3.5D, 3.5D, 1));
@@ -326,31 +349,15 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(-2.5D, 2.5D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Swampland(-2.4D, 2.4D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Jungle(-1.9D, 1.9D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Dunes(-1.4D, 1.4D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-1.0D, 1.0D, 100, 2.8D, 4));	
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-0.8D, 0.8D, 180, 2.4D, 4));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_SnowPlains(-0.6D, 0.6D, 160));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-0.3D, 0.3D, 100, 2.8D, 4));	
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-1.4D, 1.4D, 100, 2.8D, 4));	
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-1.0D, 1.0D, 180, 3.0D, 4));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_SnowPlains(-0.8D, 0.8D, 160));
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-0.6D, 0.6D, 100, 2.4D, 4));	
+		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Dunes(-0.3D, 0.3D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(-0.0D, 0.0D, true));
 		
-		WE_Biome.setBiomeMap(cp, 0.8D, 4, cp.biomesList.size() * 350D, 3.0D);	
-		/*
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_DeepOcean(-4D, 4D));	
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(-3.9D, 3.9D, false));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Swampland(-3.5D, 3.5D));		
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_DeepOcean(-3D, 3D));	
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(-2.5D, 2.5D, false));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Beach(-2.46D, 2.46D, 1));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Plains(-1.9D, 1.9D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(-1.8D, 1.8D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Forest(-1.6D, 1.6D));
-		//WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_YellowPlains(-1.1D, 1.1D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_River(-1.0D, 1.0D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Dunes(-0.95D, 0.95D));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-0.6D, 0.6D, 100, 2.8D, 4));	
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Mountains(-0.4D, 0.4D, 180, 2.4D, 4));
-		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_SnowPlains(-0.2D, 0.2D, 160));
-		*/
+		WE_Biome.setBiomeMap(cp, 0.8D, 4, cp.biomesList.size() * 200D, 3.0D);
+
 	}
 
 	@Override
@@ -361,7 +368,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
 	@Override
 	protected float getThermalValueMod()
 	{
-		return 0.2F;
+		return 0.05F;
 	}
 
 	@Override
@@ -375,4 +382,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
 	@Override
 	public void recreateStructures(Chunk chunkIn, int x, int z) {		
 	}
+	
+	@Override
+	public boolean isColorWorld() { return true; }
 }

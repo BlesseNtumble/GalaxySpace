@@ -4,7 +4,8 @@ import java.util.Random;
 
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
-import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
+import galaxyspace.core.prefab.world.gen.WorldGenCircleBlock;
+import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Blocks;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Dandelions;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Grass;
@@ -24,7 +25,7 @@ import net.minecraft.world.biome.Biome;
 public class Barnarda_C_Swampland extends WE_Biome {
 	
 	public Barnarda_C_Swampland(double min, double max) {
-		super(new BiomeProperties("barnarda_c_swampland"), new int[] {0x54732a, 0x11CC44, 0x985cff});
+		super(new BiomeProperties("barnarda_c_swampland"), new int[] {/*0x54732a*/ 0x822899, 0x11CC44, 0x985cff});
 				
 		biomeMinValueOnMap      =  	min;
 		biomeMaxValueOnMap      =   max;
@@ -62,6 +63,26 @@ public class Barnarda_C_Swampland extends WE_Biome {
 		BlockPos pos = world.getHeight(new BlockPos(randPosX, 0, randPosZ));
 		
 	
+		WorldGenCircleBlock circle = new WorldGenCircleBlock(Blocks.CLAY.getDefaultState(), rand.nextInt(5) + 3, BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(0));
+		if(rand.nextInt(8) == 0) {
+			randPosX = x + rand.nextInt(8) + 8;
+			randPosZ = z + rand.nextInt(8) + 8;
+			pos = world.getHeight(new BlockPos(randPosX, 0, randPosZ));
+			
+			//if(world.getBlockState(pos).getMaterial() == Material.WATER)
+			circle.generate(world, rand, pos.down());
+			
+			
+		}
+		circle = new WorldGenCircleBlock(Blocks.GRAVEL.getDefaultState(), rand.nextInt(8) + 5, BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(0));
+		if(rand.nextInt(2) == 0) {
+			randPosX = x + rand.nextInt(8) + 8;
+			randPosZ = z + rand.nextInt(8) + 8;
+			pos = world.getHeight(new BlockPos(randPosX, 0, randPosZ));			
+			circle.generate(world, rand, pos.down());		
+			
+		}
+		
 		for(int i = 0; i < 5; i++){
 			randPosX = x + rand.nextInt(16) + 8;
 			randPosZ = z + rand.nextInt(16) + 8;

@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import galaxyspace.core.GSFluids;
 import galaxyspace.core.GSItems;
+import galaxyspace.core.prefab.tile.TileEntityUpgradeMachine;
 import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockUniversalRecycler;
 import galaxyspace.systems.SolarSystem.planets.overworld.recipes.RecyclerRecipes;
@@ -34,13 +35,13 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 
-public class TileEntityUniversalRecycler extends TileBaseElectricBlockWithInventory implements IFluidHandlerWrapper, ISidedInventory, IPacketReceiver{
+public class TileEntityUniversalRecycler extends TileEntityUpgradeMachine implements IFluidHandlerWrapper, ISidedInventory, IPacketReceiver{
 
 	public static final int PROCESS_TIME_REQUIRED_BASE = 130;
     @NetworkedField(targetSide = Side.CLIENT)
     public int processTimeRequired = PROCESS_TIME_REQUIRED_BASE;
-    @NetworkedField(targetSide = Side.CLIENT)
-    public int processTicks = 0;
+    //@NetworkedField(targetSide = Side.CLIENT)
+    //public int processTicks = 0;
     
     private final int tankCapacity = 3000;
     @NetworkedField(targetSide = Side.CLIENT)
@@ -55,7 +56,7 @@ public class TileEntityUniversalRecycler extends TileBaseElectricBlockWithInvent
     	super("tile.universal_recycler.name");
     	this.storage.setCapacity(20000);
         this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 90 : 75);
-        this.inventory = NonNullList.withSize(5 + 4, ItemStack.EMPTY);
+        this.inventory = NonNullList.withSize(6 + 4, ItemStack.EMPTY);
         this.setTierGC(1);
     }
     
@@ -106,20 +107,20 @@ public class TileEntityUniversalRecycler extends TileBaseElectricBlockWithInvent
             {
             	if (this.hasEnoughEnergyToRun)
                 {
-            	   	int boost_speed = 0, energy_boost = 0;
+            	   /*	int boost_speed = 0, energy_boost = 0;
             	   	
             	   	//////////
 
                 	for(int i = 0; i <= 3; i++)
                 	{
-                		if(this.getInventory().get(4 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 2)))
+                		if(this.getInventory().get(this.getInventory().size() - i - 1).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 2)))
                 			boost_speed++;
-                		if(this.getInventory().get(4 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 3)))
+                		if(this.getInventory().get(this.getInventory().size() - i - 1).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 3)))
                 			energy_boost++;
                 	}
-                	
-                    this.processTicks += 1 * (1 + boost_speed);
-                    this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 90 + (60 * boost_speed) - (20 * energy_boost) : 75 + (55 * boost_speed) - (15 * energy_boost));
+                	*/
+                   // this.processTicks += 1 * (1 + this.getBoost());
+                    //this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 90 + (60 * this.getBoost()) - (20 * getEnergy()) : 75 + (55 * this.getBoost()) - (15 * this.getEnergy()));
                     /////////////
                     
                     //50% extra speed boost for Tier 2 machine if powered by Tier 2 power
@@ -186,6 +187,16 @@ public class TileEntityUniversalRecycler extends TileBaseElectricBlockWithInvent
     				int result = this.getInventory().get(3).getCount() + recipe.getOutput().getCount();
     				return result <= getInventoryStackLimit() && result <= this.getInventory().get(3).getMaxStackSize();
     			}
+    			
+    			if(!recipe.getOutput_2().isEmpty())
+    			{
+    				if (!this.getInventory().get(4).isEmpty() && !this.getInventory().get(4).isItemEqual(recipe.getOutput_2()))
+    					return false;
+    				
+    				int result = this.getInventory().get(4).getCount() + recipe.getOutput_2().getCount();
+    				return result <= getInventoryStackLimit() && result <= this.getInventory().get(4).getMaxStackSize();
+    			}
+
 
     		}
     		else return false;
@@ -207,7 +218,7 @@ public class TileEntityUniversalRecycler extends TileBaseElectricBlockWithInvent
     		if(recipe != null)
     		{
     			boolean hasRand = recipe.hasChance();
-    			
+    			boolean hasRand_2 = recipe.hasChance_2();
     				
     			if(!hasRand) 
     			{
@@ -215,6 +226,13 @@ public class TileEntityUniversalRecycler extends TileBaseElectricBlockWithInvent
 	           			this.getInventory().set(3, recipe.getOutput().copy());	 
 	    			else if(this.getInventory().get(3).isItemEqual(recipe.getOutput()))
 	    				this.getInventory().get(3).grow(recipe.getOutput().getCount());  
+	    			
+	    			if(!hasRand_2 && !recipe.getOutput_2().isEmpty()) {
+	    				if(this.getInventory().get(4).isEmpty())
+		           			this.getInventory().set(4, recipe.getOutput_2().copy());	 
+		    			else if(this.getInventory().get(4).isItemEqual(recipe.getOutput_2()))
+		    				this.getInventory().get(4).grow(recipe.getOutput_2().getCount());  
+	    			}
     			}
 	    		else
 	    		{
@@ -224,6 +242,14 @@ public class TileEntityUniversalRecycler extends TileBaseElectricBlockWithInvent
 	    					this.getInventory().set(3, recipe.getOutput().copy());		    			
 	    				else if(this.getInventory().get(3).isItemEqual(recipe.getOutput()))	    				 
 	    					this.getInventory().get(3).grow(recipe.getOutput().getCount());
+	    				
+	    				if(recipe.getOutput_2() != null && !recipe.getOutput_2().isEmpty() && this.world.rand.nextInt(100) <= recipe.getChance_2()) 
+		    			{
+		    				if(this.getInventory().get(4).isEmpty())	    				
+		    					this.getInventory().set(4, recipe.getOutput_2().copy());		    			
+		    				else if(this.getInventory().get(4).isItemEqual(recipe.getOutput_2()))	    				 
+		    					this.getInventory().get(4).grow(recipe.getOutput_2().getCount());
+		    			}
 	    			}
 	    		}
     				
@@ -432,4 +458,9 @@ public class TileEntityUniversalRecycler extends TileBaseElectricBlockWithInvent
     {
          return this.waterTank.getFluidAmount() * i / this.waterTank.getCapacity();
     }
+
+	@Override
+	public int[] upgradeSlots() {
+		return new int[] {5, 6, 7, 8};
+	}
 }

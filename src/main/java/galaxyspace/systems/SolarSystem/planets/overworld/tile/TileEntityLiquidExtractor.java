@@ -81,7 +81,7 @@ public class TileEntityLiquidExtractor extends TileBaseElectricBlockWithInventor
         super.update();
         if (!this.world.isRemote)
         {       	
-        	int range = 2;
+        	int range = 0;
         	GSUtils.checkFluidTankTransfer(this.getInventory(), 1, this.waterTank);
         	
             if (this.canProcess())
@@ -162,14 +162,16 @@ public class TileEntityLiquidExtractor extends TileBaseElectricBlockWithInventor
         	Block block = state.getBlock();
         	int meta = state.getBlock().getMetaFromState(state);
         	      	
-        	//FluidStack ext = this.extractfluid.get(this.world.getBlockState(pos).getBlock());
-        	/*if(ext != null)
+        	FluidStack ext = this.extractfluid.get(this.world.getBlockState(pos).getBlock());
+        	if(ext != null)
         	{         		
         		Fluid water = ext.getFluid();
         		this.waterTank.fill(new FluidStack(water, ext.amount), true);
-        		//if(this.waterTank.getFluid().isFluidEqual(new FluidStack(FluidRegistry.lookupFluidForBlock(block), 0))) this.world.setBlockToAir(pos);
-        	} */
+        		//if(this.waterTank.getFluid().isFluidEqual(ext) && (block != Blocks.ICE || block != Blocks.PACKED_ICE)) this.world.setBlockToAir(pos);
+        		return;
+        	} 
         	
+        	//System.out.println(this.extractfluid);
         	if(meta == 0) { 
         		
 	        	if(block == Blocks.WATER)
@@ -203,6 +205,8 @@ public class TileEntityLiquidExtractor extends TileBaseElectricBlockWithInventor
 			    	if(this.waterTank.getFluid().isFluidEqual(new FluidStack(FluidRegistry.lookupFluidForBlock(block), 0))) this.world.setBlockToAir(pos);
 				    return;
 			    } 
+	        	
+        		       	
 			       			  
         	}
         	

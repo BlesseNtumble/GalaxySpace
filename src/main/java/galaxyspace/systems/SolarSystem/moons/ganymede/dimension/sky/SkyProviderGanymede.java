@@ -2,7 +2,8 @@ package galaxyspace.systems.SolarSystem.moons.ganymede.dimension.sky;
 
 import org.lwjgl.opengl.GL11;
 
-import asmodeuscore.core.astronomy.sky.SkyProviderBaseOld;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
+import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import galaxyspace.GalaxySpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -11,7 +12,7 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.FMLClientHandler;
 
-public class SkyProviderGanymede extends SkyProviderBaseOld
+public class SkyProviderGanymede extends SkyProviderBase
 {
 
 	private static final ResourceLocation jupiterTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/celestialbodies/sol/jupiter.png");
@@ -24,7 +25,6 @@ public class SkyProviderGanymede extends SkyProviderBaseOld
 	@Override
 	protected void rendererSky(Tessellator tessellator, BufferBuilder worldRenderer, float f10, float ticks) {
 		
-		GL11.glPopMatrix();
 		GL11.glPushMatrix();
 		
 		f10 = 1.8F;
@@ -126,10 +126,10 @@ public class SkyProviderGanymede extends SkyProviderBaseOld
         
 			float f = 0.9F;
 			this.renderAtmo(tessellator, 0.0F, 0.0F, f10 - 7, new Vector3(120 / 255.0F * f, 110 / 255.0F * f, 120 / 255.0F * f));
-			GL11.glEnable(GL11.GL_TEXTURE_2D);
+
 			GL11.glPopMatrix(); 
 		}
-		GL11.glPushMatrix();
+
 	}
 
 	@Override
@@ -153,13 +153,13 @@ public class SkyProviderGanymede extends SkyProviderBaseOld
 	}
 
 	@Override
-	protected int modeLight() {
-		return 0;
+	protected ModeLight modeLight() {
+		return ModeLight.DEFAULT;
 	}
 
 	@Override
-	protected Vector3 colorSunAura() {
-		return new Vector3(150, 150, 150);
+	protected StarColor colorSunAura() {
+		return StarColor.WHITE;
 	}
 
 	@Override

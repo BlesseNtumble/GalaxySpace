@@ -37,7 +37,7 @@ public class Page_SolarRadiation implements IBookPage {
 		this.drawTexturedModalRect(x + 50, y + 50 + offsetY, 70, 90, 0, 0, 256, 256, false, false, 256, 256);
 		
 		this.mc.getTextureManager().bindTexture(guiTexture);
-		this.drawTexturedModalRect(x + 75, y + 55 + offsetY, 60, 80, 64, 0, 64, 64, false, false, 256, 256);
+		this.drawTexturedModalRect(x + 75, y + 60 + offsetY, 16, 61, 65, 0, 16, 56, false, false, 256, 256);
 		
 		String str = GCCoreUtil.translate("book.page.solar_radiation.text");
 		String[] str1 = str.split("!n");

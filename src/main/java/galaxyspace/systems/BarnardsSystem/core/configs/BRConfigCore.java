@@ -31,6 +31,8 @@ public class BRConfigCore {
     
     public static boolean enableBarnardsSystems;
 
+    public static boolean survivalModeOnBarnarda;
+
     public static void syncConfig(boolean load)
     {
         List<String> propOrder = new ArrayList<String>();
@@ -51,6 +53,12 @@ public class BRConfigCore {
             prop.setComment("Enable/Disable Barnards System.");
             prop.setLanguageKey("gc.configgui.enableBarnardsSystems").setRequiresMcRestart(true);
             enableBarnardsSystems = prop.getBoolean(true);
+            propOrder.add(prop.getName());
+            
+            prop = config.get(Constants.CONFIG_CATEGORY_DIFFICULTY, "survivalModeOnBarnarda", false);
+            prop.setComment("!!!!!EXPERIMENTAL!!!! Enable/Disable start your survival game on Barnarda C.");
+            prop.setLanguageKey("gc.configgui.survivalModeOnBarnarda").setRequiresMcRestart(true);
+            survivalModeOnBarnarda = prop.getBoolean(false);
             propOrder.add(prop.getName());
             
             config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);

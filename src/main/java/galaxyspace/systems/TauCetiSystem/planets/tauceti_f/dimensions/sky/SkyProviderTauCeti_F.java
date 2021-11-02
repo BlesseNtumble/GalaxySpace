@@ -59,7 +59,8 @@ public class SkyProviderTauCeti_F extends SkyProviderBase{
 
 	@Override
 	protected Vector3 getAtmosphereColor() {
-		return null;
+		float f = mc.world.getSunBrightness(ticks) + 0.2F;
+		return new Vector3(120 / 255.0F * f, 120 / 255.0F * f, 160 / 255.0F * f);
 	}
 
 }

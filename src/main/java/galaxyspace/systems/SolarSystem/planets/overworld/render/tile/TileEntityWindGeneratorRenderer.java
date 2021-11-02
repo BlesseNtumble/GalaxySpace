@@ -55,10 +55,47 @@ public class TileEntityWindGeneratorRenderer extends TileEntitySpecialRenderer<T
         //GL11.glScalef(2.0F, 2.0F, 2.0F);
         //this.model.renderPanel();
         
-        wind.angle = (wind.angle+((wind.getPos().getY())/700F)* (wind.getWindBoost() * 20.0F)) % 360;
+        wind.angle = (wind.angle+((wind.getPos().getY())/700F)* (wind.getWindBoost() * 15.0F)) % 360;
+        
         GL11.glRotatef(wind.angle, 0F, 0F, 1.0F);
         //GL11.glTranslatef(0.0F, 1.0F, 1.0F);
-        this.model.renderFlares(0.0625F);
+        if(wind.getFanType() >= 0) {
+	        float r = 1.0F, g = 1.0F,b = 1.0F;
+	        switch (wind.getFanType()) {
+		        case 0: {
+		        	r = 0.6F;
+		        	g = 0.6F;
+		        	b = 0.65F;
+		        	
+		        	break;
+		        }
+		        case 1: {
+		        	r = 0.3F;
+		        	g = 0.3F;
+		        	b = 0.4F;
+		        	
+		        	break;
+		        }
+		        case 2: {
+		        	r = 1.0F;
+		        	g = 1.0F;
+		        	b = 1.0F;
+		        	
+		        	break;
+		        }
+		        case 3: {
+		        	r = 0.15F;
+		        	g = 0.15F;
+		        	b = 0.15F;
+		        	
+		        	break;
+		        }
+	        }
+	        
+	        GL11.glColor4f(r, g, b, 1.0F);
+	        
+	        this.model.renderFlares(0.0625F);
+        }
         
         GlStateManager.disableRescaleNormal();
         GL11.glPopMatrix();

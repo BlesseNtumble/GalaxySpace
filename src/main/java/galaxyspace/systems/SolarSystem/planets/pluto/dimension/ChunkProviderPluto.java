@@ -27,7 +27,7 @@ public class ChunkProviderPluto extends ChunkProviderSpaceLakes {
 
     private List<MapGenBaseMeta> worldGenerators;
     
-    private final MapGenCaves caveGenerator = new MapGenCaves(GSBlocks.PLUTO_BLOCKS, 0, 4, 5);
+    private final MapGenCaves caveGenerator = new MapGenCaves(GSBlocks.PLUTO_BLOCKS.getStateFromMeta(0), GSBlocks.PLUTO_BLOCKS.getStateFromMeta(4), GSBlocks.PLUTO_BLOCKS.getStateFromMeta(5));
 
 	@Override
 	protected List<MapGenBaseMeta> getWorldGenerators()

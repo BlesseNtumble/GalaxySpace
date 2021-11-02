@@ -3,8 +3,9 @@ package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks;
 import java.util.List;
 import java.util.Random;
 
+import asmodeuscore.api.blocks.ICustomLeaves;
 import galaxyspace.core.util.GSCreativeTabs;
-import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks.EnumType;
@@ -30,7 +31,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class Barnarda_C_Leaves extends BlockLeaves {
+public class Barnarda_C_Leaves extends BlockLeaves implements ICustomLeaves{
 	public static final PropertyEnum<EnumBlockLeaves> BASIC_TYPE = PropertyEnum.create("type", EnumBlockLeaves.class);
 	int[] surroundings;
 	
@@ -306,6 +307,11 @@ public class Barnarda_C_Leaves extends BlockLeaves {
 	public BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, new IProperty[] {BASIC_TYPE, CHECK_DECAY, DECAYABLE});
     }
+
+	@Override
+	public int getDefaultLeavesColor() {
+		return 0x985cff;
+	}
 
 
 }

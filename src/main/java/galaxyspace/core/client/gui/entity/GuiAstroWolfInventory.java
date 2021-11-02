@@ -79,7 +79,8 @@ public class GuiAstroWolfInventory extends GuiContainer
         final int containerHeight = (this.height - this.ySize) / 2;
         this.mc.renderEngine.bindTexture(wolfGui);
         this.drawTexturedModalRect(containerWidth, containerHeight, 0, 0, this.xSize, this.ySize);
-        this.drawString(fontRenderer, GCCoreUtil.translate("entity.astro_wolf.name"), containerWidth + 35, containerHeight + 3, 0xFFFFFF);
+        String name = "entity.astro_wolf.name";
+        this.drawString(fontRenderer, GCCoreUtil.translate(name), containerWidth + this.xSize / 2 - name.length() - 5, containerHeight + 3, 0xFFFFFF);
  
         this.drawString(fontRenderer, GCCoreUtil.translate("item.oxygen_mask.name") + ": " + localeBoolean(!this.wolf.wolfInventory.getStackInSlot(0).isEmpty()), containerWidth + 80, containerHeight + 20, 0xFFFFFF);
         this.drawString(fontRenderer, GCCoreUtil.translate("gui.message.thermal_status.name").substring(0, 7) + ": " + localeBoolean(!this.wolf.wolfInventory.getStackInSlot(1).isEmpty()), containerWidth + 80, containerHeight + 30, 0xFFFFFF);
@@ -92,7 +93,7 @@ public class GuiAstroWolfInventory extends GuiContainer
         	
         this.drawString(fontRenderer, oxygen, containerWidth + 80, containerHeight + 40, 0xFFFFFF);
         
-        this.drawString(fontRenderer, this.wolf.getHealth() + "/" + this.wolf.getMaxHealth(), containerWidth + 29, containerHeight + 20, 0xFFFFFF);
+        this.drawString(fontRenderer, Math.round(this.wolf.getHealth()) + "/" + Math.round(this.wolf.getMaxHealth()), containerWidth + 35, containerHeight + 20, 0xFFFFFF);
         
         GlStateManager.pushMatrix();
         GlStateManager.color(1.0F, 1.0F, 1.0F);

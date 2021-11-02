@@ -36,7 +36,7 @@ public class ChunkProviderCeres extends ChunkProviderSpaceLakes {
 	
     private List<MapGenBaseMeta> worldGenerators;
     
-    private final MapGenCaves caveGenerator = new MapGenCaves(GSBlocks.CERES_BLOCKS, 0, 1, 1);
+    private final MapGenCaves caveGenerator = new MapGenCaves(GSBlocks.CERES_BLOCKS.getStateFromMeta(0), GSBlocks.CERES_BLOCKS.getStateFromMeta(1));
     
     private IBlockState top = GSBlocks.CERES_BLOCKS.getDefaultState().withProperty(CeresBlocks.BASIC_TYPE, CeresBlocks.EnumCeresBlocks.CERES_DUNGEON_TOP);
     private IBlockState floor = GSBlocks.CERES_BLOCKS.getDefaultState().withProperty(CeresBlocks.BASIC_TYPE, CeresBlocks.EnumCeresBlocks.CERES_DUNGEON_FLOOR);

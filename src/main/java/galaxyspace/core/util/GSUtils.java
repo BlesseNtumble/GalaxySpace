@@ -779,7 +779,7 @@ public class GSUtils {
 
         return ItemStack.EMPTY;
     }
-	
+
 	/*
 	
 	public static void openAstroWolfInventory(EntityPlayer player, EntityAstroWolf wolf) {

@@ -59,6 +59,7 @@ public class Mars_Plains extends WE_Biome {
 
           for (int eggCount = 0; eggCount < eggsPerChunk; ++eggCount)
           {
+        	  
               blockpos = blockpos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8);
               this.eggGenerator.generate(world, rand, blockpos);
           }

@@ -5,7 +5,7 @@ import java.util.Random;
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import galaxyspace.core.prefab.world.gen.WorldGenPool;
-import galaxyspace.systems.ACentauriSystem.core.registers.blocks.ACBlocks;
+import galaxyspace.systems.ACentauriSystem.core.ACBlocks;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.blocks.Proxima_B_Blocks;
 import micdoodle8.mods.galacticraft.core.GCFluids;
 import net.minecraft.init.Blocks;

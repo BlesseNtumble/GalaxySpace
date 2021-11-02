@@ -49,6 +49,8 @@ import net.minecraft.world.storage.ISaveFormat;
 import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.fml.client.GuiModList;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -682,7 +684,15 @@ public class GSGuiMainMenu extends GuiScreen implements GuiYesNoCallback
         this.drawString(this.fontRenderer, "Ver. " + GalaxySpace.VERSION, this.width - this.fontRenderer.getStringWidth(GalaxySpace.VERSION) - 35, this.height / 2 - 53, -1);
         
         this.drawString(this.fontRenderer, "AsmodeusCore", this.width - 85 , this.height - 45, Utils.getIntColorWHC(0, 250, 200, 255));
-        this.drawString(this.fontRenderer, "Ver. " + AsmodeusCore.VERSION, this.width - AsmodeusCore.VERSION.length() * 5 - 35 , this.height - 35, -1);
+        String version = "0.0.0";
+        for (ModContainer mod : Loader.instance().getModList())
+        {
+        	if(mod.getName().contains("AsmodeusCore")) {
+        		version = mod.getVersion();
+        		break;
+        	}
+        }
+        this.drawString(this.fontRenderer, "Ver. " + version, this.width - version.length() * 5 - 35 , this.height - 35, -1);
 
         if (this.field_92025_p != null && this.field_92025_p.length() > 0)
         {

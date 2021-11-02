@@ -45,6 +45,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitat
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityPlanetShield;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityRadiationStabiliser;
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
+import micdoodle8.mods.galacticraft.api.event.ZeroGravityEvent;
 import micdoodle8.mods.galacticraft.api.event.wgen.GCCoreEventPopulate;
 import micdoodle8.mods.galacticraft.api.inventory.AccessInventoryGC;
 import micdoodle8.mods.galacticraft.api.inventory.IInventoryGC;
@@ -53,9 +54,9 @@ import micdoodle8.mods.galacticraft.api.prefab.entity.EntityTieredRocket;
 import micdoodle8.mods.galacticraft.api.vector.BlockVec3Dim;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
+import micdoodle8.mods.galacticraft.api.world.ITeleportType;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCItems;
-import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.entities.EntityLanderBase;
 import micdoodle8.mods.galacticraft.core.entities.EntityMeteor;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler;
@@ -63,13 +64,13 @@ import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler.EnumMod
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler.ThermalArmorEvent;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
 import micdoodle8.mods.galacticraft.core.items.ItemTier1Rocket;
-import micdoodle8.mods.galacticraft.core.tile.TileEntityFuelLoader;
 import micdoodle8.mods.galacticraft.core.util.CompatibilityManager;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.FluidUtil;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
+import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import micdoodle8.mods.galacticraft.core.world.gen.WorldGenMinableMeta;
 import micdoodle8.mods.galacticraft.core.wrappers.IFluidHandlerWrapper;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.ItemTier3Rocket;
@@ -95,16 +96,22 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.play.server.SPacketRespawn;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.DimensionType;
+import net.minecraft.world.GameType;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldProvider;
+import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.config.Config.Type;
 import net.minecraftforge.common.config.ConfigManager;
@@ -115,6 +122,7 @@ import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -126,22 +134,23 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class GSEventHandler {
 
-	private static List<BlockToChange> block_to_change = new ArrayList();
-	private static List<ItemsToChange> items_to_change = new ArrayList();
+	private static List<BlockToChange> block_to_change = new ArrayList<BlockToChange>();
+	private static List<ItemsToChange> items_to_change = new ArrayList<ItemsToChange>();
 		
 	static {
 		OreDictionary.getOres("treeLeaves").forEach((ItemStack stack) -> {
 			
-			items_to_change.add(new ItemsToChange(stack, Blocks.AIR.getDefaultState(), true).setOxygenCheck(true));
+			items_to_change.add(new ItemsToChange(stack, Blocks.AIR.getDefaultState()).setTempCheck(true).setOxygenCheck(true));
 		});
 		
 		OreDictionary.getOres("treeSapling").forEach((ItemStack stack) -> {
 			
 			//block_to_change.add(new BlockToChange(Block.getBlockFromItem(stack.getItem()).getDefaultState(), Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), 0.0F, true));
-			items_to_change.add(new ItemsToChange(stack, Blocks.DEADBUSH.getDefaultState(), true).setOxygenCheck(true));
+			items_to_change.add(new ItemsToChange(stack, Blocks.DEADBUSH.getDefaultState()).setTempCheck(true).setOxygenCheck(true));
 		});
 		
-		items_to_change.add(new ItemsToChange(new ItemStack(Items.WATER_BUCKET), Blocks.AIR.getDefaultState(), true).setOxygenCheck(false));
+		items_to_change.add(new ItemsToChange(new ItemStack(Blocks.FURNACE), Blocks.AIR.getDefaultState()).setOxygenCheck(true));
+		items_to_change.add(new ItemsToChange(new ItemStack(Items.WATER_BUCKET), Blocks.AIR.getDefaultState()).setTempCheck(true).setOxygenCheck(false));
 		block_to_change.add(new BlockToChange(Blocks.WATER.getDefaultState(), Blocks.AIR.getDefaultState(), Blocks.ICE.getDefaultState(), 0.0F, true).setParticle("waterbubbles").setOxygenCheck(false));
 		block_to_change.add(new BlockToChange(Blocks.LEAVES.getStateFromMeta(0), Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), 0.5F, true).setParticle("waterbubbles"));
 	}
@@ -225,10 +234,11 @@ public class GSEventHandler {
         	StatsCapability stats = GSStatsCapability.get(event.player);
         	
         	Integer[] ids = new Integer[256];
-        	for(int i = 0; i < stats.getKnowledgeResearches().length; i++)
+        	for(int i = 0; i < stats.getKnowledgeResearches().length; i++) {
         		ids[i] = stats.getKnowledgeResearches()[i];
-
+        	}
         	GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_UPDATE_RESEARCHES, GCCoreUtil.getDimensionID(event.player.world), new Object[] {ids}), (EntityPlayerMP)event.player);
+        	
         }
     }	
 		
@@ -246,7 +256,6 @@ public class GSEventHandler {
 	{
 		
 		
-		
 	}
 	
 	@SubscribeEvent
@@ -254,7 +263,7 @@ public class GSEventHandler {
 		if(e.getSource().getTrueSource() instanceof EntityPlayerMP)
 		{
 			EntityPlayerMP player = (EntityPlayerMP) e.getSource().getTrueSource();
-			
+	
 			ItemStack stack = player.getHeldItemMainhand();
 			
 			if(stack.getItem() instanceof ItemPlasmaSword && stack.getTagCompound().getFloat(ItemPlasmaSword.heat) >= 10.0F) {
@@ -289,7 +298,7 @@ public class GSEventHandler {
 	@SubscribeEvent 
 	public void onSetBlock(SetBlockEvent e) {
 		
-		if(e.world != null && !e.world.isRemote && e.world.provider instanceof IGalacticraftWorldProvider && e.pos != null)
+		if(e.world != null && !e.world.isRemote && e.world.provider instanceof IGalacticraftWorldProvider && e.pos != null && e.block != null)
 		{
 			float thermal = ((IGalacticraftWorldProvider)e.world.provider).getThermalLevelModifier();
 			AxisAlignedBB bb = new AxisAlignedBB(e.pos.getX()-1,e.pos.getY()-1,e.pos.getZ()-1, e.pos.getX()+1,e.pos.getY()+2,e.pos.getZ()+1);
@@ -340,7 +349,8 @@ public class GSEventHandler {
 			return;
 		}
 		
-		final Block block = world.getBlockState(event.getPos()).getBlock();
+		final IBlockState state = world.getBlockState(event.getPos());
+		final Block block = state.getBlock();
 		ItemStack stack = event.getItemStack();
 		EntityPlayer player = event.getEntityPlayer();
 			
@@ -348,10 +358,10 @@ public class GSEventHandler {
 		
 		if(world.isRemote)
 		{	
-			
+
 		}
 		
-		if(!world.isRemote && GSConfigCore.enableHardMode)
+		if(!world.isRemote && !block.hasTileEntity(state))
 		{		
 			if(CompatibilityManager.isIc2Loaded())
 			{
@@ -363,11 +373,7 @@ public class GSEventHandler {
 					}
 				}
 			}
-			
-			if (GalacticraftCore.isPlanetsLoaded && world.getTileEntity(event.getPos()) instanceof TileEntityFuelLoader) {
-				TileEntityFuelLoader tile = (TileEntityFuelLoader) world.getTileEntity(event.getPos());
-				System.out.println(tile.attachedFuelable);
-			}
+
 			//ICE BUCKET
 			if(block == Blocks.ICE && stack.getItem() == Items.BUCKET)
 			{				
@@ -376,7 +382,7 @@ public class GSEventHandler {
 				world.setBlockToAir(event.getPos());
 			}						
 			
-			if(world.provider instanceof IGalacticraftWorldProvider)
+			if(world.provider instanceof IGalacticraftWorldProvider && GSConfigCore.enableOxygenForPlantsAndFoods)
 			{
 				AxisAlignedBB bb = new AxisAlignedBB(event.getPos().up());
 				float thermal = ((IGalacticraftWorldProvider)world.provider).getThermalLevelModifier();
@@ -406,25 +412,7 @@ public class GSEventHandler {
 								event.setCanceled(true);
 							}
 						}
-						/*
-						if(ore.need_check_temp && (thermal >= 1.5 || thermal < -1.0F)) {
-							
-							if(ore.need_check_oxygen && !OxygenUtil.isAABBInBreathableAirBlock(world, bb, true))
-							{
-								player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.needoxygenthermal")));				   
-								event.setCanceled(true);								
-							}
-							else
-							{
-								player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.needthermal")));				   
-								event.setCanceled(true);		
-							}
-						}
-						else if(ore.need_check_oxygen && !OxygenUtil.isAABBInBreathableAirBlock(world, bb, false)) {
-							player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.needoxygen")));				   
-							event.setCanceled(true);	
-						}
-						*/
+						
 						if(ore.replaced != Blocks.AIR.getDefaultState())
 							if(world.getBlockState(event.getPos()).getBlock().isReplaceable(world, event.getPos()))
 								world.setBlockState(event.getPos(), ore.replaced);
@@ -494,7 +482,7 @@ public class GSEventHandler {
 			GalaxySpace.instance.debug(Item.REGISTRY.getNameForObject(i.getItem()) + " | " + i.getUnlocalizedName() + " | " + Biome.getBiome(Biome.getIdForBiome(world.getBiomeForCoordsBody(event.getPos()))));
 		
 					
-		if(!world.isRemote && GSConfigCore.enableHardMode && !player.capabilities.isCreativeMode)
+		if(!world.isRemote && GSConfigCore.enableOxygenForPlantsAndFoods && !player.capabilities.isCreativeMode)
 		{	
 			if(world.provider instanceof IGalacticraftWorldProvider && !((IGalacticraftWorldProvider)world.provider).hasBreathableAtmosphere())
 			{
@@ -514,24 +502,74 @@ public class GSEventHandler {
 		return !s.isEmpty() && s.getItem() instanceof ItemFood && !(s.getItem() instanceof micdoodle8.mods.galacticraft.core.items.ItemFood) && !(s.getItem() instanceof IItemSpaceFood);
 	}
 
-/*
-	@SubscribeEvent
-    public void onThermalArmorEvent(ThermalArmorEvent event)
-    {
-        if (event.armorStack == null)
+	private void survivalMode(EntityPlayerMP player, int dimensionID) {
+		final GCPlayerStats stats = GCPlayerStats.get(player);
+		
+		WorldServer worldOld = (WorldServer) player.world;
+		
+		try {
+			worldOld.getPlayerChunkMap().removePlayer(player);
+		} catch (Exception e) {
+		}
+		
+		worldOld.playerEntities.remove(player);
+        worldOld.updateAllPlayersSleepingFlag();
+        worldOld.loadedEntityList.remove(player);
+        worldOld.onEntityRemoved(player);
+        worldOld.getEntityTracker().untrack(player);
+        
+        if (player.addedToChunk && worldOld.getChunkProvider().chunkExists(player.chunkCoordX, player.chunkCoordZ))
         {
-            event.setArmorAddResult(ThermalArmorEvent.ArmorAddResult.REMOVE);
-            return;
-        }
-        if (event.armorStack.getItem() == GSItems.ThermalPaddingTier2 && event.armorStack.getItemDamage() == event.armorIndex)
-        {
-            event.setArmorAddResult(ThermalArmorEvent.ArmorAddResult.ADD);
-            return;
+            Chunk chunkOld = worldOld.getChunkFromChunkCoords(player.chunkCoordX, player.chunkCoordZ);
+            chunkOld.removeEntity(player);
+            chunkOld.setModified(true);
         }
         
-        event.setArmorAddResult(ThermalArmorEvent.ArmorAddResult.NOTHING);
+        WorldServer worldNew = getStartWorld(worldOld, dimensionID);
+        int dimID = GCCoreUtil.getDimensionID(worldNew);
+        player.dimension = dimID;
+        player.connection.sendPacket(new SPacketRespawn(dimID, player.world.getDifficulty(), player.world.getWorldInfo().getTerrainType(), player.interactionManager.getGameType()));
+        worldNew.spawnEntity(player);
+        player.setWorld(worldNew);
+        player.mcServer.getPlayerList().preparePlayer(player, (WorldServer) worldOld);
+        
+        player.interactionManager.setWorld((WorldServer) player.world);
+        final ITeleportType type = GalacticraftRegistry.getTeleportTypeForDimension(player.world.provider.getClass());
+        Vector3 spawnPos = type.getPlayerSpawnLocation((WorldServer) player.world, player);
+        ChunkPos pair = player.world.getChunkFromChunkCoords(spawnPos.intX() >> 4, spawnPos.intZ() >> 4).getPos();
+        ((WorldServer) player.world).getChunkProvider().loadChunk(pair.x, pair.z);
+        player.setLocationAndAngles(spawnPos.x, spawnPos.y, spawnPos.z, player.rotationYaw, player.rotationPitch);
+        type.onSpaceDimensionChanged(player.world, player, false);
+        player.setSpawnChunk(new BlockPos(spawnPos.intX(), spawnPos.intY(), spawnPos.intZ()), true, GCCoreUtil.getDimensionID(player.world));
+        
+	}
+	
+	private WorldServer getStartWorld(WorldServer unchanged, int dimID)
+    {
+        if (ConfigManagerCore.challengeSpawnHandling)
+        {
+            WorldProvider wp = WorldUtil.getProviderForDimensionServer(dimID);
+            WorldServer worldNew = (wp == null) ? null : (WorldServer) wp.world;
+            if (worldNew != null)
+            {
+                return worldNew;
+            }
+        }
+        return unchanged;
     }
-	*/
+
+
+	@SubscribeEvent
+	public void onPortalCreated(BlockEvent.PortalSpawnEvent e)
+	{
+		World world = e.getWorld();
+		if(world != null) {
+			if(world.provider instanceof IGalacticraftWorldProvider) {
+				e.setCanceled(!((IGalacticraftWorldProvider)world.provider).netherPortalsOperational());
+			}
+		}
+	}
+	
 	@SubscribeEvent
 	public void onEntityUpdate(LivingUpdateEvent event)
 	{
@@ -577,11 +615,26 @@ public class GSEventHandler {
 		if (living instanceof EntityPlayerMP)
 		{
 			EntityPlayerMP player = (EntityPlayerMP)living;			
-			final GCPlayerStats stats = GCPlayerStats.get(player);			
+			final GCPlayerStats stats = GCPlayerStats.get(player);
+			final StatsCapability gsstats = GSStatsCapability.get(player);
 		
 			LightningStormHandler.spawnLightning(player);
-								
-			//this.updateSchematics(player, stats);
+			
+			if(BRConfigCore.enableBarnardsSystems && BRConfigDimensions.enableBarnardaC && BRConfigCore.survivalModeOnBarnarda && !gsstats.isBarnardaSurvivalMode()) { 
+				//survivalMode(player, BRConfigDimensions.dimensionIDBarnardaC);
+				WorldUtil.transferEntityToDimension(player, BRConfigDimensions.dimensionIDBarnardaC, player.getServerWorld());
+				
+				gsstats.setBarnardaSurvivalMode();
+
+				if (player.capabilities.isCreativeMode)
+					player.setGameType(GameType.SURVIVAL);
+
+				player.sendMessage(new TextComponentString(
+						EnumColor.BRIGHT_GREEN + "[BETA] Welcome in survival mode on Barnarda C."));
+				
+			}
+	        	
+        	//this.updateSchematics(player, stats);
 			//this.throwMeteors(player);
 
 			
@@ -594,12 +647,7 @@ public class GSEventHandler {
 			{
 				player.attackEntityFrom(GSDamageSource.acid, 1.5F);
 			}
-			
-			/*if (solar < 48 || world.provider instanceof WorldProviderMercury && player.posY <= 30)
-			{
-				player.removePotionEffect(GSPotions.radiation.id);
-			}*/
-			
+
 			if(player.world.provider instanceof WorldProviderKuiperBelt && player.posY <= -20)
 			{				
 				player.connection.setPlayerLocation(player.posX, 188, player.posZ, player.rotationYaw, player.rotationPitch);
@@ -625,26 +673,7 @@ public class GSEventHandler {
 					}
 				}
 			}
-			/*
-			for(ItemStack stack : stats.getExtendedInventory().stacks)
-			{
-				if(!player.capabilities.isCreativeMode && stack.getItem() instanceof ItemThermalPaddingBase)
-				{
-					ItemThermalPaddingBase item = (ItemThermalPaddingBase) stack.getItem();
-					
-					if(item.isFreeze() && !player.world.isDaytime())
-						stats.setThermalLevelNormalising(false);
-						stats.setThermalLevel(-22);
-				}
-			}
-			*/
-	        /*if (stats.getShieldControllerInSlot().isEmpty())
-	        {
-	        	GCPlayerHandler.sendGearUpdatePacket(player, EnumModelPacketType.REMOVE, EnumExtendedInventorySlot.SHIELD_CONTROLLER);
-	        }
-	       	else*/ 
 			
-			//THERMAL
 			
 			//
 			if (stats.getShieldControllerInSlot().isItemEqual(new ItemStack(GSItems.BASIC, 1, 16)))
@@ -691,18 +720,21 @@ public class GSEventHandler {
 			IInventoryGC inv = AccessInventoryGC.getGCInventoryForPlayer(player);
 			if(!stack.isEmpty())
 			{
-				if(stack.getItem() == GSItems.SPACE_SUIT_HELMET && player.isInWater())
+				if(stack.getItem() instanceof ItemSpaceSuit && player.isInWater() && stack.hasTagCompound() && stack.getTagCompound().hasKey("water_breathing"))
 				{
-					int count = 150;
+					int count = 300;
 					int air = player.getAir();
 					for(int i = 2; i <= 3; i++)
 					{
 						if(!inv.getStackInSlot(i).isEmpty() && inv.getStackInSlot(i).getItemDamage() != inv.getStackInSlot(i).getMaxDamage())
 						{
+							
 							if(air < count)
 							{
-								player.setAir(air + count);
-								inv.getStackInSlot(i).setItemDamage(inv.getStackInSlot(i).getItemDamage() + 1);
+								player.setAir(count);
+								
+								if(inv.getStackInSlot(i).getItem() != GCItems.oxygenCanisterInfinite)
+									inv.getStackInSlot(i).setItemDamage(inv.getStackInSlot(i).getItemDamage() + 1);
 							}
 							break;
 						}
@@ -727,18 +759,6 @@ public class GSEventHandler {
 					}
 			}
 		}
-		
-		//}
-		/*if (living instanceof EntityPlayer) 
-		{
-			if(living.worldObj.provider instanceof WorldProviderTCetiE)
-			{
-				if (living.isInWater())
-				{
-					applyReverseWaterMovement(living);				
-				}
-			}
-		}*/
 		
 	}
 	
@@ -781,6 +801,14 @@ public class GSEventHandler {
 	}
 	
 	@SubscribeEvent
+	public void onZeroGravity(ZeroGravityEvent.InFreefall event)
+	{
+		EntityLivingBase entity = event.getEntityLiving();
+		if(inGravityZone(entity.getEntityWorld(), entity, false))
+			event.setCanceled(true);
+	}
+	
+	@SubscribeEvent
 	public void onRadiation(RadiationEvent event)
 	{
 		EntityLivingBase living = (EntityLivingBase) event.getEntity();
@@ -797,8 +825,8 @@ public class GSEventHandler {
 					break;
 				}
 			}
-			
-			event.setCanceled(checkAirLock || !GSConfigCore.enableRadiationSystem || this.getProtectArmor(player) || player.getRidingEntity() instanceof EntityLanderBase || player.getRidingEntity() instanceof EntityTieredRocket || this.inRadiationBubble(player.getEntityWorld(), player.posX, player.posY, player.posZ));		
+			if(!player.capabilities.isCreativeMode) 
+				event.setCanceled(checkAirLock || !GSConfigCore.enableRadiationSystem || this.getProtectArmor(player) || player.getRidingEntity() instanceof EntityLanderBase || player.getRidingEntity() instanceof EntityTieredRocket || this.inRadiationBubble(player.getEntityWorld(), player.posX, player.posY, player.posZ));		
 		}
 	}
 	
@@ -813,47 +841,16 @@ public class GSEventHandler {
 			World world = player.getEntityWorld();
 			float level = event.getPressureLevel();
 			
-			if(!player.capabilities.isCreativeMode)
-        	{
-				if(!GSConfigCore.enablePressureSystem)
-					event.setCanceled(true);
-				
-				if(this.getProtectArmor(player))
-					event.setCanceled(true);
-	        	
-	        	if(this.inGravityZone(world, player, true)) 
-	        		event.setCanceled(true);
-	        		/*	if(player.ticksExisted % 50 == 0) {
-		        			if(level > 10) player.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 10*20));					       
-					        if(level > 35) player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 10*20));
-					        if(level > 25) player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 280, 4));		        			
-		        			if(level > 45) player.attackEntityFrom(GSDamageSource.pressure, 2.5F);
-	        			}	*/        			
-	        			
-				        /*
-				        if(GSConfigCore.enableHardMode)
-				        {
-				        	if(level > 35) player.attackEntityFrom(GSDamageSource.pressure, 1.0F);
-				        	if(level > 45) player.attackEntityFrom(GSDamageSource.pressure, 1000.0F);				        			
-				        }
-				        else
-		        		{ 	
-				        	if(level > 25) 
-		        			{
-		        				player.jumpMovementFactor /= 2;//0.5F;
-		        				player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 280, 4));
-		        			} 				        				        				
-		        		}*/
-        				        		
-	        	
-        	}
+			if(!player.capabilities.isCreativeMode)     				        		
+	        	event.setCanceled(!GSConfigCore.enablePressureSystem || this.getProtectArmor(player) || this.inGravityZone(world, player, true) || player.getRidingEntity() instanceof EntityLanderBase || player.getRidingEntity() instanceof EntityTieredRocket);
+        	
 		}
 	}
 	
 	public static boolean getProtectArmor(EntityPlayerMP player)
 	{			
 		boolean[] check = new boolean[4];
-		boolean flag = false;
+		//boolean flag = false;
 		
 		for(String string : GSConfigCore.radiation_armor)
 		{
@@ -885,7 +882,7 @@ public class GSEventHandler {
 	}
 		
 		
-	public static boolean inGravityZone(World world, EntityPlayer player, boolean checkStabilisationModule)
+	public static boolean inGravityZone(World world, EntityLivingBase player, boolean checkStabilisationModule)
 	{
 		
 		for (final BlockVec3Dim blockVec : TileEntityGravitationModule.loadedTiles)
@@ -987,15 +984,7 @@ public class GSEventHandler {
 	public static boolean isItemStackEqual(ItemStack stack1, ItemStack stack2) {
 		return (!stack1.isEmpty() && stack1.getItem() == stack2.getItem() && (stack1.getItemDamage() == stack2.getItemDamage() || stack2.getItemDamage() == OreDictionary.WILDCARD_VALUE));
 	}
-	/*
-	public static ItemStack changeStackItem(ItemStack stack, Item item) {
-	      ItemStack newStack = new ItemStack(item);
-	      newStack.setItemDamage(stack.getItemDamage());
-	      newStack.stackTagCompound = stack.stackTagCompound;
-	      return newStack;
-	}
-
-	*/	
+	
 	protected void updateSchematics(EntityPlayerMP player, GCPlayerStats playerStats)
     {
        /* SchematicRegistry.addUnlockedPage(player, SchematicRegistry.getMatchingRecipeForID(GSConfigSchematics.idSchematicCone));
@@ -1117,11 +1106,11 @@ public class GSEventHandler {
 		private IBlockState replaced;
 		private boolean need_check_temp, need_check_oxygen, only_gs_dim = false;
 		
-		ItemsToChange(ItemStack stack, IBlockState placed, boolean need_check_temp)
+		ItemsToChange(ItemStack stack, IBlockState placed)
 		{
 			this.itemstack = stack;
 			this.replaced = placed;
-			this.need_check_temp = need_check_temp;
+			
 		}
 		
 		public ItemsToChange setOnlyGSDim()
@@ -1133,6 +1122,12 @@ public class GSEventHandler {
 		public ItemsToChange setOxygenCheck(boolean check)
 		{
 			this.need_check_oxygen = check;
+			return this;
+		}
+		
+		public ItemsToChange setTempCheck(boolean check)
+		{
+			this.need_check_temp = check;
 			return this;
 		}
 		

@@ -7,7 +7,7 @@ import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTr
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import galaxyspace.core.prefab.world.gen.we.WE_LakesGen;
-import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Dandelions;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Grass;
 import net.minecraft.entity.monster.EntityEnderman;
@@ -24,7 +24,7 @@ import net.minecraft.world.biome.Biome;
 public class Barnarda_C_Plains extends WE_Biome {
 	
 	public Barnarda_C_Plains(double min, double max) {
-		super(new BiomeProperties("barnarda_c_plains"), new int[] {0x88BB44, 0x11FF66, 0x985cff});
+		super(new BiomeProperties("barnarda_c_plains"), new int[] {/*0x88BB44*/0x822899, 0x11FF66, 0x985cff});
 				
 		biomeMinValueOnMap      =  	min;
 		biomeMaxValueOnMap      =   max;

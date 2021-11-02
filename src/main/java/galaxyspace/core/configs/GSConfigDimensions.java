@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.Level;
 
+import galaxyspace.core.util.GSConstants;
 import micdoodle8.mods.galacticraft.core.Constants;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
@@ -39,6 +40,8 @@ public class GSConfigDimensions
     public static int dimensionIDHaumea;
     public static int dimensionIDMakemake;
    // public static int dimensionIDEris;
+
+    public static int dimensionIDTest;
 
     public static int dimensionIDPhobos;
     public static int dimensionIDDeimos;
@@ -213,6 +216,12 @@ public class GSConfigDimensions
             prop.setComment("Dimension ID for Miranda (Uranus moon)");
             prop.setLanguageKey("gc.configgui.dimensionIDMiranda").setRequiresMcRestart(true);
             dimensionIDMiranda = prop.getInt();
+            propOrder.add(prop.getName());
+            
+            prop = config.get(GSConstants.DEVELOMPENT_CATEGORY, "dimensionIDTest", -1234);
+            prop.setComment("Dimension ID for Test planet (only for debug)");
+            prop.setLanguageKey("gc.configgui.dimensionIDTest").setRequiresMcRestart(true);
+            dimensionIDTest = prop.getInt();
             propOrder.add(prop.getName());
             /*
             prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "dimensionIDEris", -1030);

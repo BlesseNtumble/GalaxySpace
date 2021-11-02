@@ -36,7 +36,7 @@ public class Page_AtmospherePressure implements IBookPage {
 		this.drawTexturedModalRect(x + 50, y + 50 + offsetY, 70, 60, 0, 0, 256, 256, false, false, 256, 256);
 		
 		this.mc.getTextureManager().bindTexture(guiTexture);
-		this.drawTexturedModalRect(x + 55, y + 70 + offsetY, 60, 80, 0, 0, 64, 64, false, false, 256, 256);
+		this.drawTexturedModalRect(x + 55, y + 70 + offsetY, 60, 16, 0, 0, 64, 16, false, false, 256, 256);
 		
 		String str = GCCoreUtil.translate("book.page.atmosphere_pressure.text");
 		String[] str1 = str.split("!n");

@@ -73,10 +73,10 @@ public class SkyProviderEnceladus extends SkyProviderBase
 
 		float f11 = f10;
 		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
-		worldRenderer.pos(-20, -100.0D, f10).color(0.0F, 0.0F, 0.0F, 1.0F).endVertex();
-		worldRenderer.pos(f10, -100.0D, f10).color(1.0F, 0.0F, 0.0F, 1.0F).endVertex();
-		worldRenderer.pos(f10, -100.0D, -f10).color(1.0F, 0.0F, 0.0F, 1.0F).endVertex();
-		worldRenderer.pos(-20, -100.0D, -f10).color(0.0F, 0.0F, 0.0F, 0.7F).endVertex();
+		worldRenderer.pos(-20, -100.0D, f10).color(0.0F, 0.0F, 0.0F, 0.95F).endVertex();
+		worldRenderer.pos(f10, -100.0D, f10).color(0.0F, 0.0F, 0.0F, 0.95F).endVertex();
+		worldRenderer.pos(f10, -100.0D, -f10).color(0.0F, 0.0F, 0.0F, 0.95F).endVertex();
+		worldRenderer.pos(-20, -100.0D, -f10).color(0.0F, 0.0F, 0.0F, 0.95F).endVertex();
 		tessellator.draw();
 		
 		//OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, GL11.GL_ZERO, GL11.GL_ZERO);
@@ -101,10 +101,10 @@ public class SkyProviderEnceladus extends SkyProviderBase
 		
 		//f10 = 25.0F;
 		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
-		worldRenderer.pos(0, -100.0D, -f10).tex(0.5, 0).color(0.0F, 0.0F, 0.0F, 0.6F).endVertex();
-		worldRenderer.pos(0, -100.0D, f10).tex(0.5, 1.0).color(0.0F, 0.0F, 0.0F, 0.6F).endVertex();
-		worldRenderer.pos(f10, -100.0D, f10).tex(1.0, 1.0).color(0.0F, 0.0F, 0.0F, 0.6F).endVertex();
-		worldRenderer.pos(f10, -100.0D, -f10).tex(1.0, 0).color(0.0F, 0.0F, 0.0F, 0.6F).endVertex();
+		worldRenderer.pos(0, -100.0D, -f10).tex(0.5, 0).color(0.0F, 0.0F, 0.0F, 0.9F).endVertex();
+		worldRenderer.pos(0, -100.0D, f10).tex(0.5, 1.0).color(0.0F, 0.0F, 0.0F, 0.9F).endVertex();
+		worldRenderer.pos(f10, -100.0D, f10).tex(1.0, 1.0).color(0.0F, 0.0F, 0.0F, 0.9F).endVertex();
+		worldRenderer.pos(f10, -100.0D, -f10).tex(1.0, 0).color(0.0F, 0.0F, 0.0F, 0.9F).endVertex();
 		tessellator.draw();
 		
 		GL11.glDisable(GL11.GL_ALPHA_TEST);

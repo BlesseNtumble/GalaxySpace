@@ -155,10 +155,10 @@ public class GuiUniversalRecycler extends GuiContainerGC
         this.drawTexturedModalRect(containerWidth + 84, containerHeight + 44, 192 + 20, 108, 16, 17);
         for(int i = 0; i < 8 ; i++) 
         {
-        	//this.drawTexturedModalRect(containerWidth + 40 + (i * 4), containerHeight + 42, 203, 114, 4, 4);        	
+        	this.drawTexturedModalRect(containerWidth + 44 + i, containerHeight + 49, 203, 114, 4, 4);        	
         	this.drawTexturedModalRect(containerWidth + 52 + (i * 4), containerHeight + 66, 203, 114, 4, 4);
         
-        	this.drawTexturedModalRect(containerWidth + 52, containerHeight + 42 + (i * 3), 203, 114, 3, 4);
+        	this.drawTexturedModalRect(containerWidth + 52, containerHeight + 52 + (i * 2), 203, 114, 3, 4);
         	this.drawTexturedModalRect(containerWidth + 81, containerHeight + 50 + (i * 2), 203, 114, 3, 4);
         }  
         if (this.tileEntity.processTicks > 0)
@@ -169,10 +169,10 @@ public class GuiUniversalRecycler extends GuiContainerGC
             
             for(int i = 0; i < 8 ; i++) 
             {
-            	//this.drawTexturedModalRect(containerWidth + 40 + (i * 4), containerHeight + 42, 203, 130, 4, 5);        	
+            	this.drawTexturedModalRect(containerWidth + 44 + i, containerHeight + 49, 203, 130, 4, 5);        	
             	this.drawTexturedModalRect(containerWidth + 52 + (i * 4), containerHeight + 66, 203, 130, 4, 5);
             
-            	this.drawTexturedModalRect(containerWidth + 52, containerHeight + 42 + (i * 3), 203, 130, 3, 4);
+            	this.drawTexturedModalRect(containerWidth + 52, containerHeight + 52 + (i * 2), 203, 130, 3, 4);
             	this.drawTexturedModalRect(containerWidth + 81, containerHeight + 50 + (i * 2), 203, 130, 3, 4);
             }  
             
@@ -271,12 +271,12 @@ public class GuiUniversalRecycler extends GuiContainerGC
         this.waterTankRegion.tooltipStrings = water1TankDesc;       
         */
         
-        RecycleRecipe recipe = RecyclerRecipes.recycling().getRecipe(this.tileEntity.getStackInSlot(1));
+       /* RecycleRecipe recipe = RecyclerRecipes.recycling().getRecipe(this.tileEntity.getStackInSlot(1));
 
         if(recipe != null)
         {
         	this.mc.fontRenderer.drawString("Chance: " + recipe.getChance() + "%", containerWidth + 75, containerHeight + 29, 0xFFFFFF);
-        }
+        }*/
         
         if(GalaxySpace.debug) GSUtils.renderDebugGui(this, containerWidth, containerHeight);
     }  

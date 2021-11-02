@@ -24,11 +24,11 @@ public class ContainerUniversalRecycler extends Container
 
         // Battery Slot
         this.addSlotToContainer(new SlotSpecific(tileEntity, 0, 79, 101, ItemElectricBase.class));
-        this.addSlotToContainer(new Slot(tileEntity, 1, 45, 19));
+        this.addSlotToContainer(new Slot(tileEntity, 1, 20, 45));
         
         this.addSlotToContainer(new SlotSpecific(tileEntity, 2, 148, 19, ItemCanisterGeneric.class));
-        this.addSlotToContainer(new SlotFurnaceOutput(par1InventoryPlayer.player, tileEntity, 3, 105, 45));
-        
+        this.addSlotToContainer(new SlotFurnaceOutput(par1InventoryPlayer.player, tileEntity, 3, 105, 35));
+        this.addSlotToContainer(new SlotFurnaceOutput(par1InventoryPlayer.player, tileEntity, 4, 105, 35+21));
        // this.addSlotToContainer(new SlotSpecific(tileEntity, 4, 6, 19, ItemGSBucket.class));
         // Smelting result
         //this.addSlotToContainer(new SlotFurnace(par1InventoryPlayer.player, tileEntity, 1, 15, 36));
@@ -36,7 +36,7 @@ public class ContainerUniversalRecycler extends Container
 
         int var3;
         for(var3 = 0; var3 < 4; ++var3)        
-        	this.addSlotToContainer(new SlotUpgrades(tileEntity, 4 + var3, 174, 14 + (21 * var3), 1, ItemUpgrades.class));
+        	this.addSlotToContainer(new SlotUpgrades(tileEntity, 5 + var3, 174, 14 + (21 * var3), 1, ItemUpgrades.class));
        
         for (var3 = 0; var3 < 3; ++var3)
         {

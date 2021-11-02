@@ -7,6 +7,7 @@ import java.util.List;
 
 import galaxyspace.core.configs.GSConfigEnergy;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockWindGenerator;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
 import micdoodle8.mods.galacticraft.api.tile.IDisableableMachine;
 import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
 import micdoodle8.mods.galacticraft.api.transmission.tile.IConnector;
@@ -20,6 +21,7 @@ import micdoodle8.mods.galacticraft.core.dimension.WorldProviderSpaceStation;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectricalSource;
 import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
+import micdoodle8.mods.galacticraft.planets.venus.dimension.WorldProviderVenus;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -40,8 +42,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource implements IMultiBlock, IDisableableMachine, IConnector
 {
-    @NetworkedField(targetSide = Side.CLIENT)
-    public int solarStrength = 0;
+    //@NetworkedField(targetSide = Side.CLIENT)
+    //public int solarStrength = 0;
     public float angle;
     public float targetAngle;
     public float currentAngle;
@@ -61,7 +63,7 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
     	super("tile.wind_generator.name");
         this.storage.setMaxExtract(this.MAX_GENERATE_WATTS);
         this.storage.setMaxReceive(this.MAX_GENERATE_WATTS);
-        this.inventory = NonNullList.withSize(1, ItemStack.EMPTY);
+        this.inventory = NonNullList.withSize(2, ItemStack.EMPTY);
     }
 
     @Override
@@ -80,9 +82,9 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
                 this.disableCooldown--;
             }
 
-            if (!this.getDisabled(0) && this.ticks % 20 == 0)
+            if (!this.getDisabled(0) && this.ticks % 20 == 0 && getFanType() >= 0)
             {
-                this.solarStrength = 0;
+                //this.solarStrength = 0;
 
                 if ((this.world.provider instanceof IGalacticraftWorldProvider))
                 {
@@ -118,7 +120,7 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
 
                                  if (valid)
                                  {
-                                     this.solarStrength++;
+                                     //this.solarStrength++;
                                  }
                             }
                         }
@@ -132,6 +134,21 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
             if (this.getGenerate() > 0.0F && this.world.canBlockSeeSky(this.getPos().up()))
             {
                 this.generateWatts = Math.min(Math.max(this.getGenerate(), 0), this.MAX_GENERATE_WATTS);
+                
+                if(!this.getInventory().get(1).hasTagCompound()) 
+                	this.getInventory().get(1).setTagCompound(new NBTTagCompound());
+    			
+    			if(!this.getInventory().get(1).getTagCompound().hasKey("destroyedLvl")) 
+    				this.getInventory().get(1).getTagCompound().setInteger("destroyedLvl", 0);		
+    			
+                if(ticks % 20 == 0) {
+	                if(this.getInventory().get(1).getTagCompound().getInteger("destroyedLvl") < ItemBasicGS.FANS_DURABILITY[getFanType()])
+	                	this.getInventory().get(1).getTagCompound().setInteger("destroyedLvl", this.getInventory().get(1).getTagCompound().getInteger("destroyedLvl") + 1);
+	    			else {
+	    				this.getInventory().get(1).splitStack(1);
+	    				this.world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 0);
+	    			}
+                }
             }
             else
             {
@@ -144,12 +161,15 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
 
     public float getGenerate()
     {
-       if (this.getDisabled(0))
+    	if (this.getDisabled(0))
         {
             return 0;
         }
+    	
+    	if(getFanType() < 0)
+    		return 0;
 
-        return MathHelper.floor((10.0F + 5.0F * Math.round(this.getPos().getY() / 5.0F)) * this.getWindBoost()) * (GSConfigEnergy.coefficientWindTurbine);
+        return MathHelper.floor((10.0F + 5.0F * Math.round(this.getPos().getY() / 15.0F) * (getFanType() + 1)) * this.getWindBoost()) * (GSConfigEnergy.coefficientWindTurbine) ;
        
     }
 
@@ -178,7 +198,7 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
         this.getPositions(placedPosition, positions);
         if (positions.size() > 0)
         {
-            ((BlockMulti) GCBlocks.fakeBlock).makeFakeBlock(world, positions.get(0), placedPosition, EnumBlockMultiType.SOLAR_PANEL_0.getMeta());
+            ((BlockMulti) GCBlocks.fakeBlock).makeFakeBlock(world, positions.get(0), placedPosition, EnumBlockMultiType.DISH_LARGE.getMeta());
             positions.remove(0);
         }
         ((BlockMulti) GCBlocks.fakeBlock).makeFakeBlock(world, positions, placedPosition, this.getMultiType());
@@ -188,25 +208,68 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
     public void getPositions(BlockPos placedPosition, List<BlockPos> positions)
     {
         int buildHeight = this.world.getHeight() - 1;
-        int y = placedPosition.getY() + 2; 
+        int y = placedPosition.getY() + 1; 
         if (y > buildHeight)
         {
             return;
         }
+       
         positions.add(new BlockPos(placedPosition.getX(), y, placedPosition.getZ()));
+        positions.add(new BlockPos(placedPosition.getX(), ++y, placedPosition.getZ()));
+        positions.add(new BlockPos(placedPosition.getX(), ++y, placedPosition.getZ()));
 
-        y++;
         if (y > buildHeight)
         {
             return;
         }
+        
+        switch (this.getBlockMetadata()) {
+        	case 0:	
+        		for (int x = -1; x < 2; x++)
+                {
+                    for (int z = -1; z < 2; z++)
+                    {
+                        positions.add(new BlockPos(placedPosition.getX() - 1, y + x, placedPosition.getZ() + z));
+                    }
+                }
+        		break;
+        	case 1:	
+        		for (int x = -1; x < 2; x++)
+                {
+                    for (int z = -1; z < 2; z++)
+                    {
+                        positions.add(new BlockPos(placedPosition.getX() + z, y + x, placedPosition.getZ() - 1));
+                    }
+                }
+        		break;
+        	case 2:	
+        		for (int x = -1; x < 2; x++)
+                {
+                    for (int z = -1; z < 2; z++)
+                    {
+                        positions.add(new BlockPos(placedPosition.getX() + 1, y + x, placedPosition.getZ() + z));
+                    }
+                }
+        		break;
+        	case 3:	
+        		for (int x = -1; x < 2; x++)
+                {
+                    for (int z = -1; z < 2; z++)
+                    {
+                        positions.add(new BlockPos(placedPosition.getX() + z, y + x, placedPosition.getZ() + 1));
+                    }
+                }
+        		break;
+        	
+        }
+        /*
         for (int x = -1; x < 2; x++)
         {
             for (int z = -1; z < 2; z++)
             {
                 positions.add(new BlockPos(placedPosition.getX() + x, y, placedPosition.getZ() + z));
             }
-        }
+        }*/
     }
     
     @Override
@@ -223,7 +286,7 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
             if (stateAt.getBlock() == GCBlocks.fakeBlock)
             {
                 EnumBlockMultiType type = (EnumBlockMultiType) stateAt.getValue(BlockMulti.MULTI_TYPE);
-                if ((type == EnumBlockMultiType.SOLAR_PANEL_0 || type == EnumBlockMultiType.SOLAR_PANEL_1))
+                if ((type == getMultiType()))
                 {
                     if (this.world.isRemote && this.world.rand.nextDouble() < 0.1D)
                     {
@@ -386,6 +449,13 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
 
 	@Override
 	public EnumBlockMultiType getMultiType() {
-		return EnumBlockMultiType.SOLAR_PANEL_0;
+		return EnumBlockMultiType.DISH_LARGE;
+	}
+	
+	public int getFanType() {
+		if(this.getInventory().get(1).isEmpty())
+			return -1;
+		
+		return this.getInventory().get(1).getMetadata()-33;
 	}
 }

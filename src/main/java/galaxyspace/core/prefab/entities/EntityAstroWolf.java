@@ -11,13 +11,10 @@ import micdoodle8.mods.galacticraft.core.items.ItemOxygenTank;
 import micdoodle8.mods.galacticraft.core.util.DamageSourceGC;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -44,7 +41,24 @@ public class EntityAstroWolf extends EntityWolf implements IEntityBreathable {
 		super(worldIn);
 		
 	}
+	
+	@Override
+	protected void applyEntityAttributes()
+    {
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30000001192092896D);
 
+        if (this.isTamed())
+        {
+            this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(35.0D);
+        }
+        else
+        {
+            this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
+        }
+
+    }
+	
 	@Override
 	public void onEntityUpdate() {
 		super.onEntityUpdate();
@@ -85,7 +99,26 @@ public class EntityAstroWolf extends EntityWolf implements IEntityBreathable {
     				player.openGui(GalaxySpace.MODID, 1005, this.world, this.getEntityId(), 0, 0);
     			}
     			return true;
-    		}         
+    		} 
+
+            if (!itemstack.isEmpty())
+            {
+                if (itemstack.getItem() instanceof ItemFood)
+                {
+                    ItemFood itemfood = (ItemFood)itemstack.getItem();
+
+                    if (itemfood.isWolfsFavoriteMeat() && this.getHealth() < 35.0F)
+                    {
+                        if (!player.capabilities.isCreativeMode)
+                        {
+                            itemstack.shrink(1);
+                        }
+
+                        this.heal((float)itemfood.getHealAmount(itemstack));
+                        return true;
+                    }
+                }
+            }
         }
         return super.processInteract(player, hand);
     }
@@ -125,4 +158,18 @@ public class EntityAstroWolf extends EntityWolf implements IEntityBreathable {
 			
 		}
 	}
+	
+	@Override	
+	public void setTamed(boolean tamed) {
+		super.setTamed(tamed);
+
+		if (tamed) {
+			this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(35.0D);
+		} else {
+			this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
+		}
+
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
+	}
+
 }

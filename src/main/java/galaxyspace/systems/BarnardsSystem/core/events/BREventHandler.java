@@ -1,6 +1,6 @@
 package galaxyspace.systems.BarnardsSystem.core.events;
 
-import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Blocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;

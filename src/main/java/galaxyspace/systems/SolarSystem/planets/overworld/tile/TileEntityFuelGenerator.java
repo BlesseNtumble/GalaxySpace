@@ -120,8 +120,8 @@ public class TileEntityFuelGenerator extends TileBaseUniversalElectricalSource i
             /*if (FluidUtil.isFuel(liquid))            
                 FluidUtil.loadFromContainer(fuelTank, GCFluids.fluidFuel, this.stacks, 0, liquid.amount);*/
 
-            this.produce();
             this.smeltItem();
+	    this.produce();
 
             //this.heatGJperTick = Math.min(Math.max(this.heatGJperTick, 0.0F), this.getMaxEnergyStoredGC());
            

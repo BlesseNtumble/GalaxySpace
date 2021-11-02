@@ -1,0 +1,10 @@
+{ 
+	"variants": { 
+		"type=phobos_regolite": { "model": "galaxyspace:phobos_regolite"}, 
+		"type=phobos_stone": { "model": "galaxyspace:phobos_stone"},
+		"type=phobos_iron_ore": { "model": "galaxyspace:phobos_iron_ore"},
+		"type=phobos_meteoriciron_ore": { "model": "galaxyspace:phobos_meteoriciron_ore"},
+		"type=phobos_nickel_ore": { "model": "galaxyspace:phobos_nickel_ore"},
+		"type=phobos_desh_ore": { "model": "galaxyspace:phobos_desh_ore"}
+	} 
+}

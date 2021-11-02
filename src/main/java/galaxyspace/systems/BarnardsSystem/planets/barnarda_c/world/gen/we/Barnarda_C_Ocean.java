@@ -4,16 +4,18 @@ import java.util.Random;
 
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
-import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
+import galaxyspace.core.prefab.world.gen.WorldGenCircleBlock;
+import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
 public class Barnarda_C_Ocean extends WE_Biome {
 
 	public Barnarda_C_Ocean(double min, double max, boolean frozen) {		
-		super(new BiomeProperties("barnarda_c_ocean" + (frozen ? "_frozen" : "")), new int[] {0x55BB44, 0x11FF66, 0x985cff});
+		super(new BiomeProperties("barnarda_c_ocean" + (frozen ? "_frozen" : "")), new int[] {0xdf73ff, 0x11FF66, 0x985cff});
 		
 		biomeMinValueOnMap      =   min;
 		biomeMaxValueOnMap      =   max;
@@ -45,6 +47,27 @@ public class Barnarda_C_Ocean extends WE_Biome {
 	@Override
 	public void decorateBiome(World world, Random rand, int x, int z)
 	{
+		int randPosX = x + rand.nextInt(16) + 8;
+		int randPosZ = z + rand.nextInt(16) + 8;
+		BlockPos pos = world.getHeight(new BlockPos(randPosX, 0, randPosZ));
 		
+		WorldGenCircleBlock circle = new WorldGenCircleBlock(Blocks.CLAY.getDefaultState(), rand.nextInt(5) + 3, BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(0));
+		if(rand.nextInt(5) == 0) {
+			randPosX = x + rand.nextInt(8) + 8;
+			randPosZ = z + rand.nextInt(8) + 8;
+			pos = world.getHeight(new BlockPos(randPosX, 0, randPosZ));
+			
+			circle.generate(world, rand, pos.down());
+			
+			
+		}
+		circle = new WorldGenCircleBlock(Blocks.GRAVEL.getDefaultState(), rand.nextInt(16) + 5, BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(0));
+		if(rand.nextInt(2) == 0) {
+			randPosX = x + rand.nextInt(8) + 8;
+			randPosZ = z + rand.nextInt(8) + 8;
+			pos = world.getHeight(new BlockPos(randPosX, 0, randPosZ));			
+			circle.generate(world, rand, pos.down());		
+			
+		}
 	}
 }

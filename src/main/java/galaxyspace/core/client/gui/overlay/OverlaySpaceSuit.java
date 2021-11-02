@@ -16,8 +16,11 @@ import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
@@ -37,6 +40,7 @@ public class OverlaySpaceSuit extends Overlay {
 		ScaledResolution scaled = new ScaledResolution(mc);
 		final EntityPlayerSP playerBaseClient = PlayerUtil.getPlayerBaseClientFromPlayer(player, false);
 		final GCPlayerStatsClient stats = GCPlayerStatsClient.get(playerBaseClient);		
+		
 		
 		int i = 0;	
 		/*
@@ -114,6 +118,7 @@ public class OverlaySpaceSuit extends Overlay {
 		    GlStateManager.disableBlend();
 		}
 	    
+				
 		for(ItemStack stack : player.inventory.armorInventory)
 		{
 			if(stack.isEmpty() || !(stack.getItem() instanceof ItemSpaceSuit)) 

@@ -176,8 +176,9 @@ public class Page_Systems extends Page_WithScroll {
 				font.drawSplitString(GCCoreUtil.translate("book.page." + system.getUnlocalizedName() + "." + selected_body.getName().toLowerCase()), x + 80 + maxX, y + 46, 260, 0xFFFFFF);
 				
 				int offsetY = (font.getStringWidth(GCCoreUtil.translate("book.page." + system.getUnlocalizedName() + "." + selected_body.getName().toLowerCase())) / 260) * font.FONT_HEIGHT;
+				int offsetY_Scroll = offsetY;
 				
-				offsetY -= getScroll() * 10;
+				offsetY_Scroll -= getScroll() * 10;
 				
 				WorldProvider dim = WorldUtil.getProviderForDimensionClient(this.selected_body.getDimensionID());
 				
@@ -188,6 +189,18 @@ public class Page_Systems extends Page_WithScroll {
 					
 					
 					List<String> infos = new ArrayList<String>(); 
+					
+					
+					if(this.resources.containsKey(selected_body))
+					{
+						int k = 0;
+						for(ItemStack stacks : this.resources.get(selected_body)) {
+							this.mc.renderEngine.bindTexture(this.bookPageTexture);	
+							GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+							this.drawTexturedModalRect(x + 78 + maxX + (k * 22), y + 70 + offsetY, 20, 20, 452, 94, 20, 20, false, false, 576, 250);
+							this.drawItemStack(mc, stacks, x + 80 + maxX + (k++ * 22), y + 72 + offsetY, mouseX, mouseY, true);
+						}
+					}
 					
 					float grav = (0.1F - ((IGalacticraftWorldProvider)dim).getGravity()) * 1000 ;
 					if(((IGalacticraftWorldProvider)dim).getGravity() == 0.0F) grav = 0.0F;
@@ -221,27 +234,17 @@ public class Page_Systems extends Page_WithScroll {
 					}
 					
 					infos.add(GCCoreUtil.translate("gui.message.breathableatmo") + " " + gcdim.hasBreathableAtmosphere());
-					infos.add("");
-					infos.add(GCCoreUtil.translate("gui.message.resources"));
+
 					for(int k = getScroll(); k < infos.size(); k++, j++) {
 						if(!infos.get(k).isEmpty() && k < 8 + getScroll()) {
 							this.mc.getTextureManager().bindTexture(bookPageTexture);
-							drawTexturedModalRect(x + 78 + maxX, y + 80 + (k * 12) + offsetY, 136, 13, 401, 119, 85, 15, false, false, 512, 256);
+							drawTexturedModalRect(x + 78 + maxX, y + 100 + (k * 12) + offsetY_Scroll, 136, 13, 401, 119, 85, 15, false, false, 512, 256);
 							
-							font.drawString(infos.get(k), x + 84 + maxX, y + 82 + (k * 12) + offsetY, 0xFFFFFF);
+							font.drawString(infos.get(k), x + 84 + maxX, y + 102 + (k * 12) + offsetY_Scroll, 0xFFFFFF);
 						}
 					}
 					
-					if(this.resources.containsKey(selected_body) && getScroll() > 3)
-					{
-						int k = 0;
-						for(ItemStack stacks : this.resources.get(selected_body)) {
-							this.mc.renderEngine.bindTexture(this.bookPageTexture);	
-							GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-							this.drawTexturedModalRect(x + 78 + maxX + (k * 22), y + 108 + infos.size() * 10 + offsetY, 20, 20, 452, 94, 20, 20, false, false, 576, 250);
-							this.drawItemStack(mc, stacks, x + 80 + maxX + (k++ * 22), y + 110 + infos.size() * 10 + offsetY, mouseX, mouseY, true);
-						}
-					}
+					
                 }
 				
 				
@@ -268,7 +271,9 @@ public class Page_Systems extends Page_WithScroll {
 				font.drawString(GCCoreUtil.translate("book.page." + system.getUnlocalizedName() + "." + selected_moon.getName().toLowerCase()), x + 80 + maxX, y + 46, 0xFFFFFF);
 			
 				int offsetY = (font.getStringWidth(GCCoreUtil.translate("book.page." + system.getUnlocalizedName() + "." + selected_moon.getName().toLowerCase())) / 260) * font.FONT_HEIGHT;
-				offsetY -= getScroll() * 10;
+				int offsetY_Scroll = offsetY;
+				
+				offsetY_Scroll -= getScroll() * 10;
 				
 				WorldProvider dim = WorldUtil.getProviderForDimensionClient(this.selected_moon.getDimensionID());
 				
@@ -276,12 +281,35 @@ public class Page_Systems extends Page_WithScroll {
                 {
 					IGalacticraftWorldProvider gcdim = (IGalacticraftWorldProvider) dim;
 					
+					
+					if(this.resources.containsKey(selected_moon))
+					{
+						int k = 0;
+						for(ItemStack stacks : this.resources.get(selected_moon)) {
+							this.mc.renderEngine.bindTexture(this.bookPageTexture);	
+							GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+							if(k < 12) {
+								this.drawTexturedModalRect(x + 78 + maxX + (k * 22), y + 70 + offsetY, 20, 20, 452, 94, 20, 20, false, false, 576, 250);
+								this.drawItemStack(mc, stacks, x + 80 + maxX + (k * 22), y + 72  + offsetY, mouseX, mouseY, true);
+							}
+							else
+							{
+								this.drawTexturedModalRect(x + 78 + maxX + ((k - 12) * 22), y + 70 + offsetY + 22, 20, 20, 452, 94, 20, 20, false, false, 576, 250);
+								this.drawItemStack(mc, stacks, x + 80 + maxX + ((k - 12) * 22), y + 72 + offsetY + 22, mouseX, mouseY, true);
+							}
+							k++;
+						}
+					}
+					
 					List<String> infos = new ArrayList<String>(); 
 					
 					float grav = (0.1F - ((IGalacticraftWorldProvider)dim).getGravity()) * 1000 ;
 					if(((IGalacticraftWorldProvider)dim).getGravity() == 0.0F) grav = 0.0F;
 										
-					infos.add(GCCoreUtil.translate("gui.message.daylength") + " " + ((WorldProviderSpace) gcdim).getDayLength() / 1000 + "h " + ((WorldProviderSpace) gcdim).getDayLength() % 1000 + "m");
+					if(dim instanceof WorldProviderSpace)
+						infos.add(GCCoreUtil.translate("gui.message.daylength") + " " + ((WorldProviderSpace) gcdim).getDayLength() / 1000 + "h " + ((WorldProviderSpace) gcdim).getDayLength() % 1000 + "m");
+					if(dim instanceof WE_WorldProviderSpace)
+						infos.add(GCCoreUtil.translate("gui.message.daylength") + " " + ((WE_WorldProviderSpace) gcdim).getDayLength() / 1000 + "h " + ((WE_WorldProviderSpace) gcdim).getDayLength() % 1000 + "m");
 					infos.add("Distance from planet: " + selected_moon.getRelativeDistanceFromCenter().unScaledDistance);
 					infos.add(GCCoreUtil.translate("gui.message.gravity") + " " + (int)grav + "%");
 					infos.add(GCCoreUtil.translate("gui.message.temperature") + " " + gcdim.getCelestialBody().atmosphere.thermalLevel() * 20 + " C");
@@ -298,45 +326,15 @@ public class Page_Systems extends Page_WithScroll {
 						infos.add(GCCoreUtil.translate("gui.message.solarradiation") + " " + body.isSolarRadiation());
 					}
 					
-					/*
-					if(selected_body instanceof ExPlanet)
-					{
-						infos.add(GCCoreUtil.translate("gui.message.atmopressure") + " " + ((ExPlanet)selected_moon).getAtmosphericPressure());
-						infos.add(GCCoreUtil.translate("gui.message.solarradiation") + " " + ((ExPlanet)selected_moon).isSolarRadiation());
-					
-					}
-					*/
-					
 					infos.add(GCCoreUtil.translate("gui.message.breathableatmo") + " " + gcdim.hasBreathableAtmosphere());
-					infos.add("");
-					infos.add(GCCoreUtil.translate("gui.message.resources"));
 					for(int k = getScroll(); k < infos.size(); k++, j++) {
 						if(!infos.get(k).isEmpty() && k < 8 + getScroll()) {
 							this.mc.getTextureManager().bindTexture(bookPageTexture);
-							drawTexturedModalRect(x + 78 + maxX, y + 80 + (k * 12) + offsetY, 146, 13, 401, 119, 85, 15, false, false, 512, 256);
+							drawTexturedModalRect(x + 78 + maxX, y + 115 + (k * 12) + offsetY_Scroll, 146, 13, 401, 119, 85, 15, false, false, 512, 256);
 							
-							font.drawString(infos.get(k), x + 84 + maxX, y + 82 + (k * 12) + offsetY, 0xFFFFFF);
+							font.drawString(infos.get(k), x + 84 + maxX, y + 117 + (k * 12) + offsetY_Scroll, 0xFFFFFF);
 						}
-					}
-					
-					if(this.resources.containsKey(selected_moon) && getScroll() > 3)
-					{
-						int k = 0;
-						for(ItemStack stacks : this.resources.get(selected_moon)) {
-							this.mc.renderEngine.bindTexture(this.bookPageTexture);	
-							GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-							if(k < 12) {
-								this.drawTexturedModalRect(x + 78 + maxX + (k * 22), y + 108 + infos.size() * 10 + offsetY, 20, 20, 452, 94, 20, 20, false, false, 576, 250);
-								this.drawItemStack(mc, stacks, x + 80 + maxX + (k * 22), y + 110 + infos.size() * 10 + offsetY, mouseX, mouseY, true);
-							}
-							else
-							{
-								this.drawTexturedModalRect(x + 78 + maxX + ((k - 12) * 22), y + 108 + infos.size() * 10 + offsetY + 22, 20, 20, 452, 94, 20, 20, false, false, 576, 250);
-								this.drawItemStack(mc, stacks, x + 80 + maxX + ((k - 12) * 22), y + 110 + infos.size() * 10 + offsetY + 22, mouseX, mouseY, true);
-							}
-							k++;
-						}
-					}
+					}				
                 }
 			}
 		}
@@ -369,6 +367,7 @@ public class Page_Systems extends Page_WithScroll {
 				{
 					this.selected_moon = GalaxyRegistry.getMoonsForPlanet((Planet) selected_body).get(i - 1);
 					current_mode = Mode.MOON;
+					this.setScroll(0);
 				}
 			}
 		}
@@ -386,6 +385,7 @@ public class Page_Systems extends Page_WithScroll {
 		else if(current_mode == Mode.MOON)
 		{
 			current_mode = Mode.BODY;
+			setScroll(0);
 			return true;
 		}
 		return false;

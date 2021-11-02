@@ -91,8 +91,8 @@ public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProv
     @Override
     public Vector3 getSkyColor()
     {
-        float f = 0.9F - this.getStarBrightness(1.0F);
-        return new Vector3(154 / 255.0F * f, 114 / 255.0F * f, 66 / 255.0F * f);
+        float f = 1.0F - this.getStarBrightness(1.0F);
+        return new Vector3(184 / 255.0F * f, 134 / 255.0F * f, 86 / 255.0F * f);
        
     }
      
@@ -271,7 +271,7 @@ public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProv
 	
 	@Override
 	protected float getThermalValueMod() {
-		return 0.85F;
+		return 0.65F;
 	}
 
 	@Override

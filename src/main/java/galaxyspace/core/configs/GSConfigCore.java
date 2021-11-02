@@ -9,6 +9,7 @@ import java.util.List;
 import org.apache.logging.log4j.Level;
 import org.lwjgl.input.Keyboard;
 
+import galaxyspace.core.util.GSConstants;
 import micdoodle8.mods.galacticraft.core.Constants;
 import micdoodle8.mods.galacticraft.core.util.GCLog;
 import net.minecraftforge.common.config.ConfigElement;
@@ -44,14 +45,19 @@ public class GSConfigCore
     
     public static boolean enableMethaneParticle;
     public static boolean enableUnreachable;
-    public static boolean enableHardMode;
     public static boolean enableWorldEngine;
     public static boolean enablePlateOreDict;
     public static boolean enableSpaceSuitHUD;
+    
+    //Hardmode
     public static boolean enableRadiationSystem;
     public static boolean enablePressureSystem;
     public static boolean enableAdvancedRocketCraft;
     public static boolean enableAdvancedThermalSystem;
+    public static boolean enableZeroGravityOnAsteroids;
+    public static boolean enableOxygenForPlantsAndFoods;
+       
+    //
     
     public static String spacesuit_pos = "center";
     
@@ -61,15 +67,6 @@ public class GSConfigCore
     
     public static String keyOverrideToggleHelmet, keyOverrideToggleChest, keyOverrideToggleLegs, keyOverrideToggleBoots;
     public static int keyOverrideToggleHelmetI, keyOverrideToggleChestI, keyOverrideToggleLegsI, keyOverrideToggleBootsI;
-    
-    private static void setConfigBoolean(Property prop, List<String> propOrder, String category, String confname, String desc, boolean conf, boolean def)
-    {
-    	prop = config.get(category, confname, def);
-        prop.setComment(desc);
-        prop.setLanguageKey("gs.configgui." + confname).setRequiresMcRestart(true);;
-        conf = prop.getBoolean(def);
-        propOrder.add(prop.getName()); 
-    }
     
     public static void syncConfig(boolean load)
     {
@@ -86,23 +83,35 @@ public class GSConfigCore
                     config.load();
                 }
             }
+            
+            prop = config.get(GSConstants.HARDMODE_CATEGORY, "enableOxygenForPlantsAndFoods", true);
+            prop.setComment("Enable/Disable the need oxygen for plants and foods.");
+            prop.setLanguageKey("gc.configgui.enableOxygenForPlantsAndFoods").setRequiresMcRestart(true);
+            enableOxygenForPlantsAndFoods = prop.getBoolean(true);
+            propOrder.add(prop.getName());   
 
             prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableCheckVersion", true);
             prop.setComment("Enable/Disable Check Version.");
             prop.setLanguageKey("gc.configgui.enableCheckVersion").setRequiresMcRestart(false);
             enableCheckVersion = prop.getBoolean(true);
-            propOrder.add(prop.getName());
+            propOrder.add(prop.getName());                    
             
-            prop = config.get(Constants.CONFIG_CATEGORY_DIFFICULTY, "enableAdvancedRocketCraft", true);
-            prop.setComment("Enable/Disable advanced craft for rocket tier 2-3.");
+            prop = config.get(GSConstants.HARDMODE_CATEGORY, "enableAdvancedRocketCraft", true);
+            prop.setComment("Enable/Disable advanced craft for rocket tier 2-6.");
             prop.setLanguageKey("gc.configgui.enableAdvancedRocketCraft").setRequiresMcRestart(true);
             enableAdvancedRocketCraft = prop.getBoolean(true);
             propOrder.add(prop.getName());   
             
-            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "enableAdvancedThermalSystem", true);
+            prop = config.get(GSConstants.HARDMODE_CATEGORY, "enableAdvancedThermalSystem", true);
             prop.setComment("Enable/Disable advanced thermal system on celestial bodies.");
             prop.setLanguageKey("gc.configgui.enableAdvancedThermalSystem").setRequiresMcRestart(false);
             enableAdvancedThermalSystem = prop.getBoolean(true);
+            propOrder.add(prop.getName());    
+            
+            prop = config.get(GSConstants.HARDMODE_CATEGORY, "enableZeroGravityOnAsteroids", true);
+            prop.setComment("Enable/Disable zero gravity (like Kuiper Belt) on Astreroids.");
+            prop.setLanguageKey("gc.configgui.enableZeroGravityOnAsteroids").setRequiresMcRestart(true);
+            enableZeroGravityOnAsteroids = prop.getBoolean(true);
             propOrder.add(prop.getName());    
             
             prop = config.get(Constants.CONFIG_CATEGORY_WORLDGEN, "enableOverworldOres", true);
@@ -123,19 +132,19 @@ public class GSConfigCore
             enableDungeonsGeneration = prop.getBoolean(true);
             propOrder.add(prop.getName());
             
-            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "enableRadiationSystem", true);
+            prop = config.get(GSConstants.HARDMODE_CATEGORY, "enableRadiationSystem", true);
             prop.setComment("Enable/Disable solar radiation system.");
             prop.setLanguageKey("gc.configgui.enableRadiationSystem").setRequiresMcRestart(false);
             enableRadiationSystem = prop.getBoolean(true);
             propOrder.add(prop.getName());
             
-            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "enablePressureSystem", true);
+            prop = config.get(GSConstants.HARDMODE_CATEGORY, "enablePressureSystem", true);
             prop.setComment("Enable/Disable atmosphere pressure system.");
             prop.setLanguageKey("gc.configgui.enablePressureSystem").setRequiresMcRestart(false);
             enablePressureSystem = prop.getBoolean(true);
             propOrder.add(prop.getName());
             
-            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableNewMenu", true);
+            prop = config.get(Constants.CONFIG_CATEGORY_CLIENT, "enableNewMenu", true);
             prop.setComment("Enable/Disable new Main Menu.");
             prop.setLanguageKey("gc.configgui.enableNewMenu").setRequiresMcRestart(false);
             enableNewMenu = prop.getBoolean(true);
@@ -202,13 +211,13 @@ public class GSConfigCore
             prop.setLanguageKey("gc.configgui.enableUnreachable").setRequiresMcRestart(true);
             enableUnreachable = prop.getBoolean(true);
             propOrder.add(prop.getName());
-            
-            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableHardMode", true);
+            /*
+            prop = config.get(Constants.CONFIG_CATEGORY_DIFFICULTY, "enableHardMode", true);
             prop.setComment("Enable/Disable Hard Mode (Death of Atm. Pressure)");
             prop.setLanguageKey("gc.configgui.enableHardMode").setRequiresMcRestart(true);
             enableHardMode = prop.getBoolean(true);
             propOrder.add(prop.getName());
-            
+            */
             prop = config.get(Constants.CONFIG_CATEGORY_WORLDGEN, "enableWorldEngine", true);
             prop.setComment("Enable/Disable 'World Engine' - advanced world generation");
             prop.setLanguageKey("gc.configgui.enableWorldEngine").setRequiresMcRestart(true);
@@ -233,7 +242,7 @@ public class GSConfigCore
             spacesuit_pos = prop.getString();
             propOrder.add(prop.getName());   
             
-            prop = config.get("development", "enableDebug", false);
+            prop = config.get(GSConstants.DEVELOMPENT_CATEGORY, "enableDebug", false);
             prop.setComment("Enable/Disable Debug mode");
             prop.setLanguageKey("gc.configgui.enableDebug").setRequiresMcRestart(false);
             enableDebug = prop.getBoolean(false);
@@ -300,14 +309,14 @@ public class GSConfigCore
         list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_DIFFICULTY)).getChildElements());
         list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_GENERAL)).getChildElements());
         list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_CLIENT)).getChildElements());
-        list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_CONTROLS)).getChildElements());
-        list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_COMPATIBILITY)).getChildElements());
+        //list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_CONTROLS)).getChildElements());
+        //list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_COMPATIBILITY)).getChildElements());
         list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_WORLDGEN)).getChildElements());
-        list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_SERVER)).getChildElements());
+        //list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_SERVER)).getChildElements());
         list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_DIMENSIONS)).getChildElements());
-        list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_SCHEMATIC)).getChildElements());
-        list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_ACHIEVEMENTS)).getChildElements());
-        list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_ENTITIES)).getChildElements());
+        //list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_SCHEMATIC)).getChildElements());
+        //list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_ACHIEVEMENTS)).getChildElements());
+        //list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_ENTITIES)).getChildElements());
         list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_KEYS)).getChildElements());
         list.addAll(new ConfigElement(config.getCategory("development")).getChildElements());
 

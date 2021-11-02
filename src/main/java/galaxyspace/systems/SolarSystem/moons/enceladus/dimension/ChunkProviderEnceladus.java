@@ -29,7 +29,7 @@ public class ChunkProviderEnceladus extends ChunkProviderSpaceLakes {
 
     private List<MapGenBaseMeta> worldGenerators;
     
-    private final MapGenCaves caveGenerator = new MapGenCaves(GSBlocks.ENCELADUS_BLOCKS, 0, 1, 1);
+    private final MapGenCaves caveGenerator = new MapGenCaves(GSBlocks.ENCELADUS_BLOCKS.getStateFromMeta(0), GSBlocks.ENCELADUS_BLOCKS.getStateFromMeta(1));
     private final MapGenRavineEnceladus ravineGenerator = new MapGenRavineEnceladus();
     
 	@Override

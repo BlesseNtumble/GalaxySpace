@@ -4,7 +4,7 @@ import java.util.Random;
 
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
-import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntityPolarBear;
 import net.minecraft.entity.monster.EntitySkeleton;
@@ -18,7 +18,7 @@ import net.minecraft.world.biome.Biome;
 public class Barnarda_C_SnowPlains extends WE_Biome {
 	
 	public Barnarda_C_SnowPlains(double min, double max, int height) {
-		super(new BiomeProperties("barnarda_c_snowplains"), new int[] {0x88BB44, 0x11FF66, 0x985cff});
+		super(new BiomeProperties("barnarda_c_snowplains"), new int[] {/*0x88BB44*/ 0x822899, 0x11FF66, 0x985cff});
 				
 		biomeMinValueOnMap      =  	min;
 		biomeMaxValueOnMap      =   max;

@@ -54,6 +54,7 @@ import galaxyspace.systems.SolarSystem.moons.io.entities.EntityBossGhast;
 import galaxyspace.systems.SolarSystem.moons.io.renderer.entities.RenderBossGhast;
 import galaxyspace.systems.SolarSystem.moons.io.tile.TileEntityTreasureChestIo;
 import galaxyspace.systems.SolarSystem.moons.miranda.blocks.MirandaBlocks;
+import galaxyspace.systems.SolarSystem.moons.phobos.blocks.PhobosBlocks;
 import galaxyspace.systems.SolarSystem.moons.titan.blocks.TitanBlocks;
 import galaxyspace.systems.SolarSystem.moons.triton.blocks.TritonBlocks;
 import galaxyspace.systems.SolarSystem.planets.ceres.blocks.CeresBlocks;
@@ -344,16 +345,15 @@ public class ClientProxy extends CommonProxy{
 		for(BlockSurfaceIce.EnumBlockIce block : BlockSurfaceIce.EnumBlockIce.values())
 			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.SURFACE_ICE, block.getMeta(), block.getName());
 		
-		
-		name = new String[HaumeaBlocks.EnumHaumeaBlocks.values().length];
-		for(HaumeaBlocks.EnumHaumeaBlocks block : HaumeaBlocks.EnumHaumeaBlocks.values())
+		name = new String[PhobosBlocks.EnumPhobosBlocks.values().length];
+		for(PhobosBlocks.EnumPhobosBlocks block : PhobosBlocks.EnumPhobosBlocks.values())
 		{
 			if(block.getName() != null) name[block.getMeta()] = block.getName();
-			//ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.DUNGEON_BLOCKS, block.getMeta(), block.getName());
+			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.PHOBOS_BLOCKS, block.getMeta(), block.getName());
 		}
 		
 		if(GCCoreUtil.isDeobfuscated()) 
-			GSUtils.addBlockMetadataJsonFiles(GSBlocks.HAUMEA_BLOCKS, name, HaumeaBlocks.BASIC_TYPE.getName(), "");
+			GSUtils.addBlockMetadataJsonFiles(GSBlocks.PHOBOS_BLOCKS, name, PhobosBlocks.BASIC_TYPE.getName(), "");
 		
 		
 		//--------------------------- BLOCKS -----------------------------------
@@ -456,6 +456,11 @@ public class ClientProxy extends CommonProxy{
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SPACE_SUIT_LEGGINS, 0, "armor/" + GSItems.SPACE_SUIT_LEGGINS.getUnlocalizedName().substring(5));
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SPACE_SUIT_BOOTS, 0, "armor/" + GSItems.SPACE_SUIT_BOOTS.getUnlocalizedName().substring(5));
 		
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SPACE_SUIT_LIGHT_HELMET, 0, "armor/" + GSItems.SPACE_SUIT_LIGHT_HELMET.getUnlocalizedName().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SPACE_SUIT_LIGHT_BODY, 0, "armor/" + GSItems.SPACE_SUIT_LIGHT_BODY.getUnlocalizedName().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SPACE_SUIT_LIGHT_LEGGINS, 0, "armor/" + GSItems.SPACE_SUIT_LIGHT_LEGGINS.getUnlocalizedName().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SPACE_SUIT_LIGHT_BOOTS, 0, "armor/" + GSItems.SPACE_SUIT_LIGHT_BOOTS.getUnlocalizedName().substring(5));
+		
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.JETPACK, 0, "armor/" + GSItems.JETPACK.getUnlocalizedName().substring(5));
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.MATTER_MANIPULATOR, 0, "tools/" + GSItems.MATTER_MANIPULATOR.getUnlocalizedName().substring(5));
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.GEOLOGICAL_SCANNER, 0, "tools/" + GSItems.GEOLOGICAL_SCANNER.getUnlocalizedName().substring(5));
@@ -491,6 +496,7 @@ public class ClientProxy extends CommonProxy{
 			//GSUtils.addItemJsonFiles(GSItems.COBALT_HOE, "tools/", GSItems.COBALT_HOE.getUnlocalizedName().substring(5));		
 			//GSUtils.addItemJsonFiles(GSItems.COBALT_LEGS, "armor/", GSItems.COBALT_LEGS.getUnlocalizedName().substring(5));		
 			//GSUtils.addItemJsonFiles(GSItems.COBALT_BOOTS, "armor/", GSItems.COBALT_BOOTS.getUnlocalizedName().substring(5));		
+			GSUtils.addItemMetadataJsonFiles(GSItems.BASIC, ItemBasicGS.getEnumNames(), "basic/");
 			GSUtils.addItemMetadataJsonFiles(GSItems.ROCKET_MODULES, ItemRocketModules.names, "rocket_modules/");
 		}
 		
@@ -515,6 +521,7 @@ public class ClientProxy extends CommonProxy{
     	addVariant("marsores", "", "mars_diamond", "mars_gold", "mars_coal", "mars_redstone", "mars_silicon", "mars_aluminum");
     	addVariant("ceresblocks", "", "ceres_grunt", "ceres_subgrunt", "ceres_dolomite_ore", "ceres_meteoriciron_ore", "ceres_dungeon_top", "ceres_dungeon_floor");
     	addVariant("plutoblocks", "", "pluto_grunt_1", "pluto_grunt_2", "pluto_grunt_3", "pluto_grunt_4", "pluto_subgrunt", "pluto_stone");
+    	addVariant("phobosblocks", "", "phobos_regolite", "phobos_stone", "phobos_iron_ore", "phobos_meteoriciron_ore", "phobos_nickel_ore", "phobos_desh_ore");
     	addVariant("ioblocks", "", "io_grunt", "io_stone", "io_ash", "io_copper_ore", "io_sulfur_ore", "io_volcanic_ore", "io_lava_geyser", "io_sulfur_geyser", "io_top", "io_floor", "io_dungeon_bricks");
     	//addVariant("europablocks", "", "europa_grunt", "europa_stone", "europa_brown_ice", "europa_emerald_ore", "europa_silicon_ore", "europa_aluminum_ore");
     	addVariant("ganymedeblocks", "", "ganymede_grunt", "ganymede_stone", "ganymede_magnesium_ore", "ganymede_titanium_ore");
@@ -633,6 +640,11 @@ public class ClientProxy extends CommonProxy{
         addVariant("space_suit_chest", "armor/", "space_suit_chest");
         addVariant("space_suit_legs", "armor/", "space_suit_legs");
         addVariant("space_suit_feet", "armor/", "space_suit_feet");
+        
+        addVariant("space_suit_light_head", "armor/", "space_suit_light_head");
+        addVariant("space_suit_light_chest", "armor/", "space_suit_light_chest");
+        addVariant("space_suit_light_legs", "armor/", "space_suit_light_legs");
+        addVariant("space_suit_light_feet", "armor/", "space_suit_light_feet");
         
         addVariant("jetpack", "armor/", "jetpack");
         //addVariant("matter_manipulator", "tools/", "matter_manipulator");

@@ -2,7 +2,8 @@ package galaxyspace.systems.SolarSystem.moons.io.dimension.sky;
 
 import org.lwjgl.opengl.GL11;
 
-import asmodeuscore.core.astronomy.sky.SkyProviderBaseOld;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
+import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import galaxyspace.GalaxySpace;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
@@ -12,7 +13,7 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.FMLClientHandler;
 
-public class SkyProviderIo extends SkyProviderBaseOld{
+public class SkyProviderIo extends SkyProviderBase{
 
 	private static final ResourceLocation jupiterTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/celestialbodies/sol/jupiter.png");
 	private static final ResourceLocation callistoTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/celestialbodies/sol/moons/callisto.png");
@@ -23,7 +24,6 @@ public class SkyProviderIo extends SkyProviderBaseOld{
 	protected void rendererSky(Tessellator tessellator, BufferBuilder worldRenderer, float f10, float ticks) {
 		
 				
-		GL11.glPopMatrix();
 		GL11.glPushMatrix();
 		
 		long daylength = ((WorldProviderSpace) this.mc.world.provider).getDayLength();
@@ -104,13 +104,14 @@ public class SkyProviderIo extends SkyProviderBaseOld{
         float f = 0.8F;
         this.renderAtmo(tessellator, 0.0F, 0.0F, f10 - 8, new Vector3(120 / 255.0F * f, 110 / 255.0F * f, 120 / 255.0F * f));
 
+		GL11.glPopMatrix();
 	}
 
 	@Override
 	protected boolean enableBaseImages() {
 		return true;
 	}
-
+	
 	@Override
 	protected float sunSize() {
 		return 4.5F;
@@ -127,13 +128,13 @@ public class SkyProviderIo extends SkyProviderBaseOld{
 	}
 
 	@Override
-	protected int modeLight() {
-		return 0;
+	protected ModeLight modeLight() {
+		return ModeLight.DEFAULT;
 	}
 
 	@Override
-	protected Vector3 colorSunAura() {
-		return new Vector3(150, 150, 150);
+	protected StarColor colorSunAura() {
+		return StarColor.WHITE;
 	}
 
 	@Override

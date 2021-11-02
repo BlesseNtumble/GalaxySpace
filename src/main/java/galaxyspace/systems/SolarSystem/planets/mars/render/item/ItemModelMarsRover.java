@@ -30,10 +30,10 @@ public class ItemModelMarsRover extends ModelTransformWrapper
             mul.setRotation(rot);
             ret.mul(mul);
             mul.setIdentity();
-            mul.setScale(0.1085F);
+            mul.setScale(0.1285F);
             ret.mul(mul);
             mul.setIdentity();
-            mul.setTranslation(new Vector3f(0.2F, -0.8F, 0.0F));
+            mul.setTranslation(new Vector3f(-0.8F, -3.0F, 0.0F));
             ret.mul(mul);
             mul.setIdentity();
             mul.rotY(-0.3F);
@@ -58,16 +58,16 @@ public class ItemModelMarsRover extends ModelTransformWrapper
 
         if (cameraTransformType == TransformType.THIRD_PERSON_RIGHT_HAND || cameraTransformType == TransformType.THIRD_PERSON_LEFT_HAND)
         {
-            Vector3f trans = new Vector3f(0.0F, -0.4F, 1.2F);
+            Vector3f trans = new Vector3f(-1.0F, -2.0F, 1.5F);
             Matrix4f ret = new Matrix4f();
             ret.setIdentity();
             Matrix4f mul = new Matrix4f();
             mul.setIdentity();
-            Quat4f rot = TRSRTransformation.quatFromXYZDegrees(new Vector3f(75, 15, 0));
+            Quat4f rot = TRSRTransformation.quatFromXYZDegrees(new Vector3f(105, 15, -5));
             mul.setRotation(rot);
             ret.mul(mul);
             mul.setIdentity();
-            mul.setScale(0.35F);
+            mul.setScale(0.45F);
             ret.mul(mul);
             mul.setIdentity();
             mul.rotY(Constants.halfPI);

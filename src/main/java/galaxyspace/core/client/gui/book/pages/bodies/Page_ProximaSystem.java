@@ -2,7 +2,7 @@ package galaxyspace.core.client.gui.book.pages.bodies;
 
 import galaxyspace.core.client.gui.book.pages.Page_Systems;
 import galaxyspace.systems.ACentauriSystem.ACentauriSystemBodies;
-import galaxyspace.systems.ACentauriSystem.core.registers.blocks.ACBlocks;
+import galaxyspace.systems.ACentauriSystem.core.ACBlocks;
 import net.minecraft.item.ItemStack;
 
 public class Page_ProximaSystem extends Page_Systems{

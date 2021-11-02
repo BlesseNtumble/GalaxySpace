@@ -26,8 +26,7 @@ public class ChunkProviderCallisto extends ChunkProviderSpaceLakes {
 
     private List<MapGenBaseMeta> worldGenerators;
     
-    private final MapGenCaves caveGenerator = new MapGenCaves(GSBlocks.CALLISTO_BLOCKS, 0, 1, 1);
-
+    private final MapGenCaves caveGenerator = new MapGenCaves(GSBlocks.CALLISTO_BLOCKS.getStateFromMeta(0), GSBlocks.CALLISTO_BLOCKS.getStateFromMeta(1));
     
 	@Override
 	protected List<MapGenBaseMeta> getWorldGenerators()

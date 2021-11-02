@@ -5,6 +5,7 @@ import java.io.File;
 import asmodeuscore.api.IBodies;
 import asmodeuscore.api.IBodiesHandler;
 import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarClass;
 import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.api.dimension.IAdvancedSpace.TypeBody;
 import asmodeuscore.core.astronomy.BodiesData;
@@ -18,11 +19,9 @@ import galaxyspace.core.util.GSDimensions;
 import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.TauCetiSystem.core.TCBlocks;
 import galaxyspace.systems.TauCetiSystem.core.configs.TCConfigCore;
-import galaxyspace.systems.TauCetiSystem.planets.tauceti_f.blocks.TauCeti_F_Blocks;
-import galaxyspace.systems.TauCetiSystem.planets.tauceti_f.blocks.TauCeti_F_Corals;
 import galaxyspace.systems.TauCetiSystem.planets.tauceti_f.blocks.TauCeti_F_Blocks.EnumBlockTauCetiF;
+import galaxyspace.systems.TauCetiSystem.planets.tauceti_f.blocks.TauCeti_F_Corals;
 import galaxyspace.systems.TauCetiSystem.planets.tauceti_f.blocks.TauCeti_F_Corals.EnumBlockCorals;
-import galaxyspace.systems.TauCetiSystem.planets.tauceti_f.blocks.TauCeti_F_Watergrass;
 import galaxyspace.systems.TauCetiSystem.planets.tauceti_f.blocks.TauCeti_F_Watergrass.EnumBlockDandelions;
 import galaxyspace.systems.TauCetiSystem.planets.tauceti_f.dimensions.TeleportTypeTauCeti_F;
 import galaxyspace.systems.TauCetiSystem.planets.tauceti_f.dimensions.WorldProviderTauCeti_F_WE;
@@ -75,10 +74,11 @@ public class TauCetiSystemBodies implements IBodies{
 		BodiesRegistry.setOrbitData(TauCeti_F, (float) Math.PI / 4, 1.25F, 60F);
 		BodiesRegistry.setPlanetData(TauCeti_F, 4.0F, 3, 36000L, BodiesRegistry.calculateGravity(7.8F), false);
 		BodiesRegistry.setProviderData(TauCeti_F, WorldProviderTauCeti_F_WE.class, -1338, 6, ACBiome.ACSpace);
+		BodiesRegistry.setAtmosphere(TauCeti_F, false, true, false, -0.2F, 3, 1.0F);
 		GalaxyRegistry.registerPlanet(TauCeti_F);
 		
 		
-		BodiesData data = new BodiesData(TypeBody.STAR, ClassBody.DWARF).setStarColor(StarColor.YELLOW);
+		BodiesData data = new BodiesData(TypeBody.STAR).setStarClass(StarClass.DWARF).setStarColor(StarColor.YELLOW);
 		BodiesRegistry.registerBodyData(TauCetiSystem.getMainStar(), data);		
 		
 		GalacticraftRegistry.registerTeleportType(WorldProviderTauCeti_F_WE.class, new TeleportTypeTauCeti_F());		

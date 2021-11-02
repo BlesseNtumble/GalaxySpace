@@ -2,7 +2,7 @@ package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks;
 
 import java.util.Random;
 
-import galaxyspace.systems.BarnardsSystem.core.registers.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.SoundType;
