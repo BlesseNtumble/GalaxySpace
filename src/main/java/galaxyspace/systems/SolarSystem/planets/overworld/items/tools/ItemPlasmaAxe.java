@@ -9,7 +9,9 @@ import galaxyspace.core.GSItems;
 import galaxyspace.core.prefab.items.ItemAxeGS;
 import galaxyspace.core.prefab.items.modules.ItemModule;
 import galaxyspace.core.util.GSUtils.Module_Type;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS.BasicItems;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
@@ -22,12 +24,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemPlasmaAxe extends ItemAxeGS implements IModificationItem{
 
 	public static String heat = "plasma_heat";
+	private static float max_heat = 10.0F;
 	
 	public ItemPlasmaAxe() {
 		super("plasma_axe", GSItems.PLASMA_TOOLS);
@@ -43,7 +47,7 @@ public class ItemPlasmaAxe extends ItemAxeGS implements IModificationItem{
                 
                 if(flag || flag1)
                 	if(stack.hasTagCompound() && stack.getTagCompound().hasKey(heat))
-                		if(stack.getTagCompound().getFloat(heat) >= 10.0F)
+                		if(stack.getTagCompound().getFloat(heat) >= max_heat)
                 			return entityIn instanceof EntityPlayer ? 1.0F : 0.0F;
                 
                 return 0.0F;
@@ -63,10 +67,18 @@ public class ItemPlasmaAxe extends ItemAxeGS implements IModificationItem{
 			if(!stack.getTagCompound().hasKey(heat))
 				stack.getTagCompound().setFloat(heat, 0.0F);
 			
-			if(world.rand.nextInt(30) == 0 && stack.getTagCompound() != null)		
-				if(stack.getTagCompound().hasKey(heat))
-					if(stack.getTagCompound().getFloat(heat) >= 0.2F)
+			if(entity.ticksExisted % 20 == 0 && stack.getTagCompound() != null)		
+				if(stack.getTagCompound().hasKey(heat)) {
+					if(stack.getTagCompound().getFloat(heat) > 0.0F)
 						stack.getTagCompound().setFloat(heat, stack.getTagCompound().getFloat(heat) - 0.2F);
+					
+					
+					if(stack.getTagCompound().getFloat(heat) < 0.0F)
+						stack.getTagCompound().setFloat(heat, 0.0F);
+				}
+			
+			if(stack.getItemDamage() >= stack.getMaxDamage() - 10) 
+				tryConsumePlasmaCell(stack, (EntityPlayer)entity);
 					
 		}
     }
@@ -74,10 +86,13 @@ public class ItemPlasmaAxe extends ItemAxeGS implements IModificationItem{
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> list, ITooltipFlag flagIn) {
-		list.add(EnumColor.DARK_RED + "[WIP] Content");
+		list.addAll(FMLClientHandler.instance().getClient().fontRenderer.listFormattedStringToWidth(GCCoreUtil.translate("gui.plasma_tools.desc"), 250));
 		
 		if(stack.getTagCompound() != null && stack.getTagCompound().hasKey(heat))
-			list.add("Heat: " + String.format("%.1f", stack.getTagCompound().getFloat(heat)));
+			list.add(GCCoreUtil.translate("gui.status.heat.name") + ": " + String.format("%.1f", stack.getTagCompound().getFloat(heat)));
+
+		list.add("");
+		list.add(EnumColor.DARK_RED + "[WIP] Content");
 	}
 	
 	@Override
@@ -86,7 +101,7 @@ public class ItemPlasmaAxe extends ItemAxeGS implements IModificationItem{
 		if(stack.getItemDamage() == stack.getMaxDamage()) return false;
 		
 		stack.damageItem(2, attacker);
-		if(stack.hasTagCompound() && stack.getTagCompound().hasKey(heat) && stack.getTagCompound().getFloat(heat) <= 11.0F) 
+		if(stack.hasTagCompound() && stack.getTagCompound().hasKey(heat) && stack.getTagCompound().getFloat(heat) < max_heat) 
 			stack.getTagCompound().setFloat(heat, stack.getTagCompound().getFloat(heat) + 0.5F);
 		
         return true;
@@ -98,7 +113,7 @@ public class ItemPlasmaAxe extends ItemAxeGS implements IModificationItem{
 		
         if (!worldIn.isRemote && (double)state.getBlockHardness(worldIn, pos) != 0.0D)
         {
-        	if(stack.hasTagCompound() && stack.getTagCompound().hasKey(heat) && stack.getTagCompound().getFloat(heat) <= 11.0F) 
+        	if(stack.hasTagCompound() && stack.getTagCompound().hasKey(heat) && stack.getTagCompound().getFloat(heat) < max_heat) 
     			stack.getTagCompound().setFloat(heat, stack.getTagCompound().getFloat(heat) + 0.5F);
         	
             stack.damageItem(1, entityLiving);
@@ -114,12 +129,29 @@ public class ItemPlasmaAxe extends ItemAxeGS implements IModificationItem{
 		if(stack.getItemDamage() == stack.getMaxDamage()) return 0.0F;
 		
 		if(stack.getTagCompound() != null && stack.getTagCompound().hasKey(heat))
-			if(stack.getTagCompound().getFloat(heat) >= 10.0F)
+			if(stack.getTagCompound().getFloat(heat) >= max_heat)
 				return 0.0F;
 		
 		return material != Material.WOOD && material != Material.PLANTS && material != Material.VINE
 				? super.getDestroySpeed(stack, state)
 				: this.efficiency;
+	}
+	
+	private void tryConsumePlasmaCell(ItemStack stack, EntityLivingBase entityLiving) {
+		if(entityLiving instanceof EntityPlayer) {
+			EntityPlayer player = (EntityPlayer) entityLiving;
+			for(ItemStack cell : player.inventory.mainInventory) {
+				if(cell.isItemEqual(BasicItems.FILLED_PLASMA_CELL.getItemStack())) {
+					if(cell.getCount() > 1) {
+						player.addItemStackToInventory(BasicItems.EMPTY_PLASMA_CELL.getItemStack());
+						cell.shrink(1);
+					}
+					else cell.setItemDamage(BasicItems.EMPTY_PLASMA_CELL.getMeta());
+					stack.setItemDamage(0);
+					break;
+				}
+			}
+		}		
 	}
 
 	@Override
