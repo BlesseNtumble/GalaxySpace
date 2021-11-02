@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Random;
 
 import asmodeuscore.api.dimension.IAdvancedSpace;
-import asmodeuscore.core.hooklib.asm.Hook;
-import asmodeuscore.core.hooklib.asm.ReturnCondition;
 import galaxyspace.api.block.IEnergyGeyser;
 import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.events.SetBlockEvent;
+import galaxyspace.core.hooklib.asm.Hook;
+import galaxyspace.core.hooklib.asm.ReturnCondition;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS.BasicItems;
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.item.IItemThermal;
@@ -51,7 +51,6 @@ import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 public class GSHooksManager {

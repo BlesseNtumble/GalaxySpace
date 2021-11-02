@@ -1,7 +1,7 @@
 package galaxyspace.core.hooks;
 
-import asmodeuscore.core.hooklib.minecraft.HookLoader;
-import asmodeuscore.core.hooklib.minecraft.PrimaryClassTransformer;
+import galaxyspace.core.hooklib.minecraft.HookLoader;
+import galaxyspace.core.hooklib.minecraft.PrimaryClassTransformer;
 
 public class GSHooksLoader extends HookLoader {
 
