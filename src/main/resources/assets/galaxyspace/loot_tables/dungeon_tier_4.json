@@ -176,17 +176,17 @@
                 },
                 {
                     "type": "item",
-                    "name": "minecraft:record_chirp",
+                    "name": "minecraft:record_cat",
                     "weight": 4
                 },
                 {
                     "type": "item",
-                    "name": "minecraft:record_wait",
+                    "name": "minecraft:record_stal",
                     "weight": 4
                 },
                 {
                     "type": "item",
-                    "name": "minecraft:record_ward",
+                    "name": "minecraft:record_strad",
                     "weight": 4
                 },
                 {
