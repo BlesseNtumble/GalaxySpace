@@ -1,11 +1,12 @@
 #Español (España)
 menu.update=¡Actualice Galaxy Space!
-
+ 
+# Translation by CreeperCristo
 |/////////////////////////////////////////|
 #||||||||||||||Achievements||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-
-
+ 
+ 
 |/////////////////////////////////////////|
 #||||||||||||||||||Blocks||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
@@ -15,7 +16,7 @@ tile.mercury_stone.name=Piedra de Mercurio
 tile.mercury_iron_ore.name=Mena de hierro (Mercurio)
 tile.mercury_nickel_ore.name=Mena de níquel (Mercurio)
 tile.mercury_magnesium_ore.name=Mena de magnesio (Mercurio)
-
+ 
 tile.deco_cobaltum.name=Bloque decorativo de cobalto
 tile.deco_magnesium.name=Bloque decorativo de magnesio
 tile.deco_nickel.name=Bloque decorativo de níquel
@@ -23,28 +24,28 @@ tile.deco_copper.name=Bloque decorativo de cobre
 tile.cobalt_block.name=Bloque de cobalto
 tile.nickel_block.name=Bloque de níquel
 tile.magnesium_block.name=Bloque de magnesio
-
+ 
 tile.cobaltum_ore.name=Mena de cobalto
 tile.nickel_ore.name=Mena de níquel
 tile.uranium_ore.name=Mena de uranio
 tile.coal_ore.name=Mena de carbón
 tile.iron_ore.name=Mena de hierro
-tile.gold_ore.name=Mena de Ooro
+tile.gold_ore.name=Mena de oro
 tile.redstone_ore.name=Mena de redstone
 tile.lapis_ore.name=Mena de lapislázuli
-tile.diamond_ore.name=Mena de Diamante
+tile.diamond_ore.name=Mena de diamante
 tile.silicon_ore.name=Mena de silicio
 tile.copper_ore.name=Mena de cobre
 tile.tin_ore.name=Mena de estaño
 tile.aluminum_ore.name=Mena de aluminio
 tile.quartz_ore.name=Mena de cuarzo
-
+ 
 tile.oxygen_ice.name=Oxígeno congelado
 tile.nitrogen_ice.name=Nitrógeno congelado
 tile.methane_ice.name=Metano congelado
 tile.hydrogen_ice.name=Hidrógeno congelado
 tile.dry_ice.name=Hielo seco
-
+ 
 tile.futureglass_none.name=Vidrio futurista
 tile.futureglass_black.name=Vidrio futurista negro
 tile.futureglass_red.name=Vidrio futurista rojo
@@ -62,30 +63,30 @@ tile.futureglass_lightblue.name=Blue Vidrio futurista celeste
 tile.futureglass_magneta.name=Vidrio futurista magenta
 tile.futureglass_orange.name=Vidrio futurista naranja
 tile.futureglass_white.name=Vidrio futurista blanco
-
+ 
 tile.mars_diamond.name=Mena de diamante marciana
 tile.mars_gold.name=Mena de oro marciana
 tile.mars_coal.name=Mena de carbón marciana
 tile.mars_redstone.name=Mena de redstone marciana
 tile.mars_silicon.name=Mena de silicio marciana
 tile.mars_aluminum.name=Mena de aluminio marciana
-
+ 
 tile.ceres_grunt.name=Tierra superficial de Ceres
 tile.ceres_subgrunt.name=Piedra subterránea de ceres
 tile.ceres_dolomite_ore.name=Mena de dolomita
 tile.ceres_meteoriciron_ore.name=Mena de hierro meteórico (Ceres)
 tile.ceres_dungeon_top.name=Techo de mazmorra de Ceres
 tile.ceres_dungeon_floor.name=Suelo de mazmorra de Ceres
-
+ 
 tile.pluto_grunt.name=Tierra de Plutón
 tile.pluto_subgrunt.name=Tierra subterránea de Plutón
 tile.pluto_stone.name=Piedra de Plutón
-
+ 
 tile.haumea_ground.name=Tierra de Haumea
 tile.haumea_stone.name=Piedra de Haumea
 tile.haumea_cobblestone.name=Roca de Haumea
 tile.haumea_aluminum_ore.name=Mena de aluminio (Haumea)
-
+ 
 tile.io_grunt.name=Tierra de Ío
 tile.io_stone.name=Piedra de Ío
 tile.io_ash.name=Cenizas de Ío
@@ -93,11 +94,11 @@ tile.io_copper_ore.name=Mena de cobre (Ío)
 tile.io_sulfur_ore.name=Mena de azufre (Ío)
 tile.io_volcanic_ore.name=Mena volcánico (Ío)
 tile.io_lava_geyser.name=Géiser de lava de Ío
-tile.io_sulfur_geyser.name=Géiser se azufre de Ío
+tile.io_sulfur_geyser.name=Géiser de azufre de Ío
 tile.io_top.name=Techo de mazmorra de Ío
 tile.io_floor.name=Suelo de mazmorra de Ío
 tile.io_dungeon_bricks.name=Bloques de mazmorra de Ío
-
+ 
 tile.europa_grunt.name=Tierra superficial de Europa
 tile.europa_stone.name=Piedra de Europa
 tile.europa_brown_ice.name=Hielo marrón de Europa
@@ -107,30 +108,39 @@ tile.europa_silicon_ore.name=Mena de silicio (Europa)
 tile.europa_aluminum_ore.name=Mena de Aluminio (Europa)
 tile.europa_geyser.name=Géiser de Europa
 tile.europa_uwgeyser.name=Géiser de Europa (hielo)
-
+ 
 tile.ganymede_grunt.name=Polvo superficial de Ganímedes
 tile.ganymede_stone.name=Piedra de Ganímedes
 tile.ganymede_magnesium_ore.name=Mena de Magnesio (Ganím.)
 tile.ganymede_titanium_ore.name=Mena de Ilmenita (Ganím.)
-
+ 
 tile.callisto_grunt.name=Polvo superficial de Calisto
 tile.callisto_stone.name=Piedra de Calisto
-
+ 
 tile.enceladus_snow.name=Hielo de Encélado
 tile.enceladus_grunt.name=Roca subterránea de Encélado
 tile.enceladus_coal_ore.name=Mena de carbón (Encél.)
 tile.enceladus_crystal.name=Cristal desconocido
-
+ 
 tile.titan_grunt.name=Tierra superficial de Titán
 tile.titan_subgrunt.name=Tierra supterránea de Titán
 tile.titan_stone.name=Piedra de Titán
-tile.titan_sapphire_ore.name=Gema del Poder
-tile.titan_emerald_ore.name=Gema del Tiempo
-tile.titan_diamond_ore.name=Gema del Alma
-tile.titan_coal_ore.name=Gema de la Mente
-tile.titan_lapis_ore.name=Gema del Espacio
-tile.titan_redstone_ore.name=Gema de la Realidad
-
+tile.titan_sapphire_ore.name=Mena de zafiro (Titán)
+tile.titan_emerald_ore.name=Mena de esmeralda (Titán)
+tile.titan_diamond_ore.name=Mena de diamante (Titán)
+tile.titan_coal_ore.name=Mena de carbón (Titán)
+tile.titan_lapis_ore.name=Mena de lapislázuli (Titán)
+tile.titan_redstone_ore.name=Mena de redstone (Titán)
+ 
+# [Infinity Stones Easter Egg ;)] 
+# tile.titan_sapphire_ore.name=Gema del Poder
+# tile.titan_emerald_ore.name=Gema del Tiempo
+# tile.titan_diamond_ore.name=Gema del Alma
+# tile.titan_coal_ore.name=Gema de la Mente
+# tile.titan_lapis_ore.name=Gema del Espacio
+# tile.titan_redstone_ore.name=Gema de la Realidad
+ 
+ 
 tile.miranda_grunt.name=Polvo superficial de Miranda
 tile.miranda_subgrunt.name=Tierra subterránea de Miranda
 tile.miranda_stone.name=Piedra de Miranda
@@ -141,13 +151,13 @@ tile.miranda_diamond_ore.name=Mena de diamante (Miranda)
 tile.miranda_quartz_ore.name=Mena de cuarzo (Miranda)
 tile.miranda_cobalt_ore.name=Mena de cobalto (Miranda)
 tile.miranda_nickel_ore.name=Mena de níquel (Miranda)
-
+ 
 tile.triton_grunt.name=Polvo superficial de Tritón
 tile.triton_subgrunt.name=Tierra subterránea de Tritón
 tile.triton_stone.name=Piedra de Tritón
 tile.triton_geyser.name=Géiser de Tritón
 tile.triton_geyser_2.name=Géiser de Tritón pequeño
-
+ 
 tile.proxima_b_surface.name=Superficie de Próxima B
 tile.proxima_b_subsurface.name=Subsuelo de Próxima B
 tile.proxima_b_stone.name=Piedra de Próxima B
@@ -161,7 +171,7 @@ tile.proxima_b_silicon_ore.name=Mena de silicio (Próx. B)
 tile.proxima_b_diamond_ore.name=Mena de diamante (Próx. B)
 tile.proxima_b_log_1.name=Madera quemada
 tile.proxima_b_log_2.name=Madera congelada
-
+ 
 tile.barnarda_c_grass.name=Césped de Barnard C
 tile.barnarda_c_dirt.name=Tierra de Barnard C
 tile.barnarda_c_stone.name=Piedra de Barnard C
@@ -186,7 +196,7 @@ tile.barnarda_c_yellow_grass_up.name=Césped amarillo de Barnard C
 tile.barnarda_c_violet_sapling.name=Retoño violeta
 tile.barnarda_c_leaves_1.name=Hojas de Barnard C
 tile.barnarda_c_farmland.name=Tierra de cultivo de Barnard C
-
+ 
 tile.tauceti_f_grass.name=Césped de Tau Ceti F
 tile.tauceti_f_dirt.name=Tierra de Tau Ceti F
 tile.tauceti_f_stone.name=Piedra de Tau Ceti F
@@ -201,149 +211,156 @@ tile.kelp.name=Alga pequeña
 tile.brain_coral.name=Coral cerebro
 tile.brain_coral_fan.name=Abanico de coral cerebro
 tile.bubble_coral.name=Coral burbuja	
-tile.bubble_coral_fan.name=Bubble Coral Fan
+tile.bubble_coral_fan.name=Abanico de coral burbuja
 tile.fire_coral.name=Coral de fuego
-tile.fire_coral_fan.name=Coral de fuego
+tile.fire_coral_fan.name=Abanico de coral de fuego
 tile.horn_coral.name=Coral cuerno
-tile.horn_coral_fan.name=Coral cuerno
+tile.horn_coral_fan.name=Abanico de coral cuerno
 tile.tube_coral.name=Coral tubo
-tile.tube_coral_fan.name=Coral tubo
-tile.sponge_coral.name=Coral espona
-
+tile.tube_coral_fan.name=Abanico de coral tubo
+tile.sponge_coral.name=Coral esponja
+ 
 |/////////////////////////////////////////|
 #||||||||||||Tile Description||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 tile.assembly_machine.name=Ensambladora
 tile.assembly_machine.desc=Variante del compresor. Sella los materiales con un potente láser.	
-
-tile.fuel_generator.name=Generador a combustible.
+ 
+tile.fuel_generator.name=Generador a combustible
 tile.fuel_generator.desc=El generador consume combustible y genera una buena cantidad de energía eléctrica. Una buena opción para los magnates del petróleo.
-
+ 
 tile.modern_solarpanel.name=Panel solar híbrido
 tile.modern_solarpanel.desc=Un generador solar con paneles recubiertos de oro. Produce el doble de energía que el Panel solar avanzado.
-
+ 
 tile.gravitation_module.name=Módulo de gravedad
 tile.gravitation_module.desc=Crea un campo de gravedad similar al de la Tierra en un radio a su alrededor.
-
+ 
 tile.wind_generator.name=Turbina de viento
-tile.wind_generator.desc=Genera energía del flujo del viento. ¡Energía barata en planetas con viento!
-
+tile.wind_generator.desc=Genera energía del flujo del viento. ¡Energía barata en planetas con atmósfera!
+ 
 tile.rocket_assembler.name=Ensamblador de cohetes
 tile.rocket_assembler.desc=Construye cohetes con los componentes hechos en la mesa de trabajo de la NASA.
-
+ 
 tile.universal_recycler.name=Reciclador universal
 tile.universal_recycler.desc=Recicla el recurso dado en otro. También puede convertir el material en un líquido.
-
+ 
 tile.liquid_extractor.name=Extractor de líquidos
 tile.liquid_extractor.desc=Recolecta cualquier líquido que tenga debajo.
-
+ 
 tile.liquid_separator.name=Separador de líquidos
 tile.liquid_separator.desc=Separa los líquidos en sus partes esenciales, o los vuelve a mezclar.
-
-tile.rocket_assembler.name=Ensamblador de cohetes
-tile.rocket_assembler.desc=Construye cohetes con los componentes hechos en la mesa de trabajo de la NASA.
-
+ 
 tile.hydroponic_base.name=Base hidropónica
 tile.hydroponic_base.desc=Bloque base para la granja hidropónica. Instala la granja hidropónica encima de esta máquina.
-
+ 
 tile.hydroponic_farm.name=Bloque de granja hidropónica
 tile.hydroponic_farm.desc=Se instala encima del bloque base de la granja hidropónica. Es esencial para operar la granja hidropónica. Puedes hacerla de hasta 3 bloques de alto.
-
-tile.radiation_stabiliser.name=Generador de campo magnético.
+ 
+tile.radiation_stabiliser.name=Generador de campo magnético
 tile.radiation_stabiliser.desc=Genera un campo magnético que protege contra la radiación solar. Pude aumentarse el rango efectivo con módulos de rango.
-
-tile.panel_controller.name=Controlador de minipaneles solares.
+ 
+tile.panel_controller.name=Controlador de minipaneles solares
 tile.panel_controller.desc=Almacena la energía de los minipaneles solares cercanos. Puedes ver el área de efecto haciendo Shift+click derecho en él.
-
-tile.single_solarpanel.name=Minipanel solar.
+ 
+tile.single_solarpanel.name=Minipanel solar
 tile.single_solarpanel.desc=Versión compacta del panel solar. Colócalo junto a un Controlador de minipaneles solares para producir energía.
-
+ 
 tile.modern_single_solarpanel.name=Minipanel solar moderno
 tile.modern_single_solarpanel.desc=Más eficiente que el minipanel normal. Colócalo junto a un Controlador de minipaneles solares para producir energía.
-
+ 
 tile.modern_storage_module.name=Clúster de energía moderno
 tile.modern_storage_module.desc=Una versión mucho más avanzada del Clúster de energía. Puede almacenar mucha más energía que su predecesor.
-
+ 
 tile.modification_table.name=Mesa de modificación
 tile.modification_table.desc=Te permite modificar y mejorar elementos con diferentes tipos de módulos.
-
+ 
 tile.gas_burner.name=Quemador de gas
 tile.gas_burner.desc=Quema el gas introducido.
-
+ 
 tile.oxygen_storage_module_1.name=Clúster de almacenamiento de oxígeno
 tile.oxygen_storage_module_1.desc=Almacena 4 veces más oxígeno que el módulo normal.
-
+ 
 tile.solarwind_panel.name=Panel de viento solar
 tile.solarwind_panel.desc=Converte el viento solar en energía. No funciona en planetas con atmósfera.
-
+ 
 tile.advanced_landing_pad.name=Plataforma de despegue avanzada
-tile.advanced_landing_pad.desc=Plataforma de despegue para cohetes más avanzados. Tamaño de 5x5 bloques.
-
+tile.advanced_landing_pad.desc=Plataforma de despegue para cohetes más avanzados. Se debe construir como un cuadrado de 5x5 bloques.
+ 
 tile.adv_circuit_fabricator.name=Fabricador de circuitos avanzado
 tile.adv_circuit_fabricator.desc=Versión mejorada del fabricador de circuitos. Es el doble de efectivo. Soporta módulos.
-
+ 
 tile.adv_electric_compressor.name=Compresor eléctrico avanzado
 tile.adv_electric_compressor.desc=Verión mejorada del compresor eléctrico. Es el doble de efectivo. Soporta módulos.
-
+ 
 tile.planet_shield.name=Escudo planetario
 tile.planet_shield.desc=Protege el área de impactos de meteoritos.
-
+ 
 tile.energy_pad.name=Plataforma de energía
 tile.energy_pad.desc=Recarga tódos los objetos eléctricos en el inventario del jugador.
-
+ 
 tile.port_nuclear_reactor.name=[WIP] Reactor nuclear portátil
-
+tile.port_nuclear_reactor.desc=Generador avanzado de energía que usa uranio como combustible. Debe enfriarse con agua o nitrógeno.
+ 
 tile.basic_frame.name=Armazón de maquinaria básica
 tile.advance_frame.name=Armazón de maquinaria avanzada
 tile.modern_frame.name=Armazón de maquinaria moderna
 tile.coefficient.desc=Coeficiente de generación
 tile.coefficientcraft.desc=Coeficiente de velocidad de fabricación
-
+ 
 tile.ceres_bricks.name=Ladrillo de mazmorra de Ceres
 tile.io_bricks.name=Ladrillo de mazmorra de Ío
-
+ 
 tile.treasure_t4.name=Cofre del tesoro nivel 4
 tile.treasure_t4.desc=Cofres del tesoro de nivel 4 se generan en las mazmorras de Ceres. Pueden ser abiertos tras matar al jefe de la mazmorra.
-
+ 
 tile.treasure_t5.name=Cofre del tesoro nivel 5
 tile.treasure_t5.desc=Cofres del tesoro de nivel 5 se generan en las mazmorras de Ío. Pueden ser abiertos tras matar al jefe de la mazmorra.
-
+ 
 |/////////////////////////////////////////|
 #|||||||||||||||||Items||||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-
+ 
 item.schematics.name=Planos de la NASA
 item.hdp.name=Placa de alta resistencia
 item.dungeon_keys.name=Llave de mazmorra
 item.geo_scanner.name=Escáner geológico
-
+ 
 item.rocket_tier_4.name=Cohete nivel 4
 item.rocket_tier_5.name=Cohete nivel 5
 item.rocket_tier_6.name=Cohete nivel 6
-
+ 
 item.space_suit_head.name=Casco de traje espacial
 item.space_suit_chest.name=Coraza de traje espacial
 item.space_suit_legs.name=Pantalones de traje espacial
 item.space_suit_feet.name=Botas de traje espacial
-
+ 
+item.space_suit_light_head.name=Casco de traje espacial ligero
+item.space_suit_light_chest.name=Coraza de traje espacial ligero
+item.space_suit_light_legs.name=Pantalones de traje espacial ligero
+item.space_suit_light_feet.name=Botas de traje espacial ligero
+ 
 item.jetpack.name=Jetpack eléctrico
-
+ 
 item.cobalt_helmet.name=Casco de cobalto
 item.cobalt_chest.name=Coraza de cobalto
 item.cobalt_legs.name=Grebas de cobalto
 item.cobalt_boots.name=Botas de cobalto
-
+ 
 item.cobalt_axe.name=Hacha de cobalto
 item.cobalt_hoe.name=Azadón de cobalto
 item.cobalt_pickaxe.name=Pico de cobalto
 item.cobalt_sword.name=Espada de cobalto
 item.cobalt_spade.name=Pala de cobalto
-
+ 
+item.plasma_sword.name=Espada de plasma
+item.plasma_axe.name=Hacha de plasma
+item.plasma_pickaxe.name=Pico de plasma
+ 
 item.nickel_ingot.name=Lingote de níquel
 item.cobaltum_ingot.name=Lingote de cobalto
 item.magnesium_ingot.name=Lingote de magnesio
 item.uranium_ingot.name=Barra de uranio
-
+ 
 item.compressed_nickel.name=Níquel comprimido
 item.compressed_cobaltum.name=Cobalto comprimido
 item.compressed_magnesium.name=Magnesio comprimido
@@ -351,7 +368,6 @@ item.compressed_coal.name=Carbón comprimido
 item.compressed_sdhd120.name=Aleación "SDHC-120" comprimida
 item.unknow_crystal.name=Fragmento de cristal desconocido
 item.sulfur.name=Azufre
-item.module_electrolyse.name=Módulo "Electrólisis"
 item.dolomite_crystal.name=Cristal de dolomita
 item.dolomite_meal.name=Polvo de dolomita
 item.wafer_modern.name=Oblea moderna
@@ -378,12 +394,19 @@ item.empty_plasma_cell.name=Celda de plasma vacía
 item.filled_plasma_cell.name=Celda de plasma llena
 item.wolf_thermal_suit.name=Traje térmico para lobos
 item.animal_cage.name=Jaula de animales
-
+item.iron_fan.name=Rotor de hierro
+item.steel_fan.name=Rotor de acero
+item.plastic_fan.name=Rotor de plástico
+item.carbon_fan.name=Rotor de carbono
+item.raw_plastic.name=Plástico en bruto
+item.plastic.name=Fragmento de plástico
+ 
+item.module_electrolyse.name=Módulo "Electrólisis"
 item.module_expander.name=Module "Expansión"
 item.module_stabiliser.name=Module "Estabilización"
 item.module_speed.name=Module "Velocidad"
 item.module_energy.name=Module "Energía"
-
+ 
 item.module_small_fuelcanister.name=Tanque de combustible pequeño
 item.module_smallcanister.name=Tanque de combustible en blanco
 item.module_lander_1.name=Aterrizador nivel 1
@@ -402,26 +425,26 @@ item.rocket_body.name=Cuerpo de cohete duradero
 item.rocket_engine.name=Motor de cohete duradero
 item.rocket_booster.name=Propulsor pesado
 item.rocket_stabiliser.name=Aleta de cohete duradera
-
-item.part_solarflares.name=Solar Flare Module
-item.solarflares.name=Solar Flare
-
-item.oxygen_tank_4.name=Supertanque de oxígeno
-item.oxygen_tank_5.name=Megatanque de oxígeno
-item.oxygen_tank_6.name=Tanque de oxígeno Omega
+ 
+item.part_solarflares.name=Módulo de Vela solar
+item.solarflares.name=Vela solar
+ 
+item.oxygen_tank_4.name=Tanque de oxígeno superpesado
+item.oxygen_tank_5.name=Tanqué de oxígeno ultrapesado
+item.oxygen_tank_6.name=Tanque de oxígeno supremo
 item.oxygen_tank_epp_1.name=Tanque de oxígeno con protección ambiental
-
+ 
 item.advanced_battery.name=Batería avanzada
 item.modern_battery.name=Batería moderna
 item.extra_battery.name=Batería ultramoderna
 item.ultimate_battery.name=Batería suprema
-
+ 
 item.hydrogen_canister.name=Tanque de hidrógeno
 item.ethane_canister.name=Tanque de etano
 item.em_canister.name=Tanque de etano-metano
 item.helium_canister.name=Tanque de helio-3
 item.hh_canister.name=Tanque de hidrógeno-helio
-
+ 
 item.violet_reeds.name=Caña de azúcar violeta
 item.water_grass.name=Césped acuático
 item.tree_juice.name=Jugo de arbol
@@ -437,42 +460,49 @@ fluid.heliumhydrogen=Hidrógeno-helio líquido
 #||||||||||||||||Potions|||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 effect.antiradiation=Effecto antirradiación
-
+ 
 |/////////////////////////////////////////|
 #|||||||||||||||||GUI||||||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 gui.available_modules.desc=Módulos disponibles:
 gui.schematic_oxtanks.desc=Tanque de Oxígeno PA
-
+ 
 gui.tier1.desc=Nivel 1
 gui.tier2.desc=Nivel 2
 gui.tier3.desc=Nivel 3
 gui.tier4.desc=Nivel 4
 gui.tier5.desc=Nivel 5
 gui.tier6.desc=Nivel 6
-
+ 
 gui.bonemeal.desc=Al parecer funciona similar al polvo de hueso.
 gui.schematic_box.desc=Contiene planos para cohetes. Click derecho mientras se sostiene para abrirla.
-
-gui.spacesuit.desc=Traje espacial resistente. Estabiliza la presión del aire y proporciona protección contra la radiación solar.
-gui.spacesuit_helmet.desc=El casco te permite respirar bajo el agua.
-
+ 
+gui.gravitation_module_stabilisation_1.desc=Estabiliza la presión atmosférica
+gui.gravitation_module_stabilisation_2.desc=si el módulo "Estabilización" es instalado.
+ 
+gui.spacesuit.type=Tipo de traje:
+gui.spacesuit.type.1=Ligero
+gui.spacesuit.type.2=Pesado
+gui.spacesuit.desc.light=Traje espacial ligero que provee de protección contra la radiación solar.
+gui.spacesuit.desc.heavy=Traje espacial pesado que protege contra la radiación solar y está presurizado.
+ 
 gui.module_expander.desc=Espacio para el módulo "Expansión". Aumenta la distancia del campo magnético.
 gui.module_pressure.desc=Espacio para el módulo "Estabilización". Crea una capa protectora que estabiliza la presión atmosférica.
 gui.temp_shield_control.desc=Proporciona protección contra la corrosión atmosférica, pero se degrada con el tiempo.
 gui.emergency_portable_teleport.desc=Teletransporte de emergencia al punto de anclaje. Funciona con menos de 6 puntos de vida. Shift+click derecho te permite seleccionar un punto para teletransportarte.
 gui.planet_shield_stability_1.desc=Si se instala el módulo "Estabilización"
 gui.planet_shield_stability_2.desc=el escudo recogerá fragmentos de meteoritos en este espacio.
-gui.ice_bucket.desc={uedes obtenerlo haciendo click derecho en un bloque de hielo usando una cubeta.
+gui.ice_bucket.desc=Puedes obtenerlo haciendo click derecho en un bloque de hielo usando una cubeta.
 gui.animal_cage.desc=Te permite llevar animales. Se gasta cuando el animal es liberado.
 gui.animal_cage_stored.desc=Animal almacenado:
-
+gui.plasma_tools.desc=Instrumentos de alta tecnología que funcionan con plasma. Al usarse consumen una carga de plasma y se calientan. Se recargan automáticamente de las cápsulas del inventario. ¡Manejar con cuidado!
+ 
 gui.not_attached.desc=Desconectado
 gui.attached.desc=Conectado:
 gui.enabled.desc=Activado
 gui.charge=Carga:
 gui.message.now_noshield=¡Tu controlador de escudo fue destruido!
-
+ 
 gui.module.desc=Módulo de cohete
 gui.status.nolava.name=Sin lava
 gui.message.lava.name=Lava
@@ -483,77 +513,81 @@ gui.status.nowind.name=Sin viento
 gui.status.wind.name=Viento
 gui.status.nowater.name=Sin agua
 gui.message.needfrequencyModule=¡Espera! ¡Necesitas un módulo de frecuencia!
-gui.message.active_pressure_shield.name=Escudo activo contra la presión atmosférica.
-
-gui.message.needoxygen=Se necesita oxígeno para realizar esa ación.
-gui.message.needoxygenthermal=Se necesita oxígeno y temperatura estable para realizar esa ación.
-gui.message.needoxygen.food=¡No puedes quitarte el casco para comer si estás en una zona no respirable!
-gui.message.needoxygenandthermal.food=¡Debes estar en una zona respirable y con temperatura estable para comer!
-gui.message.invalid_teleport_conf=Configuración de teletransporte no válida / Sin energía.
-gui.message.cant_place=No se puede colocar aquí.
+gui.message.active_pressure_shield.name=Escudo contra la presión atmosférica activado.
+ 
+gui.message.needoxygen=Se necesita oxígeno para realizar esa acción.
+gui.message.needthermal=La temperatura ambiente no es adecuada.
+gui.message.needoxygen.food=No puedes comer comida normal en un ambiente sin oxígeno. Utiliza comida enlatada en su lugar.
+gui.message.invalid_teleport_conf=Configuración de teletransporte no adecuada / Sin energía.
+gui.message.cant_place=Ne se puede colocar aquí.
  
 gui.message.noradiation=No tienes radiación solar ¡Muy bien!
 gui.message.emergency_teleport=Teletransporte de emergencia activado. Coordenadas:
 gui.message.can_find_in_dungeon=Se puede encontrar en mazmorras.
-
+ 
 gui.message.need_advanced_lp.desc=Sólo se puede colocar en una plataforma de despegue avanzada.
 gui.message.engine_type.name=Tipo de motor:
-gui.message.effect_visible.name=Efectos visibles
+gui.message.effect_visible.name=Monstrar bordes
 gui.message.resources=Recursos disponibles:
-
+ 
 gui.tank.passive_oxygen_regen.desc1=Genera oxígeno de forma pasiva
 gui.tank.passive_oxygen_regen.desc2=si el jugador está en un zona respirable adecuada (burbuja de aire, cuarto sellado)
-
+ 
 gui.gravity.radius.name=Radio de acción:
-
+ 
 gs.success.name=Versión disponible:
 gs.update.available=¡Nueva versión disponible!
 gs.update.download=Descargar
 gs.update.changelog=Resgistro de cambios
-
+ 
+gui.rotor_slot_desc.0=Coloca el rotor aquí.
+gui.rotor_slot_desc.1=Rotores mejores generan más energía.
+ 
 #|/////////////////////////////////////////|
 #|||||||||||||SpaceSuit Modules|||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 gui.module.available_modules=Módulos disponibles:
 gui.module.caninstall=Puede ser equipado con módulos en la mesa de modificaciones.
 gui.module.list=Lista de módulos:
-
+ 
 gui.module.sensor=Gafas con sensores
-gui.module.sensor.desc=Añade gafas con sensores al casco. Escanea la zona cercana por minerales. También destaca monstruos visibles
+gui.module.sensor.desc=Añade gafas con sensores al casco. Muestra los minerales y monstruos cercanos.
 gui.module.nightvision=Visión nocturna
-gui.module.nightvision.desc=Te ayuda a ver en la oscuridad.
+gui.module.nightvision.desc=Te ayuda a ver en la oscuridad. Útil para revisar lugares oscuros sin usar antorchas.
 gui.module.jetpack=Jetpack eléctrico
-gui.module.jetpack.desc=Jetpack integrado. Te permite volar libremente hasa que la carga de la oraza se acabe.
+gui.module.jetpack.desc=Jetpack integrado. Te permite volar libremente hasa que la carga de la coraza se acabe.
 gui.module.speed=Aceleradores
 gui.module.speed.desc=Instalar aceleradores aumenta tu velocidad al correr. ¡Ahora puedes escapar de enemigo más rápido!
 gui.module.gravity=Fuerza de gravedad
 gui.module.gravity.desc=Las placas de magnesio dan un efecto de gravedad mayor. ¡Adaptarse en otros planetas ahora es mucho mejor!
 gui.module.stepassist=Mejora al caminar
-gui.module.stepassist.desc=Podría parecer que colocar bolas de slime en las suelas de las botas no funcionaría... ¡Pero ahora puedes escalar elevaciones de un bloque de alto!
+gui.module.stepassist.desc=Podría parecer que colocar bolas de slime en las suelas de las botas no funcionaría... ¡Pero ahora puedes caminar por bloques como si fueran escaleras!
 gui.module.jump=Salto alto
 gui.module.jump.desc=¡Instalar pistones fue una gran idea! ¡Ahora puedes saltar el doble de alto de lo normal!
 gui.module.energy=Batería avanzada
 gui.module.energy.desc=Duplica el límite de energía almacenada.
 gui.module.protection=Protección
 gui.module.protection.desc=Piezas de cobalto insertadas en el traje te proporcionan buena protección contra el daño.
-
+gui.module.water_breathing=Módulo de buceo
+gui.module.water_breathing.desc=Este módulo te permitirá permanecer en agua mucho más tiempo, consumiendo el oxígeno de los tanques.
+ 
 gui.module.sublight_engine=Motor sublumínico
 gui.module.sublight_engine.desc=Motor de espacial de nueva generación. Te permite viajar entre sistemas estelares.
-
+ 
 gui.message.forrbiden_modules.name=Incompatible con:
 gui.module.active=Módulo activo
 gui.module.passive=Módulo pasivo
 gui.module.empty_slot=Vacío. Coloque un objeto en este espacio.
-
+ 
 |/////////////////////////////////////////|
 #||||||||||||||Creative Tabs|||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-
+ 
 item_group.galaxyspace_blocks=GalaxySpace: Bloques
 item_group.galaxyspace_items=GalaxySpace: Objetos
 item_group.galaxyspace_armor=GalaxySpace: Armadura, armas y herramientas
 item_group.galaxyspace_rocket=GalaxySpace: Cohetes y vehículos
-
+ 
 |/////////////////////////////////////////|
 #||||||||||||||||Entities||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
@@ -567,7 +601,7 @@ entity.astro_wolf.name=Astrolobo
 |/////////////////////////////////////////|
 #||||||||||||Celestial Bodies||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-
+ 
 planet.ceres=Ceres
 moon.phobos=Fobos
 moon.deimos=Deimos
@@ -594,16 +628,16 @@ moon.charon=Caronte
 planet.kuiperbelt=Cinturón de Kuiper
 planet.haumea=Haumea
 satellite.spacestation.venus=Estación Venus
-
+ 
 #aCentauri System
 solarsystem.acentauri=α Centauri
 star.centauri_a=α Centauri A
 planet.centauri_b=α Centauri B
-
+ 
 solarsystem.proxima=Próxima Centauri
 star.proxima=Próxima Centauri
 planet.proxima_b=Próxima B
-
+ 
 #Barnard's System
 solarsystem.barnards=Estrella de Barnard
 star.barnarda_a=Barnard A
@@ -614,7 +648,7 @@ planet.barnarda_e=Barnard E
 moon.barnarda_b1=Anillo planetario
 moon.barnarda_c1=Barnard C1
 moon.barnarda_c2=Barnard C2
-
+ 
 #Tau Ceti System
 solarsystem.tauceti=Tau Ceti
 star.tauceti=Tau Ceti A
@@ -626,42 +660,42 @@ planet.tauceti_f=Tau Ceti F
 #|||||||||||||||||||Book||||||||||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 book.button.back.name=Atrás
-
+ 
 book.category.general.name=General
 book.category.bodies.name=Cuerpos celestes
 book.category.blocks.name=Blocques
 book.category.items.name=Objetos
 book.category.mechanics.name=Mecánicas
-
+ 
 #|/////////////////////////////////////////|
 #||||||||||||||||Book-General|||||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-book.page.about_addon.name=About Galaxy Space
-book.page.about_addon.text=Galaxy Space - addon for Galacticraft, adding an impressive amount of in-game content. !n!nThe development of the addon has been going on for more than 4 years, contributing more and more game content. !n!nAll star systems are made on the basis of real data and are as close to reality as the Minecraft engine allows. The emphasis of the addon is also towards realism. 
-book.page.actual_update.name=Actual Update
-
+book.page.about_addon.name=Acerca de Galaxy Space
+book.page.about_addon.text=Galaxy Space es una expansión para Galacticraft que añade una gran cantidad de contenido. !n!nEl desarrollo de la expansión se ha mantenido durante más de 4 ános, añadiendo gradualmente más y más contenido. !n!nTodos los sistemas estelares están basados en datos reales y están tan cerca de la realidad como el motor de Minecraft lo permite. Esta expansión tiene un enfásis en el realismo así como también otros aspectos.
+book.page.actual_update.name=Versión actual
+ 
 #|/////////////////////////////////////////|
 #||||||||||||Book-Celestial Bodies||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-book.page.star.sol.desc=!c_ySol - Yellow dwarf. !c_wThe native star human civilization.
-book.page.solarsystem.sol.asteroids=The asteroid belt is a massive cluster of asteroids orbiting the sun. Most asteroids contain a large amount of minerals.
-book.page.solarsystem.sol.ceres=Ceres is a dwarf planet in the Asteroid Belt. It contains copious amounts of meteoric iron and dolomite crystals.
-book.page.solarsystem.sol.jupiter=Jupiter - Gas giant with many moons that are available to be explored.
-book.page.solarsystem.sol.callisto=Callisto - the farthest moon of Jupiter.
-
-book.page.star.barnarda_a.desc=!c_yBarnarda A - Orange dwarf. !c_wA nearby star relative to the sun.
-book.page.solarsystem.barnards.barnarda_b=Barnarda B - The gas giant located close to its star. It has a ring of the smallest stones.
-book.page.solarsystem.barnards.barnarda_b1=The ring of the planet, consisting of many tiny stones.
-book.page.solarsystem.barnards.barnarda_c=Barnarda C - A planet located in the !c_ghabitable zone !c_wof its star. It has suitable conditions for humans.
-book.page.solarsystem.barnards.barnarda_c1=Barnarda C1 - Frozen moon. Very cold conditions for humans.
-book.page.solarsystem.barnards.barnarda_c2=Barnarda C2 - Unrealized moon.
-book.page.solarsystem.barnards.barnarda_d=The asteroid belt is a massive cluster of asteroids orbiting the star. Most asteroids contain a large amount of minerals.
-book.page.solarsystem.barnards.barnarda_e=Barnarda E - The distant gas giant.
-
+book.page.star.sol.desc=!c_yEl Sol - Estrella de clase G !c_wLa estrella hogar de la civilización humana.
+book.page.solarsystem.sol.asteroids=EL cinturón de asteroides es un enorme conjunto de asteroides que orbita el sol. Muchos de ellos contienen gran cantidad de minerales.
+book.page.solarsystem.sol.ceres=Ceres es un planeta enano el el Cinturón de asteroides. Contiene enormes cantidades de hierro meteórico y cristales de dolomita.
+book.page.solarsystem.sol.jupiter=Júpiter - Gigante de gas Con muchas lunas que pueden ser exploradas.
+book.page.solarsystem.sol.callisto=Calisto - La luna más lejana de Júpiter.
+book.page.star.barnarda_a.desc=!c_yBarnarda A - Estrella de tipo K. !c_wUna estrella cercana al sol.
+book.page.solarsystem.barnards.barnarda_b=Barnard B - Planeta gaseoso cercano a su estrella.
+book.page.solarsystem.barnards.barnarda_b1=El anillo del planeta, compuesto de cientos de pequeñas rocas.
+book.page.solarsystem.barnards.barnarda_c=Barnard C - Un planeta localizado en la zona habitable de su estrella. Posee condiciones "relativamente" adecuadas para la vida.
+book.page.solarsystem.barnards.barnarda_c1=Barnard C1 - Luna helada. Muy fría para los humanos.
+book.page.solarsystem.barnards.barnarda_c2=Barnard C2 - Luna sin terminar.
+book.page.solarsystem.barnards.barnarda_d=Enorme conjunto de asteroides que orbitan la estrella. Muchos contienten gran cantidad de minerales.
+book.page.solarsystem.barnards.barnarda_e=Barnard E - Estrella de gas lejana.
+ 
 #|/////////////////////////////////////////|
 #|||||||||||||||Book-Mechanics||||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-book.page.solar_radiation.name=Solar Radiation
-book.page.solar_radiation.text=Solar Radiation - A negative effect that gradually kills the player. !nWhen the radiation scale crosses the  !c_rred !c_wborder - effect is activated. !nIf a player is in a shelter or underground, the radiation does not accumulate and decreases, if the scale has crossed the !c_rred !c_wborder. !n!nRemove the remaining radiation by using !c_gAnti Radiation tablets. !c_w!nProtect yourself from radiation by wearing a !c_oSpacesuit !c_wor being inside a bubble from a !c_oMagnetic Field Generator.  
-book.page.atmosphere_pressure.name=Atmosphere Pressure
-book.page.atmosphere_pressure.text=Atmospheric pressure is one of the main problems of the colonization of planets with the atmosphere. !nWith a !c_rlarge !c_watmospheric pressure, the player manifests various effects, such as: nausea, blindness and slowness. !n!nWith !c_ohigh !c_watmospheric pressure, the player begins to lose his health. !nIf the pressure scale is !c_ymaximal !c_w- the player is waiting for instant death. !nProtect yourself from radiation by wearing a !c_oSpacesuit !c_wor being inside a border from a !c_oGravity Module. 
+book.page.solar_radiation.name=Radiación solar
+book.page.solar_radiation.text=Radiación solar - Un efecto negativo que puede matar al jugador. !nCuando el medidor de radiación cruza el  !c_wborde !c_rrojo - el efecto se activa. !nSi el jugador está bajo tierra o en un refugio, la escala bajará hasta la !c_wlínea !c_rroja. !n!nPuedes deshacerte de la radiación restante cosumiendo !c_gPastillas antirradiación. !c_w!nTe puedes proteger de la radiación usando un !c_oTraje espacial !c_wo estando dentro de la burbuja generada por un !c_oGenerador de campo magnético.  
+book.page.atmosphere_pressure.name=Presión atmosférica
+book.page.atmosphere_pressure.text=La presión atmosférica es uno de los problemas principales al colonizar planetas con atmósfera. !nCon una !c_rpresión atmosférica !c_walta, el jugador puede sufrir de efectos como náuseas, ceguera y lentitud. !n!nCon !c_opresión atmosférica !c_wmuy alta, el jugador empezará a perder salud. !nSi la presión atmosférica es !c_yextrema !c_w- el jugador podría morir en poco tiempo. !nProtégete de las altas presiones usando un !c_otraje espacial !c_wo manteniéndote dentro del área de efecto de un !c_oMódulo de gravedad. 
+book.page.temp_on_planet.text=Con Galaxy Space la temperatura toma un rol importante. !nYa no podrás plantar cultivos en el espacio, ya que estos morirán al instante. Ahora tendrás que proteger tus granjas aislándolas del ambiente !n!n!nAdemás, sólo podrás consumir !c_gcomida enlatada !c_wen el vacío. !nLos líquidos en el espacio se congelarán o vaporizarán (dependiendo de la temperatura del planeta).
