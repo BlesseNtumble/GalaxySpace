@@ -143,7 +143,7 @@ public class WorldProviderBarnarda_C1_WE extends WE_WorldProviderSpace implement
     @SideOnly(Side.CLIENT)
     public Vector3 getFogColor() {
     	float f = 1.0F - this.getStarBrightness(1.0F);
-        return new Vector3(140 / 255.0F * f, 167 / 255.0F * f, 207 / 255.0F * f);
+        return new Vector3(160 / 255.0F * f, 167 / 255.0F * f, 190 / 255.0F * f);
     }
 
     @Override
@@ -241,7 +241,7 @@ public class WorldProviderBarnarda_C1_WE extends WE_WorldProviderSpace implement
 		cp.createChunkGen_InXYZ_List.clear(); 
 		cp.decorateChunkGen_List .clear(); 
 		
-		WE_Biome.setBiomeMap(cp, 1.4D, 4, 6400.0D, 1.0D);	
+		WE_Biome.setBiomeMap(cp, 1.4D, 4, 600.0D, 1.0D);	
 
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
 		terrainGenerator.worldStoneBlock = Blocks.STONE.getDefaultState(); 
@@ -277,10 +277,10 @@ public class WorldProviderBarnarda_C1_WE extends WE_WorldProviderSpace implement
 		
 		
 		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(0D, 0D, 1.5F, 4, 90, 10, layer));	
-		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-0.5D, 0.5D, 2.0F, 6, 150, 3, layer));	
+		/*WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-0.5D, 0.5D, 2.0F, 6, 150, 3, layer));	
 		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-1.4D, 1.0D, 1.5F, 4, 90, 10, layer));	
 		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-1.0D, 1.5D, 1.5F, 4, 90, 20, layer));	
-		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-2.0D, 2.0D, 1.5F, 4, 40, 3, layer));
+		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-2.0D, 2.0D, 1.5F, 4, 40, 3, layer));*/
 	}
 	
 	@Override
@@ -309,8 +309,8 @@ public class WorldProviderBarnarda_C1_WE extends WE_WorldProviderSpace implement
 
 	@Override
 	public float getFogDensity(int x, int y, int z) {
-		if(this.world.isRaining()) return 0.1F;
-		return 0.4F;
+		//if(this.world.isRaining()) return 0.1F;
+		return 0.85F;
 	}
 
 	@Override
