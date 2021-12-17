@@ -79,6 +79,8 @@ public class TileEntityLiquidExtractor extends TileBaseElectricBlockWithInventor
     public void update()
     {
         super.update();
+               
+        
         if (!this.world.isRemote)
         {       	
         	int range = 0;
@@ -192,6 +194,8 @@ public class TileEntityLiquidExtractor extends TileBaseElectricBlockWithInventor
 	        	else if(block instanceof BlockFluidClassic)
         		{
         			Fluid fluid = ((BlockFluidClassic)block).getFluid();
+        			
+        			if(fluid.isGaseous()) return;
         			this.waterTank.fill(new FluidStack(fluid, Fluid.BUCKET_VOLUME), true);
         			if(this.waterTank.getFluid().isFluidEqual(new FluidStack(FluidRegistry.lookupFluidForBlock(block), 0))) this.world.setBlockToAir(pos);
     			    return;
@@ -200,7 +204,8 @@ public class TileEntityLiquidExtractor extends TileBaseElectricBlockWithInventor
         		else if(block instanceof IFluidBlock)
 			    {       
 			    	IFluidBlock fluid = (IFluidBlock)block;
-			
+			    	if(fluid.getFluid().isGaseous()) return;
+			    	
 			    	this.waterTank.fill(new FluidStack(fluid.getFluid(), Fluid.BUCKET_VOLUME), true);
 			    	if(this.waterTank.getFluid().isFluidEqual(new FluidStack(FluidRegistry.lookupFluidForBlock(block), 0))) this.world.setBlockToAir(pos);
 				    return;
