@@ -16,6 +16,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.fluids.FluidRegistry;
 
 public class Triton_Mountains extends WE_Biome {
 	
@@ -68,6 +69,7 @@ public class Triton_Mountains extends WE_Biome {
 				 IBlockState state = world.getBlockState(pos.down());
 				 if(state == GSBlocks.TRITON_BLOCKS.getDefaultState().withProperty(TritonBlocks.BASIC_TYPE, TritonBlocks.EnumTritonBlocks.TRITON_GRUNT))					 
 				 {
+					 world.setBlockState(pos.down(2), FluidRegistry.WATER.getBlock().getDefaultState());
 					 world.setBlockState(pos.down(), GSBlocks.TRITON_BLOCKS.getDefaultState().withProperty(TritonBlocks.BASIC_TYPE, TritonBlocks.EnumTritonBlocks.TRITON_GEYSER), 3);
 					 world.scheduleBlockUpdate(pos.down(), GSBlocks.TRITON_BLOCKS.getDefaultState().withProperty(TritonBlocks.BASIC_TYPE, TritonBlocks.EnumTritonBlocks.TRITON_GEYSER).getBlock(), 0, 0);
 					 
