@@ -143,7 +143,11 @@ public class ItemBasicGS extends Item implements ISortableItem{
 	
 	public static final int SHIELD_TIME = 10 * 60;
 	private static final int SIZE = 9;
-	public static final int[] FANS_DURABILITY = new int[] {10 * 60, 30 * 60, 60 * 60 * 2, 60 * 60 * 6};
+	public static final int[] FANS_DURABILITY = new int[] {
+			600 * 3, 
+			1800 * 3, 
+			7200 * 3, 
+			21600 * 3};
 	
 	public ItemBasicGS()
 	{
