@@ -12,6 +12,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.items.modules.Nightvisi
 import galaxyspace.systems.SolarSystem.planets.overworld.items.modules.Protection;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.modules.SensorLens;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.modules.Stepassist;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.modules.WaterBreathing;
 import micdoodle8.mods.galacticraft.api.item.IArmorCorrosionResistant;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
@@ -29,7 +30,7 @@ public class ItemSpaceSuitTier1 extends ItemSpaceSuit implements IArmorCorrosion
 
 	@Override
 	public ItemModule[] getAvailableModules() {
-		return new ItemModule[] { new SensorLens(), new Nightvision(), new Jetpack(), new Gravity(), new Stepassist(), new Energy(), new Protection() };
+		return new ItemModule[] { new SensorLens(), new WaterBreathing(), new Nightvision(), new Jetpack(), new Gravity(), new Stepassist(), new Energy(), new Protection() };
 	}
 	
 	@Override
