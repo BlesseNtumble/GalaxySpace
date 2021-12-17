@@ -13,6 +13,7 @@ import asmodeuscore.core.astronomy.BodiesRegistry;
 import asmodeuscore.core.astronomy.BodiesRegistry.Galaxies;
 import asmodeuscore.core.astronomy.dimension.world.gen.ACBiome;
 import asmodeuscore.core.handler.ColorBlockHandler;
+import asmodeuscore.core.prefab.TeleportTypeBody;
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.proxy.ClientProxy;
 import galaxyspace.core.util.GSDimensions;
@@ -23,6 +24,7 @@ import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigCore;
 import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigDimensions;
 import galaxyspace.systems.BarnardsSystem.core.events.BRClientEventHandler;
 import galaxyspace.systems.BarnardsSystem.core.events.BREventHandler;
+import galaxyspace.systems.BarnardsSystem.moons.barnarda_c1.dimension.WorldProviderBarnarda_C1_WE;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Blocks.EnumBlockBarnardaC;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Dandelions.EnumBlockDandelions;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Falling_Blocks.EnumFallingBlockBarnardaC;
@@ -88,7 +90,7 @@ public class BarnardsSystemBodies implements IBodies {
 		BodiesRegistry.setOrbitData(Barnarda_C, (float) Math.PI * 2, 1.0F, 6.9F);
 		BodiesRegistry.setAtmosphere(Barnarda_C, true, true, false, 0.0F, 1.0F, 1.0F);
 		BodiesRegistry.setPlanetData(Barnarda_C, 3F, 24500, BodiesRegistry.calculateGravity(8.5F), false);
-		BodiesRegistry.setProviderData(Barnarda_C, WorldProviderBarnarda_C_WE.class, BRConfigDimensions.dimensionIDBarnardaC, 6, ACBiome.ACSpace);
+		BodiesRegistry.setProviderData(Barnarda_C, WorldProviderBarnarda_C_WE.class, BRConfigDimensions.dimensionIDBarnardaC, BRConfigCore.survivalModeOnBarnarda ? 1 : 6, ACBiome.ACSpace);
 		Barnarda_C.atmosphereComponent(EnumAtmosphericGas.CO2).atmosphereComponent(EnumAtmosphericGas.OXYGEN).atmosphereComponent(EnumAtmosphericGas.ARGON);
 		GalaxyRegistry.registerPlanet(Barnarda_C);
 		
@@ -96,12 +98,12 @@ public class BarnardsSystemBodies implements IBodies {
 		BodiesRegistry.setOrbitData(Barnarda_C1, (float) Math.PI / 2, 1.0F, 25.5F);
 		BodiesRegistry.setAtmosphere(Barnarda_C1, false, false, false, -4.0F, 3.0F, 0.0F);
 		BodiesRegistry.setPlanetData(Barnarda_C1, 15F, 45000, BodiesRegistry.calculateGravity(6.5F), false);
-		//BodiesHelper.setProviderData(Barnarda_C1, WorldProviderBarnarda_C1_WE.class, BRConfigDimensions.dimensionIDBarnardaC1, 1);
+		BodiesRegistry.setProviderData(Barnarda_C1, WorldProviderBarnarda_C1_WE.class, BRConfigDimensions.dimensionIDBarnardaC1, BRConfigCore.survivalModeOnBarnarda ? 1 : 6, ACBiome.ACSpace);
 		Barnarda_C1.atmosphereComponent(EnumAtmosphericGas.CO2).atmosphereComponent(EnumAtmosphericGas.NITROGEN).atmosphereComponent(EnumAtmosphericGas.ARGON);
 		GalaxyRegistry.registerMoon(Barnarda_C1);
 		
 		Barnarda_C2 = BodiesRegistry.registerExMoon(Barnarda_C, "barnarda_c2", GalaxySpace.ASSET_PREFIX, 19.75F);
-		BodiesRegistry.setOrbitData(Barnarda_C2, (float) Math.PI / 2, 1.0F, 25.5F);
+		BodiesRegistry.setOrbitData(Barnarda_C2, (float) Math.PI / 2, 1.0F, 60.5F);
 		BodiesRegistry.setAtmosphere(Barnarda_C2, false, false, false, -2.0F, 0.0F, 0.0F);
 		BodiesRegistry.setPlanetData(Barnarda_C2, 15F, 45000, BodiesRegistry.calculateGravity(6.5F), false);
 		//BodiesHelper.setProviderData(Barnarda_C1, WorldProviderBarnarda_C2_WE.class, BRConfigDimensions.dimensionIDBarnardaC2, 1);
@@ -115,14 +117,7 @@ public class BarnardsSystemBodies implements IBodies {
 		Barnarda_E = BodiesRegistry.registerExPlanet(BarnardsSystem, "barnarda_e", GalaxySpace.ASSET_PREFIX, 1.5F);
 		BodiesRegistry.setOrbitData(Barnarda_E, (float) Math.PI, 1.0F, 15.9F);
 		GalaxyRegistry.registerPlanet(Barnarda_E);
-		//Barnarda_B = (Planet) BodiesHelper.registerPlanet(BarnardsSystem, "barnarda_b", GalaxySpace.ASSET_PREFIX, null, -1, 6, (float) Math.PI, 1.5F, 0.5F, 3.9F);
-			//Barnarda_B1 = (Moon) BodiesHelper.registerMoon(Barnarda_B, "barnarda_b1", GalaxySpace.ASSET_PREFIX, null, -1, 6, (float) Math.PI / 2, 1.0F, 14.75F, 105.5F).setRingColorRGB(1.1F, 0.0F, 0.0F);
-		//Barnarda_C = (Planet) BodiesHelper.registerPlanet(BarnardsSystem, "barnarda_c", GalaxySpace.ASSET_PREFIX, WorldProviderBarnarda_C_WE.class, BRConfigDimensions.dimensionIDBarnardaC, 6, (float) Math.PI * 2, 1.0F, 0.75F, 6.9F).setRingColorRGB(0.0F, 1.1F, 0.0F).setAtmosphere(new AtmosphereInfo(true, true, false, 0.0F, 1.0F, 1.0F)).atmosphereComponent(EnumAtmosphericGas.CO2).atmosphereComponent(EnumAtmosphericGas.OXYGEN).atmosphereComponent(EnumAtmosphericGas.ARGON);		
-			//Barnarda_C1 = (Moon) BodiesHelper.registerMoon(Barnarda_C, "barnarda_c1", GalaxySpace.ASSET_PREFIX, /*WorldProviderBarnarda_C1_WE.class*/null, BRConfigDimensions.dimensionIDBarnardaC1, -1, (float) Math.PI / 2, 1.0F, 10.75F, 25.5F).setAtmosphere(new AtmosphereInfo(false, true, false, -5.0F, 3.0F, 1.0F)).atmosphereComponent(EnumAtmosphericGas.CO2).atmosphereComponent(EnumAtmosphericGas.NITROGEN).atmosphereComponent(EnumAtmosphericGas.ARGON);	;
-			//Barnarda_C2 = (Moon) BodiesHelper.registerMoon(Barnarda_C, "barnarda_c2", GalaxySpace.ASSET_PREFIX, null, -1, 6, (float) Math.PI / 2, 1.0F, 19.75F, 30.5F);
-		//Barnarda_D = (Planet) BodiesHelper.registerPlanet(BarnardsSystem, "barnarda_d", GalaxySpace.ASSET_PREFIX, null, -1, 6, (float) Math.PI / 2, 1.0F, 1.25F, 105.9F).setRelativeDistanceFromCenter(new ScalableDistance(1.25F, 1.0F)).setRingColorRGB(1.1F, 0.0F, 0.0F);
-		//Barnarda_E = (Planet) BodiesHelper.registerPlanet(BarnardsSystem, "barnarda_e", GalaxySpace.ASSET_PREFIX, null, -1, 6, (float) Math.PI, 1.0F, 1.75F, 15.9F);
-			
+		
 		if(event.getSide() == Side.CLIENT)
 			GalaxySpace.proxy.register_event(new BRClientEventHandler());		
 		GalaxySpace.proxy.register_event(new BREventHandler());		
@@ -165,7 +160,7 @@ public class BarnardsSystemBodies implements IBodies {
 	private static void registryteleport()
 	{
 		GalacticraftRegistry.registerTeleportType(WorldProviderBarnarda_C_WE.class, new TeleportTypeBarnarda_C());		
-		//GalacticraftRegistry.registerTeleportType(WorldProviderBarnarda_C1_WE.class, new TeleportTypeBarnarda_C1());		
+		GalacticraftRegistry.registerTeleportType(WorldProviderBarnarda_C1_WE.class, new TeleportTypeBody());		
 	}
 	
 	@Override

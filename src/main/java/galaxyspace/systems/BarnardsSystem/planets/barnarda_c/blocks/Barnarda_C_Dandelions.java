@@ -316,18 +316,20 @@ public class Barnarda_C_Dandelions extends BlockBush implements IGrowable, IShea
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) 
 	{
-		EnumBlockDandelions type = ((EnumBlockDandelions) state.getValue(BASIC_TYPE));
-		
-		switch(type)
-		{
-			case GRASS:
-				return Items.WHEAT_SEEDS;
-			case REEDS: 
-			case REEDS_FRUITS: 
-				return BRItems.BASIC;
-			default: return null;
+		if(state.getMaterial() != Material.AIR) {
+			EnumBlockDandelions type = ((EnumBlockDandelions) state.getValue(BASIC_TYPE));
+			
+			switch(type)
+			{
+				case GRASS:
+					return Items.WHEAT_SEEDS;
+				case REEDS: 
+				case REEDS_FRUITS: 
+					return BRItems.BASIC;
+				default: return null;
+			}
 		}
-		
+		return null;
 	}
 	
 	@Override
@@ -438,7 +440,7 @@ public class Barnarda_C_Dandelions extends BlockBush implements IGrowable, IShea
         for (int i = 0; i < count; i++)
         {
             Item item = this.getItemDropped(state, rand, fortune);
-            if (item != Items.AIR)
+            if (item != Items.AIR && state.getMaterial() != Material.AIR)
             {
             	EnumBlockDandelions type = ((EnumBlockDandelions) state.getValue(BASIC_TYPE));
             	

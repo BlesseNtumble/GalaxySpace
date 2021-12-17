@@ -5,6 +5,7 @@ import java.util.EnumSet;
 import java.util.LinkedList;
 import java.util.List;
 
+import galaxyspace.core.GSItems;
 import galaxyspace.core.configs.GSConfigEnergy;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockWindGenerator;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
@@ -21,7 +22,6 @@ import micdoodle8.mods.galacticraft.core.dimension.WorldProviderSpaceStation;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectricalSource;
 import micdoodle8.mods.galacticraft.core.tile.IMultiBlock;
-import micdoodle8.mods.galacticraft.planets.venus.dimension.WorldProviderVenus;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -135,19 +135,21 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
             {
                 this.generateWatts = Math.min(Math.max(this.getGenerate(), 0), this.MAX_GENERATE_WATTS);
                 
-                if(!this.getInventory().get(1).hasTagCompound()) 
-                	this.getInventory().get(1).setTagCompound(new NBTTagCompound());
-    			
-    			if(!this.getInventory().get(1).getTagCompound().hasKey("destroyedLvl")) 
-    				this.getInventory().get(1).getTagCompound().setInteger("destroyedLvl", 0);		
-    			
-                if(ticks % 20 == 0) {
-	                if(this.getInventory().get(1).getTagCompound().getInteger("destroyedLvl") < ItemBasicGS.FANS_DURABILITY[getFanType()])
-	                	this.getInventory().get(1).getTagCompound().setInteger("destroyedLvl", this.getInventory().get(1).getTagCompound().getInteger("destroyedLvl") + 1);
-	    			else {
-	    				this.getInventory().get(1).splitStack(1);
-	    				this.world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 0);
-	    			}
+                if(this.getInventory().get(1).getItem() == GSItems.BASIC) {
+	                if(!this.getInventory().get(1).hasTagCompound()) 
+	                	this.getInventory().get(1).setTagCompound(new NBTTagCompound());
+	    			
+	    			if(!this.getInventory().get(1).getTagCompound().hasKey("destroyedLvl")) 
+	    				this.getInventory().get(1).getTagCompound().setInteger("destroyedLvl", 0);		
+	    			
+	                if(ticks % 20 == 0) {
+		                if(this.getInventory().get(1).getTagCompound().getInteger("destroyedLvl") < ItemBasicGS.FANS_DURABILITY[getFanType()])
+		                	this.getInventory().get(1).getTagCompound().setInteger("destroyedLvl", this.getInventory().get(1).getTagCompound().getInteger("destroyedLvl") + 1);
+		    			else {
+		    				this.getInventory().get(1).splitStack(1);
+		    				this.world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 0);
+		    			}
+	                }
                 }
             }
             else

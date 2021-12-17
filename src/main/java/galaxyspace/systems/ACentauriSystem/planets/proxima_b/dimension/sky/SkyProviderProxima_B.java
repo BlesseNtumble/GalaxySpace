@@ -25,25 +25,26 @@ public class SkyProviderProxima_B extends SkyProviderBase {
 			int phase = world.provider.getMoonPhase(world.getWorldTime());
 			
 			GL11.glRotatef(this.mc.world.getCelestialAngle(ticks) * 360.0F, 0.0F, 0.0F, 1.0F);   
-			if(phase != 0 && phase != 6) {
+			
+			if(modeLight() != ModeLight.WITHOUT_SUN) {
 				this.renderImage(acentauri_a, -90F, 182F, 35F, 2.0F);
 				this.renderImage(acentauri_b, -90F, 180F, 40F, 1.5F);
 			}
-			GL11.glDisable(GL11.GL_ALPHA_TEST);
-			GL11.glPushMatrix();
+		GL11.glPopMatrix();
+		GL11.glPushMatrix();
 	        GL11.glShadeModel(GL11.GL_SMOOTH);
 	        GL11.glEnable(GL11.GL_BLEND);
 	        OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-	        
+	    	GL11.glRotatef(this.mc.world.getCelestialAngle(ticks) * 360.0F, 0.0F, 0.0F, 1.0F);   
 	        GL11.glRotatef(35F, 1.0F, 0.0F, 0.0F);
 	        GL11.glRotatef(2F, 0.0F, 0.0F, 1.0F);
-			this.renderSunAura(tessellator, 0.0F, 0.8F);
+			this.renderSunAura(tessellator, 0.1F, 0.8F);
 			GL11.glRotatef(5F, 1.0F, 0.0F, 0.0F);
 			GL11.glRotatef(-2F, 0.0F, 0.0F, 1.0F);
-			this.renderSunAura(tessellator, 0.0F, 0.5F);
+			this.renderSunAura(tessellator, 0.1F, 0.5F);
 			GL11.glDisable(GL11.GL_BLEND);
-			GL11.glPopMatrix();
-        GL11.glPopMatrix();
+			GL11.glShadeModel(GL11.GL_FLAT);
+		GL11.glPopMatrix();
 	}
 
 	@Override
@@ -69,10 +70,14 @@ public class SkyProviderProxima_B extends SkyProviderBase {
 	@Override
 	protected ModeLight modeLight() {
 		
+		if(mc.world.isRaining()) return ModeLight.WITHOUT_SUN;
 		switch(mc.world.provider.getMoonPhase(mc.world.getWorldTime()))
 		{
 			case 0:
-			case 6:	return ModeLight.WITHOUT_SUN;
+			case 6:	
+				if(mc.player.posY < 180)
+					return ModeLight.WITHOUT_SUN;
+				
 			default: return ModeLight.DEFAULT;
 		}
 		

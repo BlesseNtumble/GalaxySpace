@@ -116,6 +116,7 @@ public class WorldProviderProxima_B_WE extends WE_WorldProviderSpace implements 
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public Vector3 getSkyColor() {
     	float f = 0.7F - this.getStarBrightness(1.0F);
         return new Vector3(80 / 255.0F * f, 93 / 255.0F * f, 100 / 255.0F * f);
@@ -308,13 +309,12 @@ public class WorldProviderProxima_B_WE extends WE_WorldProviderSpace implements 
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public float getFogDensity(int arg0, int arg1, int arg2) {
-		
-		//if(this.world == null) return 1.0F;
-		
+				
 		switch(this.getMoonPhase(this.getWorldTime()))
 		{
-			case 0: return 0.45F;
+			case 0: return 0.65F;
 			case 1: return 0.95F;
 			
 			case 3: return 0.85F;

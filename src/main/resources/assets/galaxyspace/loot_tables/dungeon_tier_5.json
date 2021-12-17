@@ -115,6 +115,7 @@
                 },
 				{
                     "type": "item",
+					"entryName": "plasma_cell",
                     "name": "galaxyspace:gs_basic",
                     "weight": 1,
                     "functions": [

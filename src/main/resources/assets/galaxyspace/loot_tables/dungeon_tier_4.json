@@ -85,6 +85,7 @@
                 },
 				{
                     "type": "item",
+					"entryName": "thermal_padding",
                     "name": "galaxyspace:gs_basic",
                     "weight": 4,
                     "functions": [
@@ -103,6 +104,7 @@
                 },
 				{
                     "type": "item",
+					"entryName": "plasma_cell",
                     "name": "galaxyspace:gs_basic",
                     "weight": 1,
                     "functions": [

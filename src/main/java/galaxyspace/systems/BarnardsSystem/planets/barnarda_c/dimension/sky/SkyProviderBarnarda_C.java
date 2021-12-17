@@ -3,9 +3,11 @@ package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.sky;
 import org.lwjgl.opengl.GL11;
 
 import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import galaxyspace.GalaxySpace;
 import galaxyspace.systems.BarnardsSystem.BarnardsSystemBodies;
+import galaxyspace.systems.BarnardsSystem.moons.barnarda_c1.dimension.WorldProviderBarnarda_C1_WE;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.WorldProviderBarnarda_C_WE;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -67,7 +69,7 @@ public class SkyProviderBarnarda_C extends SkyProviderBase{
 
 	@Override
 	protected Vector3 getAtmosphereColor() {
-		return ((WorldProviderBarnarda_C_WE)this.mc.world.provider).getSkyColor();
+		return ((WE_WorldProviderSpace)this.mc.world.provider).getSkyColor();
 	}
 
 }

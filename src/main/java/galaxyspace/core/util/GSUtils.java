@@ -780,29 +780,7 @@ public class GSUtils {
         return ItemStack.EMPTY;
     }
 
-	/*
 	
-	public static void openAstroWolfInventory(EntityPlayer player, EntityAstroWolf wolf) {
-		if(player instanceof EntityPlayerMP) {
-			EntityPlayerMP playerMP = (EntityPlayerMP)player;
-			ContainerAstroWolf cont = new ContainerAstroWolf(player.inventory, wolf, player);
-			if(cont != null) {
-				playerMP.getNextWindowId();
-				playerMP.closeContainer();
-				
-				int windowId = playerMP.currentWindowId;
-				int wolfId = wolf.getEntityId();
-				
-				GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_OPEN_ASTRO_WOLF_GUI, GCCoreUtil.getDimensionID(playerMP.world), new Object[] { windowId, wolfId }), playerMP);
-			
-				playerMP.openContainer = cont;
-				playerMP.openContainer.windowId = windowId;
-				playerMP.openContainer.addListener(playerMP);
-				
-			}
-		} else if(FMLCommonHandler.instance().getSide().equals(Side.CLIENT)) {
-			GuiAstroWolfInventory gui = new GuiAstroWolfInventory(player, wolf);
-			FMLCommonHandler.instance().showGuiScreen(gui);
-		}
-    }*/
+	
+	
 }

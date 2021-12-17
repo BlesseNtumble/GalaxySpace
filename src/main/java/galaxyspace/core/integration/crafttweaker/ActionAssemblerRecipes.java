@@ -27,6 +27,7 @@ public class ActionAssemblerRecipes {
 				list.add(stack);
 			
 			AssemblyRecipes.addShapelessRecipe(CraftTweakerMC.getItemStack(output), list.toArray());
+
 		}
 
 		@Override

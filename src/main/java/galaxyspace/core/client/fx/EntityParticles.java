@@ -22,10 +22,15 @@ public class EntityParticles extends Particle {
    	}
 	   
 	public EntityParticles(World par1World, Vector3 position, Vector3 motion, int age, int particleID,	boolean hasGravity, Vector3 color, double size, double speed) {
-		super(par1World, position.x, position.y, position.z, 0.0D, 0.0D, 0.0D);
-		this.motionX = this.motionX * 0.009999999776482582D + motion.x;
+		super(par1World, position.x, position.y, position.z, motion.x, motion.y, motion.z);
+		/*this.motionX = this.motionX * 0.009999999776482582D + motion.x;
 		this.motionY = this.motionY * 0.009999999776482582D + motion.y;
 		this.motionZ = this.motionZ * 0.009999999776482582D + motion.z;
+		*/
+		this.motionX = motion.x;
+		this.motionY = motion.y;
+		this.motionZ = motion.z;
+
 		this.particleScale = (float) (this.particleScale * 5.0D * size);
 		this.flameScale = this.particleScale;
 		this.particleRed = this.particleGreen = this.particleBlue = 1.0F;
