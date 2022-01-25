@@ -6,11 +6,11 @@ import java.util.List;
 import org.lwjgl.opengl.GL11;
 
 import galaxyspace.GalaxySpace;
+import galaxyspace.core.client.gui.tile.GuiTileBase;
 import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerModernSolarPanel;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityModernSolarPanel;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.client.gui.container.GuiContainerGC;
 import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementInfoRegion;
 import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
@@ -19,9 +19,10 @@ import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Slot;
 import net.minecraft.util.ResourceLocation;
 
-public class GuiModernSolarPanel extends GuiContainerGC
+public class GuiModernSolarPanel extends GuiTileBase
 {
     private static final ResourceLocation solarGuiTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/solarpanel.png");
 
@@ -32,7 +33,7 @@ public class GuiModernSolarPanel extends GuiContainerGC
 
     public GuiModernSolarPanel(InventoryPlayer par1InventoryPlayer, TileEntityModernSolarPanel solarPanel)
     {
-        super(new ContainerModernSolarPanel(par1InventoryPlayer, solarPanel));
+        super(new ContainerModernSolarPanel(par1InventoryPlayer, solarPanel), 2, 1);
         this.solarPanel = solarPanel;
         this.ySize = 201;
         this.xSize = 176;
@@ -86,6 +87,8 @@ public class GuiModernSolarPanel extends GuiContainerGC
         displayString = GCCoreUtil.translate("gui.message.generating.name") + ": " + (this.solarPanel.generateWatts > 0 ? EnergyDisplayHelper.getEnergyDisplayS(this.solarPanel.generateWatts) + "/t" : GCCoreUtil.translate("gui.status.not_generating.name"));
         this.fontRenderer.drawString(EnumColor.WHITE + displayString, this.xSize / 2 - this.fontRenderer.getStringWidth(displayString) / 2, 34 + 23 - 46 + offsetY, 4210752);
         float boost = Math.round((this.solarPanel.getSolarBoost() - 1) * 1000) / 10.0F;
+        if(boost < 100.0F)
+        	boost = -100.0F;
         displayString = GCCoreUtil.translate("gui.message.environment.name") + ": " + boost + "%";
         this.fontRenderer.drawString(EnumColor.WHITE + displayString, this.xSize / 2 - this.fontRenderer.getStringWidth(displayString) / 2, 56 + 23 - 46 + offsetY, 4210752);
         //		displayString = ElectricityDisplay.getDisplay(this.solarPanel.getVoltage(), ElectricUnit.VOLTAGE);
@@ -157,5 +160,20 @@ public class GuiModernSolarPanel extends GuiContainerGC
     
         if(GalaxySpace.debug) GSUtils.renderDebugGui(this, var5, var6);
     }
+
+	@Override
+	protected boolean isModuleSupport() {
+		return false;
+	}
+
+	@Override
+	protected String getName() {
+		return solarPanel.getName();
+	}
+
+	@Override
+	protected Slot getBatterySlot() {
+		return inventorySlots.getSlotFromInventory(solarPanel, 0);
+	}
 }
 

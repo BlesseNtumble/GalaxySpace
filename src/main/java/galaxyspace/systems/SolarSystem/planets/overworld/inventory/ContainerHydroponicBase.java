@@ -1,5 +1,6 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.inventory;
 
+import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS.BasicItems;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityHydroponicBase;
 import micdoodle8.mods.galacticraft.api.item.IItemElectric;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
@@ -22,8 +23,8 @@ public class ContainerHydroponicBase extends Container
         this.tileEntity = tileEntity;
         //this.addSlotToContainer(new SlotSpecific(tileEntity, 0, 7, 7, new ItemStack(GCItems.bucketFuel)));
         // Battery Slot
-        this.addSlotToContainer(new SlotSpecific(tileEntity, 0, 78, 102, ItemElectricBase.class));
-        this.addSlotToContainer(new Slot(tileEntity, 1, 7, 23));
+        this.addSlotToContainer(new SlotSpecific(tileEntity, 0, 78, 120, ItemElectricBase.class));
+        this.addSlotToContainer(new Slot(tileEntity, 1, 7, 44));
         int var3;
 
         //this.addSlotToContainer(new SlotSpecific(tileEntity, 2, 41, 14, new ItemStack(Items.dye, 1, 15)));
@@ -32,24 +33,24 @@ public class ContainerHydroponicBase extends Container
         //GalaxySpace.debug("Inv: " + x);
 
 	    for(int i = 0; i < x && x > 0; i++) {
-	    	this.addSlotToContainer(new Slot(tileEntity, 2 + i * 2, 41, 57 - (22 * i)));
-	       	this.addSlotToContainer(new SlotFurnaceOutput(par1InventoryPlayer.player, tileEntity, 3 + i*2, 108, 57 - (22 * i)));
-	       	this.addSlotToContainer(new SlotFurnaceOutput(par1InventoryPlayer.player, tileEntity, 9 + i, 129, 57 - (22 * i)));
+	    	this.addSlotToContainer(new Slot(tileEntity, 2 + i * 2, 41, 77 - (22 * i)));
+	       	this.addSlotToContainer(new SlotFurnaceOutput(par1InventoryPlayer.player, tileEntity, 3 + i*2, 108, 77 - (22 * i)));
+	       	this.addSlotToContainer(new SlotFurnaceOutput(par1InventoryPlayer.player, tileEntity, 9 + i, 129, 77 - (22 * i)));
 	    }       	
       
-	    this.addSlotToContainer(new Slot(tileEntity, 8, 7, 1));
+	    this.addSlotToContainer(new SlotSpecific(tileEntity, 8, 7, 24, new ItemStack(Items.DYE, 1, 15), BasicItems.DOLOMITE_MEAL.getItemStack()));
 	    
         for (var3 = 0; var3 < 3; ++var3)
         {
             for (int var4 = 0; var4 < 9; ++var4)
             {
-                this.addSlotToContainer(new Slot(par1InventoryPlayer, var4 + var3 * 9 + 9, 8 + var4 * 18, 127 + var3 * 18));
+                this.addSlotToContainer(new Slot(par1InventoryPlayer, var4 + var3 * 9 + 9, 8 + var4 * 18, 157 + var3 * 18));
             }
         }
 
         for (var3 = 0; var3 < 9; ++var3)
         {
-            this.addSlotToContainer(new Slot(par1InventoryPlayer, var3, 8 + var3 * 18, 185));
+            this.addSlotToContainer(new Slot(par1InventoryPlayer, var3, 8 + var3 * 18, 215));
         }
     }
 

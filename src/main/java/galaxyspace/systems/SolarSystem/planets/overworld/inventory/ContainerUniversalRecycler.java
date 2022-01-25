@@ -23,7 +23,7 @@ public class ContainerUniversalRecycler extends Container
         this.tileEntity = tileEntity;
 
         // Battery Slot
-        this.addSlotToContainer(new SlotSpecific(tileEntity, 0, 79, 101, ItemElectricBase.class));
+        this.addSlotToContainer(new SlotSpecific(tileEntity, 0, 79, 91, ItemElectricBase.class));
         this.addSlotToContainer(new Slot(tileEntity, 1, 20, 45));
         
         this.addSlotToContainer(new SlotSpecific(tileEntity, 2, 148, 19, ItemCanisterGeneric.class));
@@ -36,19 +36,19 @@ public class ContainerUniversalRecycler extends Container
 
         int var3;
         for(var3 = 0; var3 < 4; ++var3)        
-        	this.addSlotToContainer(new SlotUpgrades(tileEntity, 5 + var3, 174, 14 + (21 * var3), 1, ItemUpgrades.class));
+        	this.addSlotToContainer(new SlotUpgrades(tileEntity, 5 + var3, 179, 18 + (21 * var3), 1, ItemUpgrades.class));
        
         for (var3 = 0; var3 < 3; ++var3)
         {
             for (int var4 = 0; var4 < 9; ++var4)
             {
-                this.addSlotToContainer(new Slot(par1InventoryPlayer, var4 + var3 * 9 + 9, 8 + var4 * 18, 127 + var3 * 18));
+                this.addSlotToContainer(new Slot(par1InventoryPlayer, var4 + var3 * 9 + 9, 8 + var4 * 18, 137 + var3 * 18));
             }
         }
 
         for (var3 = 0; var3 < 9; ++var3)
         {
-            this.addSlotToContainer(new Slot(par1InventoryPlayer, var3, 8 + var3 * 18, 185));
+            this.addSlotToContainer(new Slot(par1InventoryPlayer, var3, 8 + var3 * 18, 195));
         }
     }
 

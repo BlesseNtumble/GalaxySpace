@@ -58,15 +58,15 @@ public class UniversalRecyclerRecipeWrapper implements IRecipeWrapper
     @Override
     public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
     	if(getChance() < 100 || getChance_2() < 100) {
-    		minecraft.fontRenderer.drawString("Chances: ", 36, 4, 0xFFFFFF);
-    		minecraft.fontRenderer.drawString("Primary slot: " + getChance() + "%", 36, 13, 0xFFFFFF);
+    		minecraft.fontRenderer.drawString("Chances: ", recipeWidth / 2 - 20, 4, 0xFFFFFF);
+    		minecraft.fontRenderer.drawString("Primary slot: " + getChance() + "%", recipeWidth / 2 - 4*8 - 4, 13, 0xFFFFFF);
         	
     		if(this.output_2 != null)
-    			minecraft.fontRenderer.drawString("Secondary slot: " + getChance_2() + "%", 36, 17 + 5, 0xFFFFFF);
+    			minecraft.fontRenderer.drawString("Secondary slot: " + getChance_2() + "%", recipeWidth / 2 - 4*9 - 4, 17 + 5, 0xFFFFFF);
     	}
     	
-    	if(getFluidStack() != null) {
-    		minecraft.fontRenderer.drawString("Fluid: " + getFluidStack().getLocalizedName(), 36, 64, 0xFFFFFF);    		
-    	}
+    	//if(getFluidStack() != null) {
+    	//	minecraft.fontRenderer.drawString("Fluid: " + getFluidStack().getLocalizedName(), 36, 64, 0xFFFFFF);    		
+    	//}
     }
 }

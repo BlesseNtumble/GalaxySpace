@@ -8,23 +8,22 @@ import org.lwjgl.opengl.GL11;
 
 import galaxyspace.GalaxySpace;
 import galaxyspace.api.IResearch;
+import galaxyspace.core.client.gui.tile.GuiTileBase;
 import galaxyspace.core.handler.capabilities.GSStatsCapabilityClient;
 import galaxyspace.core.handler.capabilities.StatsCapabilityClient;
 import galaxyspace.core.network.packet.GSPacketSimple;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
-import galaxyspace.core.util.GSUtils;
 import galaxyspace.core.util.researches.ResearchUtil;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerResearchTable;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityResearchTable;
-import micdoodle8.mods.galacticraft.core.client.gui.container.GuiContainerGC;
 import micdoodle8.mods.galacticraft.core.util.ColorUtil;
-import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public class GuiResearchTable extends GuiContainerGC {
+public class GuiResearchTable extends GuiTileBase {
 
 	private final TileEntityResearchTable tile;
 	private static final ResourceLocation iconsTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/researches/research_icons.png");
@@ -32,10 +31,10 @@ public class GuiResearchTable extends GuiContainerGC {
 	
 	public GuiResearchTable(InventoryPlayer inventoryPlayer, TileEntityResearchTable tileEntity)
     {
-		super(new ContainerResearchTable(inventoryPlayer, tileEntity));
+		super(new ContainerResearchTable(inventoryPlayer, tileEntity), -1, -1);
 		this.tile = tileEntity;
-		this.xSize = 600;
-		this.ySize = 350; 
+		//this.xSize = 250;
+		//this.ySize = 350; 
     }
 	
 	@Override
@@ -64,13 +63,16 @@ public class GuiResearchTable extends GuiContainerGC {
 	@Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {		
-		this.fontRenderer.drawString(EnumColor.WHITE + this.tile.getName(), 86 - (this.fontRenderer.getStringWidth(this.tile.getName()) / 2), 1, 4210752);
+		super.drawGuiContainerForegroundLayer(par1, par2);
+		//this.fontRenderer.drawString(EnumColor.WHITE + this.tile.getName(), 86 - (this.fontRenderer.getStringWidth(this.tile.getName()) / 2), 1, 4210752);
 		//this.fontRenderer.drawString(EnumColor.WHITE + GCCoreUtil.translate("container.inventory"), 15, this.ySize - 88, 4210752);
     }
 	
 	@Override
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
-    { 		
+    { 	
+		super.drawGuiContainerBackgroundLayer(par1, par2, par3);
+		/*
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
 		int containerWidth = (this.width - this.xSize) / 2;
@@ -78,7 +80,7 @@ public class GuiResearchTable extends GuiContainerGC {
 		this.drawRect(containerWidth, containerHeight, containerWidth+this.xSize, containerHeight+this.ySize, GSUtils.getColor(0, 41, 69, 255));
 		//this.drawModalRectWithCustomSizedTexture(containerWidth, containerHeight, 0, 0, this.xSize, this.ySize, 780, 500); // Base Gui		
 
-		
+		*/
 		
     }
 	
@@ -86,7 +88,7 @@ public class GuiResearchTable extends GuiContainerGC {
     public void drawScreen(int mousePosX, int mousePosY, float partialTicks)
     {
 		super.drawScreen(mousePosX, mousePosY, partialTicks);
-		int containerWidth = (this.width - this.xSize) / 2;
+		/*int containerWidth = (this.width - this.xSize) / 2;
 		int containerHeight = (this.height - this.ySize) / 2;
 		RenderHelper.disableStandardItemLighting();
 		int i = 0;		
@@ -95,7 +97,7 @@ public class GuiResearchTable extends GuiContainerGC {
 			drawString(mc.fontRenderer, res.getID() + ", ", containerWidth + 10 * i++, containerHeight + 30, 0xFFFFFF);
 		}
 		
-		RenderHelper.enableGUIStandardItemLighting();
+		RenderHelper.enableGUIStandardItemLighting();*/
     }
 	
 	@Override
@@ -209,5 +211,20 @@ public class GuiResearchTable extends GuiContainerGC {
 
         GL11.glPopMatrix(); 
         //GL11.glDepthMask(false);
+	}
+	
+	@Override
+    protected boolean isModuleSupport() {
+		return false;
+	}
+	
+    @Override
+	protected String getName() {
+		return tile.getName();
+	}	
+    
+    @Override
+	protected Slot getBatterySlot() {
+		return null;
 	}
 }

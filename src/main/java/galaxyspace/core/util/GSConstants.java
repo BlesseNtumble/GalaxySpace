@@ -1,5 +1,8 @@
 package galaxyspace.core.util;
 
+import galaxyspace.GalaxySpace;
+import net.minecraft.util.ResourceLocation;
+
 public class GSConstants {
 
 	public static final int GEAR_ID_OXYGEN_TANK_4 = 40;
@@ -21,5 +24,8 @@ public class GSConstants {
 	
 	public static final String HARDMODE_CATEGORY = "hardmode"; 
 	public static final String DEVELOMPENT_CATEGORY = "development"; 
+	
+	public static final ResourceLocation GUI_MACHINE_CLASSIC = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/classic_gui.png");
+	public static final ResourceLocation GUI_MACHINE_MODERN = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/modern_gui.png");
 	
 }

@@ -18,13 +18,13 @@ public class ContainerWindGenerator extends Container
     public ContainerWindGenerator(InventoryPlayer par1InventoryPlayer, TileEntityWindGenerator solarGen)
     {
         this.tileEntity = solarGen;
-        this.addSlotToContainer(new SlotSpecific(solarGen, 0, 152, 83, IItemElectric.class));
+        this.addSlotToContainer(new SlotSpecific(solarGen, 0, 152, 84, IItemElectric.class));
         ItemStack[] stacks = {
         		ItemBasicGS.BasicItems.IRON_FAN.getItemStack(), 
         		ItemBasicGS.BasicItems.STEEL_FAN.getItemStack(),
         		ItemBasicGS.BasicItems.PLASTIC_FAN.getItemStack(),
         		ItemBasicGS.BasicItems.CARBON_FAN.getItemStack()};
-        this.addSlotToContainer(new SlotSpecific(tileEntity, 1, 7, 22, stacks));
+        this.addSlotToContainer(new SlotSpecific(tileEntity, 1, 152, 22, stacks));
 
         // Player inv:
 
@@ -32,13 +32,13 @@ public class ContainerWindGenerator extends Container
         {
             for (int var7 = 0; var7 < 9; ++var7)
             {
-                this.addSlotToContainer(new Slot(par1InventoryPlayer, var7 + var6 * 9 + 9, 8 + var7 * 18, 51 + 68 + var6 * 18));
+                this.addSlotToContainer(new Slot(par1InventoryPlayer, var7 + var6 * 9 + 9, 8 + var7 * 18, 65 + 68 + var6 * 18));
             }
         }
 
         for (int var6 = 0; var6 < 9; ++var6)
         {
-            this.addSlotToContainer(new Slot(par1InventoryPlayer, var6, 8 + var6 * 18, 61 + 116));
+            this.addSlotToContainer(new Slot(par1InventoryPlayer, var6, 8 + var6 * 18, 75 + 116));
         }
     }
 

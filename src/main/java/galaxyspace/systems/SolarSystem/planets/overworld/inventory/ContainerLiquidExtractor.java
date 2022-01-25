@@ -26,8 +26,8 @@ public class ContainerLiquidExtractor extends Container
         this.tileEntity = tileEntity;
 
         // Battery Slot
-        this.addSlotToContainer(new SlotSpecific(tileEntity, 0, 79, 101, ItemElectricBase.class));
-        this.addSlotToContainer(new SlotSpecific(tileEntity, 1, 80, 63, ItemOilCanister.class, ItemBucket.class));
+        this.addSlotToContainer(new SlotSpecific(tileEntity, 0, 10, 80, ItemElectricBase.class));
+        this.addSlotToContainer(new SlotSpecific(tileEntity, 1, 79, 63, ItemOilCanister.class, ItemBucket.class));
        
        // this.addSlotToContainer(new SlotSpecific(tileEntity, 2, 10, 40, new ItemStack(GSItems.BASIC, 1, 11)));
        
@@ -44,13 +44,13 @@ public class ContainerLiquidExtractor extends Container
         {
             for (int var4 = 0; var4 < 9; ++var4)
             {
-                this.addSlotToContainer(new Slot(par1InventoryPlayer, var4 + var3 * 9 + 9, 8 + var4 * 18, 127 + var3 * 18));
+                this.addSlotToContainer(new Slot(par1InventoryPlayer, var4 + var3 * 9 + 9, 8 + var4 * 18, 122 + var3 * 18));
             }
         }
 
         for (var3 = 0; var3 < 9; ++var3)
         {
-            this.addSlotToContainer(new Slot(par1InventoryPlayer, var3, 8 + var3 * 18, 185));
+            this.addSlotToContainer(new Slot(par1InventoryPlayer, var3, 8 + var3 * 18, 180));
         }
 
     }

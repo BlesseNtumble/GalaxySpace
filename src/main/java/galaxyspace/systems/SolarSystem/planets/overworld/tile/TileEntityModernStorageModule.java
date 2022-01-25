@@ -20,7 +20,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 
 public class TileEntityModernStorageModule extends TileBaseUniversalElectricalSource implements ISidedInventory, IConnector {
-	private final static float BASE_CAPACITY = 5000000;
+	private static float BASE_CAPACITY = 5000000;
 	
 	public final Set<EntityPlayer> playersUsing = new HashSet<EntityPlayer>();
 	public int scaledEnergyLevel;
@@ -34,12 +34,13 @@ public class TileEntityModernStorageModule extends TileBaseUniversalElectricalSo
 
 	public TileEntityModernStorageModule(int tier) {
 
-		super("tile.modern_storage_module.name");
+		super("tile.modern_storage_module.name");		
 		this.setTier(tier);
 	}
 
 	private void setTier(int tier) {
-		this.storage.setCapacity(BASE_CAPACITY + (BASE_CAPACITY * tier) / 10);
+		BASE_CAPACITY = 5000000 + (5000000 * tier) / 10;
+		this.storage.setCapacity(BASE_CAPACITY);
 		this.storage.setMaxExtract(1800 + (200 * tier));
 		this.inventory = NonNullList.withSize(2, ItemStack.EMPTY);
 		this.setTierGC(tier);
@@ -48,7 +49,7 @@ public class TileEntityModernStorageModule extends TileBaseUniversalElectricalSo
 	@Override
 	public void update() {
 
-
+/*
 		float energy = this.storage.getEnergyStoredGC();
 		if (this.getTierGC() == 1 && !this.world.isRemote) {
 			if (this.lastEnergy - energy > this.storage.getMaxExtract() - 1) {
@@ -57,7 +58,7 @@ public class TileEntityModernStorageModule extends TileBaseUniversalElectricalSo
 			}
 		}
 		this.lastEnergy = energy;
-
+*/
 		super.update();
 
 		this.scaledEnergyLevel = (int) Math.floor((this.getEnergyStoredGC() + 49) * 16 / this.getMaxEnergyStoredGC());

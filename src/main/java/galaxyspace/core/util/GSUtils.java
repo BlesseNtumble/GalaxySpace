@@ -43,10 +43,15 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -56,6 +61,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -779,8 +785,160 @@ public class GSUtils {
 
         return ItemStack.EMPTY;
     }
+	
 
+	public static void renderItemIntoSlot(RenderItem re, ItemStack stack, int x, int y, Vec3d color)
+    {
+		GlStateManager.pushMatrix();
+        renderItemModelIntoGUI(re, stack, x, y, re.getItemModelWithOverrides(stack, (World)null, (EntityLivingBase)null), color);
+        GSUtils.drawRect(x+1, y+1, x + 15, y + 15, 0xCC8B8B8B, 100.5D);        
+        GlStateManager.popMatrix();
+    }
+
+    private static void renderItemModelIntoGUI(RenderItem re, ItemStack stack, int x, int y, IBakedModel bakedmodel, Vec3d color)
+    {
+        GlStateManager.pushMatrix();
+        re.textureManager.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+        re.textureManager.getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).setBlurMipmap(false, false);
+        GlStateManager.enableRescaleNormal();
+        GlStateManager.enableAlpha();
+        GlStateManager.alphaFunc(516, 0.1F);
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        re.setupGuiTransform(x, y, bakedmodel.isGui3d());
+        bakedmodel = net.minecraftforge.client.ForgeHooksClient.handleCameraTransforms(bakedmodel, ItemCameraTransforms.TransformType.GUI, false);
+        renderItem(re, stack, bakedmodel, color);
+        GlStateManager.disableAlpha();
+        GlStateManager.disableRescaleNormal();
+        GlStateManager.disableLighting();
+        GlStateManager.popMatrix();
+        re.textureManager.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+        re.textureManager.getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).restoreLastBlurMipmap();
+    }
+    
+    private static void renderItem(RenderItem re, ItemStack stack, IBakedModel model, Vec3d color)
+    {
+        if (!stack.isEmpty())
+        {
+            GlStateManager.pushMatrix();
+            GlStateManager.translate(-0.5F, -0.5F, -0.5F);
+
+            if (model.isBuiltInRenderer())
+            {
+            	GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+                GlStateManager.enableRescaleNormal();
+                stack.getItem().getTileEntityItemStackRenderer().renderByItem(stack);
+            }
+            else
+            {
+                renderModel(re, model, stack, color);
+
+                if (stack.hasEffect())
+                {
+                    renderEffect(re, model);
+                }
+            }
+
+            GlStateManager.popMatrix();
+        }
+    }
 	
+    private static void renderEffect(RenderItem re, IBakedModel model)
+    {
+    	ResourceLocation RES_ITEM_GLINT = new ResourceLocation("textures/misc/enchanted_item_glint.png");
+        GlStateManager.depthMask(false);
+        GlStateManager.depthFunc(514);
+        GlStateManager.disableLighting();
+        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_COLOR, GlStateManager.DestFactor.ONE);
+        re.textureManager.bindTexture(RES_ITEM_GLINT);
+        GlStateManager.matrixMode(5890);
+        GlStateManager.pushMatrix();
+        GlStateManager.scale(8.0F, 8.0F, 8.0F);
+        float f = (float)(Minecraft.getSystemTime() % 3000L) / 3000.0F / 8.0F;
+        GlStateManager.translate(f, 0.0F, 0.0F);
+        GlStateManager.rotate(-50.0F, 0.0F, 0.0F, 1.0F);
+        renderModel(re, model, -8372020);
+        GlStateManager.popMatrix();
+        GlStateManager.pushMatrix();
+        GlStateManager.scale(8.0F, 8.0F, 8.0F);
+        float f1 = (float)(Minecraft.getSystemTime() % 4873L) / 4873.0F / 8.0F;
+        GlStateManager.translate(-f1, 0.0F, 0.0F);
+        GlStateManager.rotate(10.0F, 0.0F, 0.0F, 1.0F);
+        renderModel(re, model, -8372020);
+        GlStateManager.popMatrix();
+        GlStateManager.matrixMode(5888);
+        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        GlStateManager.enableLighting();
+        GlStateManager.depthFunc(515);
+        GlStateManager.depthMask(true);
+        re.textureManager.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+    }
+    
+    private static void renderModel(RenderItem re, IBakedModel model, ItemStack stack, Vec3d color)
+    {
+        renderModel(re, model, GSUtils.getColor((int) (255 * color.x), (int) (255 * color.y), (int) (255 * color.z), 255), stack);
+    }
+
+    private static void renderModel(RenderItem re, IBakedModel model, int color)
+    {
+        renderModel(re, model, color, ItemStack.EMPTY);
+    }
+    
+    private static void renderModel(RenderItem re, IBakedModel model, int color, ItemStack stack)
+    {
+        if (net.minecraftforge.common.ForgeModContainer.allowEmissiveItems)
+        {
+            net.minecraftforge.client.ForgeHooksClient.renderLitItem(re, model, color, stack);
+            return;
+        }
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferbuilder = tessellator.getBuffer();
+        bufferbuilder.begin(7, DefaultVertexFormats.ITEM);
+
+        for (EnumFacing enumfacing : EnumFacing.values())
+        {
+            re.renderQuads(bufferbuilder, model.getQuads((IBlockState)null, enumfacing, 0L), color, stack);
+        }
+
+        re.renderQuads(bufferbuilder, model.getQuads((IBlockState)null, (EnumFacing)null, 0L), color, stack);
+        tessellator.draw();
+        
+    }
 	
-	
+    public static void drawRect(int left, int top, int right, int bottom, int color, double zLevel)
+    {
+        if (left < right)
+        {
+            int i = left;
+            left = right;
+            right = i;
+        }
+
+        if (top < bottom)
+        {
+            int j = top;
+            top = bottom;
+            bottom = j;
+        }
+
+        float f3 = (float)(color >> 24 & 255) / 255.0F;
+        float f = (float)(color >> 16 & 255) / 255.0F;
+        float f1 = (float)(color >> 8 & 255) / 255.0F;
+        float f2 = (float)(color & 255) / 255.0F;
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferbuilder = tessellator.getBuffer();
+        GlStateManager.enableBlend();
+        GlStateManager.disableTexture2D();
+        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        GlStateManager.color(f, f1, f2, f3);
+        bufferbuilder.begin(7, DefaultVertexFormats.POSITION);
+        bufferbuilder.pos((double)left, (double)bottom, zLevel).endVertex();
+        bufferbuilder.pos((double)right, (double)bottom, zLevel).endVertex();
+        bufferbuilder.pos((double)right, (double)top, zLevel).endVertex();
+        bufferbuilder.pos((double)left, (double)top, zLevel).endVertex();
+        tessellator.draw();
+        GlStateManager.enableTexture2D();
+        GlStateManager.disableBlend();
+    }
 }

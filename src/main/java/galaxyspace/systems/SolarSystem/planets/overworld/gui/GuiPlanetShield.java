@@ -5,13 +5,10 @@ import java.util.List;
 
 import org.lwjgl.opengl.GL11;
 
-import galaxyspace.GalaxySpace;
-import galaxyspace.core.GSItems;
-import galaxyspace.core.util.GSUtils;
+import galaxyspace.core.client.gui.tile.GuiTileBase;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerPlanetShield;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityPlanetShield;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.client.gui.container.GuiContainerGC;
 import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementCheckbox;
 import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementCheckbox.ICheckBoxCallback;
 import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementInfoRegion;
@@ -24,15 +21,14 @@ import micdoodle8.mods.galacticraft.core.util.RedstoneUtil;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.inventory.Slot;
+import net.minecraft.util.text.TextFormatting;
 
-public class GuiPlanetShield extends GuiContainerGC implements ICheckBoxCallback {
+public class GuiPlanetShield extends GuiTileBase implements ICheckBoxCallback {
 
-	private static final ResourceLocation pressureGui = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/base_gui.png");
+	
 	private TileEntityPlanetShield tileEntity;
 	private GuiElementCheckbox checkboxRenderBubble;
-	private GuiElementInfoRegion electricInfoRegion = new GuiElementInfoRegion(0, 0, 52, 9, null, 0, 0, this);
 	private GuiButton disableButton;
 	
 	public final int BTN_ENABLE = 6;
@@ -40,9 +36,11 @@ public class GuiPlanetShield extends GuiContainerGC implements ICheckBoxCallback
     
 	public GuiPlanetShield(InventoryPlayer par1InventoryPlayer, TileEntityPlanetShield tileEntity)
     {
-        super(new ContainerPlanetShield(par1InventoryPlayer, tileEntity));
+        super(new ContainerPlanetShield(par1InventoryPlayer, tileEntity), 2, 1);
         this.ySize = 204;
         this.tileEntity = tileEntity;
+        moduleInfoX = this.inventorySlots.getSlotFromInventory(tileEntity, 1).xPos;
+		moduleInfoY = this.inventorySlots.getSlotFromInventory(tileEntity, 1).yPos;
     }
 	
 	@Override
@@ -56,19 +54,8 @@ public class GuiPlanetShield extends GuiContainerGC implements ICheckBoxCallback
     {
 		super.initGui();
 
-		this.electricInfoRegion.tooltipStrings = new ArrayList<String>();
-		this.electricInfoRegion.xPosition = (this.width - this.xSize) / 2 + 17;
-		this.electricInfoRegion.yPosition = (this.height - this.ySize) / 2 + 102;
-		this.electricInfoRegion.parentWidth = this.width;
-		this.electricInfoRegion.parentHeight = this.height;
-		this.infoRegions.add(this.electricInfoRegion);
 		
 		List<String> desc = new ArrayList<String>();
-        desc.add(GCCoreUtil.translate("gui.battery_slot.desc.0"));
-        desc.add(GCCoreUtil.translate("gui.battery_slot.desc.1"));
-        this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 77, (this.height - this.ySize) / 2 + 100, 18, 18, desc, this.width, this.height, this));
- 
-        desc = new ArrayList<String>();
         desc.add(GCCoreUtil.translate("gui.show_bubble.desc.0"));
         this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 10, (this.height - this.ySize) / 2 + 67, 85, 13, desc, this.width, this.height, this));
        
@@ -76,15 +63,7 @@ public class GuiPlanetShield extends GuiContainerGC implements ICheckBoxCallback
         desc.add(GCCoreUtil.translate("gui.planet_shield_stability_1.desc"));
         desc.add(GCCoreUtil.translate("gui.planet_shield_stability_2.desc"));
         this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 80, (this.height - this.ySize) / 2 + 16, 18, 18, desc, this.width, this.height, this));
-       
-        desc = new ArrayList<String>();
-        desc.add(EnumColor.BRIGHT_GREEN + GCCoreUtil.translate("gui.available_modules.desc"));
-        desc.add("");
-        desc.add("- " + new ItemStack(GSItems.UPGRADES, 1, 0).getDisplayName());
-        desc.add("- " + new ItemStack(GSItems.UPGRADES, 1, 1).getDisplayName());
-        desc.add("- " + new ItemStack(GSItems.UPGRADES, 1, 3).getDisplayName());
-        this.infoRegions.add(new GuiElementInfoRegion((this.width + this.xSize) / 2, (this.height - this.ySize) / 2 + 16, 18, 21 * 4, desc, this.width, this.height, this));
-       
+          
         this.buttonList.clear();
         
         final int var5 = (this.width - this.xSize) / 2;
@@ -115,10 +94,17 @@ public class GuiPlanetShield extends GuiContainerGC implements ICheckBoxCallback
 	@Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-        String displayString = EnumColor.WHITE + tileEntity.getName();
-        this.fontRenderer.drawString(displayString, this.xSize / 2 - this.fontRenderer.getStringWidth(displayString) / 2, 1, 4210752);
-        this.fontRenderer.drawString(EnumColor.WHITE + GCCoreUtil.translate("container.inventory"), 16, 116, 4210752);
-        this.fontRenderer.drawSplitString(EnumColor.WHITE + GCCoreUtil.translate("gui.message.status.name") + ": " + this.getStatus(), 100, 106, this.xSize - 100, 4210752);
+		super.drawGuiContainerForegroundLayer(par1, par2);
+		TextFormatting color = getStyle() == Style.MODERN ? TextFormatting.WHITE : TextFormatting.DARK_GRAY;
+        
+        this.fontRenderer.drawSplitString(color + GCCoreUtil.translate("gui.message.status.name") + ": " + this.getStatus(), 100, 100, this.xSize - 120, 4210752);
+ 		
+        checkboxRenderBubble.displayString = color + GCCoreUtil.translate("gui.message.bubble_visible.name");
+        String gen = "Consumption: " + EnergyDisplayHelper.getEnergyDisplayS(this.tileEntity.storage.getMaxExtract()) + "/t";
+		this.fontRenderer.drawString(color + gen, 30, 40, 0xFFFFFF);
+		gen = "Bubble size: " + (int) this.tileEntity.bubbleSize + " blocks";
+		this.fontRenderer.drawString(color + gen, 30, 40 + fontRenderer.FONT_HEIGHT, 0xFFFFFF);
+		
     }
 	
 	private String getStatus()
@@ -149,69 +135,17 @@ public class GuiPlanetShield extends GuiContainerGC implements ICheckBoxCallback
 	@Override
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
     {
+		super.drawGuiContainerBackgroundLayer(par1, par2, par3);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		int containerWidth = (this.width - this.xSize) / 2;
 		int containerHeight = (this.height - this.ySize) / 2;
-		
-		this.mc.renderEngine.bindTexture(this.pressureGui);
-		this.drawTexturedModalRect(containerWidth, containerHeight, 0, 0, this.xSize, this.ySize);
-		
-		//String x = EnumColor.DARK_GREEN + "[INFO] Generate: " +	EnergyDisplayHelper.getEnergyDisplayS(tile.storage.getMaxExtract()) + " gJ/t";
-		
-		int scale = 0;
-		
+				
 		//Energy
-        this.drawTexturedModalRect(containerWidth + 16, containerHeight + 102, 192, 47, 56, 9);
-        this.drawTexturedModalRect(containerWidth + 4, containerHeight + 102, 192, 56, 11, 10);
-        if (this.tileEntity.getEnergyStoredGC() > 0)
-        {
-            scale = this.tileEntity.getScaledElecticalLevel(55);
-            this.drawTexturedModalRect(containerWidth + 116 - 99, containerHeight + 103, 192, 0, scale, 7);
-            this.drawTexturedModalRect(containerWidth + 3, containerHeight + 102, 192, 7, 11, 10);           
-        }
-        
-		List<String> electricityDesc = new ArrayList<String>();
-        electricityDesc.add(GCCoreUtil.translate("gui.energy_storage.desc.0"));
-        EnergyDisplayHelper.getEnergyDisplayTooltip(this.tileEntity.getEnergyStoredGC(), this.tileEntity.getMaxEnergyStoredGC(), electricityDesc);
-        this.electricInfoRegion.tooltipStrings = electricityDesc;
-        
-		this.checkboxRenderBubble.isSelected = this.tileEntity.shouldRenderBubble;
-		
+		this.renderEnergyBar(containerWidth + 4, containerHeight + 102, this.tileEntity.getScaledElecticalLevel(55), this.tileEntity.getEnergyStoredGC(), this.tileEntity.getMaxEnergyStoredGC());
+
+		this.checkboxRenderBubble.isSelected = this.tileEntity.shouldRenderBubble;		
 		this.disableButton.displayString = GCCoreUtil.translate(this.tileEntity.getDisabled(0) ? "gui.button.enable.name" : "gui.button.disable.name");
 
-		// Slots
-        for(int i = 0; i < this.inventorySlots.inventorySlots.size(); i++)
-        {
-	        int x = this.inventorySlots.getSlot(i).xPos;
-	        int y = this.inventorySlots.getSlot(i).yPos;
-	        
-	       /* if(!(this.inventorySlots.getSlot(i).inventory instanceof InventoryPlayer))
-	        {*/
-		        
-		        GL11.glPushMatrix();
-		        switch(i)
-		        {
-		        	case 0:
-		        	{
-		        		this.drawTexturedModalRect(containerWidth + x - 2, containerHeight + y - 2, 213, 26, 20, 21);	        		 
-		        		break;
-		        	}
-		        	default: 
-		        	{
-		        		this.drawTexturedModalRect(containerWidth + x - 2, containerHeight + y - 2, 192, 26, 20, 21);
-		        		break;
-		        	}	        	
-		        }
-		        GL11.glPopMatrix();
-	        //}
-        }
-        
-        String gen = "Consumption: " + EnergyDisplayHelper.getEnergyDisplayS(this.tileEntity.storage.getMaxExtract()) + "/t";
-		this.drawString(fontRenderer, gen, containerWidth + 30, containerHeight + 40, 0xFFFFFF);
-		gen = "Bubble size: " + (int) this.tileEntity.bubbleSize + " blocks";
-		this.drawString(fontRenderer, gen, containerWidth + 30, containerHeight + 40 + fontRenderer.FONT_HEIGHT, 0xFFFFFF);
-		
-		if(GalaxySpace.debug) GSUtils.renderDebugGui(this, containerWidth, containerHeight);
     }
 	
 	@Override
@@ -238,4 +172,19 @@ public class GuiPlanetShield extends GuiContainerGC implements ICheckBoxCallback
     {
 
     }
+
+	@Override
+	protected boolean isModuleSupport() {
+		return true;
+	}
+
+	@Override
+	protected String getName() {
+		return tileEntity.getName();
+	}
+
+	@Override
+	protected Slot getBatterySlot() {
+		return inventorySlots.getSlotFromInventory(tileEntity, 0);
+	}
 }

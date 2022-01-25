@@ -32,7 +32,7 @@ public class ContainerAssembler extends Container
         }
 
         // Battery Slot
-        this.addSlotToContainer(new SlotSpecific(tileEntity, 0, 77, 93, ItemElectricBase.class));
+        this.addSlotToContainer(new SlotSpecific(tileEntity, 0, 77, 83, ItemElectricBase.class));
 
         // Smelting result
         this.addSlotToContainer(new SlotFurnaceOutput(par1InventoryPlayer.player, tileEntity, 1, 138, 36));
@@ -40,20 +40,20 @@ public class ContainerAssembler extends Container
         
         int var3;
         for(var3 = 0; var3 < 4; ++var3)        
-        	this.addSlotToContainer(new SlotUpgrades(tileEntity, 2 + var3, 177, 18 + (21 * var3), 1, ItemUpgrades.class));
+        	this.addSlotToContainer(new SlotUpgrades(tileEntity, 2 + var3, 178, 18 + (21 * var3), 1, ItemUpgrades.class));
        
         
         for (var3 = 0; var3 < 3; ++var3)
         {
             for (int var4 = 0; var4 < 9; ++var4)
             {
-                this.addSlotToContainer(new Slot(par1InventoryPlayer, var4 + var3 * 9 + 9, 8 + var4 * 18, 117 + var3 * 18));
+                this.addSlotToContainer(new Slot(par1InventoryPlayer, var4 + var3 * 9 + 9, 8 + var4 * 18, 117 + 12 + var3 * 18));
             }
         }
 
         for (var3 = 0; var3 < 9; ++var3)
         {
-            this.addSlotToContainer(new Slot(par1InventoryPlayer, var3, 8 + var3 * 18, 175));
+            this.addSlotToContainer(new Slot(par1InventoryPlayer, var3, 8 + var3 * 18, 175 + 12));
         }
     }
 

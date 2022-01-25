@@ -8,6 +8,8 @@ import galaxyspace.GalaxySpace;
 import galaxyspace.core.GSBlocks;
 import galaxyspace.core.client.jei.GSRecipeCategories;
 import galaxyspace.core.client.jei.GalaxySpaceJEI;
+import galaxyspace.core.configs.GSConfigCore;
+import galaxyspace.core.util.GSConstants;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
@@ -24,28 +26,30 @@ import net.minecraft.util.ResourceLocation;
 
 public class AssemblerRecipeCategory implements IRecipeCategory
 {
-    private static final ResourceLocation compressorTex = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/assembly_machine.png");
-    private static final ResourceLocation compressorTexBlank = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/ingot_compressor_blank.png");
-
+    
     @Nonnull
-    private final IDrawable background;
-    @Nonnull
-    private final IDrawable backgroundBlank;
+    private final IDrawable backgroundTop, background, backgroundBottom, slot, blankArrow;
     @Nonnull
     private final String localizedName;
     @Nonnull
     private final IDrawableAnimated progressBar;
     
-    private boolean drawNothing = false; 
+    
 
     public AssemblerRecipeCategory(IGuiHelper guiHelper)
     {
-        this.background = guiHelper.createDrawable(compressorTex, 18, 17, 137, 66);
-        this.backgroundBlank = guiHelper.createDrawable(compressorTexBlank, 18, 17, 137, 78);
+    	ResourceLocation gui = GSConfigCore.enableModernGUI ? GSConstants.GUI_MACHINE_MODERN : GSConstants.GUI_MACHINE_CLASSIC; 
+        
+    	this.backgroundTop = guiHelper.createDrawable(gui, 0, 0, 176, 12);
+    	this.background = guiHelper.createDrawable(gui, 0, 0, 176, 92);
+    	this.backgroundBottom = guiHelper.createDrawable(gui, 0, 31, 176, 30);
+    	this.slot = guiHelper.createDrawable(gui, 0, 62, 18, 18);
+    	this.blankArrow = guiHelper.createDrawable(gui, 181, 109, 36, 15);
+    	
         this.localizedName = GSBlocks.ASSEMBLER.getLocalizedName();//GCCoreUtil.translate("tile.machine.3.name");
 
         //ResourceLocation resourceLocation, int u, int v, int width, int height
-        IDrawableStatic progressBarDrawable = guiHelper.createDrawable(compressorTex, 176, 13, 52, 17);//guiHelper.createDrawable(compressorTex, 180, 15, 52, 17);
+        IDrawableStatic progressBarDrawable = guiHelper.createDrawable(gui, 181, 125, 36, 16);//guiHelper.createDrawable(compressorTex, 180, 15, 52, 17);
         this.progressBar = guiHelper.createAnimatedDrawable(progressBarDrawable, 70, IDrawableAnimated.StartDirection.LEFT, false);
     }
 
@@ -67,33 +71,36 @@ public class AssemblerRecipeCategory implements IRecipeCategory
     @Override
     public IDrawable getBackground()
     {
-        if (this.drawNothing)
-        {
-            return this.backgroundBlank;
-        }
         return this.background;
     }
 
     @Override
     public void drawExtras(@Nonnull Minecraft minecraft)
     {
-        if (!this.drawNothing) this.progressBar.draw(minecraft, 59, 21);
+       
+        this.backgroundBottom.draw(minecraft, 0, 57);
+        
+        for(int i = 0; i < 3; i++)
+        	for(int j = 0; j < 3; j++)
+        		this.slot.draw(minecraft, i * 19 + 10, j * 19 + 20);
+        
+        this.slot.draw(minecraft, 139, 39);
+        this.blankArrow.draw(minecraft, 85, 39);
+        this.progressBar.draw(minecraft, 85, 38);
     }
 
     @Override
     public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper, IIngredients ingredients)
     {
-        this.drawNothing = GalaxySpaceJEI.hidden.contains(recipeWrapper);
-        if (this.drawNothing) return;
-
+      
         IGuiItemStackGroup itemstacks = recipeLayout.getItemStacks();
 
         for (int j = 0; j < 9; j++)
         {
-            itemstacks.init(j, true, j % 3 * 18, j / 3 * 18);
+            itemstacks.init(j, true, j % 3 * 19 + 10, j / 3 * 19 + 20);
         }
 
-        itemstacks.init(9, false, 119, 18);
+        itemstacks.init(9, false, 139, 39);
 
         if (ConfigManagerCore.quickMode)
         {

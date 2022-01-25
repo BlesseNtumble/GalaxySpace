@@ -4,8 +4,12 @@ import javax.annotation.Nonnull;
 
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.client.jei.GSRecipeCategories;
+import galaxyspace.core.configs.GSConfigCore;
+import galaxyspace.core.util.GSConstants;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
+import mezz.jei.api.gui.IDrawableAnimated;
+import mezz.jei.api.gui.IDrawableStatic;
 import mezz.jei.api.gui.IGuiFluidStackGroup;
 import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -21,25 +25,32 @@ public class UniversalRecyclerRecipeCategory implements IRecipeCategory<Universa
     private static final ResourceLocation guiTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/base_gui.png");
 
     @Nonnull
-    private final IDrawable background, arrow, fluid, fluid_foreground;
-    
+    private final IDrawable backgroundTop, background, backgroundBottom, slot, blankArrow, fluid, fluid_foreground;
     @Nonnull
-    private final IDrawable result, result_2;
-    
+    private final IDrawableAnimated progressBar;
     @Nonnull
     private final String localizedName;
     
     public UniversalRecyclerRecipeCategory(IGuiHelper guiHelper)
     {
     	
-        this.background = guiHelper.createDrawable(guiTexture, 0, 10, 170, 78);
-        this.localizedName = GCCoreUtil.translate("tile.universal_recycler.name");
-        this.arrow = guiHelper.createDrawable(guiTexture, 192, 109, 36, 15);
-       	this.fluid = guiHelper.createDrawable(guiTexture, 192, 66, 20, 42);      
-       	this.fluid_foreground = guiHelper.createDrawable(guiTexture, 212, 66, 20, 42);      
+    	ResourceLocation gui = GSConfigCore.enableModernGUI ? GSConstants.GUI_MACHINE_MODERN : GSConstants.GUI_MACHINE_CLASSIC; 
         
-        this.result = guiHelper.createDrawable(guiTexture, 192, 26, 20, 20);
-        this.result_2 = guiHelper.createDrawable(guiTexture, 192 + 22, 26, 20, 20);
+        this.localizedName = GCCoreUtil.translate("tile.universal_recycler.name");
+        
+        this.backgroundTop = guiHelper.createDrawable(gui, 0, 0, 176, 12);
+    	this.background = guiHelper.createDrawable(gui, 0, 0, 176, 92);
+    	this.backgroundBottom = guiHelper.createDrawable(gui, 0, 31, 176, 30);
+    	this.slot = guiHelper.createDrawable(gui, 0, 62, 18, 18);
+    	this.blankArrow = guiHelper.createDrawable(gui, 181, 109, 36, 15); 
+    	
+    	this.fluid = guiHelper.createDrawable(gui, 180, 67, 18, 40); 
+    	this.fluid_foreground = guiHelper.createDrawable(gui, 201, 67, 18, 40); 
+    	
+    	
+    	IDrawableStatic progressBarDrawable = guiHelper.createDrawable(gui, 181, 125, 36, 16);//guiHelper.createDrawable(compressorTex, 180, 15, 52, 17);
+        this.progressBar = guiHelper.createAnimatedDrawable(progressBarDrawable, 70, IDrawableAnimated.StartDirection.LEFT, false);
+     
     }
 
     @Nonnull
@@ -66,15 +77,20 @@ public class UniversalRecyclerRecipeCategory implements IRecipeCategory<Universa
     @Override
     public void drawExtras(Minecraft mc)
     {
-    	this.result.draw(mc, 19, 34);    	
-    	this.result.draw(mc, 89, 34);
-    	this.result.draw(mc, 89 + 22, 34);
+    	this.backgroundBottom.draw(mc, 0, 59);
     	
-    	this.fluid.draw(mc, 145, 22);
-    	this.fluid_foreground.draw(mc, 145, 22);
+    	this.slot.draw(mc, 20, 35);
+    	this.slot.draw(mc, 90, 35);
+    	this.slot.draw(mc, 112, 35);
     	
-    	this.arrow.draw(mc, 50, 37);
-  
+        this.blankArrow.draw(mc, 45, 39);
+        this.progressBar.draw(mc, 45, 38);
+        
+    	this.fluid.draw(mc, 146, 23);
+    	this.fluid_foreground.draw(mc, 147, 23);
+    	
+    	
+    	
     }
     
     @Override
@@ -82,8 +98,7 @@ public class UniversalRecyclerRecipeCategory implements IRecipeCategory<Universa
     {
         IGuiItemStackGroup itemstacks = recipeLayout.getItemStacks();        
         IGuiFluidStackGroup fluidstacks = recipeLayout.getFluidStacks();
-        
-        
+               
                     
         int xOffset = 5;
         int yOffset = 10;

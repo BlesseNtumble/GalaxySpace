@@ -21,9 +21,9 @@ public class ContainerLiquidSeparator extends Container
         this.tileEntity = tileEntity;
 
         // Battery Slot
-        this.addSlotToContainer(new SlotSpecific(tileEntity, 0, 79, 101, ItemElectricBase.class));
+        this.addSlotToContainer(new SlotSpecific(tileEntity, 0, 79, 91, ItemElectricBase.class));
         this.addSlotToContainer(new Slot(tileEntity, 1, 10, 19));
-        this.addSlotToContainer(new Slot(tileEntity, 2, 80, 19));
+        this.addSlotToContainer(new Slot(tileEntity, 2, 79, 19));
         this.addSlotToContainer(new Slot(tileEntity, 3, 145, 19));
         
         //this.addSlotToContainer(new SlotSpecific(tileEntity, 2, 10, 40, new ItemStack(GSItems.BasicItems, 1, 3), new ItemStack(GSItems.BasicItems, 1, 12)));
@@ -34,19 +34,19 @@ public class ContainerLiquidSeparator extends Container
 
         int var3;
         for(var3 = 0; var3 < 4; ++var3)        
-        	this.addSlotToContainer(new SlotUpgrades(tileEntity, 4 + var3, 174, 14 + (21 * var3), 1, ItemUpgrades.class));
+        	this.addSlotToContainer(new SlotUpgrades(tileEntity, 4 + var3, 179, 18 + (21 * var3), 1, ItemUpgrades.class));
        
         for (var3 = 0; var3 < 3; ++var3)
         {
             for (int var4 = 0; var4 < 9; ++var4)
             {
-                this.addSlotToContainer(new Slot(par1InventoryPlayer, var4 + var3 * 9 + 9, 8 + var4 * 18, 127 + var3 * 18));
+                this.addSlotToContainer(new Slot(par1InventoryPlayer, var4 + var3 * 9 + 9, 8 + var4 * 18, 137 + var3 * 18));
             }
         }
 
         for (var3 = 0; var3 < 9; ++var3)
         {
-            this.addSlotToContainer(new Slot(par1InventoryPlayer, var3, 8 + var3 * 18, 185));
+            this.addSlotToContainer(new Slot(par1InventoryPlayer, var3, 8 + var3 * 18, 195));
         }
 
     }

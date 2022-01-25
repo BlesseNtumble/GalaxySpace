@@ -88,12 +88,12 @@ public class TileEntityFuelGenerator extends TileBaseUniversalElectricalSource i
     
     @Override
     public void update()
-    {
+    {   	  
         if (this.heatGJperTick - TileEntityFuelGenerator.MIN_GENERATE_GJ_PER_TICK > 0)
         {
             this.receiveEnergyGC(null, (this.heatGJperTick - TileEntityFuelGenerator.MIN_GENERATE_GJ_PER_TICK), false);
         }
-
+        
         super.update();
 
         if (!this.world.isRemote)
@@ -109,24 +109,16 @@ public class TileEntityFuelGenerator extends TileBaseUniversalElectricalSource i
         		}
         	}
         	
-        	if(world.rand.nextInt(2) == 0)
+        	if(world.rand.nextInt(20) == 0)
         		if(this.world.getBlockState(this.getPos().down()) == GSBlocks.IO_BLOCKS.getDefaultState().withProperty(IoBlocks.BASIC_TYPE, IoBlocks.EnumIoBlocks.IO_LAVA_GEYSER))
         			if(this.world.getBlockState(this.getPos().down(2)) == Blocks.LAVA.getDefaultState())
         				this.fuelTank.fill(new FluidStack(FluidRegistry.LAVA, 1), true);
-        		
-        	/*if (FluidUtil.isFluidStrict(liquid, FluidRegistry.LAVA.getName()))            
-                FluidUtil.loadFromContainer(fuelTank, FluidRegistry.LAVA, this.stacks, 0, liquid.amount);*/
-            
-            /*if (FluidUtil.isFuel(liquid))            
-                FluidUtil.loadFromContainer(fuelTank, GCFluids.fluidFuel, this.stacks, 0, liquid.amount);*/
-
+         
+        	this.produce();
             this.smeltItem();
-	    this.produce();
-
-            //this.heatGJperTick = Math.min(Math.max(this.heatGJperTick, 0.0F), this.getMaxEnergyStoredGC());
-           
             
         }
+      
     }
 
     
@@ -138,12 +130,6 @@ public class TileEntityFuelGenerator extends TileBaseUniversalElectricalSource i
         	final int lavaAmount = this.fuelTank.getFluidAmount();
             final int fuelSpace = (this.fuelTank.getCapacity() - this.fuelTank.getFluidAmount());
 
-            final int amountToDrain = Math.min(Math.min(lavaAmount, fuelSpace), 1);
-            /*
-            if(this.fuelTank.getFluid().getFluid() == FluidRegistry.LAVA && this.ticks % 10 == 0) this.fuelTank.drain(2, true);
-            else if(this.ticks % 100 == 0) this.fuelTank.drain(1, true);
-            */
-            
             for(Fuel fluid : fuel)
             {
             	if(this.fuelTank.getFluid().getFluid() == fluid.getFluid())
@@ -159,7 +145,8 @@ public class TileEntityFuelGenerator extends TileBaseUniversalElectricalSource i
             
           
             this.heatGJperTick = Math.min(this.heatGJperTick + Math.max(this.heatGJperTick * 0.005F, TileEntityFuelGenerator.BASE_ACCELERATION), TileEntityFuelGenerator.MAX_GENERATE_GJ_PER_TICK * mod);
-
+            this.storage.setMaxExtract(TileEntityFuelGenerator.MAX_GENERATE_GJ_PER_TICK * mod + 1 - TileEntityFuelGenerator.MIN_GENERATE_GJ_PER_TICK);
+            
         }
     	
     }
@@ -171,6 +158,7 @@ public class TileEntityFuelGenerator extends TileBaseUniversalElectricalSource i
         		this.heatGJperTick = 0;
         		return false;
         }
+        
         if(this.storage.getEnergyStoredGC() >= this.storage.getCapacityGC())
         	return false;
 
@@ -186,7 +174,6 @@ public class TileEntityFuelGenerator extends TileBaseUniversalElectricalSource i
         super.readFromNBT(par1NBTTagCompound);
         this.itemCookTime = par1NBTTagCompound.getInteger("itemCookTime");
         this.heatGJperTick = par1NBTTagCompound.getInteger("generateRateInt");
-        NBTTagList var2 = par1NBTTagCompound.getTagList("Items", 10);
         
         this.inventory = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(par1NBTTagCompound, this.getInventory());

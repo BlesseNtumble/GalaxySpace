@@ -31,19 +31,19 @@ public class ContainerPlanetShield extends Container
 
         int var3;
         for(var3 = 0; var3 < 4; ++var3)        
-        	this.addSlotToContainer(new SlotUpgrades(tileEntity, 1 + var3, 177, 18 + (21 * var3), 1, ItemUpgrades.class));
+        	this.addSlotToContainer(new SlotUpgrades(tileEntity, 1 + var3, 178, 18 + (21 * var3), 1, ItemUpgrades.class));
        
         for (var3 = 0; var3 < 3; ++var3)
         {
             for (int var4 = 0; var4 < 9; ++var4)
             {
-                this.addSlotToContainer(new Slot(par1InventoryPlayer, var4 + var3 * 9 + 9, 8 + var4 * 18, 127 + var3 * 18));
+                this.addSlotToContainer(new Slot(par1InventoryPlayer, var4 + var3 * 9 + 9, 8 + var4 * 18, 135 + var3 * 18));
             }
         }
 
         for (var3 = 0; var3 < 9; ++var3)
         {
-            this.addSlotToContainer(new Slot(par1InventoryPlayer, var3, 8 + var3 * 18, 185));
+            this.addSlotToContainer(new Slot(par1InventoryPlayer, var3, 8 + var3 * 18, 193));
         }
 
     }

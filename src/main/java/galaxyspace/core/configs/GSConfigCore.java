@@ -48,6 +48,7 @@ public class GSConfigCore
     public static boolean enableWorldEngine;
     public static boolean enablePlateOreDict;
     public static boolean enableSpaceSuitHUD;
+    public static boolean enableModernGUI;
     
     //Hardmode
     public static boolean enableRadiationSystem;
@@ -148,6 +149,12 @@ public class GSConfigCore
             prop.setComment("Enable/Disable new Main Menu.");
             prop.setLanguageKey("gc.configgui.enableNewMenu").setRequiresMcRestart(false);
             enableNewMenu = prop.getBoolean(true);
+            propOrder.add(prop.getName());
+            
+            prop = config.get(Constants.CONFIG_CATEGORY_CLIENT, "enableModernGUI", true);
+            prop.setComment("Enable/Disable modern GUI elements.");
+            prop.setLanguageKey("gc.configgui.enableModernGUI").setRequiresMcRestart(false);
+            enableModernGUI = prop.getBoolean(true);
             propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_CLIENT, "enableMethaneParticle", true);

@@ -9,21 +9,18 @@ import org.lwjgl.opengl.GL11;
 
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.GSItems;
+import galaxyspace.core.client.gui.tile.GuiTileBase;
 import galaxyspace.core.network.packet.GSPacketSimple;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
-import galaxyspace.core.prefab.inventory.SlotUpgrades;
-import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerGravitationModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitationModule;
 import micdoodle8.mods.galacticraft.api.vector.BlockVec3;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.client.gui.container.GuiContainerGC;
 import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementCheckbox;
 import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementCheckbox.ICheckBoxCallback;
 import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementInfoRegion;
 import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementTextBox;
 import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementTextBox.ITextBoxCallback;
-import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
 import micdoodle8.mods.galacticraft.core.util.ColorUtil;
@@ -32,13 +29,15 @@ import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class GuiGravitationModule extends GuiContainerGC implements ITextBoxCallback, ICheckBoxCallback
+public class GuiGravitationModule extends GuiTileBase implements ITextBoxCallback, ICheckBoxCallback
 {
     private static final ResourceLocation electricFurnaceTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/base_gui.png");
     private GuiElementInfoRegion electricInfoRegion = new GuiElementInfoRegion(0, 0, 56, 9, null, 0, 0, this);
@@ -58,11 +57,11 @@ public class GuiGravitationModule extends GuiContainerGC implements ITextBoxCall
     
     public GuiGravitationModule(InventoryPlayer par1InventoryPlayer, TileEntityGravitationModule tileEntity)
     {
-        super(new ContainerGravitationModule(par1InventoryPlayer, tileEntity));
+        super(new ContainerGravitationModule(par1InventoryPlayer, tileEntity), 2, 1);
         this.tileEntity = tileEntity;
-        this.xSize = 190;
         this.ySize = 204;
-        
+        moduleInfoX = this.inventorySlots.getSlotFromInventory(tileEntity, 1).xPos;
+		moduleInfoY = this.inventorySlots.getSlotFromInventory(tileEntity, 1).yPos;
         radius = tileEntity.getGravityRadius();
     }
 
@@ -70,22 +69,7 @@ public class GuiGravitationModule extends GuiContainerGC implements ITextBoxCall
     public void initGui()
     {
         super.initGui();
-        this.electricInfoRegion.tooltipStrings = new ArrayList<String>();
-        this.electricInfoRegion.xPosition = (this.width - this.xSize) / 2 + 17;
-        this.electricInfoRegion.yPosition = (this.height - this.ySize) / 2 + 102;
-        this.electricInfoRegion.parentWidth = this.width;
-        this.electricInfoRegion.parentHeight = this.height;
-        this.infoRegions.add(this.electricInfoRegion);
-        List<String> desc = new ArrayList<String>();
-        desc.add(GCCoreUtil.translate("gui.battery_slot.desc.0"));
-        desc.add(GCCoreUtil.translate("gui.battery_slot.desc.1"));
-        this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 76, (this.height - this.ySize) / 2 + 98, 18, 18, desc, this.width, this.height, this));
-   /*
-        desc = new ArrayList<String>();
-        desc.add(GCCoreUtil.translate("gui.gravitation_module_stabilisation_1.desc"));
-        desc.add(GCCoreUtil.translate("gui.gravitation_module_stabilisation_2.desc"));
-        this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2, (this.height - this.ySize) / 2 + 12, 10, 10, desc, this.width, this.height, this));
-   */
+
         this.buttonList.clear();
         final int var5 = (this.width - this.xSize) / 2;
         final int var6 = (this.height - this.ySize) / 2;
@@ -98,15 +82,7 @@ public class GuiGravitationModule extends GuiContainerGC implements ITextBoxCall
         
         this.strengthField = new GuiElementTextBox(FIELD_STRENGTH, this, var5 + 110, var6 + 41, 38, 18, "0", true, 2, true);
         this.addInputField(this.strengthField);
-        
-        desc = new ArrayList<String>();
-        desc.add(EnumColor.BRIGHT_GREEN + GCCoreUtil.translate("gui.available_modules.desc"));
-        desc.add("");
-        desc.add("- " + new ItemStack(GSItems.UPGRADES, 1, 0).getDisplayName());
-        desc.add("- " + new ItemStack(GSItems.UPGRADES, 1, 1).getDisplayName());
-        desc.add("- " + new ItemStack(GSItems.UPGRADES, 1, 3).getDisplayName());
-        this.infoRegions.add(new GuiElementInfoRegion((this.width + this.xSize) / 2 - 14, (this.height - this.ySize) / 2 + 16, 18, 21 * 4, desc, this.width, this.height, this));
-     
+
     }
 
     /**
@@ -116,8 +92,11 @@ public class GuiGravitationModule extends GuiContainerGC implements ITextBoxCall
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-    	this.fontRenderer.drawString(EnumColor.WHITE + this.tileEntity.getName(), 86 - (this.fontRenderer.getStringWidth(this.tileEntity.getName()) / 2), 1, 4210752);
-    	this.fontRenderer.drawString(EnumColor.WHITE + GCCoreUtil.translate("gui.gravity.radius.name"), 11, 46, 4210752);
+    	super.drawGuiContainerForegroundLayer(par1, par2);
+    	TextFormatting color = getStyle() == Style.MODERN ? TextFormatting.WHITE : TextFormatting.DARK_GRAY;
+        
+    	this.checkboxRenderEffects.displayString = color + GCCoreUtil.translate("gui.message.effect_visible.name");
+    	this.fontRenderer.drawString(color + GCCoreUtil.translate("gui.gravity.radius.name"), 11, 46, 4210752);
         
         String displayText = "";
 
@@ -140,12 +119,11 @@ public class GuiGravitationModule extends GuiContainerGC implements ITextBoxCall
         }
 
 
-        this.fontRenderer.drawString(EnumColor.WHITE + GCCoreUtil.translate("gui.message.status.name") + ": " + displayText, 100, 104, 4210752);
-        this.fontRenderer.drawString(EnumColor.WHITE + GCCoreUtil.translate("container.inventory"), 13, this.ySize - 88, 4210752);
-   
+        this.fontRenderer.drawString(color + GCCoreUtil.translate("gui.message.status.name") + ": " + displayText, 100, 104, 4210752);
+    
         for(int i = 0; i < 4; i++)
         	if(this.tileEntity.getStackInSlot(i+1).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 1))) {
-        		this.fontRenderer.drawString(EnumColor.BRIGHT_GREEN + GCCoreUtil.translate("gui.message.active_pressure_shield.name"), 3, 24, 4210752);
+        		this.fontRenderer.drawSplitString(EnumColor.BRIGHT_GREEN + GCCoreUtil.translate("gui.message.active_pressure_shield.name"), 10, 20, 160, 4210752);
         		break;
         	}
        
@@ -153,81 +131,20 @@ public class GuiGravitationModule extends GuiContainerGC implements ITextBoxCall
        // this.fontRenderer.drawString(EnumColor.BRIGHT_GREEN + "" + tileEntity.getGravityRadius() , 30, 5, 0xFFFFFF);
     }
 
-    /**
-     * Draw the background layer for the GuiContainer (everything behind the
-     * items)
-     */
     @Override
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
     {
-        this.mc.renderEngine.bindTexture(GuiGravitationModule.electricFurnaceTexture);
+    	super.drawGuiContainerBackgroundLayer(par1, par2, par3);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
         int containerWidth = (this.width - this.xSize) / 2;
         int containerHeight = (this.height - this.ySize) / 2;
-        this.drawTexturedModalRect(containerWidth, containerHeight, 0, 0, this.xSize, this.ySize);
-        int scale;
 
-        List<String> electricityDesc = new ArrayList<String>();
-        electricityDesc.add(GCCoreUtil.translate("gui.energy_storage.desc.0"));
-        EnergyDisplayHelper.getEnergyDisplayTooltip(this.tileEntity.getEnergyStoredGC(), this.tileEntity.getMaxEnergyStoredGC(), electricityDesc);
-        this.electricInfoRegion.tooltipStrings = electricityDesc;
-/*
-        if (this.tileEntity.processTicks > 0)
-        {
-            scale = (int) ((double) this.tileEntity.processTicks / (double) this.tileEntity.processTimeRequired * 54);
-            this.drawTexturedModalRect(containerWidth + 59, containerHeight + 21, 176, 38, 69 - scale, 31);
-        }
-*/
-        //Info
-        //this.drawTexturedModalRect(containerWidth, containerHeight + 12, 215, 7, 10, 10);  
         //Energy
-        this.drawTexturedModalRect(containerWidth + 16, containerHeight + 102, 192, 47, 56, 9);
-        this.drawTexturedModalRect(containerWidth + 4, containerHeight + 102, 192, 56, 11, 10);
-        if (this.tileEntity.getEnergyStoredGC() > 0)
-        {
-            scale = this.tileEntity.getScaledElecticalLevel(55);
-            this.drawTexturedModalRect(containerWidth + 116 - 99, containerHeight + 103, 192, 0, scale, 7);
-            this.drawTexturedModalRect(containerWidth + 3, containerHeight + 102, 192, 7, 11, 10);           
-        }
+        this.renderEnergyBar(containerWidth + 4, containerHeight + 102, this.tileEntity.getScaledElecticalLevel(55), this.tileEntity.getEnergyStoredGC(), this.tileEntity.getMaxEnergyStoredGC());
 
         this.checkboxRenderEffects.isSelected = this.tileEntity.shouldRenderEffects;
-        
-        // Slots
-        for(int i = 0; i < this.inventorySlots.inventorySlots.size(); i++)
-        {
-	        int x = this.inventorySlots.getSlot(i).xPos;
-	        int y = this.inventorySlots.getSlot(i).yPos;
-	        
-	       /* if(!(this.inventorySlots.getSlot(i).inventory instanceof InventoryPlayer))
-	        {*/
-		        
-		        GL11.glPushMatrix();
-		        switch(i)
-		        {
-		        	case 0:
-		        	{
-		        		this.drawTexturedModalRect(containerWidth + x - 2, containerHeight + y - 2, 213, 26, 20, 21);	        		 
-		        		break;
-		        	}
-		        	default: 
-		        	{
-		        		this.drawTexturedModalRect(containerWidth + x - 2, containerHeight + y - 2, 192, 26, 20, 21);
-		        		break;
-		        	}	        	
-		        }
-		        
-		        if(this.inventorySlots.getSlot(i) instanceof SlotUpgrades)
-		        {
-	        		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-	        		this.drawTexturedModalRect(containerWidth + x - 2, containerHeight + y - 2, 213, 175, 20, 20);
-	        	}
-		        
-		        GL11.glPopMatrix();
-	        //}
-        }
-        
-        if(GalaxySpace.debug) GSUtils.renderDebugGui(this, containerWidth, containerHeight);
+                       
      }
 
 	@Override
@@ -345,5 +262,20 @@ public class GuiGravitationModule extends GuiContainerGC implements ITextBoxCall
 	@Override
 	public void onIntruderInteraction(GuiElementTextBox textBox) {
 		
+	}
+
+	@Override
+	protected boolean isModuleSupport() {
+		return true;
+	}
+
+	@Override
+	protected String getName() {
+		return tileEntity.getName();
+	}
+
+	@Override
+	protected Slot getBatterySlot() {
+		return inventorySlots.getSlotFromInventory(tileEntity, 0);
 	}
 }

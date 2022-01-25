@@ -2,34 +2,41 @@ package galaxyspace.systems.SolarSystem.planets.overworld.inventory;
 
 import galaxyspace.core.prefab.inventory.SlotUpgrades;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemUpgrades;
-import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitationModule;
+import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGasCollector;
+import micdoodle8.mods.galacticraft.api.item.IItemElectric;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.inventory.SlotSpecific;
+import micdoodle8.mods.galacticraft.core.items.ItemOilCanister;
+import micdoodle8.mods.galacticraft.planets.asteroids.items.ItemAtmosphericValve;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContainerGravitationModule extends Container
+public class ContainerGasCollector extends Container
 {
-    private TileEntityGravitationModule tileEntity;
+    private TileEntityGasCollector tileEntity;
 
-    public ContainerGravitationModule(InventoryPlayer par1InventoryPlayer, TileEntityGravitationModule tileEntity)
+    public ContainerGasCollector(InventoryPlayer par1InventoryPlayer, TileEntityGasCollector tileEntity)
     {
         this.tileEntity = tileEntity;
-        //this.addSlotToContainer(new SlotSpecific(tileEntity, 0, 7, 7, new ItemStack(GCItems.bucketFuel)));
-        //this.addSlotToContainer(new Slot(tileEntity, 1, 7, 7));
-        int var3;
 
-         
         // Battery Slot
-        this.addSlotToContainer(new SlotSpecific(tileEntity, 0, 78, 99, ItemElectricBase.class));
-        //this.addSlotToContainer(new SlotSpecific(tileEntity, 1, 7, 20, new ItemStack(GSItems.UPGRADES, 1, 1)));
-        
+        this.addSlotToContainer(new SlotSpecific(tileEntity, 0, 79, 101, ItemElectricBase.class));
+        this.addSlotToContainer(new SlotSpecific(tileEntity, 1, 80, 63, ItemOilCanister.class));
+        this.addSlotToContainer(new SlotSpecific(tileEntity, 2, 6, 18, ItemAtmosphericValve.class));
+       
+       // this.addSlotToContainer(new SlotSpecific(tileEntity, 2, 10, 40, new ItemStack(GSItems.BASIC, 1, 11)));
+       
+        // Smelting result
+        //this.addSlotToContainer(new SlotFurnace(par1InventoryPlayer.player, tileEntity, 1, 15, 36));
+
+
+        int var3;
         for(var3 = 0; var3 < 4; ++var3)        
-        	this.addSlotToContainer(new SlotUpgrades(tileEntity, 1 + var3, 178, 18 + (21 * var3), 1, ItemUpgrades.class));
+        	this.addSlotToContainer(new SlotUpgrades(tileEntity, 3 + var3, 177, 18 + (21 * var3), 1, ItemUpgrades.class));
        
         
         for (var3 = 0; var3 < 3; ++var3)
@@ -44,6 +51,7 @@ public class ContainerGravitationModule extends Container
         {
             this.addSlotToContainer(new Slot(par1InventoryPlayer, var3, 8 + var3 * 18, 195));
         }
+
     }
 
     @Override
@@ -73,38 +81,52 @@ public class ContainerGravitationModule extends Container
             ItemStack var4 = var3.getStack();
             var2 = var4.copy();
 
-            if (par1 != 0)
+            if (par1 <= 3)
             {
-                if (var4.getItem() == GCItems.bucketFuel)
-                {
-                    if (!this.mergeItemStack(var4, 0, 1, false))
-                    {
-                        return ItemStack.EMPTY;
-                    }
-                }
-                if (var4.getItem() == GCItems.fuelCanister && var4.getItemDamage() != 1001)
-                {
-                    if (!this.mergeItemStack(var4, 0, 1, false))
-                    {
-                        return ItemStack.EMPTY;
-                    }
-                }
-                else if (par1 >= 28)
-                {
-                    if (!this.mergeItemStack(var4, 1, 28, false))
-                    {
-                        return ItemStack.EMPTY;
-                    }
-                }
-                else if (!this.mergeItemStack(var4, 28, 37, false))
+                if (!this.mergeItemStack(var4, 3, 35, false))
                 {
                     return ItemStack.EMPTY;
                 }
 
+                if (par1 == 1)
+                {
+                	var3.onSlotChange(var4, var2);
+                }
             }
-            else if (!this.mergeItemStack(var4, 1, 37, false))
+            else
             {
-                return ItemStack.EMPTY;
+                if (var4.getItem() instanceof IItemElectric)
+                {
+                    if (!this.mergeItemStack(var4, 0, 1, false))
+                    {
+                        return ItemStack.EMPTY;
+                    }
+                }
+                /*else if (var4.getItem() == Item.getItemFromBlock(GCBlocks.blockMoon) && var4.getItemDamage() == 5)
+                {
+                    if (!this.mergeItemStack(var4, 1, 2, false))
+                    {
+                        return ItemStack.EMPTY;
+                    }
+                }*/
+                else if (var4.getItem() == GCItems.oilCanister && var4.getItemDamage() == GCItems.oilCanister.getMaxDamage())
+                {
+                    if (!this.mergeItemStack(var4, 2, 3, false))
+                    {
+                        return ItemStack.EMPTY;
+                    }
+                }/*
+                else if (par1 < 38)
+                {
+                    if (!this.mergeItemStack(var4, 0, 9, false) && !this.mergeItemStack(var4, 38, 48, false))
+                    {
+                        return null;
+                    }
+                }
+                else if (!this.mergeItemStack(var4, 0, 9, false) && !this.mergeItemStack(var4, 11, 38, false))
+                {
+                    return null;
+                }*/
             }
 
             if (var4.getCount() == 0)

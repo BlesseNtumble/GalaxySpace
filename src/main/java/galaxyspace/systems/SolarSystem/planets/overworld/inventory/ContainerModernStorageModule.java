@@ -18,22 +18,22 @@ public class ContainerModernStorageModule extends Container
     {
         this.tileEntity = batteryBox;
         // Top slot for battery output
-        this.addSlotToContainer(new SlotSpecific(batteryBox, 0, 33, 24, IItemElectric.class));
+        this.addSlotToContainer(new SlotSpecific(batteryBox, 0, 23, 24, IItemElectric.class));
         // Bottom slot for batter input
-        this.addSlotToContainer(new SlotSpecific(batteryBox, 1, 33, 48, IItemElectric.class));
+        this.addSlotToContainer(new SlotSpecific(batteryBox, 1, 23, 48, IItemElectric.class));
         int var3;
 
         for (var3 = 0; var3 < 3; ++var3)
         {
             for (int var4 = 0; var4 < 9; ++var4)
             {
-                this.addSlotToContainer(new Slot(par1InventoryPlayer, var4 + var3 * 9 + 9, 8 + var4 * 18, 84 + var3 * 18));
+                this.addSlotToContainer(new Slot(par1InventoryPlayer, var4 + var3 * 9 + 9, 8 + var4 * 18, 99 + var3 * 18));
             }
         }
 
         for (var3 = 0; var3 < 9; ++var3)
         {
-            this.addSlotToContainer(new Slot(par1InventoryPlayer, var3, 8 + var3 * 18, 142));
+            this.addSlotToContainer(new Slot(par1InventoryPlayer, var3, 8 + var3 * 18, 156));
         }
 
         this.tileEntity.playersUsing.add(par1InventoryPlayer.player);

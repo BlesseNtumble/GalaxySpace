@@ -210,24 +210,24 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
 	        {			
 				if (this.hasEnoughEnergyToRun)
 				{
-					if (processTicks_0 == 0)
+					/*if (processTicks_0 == 0)
 						processTicks_0 = this.processTimeRequired;
 					if (processTicks_1 == 0)
 						processTicks_1 = this.processTimeRequired;
 					if (processTicks_2 == 0)
-						processTicks_2 = this.processTimeRequired;
+						processTicks_2 = this.processTimeRequired;*/
 
-					if (--this.processTicks_0 <= 0) {
+					if (++this.processTicks_0 >= this.processTimeRequired) {
 						this.smeltItem();
-						processTicks_0 = this.canProcess() ? this.processTimeRequired : 0;
+						processTicks_0 = 0;
 					}
-					if (--this.processTicks_1 <= 0) {
+					if (++this.processTicks_1 >= this.processTimeRequired) {
 						this.smeltItem();
-						processTicks_1 = this.canProcess() ? this.processTimeRequired : 0;
+						processTicks_1 = 0;
 					}
-					if (--this.processTicks_2 <= 0) {
+					if (++this.processTicks_2 >= this.processTimeRequired) {
 						this.smeltItem();
-						processTicks_2 = this.canProcess() ? this.processTimeRequired : 0;
+						processTicks_2 = 0;
 					}
 
 					this.waterTank.drain(1, true);
@@ -238,21 +238,21 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
 									&& this.getInventory().get(8).getItemDamage() == 4)) {
 
 						if (this.processTicks_0 % 100 == 0) {
-							this.processTicks_0 -= 2000;
+							this.processTicks_0 += 2000;
 							if (this.getInventory().get(8).getCount() > 1)
 								this.getInventory().get(8).shrink(1);
 							else
 								this.getInventory().set(8, ItemStack.EMPTY);
 						}
 						if (this.processTicks_1 % 100 == 0) {
-							this.processTicks_1 -= 2000;
+							this.processTicks_1 += 2000;
 							if (this.getInventory().get(8).getCount() > 1)
 								this.getInventory().get(8).shrink(1);
 							else
 								this.getInventory().set(8, ItemStack.EMPTY);
 						}
 						if (this.processTicks_2 % 100 == 0) {
-							this.processTicks_2 -= 2000;
+							this.processTicks_2 += 2000;
 							if (this.getInventory().get(8).getCount() > 1)
 								this.getInventory().get(8).shrink(1);
 							else
@@ -353,11 +353,11 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
 						
 						if(this.getInventory().get(i+8).isEmpty()) {
 							ItemStack stack = seed.getProduct(true).copy();
-							stack.setCount(stack.getCount() + (seed.hasRandCount[1] ? rand.nextInt(3) : 0));
+							stack.setCount(stack.getCount() + (seed.hasRandCount[1] ? rand.nextInt(2) : 0));
 							this.getInventory().set(i+8, stack);
 						}
 						else {
-							this.getInventory().get(i+8).grow(1 + (seed.hasRandCount[1] ? rand.nextInt(3) : 0));		
+							this.getInventory().get(i+8).grow(1 + (seed.hasRandCount[1] ? rand.nextInt(2) : 0));		
 						}
 					}
 						

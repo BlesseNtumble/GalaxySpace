@@ -83,7 +83,7 @@ public class TileEntityLiquidExtractor extends TileBaseElectricBlockWithInventor
         
         if (!this.world.isRemote)
         {       	
-        	int range = 0;
+        	int range = 1;
         	GSUtils.checkFluidTankTransfer(this.getInventory(), 1, this.waterTank);
         	
             if (this.canProcess())
