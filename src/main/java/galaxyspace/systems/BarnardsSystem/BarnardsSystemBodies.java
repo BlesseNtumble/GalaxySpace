@@ -150,9 +150,7 @@ public class BarnardsSystemBodies implements IBodies {
 	}
 
 	private static void registrycelestial()
-	{	
-		
-
+	{
 		BodiesData data = new BodiesData(TypeBody.STAR).setStarClass(StarClass.DWARF).setStarColor(StarColor.ORANGE);
 		BodiesRegistry.registerBodyData(BarnardsSystem.getMainStar(), data);
 	}

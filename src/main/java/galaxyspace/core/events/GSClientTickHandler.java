@@ -305,7 +305,7 @@ public class GSClientTickHandler {
 		EntityPlayerSP player = Minecraft.getMinecraft().player;
 		ItemStack stack = player.getHeldItemMainhand();
 		
-		if(stack.getItem() instanceof ItemGeologicalScanner && stack.getItemDamage() < stack.getMaxDamage() && stack.getTagCompound().getInteger("mode") == 0) {	
+		if(player != null && stack != null && stack.getItem() instanceof ItemGeologicalScanner && stack.getItemDamage() < stack.getMaxDamage() && stack.getTagCompound().getInteger("mode") == 0) {	
 			RayTraceResult ray = ItemBasicGS.getRay(player.getEntityWorld(), player, false);
     		
 			if(ray != null && ray.hitVec.distanceTo(player.getPositionVector()) < 5.0F) {

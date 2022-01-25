@@ -105,7 +105,7 @@ public class RecyclerRecipes {
 		 
 		 public boolean hasChance()
 		 {
-			 return chance_procent == 100;
+			 return chance_procent != 100;
 		 }
 		 
 		 public int getChance()
@@ -115,7 +115,7 @@ public class RecyclerRecipes {
 		 
 		 public boolean hasChance_2()
 		 {
-			 return this.chance_procent_2 == 100;
+			 return this.chance_procent_2 != 100;
 		 }
 		 
 		 public int getChance_2()

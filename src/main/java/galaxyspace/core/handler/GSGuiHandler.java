@@ -8,6 +8,7 @@ import galaxyspace.core.prefab.inventory.ContainerAstroWolf;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiAdvCircuitFabricator;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiAssembler;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiFuelGenerator;
+import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiGasCollector;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiGravitationModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiHydroponicBase;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiLiquidExtractor;
@@ -25,6 +26,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.gui.GuiWindGenerator;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerAdvCircuitFabricator;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerAssembler;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerFuelGenerator;
+import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerGasCollector;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerGravitationModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerHydroponicBase;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerLiquidExtractor;
@@ -43,6 +45,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvCircu
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAdvOxygenStorageModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAssembler;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityFuelGenerator;
+import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGasCollector;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitationModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityHydroponicBase;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityLiquidExtractor;
@@ -149,6 +152,9 @@ public class GSGuiHandler implements IGuiHandler{
         	
         	else if (tile instanceof TileEntityResearchTable)
         		return new ContainerResearchTable(player.inventory, (TileEntityResearchTable) tile);
+        	
+        	else if (tile instanceof TileEntityGasCollector)
+        		return new ContainerGasCollector(player.inventory, (TileEntityGasCollector) tile);
 
         }
        
@@ -232,7 +238,10 @@ public class GSGuiHandler implements IGuiHandler{
         		return new GuiAdvCircuitFabricator(player.inventory, (TileEntityAdvCircuitFabricator) tile);
         	
         	else if (tile instanceof TileEntityResearchTable)            
-        		return new GuiResearchTable(player.inventory, (TileEntityResearchTable) tile);        	
+        		return new GuiResearchTable(player.inventory, (TileEntityResearchTable) tile);        
+        	
+        	else if (tile instanceof TileEntityGasCollector)            
+        		return new GuiGasCollector(player.inventory, (TileEntityGasCollector) tile);        	
 
         }
         return null;

@@ -30,20 +30,44 @@ public abstract class TileEntityUpgradeMachine extends TileBaseElectricBlock {
 
 					boost_speed = energy_boost = 0;
 					
-                	for(int i = 0; i <= upgradeSlots().length - 1; i++)
-                	{
-                		if(this.getInventory().get(upgradeSlots()[i]).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 2)))
-                			boost_speed++;
-                		if(this.getInventory().get(upgradeSlots()[i]).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 3)))
-                			energy_boost++;
-                	}
-                	
-                	 this.processTicks += 1 * (1 + this.getBoost());
-                     this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 90 + (60 * this.getBoost()) - (20 * getEnergy()) : 75 + (55 * this.getBoost()) - (15 * this.getEnergy()));
-                     
+					if(upgradeSlots() != null) {
+	                	for(int i = 0; i <= upgradeSlots().length - 1; i++)
+	                	{
+	                		if(this.getInventory().get(upgradeSlots()[i]).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 2)))
+	                			boost_speed++;
+	                		if(this.getInventory().get(upgradeSlots()[i]).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 3)))
+	                			energy_boost++;
+	                	}
+	                	
+	                	 this.processTicks += 1 * (1 + this.getBoost());
+	                     this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 90 + (60 * this.getBoost()) - (20 * getEnergy()) : 75 + (55 * this.getBoost()) - (15 * this.getEnergy()));
+					}
 				}
             }
 		}
+    }
+	
+	@Override
+    public int getInventoryStackLimit()
+    {
+        return 64;
+    }
+	
+	@Override
+    public ItemStack getStackInSlot(int var1)
+    {
+        return this.getInventory().get(var1);
+    }
+	
+	@Override
+	public boolean shouldUseEnergy() {
+		return canProcess();
+	}
+	
+	@Override
+    public ItemStack getBatteryInSlot()
+    {
+        return this.getStackInSlot(0);
     }
 	
 	public int getBoost() {
