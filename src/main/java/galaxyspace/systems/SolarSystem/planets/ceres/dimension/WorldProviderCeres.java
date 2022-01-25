@@ -176,5 +176,10 @@ public class WorldProviderCeres extends WorldProviderAdvancedSpace implements IP
 		return GSDimensions.CERES;
 	}
 
+	@Override
+	protected float getThermalValueMod()
+	{
+		return 0.5F;
+	}
 	
 }

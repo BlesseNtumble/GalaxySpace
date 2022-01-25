@@ -56,8 +56,8 @@ public class GSConfigCore
     public static boolean enableAdvancedRocketCraft;
     public static boolean enableAdvancedThermalSystem;
     public static boolean enableZeroGravityOnAsteroids;
-    public static boolean enableOxygenForPlantsAndFoods;
-       
+    public static boolean enableOxygenForPlantsAndFoods;      
+    public static boolean enableSolarRadiationOnMoon;      
     //
     
     public static String spacesuit_pos = "center";
@@ -143,6 +143,12 @@ public class GSConfigCore
             prop.setComment("Enable/Disable atmosphere pressure system.");
             prop.setLanguageKey("gc.configgui.enablePressureSystem").setRequiresMcRestart(false);
             enablePressureSystem = prop.getBoolean(true);
+            propOrder.add(prop.getName());
+            
+            prop = config.get(GSConstants.HARDMODE_CATEGORY, "enableSolarRadiationOnMoon", true);
+            prop.setComment("Enable/Disable solar radiation on Moon.");
+            prop.setLanguageKey("gc.configgui.enableSolarRadiationOnMoon").setRequiresMcRestart(true);
+            enableSolarRadiationOnMoon = prop.getBoolean(true);
             propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_CLIENT, "enableNewMenu", true);
