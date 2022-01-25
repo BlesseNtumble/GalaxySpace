@@ -100,6 +100,7 @@ import micdoodle8.mods.galacticraft.core.util.ClientUtil;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.wrappers.ModelTransformWrapper;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.render.item.ItemModelCargoRocket;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelBakery;
@@ -137,6 +138,7 @@ public class ClientProxy extends CommonProxy{
 	private static ModelResourceLocation HeliumLocation = new ModelResourceLocation(GalaxySpace.TEXTURE_PREFIX + "liquid_helium", "fluid");
 	private static ModelResourceLocation HeliumHydrogenLocation = new ModelResourceLocation(GalaxySpace.TEXTURE_PREFIX + "liquid_heliumhydrogen", "fluid");
 	private static ModelResourceLocation EthaneLocation = new ModelResourceLocation(GalaxySpace.TEXTURE_PREFIX + "liquid_ethane", "fluid");
+	private static ModelResourceLocation NaturalGasLocation = new ModelResourceLocation(GalaxySpace.TEXTURE_PREFIX + "liquid_naturalgas", "fluid");
 	
 	@Override
     public void preload(FMLPreInitializationEvent event) {
@@ -391,6 +393,7 @@ public class ClientProxy extends CommonProxy{
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.SOLARWIND_PANEL);
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.ADVANCED_CIRCUIT_FABRICATOR);
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.ENERGY_PAD);
+		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.GAS_COLLECTOR);
 		
 		if(GCCoreUtil.isDeobfuscated()) 
 		{
@@ -407,8 +410,10 @@ public class ClientProxy extends CommonProxy{
 		}
 		
 		i = 0;
-		for(String ingots : ItemIngots.names)		
-			ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.INGOTS, i++, "ingots/" + ingots);
+		for(String ingots : ItemIngots.names) {		
+			ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.INGOTS, i, "ingots/" + ingots);		
+			ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.NUGGETS, i++, "nuggets/" + ingots);
+		}
 		
 		i = 0;
 		for(String hdp : ItemHeavyDutyPlates.names)		
@@ -573,52 +578,19 @@ public class ClientProxy extends CommonProxy{
     	
     	//Fluids
     	Item sludge = Item.getItemFromBlock(GSFluids.BLOCK_LEMETHANE);
-        ModelBakery.registerItemVariants(sludge, new ResourceLocation(GalaxySpace.TEXTURE_PREFIX + "liquid_ethanemethane"));
-        ModelLoader.setCustomMeshDefinition(sludge, IItemMeshDefinitionCustom.create((ItemStack stack) -> LEMethaneLocation));
-        ModelLoader.setCustomStateMapper(GSFluids.BLOCK_LEMETHANE, new StateMapperBase()
-        {
-            @Override
-            protected ModelResourceLocation getModelResourceLocation(IBlockState state)
-            {
-                return LEMethaneLocation;
-            }
-        });
+    	registerLiquid(sludge, GSFluids.BLOCK_LEMETHANE, "liquid_ethanemethane", LEMethaneLocation);
         
         sludge = Item.getItemFromBlock(GSFluids.BLOCK_HELIUM3);
-        ModelBakery.registerItemVariants(sludge, new ResourceLocation(GalaxySpace.TEXTURE_PREFIX + "liquid_helium"));
-        ModelLoader.setCustomMeshDefinition(sludge, IItemMeshDefinitionCustom.create((ItemStack stack) -> HeliumLocation));
-        ModelLoader.setCustomStateMapper(GSFluids.BLOCK_HELIUM3, new StateMapperBase()
-        {
-            @Override
-            protected ModelResourceLocation getModelResourceLocation(IBlockState state)
-            {
-                return HeliumLocation;
-            }
-        });
-        
+        registerLiquid(sludge, GSFluids.BLOCK_HELIUM3, "liquid_helium", HeliumLocation);
+
         sludge = Item.getItemFromBlock(GSFluids.BLOCK_HELIUM_HYDROGEN);
-        ModelBakery.registerItemVariants(sludge, new ResourceLocation(GalaxySpace.TEXTURE_PREFIX + "liquid_heliumhydrogen"));
-        ModelLoader.setCustomMeshDefinition(sludge, IItemMeshDefinitionCustom.create((ItemStack stack) -> HeliumHydrogenLocation));
-        ModelLoader.setCustomStateMapper(GSFluids.BLOCK_HELIUM_HYDROGEN, new StateMapperBase()
-        {
-            @Override
-            protected ModelResourceLocation getModelResourceLocation(IBlockState state)
-            {
-                return HeliumHydrogenLocation;
-            }
-        });
+        registerLiquid(sludge, GSFluids.BLOCK_HELIUM_HYDROGEN, "liquid_heliumhydrogen", HeliumHydrogenLocation);       
         
         sludge = Item.getItemFromBlock(GSFluids.BLOCK_ETHANE);
-        ModelBakery.registerItemVariants(sludge, new ResourceLocation(GalaxySpace.TEXTURE_PREFIX + "liquid_ethane"));
-        ModelLoader.setCustomMeshDefinition(sludge, IItemMeshDefinitionCustom.create((ItemStack stack) -> EthaneLocation));
-        ModelLoader.setCustomStateMapper(GSFluids.BLOCK_ETHANE, new StateMapperBase()
-        {
-            @Override
-            protected ModelResourceLocation getModelResourceLocation(IBlockState state)
-            {
-                return EthaneLocation;
-            }
-        });
+        registerLiquid(sludge, GSFluids.BLOCK_ETHANE, "liquid_ethane", EthaneLocation);
+        
+        sludge = Item.getItemFromBlock(GSFluids.BLOCK_NATURAL_GAS);
+        registerLiquid(sludge, GSFluids.BLOCK_NATURAL_GAS, "liquid_naturalgas", NaturalGasLocation);
         
         //Items
         addVariant("cobalt_sword", "tools/", "cobalt_sword");
@@ -658,6 +630,7 @@ public class ClientProxy extends CommonProxy{
         
         addVariant("gs_basic", "basic/", ItemBasicGS.getEnumNames());
         addVariant("ingots", "ingots/", ItemIngots.names);        
+        addVariant("nuggets", "nuggets/", ItemIngots.names);        
         addVariant("hdp", "hdp/", ItemHeavyDutyPlates.names);
         addVariant("compressed_plates", "compressed_plates/", ItemCompressedPlates.names);
         addVariant("rocket_modules", "rocket_modules/", ItemRocketModules.names);
@@ -730,6 +703,17 @@ public class ClientProxy extends CommonProxy{
 		}
 		ModelBakery.registerItemVariants(itemBlockVariants, variants0);        
     }
+	
+	public static void registerLiquid(Item sludge, Block liquid_block, String liquid_name, ModelResourceLocation model) {
+		ModelBakery.registerItemVariants(sludge, new ResourceLocation(GalaxySpace.TEXTURE_PREFIX + liquid_name));
+		ModelLoader.setCustomMeshDefinition(sludge,	IItemMeshDefinitionCustom.create((ItemStack stack) -> model));
+		ModelLoader.setCustomStateMapper(liquid_block, new StateMapperBase() {
+			@Override
+			protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+				return model;
+			}
+		});
+	}
 	
 	public static void registerEntityRenderers()
     {

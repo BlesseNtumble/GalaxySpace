@@ -256,8 +256,8 @@ tile.modification_table.name=Модификационный Стол
 tile.modification_table.desc=Позволяет устанавливать модули в модифицируемые вещи.
 tile.gas_burner.name=Сжигатель Газов
 tile.gas_burner.desc=Сжигает поставляемый газ трубами.
-tile.oxygen_storage_module_1.name=Кислородный Массив
-tile.oxygen_storage_module_1.desc=Улучшенная версия Хранилища Кислорода. Может хранить в 4 раза больше кислорода.
+tile.oxygen_module_storage.name=Кислородный Массив
+tile.oxygen_module_storage.desc=Улучшенная версия Хранилища Кислорода. Может хранить в 4 раза больше кислорода.
 tile.solarwind_panel.name=Солнечный Парус
 tile.solarwind_panel.desc=Преобразует солнечный ветер в энергию. Не работает на планетах с атмосферой.
 tile.advanced_landing_pad.name=Улучшенная Взлетная Площадка
@@ -302,6 +302,10 @@ item.nickel_ingot.name=Никелевый Слиток
 item.cobaltum_ingot.name=Кобальтовый Слиток
 item.magnesium_ingot.name=Магниевый Слиток
 item.uranium_ingot.name=Урановый Слиток
+
+item.nickel_nugget.name=Никелевый Самородок
+item.cobaltum_nugget.name=Кобальтовый Самородок
+item.magnesium_nugget.name=Магниевый Самородок
 
 item.compressed_nickel.name=Сжатый Никель
 item.compressed_cobaltum.name=Сжатый Кобальт
@@ -493,6 +497,7 @@ gui.not_attached.desc=Не привязан
 gui.attached.desc=Привязан к точке:
 gui.enabled.desc=Включен
 gui.message.now_noshield=Контроллер щита разрушился!
+gui.status.energy_storage_is_full.name=Хранилище энергии переполнено!
 
 gui.message.noradiation=У вас нет солнечной радиации! Это хорошо!
 gui.message.emergency_teleport=Экстренный телепорт успешно использован. Координаты точки:

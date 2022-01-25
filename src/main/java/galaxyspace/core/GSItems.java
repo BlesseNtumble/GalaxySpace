@@ -19,6 +19,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemCompressedPla
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemGSOxygenTank;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemHeavyDutyPlates;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemIngots;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemNuggets;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemRocketModules;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemRocketParts;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemSchematics;
@@ -61,7 +62,10 @@ public class GSItems {
 	
 	
 	public static Item BASIC = new ItemBasicGS();
+	
 	public static Item INGOTS = new ItemIngots();
+	public static Item NUGGETS = new ItemNuggets();
+	
 	public static Item HDP = new ItemHeavyDutyPlates();
 	public static Item COMPRESSED_PLATES = new ItemCompressedPlates();
 	public static Item ROCKET_MODULES = new ItemRocketModules();
@@ -131,6 +135,7 @@ public class GSItems {
 	{		
 		registerItem(BASIC);
 		registerItem(INGOTS);
+		registerItem(NUGGETS);
 		registerItem(HDP);		
 		registerItem(COMPRESSED_PLATES);
 		registerItem(ROCKET_MODULES);
@@ -239,6 +244,5 @@ public class GSItems {
         GalacticraftCore.itemListTrue.add(item);
         GalacticraftCore.proxy.postRegisterItem(item);
     }
-	
 	
 }

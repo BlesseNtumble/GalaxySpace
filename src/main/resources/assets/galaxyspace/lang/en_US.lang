@@ -273,8 +273,8 @@ tile.modification_table.desc=Allows you to install modules into items that suppo
 tile.gas_burner.name=Gas Burner
 tile.gas_burner.desc=Burns supplied gases.
 
-tile.oxygen_storage_module_1.name=Oxygen Storage Cluster
-tile.oxygen_storage_module_1.desc=Improved Oxygen Storage. It can store four times more oxygen.
+tile.oxygen_module_storage.name=Oxygen Storage Cluster
+tile.oxygen_module_storage.desc=Improved Oxygen Storage. It can store four times more oxygen.
 
 tile.solarwind_panel.name=Solar Wind Panel
 tile.solarwind_panel.desc=Converts solar wind into energy. Does not work on a planets with atmosphere.
@@ -356,6 +356,10 @@ item.nickel_ingot.name=Nickel Ingot
 item.cobaltum_ingot.name=Cobalt Ingot
 item.magnesium_ingot.name=Magnesium Ingot
 item.uranium_ingot.name=Uranium Ingot
+
+item.nickel_nugget.name=Nickel Nugget
+item.cobaltum_nugget.name=Cobalt Nugget
+item.magnesium_nugget.name=Magnesium Nugget
 
 item.compressed_nickel.name=Compressed Nickel
 item.compressed_cobaltum.name=Compressed Cobalt
@@ -509,6 +513,7 @@ gui.status.nowind.name=No Wind
 gui.status.wind.name=Wind
 gui.status.nowater.name=No Water
 gui.status.heat.name=Heat
+gui.status.energy_storage_is_full.name=Energy store is full!
 gui.message.active_pressure_shield.name=Atm. pressure shield is currently active.
 
 gui.message.needoxygen=Oxygen is required to perform this action.

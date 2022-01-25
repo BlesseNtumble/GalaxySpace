@@ -14,6 +14,7 @@ import galaxyspace.core.util.GSRecipeUtil;
 import galaxyspace.systems.SolarSystem.moons.miranda.blocks.MirandaBlocks;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS.BasicItems;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemIngots;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityFuelGenerator;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityHydroponicBase;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityLiquidExtractor;
@@ -213,6 +214,12 @@ public class CraftingRecipesOverworld {
 	   RecipeUtil.addRecipe(BasicItems.IRON_FAN.getItemStack(), new Object[] {"XYX", "YZY", "XYX", 'X', plateIron, 'Y', Items.REDSTONE, 'Z', new ItemStack(GCItems.basicItem, 1, 13)});
 	   RecipeUtil.addRecipe(BasicItems.STEEL_FAN.getItemStack(), new Object[] {" X ", "YZY", " W ", 'X', new ItemStack(GCItems.basicItem, 1, 14), 'Y', new ItemStack(MarsItems.marsItemBasic, 1, 3), 'Z', new ItemStack(GCItems.oxygenFan, 1, 0), 'W', Items.REDSTONE});
 	   
+	   for(int i = 0; i < ItemIngots.names.length; i++)
+	   {
+		   RecipeUtil.addRecipe(new ItemStack(GSItems.NUGGETS, 9, i), new Object[] { "X", 'X', new ItemStack(GSItems.INGOTS, 1, i)});
+		   RecipeUtil.addRecipe(new ItemStack(GSItems.INGOTS, 1, i), new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(GSItems.NUGGETS, 1, i)});
+			    
+	   }
    }
 
    private static void addBlockSmelting() {
@@ -328,7 +335,7 @@ public class CraftingRecipesOverworld {
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GCItems.oilCanister, 1, 1), BasicItems.RAW_PLASTIC.getItemStack(), BasicItems.RAW_PLASTIC.getItemStack(), 100, 10, new FluidStack(GSFluids.Ethane, 100));
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSItems.ETHANE_CANISTER, 1 ,1), BasicItems.RAW_PLASTIC.getItemStack(3), null);
 	   
-	   //RecyclerRecipes.recycling().addNewRecipe(new ItemStack(Items.COAL), new ItemStack(Items.COAL, 1, 1), new ItemStack(Items.DIAMOND), 100, 5, null);
+	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GCItems.meteoricIronRaw, 2, 0), new ItemStack(Items.IRON_INGOT, 1, 0), new ItemStack(GSItems.NUGGETS, 1, 2), 100, 30, null);
    }
       
    
