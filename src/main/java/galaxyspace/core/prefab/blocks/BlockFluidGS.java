@@ -2,15 +2,24 @@ package galaxyspace.core.prefab.blocks;
 
 import javax.annotation.Nullable;
 
+import galaxyspace.core.GSFluids;
+import galaxyspace.core.events.GSEventHandler;
+import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.MobEffects;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 
 public class BlockFluidGS extends BlockFluidClassic{
 
@@ -18,8 +27,18 @@ public class BlockFluidGS extends BlockFluidClassic{
 	
 	public BlockFluidGS(Fluid fluid, Material material, boolean isDamage) {
 		super(fluid, material);
-		this.setQuantaPerBlock(9);
+		this.setQuantaPerBlock(fluid.isGaseous() ? 0 : 9);
 		this.setUnlocalizedName("block_" + fluid.getName());
+		
+		if (this.density <= FluidRegistry.WATER.getDensity()) {
+			this.displacements.put(Blocks.WATER, false);
+			this.displacements.put(Blocks.FLOWING_WATER, false);
+		}
+		if (this.density <= FluidRegistry.LAVA.getDensity()) {
+			this.displacements.put(Blocks.LAVA, false);
+			this.displacements.put(Blocks.FLOWING_LAVA, false);
+		}
+	        
 		this.isDamaged = isDamage;
 	}
 
@@ -27,7 +46,7 @@ public class BlockFluidGS extends BlockFluidClassic{
     @Nullable
     public Boolean isEntityInsideMaterial(IBlockAccess world, BlockPos pos, IBlockState state, Entity entity, double yToTest, Material material, boolean testingHead)
     {
-        return true;
+        return !stack.getFluid().isGaseous();
     }
 	
 	@Override
@@ -55,5 +74,28 @@ public class BlockFluidGS extends BlockFluidClassic{
 	{
 		if(this.isDamaged)
 			entity.attackEntityFrom(DamageSource.GENERIC, 0.5F);
+		
+		if(stack.getFluid() == GSFluids.NaturalGas) {
+			boolean flag = false;
+			if(entity instanceof EntityLivingBase)
+			{
+				EntityLivingBase living = (EntityLivingBase) entity;
+				if(living instanceof EntityPlayerMP) {
+					if(!((EntityPlayerMP) living).capabilities.isCreativeMode) {
+						if(!living.isPotionActive(MobEffects.BLINDNESS)) 
+							living.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 20 * 5, 4));
+						
+						if(!OxygenUtil.hasValidOxygenSetup((EntityPlayerMP) living) && !GSEventHandler.isValidOxygenTanks((EntityPlayerMP) living)) {
+							if(!living.isPotionActive(MobEffects.POISON)) {
+								living.addPotionEffect(new PotionEffect(MobEffects.POISON, 20 * 5, 4));
+							}
+						}
+						else {
+							GSEventHandler.consumeOxygenFromTank((EntityPlayerMP) living, 1);
+						}
+					}
+				}
+			}
+		}
 	}
 }

@@ -55,6 +55,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityAssemble
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityEnergyPad;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityFuelGenerator;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGasBurner;
+import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGasCollector;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitationModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityHydroponicBase;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityHydroponicFarm;
@@ -109,7 +110,7 @@ public class GalaxySpace
 {
 	public static final int major_version = 2;
 	public static final int minor_version = 0;
-	public static final int build_version = 17;
+	public static final int build_version = 18;
 	
 	public static final String NAME = "GalaxySpace";
 	public static final String MODID = "galaxyspace";
@@ -288,6 +289,7 @@ public class GalaxySpace
     	GameRegistry.registerTileEntity(TileEntityAdvCircuitFabricator.class, "GS Advanced Circuit Fabricator");
     	GameRegistry.registerTileEntity(TileEntityEnergyPad.class, "GS Energy Pad");
     	GameRegistry.registerTileEntity(TileEntityResearchTable.class, "GS Research Table");
+    	GameRegistry.registerTileEntity(TileEntityGasCollector.class, "GS Gas Collector");
 /*    	
     	GameRegistry.registerTileEntity(TileEntityAdvOxygenSealer.class, "GS Oxygen Sealer");
     	GameRegistry.registerTileEntity(TileEntityAdvFuelLoader.class, "GS Fuel Loader");

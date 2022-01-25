@@ -19,23 +19,27 @@ public class GSFluids {
 	public static Fluid Helium3;
 	public static Fluid Ethane;
 	public static Fluid HeliumHydrogen;
+	public static Fluid NaturalGas;
 	
 	public static Block BLOCK_LEMETHANE;
 	public static Block BLOCK_HELIUM3;
 	public static Block BLOCK_ETHANE;
 	public static Block BLOCK_HELIUM_HYDROGEN;
+	public static Block BLOCK_NATURAL_GAS;
 	
 	public static final Material LEMethane = new MaterialLiquid(MapColor.BROWN){
+		
 		public EnumPushReaction getMobilityFlag()
 			{
 				return EnumPushReaction.DESTROY;
 			}
 	};
 	public static final Material HELIUM = new MaterialLiquid(MapColor.SNOW){
-		public EnumPushReaction getMobilityFlag()
-			{
-				return EnumPushReaction.DESTROY;
-			}
+		
+		@Override
+		public EnumPushReaction getMobilityFlag() {
+			return EnumPushReaction.DESTROY;
+		}
 	};
 	public static final Material HH = new MaterialLiquid(MapColor.PINK){
 		public EnumPushReaction getMobilityFlag()
@@ -51,6 +55,8 @@ public class GSFluids {
 		Ethane = registerFluid("ethane", -1000, 1000, 0, true, "liquid_ethane");
 		HeliumHydrogen = registerFluid("heliumhydrogen", 1200, 140, 90, false, "liquid_heliumhydrogen");
 		
+		NaturalGas = registerFluid("naturalgas", -800, 10000, 10, true, "liquid_naturalgas");
+		
 		GalacticraftCore.proxy.registerFluidTexture(LiquidEthaneMethane, new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/fluids/liquid_ethanemethane_still.png"));
 		
 		BlockFluidRegistration();		
@@ -62,11 +68,13 @@ public class GSFluids {
 		BLOCK_HELIUM3 = new BlockFluidGS(Helium3, HELIUM, false);
 		BLOCK_ETHANE = new BlockFluidGS(Ethane, HH, false);
 		BLOCK_HELIUM_HYDROGEN = new BlockFluidGS(HeliumHydrogen, HH, false);
+		BLOCK_NATURAL_GAS = new BlockFluidGS(NaturalGas, HELIUM, false);
 		
 		GSBlocks.registerBlock(BLOCK_LEMETHANE, null);
 		GSBlocks.registerBlock(BLOCK_HELIUM3, null);
 		GSBlocks.registerBlock(BLOCK_ETHANE, null);
 		GSBlocks.registerBlock(BLOCK_HELIUM_HYDROGEN, null);
+		GSBlocks.registerBlock(BLOCK_NATURAL_GAS, null);
 	}
 	
 	private static Fluid registerFluid(String fluidName, int density, int viscosity, int temperature, boolean gaseous, String fluidTexture) {
@@ -78,7 +86,8 @@ public class GSFluids {
 			ResourceLocation textureFlowing = new ResourceLocation(GalaxySpace.TEXTURE_PREFIX + "fluids/" + fluidTexture + "_flowing");
 			FluidRegistry.registerFluid(new Fluid(fluidName, textureStill, textureFlowing).setDensity(density).setViscosity(viscosity).setTemperature(temperature).setGaseous(gaseous));
 			returnFluid = FluidRegistry.getFluid(fluidName);
-			FluidRegistry.addBucketForFluid(returnFluid);
+			if(!returnFluid.isGaseous())
+				FluidRegistry.addBucketForFluid(returnFluid);
 		} else {
 			returnFluid.setGaseous(gaseous);
 		}

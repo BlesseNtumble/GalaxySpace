@@ -50,6 +50,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockAs
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockEnergyPad;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockFuelGenerator;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockGasBurner;
+import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockGasCollector;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockGravitationModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockHydroponicBase;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockHydroponicFarm;
@@ -120,6 +121,7 @@ public class GSBlocks {
 	public static final Block ADVANCED_CIRCUIT_FABRICATOR = new BlockAdvCircuitFabricator();
 	public static final Block RESEARCH_TABLE = new BlockResearchTable();
 	public static final Block ENERGY_PAD = new BlockEnergyPad();
+	public static final Block GAS_COLLECTOR = new BlockGasCollector();
 	
 	public static final Block FAKE_BLOCK = new GSBlockMulti();
 	
@@ -154,37 +156,42 @@ public class GSBlocks {
 	
 	public static final Block MIRANDA_BLOCKS = new MirandaBlocks().setHardness(3.0F);
 	public static final Block TRITON_BLOCKS = new TritonBlocks().setHardness(3.0F);
-
+	
 	public static void initialize() 
 	{				
 		registerBlock(MACHINE_FRAMES, ItemBlocksMachineFrames.class);
-		registerBlock(ASSEMBLER, GSItemBlockDesc.class);
 		registerBlock(FUEL_GENERATOR, GSItemBlockDesc.class);
 		registerBlock(WIND_GENERATOR, GSItemBlockDesc.class);
+		registerBlock(SOLARWIND_PANEL, GSItemBlockDesc.class);
 		registerBlock(MODERN_SOLAR_PANEL, GSItemBlockDesc.class);
-		registerBlock(ROCKET_ASSEMBLER, GSItemBlockDesc.class);
+
+		registerBlock(ASSEMBLER, GSItemBlockDesc.class);
 		registerBlock(UNIVERSAL_RECYCLER, GSItemBlockDesc.class);
+		registerBlock(ROCKET_ASSEMBLER, GSItemBlockDesc.class);
 		registerBlock(LIQUID_EXTRACTOR, GSItemBlockDesc.class);
 		registerBlock(LIQUID_SEPARATOR, GSItemBlockDesc.class);
+		registerBlock(GAS_COLLECTOR, GSItemBlockDesc.class);
+		registerBlock(GAS_BURNER, GSItemBlockDesc.class);
 		registerBlock(HYDROPONIC_BASE, GSItemBlockDesc.class);
 		registerBlock(HYDROPONIC_FARM, GSItemBlockDesc.class);
-		registerBlock(GRAVITATION_MODULE, GSItemBlockDesc.class);
 		registerBlock(RADIATION_STABILISER, GSItemBlockDesc.class);
+		registerBlock(MODIFICATION_TABLE, GSItemBlockDesc.class);
+
+		registerBlock(OXYGEN_STORAGE_MODULE, GSItemBlockDesc.class);
+		registerBlock(ADVANCED_CIRCUIT_FABRICATOR, GSItemBlockDesc.class);
+
 		registerBlock(PANEL_CONTROLLER, GSItemBlockDesc.class);
+		registerBlock(MODERN_STORAGE_MODULE, GSItemBlockDesc.class);
+		registerBlock(PLANET_SHIELD, GSItemBlockDesc.class);
+		
+		registerBlock(GRAVITATION_MODULE, GSItemBlockDesc.class);
+		registerBlock(ENERGY_PAD, GSItemBlockDesc.class);
 		registerBlock(SINGLE_SOLARPANEL, GSItemBlockDesc.class);
 		registerBlock(MODERN_SINGLE_SOLARPANEL, GSItemBlockDesc.class);		
-		registerBlock(MODERN_STORAGE_MODULE, GSItemBlockDesc.class);
 		registerBlock(ADVANCED_LANDING_PAD_SINGLE, GSItemBlockDesc.class);
 		registerBlock(ADVANCED_LANDING_PAD, null);
 		registerBlock(FAKE_BLOCK, null);
-		registerBlock(MODIFICATION_TABLE, GSItemBlockDesc.class);
-		registerBlock(GAS_BURNER, GSItemBlockDesc.class);
-		registerBlock(OXYGEN_STORAGE_MODULE, GSItemBlockDesc.class);
-		registerBlock(SOLARWIND_PANEL, GSItemBlockDesc.class);
-		registerBlock(ADVANCED_CIRCUIT_FABRICATOR, GSItemBlockDesc.class);
-		registerBlock(PLANET_SHIELD, GSItemBlockDesc.class);
-		registerBlock(ENERGY_PAD, GSItemBlockDesc.class);
-		//registerBlock(RESEARCH_TABLE, GSItemBlockDesc.class);
+		registerBlock(RESEARCH_TABLE, GSItemBlockDesc.class);
 		
 		registerBlock(DUNGEON_BLOCKS, ItemBlockDungeonBlocks.class);
 		registerBlock(TREASURE_CHEST_TIER_4, GSItemBlockDesc.class);		
