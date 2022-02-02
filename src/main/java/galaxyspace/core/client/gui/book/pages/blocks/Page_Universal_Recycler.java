@@ -13,7 +13,7 @@ public class Page_Universal_Recycler  extends Page_WithCraftMatrix {
 
 	@Override
 	public String titlePage() {
-		return getItem().getUnlocalizedName() + ".name";
+		return getItem().getTranslationKey() + ".name";
 	}
 	
 	@Override

@@ -36,7 +36,7 @@ public class ItemThermalPaddingBase extends Item implements IItemThermal, ISorta
         this.setMaxDamage(0);
         this.setHasSubtypes(true);
         this.setMaxStackSize(1);
-        this.setUnlocalizedName("thermal_padding_t" + tier);
+        this.setTranslationKey("thermal_padding_t" + tier);
         this.tier = tier;
         this.forFreeze = isFreeze;
     }
@@ -74,7 +74,7 @@ public class ItemThermalPaddingBase extends Item implements IItemThermal, ISorta
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack par1ItemStack)
+    public String getTranslationKey(ItemStack par1ItemStack)
     {    	
         if (names.length > par1ItemStack.getItemDamage())
         {

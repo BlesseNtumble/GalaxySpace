@@ -29,7 +29,7 @@ public class ItemJetpack extends ItemElectricArmor implements ISpecialArmor, IJe
 
 	public ItemJetpack(ArmorMaterial materialIn, EntityEquipmentSlot equipmentSlotIn) {
 		super(materialIn, equipmentSlotIn);
-		this.setUnlocalizedName("jetpack");	
+		this.setTranslationKey("jetpack");	
 	}
 	
 	@Override

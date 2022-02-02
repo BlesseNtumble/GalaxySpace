@@ -200,7 +200,7 @@ public class GSClientTickHandler {
 	        			if(chunk != null) {
 		        			double scaleX = chunk.biomemapScaleX;
 		        			double persistance = chunk.biomemapPersistence;
-		        			count = WE_PerlinNoise.PerlinNoise2D((player.getEntityWorld().getSeed() * 11) ^ 6,	player.getEntityWorld().getChunkFromBlockCoords(player.getPosition()).x / scaleX, player.getEntityWorld().getChunkFromBlockCoords(player.getPosition()).z / scaleX,
+		        			count = WE_PerlinNoise.PerlinNoise2D((player.getEntityWorld().getSeed() * 11) ^ 6,	player.getEntityWorld().getChunk(player.getPosition()).x / scaleX, player.getEntityWorld().getChunk(player.getPosition()).z / scaleX,
 		        					persistance, chunk.biomemapNumberOfOctaves)
 		        				* chunk.biomemapScaleY;
 	        			}
@@ -225,7 +225,7 @@ public class GSClientTickHandler {
         					"Biome: " + player.world.getBiomeForCoordsBody(new BlockPos((int)player.posX, (int)player.posY, (int)player.posZ)).getBiomeName(),
         					"Current Time: " + time + " | Day Length: " + (player.world.provider instanceof WorldProviderSpace ? ((WorldProviderSpace) player.world.provider).getDayLength() : player.world.provider instanceof WE_WorldProviderSpace ?  ((WE_WorldProviderSpace) player.world.provider).getDayLength() : "24000") + " | Total Time: " + player.world.getWorldTime(),
         					"Moon Phase: " + player.world.getMoonPhase(),
-        					"Chunk Pos: x" + player.getEntityWorld().getChunkFromBlockCoords(player.getPosition()).x + " z" + player.getEntityWorld().getChunkFromBlockCoords(player.getPosition()).z,
+        					"Chunk Pos: x" + player.getEntityWorld().getChunk(player.getPosition()).x + " z" + player.getEntityWorld().getChunk(player.getPosition()).z,
         					"",
         					"Is Galacticraft Provider: " + ((player.getEntityWorld().provider instanceof IGalacticraftWorldProvider) ? "Yes" : "No"),
         					"Is Advance Space Provider: " + ((player.getEntityWorld().provider instanceof IAdvancedSpace) ? "Yes" : "No"), 

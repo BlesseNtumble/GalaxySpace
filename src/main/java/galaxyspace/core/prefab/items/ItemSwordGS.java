@@ -8,7 +8,7 @@ public class ItemSwordGS extends ItemSword {
 
 	public ItemSwordGS(String assetName, ToolMaterial material) {
 		super(material);
-		this.setUnlocalizedName(assetName);
+		this.setTranslationKey(assetName);
 	}
 
 	@Override

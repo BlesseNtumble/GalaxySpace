@@ -36,7 +36,7 @@ public class TritonBlocks  extends Block implements ISortableBlock, IEnergyGeyse
 	public TritonBlocks()
 	{
 		super(Material.ROCK);
-		this.setUnlocalizedName("tritonblocks");
+		this.setTranslationKey("tritonblocks");
         this.setSoundType(SoundType.STONE); 
         this.setHarvestLevel("pickaxe", 2);	
         this.setTickRandomly(false);

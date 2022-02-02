@@ -154,7 +154,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
 		this.setMaxDamage(0);
 		this.setHasSubtypes(true);
 		this.setMaxStackSize(64);
-		this.setUnlocalizedName("gs_basic");
+		this.setTranslationKey("gs_basic");
 		this.setCreativeTab(GSCreativeTabs.GSItemsTab);
 	}
 	
@@ -256,7 +256,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
 	}
 
     @Override
-    public String getUnlocalizedName(ItemStack stack)
+    public String getTranslationKey(ItemStack stack)
     {
     	if(stack.getItemDamage() == BasicItems.THERMAL_CLOTH_T3.getMeta() || stack.getItemDamage() == BasicItems.THERMAL_CLOTH_T4.getMeta()) return "item.thermal_cloth";
     	
@@ -586,7 +586,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
 		float f6 = f3 * f4;
 		float f7 = f2 * f4;
 		double d3 = player.getEntityAttribute(EntityPlayer.REACH_DISTANCE).getAttributeValue() + 10;
-		Vec3d vec3d1 = vec3d.addVector((double) f6 * d3, (double) f5 * d3, (double) f7 * d3);
+		Vec3d vec3d1 = vec3d.add((double) f6 * d3, (double) f5 * d3, (double) f7 * d3);
 		return world.rayTraceBlocks(vec3d, vec3d1, useLiquids, !useLiquids, false);
 	}
 }

@@ -38,7 +38,7 @@ public class BlockAdvancedLandingPadFull extends BlockAdvancedTile implements IP
         this.setHardness(1.0F);
         this.setResistance(10.0F);
         this.setSoundType(SoundType.METAL);
-        this.setUnlocalizedName("advanced_landing_pad_full");
+        this.setTranslationKey("advanced_landing_pad_full");
     }
     
     @Override

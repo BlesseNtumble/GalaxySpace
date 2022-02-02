@@ -55,7 +55,7 @@ public class RecyclerRecipes {
 
 	 public class RecycleRecipe
 	 {
-		 private ItemStack input, output, output_2;
+		 private ItemStack input = ItemStack.EMPTY, output = ItemStack.EMPTY, output_2 = ItemStack.EMPTY;
 		 private FluidStack fluid;
 		 private int chance_procent = 100;
 		 private int chance_procent_2 = 100;

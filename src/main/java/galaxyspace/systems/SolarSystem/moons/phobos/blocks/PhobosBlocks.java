@@ -34,7 +34,7 @@ public class PhobosBlocks extends Block implements ITerraformableBlock, IDetecta
 	public PhobosBlocks()
     {
         super(Material.ROCK);
-        this.setUnlocalizedName("phobosblocks");
+        this.setTranslationKey("phobosblocks");
         this.setSoundType(SoundType.STONE); 
         this.setHardness(1.0F);
         this.setHarvestLevel("shovel", 1, this.getDefaultState().withProperty(BASIC_TYPE, EnumPhobosBlocks.PHOBOS_REGOLITE));

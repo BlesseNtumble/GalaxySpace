@@ -37,7 +37,7 @@ public class ItemRocketModules extends Item implements ISortableItem {
 		this.setMaxDamage(0);
 		this.setHasSubtypes(true);
 		this.setMaxStackSize(64);
-		this.setUnlocalizedName("rocket_modules");
+		this.setTranslationKey("rocket_modules");
 		this.setCreativeTab(GSCreativeTabs.GSItemsTab);
 		
 	}
@@ -63,7 +63,7 @@ public class ItemRocketModules extends Item implements ISortableItem {
     }
 	
 	@Override
-	public String getUnlocalizedName(ItemStack par1ItemStack) {
+	public String getTranslationKey(ItemStack par1ItemStack) {
 		return "item." + this.names[par1ItemStack.getItemDamage()];
 	}
 

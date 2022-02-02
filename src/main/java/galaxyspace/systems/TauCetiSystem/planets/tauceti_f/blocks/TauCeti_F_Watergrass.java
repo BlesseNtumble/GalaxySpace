@@ -48,7 +48,7 @@ public class TauCeti_F_Watergrass extends BlockBush implements IGrowable, IShear
 	public TauCeti_F_Watergrass()
 	{
 		super(Material.WATER);
-		this.setUnlocalizedName("tauceti_f_watergrass");
+		this.setTranslationKey("tauceti_f_watergrass");
 		this.setTickRandomly(true);
 		this.setHardness(0.0F);
 		this.setSoundType(SoundType.PLANT);
@@ -69,7 +69,7 @@ public class TauCeti_F_Watergrass extends BlockBush implements IGrowable, IShear
     }
 	
 	@Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+    public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity)
     {
 		/*if(getType(state) == EnumBlockDandelions.DESERT_DOWN)
 		{
@@ -98,7 +98,7 @@ public class TauCeti_F_Watergrass extends BlockBush implements IGrowable, IShear
 		EnumBlockDandelions type = ((EnumBlockDandelions) state.getValue(BASIC_TYPE));
 		switch(type)
 		{
-			default: return this.blockMaterial;
+			default: return this.material;
 		}      
     }
 	
@@ -421,7 +421,7 @@ public class TauCeti_F_Watergrass extends BlockBush implements IGrowable, IShear
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 	

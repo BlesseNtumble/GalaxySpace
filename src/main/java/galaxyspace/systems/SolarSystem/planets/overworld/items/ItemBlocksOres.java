@@ -20,7 +20,7 @@ public class ItemBlocksOres extends GSItemBlockDesc
     }
     
     @Override
-    public String getUnlocalizedName(ItemStack is) {
+    public String getTranslationKey(ItemStack is) {
     	return "tile." + BlockOres.EnumBlockOres.byMetadata(is.getItemDamage()).getName();        
     }  
 

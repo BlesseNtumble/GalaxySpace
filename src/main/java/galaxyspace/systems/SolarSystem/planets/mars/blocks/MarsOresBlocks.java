@@ -31,7 +31,7 @@ public class MarsOresBlocks extends Block implements ISortableBlock{
 	public MarsOresBlocks()
     {
         super(Material.ROCK);
-        this.setUnlocalizedName("marsores");
+        this.setTranslationKey("marsores");
         this.setSoundType(SoundType.STONE); 
         this.setHarvestLevel("pickaxe", 2);
     }

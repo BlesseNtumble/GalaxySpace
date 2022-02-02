@@ -13,7 +13,7 @@ public class Page_Controller_Minipanels extends Page_WithCraftMatrix {
 
 	@Override
 	public String titlePage() {
-		return getItem().getUnlocalizedName() + ".name";
+		return getItem().getTranslationKey() + ".name";
 	}
 	
 	@Override

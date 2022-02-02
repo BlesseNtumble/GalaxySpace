@@ -34,7 +34,7 @@ public class BlockEnergyPad extends BlockAdvancedTile implements IShiftDescripti
 	public BlockEnergyPad()
     {
         super(GCBlocks.machine);
-        this.setUnlocalizedName("energy_pad");
+        this.setTranslationKey("energy_pad");
         this.setHardness(1.0F);
         this.setSoundType(SoundType.METAL);       
     }
@@ -76,7 +76,7 @@ public class BlockEnergyPad extends BlockAdvancedTile implements IShiftDescripti
     }
 
 	@Override
-	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+	public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity)
     {
 		if(world.isRemote)
 		{
@@ -118,7 +118,7 @@ public class BlockEnergyPad extends BlockAdvancedTile implements IShiftDescripti
     @Override
     public String getShiftDescription(int meta)
     {
-        return GCCoreUtil.translate(this.getUnlocalizedName() + ".desc");
+        return GCCoreUtil.translate(this.getTranslationKey() + ".desc");
     }
 
 	@Override

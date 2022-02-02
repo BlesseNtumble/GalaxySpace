@@ -32,7 +32,7 @@ public class EnceladusBlocks extends Block implements IDetectableResource, ISort
 	public EnceladusBlocks()
     {
         super(Material.ROCK);
-        this.setUnlocalizedName("enceladusblocks");
+        this.setTranslationKey("enceladusblocks");
         this.setSoundType(SoundType.STONE); 
         this.setHarvestLevel("shovel", 1, this.getDefaultState().withProperty(BASIC_TYPE, EnumEnceladusBlocks.ENCELADUS_SNOW));
         this.setHarvestLevel("pickaxe", 2, this.getDefaultState().withProperty(BASIC_TYPE, EnumEnceladusBlocks.ENCELADUS_GRUNT));

@@ -31,18 +31,16 @@ public class ItemGeologicalScanner extends ItemElectricBase implements ISortable
 	public ItemGeologicalScanner()
 	{
 		super();
-		this.setUnlocalizedName("geo_scanner");  
+		this.setTranslationKey("geo_scanner");  
 	    this.setHasSubtypes(true);
 	}
 	
 	@Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list)    
     {
-    	if (tab == GSCreativeTabs.GSItemsTab || tab == CreativeTabs.SEARCH)
-        {
-    		list.add(new ItemStack(this, 1, 0));
+    	if (tab == GSCreativeTabs.GSItemsTab || tab == CreativeTabs.SEARCH)        
     		list.add(new ItemStack(this, 1, this.getMaxDamage()));
-        }
+        
     }
 
 	@Override

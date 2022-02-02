@@ -31,7 +31,7 @@ public class BlockOres extends Block implements ISortableBlock{
 	public BlockOres()
     {
         super(Material.ROCK);
-        this.setUnlocalizedName("gsores");
+        this.setTranslationKey("gsores");
         this.setSoundType(SoundType.STONE); 
         this.setHarvestLevel("pickaxe", 2);
     }

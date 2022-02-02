@@ -52,7 +52,7 @@ public class Barnarda_C_Dandelions extends BlockBush implements IGrowable, IShea
 	public Barnarda_C_Dandelions()
 	{
 		super(Material.VINE);
-		this.setUnlocalizedName("barnarda_c_dandelions");
+		this.setTranslationKey("barnarda_c_dandelions");
 		this.setTickRandomly(true);
 		this.setSoundType(SoundType.PLANT);
 	}
@@ -71,7 +71,7 @@ public class Barnarda_C_Dandelions extends BlockBush implements IGrowable, IShea
     }
 	
 	@Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+    public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity)
     {
 		if(getType(state) == EnumBlockDandelions.DESERT_DOWN)
 		{
@@ -100,7 +100,7 @@ public class Barnarda_C_Dandelions extends BlockBush implements IGrowable, IShea
 		EnumBlockDandelions type = ((EnumBlockDandelions) state.getValue(BASIC_TYPE));
 		switch(type)
 		{
-			default: return this.blockMaterial;
+			default: return this.material;
 		}      
     }
 	
@@ -421,7 +421,7 @@ public class Barnarda_C_Dandelions extends BlockBush implements IGrowable, IShea
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 	

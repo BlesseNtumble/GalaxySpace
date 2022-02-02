@@ -48,7 +48,7 @@ public class TauCeti_F_Corals extends BlockBush implements IGrowable, IShearable
 	public TauCeti_F_Corals()
 	{
 		super(Material.WATER);
-		this.setUnlocalizedName("tauceti_f_corals");
+		this.setTranslationKey("tauceti_f_corals");
 		this.setTickRandomly(true);
 		this.setHardness(0.0F);
 		this.setSoundType(SoundType.PLANT);
@@ -69,7 +69,7 @@ public class TauCeti_F_Corals extends BlockBush implements IGrowable, IShearable
     }
 	
 	@Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+    public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity)
     {
 		/*if(getType(state) == EnumBlockDandelions.DESERT_DOWN)
 		{
@@ -98,7 +98,7 @@ public class TauCeti_F_Corals extends BlockBush implements IGrowable, IShearable
 		EnumBlockCorals type = ((EnumBlockCorals) state.getValue(BASIC_TYPE));
 		switch(type)
 		{
-			default: return this.blockMaterial;
+			default: return this.material;
 		}      
     }
 	
@@ -416,7 +416,7 @@ public class TauCeti_F_Corals extends BlockBush implements IGrowable, IShearable
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 	

@@ -17,7 +17,7 @@ public class ItemNuggets extends Item implements ISortableItem
         this.setMaxDamage(0);
         this.setHasSubtypes(true);
         this.setMaxStackSize(64);
-        this.setUnlocalizedName("nuggets");  
+        this.setTranslationKey("nuggets");  
         this.setCreativeTab(GSCreativeTabs.GSItemsTab);
     }
 
@@ -34,7 +34,7 @@ public class ItemNuggets extends Item implements ISortableItem
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack par1ItemStack)
+    public String getTranslationKey(ItemStack par1ItemStack)
     {
     	return "item." + ItemIngots.names[par1ItemStack.getItemDamage()] + "_nugget";
     }

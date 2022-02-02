@@ -23,7 +23,7 @@ public class ItemElectricBasicGS extends ItemElectricBase implements ISortableIt
 	public ItemElectricBasicGS(String name, float energy)
 	{
 		super();
-		this.setUnlocalizedName(name);
+		this.setTranslationKey(name);
 		this.setMaxStackSize(1);
 		this.setCreativeTab(GSCreativeTabs.GSItemsTab);
 	    this.energyMax = energy;

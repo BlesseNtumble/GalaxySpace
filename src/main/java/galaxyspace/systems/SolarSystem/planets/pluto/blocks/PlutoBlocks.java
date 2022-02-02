@@ -27,7 +27,7 @@ public class PlutoBlocks extends Block implements ISortableBlock{
 	public PlutoBlocks()
     {
         super(Material.ROCK);
-        this.setUnlocalizedName("plutoblocks");
+        this.setTranslationKey("plutoblocks");
         this.setSoundType(SoundType.STONE); 
         this.setHarvestLevel("pickaxe", 2);
     }

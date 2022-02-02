@@ -32,7 +32,7 @@ public class CeresBlocks extends Block implements ISortableBlock, ITerraformable
 	public CeresBlocks()
     {
         super(Material.ROCK);
-        this.setUnlocalizedName("ceresblocks");
+        this.setTranslationKey("ceresblocks");
         this.setSoundType(SoundType.STONE); 
         this.setHarvestLevel("pickaxe", 2);
     }

@@ -31,7 +31,7 @@ public class BlockModernStorageModule extends BlockTileGC implements IShiftDescr
 	
 	public BlockModernStorageModule() {
 		super(GCBlocks.machine);
-		this.setUnlocalizedName("modern_storage_module");
+		this.setTranslationKey("modern_storage_module");
 	    this.setHardness(1.0F);
 	    this.setSoundType(SoundType.METAL);       
 	}
@@ -40,7 +40,7 @@ public class BlockModernStorageModule extends BlockTileGC implements IShiftDescr
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         int angle = MathHelper.floor(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-        int change = EnumFacing.getHorizontal(angle).getOpposite().getHorizontalIndex();
+        int change = EnumFacing.byHorizontalIndex(angle).getOpposite().getHorizontalIndex();
         worldIn.setBlockState(pos, getStateFromMeta(change), 3);
     }
 	
@@ -70,7 +70,7 @@ public class BlockModernStorageModule extends BlockTileGC implements IShiftDescr
 	@Override
     public String getShiftDescription(int meta)
     {
-        return GCCoreUtil.translate(this.getUnlocalizedName() + ".desc");
+        return GCCoreUtil.translate(this.getTranslationKey() + ".desc");
     }
 
 	@Override
@@ -93,7 +93,7 @@ public class BlockModernStorageModule extends BlockTileGC implements IShiftDescr
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        EnumFacing enumfacing = EnumFacing.getHorizontal(meta % 4);
+        EnumFacing enumfacing = EnumFacing.byHorizontalIndex(meta % 4);
         return this.getDefaultState().withProperty(FACING, enumfacing);
     }
     

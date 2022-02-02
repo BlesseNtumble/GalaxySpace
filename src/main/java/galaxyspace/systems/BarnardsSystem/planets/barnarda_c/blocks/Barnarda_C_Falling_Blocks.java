@@ -31,7 +31,7 @@ public class Barnarda_C_Falling_Blocks extends BlockFalling implements ISortable
 	public Barnarda_C_Falling_Blocks()
     {
 		super();
-		this.setUnlocalizedName("barnarda_c_falling_blocks");
+		this.setTranslationKey("barnarda_c_falling_blocks");
 		this.setSoundType(SoundType.SAND);
 		this.setHardness(0.5F);
 		this.setHarvestLevel("shovel", 1);

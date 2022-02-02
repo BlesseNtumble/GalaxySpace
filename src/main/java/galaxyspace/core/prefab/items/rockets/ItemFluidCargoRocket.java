@@ -47,7 +47,7 @@ public class ItemFluidCargoRocket  extends Item implements IHoldableItem, ISorta
         this.setMaxDamage(0);
         this.setHasSubtypes(true);
         this.setMaxStackSize(1);
-        this.setUnlocalizedName(assetName);
+        this.setTranslationKey(assetName);
         //this.setTextureName("arrow");
     }
 

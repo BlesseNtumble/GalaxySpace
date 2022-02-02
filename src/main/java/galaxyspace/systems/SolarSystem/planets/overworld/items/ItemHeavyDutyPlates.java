@@ -30,7 +30,7 @@ public class ItemHeavyDutyPlates extends Item implements ISortableItem {
 		this.setMaxDamage(0);
 		this.setHasSubtypes(true);
 		this.setMaxStackSize(64);
-		this.setUnlocalizedName("hdp");
+		this.setTranslationKey("hdp");
 		this.setCreativeTab(GSCreativeTabs.GSItemsTab);
 	}
 	
@@ -61,7 +61,7 @@ public class ItemHeavyDutyPlates extends Item implements ISortableItem {
     }
 	
     @Override
-    public String getUnlocalizedName(ItemStack par1ItemStack)
+    public String getTranslationKey(ItemStack par1ItemStack)
     {
     	return "item.hdp";
     }

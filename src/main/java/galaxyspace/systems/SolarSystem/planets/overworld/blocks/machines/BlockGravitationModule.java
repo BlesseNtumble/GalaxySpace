@@ -32,7 +32,7 @@ public class BlockGravitationModule extends BlockAdvancedTile implements IShiftD
 	public BlockGravitationModule()
     {
         super(GCBlocks.machine);
-        this.setUnlocalizedName("gravitation_module");
+        this.setTranslationKey("gravitation_module");
         this.setHardness(1.0F);
         this.setSoundType(SoundType.METAL);       
     }
@@ -89,7 +89,7 @@ public class BlockGravitationModule extends BlockAdvancedTile implements IShiftD
     @Override
     public String getShiftDescription(int meta)
     {
-        return GCCoreUtil.translate(this.getUnlocalizedName() + ".desc");
+        return GCCoreUtil.translate(this.getTranslationKey() + ".desc");
     }
 
 	@Override

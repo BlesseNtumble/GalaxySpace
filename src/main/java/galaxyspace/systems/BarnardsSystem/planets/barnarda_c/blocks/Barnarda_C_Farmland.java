@@ -22,7 +22,7 @@ public class Barnarda_C_Farmland extends BlockFarmland {
 	public Barnarda_C_Farmland()
 	{
 		super();
-		this.setUnlocalizedName("barnarda_c_farmland");
+		this.setTranslationKey("barnarda_c_farmland");
         this.setSoundType(SoundType.GROUND); 
         this.setHarvestLevel("spade", 1);
         this.setHardness(0.6F);

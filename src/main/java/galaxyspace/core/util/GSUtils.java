@@ -111,7 +111,7 @@ public class GSUtils {
 		ResourceLocation spriteLocation;
 		spriteLocation = block.getRegistryName();		
 		
-		TextureAtlasSprite sprite = texMap.getAtlasSprite(spriteLocation.getResourceDomain() + ":blocks/" + spriteLocation.getResourcePath() + addpath);
+		TextureAtlasSprite sprite = texMap.getAtlasSprite(spriteLocation.getNamespace() + ":blocks/" + spriteLocation.getPath() + addpath);
 
 		return sprite != null ? sprite : missingIcon;
 	}
@@ -126,7 +126,7 @@ public class GSUtils {
 		ResourceLocation spriteLocation;
 		spriteLocation = item.getRegistryName();		
 		
-		TextureAtlasSprite sprite = texMap.getAtlasSprite(spriteLocation.getResourceDomain() + ":items/" + spriteLocation.getResourcePath() + addpath);
+		TextureAtlasSprite sprite = texMap.getAtlasSprite(spriteLocation.getNamespace() + ":items/" + spriteLocation.getPath() + addpath);
 
 		return sprite != null ? sprite : missingIcon;
 	}
@@ -363,7 +363,7 @@ public class GSUtils {
 		if (limitCount < 5) {
 			for (EnumFacing side : EnumFacing.VALUES) {
 				if (permeableFlag || canBlockPassAirOnSide(world, block, pos, side)) {
-					BlockPos sidevec = pos.add(side.getFrontOffsetX(), side.getFrontOffsetY(), side.getFrontOffsetZ());
+					BlockPos sidevec = pos.add(side.getXOffset(), side.getYOffset(), side.getZOffset());
 					if (!checked.contains(sidevec)) {
 						Block newblock = world.getBlockState(sidevec).getBlock();
 						int adjResult = testContactWithBreathableAir(world, newblock, sidevec,
@@ -412,7 +412,7 @@ public class GSUtils {
 	            return false;
 	        }
 
-	        return !block.isSideSolid(world.getBlockState(vec), world, vec, EnumFacing.getFront(side.getIndex() ^ 1));
+	        return !block.isSideSolid(world.getBlockState(vec), world, vec, EnumFacing.byIndex(side.getIndex() ^ 1));
 	    }
 	 
 	public static void start() {
@@ -465,9 +465,9 @@ public class GSUtils {
 
 	public static void addBlockJsonFiles(Block block, String addPath){
 		try{
-			File blockStates = new File(path + "/blockstates/", block.getUnlocalizedName().toLowerCase().substring(5) + ".json");
-			File modelBlock = new File(path + "/models/block/", block.getUnlocalizedName().toLowerCase().substring(5) + ".json");
-			File modelItemBlock = new File(path + "/models/item/", block.getUnlocalizedName().toLowerCase().substring(5) + ".json");
+			File blockStates = new File(path + "/blockstates/", block.getTranslationKey().toLowerCase().substring(5) + ".json");
+			File modelBlock = new File(path + "/models/block/", block.getTranslationKey().toLowerCase().substring(5) + ".json");
+			File modelItemBlock = new File(path + "/models/item/", block.getTranslationKey().toLowerCase().substring(5) + ".json");
 			
 			if (!blockStates.exists())
 				if (blockStates.createNewFile()) {
@@ -502,7 +502,7 @@ public class GSUtils {
 		+ "\n \"variants\": {"
 		+     "\n \"normal\": { "
 		+         "\"model\" : "
-		+          "\"" + GalaxySpace.MODID + ":" + block.getUnlocalizedName().toLowerCase().substring(5) + "\""
+		+          "\"" + GalaxySpace.MODID + ":" + block.getTranslationKey().toLowerCase().substring(5) + "\""
 		+         "}"
 		+     "}"
 		+ "}"
@@ -522,7 +522,7 @@ public class GSUtils {
 		+ " \"parent\": \"block/cube_all\", "
 		+     " \"textures\": { "
 		+         "\"all\" : "
-		+          "\"" + GalaxySpace.MODID + ":blocks/" + addPath + block.getUnlocalizedName().toLowerCase().substring(5) + "\""
+		+          "\"" + GalaxySpace.MODID + ":blocks/" + addPath + block.getTranslationKey().toLowerCase().substring(5) + "\""
 		+       "}"
 		+   "}"
 		);
@@ -538,7 +538,7 @@ public class GSUtils {
 			FileWriter writer = new FileWriter(file);
 			writer.write(
 			"{\n" 
-			+ "	\"parent\": \"" + GalaxySpace.MODID + ":block/" + block.getUnlocalizedName().toLowerCase().substring(5) + "\" \n"
+			+ "	\"parent\": \"" + GalaxySpace.MODID + ":block/" + block.getTranslationKey().toLowerCase().substring(5) + "\" \n"
 			+ "}"
 			);
 			writer.close();
@@ -568,12 +568,12 @@ public class GSUtils {
 	*/
 	// ***********ITEMS************
 	public static void addItemJsonFiles(Item item) {
-		addItemJsonFiles(item, "", item.getUnlocalizedName().toLowerCase().substring(5));
+		addItemJsonFiles(item, "", item.getTranslationKey().toLowerCase().substring(5));
 	}
 	
 	public static void addItemJsonFiles(Item item, String folder)
 	{
-		addItemJsonFiles(item, folder, item.getUnlocalizedName().toLowerCase().substring(5));
+		addItemJsonFiles(item, folder, item.getTranslationKey().toLowerCase().substring(5));
 	}
 	
 	public static void addItemJsonFiles(Item item, String folder, String name) {
@@ -602,7 +602,7 @@ public class GSUtils {
 			+ " \"parent\": \"item/generated\", "
 			+     " \"textures\": { "
 			+         "\"layer0\" : "
-			+          "\"" + GalaxySpace.MODID + ":items/" + folder + item.getUnlocalizedName().toLowerCase().substring(5) + "\""
+			+          "\"" + GalaxySpace.MODID + ":items/" + folder + item.getTranslationKey().toLowerCase().substring(5) + "\""
 			+       "}"
 			+   "}"
 			);					
@@ -616,7 +616,7 @@ public class GSUtils {
 	public static void addBlockMetadataJsonFiles(Block block, String[] variants, String property, String addPath) {
 		try {
 			File blockstateItemBlockMeta = new File(path + "/blockstates/",
-					block.getUnlocalizedName().toLowerCase().substring(5) + ".json");
+					block.getTranslationKey().toLowerCase().substring(5) + ".json");
 			for (int i = 0; i < variants.length; i++) {
 				File modelBlockMeta = new File(path + "/models/block/" + addPath,
 						variants[i] + ".json");

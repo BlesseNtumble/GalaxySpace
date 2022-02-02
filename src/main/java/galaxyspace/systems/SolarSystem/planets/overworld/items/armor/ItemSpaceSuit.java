@@ -59,7 +59,7 @@ public abstract class ItemSpaceSuit extends ItemElectricArmor implements ISensor
 	
 	public ItemSpaceSuit(String name, ArmorMaterial materialIn, EntityEquipmentSlot armorIndex) {
 		super(materialIn, armorIndex);
-		this.setUnlocalizedName(name + "_" + armorIndex.toString().toLowerCase());
+		this.setTranslationKey(name + "_" + armorIndex.toString().toLowerCase());
 		this.setMaxDamage(200);
 		this.setNoRepair();
 	}

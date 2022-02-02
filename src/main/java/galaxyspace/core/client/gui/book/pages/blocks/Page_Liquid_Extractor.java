@@ -13,7 +13,7 @@ public class Page_Liquid_Extractor extends Page_WithCraftMatrix {
 
 	@Override
 	public String titlePage() {
-		return getItem().getUnlocalizedName() + ".name";
+		return getItem().getTranslationKey() + ".name";
 	}
 	
 	@Override

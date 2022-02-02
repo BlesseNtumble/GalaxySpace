@@ -23,7 +23,7 @@ public class ItemIngots extends Item implements ISortableItem
         this.setMaxDamage(0);
         this.setHasSubtypes(true);
         this.setMaxStackSize(64);
-        this.setUnlocalizedName("ingots");  
+        this.setTranslationKey("ingots");  
         this.setCreativeTab(GSCreativeTabs.GSItemsTab);
     }
 
@@ -40,7 +40,7 @@ public class ItemIngots extends Item implements ISortableItem
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack par1ItemStack)
+    public String getTranslationKey(ItemStack par1ItemStack)
     {
     	return "item." + names[par1ItemStack.getItemDamage()] + "_ingot";
     }

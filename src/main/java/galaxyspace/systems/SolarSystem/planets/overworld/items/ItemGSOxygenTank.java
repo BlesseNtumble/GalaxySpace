@@ -29,7 +29,7 @@ public class ItemGSOxygenTank extends ItemOxygenTank implements IModificationIte
     	 super(tier, assetName);
     	 this.setMaxStackSize(1);
     	 this.setMaxDamage(damage);
-    	 this.setUnlocalizedName(assetName);
+    	 this.setTranslationKey(assetName);
     	 this.setCreativeTab(GSCreativeTabs.GSItemsTab);
     	 this.setNoRepair();
          this.epp = epp;

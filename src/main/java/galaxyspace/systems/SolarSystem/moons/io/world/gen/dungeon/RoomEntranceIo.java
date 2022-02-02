@@ -219,7 +219,7 @@ public class RoomEntranceIo extends SizedPieceIo
 
         if (tagCompound.hasKey("direction_exit"))
         {
-            this.exitDirection = EnumFacing.getFront(tagCompound.getInteger("direction_exit"));
+            this.exitDirection = EnumFacing.byIndex(tagCompound.getInteger("direction_exit"));
         }
         else
         {

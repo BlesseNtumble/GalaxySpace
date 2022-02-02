@@ -32,14 +32,14 @@ public class Barnarda_C_Grass extends Block implements IGrowable{
 	
 	public Barnarda_C_Grass() {
 		super(Material.GRASS);
-		this.setUnlocalizedName("barnarda_c_grasses");
+		this.setTranslationKey("barnarda_c_grasses");
 		this.setHardness(0.8F);
         this.setSoundType(SoundType.GROUND);
         this.setHarvestLevel("shovel", 0);
 	}
 
 	@Override
-	public CreativeTabs getCreativeTabToDisplayOn()
+	public CreativeTabs getCreativeTab()
     {
         return GSCreativeTabs.GSBlocksTab;
     }

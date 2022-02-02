@@ -38,7 +38,7 @@ public class TauCeti_F_Blocks  extends Block implements ISortableBlock, ITerrafo
 	public TauCeti_F_Blocks()
     {
         super(Material.ROCK);
-        this.setUnlocalizedName("tauceti_f_blocks");
+        this.setTranslationKey("tauceti_f_blocks");
         /*this.setHarvestLevel("pickaxe", 0, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockTauCetiF.STONE));
         this.setHarvestLevel("pickaxe", 0, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockTauCetiF.COBBLESTONE));
         this.setHarvestLevel("pickaxe", 0, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockTauCetiF.STONE_BRICKS));

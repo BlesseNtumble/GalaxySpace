@@ -30,9 +30,9 @@ public class Barnarda_C_Ores extends Block implements ISortableBlock{
 	public Barnarda_C_Ores()
     {
         super(Material.ROCK);
-        this.setUnlocalizedName("barnarda_c_ores");
+        this.setTranslationKey("barnarda_c_ores");
         this.setSoundType(SoundType.STONE); 
-        this.setHarvestLevel("pickaxe", 1,  this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaCOres.COAL));
+        this.setHarvestLevel("pickaxe", 0,  this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaCOres.COAL));
         this.setHarvestLevel("pickaxe", 1,  this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaCOres.IRON));
         this.setHarvestLevel("pickaxe", 1,  this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaCOres.COPPER));
         this.setHarvestLevel("pickaxe", 1,  this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaCOres.TIN));

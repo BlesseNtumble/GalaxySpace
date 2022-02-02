@@ -294,7 +294,7 @@ public class TeleportTypeKuiperBelt implements ITeleportType
 
     private void preGenChunk(World w, int chunkX, int chunkZ)
     {
-        w.getChunkFromChunkCoords(chunkX, chunkZ);
+        w.getChunk(chunkX, chunkZ);
     }
 
     @Override

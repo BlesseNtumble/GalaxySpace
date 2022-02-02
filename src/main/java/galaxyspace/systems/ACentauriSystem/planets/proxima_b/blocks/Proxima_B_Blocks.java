@@ -35,7 +35,7 @@ public class Proxima_B_Blocks extends Block implements ISortableBlock, ITerrafor
 	public Proxima_B_Blocks()
     {
         super(Material.ROCK);
-        this.setUnlocalizedName("proxima_b_blocks");
+        this.setTranslationKey("proxima_b_blocks");
         this.setSoundType(SoundType.STONE); 
         this.setHarvestLevel("pickaxe", 2);
           

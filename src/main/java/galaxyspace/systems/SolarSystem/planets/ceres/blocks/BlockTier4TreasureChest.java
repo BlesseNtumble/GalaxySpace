@@ -17,7 +17,7 @@ public class BlockTier4TreasureChest extends BlockTier1TreasureChest implements 
     }
 
     @Override
-    public CreativeTabs getCreativeTabToDisplayOn()
+    public CreativeTabs getCreativeTab()
     {
         return GSCreativeTabs.GSBlocksTab;
     }
@@ -31,7 +31,7 @@ public class BlockTier4TreasureChest extends BlockTier1TreasureChest implements 
     @Override
     public String getShiftDescription(int meta)
     {
-        return GCCoreUtil.translate(this.getUnlocalizedName() + ".desc");
+        return GCCoreUtil.translate(this.getTranslationKey() + ".desc");
     }
     
 	@Override

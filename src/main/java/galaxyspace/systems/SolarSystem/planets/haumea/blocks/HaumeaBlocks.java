@@ -29,7 +29,7 @@ public class HaumeaBlocks extends Block implements ISortableBlock{
 	public HaumeaBlocks()
     {
         super(Material.ROCK);
-        this.setUnlocalizedName("haumeablocks");
+        this.setTranslationKey("haumeablocks");
         this.setSoundType(SoundType.STONE); 
         this.setHarvestLevel("pickaxe", 2);
     }

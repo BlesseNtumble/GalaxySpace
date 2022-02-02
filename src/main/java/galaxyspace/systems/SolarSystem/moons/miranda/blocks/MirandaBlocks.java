@@ -35,7 +35,7 @@ public class MirandaBlocks extends Block implements ISortableBlock {
 	public MirandaBlocks()
     {
         super(Material.ROCK);
-        this.setUnlocalizedName("mirandablocks");
+        this.setTranslationKey("mirandablocks");
         this.setSoundType(SoundType.STONE); 
         this.setHarvestLevel("pickaxe", 2);
     }

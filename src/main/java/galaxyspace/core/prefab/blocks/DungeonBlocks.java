@@ -33,7 +33,7 @@ public class DungeonBlocks extends Block implements ISortableBlock{
 	public DungeonBlocks()
     {
         super(Material.ROCK);
-        this.setUnlocalizedName("dungeon_blocks");
+        this.setTranslationKey("dungeon_blocks");
         this.setSoundType(SoundType.STONE); 
         this.setHarvestLevel("pickaxe", 3);
     }
@@ -111,7 +111,7 @@ public class DungeonBlocks extends Block implements ISortableBlock{
 	}
 	 
 	@Override
-	public BlockRenderLayer getBlockLayer()
+	public BlockRenderLayer getRenderLayer()
 	{
 		return BlockRenderLayer.CUTOUT_MIPPED;
 	}

@@ -30,7 +30,7 @@ public class BlockFutureGlasses extends BlockGlass implements ISortableBlock {
 	public BlockFutureGlasses()
     {
         super(Material.GLASS, false);
-        this.setUnlocalizedName("futureglass");
+        this.setTranslationKey("futureglass");
         this.setSoundType(SoundType.GLASS); 
         //this.setCreativeTab(GSCreativeTabs.GSBlocksTab);
         
@@ -93,7 +93,7 @@ public class BlockFutureGlasses extends BlockGlass implements ISortableBlock {
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.TRANSLUCENT;
     }

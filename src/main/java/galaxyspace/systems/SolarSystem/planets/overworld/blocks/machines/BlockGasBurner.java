@@ -36,7 +36,7 @@ public class BlockGasBurner extends BlockAdvancedTile implements IShiftDescripti
 	public BlockGasBurner()
     {
         super(GCBlocks.machine);
-        this.setUnlocalizedName("gas_burner");
+        this.setTranslationKey("gas_burner");
         this.setHardness(1.0F);
         this.setSoundType(SoundType.METAL);
     }
@@ -84,7 +84,7 @@ public class BlockGasBurner extends BlockAdvancedTile implements IShiftDescripti
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         int angle = MathHelper.floor(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-        int change = EnumFacing.getHorizontal(angle).getOpposite().getHorizontalIndex();
+        int change = EnumFacing.byHorizontalIndex(angle).getOpposite().getHorizontalIndex();
         worldIn.setBlockState(pos, getStateFromMeta(change), 3);
     }
     
@@ -112,7 +112,7 @@ public class BlockGasBurner extends BlockAdvancedTile implements IShiftDescripti
     @Override
     public String getShiftDescription(int meta)
     {
-        return GCCoreUtil.translate(this.getUnlocalizedName() + ".desc");
+        return GCCoreUtil.translate(this.getTranslationKey() + ".desc");
     }
 
 	@Override
@@ -135,7 +135,7 @@ public class BlockGasBurner extends BlockAdvancedTile implements IShiftDescripti
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        EnumFacing enumfacing = EnumFacing.getHorizontal(meta % 4);
+        EnumFacing enumfacing = EnumFacing.byHorizontalIndex(meta % 4);
         return this.getDefaultState().withProperty(FACING, enumfacing);
     }
     

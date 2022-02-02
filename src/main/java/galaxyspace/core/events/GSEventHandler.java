@@ -12,6 +12,7 @@ import asmodeuscore.core.handler.LightningStormHandler;
 import galaxyspace.GalaxySpace;
 import galaxyspace.api.item.IJetpackArmor;
 import galaxyspace.core.GSBlocks;
+import galaxyspace.core.GSFluids;
 import galaxyspace.core.GSItems;
 import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.configs.GSConfigDimensions;
@@ -54,7 +55,6 @@ import micdoodle8.mods.galacticraft.api.prefab.entity.EntityTieredRocket;
 import micdoodle8.mods.galacticraft.api.vector.BlockVec3Dim;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
-import micdoodle8.mods.galacticraft.api.world.ITeleportType;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.entities.EntityLanderBase;
@@ -96,22 +96,16 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.play.server.SPacketRespawn;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.DimensionType;
-import net.minecraft.world.GameType;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldProvider;
-import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.config.Config.Type;
 import net.minecraftforge.common.config.ConfigManager;
@@ -315,7 +309,7 @@ public class GSEventHandler {
 					{
 						if(thermal <= -1.0F)
 						{
-							e.world.setBlockState(e.pos, block.cold_replaced);
+							//e.world.setBlockState(e.pos, block.cold_replaced);
 							e.setCanceled(true);
 						}
 						else if(thermal >= 1.5F) {
@@ -479,7 +473,7 @@ public class GSEventHandler {
 		ItemStack i = event.getItemStack();
 				
 		if(!world.isRemote && GalaxySpace.debug) 
-			GalaxySpace.instance.debug(Item.REGISTRY.getNameForObject(i.getItem()) + " | " + i.getUnlocalizedName() + " | " + Biome.getBiome(Biome.getIdForBiome(world.getBiomeForCoordsBody(event.getPos()))));
+			GalaxySpace.instance.debug(Item.REGISTRY.getNameForObject(i.getItem()) + " | " + i.getTranslationKey() + " | " + Biome.getBiome(Biome.getIdForBiome(world.getBiomeForCoordsBody(event.getPos()))));
 		
 					
 		if(!world.isRemote && GSConfigCore.enableOxygenForPlantsAndFoods && !player.capabilities.isCreativeMode)
@@ -501,63 +495,6 @@ public class GSEventHandler {
 	{
 		return !s.isEmpty() && s.getItem() instanceof ItemFood && !(s.getItem() instanceof micdoodle8.mods.galacticraft.core.items.ItemFood) && !(s.getItem() instanceof IItemSpaceFood);
 	}
-
-	private void survivalMode(EntityPlayerMP player, int dimensionID) {
-		final GCPlayerStats stats = GCPlayerStats.get(player);
-		
-		WorldServer worldOld = (WorldServer) player.world;
-		
-		try {
-			worldOld.getPlayerChunkMap().removePlayer(player);
-		} catch (Exception e) {
-		}
-		
-		worldOld.playerEntities.remove(player);
-        worldOld.updateAllPlayersSleepingFlag();
-        worldOld.loadedEntityList.remove(player);
-        worldOld.onEntityRemoved(player);
-        worldOld.getEntityTracker().untrack(player);
-        
-        if (player.addedToChunk && worldOld.getChunkProvider().chunkExists(player.chunkCoordX, player.chunkCoordZ))
-        {
-            Chunk chunkOld = worldOld.getChunkFromChunkCoords(player.chunkCoordX, player.chunkCoordZ);
-            chunkOld.removeEntity(player);
-            chunkOld.setModified(true);
-        }
-        
-        WorldServer worldNew = getStartWorld(worldOld, dimensionID);
-        int dimID = GCCoreUtil.getDimensionID(worldNew);
-        player.dimension = dimID;
-        player.connection.sendPacket(new SPacketRespawn(dimID, player.world.getDifficulty(), player.world.getWorldInfo().getTerrainType(), player.interactionManager.getGameType()));
-        worldNew.spawnEntity(player);
-        player.setWorld(worldNew);
-        player.mcServer.getPlayerList().preparePlayer(player, (WorldServer) worldOld);
-        
-        player.interactionManager.setWorld((WorldServer) player.world);
-        final ITeleportType type = GalacticraftRegistry.getTeleportTypeForDimension(player.world.provider.getClass());
-        Vector3 spawnPos = type.getPlayerSpawnLocation((WorldServer) player.world, player);
-        ChunkPos pair = player.world.getChunkFromChunkCoords(spawnPos.intX() >> 4, spawnPos.intZ() >> 4).getPos();
-        ((WorldServer) player.world).getChunkProvider().loadChunk(pair.x, pair.z);
-        player.setLocationAndAngles(spawnPos.x, spawnPos.y, spawnPos.z, player.rotationYaw, player.rotationPitch);
-        type.onSpaceDimensionChanged(player.world, player, false);
-        player.setSpawnChunk(new BlockPos(spawnPos.intX(), spawnPos.intY(), spawnPos.intZ()), true, GCCoreUtil.getDimensionID(player.world));
-        
-	}
-	
-	private WorldServer getStartWorld(WorldServer unchanged, int dimID)
-    {
-        if (ConfigManagerCore.challengeSpawnHandling)
-        {
-            WorldProvider wp = WorldUtil.getProviderForDimensionServer(dimID);
-            WorldServer worldNew = (wp == null) ? null : (WorldServer) wp.world;
-            if (worldNew != null)
-            {
-                return worldNew;
-            }
-        }
-        return unchanged;
-    }
-
 
 	@SubscribeEvent
 	public void onPortalCreated(BlockEvent.PortalSpawnEvent e)
@@ -625,10 +562,7 @@ public class GSEventHandler {
 				WorldUtil.transferEntityToDimension(player, BRConfigDimensions.dimensionIDBarnardaC, player.getServerWorld());
 				
 				gsstats.setBarnardaSurvivalMode();
-
-				if (player.capabilities.isCreativeMode)
-					player.setGameType(GameType.SURVIVAL);
-
+				
 				player.sendMessage(new TextComponentString(
 						EnumColor.BRIGHT_GREEN + "[BETA] Welcome in survival mode on Barnarda C."));
 				
@@ -642,6 +576,7 @@ public class GSEventHandler {
 			//{
 			//GalaxySpace.debug(gs_stats.getKnowledgeResearch()[0] + "");
 			//}
+			//GalaxySpace.instance.debug(GSFluids.NaturalGas.getBlock().getDefaultState().getMaterial() + "");
 			
 			if(world.rand.nextInt(50) <= 10 && !this.getProtectArmor(player) && world.provider instanceof WorldProviderTitan && world.isRaining() && world.canBlockSeeSky(player.getPosition()))
 			{
@@ -762,6 +697,35 @@ public class GSEventHandler {
 		
 	}
 	
+	
+	public static void consumeOxygenFromTank(EntityPlayerMP player, int consume_count) {
+		IInventoryGC inv = AccessInventoryGC.getGCInventoryForPlayer(player);
+		for (int i = 2; i <= 3; i++)
+			if (!inv.getStackInSlot(i).isEmpty()) {
+				ItemStack tank = inv.getStackInSlot(i);
+				if (tank.getItemDamage() != tank.getMaxDamage()) {
+					if (player.ticksExisted % 10 == 0) {
+						tank.setItemDamage(tank.getItemDamage() + consume_count);
+					}
+					break;
+				}
+			}		
+	}
+	
+	public static boolean isValidOxygenTanks(EntityPlayerMP player) {
+		boolean valid = false;
+		IInventoryGC inv = AccessInventoryGC.getGCInventoryForPlayer(player);
+		for (int i = 2; i <= 3; i++) 
+			if (!inv.getStackInSlot(i).isEmpty()) {
+				ItemStack tank = inv.getStackInSlot(i);
+				if (tank.getItemDamage() != tank.getMaxDamage()) {
+					valid = true;
+					break;
+				}
+			}
+		
+		return valid;
+	}
 	@SubscribeEvent
 	public void onThermalArmorEvent(ThermalArmorEvent event) {		
 		if (event.armorStack == ItemStack.EMPTY) {

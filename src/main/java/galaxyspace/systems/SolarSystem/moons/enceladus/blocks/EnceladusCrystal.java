@@ -31,7 +31,7 @@ public class EnceladusCrystal extends Block implements ITileEntityProvider
     public EnceladusCrystal()
     {
         super(Material.GLASS);    	
-        this.setUnlocalizedName("enceladus_crystal");
+        this.setTranslationKey("enceladus_crystal");
         this.setHardness(2.0F);
         this.setSoundType(SoundType.GLASS);
         this.setLightLevel(3.0F);
@@ -52,7 +52,7 @@ public class EnceladusCrystal extends Block implements ITileEntityProvider
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         int angle = MathHelper.floor(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-        int change = EnumFacing.getHorizontal(angle).getOpposite().getHorizontalIndex();
+        int change = EnumFacing.byHorizontalIndex(angle).getOpposite().getHorizontalIndex();
         worldIn.setBlockState(pos, getStateFromMeta(change), 3);
     }
 	
@@ -103,7 +103,7 @@ public class EnceladusCrystal extends Block implements ITileEntityProvider
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        EnumFacing enumfacing = EnumFacing.getHorizontal(meta % 4);
+        EnumFacing enumfacing = EnumFacing.byHorizontalIndex(meta % 4);
         return this.getDefaultState().withProperty(FACING, enumfacing);
     }
     

@@ -8,7 +8,7 @@ public class ItemHoeGS extends ItemHoe{
 
 	public ItemHoeGS(String assetName, ToolMaterial material) {
 		super(material);
-		this.setUnlocalizedName(assetName);
+		this.setTranslationKey(assetName);
 	}
 	
 	@Override

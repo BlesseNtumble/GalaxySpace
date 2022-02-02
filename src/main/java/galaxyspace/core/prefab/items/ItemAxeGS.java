@@ -21,7 +21,7 @@ public class ItemAxeGS extends ItemAxe implements ISortableItem{
 
 	public ItemAxeGS(String assetName, ToolMaterial material) {
 		super(material, material.getAttackDamage(), -3.0F);
-		this.setUnlocalizedName(assetName);
+		this.setTranslationKey(assetName);
 	}
 	
 	@Override

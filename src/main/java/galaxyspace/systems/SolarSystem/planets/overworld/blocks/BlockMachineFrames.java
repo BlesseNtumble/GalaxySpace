@@ -26,7 +26,7 @@ public class BlockMachineFrames extends Block implements ISortableBlock{
 	public BlockMachineFrames()
     {
         super(Material.ROCK);
-        this.setUnlocalizedName("machineframes");
+        this.setTranslationKey("machineframes");
         this.setSoundType(SoundType.STONE); 
         this.setHarvestLevel("pickaxe", 2);
     }

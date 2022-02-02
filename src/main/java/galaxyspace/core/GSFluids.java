@@ -29,21 +29,22 @@ public class GSFluids {
 	
 	public static final Material LEMethane = new MaterialLiquid(MapColor.BROWN){
 		
-		public EnumPushReaction getMobilityFlag()
-			{
-				return EnumPushReaction.DESTROY;
-			}
+		@Override
+		public EnumPushReaction getPushReaction() {
+			return EnumPushReaction.DESTROY;
+		}
 	};
 	public static final Material HELIUM = new MaterialLiquid(MapColor.SNOW){
 		
 		@Override
-		public EnumPushReaction getMobilityFlag() {
+		public EnumPushReaction getPushReaction() {
 			return EnumPushReaction.DESTROY;
 		}
 	};
 	public static final Material HH = new MaterialLiquid(MapColor.PINK){
-		public EnumPushReaction getMobilityFlag()
-		{
+		
+		@Override
+		public EnumPushReaction getPushReaction(){
 			return EnumPushReaction.DESTROY;
 		}
 	};

@@ -20,7 +20,7 @@ public class ItemBlocksEnceladus extends GSItemBlockDesc
     }
     
     @Override
-    public String getUnlocalizedName(ItemStack is) {
+    public String getTranslationKey(ItemStack is) {
     	
         int metadata = is.getItemDamage();
         return "tile." + EnceladusBlocks.EnumEnceladusBlocks.byMetadata(metadata).getName();

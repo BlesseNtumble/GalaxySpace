@@ -31,7 +31,7 @@ public class TitanBlocks extends Block implements ISortableBlock{
 	public TitanBlocks()
     {
         super(Material.ROCK);
-        this.setUnlocalizedName("titanblocks");
+        this.setTranslationKey("titanblocks");
         this.setSoundType(SoundType.STONE); 
         this.setHarvestLevel("pickaxe", 2);
     }

@@ -21,7 +21,7 @@ public class Barnarda_C_Reeds extends Block {
 	public Barnarda_C_Reeds() {
 		super(Material.WATER);
 		
-		this.setUnlocalizedName("barnarda_c_reeds");
+		this.setTranslationKey("barnarda_c_reeds");
 		setDefaultState(blockState.getBaseState().withProperty(BlockLiquid.LEVEL, 0));
 	}
 	

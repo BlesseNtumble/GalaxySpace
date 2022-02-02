@@ -15,7 +15,8 @@ public class ItemCompressedPlates extends Item implements ISortableItem {
 		"compressed_cobaltum",
 		"compressed_magnesium",
 		"compressed_nickel",
-		"compressed_sdhd120"
+		"compressed_sdhd120",
+		"compressed_lead"
 	};
 	
 	public ItemCompressedPlates()
@@ -23,7 +24,7 @@ public class ItemCompressedPlates extends Item implements ISortableItem {
 		this.setMaxDamage(0);
 		this.setHasSubtypes(true);
 		this.setMaxStackSize(64);
-		this.setUnlocalizedName("compressed_plates");
+		this.setTranslationKey("compressed_plates");
 		this.setCreativeTab(GSCreativeTabs.GSItemsTab);
 	}
 	
@@ -40,7 +41,7 @@ public class ItemCompressedPlates extends Item implements ISortableItem {
     }
 	
     @Override
-    public String getUnlocalizedName(ItemStack par1ItemStack)
+    public String getTranslationKey(ItemStack par1ItemStack)
     {
     	return "item." + this.names[par1ItemStack.getItemDamage()];
     }

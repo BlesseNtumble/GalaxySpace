@@ -31,7 +31,7 @@ public class BlockAdvCircuitFabricator extends BlockAdvancedTile implements IShi
 	public BlockAdvCircuitFabricator()
     {
         super(GCBlocks.machine);
-        this.setUnlocalizedName("adv_circuit_fabricator");
+        this.setTranslationKey("adv_circuit_fabricator");
         this.setHardness(1.0F);
         this.setSoundType(SoundType.METAL);
     }
@@ -53,7 +53,7 @@ public class BlockAdvCircuitFabricator extends BlockAdvancedTile implements IShi
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         int angle = MathHelper.floor(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-        int change = EnumFacing.getHorizontal(angle).getOpposite().getHorizontalIndex();
+        int change = EnumFacing.byHorizontalIndex(angle).getOpposite().getHorizontalIndex();
         worldIn.setBlockState(pos, getStateFromMeta(change), 3);
     }
     
@@ -81,7 +81,7 @@ public class BlockAdvCircuitFabricator extends BlockAdvancedTile implements IShi
     @Override
     public String getShiftDescription(int meta)
     {
-        return GCCoreUtil.translate(this.getUnlocalizedName() + ".desc");
+        return GCCoreUtil.translate(this.getTranslationKey() + ".desc");
     }
 
 	@Override
@@ -104,7 +104,7 @@ public class BlockAdvCircuitFabricator extends BlockAdvancedTile implements IShi
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        EnumFacing enumfacing = EnumFacing.getHorizontal(meta % 4);
+        EnumFacing enumfacing = EnumFacing.byHorizontalIndex(meta % 4);
         return this.getDefaultState().withProperty(FACING, enumfacing);
     }
     

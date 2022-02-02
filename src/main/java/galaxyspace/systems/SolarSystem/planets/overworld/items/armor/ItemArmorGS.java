@@ -17,7 +17,7 @@ public class ItemArmorGS extends ItemArmor implements ISortableItem {
 	
 	public ItemArmorGS(String assetSuffix, ArmorMaterial material, EntityEquipmentSlot equipmentSlotIn) {
 		super(material, 0, equipmentSlotIn);
-		this.setUnlocalizedName(assetSuffix);
+		this.setTranslationKey(assetSuffix);
 		this.textureName = GalaxySpace.ASSET_PREFIX + ":" + "textures/model/armor/" +( (equipmentSlotIn == EntityEquipmentSlot.HEAD || equipmentSlotIn == EntityEquipmentSlot.CHEST || equipmentSlotIn == EntityEquipmentSlot.FEET) ? material.toString().toLowerCase() + "_1.png" : material.toString().toLowerCase() + "_2.png");
 	}
 	

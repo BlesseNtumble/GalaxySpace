@@ -25,7 +25,7 @@ public class ItemTierKeysChest extends Item implements IKeyItem , ISortableItem{
     public ItemTierKeysChest()
 	{
 		super();
-		this.setUnlocalizedName("dungeon_keys");
+		this.setTranslationKey("dungeon_keys");
 	    this.setMaxStackSize(1);
 	    this.setMaxDamage(0);
 	    this.setHasSubtypes(true);
@@ -48,7 +48,7 @@ public class ItemTierKeysChest extends Item implements IKeyItem , ISortableItem{
 	}
 	
 	@Override
-    public String getUnlocalizedName(ItemStack par1ItemStack)
+    public String getTranslationKey(ItemStack par1ItemStack)
     {
          return "item.dungeon_keys";
       

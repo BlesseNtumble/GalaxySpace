@@ -235,7 +235,7 @@ public class GSItems {
 	
 	public static void registerItem(Item item)
     {
-        String name = item.getUnlocalizedName().substring(5);
+        String name = item.getTranslationKey().substring(5);
         if (item.getRegistryName() == null)
         {
             item.setRegistryName(name);

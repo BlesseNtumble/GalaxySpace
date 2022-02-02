@@ -42,7 +42,7 @@ public class ItemMarsRover extends Item implements IHoldableItem, ISortableItem
     public ItemMarsRover(String assetName)
     {
         super();
-        this.setUnlocalizedName(assetName);
+        this.setTranslationKey(assetName);
         //this.setTextureName("arrow");
         this.setMaxStackSize(1);
     }
@@ -90,7 +90,7 @@ public class ItemMarsRover extends Item implements IHoldableItem, ISortableItem
         final float var18 = var15 * var16;
         final float var20 = var14 * var16;
         final double var21 = 5.0D;
-        final Vec3d var23 = var13.addVector(var18 * var21, var17 * var21, var20 * var21);
+        final Vec3d var23 = var13.add(var18 * var21, var17 * var21, var20 * var21);
         final RayTraceResult var24 = worldIn.rayTraceBlocks(var13, var23, true);
 
         if (var24 == null)

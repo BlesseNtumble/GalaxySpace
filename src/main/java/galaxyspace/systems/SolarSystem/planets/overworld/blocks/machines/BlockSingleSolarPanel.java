@@ -22,7 +22,7 @@ public class BlockSingleSolarPanel extends Block implements IShiftDescription, I
 	public BlockSingleSolarPanel(String name, int tier)
     {
         super(Material.IRON);    	
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setHardness(2.0F);
         this.setSoundType(SoundType.METAL);
         this.tier = tier;        
@@ -72,7 +72,7 @@ public class BlockSingleSolarPanel extends Block implements IShiftDescription, I
 	
 	public String getShiftDescription(int meta)
     {
-        return GCCoreUtil.translate(this.getUnlocalizedName() + ".desc");
+        return GCCoreUtil.translate(this.getTranslationKey() + ".desc");
     }
 
 	@Override

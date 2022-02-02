@@ -30,7 +30,7 @@ public class GanymedeBlocks extends Block implements ISortableBlock{
 	public GanymedeBlocks()
     {
         super(Material.ROCK);
-        this.setUnlocalizedName("ganymedeblocks");
+        this.setTranslationKey("ganymedeblocks");
         this.setSoundType(SoundType.STONE); 
         this.setHarvestLevel("pickaxe", 2);
     }

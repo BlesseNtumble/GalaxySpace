@@ -38,7 +38,7 @@ public class Barnarda_C_Water_Grass extends BlockBush implements IPlantable{
 	public Barnarda_C_Water_Grass()
 	{
 		super(Material.VINE);
-		this.setUnlocalizedName("barnarda_c_water_grass");
+		this.setTranslationKey("barnarda_c_water_grass");
 		this.setSoundType(SoundType.PLANT);
 	}
 	
@@ -64,7 +64,7 @@ public class Barnarda_C_Water_Grass extends BlockBush implements IPlantable{
 
 	
 	@Override
-	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
+	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
     {
 		if (entityIn instanceof EntityBoat)
         {
@@ -124,7 +124,7 @@ public class Barnarda_C_Water_Grass extends BlockBush implements IPlantable{
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT_MIPPED;
 	}
 	

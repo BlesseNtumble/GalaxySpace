@@ -14,7 +14,7 @@ public class Page_Assembly_Machine extends Page_WithCraftMatrix{
 	
 	@Override
 	public String titlePage() {
-		return getItem().getUnlocalizedName() + ".name";
+		return getItem().getTranslationKey() + ".name";
 	}
 	
 	@Override

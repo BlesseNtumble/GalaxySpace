@@ -43,7 +43,7 @@ public class GSTrace {
 			Vec3d Vec3d = fromPos;
 			if (offset != null)
 			{
-				Vec3d = Vec3d.addVector(offset.x, offset.y, offset.z);
+				Vec3d = Vec3d.add(offset.x, offset.y, offset.z);
 			}
 
 			if (objectMouseOver != null)
@@ -51,7 +51,7 @@ public class GSTrace {
 				d1 = objectMouseOver.hitVec.distanceTo(Vec3d);
 			}
 
-			Vec3d Vec3d2 = Vec3d.addVector(dir.x * distance, dir.y * distance, dir.z * distance);
+			Vec3d Vec3d2 = Vec3d.add(dir.x * distance, dir.y * distance, dir.z * distance);
 			Vec3d Vec3d3 = null;
 			float f1 = 1.0F;
 			List list = world.getEntitiesWithinAABBExcludingEntity(viewer, viewer.getEntityBoundingBox().grow(dir.x * distance, dir.y * distance, dir.z * distance).expand((double)f1, (double)f1, (double)f1));
@@ -123,9 +123,9 @@ public class GSTrace {
 		Vec3d Vec3d = new Vec3d(fromPosition.x, fromPosition.y, fromPosition.z);
 		if (offset != null)
 		{
-			Vec3d = Vec3d.addVector(offset.x, offset.y, offset.z);
+			Vec3d = Vec3d.add(offset.x, offset.y, offset.z);
 		}
-		Vec3d Vec3d2 = Vec3d.addVector(dir.x * distance, dir.y * distance, dir.z * distance);
+		Vec3d Vec3d2 = Vec3d.add(dir.x * distance, dir.y * distance, dir.z * distance);
 		return world.rayTraceBlocks(Vec3d, Vec3d2, collisionCheck, onlySolid, true);
 	}
 	

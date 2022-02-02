@@ -26,7 +26,7 @@ public class BlockLiquidEthaneMethane extends BlockFluidClassic{
 		this.setQuantaPerBlock(9);
         //this.setLightLevel(0.1F);
         //this.needsRandomTick = true;
-        this.setUnlocalizedName("block_liquidethanemethane");
+        this.setTranslationKey("block_liquidethanemethane");
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class BlockLiquidEthaneMethane extends BlockFluidClassic{
     }
     
     @Override
-    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entity)
+    public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entity)
     {
     	if(entity instanceof EntityLivingBase)
     		entity.attackEntityFrom(DamageSource.GENERIC, 0.5F);

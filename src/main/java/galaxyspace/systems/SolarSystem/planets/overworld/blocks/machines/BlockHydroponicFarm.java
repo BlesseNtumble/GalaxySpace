@@ -24,7 +24,7 @@ public class BlockHydroponicFarm extends BlockAdvancedTile implements IShiftDesc
 	public BlockHydroponicFarm()
     {
         super(GCBlocks.machine);
-        this.setUnlocalizedName("hydroponic_farm");
+        this.setTranslationKey("hydroponic_farm");
         this.setHardness(1.0F);
         this.setSoundType(SoundType.METAL);
     }
@@ -61,7 +61,7 @@ public class BlockHydroponicFarm extends BlockAdvancedTile implements IShiftDesc
     @Override
     public String getShiftDescription(int meta)
     {
-        return GCCoreUtil.translate(this.getUnlocalizedName() + ".desc");
+        return GCCoreUtil.translate(this.getTranslationKey() + ".desc");
     }
 
 	@Override

@@ -19,7 +19,7 @@ public class ItemBlockDungeonBlocks extends GSItemBlockDesc
     }
     
     @Override
-    public String getUnlocalizedName(ItemStack is) {
+    public String getTranslationKey(ItemStack is) {
     	int metadata = is.getItemDamage();
     	if(metadata > DungeonBlocks.EnumDungeonBlocks.values().length) 
           	return "tile." + DungeonBlocks.EnumDungeonBlocks.byMetadata(0).getName();

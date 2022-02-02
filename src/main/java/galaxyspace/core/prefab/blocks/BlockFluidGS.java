@@ -28,7 +28,7 @@ public class BlockFluidGS extends BlockFluidClassic{
 	public BlockFluidGS(Fluid fluid, Material material, boolean isDamage) {
 		super(fluid, material);
 		this.setQuantaPerBlock(fluid.isGaseous() ? 0 : 9);
-		this.setUnlocalizedName("block_" + fluid.getName());
+		this.setTranslationKey("block_" + fluid.getName());
 		
 		if (this.density <= FluidRegistry.WATER.getDensity()) {
 			this.displacements.put(Blocks.WATER, false);
@@ -70,7 +70,7 @@ public class BlockFluidGS extends BlockFluidClassic{
     }
     
     @Override
-	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)    
+	public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity)    
 	{
 		if(this.isDamaged)
 			entity.attackEntityFrom(DamageSource.GENERIC, 0.5F);

@@ -29,7 +29,7 @@ public class MercuryBlocks extends Block implements ISortableBlock, ITerraformab
 	public MercuryBlocks()
     {
         super(Material.ROCK);
-        this.setUnlocalizedName("mercuryblocks");
+        this.setTranslationKey("mercuryblocks");
         this.setSoundType(SoundType.STONE); 
         this.setHarvestLevel("pickaxe", 2);
           

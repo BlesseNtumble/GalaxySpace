@@ -23,7 +23,7 @@ public class EuropaBlockGeyser extends Block implements IEnergyGeyser{
 
 	public EuropaBlockGeyser() {
 		super(Material.GRASS);
-		this.setUnlocalizedName("europa_geyser");
+		this.setTranslationKey("europa_geyser");
 		this.setSoundType(SoundType.GLASS);
 		this.setHardness(0.5F);
 	}

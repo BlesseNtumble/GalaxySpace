@@ -39,7 +39,7 @@ public class ItemFoodBR extends ItemFood implements ISortableItem {
 		this.setMaxDamage(0);
 		this.setHasSubtypes(true);
 		this.setMaxStackSize(64);
-		this.setUnlocalizedName("br_foods");
+		this.setTranslationKey("br_foods");
 		this.setCreativeTab(GSCreativeTabs.GSItemsTab);
 	}
 
@@ -69,7 +69,7 @@ public class ItemFoodBR extends ItemFood implements ISortableItem {
     }
     
 	@Override
-    public String getUnlocalizedName(ItemStack stack)
+    public String getTranslationKey(ItemStack stack)
     {
     	return "item." + BR_Food.byMetadata(stack.getItemDamage()).getName();
     }

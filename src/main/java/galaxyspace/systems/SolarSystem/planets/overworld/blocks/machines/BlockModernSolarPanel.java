@@ -34,7 +34,7 @@ public class BlockModernSolarPanel extends BlockAdvancedTile implements IShiftDe
 	public BlockModernSolarPanel()
     {
         super(GCBlocks.machine);
-        this.setUnlocalizedName("modern_solarpanel");
+        this.setTranslationKey("modern_solarpanel");
         this.setHardness(1.0F);
         this.setSoundType(SoundType.METAL);
     }
@@ -74,7 +74,7 @@ public class BlockModernSolarPanel extends BlockAdvancedTile implements IShiftDe
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         int angle = MathHelper.floor(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-        int change = EnumFacing.getHorizontal(angle).getOpposite().getHorizontalIndex();
+        int change = EnumFacing.byHorizontalIndex(angle).getOpposite().getHorizontalIndex();
         worldIn.setBlockState(pos, getStateFromMeta(change), 3);
         BlockMulti.onPlacement(worldIn, pos, placer, this);
     }
@@ -116,7 +116,7 @@ public class BlockModernSolarPanel extends BlockAdvancedTile implements IShiftDe
     @Override
     public String getShiftDescription(int meta)
     {
-        return GCCoreUtil.translate(this.getUnlocalizedName() + ".desc");
+        return GCCoreUtil.translate(this.getTranslationKey() + ".desc");
     }
 
 	@Override
@@ -139,7 +139,7 @@ public class BlockModernSolarPanel extends BlockAdvancedTile implements IShiftDe
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        EnumFacing enumfacing = EnumFacing.getHorizontal(meta % 4);
+        EnumFacing enumfacing = EnumFacing.byHorizontalIndex(meta % 4);
         return this.getDefaultState().withProperty(FACING, enumfacing);
     }
     

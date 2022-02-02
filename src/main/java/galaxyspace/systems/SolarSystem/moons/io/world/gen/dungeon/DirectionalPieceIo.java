@@ -48,7 +48,7 @@ public abstract class DirectionalPieceIo extends PieceIo
 
         if (nbt.hasKey("direction"))
         {
-            this.direction = EnumFacing.getFront(nbt.getInteger("direction"));
+            this.direction = EnumFacing.byIndex(nbt.getInteger("direction"));
         }
         else
         {
@@ -73,7 +73,7 @@ public abstract class DirectionalPieceIo extends PieceIo
         do
         {
             int randDir = rand.nextInt(4);
-            randomDir = EnumFacing.getHorizontal((randDir == getDirection().getOpposite().getHorizontalIndex() ? randDir + 1 : randDir) % 4);
+            randomDir = EnumFacing.byHorizontalIndex((randDir == getDirection().getOpposite().getHorizontalIndex() ? randDir + 1 : randDir) % 4);
             StructureBoundingBox extension = getExtension(randomDir, this.configuration.getHallwayLengthMin() + rand.nextInt(this.configuration.getHallwayLengthMax() - this.configuration.getHallwayLengthMin()), width);
             blockX = extension.minX;
             blockZ = extension.minZ;

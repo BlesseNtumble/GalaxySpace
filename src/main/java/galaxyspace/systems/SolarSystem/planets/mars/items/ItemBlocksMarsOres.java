@@ -20,7 +20,7 @@ public class ItemBlocksMarsOres extends GSItemBlockDesc
     }
     
     @Override
-    public String getUnlocalizedName(ItemStack is) {
+    public String getTranslationKey(ItemStack is) {
     	
         int metadata = is.getItemDamage();
 

@@ -27,7 +27,7 @@ public class CallistoBlocks extends Block implements ISortableBlock{
 	public CallistoBlocks()
     {
         super(Material.ROCK);
-        this.setUnlocalizedName("callistoblocks");
+        this.setTranslationKey("callistoblocks");
         this.setSoundType(SoundType.STONE); 
         this.setHarvestLevel("pickaxe", 2);
     }

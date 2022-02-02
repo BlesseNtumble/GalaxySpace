@@ -8,7 +8,7 @@ public class ItemSpadeGS extends ItemSpade {
 
 	public ItemSpadeGS(String assetName, ToolMaterial material) {
 		super(material);
-		this.setUnlocalizedName(assetName);
+		this.setTranslationKey(assetName);
 	}
 	
 	@Override

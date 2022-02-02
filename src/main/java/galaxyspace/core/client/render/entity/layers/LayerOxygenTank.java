@@ -72,7 +72,7 @@ public class LayerOxygenTank implements LayerRenderer<AbstractClientPlayer>{
 				if(gearData.getLeftTank() > 5) 
 				{
 					
-					String tex = getTankFromId(gearData.getLeftTank()).getUnlocalizedName().replace("item.", "");
+					String tex = getTankFromId(gearData.getLeftTank()).getTranslationKey().replace("item.", "");
 	            	FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(GalaxySpace.ASSET_PREFIX + ":" + "textures/model/" + tex +".png"));
 	            
 					GlStateManager.pushMatrix();
@@ -91,7 +91,7 @@ public class LayerOxygenTank implements LayerRenderer<AbstractClientPlayer>{
 				
 				if(gearData.getRightTank() > 5) 
 				{
-					String tex = getTankFromId(gearData.getRightTank()).getUnlocalizedName().replace("item.", "");
+					String tex = getTankFromId(gearData.getRightTank()).getTranslationKey().replace("item.", "");
 	            	FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(GalaxySpace.ASSET_PREFIX + ":" + "textures/model/" + tex +".png"));
 	            
 					

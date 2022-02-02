@@ -37,13 +37,13 @@ public class Barnarda_C_Leaves extends BlockLeaves implements ICustomLeaves{
 	
 	public Barnarda_C_Leaves() {
 		super();
-		this.setUnlocalizedName("barnarda_c_leaves");
+		this.setTranslationKey("barnarda_c_leaves");
 		this.setHardness(0.5F);
         this.setSoundType(SoundType.GROUND);
 	}
 
 	@Override
-	public CreativeTabs getCreativeTabToDisplayOn()
+	public CreativeTabs getCreativeTab()
     {
         return GSCreativeTabs.GSBlocksTab;
     }
@@ -204,7 +204,7 @@ public class Barnarda_C_Leaves extends BlockLeaves implements ICustomLeaves{
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return Minecraft.getMinecraft().gameSettings.fancyGraphics ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
 	}
 	

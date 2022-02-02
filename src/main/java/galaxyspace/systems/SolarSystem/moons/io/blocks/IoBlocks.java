@@ -47,7 +47,7 @@ public class IoBlocks extends Block implements ISortableBlock, ITerraformableBlo
 	public IoBlocks()
     {
         super(Material.ROCK);
-        this.setUnlocalizedName("ioblocks");
+        this.setTranslationKey("ioblocks");
         this.setSoundType(SoundType.STONE); 
         this.setHarvestLevel("pickaxe", 2);
         this.setTickRandomly(false);
@@ -149,7 +149,7 @@ public class IoBlocks extends Block implements ISortableBlock, ITerraformableBlo
     }
 	
 	@Override
-	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
 		if(state == state.withProperty(BASIC_TYPE, EnumIoBlocks.IO_ASH)) {
 			entityIn.motionX *= 0.4D;
 			entityIn.motionZ *= 0.4D;

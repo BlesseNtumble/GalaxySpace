@@ -34,7 +34,7 @@ public class ItemRocketParts extends Item implements ISortableItem {
 		this.setMaxDamage(0);
 		this.setHasSubtypes(true);
 		this.setMaxStackSize(64);
-		this.setUnlocalizedName("rocket_parts");
+		this.setTranslationKey("rocket_parts");
 		this.setCreativeTab(GSCreativeTabs.GSItemsTab);		
 	}
 	
@@ -63,7 +63,7 @@ public class ItemRocketParts extends Item implements ISortableItem {
 	}
 	
 	@Override
-    public String getUnlocalizedName(ItemStack par1ItemStack)
+    public String getTranslationKey(ItemStack par1ItemStack)
     {
     	for(int k = 0; k <= 4; k++)
         {

@@ -16,7 +16,7 @@ public class Proxima_B_Logs extends BlockRotatedPillar {
 
 	public Proxima_B_Logs(String name) {
 		super(Material.WOOD);
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 		setHarvestLevel("axe", 2);
 		setRegistryName(name);
 		setCreativeTab(GSCreativeTabs.GSBlocksTab);

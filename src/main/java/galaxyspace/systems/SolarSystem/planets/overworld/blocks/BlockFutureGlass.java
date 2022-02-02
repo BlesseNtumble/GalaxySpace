@@ -13,7 +13,7 @@ public class BlockFutureGlass extends BlockGlass implements ITerraformableBlock
     public BlockFutureGlass()
     {
         super(Material.GLASS, false);    	
-        this.setUnlocalizedName("futureglass_none");
+        this.setTranslationKey("futureglass_none");
         this.setHardness(2.0F);
         this.setSoundType(SoundType.GLASS);
     }

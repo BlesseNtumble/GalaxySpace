@@ -40,7 +40,7 @@ public class Barnarda_C_Logs extends Block implements ISortableBlock {
 
 	public Barnarda_C_Logs(String name, int harvestlevel) {
 		super(Material.WOOD);
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 		setHarvestLevel("axe", harvestlevel);
 		setRegistryName(name);
 		setCreativeTab(GSCreativeTabs.GSBlocksTab);
@@ -53,7 +53,7 @@ public class Barnarda_C_Logs extends Block implements ISortableBlock {
     @Override
     public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
     {
-        if(!this.getUnlocalizedName().equals("barnarda_c_test_glow_log"))
+        if(!this.getTranslationKey().equals("barnarda_c_test_glow_log"))
         {
             list.add(new ItemStack(this, 1, 0));
         }
@@ -62,7 +62,7 @@ public class Barnarda_C_Logs extends Block implements ISortableBlock {
 	@Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-		 if(!this.getUnlocalizedName().equals("barnarda_c_test_glow_log"))
+		 if(!this.getTranslationKey().equals("barnarda_c_test_glow_log"))
 			 return Item.getItemFromBlock(BRBlocks.BARNARDA_C_VIOLET_LOG.getDefaultState().getBlock());
 		 
 		 return super.getItemDropped(state, rand, fortune);
@@ -188,7 +188,7 @@ public class Barnarda_C_Logs extends Block implements ISortableBlock {
 	}
 
 	@Override
-	public BlockRenderLayer getBlockLayer()
+	public BlockRenderLayer getRenderLayer()
 	{
 		return BlockRenderLayer.CUTOUT_MIPPED;
 	}

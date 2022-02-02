@@ -35,7 +35,7 @@ public class BlockSurfaceIce extends BlockBreakable implements ITerraformableBlo
 	
 	public BlockSurfaceIce() {
 		super(Material.ICE, false);
-		this.setUnlocalizedName("surface_ice");
+		this.setTranslationKey("surface_ice");
 		this.setHardness(1.0F);
         this.setSoundType(SoundType.GLASS);
 	}
@@ -113,7 +113,7 @@ public class BlockSurfaceIce extends BlockBreakable implements ITerraformableBlo
 
 	@Override
 	@SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.TRANSLUCENT;
     }

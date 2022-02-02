@@ -46,7 +46,7 @@ public class ItemPickaxeGS extends ItemPickaxe {
     
 	public ItemPickaxeGS(String assetName, ToolMaterial material, boolean drillMode) {
 		super(material);
-		this.setUnlocalizedName(assetName);
+		this.setTranslationKey(assetName);
 		this.setNoRepair();
 		
 		this.drillMode = drillMode;
@@ -178,7 +178,7 @@ public class ItemPickaxeGS extends ItemPickaxe {
                         boolean destroyed = block.removedByPlayer(state1, worldIn, pos1, player, canHarvest);
                         if (destroyed)
                         {
-                            block.onBlockDestroyedByPlayer(worldIn, pos1, state1);
+                            block.onPlayerDestroy(worldIn, pos1, state1);
                         }
                         if (canHarvest && destroyed)
                         {

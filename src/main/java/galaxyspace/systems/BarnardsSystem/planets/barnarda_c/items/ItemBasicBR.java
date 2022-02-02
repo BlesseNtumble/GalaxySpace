@@ -51,7 +51,7 @@ public class ItemBasicBR extends Item implements ISortableItem{
 		this.setMaxDamage(0);
 		this.setHasSubtypes(true);
 		this.setMaxStackSize(64);
-		this.setUnlocalizedName("br_basic");
+		this.setTranslationKey("br_basic");
 		this.setCreativeTab(GSCreativeTabs.GSItemsTab);
 	}
 	
@@ -147,7 +147,7 @@ public class ItemBasicBR extends Item implements ISortableItem{
 	}
 	
 	@Override
-    public String getUnlocalizedName(ItemStack par1ItemStack)
+    public String getTranslationKey(ItemStack par1ItemStack)
     {
     	return "item." + this.names[par1ItemStack.getItemDamage()];
     }

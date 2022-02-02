@@ -84,7 +84,7 @@ public class GSBlockMulti extends BlockAdvanced implements IPartialSealableBlock
         super(GCBlocks.machine);
         this.setHardness(1.0F);
         this.setSoundType(SoundType.METAL);
-        this.setUnlocalizedName("fake_block");
+        this.setTranslationKey("fake_block");
         this.setResistance(Integer.MAX_VALUE);
     }
 

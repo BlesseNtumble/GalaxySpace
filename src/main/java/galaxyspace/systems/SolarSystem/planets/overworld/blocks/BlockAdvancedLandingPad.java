@@ -39,7 +39,7 @@ public class BlockAdvancedLandingPad extends BlockAdvancedTile implements IParti
         this.setHardness(1.0F);
         this.setResistance(10.0F);
         this.setSoundType(SoundType.METAL);
-        this.setUnlocalizedName("advanced_landing_pad");
+        this.setTranslationKey("advanced_landing_pad");
     }
 
     @Override
@@ -146,7 +146,7 @@ public class BlockAdvancedLandingPad extends BlockAdvancedTile implements IParti
     @Override
     public String getShiftDescription(int meta)
     {
-    	return GCCoreUtil.translate(this.getUnlocalizedName() + ".desc");
+    	return GCCoreUtil.translate(this.getTranslationKey() + ".desc");
     }
 
     @Override

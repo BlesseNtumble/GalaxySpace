@@ -26,7 +26,7 @@ public class BlockDecoMetals extends Block implements ISortableBlock{
 	public BlockDecoMetals()
     {
         super(Material.ROCK);
-        this.setUnlocalizedName("decoblocks");
+        this.setTranslationKey("decoblocks");
         this.setSoundType(SoundType.STONE); 
         this.setHarvestLevel("pickaxe", 2);
     }

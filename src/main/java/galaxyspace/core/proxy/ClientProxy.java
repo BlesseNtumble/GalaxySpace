@@ -222,9 +222,9 @@ public class ClientProxy extends CommonProxy{
         
         if(!FMLClientHandler.instance().hasOptifine())
 	        for (ModelResourceLocation resource : event.getModelRegistry().getKeys()) {
-	            if (resource.getResourceDomain().equals(GalaxySpace.MODID)) {
+	            if (resource.getNamespace().equals(GalaxySpace.MODID)) {
 	            	
-	            	if(resource.getResourcePath().equals("dungeon_blocks")) {
+	            	if(resource.getPath().equals("dungeon_blocks")) {
 	            		
 		            	if(resource.getVariant().contains("ceres_bricks"))	{            	
 		            		event.getModelRegistry().putObject(resource, new BakedModelFullbright(event.getModelRegistry().getObject(resource), "galaxyspace:blocks/solarsystem/ceres/ceres_bricks_layer", 250, 0.45D));
@@ -237,7 +237,7 @@ public class ClientProxy extends CommonProxy{
 		            	}
 		            }
 	            	
-	            	if(resource.getResourcePath().equals("barnarda_c_test_glow_log")) {
+	            	if(resource.getPath().equals("barnarda_c_test_glow_log")) {
 	            		String top = "galaxyspace:blocks/barnardssystem/barnarda_c/log_oak_top";            		
 	            		event.getModelRegistry().putObject(resource, new BakedModelBrightFour(event.getModelRegistry().getObject(resource), "galaxyspace:blocks/barnardssystem/barnarda_c/log_oak_layer", top, 250, 1.0D));
 	            		continue;
@@ -451,39 +451,39 @@ public class ClientProxy extends CommonProxy{
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.OXYGENTANK_TIER_6);
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.OXYGENTANK_TIER_EPP);
 		
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.ADVANCED_BATTERY, 0, "batteries/" + GSItems.ADVANCED_BATTERY.getUnlocalizedName().substring(5));
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.MODERN_BATTERY, 0, "batteries/" + GSItems.MODERN_BATTERY.getUnlocalizedName().substring(5));
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.EXTRA_BATTERY, 0, "batteries/" + GSItems.EXTRA_BATTERY.getUnlocalizedName().substring(5));
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.ULTIMATE_BATTERY, 0, "batteries/" + GSItems.ULTIMATE_BATTERY.getUnlocalizedName().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.ADVANCED_BATTERY, 0, "batteries/" + GSItems.ADVANCED_BATTERY.getTranslationKey().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.MODERN_BATTERY, 0, "batteries/" + GSItems.MODERN_BATTERY.getTranslationKey().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.EXTRA_BATTERY, 0, "batteries/" + GSItems.EXTRA_BATTERY.getTranslationKey().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.ULTIMATE_BATTERY, 0, "batteries/" + GSItems.ULTIMATE_BATTERY.getTranslationKey().substring(5));
 		
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SPACE_SUIT_HELMET, 0, "armor/" + GSItems.SPACE_SUIT_HELMET.getUnlocalizedName().substring(5));
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SPACE_SUIT_BODY, 0, "armor/" + GSItems.SPACE_SUIT_BODY.getUnlocalizedName().substring(5));
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SPACE_SUIT_LEGGINS, 0, "armor/" + GSItems.SPACE_SUIT_LEGGINS.getUnlocalizedName().substring(5));
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SPACE_SUIT_BOOTS, 0, "armor/" + GSItems.SPACE_SUIT_BOOTS.getUnlocalizedName().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SPACE_SUIT_HELMET, 0, "armor/" + GSItems.SPACE_SUIT_HELMET.getTranslationKey().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SPACE_SUIT_BODY, 0, "armor/" + GSItems.SPACE_SUIT_BODY.getTranslationKey().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SPACE_SUIT_LEGGINS, 0, "armor/" + GSItems.SPACE_SUIT_LEGGINS.getTranslationKey().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SPACE_SUIT_BOOTS, 0, "armor/" + GSItems.SPACE_SUIT_BOOTS.getTranslationKey().substring(5));
 		
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SPACE_SUIT_LIGHT_HELMET, 0, "armor/" + GSItems.SPACE_SUIT_LIGHT_HELMET.getUnlocalizedName().substring(5));
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SPACE_SUIT_LIGHT_BODY, 0, "armor/" + GSItems.SPACE_SUIT_LIGHT_BODY.getUnlocalizedName().substring(5));
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SPACE_SUIT_LIGHT_LEGGINS, 0, "armor/" + GSItems.SPACE_SUIT_LIGHT_LEGGINS.getUnlocalizedName().substring(5));
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SPACE_SUIT_LIGHT_BOOTS, 0, "armor/" + GSItems.SPACE_SUIT_LIGHT_BOOTS.getUnlocalizedName().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SPACE_SUIT_LIGHT_HELMET, 0, "armor/" + GSItems.SPACE_SUIT_LIGHT_HELMET.getTranslationKey().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SPACE_SUIT_LIGHT_BODY, 0, "armor/" + GSItems.SPACE_SUIT_LIGHT_BODY.getTranslationKey().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SPACE_SUIT_LIGHT_LEGGINS, 0, "armor/" + GSItems.SPACE_SUIT_LIGHT_LEGGINS.getTranslationKey().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SPACE_SUIT_LIGHT_BOOTS, 0, "armor/" + GSItems.SPACE_SUIT_LIGHT_BOOTS.getTranslationKey().substring(5));
 		
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.JETPACK, 0, "armor/" + GSItems.JETPACK.getUnlocalizedName().substring(5));
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.MATTER_MANIPULATOR, 0, "tools/" + GSItems.MATTER_MANIPULATOR.getUnlocalizedName().substring(5));
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.GEOLOGICAL_SCANNER, 0, "tools/" + GSItems.GEOLOGICAL_SCANNER.getUnlocalizedName().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.JETPACK, 0, "armor/" + GSItems.JETPACK.getTranslationKey().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.MATTER_MANIPULATOR, 0, "tools/" + GSItems.MATTER_MANIPULATOR.getTranslationKey().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.GEOLOGICAL_SCANNER, 0, "tools/" + GSItems.GEOLOGICAL_SCANNER.getTranslationKey().substring(5));
 		
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_HELMET, 0, "armor/" + GSItems.COBALT_HELMET.getUnlocalizedName().substring(5));
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_CHEST, 0, "armor/" + GSItems.COBALT_CHEST.getUnlocalizedName().substring(5));
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_LEGS, 0, "armor/" + GSItems.COBALT_LEGS.getUnlocalizedName().substring(5));
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_BOOTS, 0, "armor/" + GSItems.COBALT_BOOTS.getUnlocalizedName().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_HELMET, 0, "armor/" + GSItems.COBALT_HELMET.getTranslationKey().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_CHEST, 0, "armor/" + GSItems.COBALT_CHEST.getTranslationKey().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_LEGS, 0, "armor/" + GSItems.COBALT_LEGS.getTranslationKey().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_BOOTS, 0, "armor/" + GSItems.COBALT_BOOTS.getTranslationKey().substring(5));
 			
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_SWORD, 0, "tools/" + GSItems.COBALT_SWORD.getUnlocalizedName().substring(5));
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_AXE, 0, "tools/" + GSItems.COBALT_AXE.getUnlocalizedName().substring(5));
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_PICKAXE, 0, "tools/" + GSItems.COBALT_PICKAXE.getUnlocalizedName().substring(5));
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_SPADE, 0, "tools/" + GSItems.COBALT_SPADE.getUnlocalizedName().substring(5));
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_HOE, 0, "tools/" + GSItems.COBALT_HOE.getUnlocalizedName().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_SWORD, 0, "tools/" + GSItems.COBALT_SWORD.getTranslationKey().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_AXE, 0, "tools/" + GSItems.COBALT_AXE.getTranslationKey().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_PICKAXE, 0, "tools/" + GSItems.COBALT_PICKAXE.getTranslationKey().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_SPADE, 0, "tools/" + GSItems.COBALT_SPADE.getTranslationKey().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.COBALT_HOE, 0, "tools/" + GSItems.COBALT_HOE.getTranslationKey().substring(5));
 		
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.PLASMA_SWORD, 0, "tools/" + GSItems.PLASMA_SWORD.getUnlocalizedName().substring(5));
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.PLASMA_AXE, 0, "tools/" + GSItems.PLASMA_AXE.getUnlocalizedName().substring(5));
-		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.PLASMA_PICKAXE, 0, "tools/" + GSItems.PLASMA_PICKAXE.getUnlocalizedName().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.PLASMA_SWORD, 0, "tools/" + GSItems.PLASMA_SWORD.getTranslationKey().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.PLASMA_AXE, 0, "tools/" + GSItems.PLASMA_AXE.getTranslationKey().substring(5));
+		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.PLASMA_PICKAXE, 0, "tools/" + GSItems.PLASMA_PICKAXE.getTranslationKey().substring(5));
 	
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SCHEMATICS, 0, "schematics/" + "schematic_cone");
 		ClientUtil.registerItemJson(GalaxySpace.TEXTURE_PREFIX, GSItems.SCHEMATICS, 1, "schematics/" + "schematic_body");

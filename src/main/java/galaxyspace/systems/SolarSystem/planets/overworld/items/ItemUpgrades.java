@@ -31,7 +31,7 @@ public class ItemUpgrades extends Item implements ISortableItem{
 		this.setMaxDamage(0);
 		this.setHasSubtypes(true);
 		this.setMaxStackSize(8);
-		this.setUnlocalizedName("upgrades");
+		this.setTranslationKey("upgrades");
 		this.setCreativeTab(GSCreativeTabs.GSItemsTab);
 	}
 
@@ -53,7 +53,7 @@ public class ItemUpgrades extends Item implements ISortableItem{
 	}	
 	
 	@Override
-	public String getUnlocalizedName(ItemStack par1ItemStack) {
+	public String getTranslationKey(ItemStack par1ItemStack) {
 		return "item." + this.names[par1ItemStack.getItemDamage()];
 	}
 

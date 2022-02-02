@@ -52,7 +52,7 @@ public class RenderLaserBeam<T extends EntityLivingBase>
 					EntityPlayer player = (EntityPlayer)o;
 					if (shouldRenderBeam(player))
 					{
-						renderRaycastedBeam(player.getPositionEyes(ticks).addVector(0, player.getEyeHeight(), 0), player.getLook(0), new Vec3d(-0.5, -0.3, 1), player);
+						renderRaycastedBeam(player.getPositionEyes(ticks).add(0, player.getEyeHeight(), 0), player.getLook(0), new Vec3d(-0.5, -0.3, 1), player);
 					}
 					else
 					{
@@ -159,7 +159,7 @@ public class RenderLaserBeam<T extends EntityLivingBase>
 		else
 		{
 
-			renderBeam(position, position.addVector(direction.x * maxDistance, direction.y * maxDistance, direction.z * maxDistance), offset, null, getBeamThickness(caster), caster);
+			renderBeam(position, position.add(direction.x * maxDistance, direction.y * maxDistance, direction.z * maxDistance), offset, null, getBeamThickness(caster), caster);
 			onBeamRender(caster);
 		}
 		return false;
@@ -177,7 +177,7 @@ public class RenderLaserBeam<T extends EntityLivingBase>
 		//GlStateManager.enableBlend();
 		//GlStateManager.blendFunc(GL_ONE, GL_ONE);
 		//GlStateManager.disableLighting();
-		double distance = from.subtract(to).lengthVector();
+		double distance = from.subtract(to).length();
 		double v = -viewer.world.getWorldTime() * 0.2;
 
 		GlStateManager.pushMatrix();
