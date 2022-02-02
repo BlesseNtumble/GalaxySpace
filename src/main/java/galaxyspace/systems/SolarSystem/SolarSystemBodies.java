@@ -308,7 +308,7 @@ public class SolarSystemBodies implements IBodies{
 		enceladusSaturn = BodiesRegistry.registerExMoon(planetSaturn, "enceladus", GalaxySpace.ASSET_PREFIX, 15F);
 		BodiesRegistry.setOrbitData(enceladusSaturn, (float)Math.PI / 3, 0.0017F, 50F);
 		BodiesRegistry.setAtmosphere(enceladusSaturn, false, false, false, -4.0F, 0.0F, 0.0F);
-		BodiesRegistry.setPlanetData(enceladusSaturn, 0F, 32000L, 0.058F, false);
+		BodiesRegistry.setPlanetData(enceladusSaturn, 0F, 32000L, 0.058F, true);
 		BodiesRegistry.setProviderData(enceladusSaturn, GSConfigCore.enableWorldEngine ? WorldProviderEnceladus_WE.class : WorldProviderEnceladus.class, GSConfigDimensions.dimensionIDEnceladus, 5);
 		GalaxyRegistry.registerMoon(enceladusSaturn);	
 		
