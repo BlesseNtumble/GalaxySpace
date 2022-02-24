@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle": "galacticraftcore:blocks/machine",
+        "down": "galacticraftcore:blocks/machine",
+        "up": "galacticraftcore:blocks/machine",	
+        "north": "galaxyspace:blocks/overworld/gas_generator",		
+        "east": "galacticraftcore:blocks/machine_fuel_input",
+        "south": "galaxyspace:blocks/overworld/gas_generator",		
+        "west": "galacticraftcore:blocks/machine_output"
+    }
+}

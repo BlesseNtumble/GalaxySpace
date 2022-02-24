@@ -17,7 +17,6 @@ import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -25,7 +24,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiGasCollector extends GuiTileBase
 {
-    private static final ResourceLocation guiTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/base_gui.png");
     private TileEntityGasCollector tileEntity;
 
     private GuiElementInfoRegion gasTankRegion = new GuiElementInfoRegion((this.width - this.xSize) / 2 + 7, (this.height - this.ySize) / 2 + 28, 16, 38, new ArrayList<String>(), this.width, this.height, this);
@@ -35,6 +33,9 @@ public class GuiGasCollector extends GuiTileBase
         super(new ContainerGasCollector(par1InventoryPlayer, tileEntity), 2, 1);
         this.tileEntity = tileEntity;
         this.ySize = 204;
+        moduleInfoX = this.inventorySlots.getSlotFromInventory(tileEntity, 3).xPos;
+		moduleInfoY = this.inventorySlots.getSlotFromInventory(tileEntity, 3).yPos;
+		moduleList = new ItemStack[] {new ItemStack(GSItems.UPGRADES, 1, 0)};
     }
 
     @Override
@@ -102,13 +103,13 @@ public class GuiGasCollector extends GuiTileBase
         //this.drawTexturedModalRect(containerWidth, containerHeight, 0, 0, this.xSize, this.ySize); // Base Gui
         
         
-        int scale;
-/*
+ /*       int scale;
+
         List<String> electricityDesc = new ArrayList<String>();
         electricityDesc.add(GCCoreUtil.translate("gui.energy_storage.desc.0"));
         EnergyDisplayHelper.getEnergyDisplayTooltip(this.tileEntity.getEnergyStoredGC(), this.tileEntity.getMaxEnergyStoredGC(), electricityDesc);
         this.electricInfoRegion.tooltipStrings = electricityDesc;
-*/
+
         if (this.tileEntity.processTicks > 0)
         {
             scale = (int) ((double) this.tileEntity.processTicks / (double) this.tileEntity.processTimeRequired * 100);

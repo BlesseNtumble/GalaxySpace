@@ -1,11 +1,7 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.tile;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.annotation.Nullable;
 
-import galaxyspace.GalaxySpace;
 import galaxyspace.api.tile.ITileEffects;
 import galaxyspace.core.GSItems;
 import galaxyspace.core.prefab.tile.TileEntityUpgradeMachine;
@@ -19,7 +15,6 @@ import micdoodle8.mods.galacticraft.core.network.IPacketReceiver;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.galacticraft.core.wrappers.FluidHandlerWrapper;
 import micdoodle8.mods.galacticraft.core.wrappers.IFluidHandlerWrapper;
-import micdoodle8.mods.galacticraft.planets.GalacticraftPlanets;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -49,7 +44,7 @@ public class TileEntityGasCollector extends TileEntityUpgradeMachine implements 
 	@NetworkedField(targetSide = Side.CLIENT)
     public int processTimeRequired = PROCESS_TIME_REQUIRED;
 
-	private final int tankCapacity = 3000;
+	private final int tankCapacity = 5000;
     @NetworkedField(targetSide = Side.CLIENT)
     public FluidTank gasTank = new FluidTank(this.tankCapacity);
     

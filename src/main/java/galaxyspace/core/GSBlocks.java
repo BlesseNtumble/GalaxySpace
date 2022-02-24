@@ -51,6 +51,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockEn
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockFuelGenerator;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockGasBurner;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockGasCollector;
+import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockGasGenerator;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockGravitationModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockHydroponicBase;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockHydroponicFarm;
@@ -122,6 +123,7 @@ public class GSBlocks {
 	public static final Block RESEARCH_TABLE = new BlockResearchTable();
 	public static final Block ENERGY_PAD = new BlockEnergyPad();
 	public static final Block GAS_COLLECTOR = new BlockGasCollector();
+	public static final Block GAS_GENERATOR = new BlockGasGenerator();
 	
 	public static final Block FAKE_BLOCK = new GSBlockMulti();
 	
@@ -161,6 +163,7 @@ public class GSBlocks {
 	{				
 		registerBlock(MACHINE_FRAMES, ItemBlocksMachineFrames.class);
 		registerBlock(FUEL_GENERATOR, GSItemBlockDesc.class);
+		registerBlock(GAS_GENERATOR, GSItemBlockDesc.class);
 		registerBlock(WIND_GENERATOR, GSItemBlockDesc.class);
 		registerBlock(SOLARWIND_PANEL, GSItemBlockDesc.class);
 		registerBlock(MODERN_SOLAR_PANEL, GSItemBlockDesc.class);

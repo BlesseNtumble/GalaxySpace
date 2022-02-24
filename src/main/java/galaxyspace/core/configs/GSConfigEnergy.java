@@ -36,6 +36,7 @@ public class GSConfigEnergy
     public static float coefficientSolarPanel = 1;
     public static float coefficientWindTurbine = 1;
     public static float coefficientSpeedRocketAssembly = 1;
+    public static float coefficientGasGenerator = 1.0F;
     
     public static void syncConfig(boolean load)
     {
@@ -53,6 +54,12 @@ public class GSConfigEnergy
                 }
             }
 
+            
+            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "coefficientGasGenerator", coefficientGasGenerator);
+            prop.setComment("Gaseous Generator power factor");
+            prop.setLanguageKey("gc.configgui.coefficientGasGenerator").setRequiresMcRestart(false);
+            coefficientGasGenerator = (float) prop.getDouble();
+            propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "coefficientFuelGenerator", coefficientFuelGenerator);
             prop.setComment("Fuel Generator power factor");

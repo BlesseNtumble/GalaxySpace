@@ -56,6 +56,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityEnergyPa
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityFuelGenerator;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGasBurner;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGasCollector;
+import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGasGenerator;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitationModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityHydroponicBase;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityHydroponicFarm;
@@ -259,7 +260,6 @@ public class GalaxySpace
 
     private void registerTileEntities()
     {
-
     	GameRegistry.registerTileEntity(TileEntityAssembler.class, "GS Assembler");
     	GameRegistry.registerTileEntity(TileEntityFuelGenerator.class, "GS Fuel Generator");
     	GameRegistry.registerTileEntity(TileEntityModernSolarPanel.class, "GS Modern Solar Panel");
@@ -270,7 +270,7 @@ public class GalaxySpace
     	GameRegistry.registerTileEntity(TileEntityLiquidSeparator.class, "GS Liquid Separator");
     	GameRegistry.registerTileEntity(TileEntityHydroponicBase.class, "GS Hydroponic Base");
     	GameRegistry.registerTileEntity(TileEntityHydroponicFarm.class, "GS Hydroponic Farm");
-    	GameRegistry.registerTileEntity(TileEntityGravitationModule.class, "GS Gravitation Module");
+    	GameRegistry.registerTileEntity(TileEntityGravitationModule.class, "GS Gravitation Module");    	
     	GameRegistry.registerTileEntity(TileEntityBlockCrystallTE.class, "GS Crystal");
     	GameRegistry.registerTileEntity(TileEntityTreasureChestCeres.class, "GS Treasure Ceres");
     	GameRegistry.registerTileEntity(TileEntityDungeonSpawnerCeres.class, "GS Spawner Boss Ceres");
@@ -290,6 +290,7 @@ public class GalaxySpace
     	GameRegistry.registerTileEntity(TileEntityEnergyPad.class, "GS Energy Pad");
     	GameRegistry.registerTileEntity(TileEntityResearchTable.class, "GS Research Table");
     	GameRegistry.registerTileEntity(TileEntityGasCollector.class, "GS Gas Collector");
+    	GameRegistry.registerTileEntity(TileEntityGasGenerator.class, "GS Gas Generator");
 /*    	
     	GameRegistry.registerTileEntity(TileEntityAdvOxygenSealer.class, "GS Oxygen Sealer");
     	GameRegistry.registerTileEntity(TileEntityAdvFuelLoader.class, "GS Fuel Loader");

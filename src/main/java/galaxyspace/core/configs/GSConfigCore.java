@@ -57,7 +57,8 @@ public class GSConfigCore
     public static boolean enableAdvancedThermalSystem;
     public static boolean enableZeroGravityOnAsteroids;
     public static boolean enableOxygenForPlantsAndFoods;      
-    public static boolean enableSolarRadiationOnMoon;      
+    public static boolean enableSolarRadiationOnMoon;   
+    public static boolean enableGasExplosion;
     //
     
     public static String spacesuit_pos = "center";
@@ -89,6 +90,12 @@ public class GSConfigCore
             prop.setComment("Enable/Disable the need oxygen for plants and foods.");
             prop.setLanguageKey("gc.configgui.enableOxygenForPlantsAndFoods").setRequiresMcRestart(true);
             enableOxygenForPlantsAndFoods = prop.getBoolean(true);
+            propOrder.add(prop.getName());   
+            
+            prop = config.get(GSConstants.HARDMODE_CATEGORY, "enableGasExplosion", true);
+            prop.setComment("Enable/Disable explosion gas (Nature gas, etc) from fire, torch, magma.");
+            prop.setLanguageKey("gc.configgui.enableGasExplosion").setRequiresMcRestart(true);
+            enableGasExplosion = prop.getBoolean(true);
             propOrder.add(prop.getName());   
 
             prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableCheckVersion", true);

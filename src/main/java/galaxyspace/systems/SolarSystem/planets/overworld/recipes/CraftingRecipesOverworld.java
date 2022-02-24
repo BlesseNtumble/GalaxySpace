@@ -16,6 +16,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS.BasicItems;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemIngots;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityFuelGenerator;
+import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGasGenerator;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityHydroponicBase;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityLiquidExtractor;
 import micdoodle8.mods.galacticraft.api.recipe.CircuitFabricatorRecipes;
@@ -369,6 +370,8 @@ public class CraftingRecipesOverworld {
 	   TileEntityFuelGenerator.registerNewFuel(GSFluids.LiquidEthaneMethane, 20, 1.3F);
 	   TileEntityFuelGenerator.registerNewFuel(AsteroidsModule.fluidLiquidMethane, 50, 1.4F);
 	   TileEntityFuelGenerator.registerNewFuel(GSFluids.HeliumHydrogen, 50, 2.0F);
+	   
+	   TileEntityGasGenerator.registerNewFuel(GSFluids.NaturalGas, 20, 1.0F);
 
 	   TileEntityDeconstructor.knownRecipes.addAll(GSRecipeUtil.getBodyRecipes());
 	   TileEntityDeconstructor.knownRecipes.addAll(GSRecipeUtil.getBoosterRecipes());

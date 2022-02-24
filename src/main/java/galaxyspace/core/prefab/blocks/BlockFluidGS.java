@@ -1,8 +1,12 @@
 package galaxyspace.core.prefab.blocks;
 
+import java.util.Random;
+
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import galaxyspace.core.GSFluids;
+import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.events.GSEventHandler;
 import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
 import net.minecraft.block.material.Material;
@@ -23,9 +27,14 @@ import net.minecraftforge.fluids.FluidRegistry;
 
 public class BlockFluidGS extends BlockFluidClassic{
 
-	private boolean isDamaged = false;
+	private boolean isDamaged;
+	private boolean isFlammable;
 	
 	public BlockFluidGS(Fluid fluid, Material material, boolean isDamage) {
+		this(fluid, material, isDamage, false);
+	}
+	
+	public BlockFluidGS(Fluid fluid, Material material, boolean isDamage, boolean isFlammable) {
 		super(fluid, material);
 		this.setQuantaPerBlock(fluid.isGaseous() ? 0 : 9);
 		this.setTranslationKey("block_" + fluid.getName());
@@ -40,8 +49,29 @@ public class BlockFluidGS extends BlockFluidClassic{
 		}
 	        
 		this.isDamaged = isDamage;
+		this.isFlammable = isFlammable;
 	}
 
+	@Override
+	public void updateTick(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull IBlockState state,	@Nonnull Random rand) {
+		super.updateTick(world, pos, state, rand);
+		
+		if(isFlammable && GSConfigCore.enableGasExplosion) {
+			boolean flag = false;
+			for(BlockPos around : pos.getAllInBox(-1, -1, -1, 1, 1, 1)) {
+				if(world.getBlockState(pos.add(around)).getBlock() == Blocks.FIRE) flag = true;
+				if(world.getBlockState(pos.add(around)).getBlock() == Blocks.TORCH) flag = true;
+				if(world.getBlockState(pos.add(around)).getBlock() == Blocks.MAGMA) flag = true;
+				
+				
+				if(flag) {
+					world.newExplosion(null, pos.getX(), pos.getY(), pos.getZ(), 5F, true, true);
+					flag = false;
+				}
+			}
+		}
+	}
+	
 	@Override
     @Nullable
     public Boolean isEntityInsideMaterial(IBlockAccess world, BlockPos pos, IBlockState state, Entity entity, double yToTest, Material material, boolean testingHead)
