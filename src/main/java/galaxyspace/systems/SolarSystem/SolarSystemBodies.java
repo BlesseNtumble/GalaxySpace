@@ -389,7 +389,7 @@ public class SolarSystemBodies implements IBodies{
 	        
 		VenusModule.planetVenus.setRelativeDistanceFromCenter(new CelestialBody.ScalableDistance(0.745F, 0.74F)).setRingColorRGB(0.0F, 0.4F, 0.9F);
 		GalacticraftCore.satelliteSpaceStation.setRingColorRGB(0.0F, 0.4F, 0.9F);	
-		GalacticraftCore.planetOverworld.setRingColorRGB(0.0F, 1.1F, 0.0F);
+		//GalacticraftCore.planetOverworld.setRingColorRGB(0.0F, 1.1F, 0.0F);
 		GalacticraftCore.moonMoon.setRingColorRGB(0.0F, 0.4F, 0.9F);	
 		MarsModule.planetMars.setRingColorRGB(0.0F, 0.4F, 0.9F);
 		if(GSConfigCore.enableWorldEngine && GSConfigCore.enableMarsWorldEngine) {
@@ -493,6 +493,7 @@ public class SolarSystemBodies implements IBodies{
         
 
 		BodiesData data = new BodiesData(TypeBody.STAR).setStarClass(StarClass.DWARF).setStarColor(StarColor.YELLOW);
+		data.setStarHabitableZone(1.0F, 0.22F);
 		BodiesRegistry.registerBodyData(GalacticraftCore.solarSystemSol.getMainStar(), data);
 	}
 	

@@ -62,24 +62,21 @@ public class TauCetiSystemBodies implements IBodies{
 		BodiesRegistry.setOrbitData(TauCeti_G, (float) Math.PI, 1.25F, 2F);
 		GalaxyRegistry.registerPlanet(TauCeti_G);
 		
-		TauCeti_H = BodiesRegistry.registerExPlanet(TauCetiSystem, "tauceti_h", GalaxySpace.ASSET_PREFIX, 0.75F);
+		TauCeti_H = BodiesRegistry.registerExPlanet(TauCetiSystem, "tauceti_h", GalaxySpace.ASSET_PREFIX, 0.4F);
 		BodiesRegistry.setOrbitData(TauCeti_H, (float) Math.PI / 2, 1.25F, 15F);
 		GalaxyRegistry.registerPlanet(TauCeti_H);
 		
-		TauCeti_E = BodiesRegistry.registerExPlanet(TauCetiSystem, "tauceti_e", GalaxySpace.ASSET_PREFIX, 1.25F);
+		TauCeti_E = BodiesRegistry.registerExPlanet(TauCetiSystem, "tauceti_e", GalaxySpace.ASSET_PREFIX, 0.75F);
 		BodiesRegistry.setOrbitData(TauCeti_E, (float) Math.PI * 3, 1.25F, 30F);
 		GalaxyRegistry.registerPlanet(TauCeti_E);
 		
-		TauCeti_F = BodiesRegistry.registerExPlanet(TauCetiSystem, "tauceti_f", GalaxySpace.ASSET_PREFIX, 1.5F);
+		TauCeti_F = BodiesRegistry.registerExPlanet(TauCetiSystem, "tauceti_f", GalaxySpace.ASSET_PREFIX, 1.2F);
 		BodiesRegistry.setOrbitData(TauCeti_F, (float) Math.PI / 4, 1.25F, 60F);
 		BodiesRegistry.setPlanetData(TauCeti_F, 8.0F, 3, 36000L, BodiesRegistry.calculateGravity(7.8F), false);
 		BodiesRegistry.setProviderData(TauCeti_F, WorldProviderTauCeti_F_WE.class, -1338, 6, ACBiome.ACSpace);
 		BodiesRegistry.setAtmosphere(TauCeti_F, false, true, false, -0.2F, 3, 1.0F);
 		GalaxyRegistry.registerPlanet(TauCeti_F);
-		
-		
-		BodiesData data = new BodiesData(TypeBody.STAR).setStarClass(StarClass.DWARF).setStarColor(StarColor.YELLOW);
-		BodiesRegistry.registerBodyData(TauCetiSystem.getMainStar(), data);		
+
 		
 		GalacticraftRegistry.registerTeleportType(WorldProviderTauCeti_F_WE.class, new TeleportTypeTauCeti_F());		
 		
@@ -90,10 +87,16 @@ public class TauCetiSystemBodies implements IBodies{
 
 	@Override
 	public void init(FMLInitializationEvent event) {		
+		
 	}
 
 	@Override
-	public void postInit(FMLPostInitializationEvent event) {	
+	public void postInit(FMLPostInitializationEvent event) {		
+		
+		BodiesData data = new BodiesData(TypeBody.STAR).setStarClass(StarClass.DWARF).setStarColor(StarColor.YELLOW);
+		data.setStarHabitableZone(1.1F, 0.22F);
+		BodiesRegistry.registerBodyData(TauCetiSystem.getMainStar(), data);		
+		
 		GSDimensions.TAU_CETI_F = WorldUtil.getDimensionTypeById(-1338);
 	}
 

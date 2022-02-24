@@ -4,7 +4,6 @@ import java.io.File;
 
 import asmodeuscore.api.IBodies;
 import asmodeuscore.api.IBodiesHandler;
-import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
 import asmodeuscore.api.dimension.IAdvancedSpace.StarClass;
 import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.api.dimension.IAdvancedSpace.TypeBody;
@@ -76,7 +75,7 @@ public class BarnardsSystemBodies implements IBodies {
 		BarnardsSystem = BodiesRegistry.registerSolarSystem(GalaxySpace.ASSET_PREFIX, "barnards", Galaxies.MILKYWAY, new Vector3(1.0F, -2.0F, 0.0F), "barnarda_a", 0.8F);
 		GalaxyRegistry.registerSolarSystem(BarnardsSystem);
 		
-		Barnarda_B = BodiesRegistry.registerExPlanet(BarnardsSystem, "barnarda_b", GalaxySpace.ASSET_PREFIX, 0.5F);
+		Barnarda_B = BodiesRegistry.registerExPlanet(BarnardsSystem, "barnarda_b", GalaxySpace.ASSET_PREFIX, 0.25F);
 		BodiesRegistry.setOrbitData(Barnarda_B, (float) Math.PI, 2.0F, 3.9F);
 		GalaxyRegistry.registerPlanet(Barnarda_B);
 		
@@ -85,12 +84,11 @@ public class BarnardsSystemBodies implements IBodies {
 		BodiesRegistry.setOrbitData(Barnarda_B1, (float) Math.PI / 2, 1.0F, 105.5F);
 		GalaxyRegistry.registerMoon(Barnarda_B1);
 		
-		Barnarda_C = BodiesRegistry.registerExPlanet(BarnardsSystem, "barnarda_c", GalaxySpace.ASSET_PREFIX, 0.75F);
-		Barnarda_C.setRingColorRGB(0.0F, 1.1F, 0.0F);
+		Barnarda_C = BodiesRegistry.registerExPlanet(BarnardsSystem, "barnarda_c", GalaxySpace.ASSET_PREFIX, 0.7F);
 		BodiesRegistry.setOrbitData(Barnarda_C, (float) Math.PI * 2, 1.0F, 6.9F);
 		BodiesRegistry.setAtmosphere(Barnarda_C, true, true, false, 0.0F, 1.0F, 1.0F);
 		BodiesRegistry.setPlanetData(Barnarda_C, 3F, 24500, BodiesRegistry.calculateGravity(8.5F), false);
-		BodiesRegistry.setProviderData(Barnarda_C, WorldProviderBarnarda_C_WE.class, BRConfigDimensions.dimensionIDBarnardaC, BRConfigCore.survivalModeOnBarnarda ? 1 : 6, ACBiome.ACSpace);
+		BodiesRegistry.setProviderData(Barnarda_C, WorldProviderBarnarda_C_WE.class, BRConfigDimensions.dimensionIDBarnardaC, BRConfigCore.survivalModeOnBarnarda ? 1 : 6, ACBiome.ACSpace, ACBiome.ACSpaceLowHills);
 		Barnarda_C.atmosphereComponent(EnumAtmosphericGas.CO2).atmosphereComponent(EnumAtmosphericGas.OXYGEN).atmosphereComponent(EnumAtmosphericGas.ARGON);
 		GalaxyRegistry.registerPlanet(Barnarda_C);
 		
@@ -114,8 +112,8 @@ public class BarnardsSystemBodies implements IBodies {
 		BodiesRegistry.setOrbitData(Barnarda_ABelt, (float) Math.PI / 2, 1.0F, 105.9F);
 		GalaxyRegistry.registerPlanet(Barnarda_ABelt);
 		
-		Barnarda_E = BodiesRegistry.registerExPlanet(BarnardsSystem, "barnarda_e", GalaxySpace.ASSET_PREFIX, 1.5F);
-		BodiesRegistry.setOrbitData(Barnarda_E, (float) Math.PI, 1.0F, 15.9F);
+		Barnarda_E = BodiesRegistry.registerExPlanet(BarnardsSystem, "barnarda_e", GalaxySpace.ASSET_PREFIX, 1.75F);
+		BodiesRegistry.setOrbitData(Barnarda_E, (float) Math.PI, 1.0F, 35.9F);
 		GalaxyRegistry.registerPlanet(Barnarda_E);
 		
 		if(event.getSide() == Side.CLIENT)
@@ -152,6 +150,7 @@ public class BarnardsSystemBodies implements IBodies {
 	private static void registrycelestial()
 	{
 		BodiesData data = new BodiesData(TypeBody.STAR).setStarClass(StarClass.DWARF).setStarColor(StarColor.ORANGE);
+		data.setStarHabitableZone(0.7F, 0.1F);
 		BodiesRegistry.registerBodyData(BarnardsSystem.getMainStar(), data);
 	}
 	

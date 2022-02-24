@@ -47,6 +47,7 @@ public class ACentauriSystemBodies implements IBodies {
     public static Star proxima;
     public static Planet proxima_b;
     public static Planet proxima_c;
+    public static Planet proxima_d;
     
     @Override
 	public void preInitialization(FMLPreInitializationEvent event) 
@@ -74,13 +75,21 @@ public class ACentauriSystemBodies implements IBodies {
         ProximaSystem = BodiesRegistry.registerSolarSystem(GalaxySpace.ASSET_PREFIX, "proxima", Galaxies.MILKYWAY, new Vector3(1.7F, -0.2F, 0.0F), "proxima", 0.8F);
         GalaxyRegistry.registerSolarSystem(ProximaSystem);		
        
-        proxima_b = BodiesRegistry.registerExPlanet(ProximaSystem, "proxima_b", GalaxySpace.ASSET_PREFIX, 0.25F);
+        proxima_b = BodiesRegistry.registerExPlanet(ProximaSystem, "proxima_b", GalaxySpace.ASSET_PREFIX, 0.4F);
         BodiesRegistry.setAtmosphere(proxima_b, false, true, false, 0.5F, 0.4F, 0.0F);
-        BodiesRegistry.setOrbitData(proxima_b, (float) Math.PI*3, 1.2F, 2.0F);
-        BodiesRegistry.setPlanetData(proxima_b, 2, 35050, BodiesRegistry.calculateGravity(8.0F), true);
+        BodiesRegistry.setOrbitData(proxima_b, (float) Math.PI*3, 1.2F, 8.0F);
+        BodiesRegistry.setPlanetData(proxima_b, 2F, 35050, BodiesRegistry.calculateGravity(8.0F), true);
         BodiesRegistry.setProviderData(proxima_b, WorldProviderProxima_B_WE.class, ACConfigDimensions.dimensionIDProxima_B, 6);
         proxima_b.setRingColorRGB(0.0F, 0.4F, 0.9F).atmosphereComponent(EnumAtmosphericGas.CO2);
         GalaxyRegistry.registerPlanet(proxima_b);	
+        
+        proxima_c = BodiesRegistry.registerExPlanet(ProximaSystem, "proxima_c", GalaxySpace.ASSET_PREFIX, 1.25F);
+        BodiesRegistry.setOrbitData(proxima_c, (float) Math.PI / 2, 1.5F, 150F);
+        GalaxyRegistry.registerPlanet(proxima_c);
+        
+        proxima_d = BodiesRegistry.registerExPlanet(ProximaSystem, "proxima_d", GalaxySpace.ASSET_PREFIX, 0.25F);
+        BodiesRegistry.setOrbitData(proxima_d, (float) Math.PI / 3, 0.8F, 3.0F);
+        GalaxyRegistry.registerPlanet(proxima_d);
         
         /*
         proxima_b = (Planet) BodiesHelper.registerPlanet(ProximaSystem, "proxima_b", GalaxySpace.ASSET_PREFIX, WorldProviderProxima_B_WE.class, ACConfigDimensions.dimensionIDProxima_B, 6, (float) Math.PI*3, 1.2F, 0.25F, 1.1F, ACBiome.ACSpace)
@@ -119,6 +128,7 @@ public class ACentauriSystemBodies implements IBodies {
 		BodiesRegistry.registerBodyData(aCentauriSystem.getMainStar(), data);
 		
 		data = new BodiesData(TypeBody.STAR).setStarClass(StarClass.DWARF).setStarColor(StarColor.ORANGE);
+		data.setStarHabitableZone(0.4F, 0.1F);
 		BodiesRegistry.registerBodyData(ProximaSystem.getMainStar(), data);
 	}
 	
