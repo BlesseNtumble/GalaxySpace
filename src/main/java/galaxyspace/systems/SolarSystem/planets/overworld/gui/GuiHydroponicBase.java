@@ -12,11 +12,9 @@ import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityHydropon
 import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementInfoRegion;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
-import net.minecraft.util.ResourceLocation;
 
 public class GuiHydroponicBase extends GuiTileBase
 {
-	private static final ResourceLocation fuelGeneratorTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/base_gui.png");
 	private TileEntityHydroponicBase tileEntity;
 	private GuiElementInfoRegion electricInfoRegion = new GuiElementInfoRegion(0, 0, 56, 9, null, 0, 0, this);
 	  

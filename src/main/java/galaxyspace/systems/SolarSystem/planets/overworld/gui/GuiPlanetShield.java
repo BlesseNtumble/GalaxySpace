@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.lwjgl.opengl.GL11;
 
+import galaxyspace.core.GSItems;
 import galaxyspace.core.client.gui.tile.GuiTileBase;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerPlanetShield;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityPlanetShield;
@@ -22,6 +23,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 
 public class GuiPlanetShield extends GuiTileBase implements ICheckBoxCallback {
@@ -41,6 +43,7 @@ public class GuiPlanetShield extends GuiTileBase implements ICheckBoxCallback {
         this.tileEntity = tileEntity;
         moduleInfoX = this.inventorySlots.getSlotFromInventory(tileEntity, 1).xPos;
 		moduleInfoY = this.inventorySlots.getSlotFromInventory(tileEntity, 1).yPos;
+		moduleList = new ItemStack[] {new ItemStack(GSItems.UPGRADES, 1, 0), new ItemStack(GSItems.UPGRADES, 1, 1), new ItemStack(GSItems.UPGRADES, 1, 3)};
     }
 	
 	@Override

@@ -64,7 +64,7 @@ public class GuiFuelGenerator extends GuiTileBase
         {
             displayText = standart_color + GCCoreUtil.translate("gui.status.not_generating.name");
         }
-        else if(tileEntity.getEnergy() == tileEntity.getMaxEnergy()) {
+        else if(tileEntity.getEnergyStoredGC() == tileEntity.getMaxEnergyStoredGC()) {
         	 displayText = EnumColor.ORANGE + GCCoreUtil.translate("gui.status.energy_storage_is_full.name");
         }
         else
@@ -75,7 +75,7 @@ public class GuiFuelGenerator extends GuiTileBase
         {
             displayText = EnumColor.RED + GCCoreUtil.translate("gui.status.nofuelgenerator.name");
         }
-        this.fontRenderer.drawString(standart_color + GCCoreUtil.translate("gui.message.status.name") + ": " + displayText, 72, 45 + yOffset, 4210752);
+        this.fontRenderer.drawSplitString(standart_color + GCCoreUtil.translate("gui.message.status.name") + ": " + displayText, 72, 40 + yOffset, 100, 4210752);
 
         String displayStr = standart_color + GCCoreUtil.translate("gui.max_output.desc") + ": " + EnergyDisplayHelper.getEnergyDisplayS(this.tileEntity.storage.getMaxExtract()) + "/t";
         this.fontRenderer.drawString(displayStr, 116 - this.fontRenderer.getStringWidth(displayStr) / 2, 72, 4210752);

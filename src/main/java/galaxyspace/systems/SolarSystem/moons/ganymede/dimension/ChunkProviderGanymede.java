@@ -16,6 +16,7 @@ import galaxyspace.systems.SolarSystem.moons.ganymede.world.gen.MapGenSnowGanyme
 import micdoodle8.mods.galacticraft.api.prefab.core.BlockMetaPair;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.MapGenBaseMeta;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
@@ -30,9 +31,9 @@ public class ChunkProviderGanymede extends ChunkProviderSpaceLakes {
     private List<MapGenBaseMeta> worldGenerators;
     
 
-    private BlockGen grass = new BlockGen(getGrassBlock().getBlockState(), true);
-    private BlockGen subgrunt = new BlockGen(getDirtBlock().getBlockState(), false);
-    private BlockGen stone = new BlockGen(getStoneBlock().getBlockState(), false);
+    private BlockGen grass = new BlockGen(getGrassBlock(), true);
+    private BlockGen subgrunt = new BlockGen(getDirtBlock(), false);
+    private BlockGen stone = new BlockGen(getStoneBlock(), false);
     
     
     private final MapGenCaves caveGenerator = new MapGenCaves(grass, subgrunt, stone);
@@ -106,18 +107,18 @@ public class ChunkProviderGanymede extends ChunkProviderSpaceLakes {
 	}
 	
 	@Override
-	protected BlockMetaPair getGrassBlock() {
-		return new BlockMetaPair(GSBlocks.GANYMEDE_BLOCKS, (byte) 0);
+	protected IBlockState getGrassBlock() {
+		return GSBlocks.GANYMEDE_BLOCKS.getStateFromMeta(0);
 	}
 	
 	@Override
-	protected BlockMetaPair getDirtBlock() {
-		return new BlockMetaPair(GSBlocks.SURFACE_ICE, (byte) 4);
+	protected IBlockState getDirtBlock() {
+		return GSBlocks.SURFACE_ICE.getStateFromMeta(4);
 	}
 	
 	@Override
-	protected BlockMetaPair getStoneBlock() {
-		return new BlockMetaPair(GSBlocks.GANYMEDE_BLOCKS, (byte) 1);
+	protected IBlockState getStoneBlock() {
+		return GSBlocks.GANYMEDE_BLOCKS.getStateFromMeta(1);
 	}
 	
 	@Override
@@ -136,7 +137,7 @@ public class ChunkProviderGanymede extends ChunkProviderSpaceLakes {
 	}
 
 	@Override
-	protected BlockMetaPair getWaterBlock() {
+	protected IBlockState getWaterBlock() {
 		return null;
 	}
 

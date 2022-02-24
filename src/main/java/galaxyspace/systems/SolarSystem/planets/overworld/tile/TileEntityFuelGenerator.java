@@ -62,6 +62,8 @@ public class TileEntityFuelGenerator extends TileBaseUniversalElectricalSource i
             
     public static void registerNewFuel(Fluid fluid, int burn_time, float mod_energy)
     {
+    	if(fluid.isGaseous()) return;
+    	
     	fuel.add(new Fuel(fluid, burn_time, mod_energy));
     }
     
@@ -145,7 +147,7 @@ public class TileEntityFuelGenerator extends TileBaseUniversalElectricalSource i
             
           
             this.heatGJperTick = Math.min(this.heatGJperTick + Math.max(this.heatGJperTick * 0.005F, TileEntityFuelGenerator.BASE_ACCELERATION), TileEntityFuelGenerator.MAX_GENERATE_GJ_PER_TICK * mod);
-            this.storage.setMaxExtract(TileEntityFuelGenerator.MAX_GENERATE_GJ_PER_TICK * mod + 1 - TileEntityFuelGenerator.MIN_GENERATE_GJ_PER_TICK);
+            this.storage.setMaxExtract(TileEntityFuelGenerator.MAX_GENERATE_GJ_PER_TICK * mod - TileEntityFuelGenerator.MIN_GENERATE_GJ_PER_TICK - 1);
             
         }
     	

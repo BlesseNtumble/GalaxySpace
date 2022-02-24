@@ -3,7 +3,6 @@ package galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines;
 import asmodeuscore.api.item.IShiftDescription;
 import galaxyspace.GalaxySpace;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityFuelGenerator;
-import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityModernSolarPanel;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.blocks.BlockAdvancedTile;
 import micdoodle8.mods.galacticraft.core.blocks.BlockMulti;
@@ -49,14 +48,7 @@ public class BlockFuelGenerator extends BlockAdvancedTile implements IShiftDescr
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
     {
-        final TileEntity var9 = worldIn.getTileEntity(pos);
-
-        if (var9 instanceof TileEntityModernSolarPanel)
-        {
-            ((TileEntityModernSolarPanel) var9).onDestroy(var9);
-        }
-
-        super.breakBlock(worldIn, pos, state);
+    	super.breakBlock(worldIn, pos, state);
     }
     
     @Override
@@ -87,7 +79,7 @@ public class BlockFuelGenerator extends BlockAdvancedTile implements IShiftDescr
 	@Override
     public TileEntity createTileEntity(World world, IBlockState state)
     {
-        int metadata = getMetaFromState(state) & 12;
+        //int metadata = getMetaFromState(state) & 12;
 
         return new TileEntityFuelGenerator();
         

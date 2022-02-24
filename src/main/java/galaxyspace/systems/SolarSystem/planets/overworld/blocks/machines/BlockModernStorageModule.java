@@ -6,6 +6,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityModernSt
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.blocks.BlockTileGC;
 import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
+import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseUniversalElectrical;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.SoundType;
@@ -47,8 +48,14 @@ public class BlockModernStorageModule extends BlockTileGC implements IShiftDescr
 	@Override
     public boolean onUseWrench(World world, BlockPos pos, EntityPlayer entityPlayer, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        IBlockState state = world.getBlockState(pos);
-        //TileBaseUniversalElectrical.onUseWrenchBlock(state, world, pos, state.getValue(FACING));
+		int metadata = getMetaFromState(world.getBlockState(pos));
+        int change = world.getBlockState(pos).getValue(FACING).rotateY().getHorizontalIndex();
+        world.setBlockState(pos, this.getStateFromMeta(metadata - (metadata % 4) + change), 3);
+
+		TileEntity te = world.getTileEntity(pos);
+		if (te instanceof TileBaseUniversalElectrical) {
+			((TileBaseUniversalElectrical) te).updateFacing();
+		}		
         return true;
     }
 	

@@ -14,6 +14,7 @@ import galaxyspace.systems.SolarSystem.planets.pluto.world.gen.BiomeDecoratorPlu
 import micdoodle8.mods.galacticraft.api.prefab.core.BlockMetaPair;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.MapGenBaseMeta;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
@@ -24,9 +25,6 @@ import net.minecraft.world.chunk.ChunkPrimer;
 
 public class ChunkProviderPluto extends ChunkProviderSpaceLakes {
 	
-
-    private List<MapGenBaseMeta> worldGenerators;
-    
     private final MapGenCaves caveGenerator = new MapGenCaves(GSBlocks.PLUTO_BLOCKS.getStateFromMeta(0), GSBlocks.PLUTO_BLOCKS.getStateFromMeta(4), GSBlocks.PLUTO_BLOCKS.getStateFromMeta(5));
 
 	@Override
@@ -41,10 +39,10 @@ public class ChunkProviderPluto extends ChunkProviderSpaceLakes {
 	{
 		super(par1World, seed, mapFeaturesEnabled);
 		
-		this.setBlocks(new GenBlocks(this.worldObj.provider, ACBiome.ACSpace, new BlockMetaPair(GSBlocks.PLUTO_BLOCKS, (byte) 0), this.getDirtBlock(), this.getStoneBlock()));
-		this.setBlocks(new GenBlocks(this.worldObj.provider, ACBiome.ACSpaceLowPlains, new BlockMetaPair(GSBlocks.PLUTO_BLOCKS, (byte) 1), this.getDirtBlock(), this.getStoneBlock()));
-		this.setBlocks(new GenBlocks(this.worldObj.provider, ACBiome.ACSpaceMidPlains, new BlockMetaPair(GSBlocks.PLUTO_BLOCKS, (byte) 2), this.getDirtBlock(), this.getStoneBlock()));
-		this.setBlocks(new GenBlocks(this.worldObj.provider, ACBiome.ACSpaceLowHills, new BlockMetaPair(GSBlocks.PLUTO_BLOCKS, (byte) 3), this.getDirtBlock(), this.getStoneBlock()));
+		this.setBlocks(new GenBlocks(this.worldObj.provider, ACBiome.ACSpace, GSBlocks.PLUTO_BLOCKS.getStateFromMeta(0), this.getDirtBlock()));
+		this.setBlocks(new GenBlocks(this.worldObj.provider, ACBiome.ACSpaceLowPlains, GSBlocks.PLUTO_BLOCKS.getStateFromMeta(1), this.getDirtBlock()));
+		this.setBlocks(new GenBlocks(this.worldObj.provider, ACBiome.ACSpaceMidPlains, GSBlocks.PLUTO_BLOCKS.getStateFromMeta(2), this.getDirtBlock()));
+		this.setBlocks(new GenBlocks(this.worldObj.provider, ACBiome.ACSpaceLowHills, GSBlocks.PLUTO_BLOCKS.getStateFromMeta(3), this.getDirtBlock()));
 	}
 	
 	@Override	
@@ -102,18 +100,18 @@ public class ChunkProviderPluto extends ChunkProviderSpaceLakes {
 	}
 	
 	@Override
-	protected BlockMetaPair getGrassBlock() {
-		return new BlockMetaPair(GSBlocks.PLUTO_BLOCKS, (byte) 0);
+	protected IBlockState getGrassBlock() {
+		return GSBlocks.PLUTO_BLOCKS.getStateFromMeta(0);
 	}
 	
 	@Override
-	protected BlockMetaPair getDirtBlock() {
-		return new BlockMetaPair(GSBlocks.PLUTO_BLOCKS, (byte) 4);
+	protected IBlockState getDirtBlock() {
+		return GSBlocks.PLUTO_BLOCKS.getStateFromMeta(4);
 	}
 	
 	@Override
-	protected BlockMetaPair getStoneBlock() {
-		return new BlockMetaPair(GSBlocks.PLUTO_BLOCKS, (byte) 5);
+	protected IBlockState getStoneBlock() {
+		return GSBlocks.PLUTO_BLOCKS.getStateFromMeta(5);
 	}
 	
 	@Override
@@ -132,7 +130,7 @@ public class ChunkProviderPluto extends ChunkProviderSpaceLakes {
 	}
 
 	@Override
-	protected BlockMetaPair getWaterBlock() {
+	protected IBlockState getWaterBlock() {
 		return null;
 	}
 

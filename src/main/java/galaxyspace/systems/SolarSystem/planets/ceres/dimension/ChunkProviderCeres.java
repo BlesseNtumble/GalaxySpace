@@ -116,18 +116,18 @@ public class ChunkProviderCeres extends ChunkProviderSpaceLakes {
 	}
 	
 	@Override
-	protected BlockMetaPair getGrassBlock() {
-		return new BlockMetaPair(GSBlocks.CERES_BLOCKS, (byte) 0);
+	protected IBlockState getGrassBlock() {
+		return GSBlocks.CERES_BLOCKS.getStateFromMeta(0);
 	}
 	
 	@Override
-	protected BlockMetaPair getDirtBlock() {
-		return new BlockMetaPair(GSBlocks.CERES_BLOCKS, (byte) 1);
+	protected IBlockState getDirtBlock() {
+		return GSBlocks.CERES_BLOCKS.getStateFromMeta(1);
 	}
 	
 	@Override
-	protected BlockMetaPair getStoneBlock() {
-		return new BlockMetaPair(GSBlocks.CERES_BLOCKS, (byte) 1);
+	protected IBlockState getStoneBlock() {
+		return GSBlocks.CERES_BLOCKS.getStateFromMeta(1);
 	}
 	
 	@Override
@@ -146,7 +146,7 @@ public class ChunkProviderCeres extends ChunkProviderSpaceLakes {
 	}
 
 	@Override
-	protected BlockMetaPair getWaterBlock() {
+	protected IBlockState getWaterBlock() {
 		return null;
 	}
 

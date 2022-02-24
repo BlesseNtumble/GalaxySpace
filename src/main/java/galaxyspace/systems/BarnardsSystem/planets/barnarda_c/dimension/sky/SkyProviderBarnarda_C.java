@@ -9,6 +9,7 @@ import galaxyspace.GalaxySpace;
 import galaxyspace.systems.BarnardsSystem.BarnardsSystemBodies;
 import galaxyspace.systems.BarnardsSystem.moons.barnarda_c1.dimension.WorldProviderBarnarda_C1_WE;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.WorldProviderBarnarda_C_WE;
+import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -69,7 +70,11 @@ public class SkyProviderBarnarda_C extends SkyProviderBase{
 
 	@Override
 	protected Vector3 getAtmosphereColor() {
-		return ((WE_WorldProviderSpace)this.mc.world.provider).getSkyColor();
+		if(this.mc.world.provider instanceof WE_WorldProviderSpace)
+			return ((WE_WorldProviderSpace)this.mc.world.provider).getSkyColor();
+		
+		return ((WorldProviderSpace)this.mc.world.provider).getSkyColor();
+		
 	}
 
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import org.lwjgl.opengl.GL11;
 
 import galaxyspace.GalaxySpace;
+import galaxyspace.core.GSItems;
 import galaxyspace.core.client.gui.tile.GuiTileBase;
 import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerLiquidExtractor;
@@ -15,6 +16,7 @@ import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -24,8 +26,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GuiLiquidExtractor extends GuiTileBase
 {
     private TileEntityLiquidExtractor tileEntity;
-    private GuiElementInfoRegion electricInfoRegion = new GuiElementInfoRegion(0, 0, 56, 9, null, 0, 0, this);
-    private GuiElementInfoRegion processInfoRegion = new GuiElementInfoRegion(0, 0, 52, 25, null, 0, 0, this);
     private GuiElementInfoRegion fuelTankRegion = new GuiElementInfoRegion((this.width - this.xSize) / 2 + 7, (this.height - this.ySize) / 2 + 28, 16, 38, new ArrayList<String>(), this.width, this.height, this);
     
     public GuiLiquidExtractor(InventoryPlayer par1InventoryPlayer, TileEntityLiquidExtractor tileEntity)
@@ -35,6 +35,7 @@ public class GuiLiquidExtractor extends GuiTileBase
         this.ySize = 190;
         moduleInfoX = this.inventorySlots.getSlotFromInventory(tileEntity, 3).xPos;
 		moduleInfoY = this.inventorySlots.getSlotFromInventory(tileEntity, 3).yPos;
+		moduleList = new ItemStack[] {new ItemStack(GSItems.UPGRADES, 1, 0), new ItemStack(GSItems.UPGRADES, 1, 3)};
     }
 
     @Override

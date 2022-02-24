@@ -6,6 +6,7 @@ import java.util.List;
 import org.lwjgl.opengl.GL11;
 
 import galaxyspace.GalaxySpace;
+import galaxyspace.core.GSItems;
 import galaxyspace.core.client.gui.tile.GuiTileBase;
 import galaxyspace.core.network.packet.GSPacketSimple;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
@@ -19,6 +20,7 @@ import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -44,6 +46,7 @@ public class GuiLiquidSeparator extends GuiTileBase
         this.ySize = 205;      
         moduleInfoX = this.inventorySlots.getSlotFromInventory(tileEntity, 4).xPos;
       	moduleInfoY = this.inventorySlots.getSlotFromInventory(tileEntity, 4).yPos;
+      	moduleList = new ItemStack[] {new ItemStack(GSItems.UPGRADES, 1, 2), new ItemStack(GSItems.UPGRADES, 1, 3)};
     }
 
     @Override

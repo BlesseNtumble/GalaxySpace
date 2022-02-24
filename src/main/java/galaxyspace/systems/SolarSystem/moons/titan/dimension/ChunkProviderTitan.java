@@ -14,6 +14,7 @@ import galaxyspace.systems.SolarSystem.moons.titan.world.gen.BiomeDecoratorTitan
 import micdoodle8.mods.galacticraft.api.prefab.core.BlockMetaPair;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.MapGenBaseMeta;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
@@ -100,18 +101,18 @@ public class ChunkProviderTitan extends ChunkProviderSpaceLakes {
 	}
 	
 	@Override
-	protected BlockMetaPair getGrassBlock() {
-		return new BlockMetaPair(GSBlocks.TITAN_BLOCKS, (byte) 0);
+	protected IBlockState getGrassBlock() {
+		return GSBlocks.TITAN_BLOCKS.getStateFromMeta(0);
 	}
 	
 	@Override
-	protected BlockMetaPair getDirtBlock() {
-		return new BlockMetaPair(GSBlocks.TITAN_BLOCKS, (byte) 1);
+	protected IBlockState getDirtBlock() {
+		return GSBlocks.TITAN_BLOCKS.getStateFromMeta(1);
 	}
 	
 	@Override
-	protected BlockMetaPair getStoneBlock() {
-		return new BlockMetaPair(GSBlocks.TITAN_BLOCKS, (byte) 2);
+	protected IBlockState getStoneBlock() {
+		return GSBlocks.TITAN_BLOCKS.getStateFromMeta(2);
 	}
 	
 	@Override
@@ -130,8 +131,8 @@ public class ChunkProviderTitan extends ChunkProviderSpaceLakes {
 	}
 
 	@Override
-	protected BlockMetaPair getWaterBlock() {
-		return new BlockMetaPair(GSFluids.BLOCK_LEMETHANE, (byte) 0);
+	protected IBlockState getWaterBlock() {
+		return GSFluids.BLOCK_LEMETHANE.getDefaultState();
 	}
 
 	@Override

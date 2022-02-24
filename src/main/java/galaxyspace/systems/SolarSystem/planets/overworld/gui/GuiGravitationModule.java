@@ -18,7 +18,6 @@ import micdoodle8.mods.galacticraft.api.vector.BlockVec3;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementCheckbox;
 import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementCheckbox.ICheckBoxCallback;
-import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementInfoRegion;
 import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementTextBox;
 import micdoodle8.mods.galacticraft.core.client.gui.element.GuiElementTextBox.ITextBoxCallback;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
@@ -31,7 +30,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -39,9 +37,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiGravitationModule extends GuiTileBase implements ITextBoxCallback, ICheckBoxCallback
 {
-    private static final ResourceLocation electricFurnaceTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/base_gui.png");
-    private GuiElementInfoRegion electricInfoRegion = new GuiElementInfoRegion(0, 0, 56, 9, null, 0, 0, this);
-     
+   
     private GuiElementCheckbox checkboxRenderEffects;
     
     private TileEntityGravitationModule tileEntity;
@@ -63,6 +59,7 @@ public class GuiGravitationModule extends GuiTileBase implements ITextBoxCallbac
         moduleInfoX = this.inventorySlots.getSlotFromInventory(tileEntity, 1).xPos;
 		moduleInfoY = this.inventorySlots.getSlotFromInventory(tileEntity, 1).yPos;
         radius = tileEntity.getGravityRadius();
+        moduleList = new ItemStack[] {new ItemStack(GSItems.UPGRADES, 1, 0), new ItemStack(GSItems.UPGRADES, 1, 3)};
     }
 
     @Override

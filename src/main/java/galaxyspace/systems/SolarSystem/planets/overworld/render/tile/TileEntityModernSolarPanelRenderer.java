@@ -25,7 +25,7 @@ import net.minecraftforge.client.model.obj.OBJModel;
 public class TileEntityModernSolarPanelRenderer extends TileEntitySpecialRenderer<TileEntityModernSolarPanel>
 {
     private OBJModel.OBJBakedModel main;
-    private OBJModel.OBJBakedModel panels;
+    private OBJModel.OBJBakedModel panels, cell;
     
     private void updateModels()
     {
@@ -38,6 +38,7 @@ public class TileEntityModernSolarPanelRenderer extends TileEntitySpecialRendere
             	
             	main = (OBJModel.OBJBakedModel) model.bake(new OBJModel.OBJState(ImmutableList.of("base"), false), DefaultVertexFormats.ITEM, spriteFunction);
             	panels = (OBJModel.OBJBakedModel) model.bake(new OBJModel.OBJState(ImmutableList.of("panels"), false), DefaultVertexFormats.ITEM, spriteFunction);
+            	cell = (OBJModel.OBJBakedModel) model.bake(new OBJModel.OBJState(ImmutableList.of("solar_cell_panels", "solar_cell.001_panels", "solar_cell.002_panels", "solar_cell.003_panels"), false), DefaultVertexFormats.ITEM, spriteFunction);
             }
             catch (Exception e)
             {
@@ -89,6 +90,8 @@ public class TileEntityModernSolarPanelRenderer extends TileEntitySpecialRendere
         GlStateManager.rotate(-90, 0F, 1F, 0F);
         ClientUtil.drawBakedModel(panels);
       
+        //ClientUtil.drawBakedModel(cell);
+           
         GlStateManager.disableRescaleNormal();
         GlStateManager.popMatrix();
         RenderHelper.enableStandardItemLighting();

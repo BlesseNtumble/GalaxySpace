@@ -6,6 +6,7 @@ import java.util.List;
 import org.lwjgl.opengl.GL11;
 
 import galaxyspace.GalaxySpace;
+import galaxyspace.core.GSItems;
 import galaxyspace.core.client.gui.tile.GuiTileBase;
 import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerUniversalRecycler;
@@ -15,6 +16,7 @@ import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -34,6 +36,8 @@ public class GuiUniversalRecycler extends GuiTileBase
         this.header = 0;
         moduleInfoX = this.inventorySlots.getSlotFromInventory(tileEntity, 5).xPos;
 		moduleInfoY = this.inventorySlots.getSlotFromInventory(tileEntity, 5).yPos;
+		moduleList = new ItemStack[] {new ItemStack(GSItems.UPGRADES, 1, 2), new ItemStack(GSItems.UPGRADES, 1, 3)};
+	    
     }
 
     @Override

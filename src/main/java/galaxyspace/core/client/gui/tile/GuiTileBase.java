@@ -46,6 +46,7 @@ public abstract class GuiTileBase extends GuiContainerGC {
 	private final int header_type, split_type;
 	protected int header;
 	protected int moduleInfoX, moduleInfoY;
+	protected ItemStack[] moduleList;
 	
 	public GuiTileBase(Container container, int header, int split) {
 		super(container);
@@ -89,11 +90,12 @@ public abstract class GuiTileBase extends GuiContainerGC {
 			this.infoRegions.add(batteryInfoRegion);	
 		}
 		
-		if (isModuleSupport()) {
+		if (isModuleSupport() && moduleList != null) {
 			desc = new ArrayList<String>();
 			desc.add(TextFormatting.GREEN + GCCoreUtil.translate("gui.available_modules.desc"));
 			desc.add("");
-			//desc.add("- " + new ItemStack(GSItems.UPGRADES, 1, 2).getDisplayName());
+			for(ItemStack module : moduleList)				
+				desc.add("- " + module.getDisplayName());
 			//desc.add("- " + new ItemStack(GSItems.UPGRADES, 1, 3).getDisplayName());
 			moduleInfoRegion.tooltipStrings = desc;
 			moduleInfoRegion.xPosition = (this.width - this.xSize) / 2 + moduleInfoX;

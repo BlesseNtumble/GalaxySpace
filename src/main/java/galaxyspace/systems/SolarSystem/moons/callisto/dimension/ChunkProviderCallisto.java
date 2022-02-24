@@ -11,9 +11,9 @@ import asmodeuscore.core.astronomy.dimension.world.gen.ChunkProviderSpaceLakes;
 import asmodeuscore.core.astronomy.dimension.world.gen.MapGenCaves;
 import galaxyspace.core.GSBlocks;
 import galaxyspace.systems.SolarSystem.moons.callisto.world.gen.BiomeDecoratorCallisto;
-import micdoodle8.mods.galacticraft.api.prefab.core.BlockMetaPair;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.MapGenBaseMeta;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -95,18 +95,18 @@ public class ChunkProviderCallisto extends ChunkProviderSpaceLakes {
 	}
 	
 	@Override
-	protected BlockMetaPair getGrassBlock() {
-		return new BlockMetaPair(GSBlocks.CALLISTO_BLOCKS, (byte) 0);
+	protected IBlockState getGrassBlock() {
+		return GSBlocks.CALLISTO_BLOCKS.getStateFromMeta(0);
 	}
 	
 	@Override
-	protected BlockMetaPair getDirtBlock() {
-		return new BlockMetaPair(GSBlocks.SURFACE_ICE, (byte) 4);
+	protected IBlockState getDirtBlock() {
+		return GSBlocks.SURFACE_ICE.getStateFromMeta(4);
 	}
 	
 	@Override
-	protected BlockMetaPair getStoneBlock() {
-		return new BlockMetaPair(GSBlocks.CALLISTO_BLOCKS, (byte) 1);
+	protected IBlockState getStoneBlock() {
+		return GSBlocks.CALLISTO_BLOCKS.getStateFromMeta(1);
 	}
 	
 	@Override
@@ -125,7 +125,7 @@ public class ChunkProviderCallisto extends ChunkProviderSpaceLakes {
 	}
 
 	@Override
-	protected BlockMetaPair getWaterBlock() {
+	protected IBlockState getWaterBlock() {
 		return null;
 	}
 

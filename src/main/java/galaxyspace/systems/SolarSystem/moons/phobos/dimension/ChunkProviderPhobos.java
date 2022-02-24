@@ -11,9 +11,9 @@ import asmodeuscore.core.astronomy.dimension.world.gen.ChunkProviderSpaceLakes;
 import asmodeuscore.core.astronomy.dimension.world.gen.MapGenCaves;
 import galaxyspace.core.GSBlocks;
 import galaxyspace.systems.SolarSystem.moons.phobos.world.gen.BiomeDecoratorPhobos;
-import micdoodle8.mods.galacticraft.api.prefab.core.BlockMetaPair;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.MapGenBaseMeta;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -22,10 +22,7 @@ import net.minecraft.world.chunk.ChunkPrimer;
 
  
 public class ChunkProviderPhobos extends ChunkProviderSpaceLakes {
-	
-
-    private List<MapGenBaseMeta> worldGenerators;
-    
+	    
     private final MapGenCaves caveGenerator = new MapGenCaves(GSBlocks.PHOBOS_BLOCKS.getStateFromMeta(0), GSBlocks.PHOBOS_BLOCKS.getStateFromMeta(1));
     
 	@Override
@@ -93,18 +90,18 @@ public class ChunkProviderPhobos extends ChunkProviderSpaceLakes {
 	}
 	
 	@Override
-	protected BlockMetaPair getGrassBlock() {
-		return new BlockMetaPair(GSBlocks.PHOBOS_BLOCKS, (byte) 0);
+	protected IBlockState getGrassBlock() {
+		return GSBlocks.PHOBOS_BLOCKS.getStateFromMeta(0);
 	}
 	
 	@Override
-	protected BlockMetaPair getDirtBlock() {
-		return new BlockMetaPair(GSBlocks.PHOBOS_BLOCKS, (byte) 1);
+	protected IBlockState getDirtBlock() {
+		return GSBlocks.PHOBOS_BLOCKS.getStateFromMeta(1);
 	}
 	
 	@Override
-	protected BlockMetaPair getStoneBlock() {
-		return new BlockMetaPair(GSBlocks.PHOBOS_BLOCKS, (byte) 1);
+	protected IBlockState getStoneBlock() {
+		return GSBlocks.PHOBOS_BLOCKS.getStateFromMeta(1);
 	}
 	
 	@Override
@@ -123,7 +120,7 @@ public class ChunkProviderPhobos extends ChunkProviderSpaceLakes {
 	}
 
 	@Override
-	protected BlockMetaPair getWaterBlock() {
+	protected IBlockState getWaterBlock() {
 		return null;
 	}
 

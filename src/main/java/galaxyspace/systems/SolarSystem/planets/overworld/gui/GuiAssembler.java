@@ -1,6 +1,7 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.gui;
 
 import galaxyspace.GalaxySpace;
+import galaxyspace.core.GSItems;
 import galaxyspace.core.client.gui.tile.GuiTileBase;
 import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerAssembler;
@@ -9,6 +10,7 @@ import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -27,6 +29,7 @@ public class GuiAssembler extends GuiTileBase
         super(new ContainerAssembler(par1InventoryPlayer, tileEntity), 2, 1);
         this.tileEntity = tileEntity;
         this.ySize = 199;
+        moduleList = new ItemStack[] {new ItemStack(GSItems.UPGRADES, 1, 2), new ItemStack(GSItems.UPGRADES, 1, 3)};
     }
 
     @Override

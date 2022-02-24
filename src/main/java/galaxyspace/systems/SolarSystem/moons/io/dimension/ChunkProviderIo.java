@@ -59,9 +59,9 @@ public class ChunkProviderIo extends ChunkProviderSpaceLakes {
 	public ChunkProviderIo(World par1World, long seed, boolean mapFeaturesEnabled)	
 	{
 		super(par1World, seed, mapFeaturesEnabled);
-		this.setBlocks(new GenBlocks(this.worldObj.provider, getBiomesForGeneration()[0], this.getGrassBlock(), this.getDirtBlock(), this.getStoneBlock()));
-		this.setBlocks(new GenBlocks(this.worldObj.provider, getBiomesForGeneration()[1], new BlockMetaPair(GSBlocks.IO_BLOCKS , (byte) 2), this.getDirtBlock(), this.getStoneBlock()));
-		this.setBlocks(new GenBlocks(this.worldObj.provider, getBiomesForGeneration()[2], this.getGrassBlock(), this.getDirtBlock(), this.getStoneBlock()));
+		this.setBlocks(new GenBlocks(this.worldObj.provider, getBiomesForGeneration()[0], this.getGrassBlock(), this.getDirtBlock()));
+		this.setBlocks(new GenBlocks(this.worldObj.provider, getBiomesForGeneration()[1], GSBlocks.IO_BLOCKS.getStateFromMeta(2), this.getDirtBlock()));
+		this.setBlocks(new GenBlocks(this.worldObj.provider, getBiomesForGeneration()[2], this.getGrassBlock(), this.getDirtBlock()));
 		
 	}
 	
@@ -110,18 +110,18 @@ public class ChunkProviderIo extends ChunkProviderSpaceLakes {
 	}
 	
 	@Override
-	protected BlockMetaPair getGrassBlock() {
-		return new BlockMetaPair(GSBlocks.IO_BLOCKS, (byte) 0);
+	protected IBlockState getGrassBlock() {
+		return GSBlocks.IO_BLOCKS.getStateFromMeta(0);
 	}
 	
 	@Override
-	protected BlockMetaPair getDirtBlock() {
-		return new BlockMetaPair(GSBlocks.IO_BLOCKS, (byte) 1);
+	protected IBlockState getDirtBlock() {
+		return GSBlocks.IO_BLOCKS.getStateFromMeta(1);
 	}
 	
 	@Override
-	protected BlockMetaPair getStoneBlock() {
-		return new BlockMetaPair(GSBlocks.IO_BLOCKS, (byte) 1);
+	protected IBlockState getStoneBlock() {
+		return GSBlocks.IO_BLOCKS.getStateFromMeta(1);
 	}
 	
 	@Override
@@ -140,7 +140,7 @@ public class ChunkProviderIo extends ChunkProviderSpaceLakes {
 	}
 
 	@Override
-	protected BlockMetaPair getWaterBlock() {
+	protected IBlockState getWaterBlock() {
 		return null;
 	}
 

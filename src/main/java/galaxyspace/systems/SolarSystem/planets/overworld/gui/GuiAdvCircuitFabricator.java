@@ -6,6 +6,7 @@ import java.util.List;
 import org.lwjgl.opengl.GL11;
 
 import galaxyspace.GalaxySpace;
+import galaxyspace.core.GSItems;
 import galaxyspace.core.client.gui.tile.GuiTileBase;
 import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.ContainerAdvCircuitFabricator;
@@ -40,6 +41,7 @@ public class GuiAdvCircuitFabricator extends GuiTileBase
         this.header = 3;
         moduleInfoX = this.inventorySlots.getSlotFromInventory(tileEntity, 7).xPos;
 		moduleInfoY = this.inventorySlots.getSlotFromInventory(tileEntity, 7).yPos;
+		moduleList = new ItemStack[] {new ItemStack(GSItems.UPGRADES, 1, 2), new ItemStack(GSItems.UPGRADES, 1, 3)};
     }
     
     @Override

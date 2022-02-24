@@ -15,6 +15,7 @@ import galaxyspace.systems.SolarSystem.moons.enceladus.world.gen.MapGenRavineEnc
 import micdoodle8.mods.galacticraft.api.prefab.core.BlockMetaPair;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.MapGenBaseMeta;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -100,18 +101,18 @@ public class ChunkProviderEnceladus extends ChunkProviderSpaceLakes {
 	}
 	
 	@Override
-	protected BlockMetaPair getGrassBlock() {
-		return new BlockMetaPair(GSBlocks.ENCELADUS_BLOCKS, (byte) 0);
+	protected IBlockState getGrassBlock() {
+		return GSBlocks.ENCELADUS_BLOCKS.getStateFromMeta(0);
 	}
 	
 	@Override
-	protected BlockMetaPair getDirtBlock() {
-		return new BlockMetaPair(Blocks.PACKED_ICE, (byte) 0);
+	protected IBlockState getDirtBlock() {
+		return Blocks.PACKED_ICE.getDefaultState();
 	}
 	
 	@Override
-	protected BlockMetaPair getStoneBlock() {
-		return new BlockMetaPair(GSBlocks.ENCELADUS_BLOCKS, (byte) 1);
+	protected IBlockState getStoneBlock() {
+		return GSBlocks.ENCELADUS_BLOCKS.getStateFromMeta(1);
 	}
 	
 	@Override
@@ -130,7 +131,7 @@ public class ChunkProviderEnceladus extends ChunkProviderSpaceLakes {
 	}
 
 	@Override
-	protected BlockMetaPair getWaterBlock() {
+	protected IBlockState getWaterBlock() {
 		return null;
 	}
 

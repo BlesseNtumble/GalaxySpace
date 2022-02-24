@@ -77,12 +77,14 @@ public class RoomEmptyIo extends SizedPieceIo
                         }
                         if (placeBlock)
                         {
-                        	if(j == this.configuration.getHallwayHeight())
-                        		this.setBlockState(worldIn, this.configuration.getOtherBlock(false), i, j, k, boundingBox);
-                        	else if(j == 0)
-                        		this.setBlockState(worldIn, this.configuration.getOtherBlock(true), i, j, k, boundingBox);
-                        	else
-                        		this.setBlockState(worldIn, this.configuration.getBrickBlock(), i, j, k, boundingBox);
+                        	if(this.configuration != null) {
+	                        	if(j == this.configuration.getHallwayHeight() && this.configuration.getOtherBlock(false) != null)
+	                        		this.setBlockState(worldIn, this.configuration.getOtherBlock(false), i, j, k, boundingBox);
+	                        	else if(j == 0 && this.configuration.getOtherBlock(true) != null)
+	                        		this.setBlockState(worldIn, this.configuration.getOtherBlock(true), i, j, k, boundingBox);
+	                        	else if(this.configuration.getBrickBlock() != null)
+	                        		this.setBlockState(worldIn, this.configuration.getBrickBlock(), i, j, k, boundingBox);
+	                        }
                         }
                         else
                         {

@@ -12,9 +12,9 @@ import galaxyspace.core.GSBlocks;
 import galaxyspace.systems.SolarSystem.moons.europa.world.gen.BiomeDecoratorEuropa;
 import galaxyspace.systems.SolarSystem.moons.europa.world.gen.MapGenRavineEuropa;
 import galaxyspace.systems.SolarSystem.moons.europa.world.gen.MapGenSnowEuropa;
-import micdoodle8.mods.galacticraft.api.prefab.core.BlockMetaPair;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.MapGenBaseMeta;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -101,18 +101,18 @@ public class ChunkProviderEuropa extends ChunkProviderSpaceLakes {
 	}
 	
 	@Override
-	protected BlockMetaPair getGrassBlock() {
-		return new BlockMetaPair(GSBlocks.EUROPA_BLOCKS, (byte) 0);
+	protected IBlockState getGrassBlock() {
+		return GSBlocks.EUROPA_BLOCKS.getStateFromMeta(0);
 	}
 	
 	@Override
-	protected BlockMetaPair getDirtBlock() {
-		return new BlockMetaPair(Blocks.PACKED_ICE, (byte) 0);
+	protected IBlockState getDirtBlock() {
+		return Blocks.PACKED_ICE.getDefaultState();
 	}
 	
 	@Override
-	protected BlockMetaPair getStoneBlock() {
-		return new BlockMetaPair(Blocks.WATER, (byte) 0);
+	protected IBlockState getStoneBlock() {
+		return Blocks.WATER.getDefaultState();
 	}
 	
 	@Override
@@ -131,7 +131,7 @@ public class ChunkProviderEuropa extends ChunkProviderSpaceLakes {
 	}
 
 	@Override
-	protected BlockMetaPair getWaterBlock() {
+	protected IBlockState getWaterBlock() {
 		return null;
 	}
 
@@ -152,8 +152,8 @@ public class ChunkProviderEuropa extends ChunkProviderSpaceLakes {
     }
 	
 	@Override
-	protected BlockMetaPair getIceBlock() {	
-		return new BlockMetaPair(GSBlocks.EUROPA_BLOCKS, (byte) 1);
+	protected IBlockState getIceBlock() {	
+		return GSBlocks.EUROPA_BLOCKS.getStateFromMeta(1);
 	}
 
 	

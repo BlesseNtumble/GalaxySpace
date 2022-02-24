@@ -86,16 +86,17 @@ public class WorldProviderTest_WE2 extends WorldProviderAdvancedSpace {
 	protected void init() {
 		
 		this.hasSkyLight = true;
+		WE_TerrainGenerator terraingen = new WE_TerrainGenerator();
 		
 		WEWorldProps.addReliefLayer(true, 4, 400.0, 400.0, WE_Interpolation.I_VALUEFUNC_SMOOTHERSTEP, 16, 16, WE_Interpolation.I_VALUEFUNC_SMOOTHERSTEP, true);
 		WEWorldProps.addMapLayer(false, 0.5, 4, 100.0, 10, 100.0, 0, WE_Interpolation.I_VALUEFUNC_SMOOTHERSTEP);
-		WEWorldProps.addCCGXZ(new WE_TerrainGenerator());
+		WEWorldProps.addCCGXZ(terraingen);
 		
 		WE_BiomeProperties p1 = new WE_BiomeProperties();
 		p1.genConditions.addCon(PrimitiveCondition.PC_ACTION_MOREEQUAL);
 		p1.genConditions.getLast().getFirstMath().addNum(0, true);
 		p1.genConditions.getLast().getSecondMath().addNum(0, false);
-		p1.add(false, 1.0D, 128, 96);
+		p1.add(false, 1.0D, 32, 96);
 		
 		WE_BiomeProperties p2 = new WE_BiomeProperties();
 		p2.genConditions.addCon(PrimitiveCondition.PC_ACTION_LESS);

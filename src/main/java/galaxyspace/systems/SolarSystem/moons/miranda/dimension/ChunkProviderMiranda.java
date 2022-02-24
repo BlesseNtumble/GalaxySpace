@@ -14,9 +14,9 @@ import galaxyspace.core.GSBlocks;
 import galaxyspace.systems.SolarSystem.moons.miranda.blocks.MirandaBlocks;
 import galaxyspace.systems.SolarSystem.moons.miranda.world.gen.BiomeDecoratorMiranda;
 import galaxyspace.systems.SolarSystem.moons.miranda.world.gen.MapGenIceMiranda;
-import micdoodle8.mods.galacticraft.api.prefab.core.BlockMetaPair;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.MapGenBaseMeta;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
@@ -27,8 +27,6 @@ import net.minecraft.world.chunk.ChunkPrimer;
 
 public class ChunkProviderMiranda extends ChunkProviderSpaceLakes {
 	
-
-    private List<MapGenBaseMeta> worldGenerators;
     
     private BlockGen grass = new BlockGen(GSBlocks.MIRANDA_BLOCKS.getDefaultState().withProperty(MirandaBlocks.BASIC_TYPE, MirandaBlocks.EnumMirandaBlocks.MIRANDA_GRUNT), true);
     private BlockGen subgrunt = new BlockGen(GSBlocks.MIRANDA_BLOCKS.getDefaultState().withProperty(MirandaBlocks.BASIC_TYPE, MirandaBlocks.EnumMirandaBlocks.MIRANDA_SUBGRUNT), false);
@@ -58,9 +56,9 @@ public class ChunkProviderMiranda extends ChunkProviderSpaceLakes {
 	{
 		super(par1World, seed, mapFeaturesEnabled);
 		
-		this.setBlocks(new GenBlocks(this.worldObj.provider, getBiomesForGeneration()[0], this.getGrassBlock(), this.getDirtBlock(), this.getStoneBlock()));
-		this.setBlocks(new GenBlocks(this.worldObj.provider, getBiomesForGeneration()[1], new BlockMetaPair(GSBlocks.MIRANDA_BLOCKS, (byte) 9), new BlockMetaPair(GSBlocks.MIRANDA_BLOCKS, (byte) 11), new BlockMetaPair(GSBlocks.MIRANDA_BLOCKS, (byte) 13)));
-		this.setBlocks(new GenBlocks(this.worldObj.provider, getBiomesForGeneration()[2], new BlockMetaPair(GSBlocks.MIRANDA_BLOCKS, (byte) 10), new BlockMetaPair(GSBlocks.MIRANDA_BLOCKS, (byte) 12), new BlockMetaPair(GSBlocks.MIRANDA_BLOCKS, (byte) 14)));
+		this.setBlocks(new GenBlocks(this.worldObj.provider, getBiomesForGeneration()[0], this.getGrassBlock(), this.getDirtBlock()));
+		this.setBlocks(new GenBlocks(this.worldObj.provider, getBiomesForGeneration()[1], GSBlocks.MIRANDA_BLOCKS.getStateFromMeta(9), GSBlocks.MIRANDA_BLOCKS.getStateFromMeta(11)).setCustomStone(GSBlocks.MIRANDA_BLOCKS.getStateFromMeta(13)));
+		this.setBlocks(new GenBlocks(this.worldObj.provider, getBiomesForGeneration()[2], GSBlocks.MIRANDA_BLOCKS.getStateFromMeta(10), GSBlocks.MIRANDA_BLOCKS.getStateFromMeta(12)).setCustomStone(GSBlocks.MIRANDA_BLOCKS.getStateFromMeta(14)));
 	
 	}
 	
@@ -119,18 +117,18 @@ public class ChunkProviderMiranda extends ChunkProviderSpaceLakes {
 	}
 	
 	@Override
-	protected BlockMetaPair getGrassBlock() {
-		return new BlockMetaPair(GSBlocks.MIRANDA_BLOCKS, (byte) 0);
+	protected IBlockState getGrassBlock() {
+		return GSBlocks.MIRANDA_BLOCKS.getStateFromMeta(0);
 	}
 	
 	@Override
-	protected BlockMetaPair getDirtBlock() {
-		return new BlockMetaPair(GSBlocks.MIRANDA_BLOCKS, (byte) 1);
+	protected IBlockState getDirtBlock() {
+		return GSBlocks.MIRANDA_BLOCKS.getStateFromMeta(1);
 	}
 	
 	@Override
-	protected BlockMetaPair getStoneBlock() {
-		return new BlockMetaPair(GSBlocks.MIRANDA_BLOCKS, (byte) 2);
+	protected IBlockState getStoneBlock() {
+		return GSBlocks.MIRANDA_BLOCKS.getStateFromMeta(2);
 	}
 	
 	@Override
@@ -149,7 +147,7 @@ public class ChunkProviderMiranda extends ChunkProviderSpaceLakes {
 	}
 
 	@Override
-	protected BlockMetaPair getWaterBlock() {
+	protected IBlockState getWaterBlock() {
 		return null;
 	}
 

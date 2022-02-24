@@ -59,12 +59,12 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
 
     @Override
     public float getFallDamageModifier() {
-        return 0.16F;
+        return 1.0F;
     }
 
     @Override
     public double getFuelUsageMultiplier() {
-        return 0.8;
+        return 1.0;
     }
 
     @Override
@@ -201,6 +201,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
     }
     
     @Override
+    @SideOnly(Side.CLIENT)
     public IRenderHandler getCloudRenderer(){
     	
     	if(super.getCloudRenderer() == null)
@@ -208,7 +209,8 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
     	
         return super.getCloudRenderer();
     }
-    
+
+    @Override
     @SideOnly(Side.CLIENT)
     public IRenderHandler getSkyRenderer()
     {

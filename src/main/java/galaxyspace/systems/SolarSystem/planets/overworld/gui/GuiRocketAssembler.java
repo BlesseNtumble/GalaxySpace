@@ -37,6 +37,7 @@ public class GuiRocketAssembler extends GuiContainerGC
         this.tileEntity = tileEntity;
         this.xSize = 204;
         this.ySize = 256;
+        
     }
 
     @Override

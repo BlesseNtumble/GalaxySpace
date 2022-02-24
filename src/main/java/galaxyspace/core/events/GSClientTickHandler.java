@@ -195,7 +195,7 @@ public class GSClientTickHandler {
         			double count = 0;
         			
         			World world = ColorBlockHandler.world;
-        			if(isWE && player.getEntityWorld().provider != null) {
+        			if(isWE && player.getEntityWorld().provider != null && world.provider instanceof WE_WorldProvider) {
 	        			WE_ChunkProvider chunk = ((WE_WorldProvider)world.provider).chunk_provider;
 	        			if(chunk != null) {
 		        			double scaleX = chunk.biomemapScaleX;
