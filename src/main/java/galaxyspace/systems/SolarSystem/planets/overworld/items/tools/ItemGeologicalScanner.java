@@ -1,15 +1,22 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.items.tools;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.annotation.Nullable;
+
+import galaxyspace.core.GSFluids;
 import galaxyspace.core.events.GSClientTickHandler;
 import galaxyspace.core.util.GSCreativeTabs;
+import micdoodle8.mods.galacticraft.core.energy.EnergyDisplayHelper;
 import micdoodle8.mods.galacticraft.core.energy.item.ItemElectricBase;
 import micdoodle8.mods.galacticraft.core.items.ISortableItem;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryItem;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -43,6 +50,25 @@ public class ItemGeologicalScanner extends ItemElectricBase implements ISortable
         
     }
 
+	@Override
+	public void addInformation(ItemStack itemStack, @Nullable World worldIn, List<String> tooltip,	ITooltipFlag flagIn) {
+	
+		tooltip.add(GCCoreUtil.translate("gui.geological_scanner.desc"));
+		
+		String color = "";
+		float joules = this.getElectricityStored(itemStack);
+
+		if (joules <= this.getMaxElectricityStored(itemStack) / 3) {
+			color = "\u00a74";
+		} else if (joules > this.getMaxElectricityStored(itemStack) * 2 / 3) {
+			color = "\u00a72";
+		} else {
+			color = "\u00a76";
+		}
+
+		tooltip.add(color + EnergyDisplayHelper.getEnergyDisplayS(joules) + "/" + EnergyDisplayHelper.getEnergyDisplayS(this.getMaxElectricityStored(itemStack)));
+	}
+	 
 	@Override
 	public EnumSortCategoryItem getCategory(int meta) {
 		return EnumSortCategoryItem.TOOLS;
@@ -111,13 +137,14 @@ public class ItemGeologicalScanner extends ItemElectricBase implements ISortable
 						for(int z = -radius; z < radius; z++) {
 							IBlockState block = world.getBlockState(new BlockPos(pos.getX() + x, y, pos.getZ() + z));
 							if(block.getBlock() == FluidRegistry.getFluidStack("oil", 1).getFluid().getBlock() ||
-									block.getBlock() == FluidRegistry.LAVA.getBlock())
+									block.getBlock() == FluidRegistry.LAVA.getBlock() ||
+									block.getBlock() == GSFluids.BLOCK_NATURE_GAS)
 							{								
 								//player.sendMessage(new TextComponentString(TextFormatting.GREEN + "Y Oil: " + y));
 								Map<IBlockState, String> blocks_to_render = new HashMap<IBlockState, String>();
 								blocks_to_render.put(block, block.getBlock().getLocalizedName() + " Y Level: " + y);
 								GSClientTickHandler.blocks = blocks_to_render;
-								GSClientTickHandler.ticks = 50;
+								GSClientTickHandler.ticks = 100;
 								
 								found = true;
 								break;

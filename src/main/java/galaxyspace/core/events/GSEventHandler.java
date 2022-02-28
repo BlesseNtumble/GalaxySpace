@@ -307,12 +307,12 @@ public class GSEventHandler {
 				if(block.need_check_temp) { 
 					if((e.block == block.state || e.block.getMaterial() == block.state.getMaterial()) && !OxygenUtil.isAABBInBreathableAirBlock(e.world, bb, true))
 					{
-						if(thermal <= -1.0F)
+						if(thermal <= -2.0F)
 						{
-							//e.world.setBlockState(e.pos, block.cold_replaced);
+							e.world.setBlockState(e.pos, block.cold_replaced);
 							e.setCanceled(true);
 						}
-						else if(thermal >= 1.5F) {
+						else if(thermal >= 2.5F) {
 							e.world.setBlockState(e.pos, block.hot_replaced);
 							block.spawnParticleHotTemp(e.world, e.pos);
 							e.setCanceled(true);
@@ -391,7 +391,7 @@ public class GSEventHandler {
 						
 						if(ore.need_check_oxygen)
 						{
-							if(!OxygenUtil.isAABBInBreathableAirBlock(world, bb, ore.need_check_temp && (thermal > 1.0F || thermal < -1.0F)))
+							if(!OxygenUtil.isAABBInBreathableAirBlock(world, bb, ore.need_check_temp && (thermal > 2.0F || thermal < -2.0F)))
 							{
 								player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.needoxygen")));				   
 								event.setCanceled(true);
@@ -400,7 +400,7 @@ public class GSEventHandler {
 						
 						if(ore.need_check_temp)
 						{
-							if(!GSUtils.getThermalControl(world, event.getPos().up()) && (thermal > 1.0F || thermal < -1.0F))
+							if(!GSUtils.getThermalControl(world, event.getPos().up()) && (thermal > 2.0F || thermal < -2.0F))
 							{
 								player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.needthermal")));				   
 								event.setCanceled(true);

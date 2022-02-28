@@ -259,7 +259,7 @@ public class GSClientTickHandler {
         			GlStateManager.pushMatrix();
         			int xPos = 10;
         	        int yPos = scaled.getScaledHeight() / 2 - 50;
-        	        int color = Utils.getIntColorWHC(0, 0, 0, 150-ticks);
+        	        int color = Utils.getIntColorWHC(0, 0, 0, 150);
         	        int offsetY = 0;
         	        mc.fontRenderer.drawStringWithShadow("Geological Scanner Data:", xPos, yPos - 10, 0xFFFFFF);
         	        for(Entry<IBlockState, String> block : blocks.entrySet()) {
