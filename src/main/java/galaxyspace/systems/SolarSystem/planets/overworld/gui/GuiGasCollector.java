@@ -62,6 +62,10 @@ public class GuiGasCollector extends GuiTileBase
         desc.add("- " + new ItemStack(GSItems.UPGRADES, 1, 3).getDisplayName());
         this.infoRegions.add(new GuiElementInfoRegion((this.width + this.xSize) / 2, (this.height - this.ySize) / 2 + 16, 18, 21 * 4, desc, this.width, this.height, this));
      
+        desc = new ArrayList<String>();
+        desc.add(GCCoreUtil.translate("gui.atmospheric_value_work.desc"));
+        this.infoRegions.add(new GuiElementInfoRegion((this.width - this.xSize) / 2 + 6, (this.height - this.ySize) / 2 + 17, 18, 18, desc, this.width, this.height, this));
+        
     }
 
     @Override
