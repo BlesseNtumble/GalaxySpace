@@ -95,6 +95,7 @@ public class GSItems {
 	public static Item EM_CANISTER = new ItemFluidCanisterGS("em_canister", GSFluids.LiquidEthaneMethane);
 	public static Item HELIUM_CANISTER = new ItemFluidCanisterGS("helium_canister", GSFluids.Helium3);
 	public static Item HELIUM_HYDROGEN_CANISTER = new ItemFluidCanisterGS("hh_canister", GSFluids.HeliumHydrogen);
+	public static Item NATURE_GAS_CANISTER = new ItemFluidCanisterGS("naturegas_canister", GSFluids.NatureGas);
 	
 	//public static Item PLASTIC_OIL_CANISTER = new ItemFluidCanisterGS("plastic_oil_canister", FluidRegistry.getFluid("oil"), 10001);
 		
@@ -154,6 +155,7 @@ public class GSItems {
 		registerItem(EM_CANISTER);
 		registerItem(HELIUM_CANISTER);
 		registerItem(HELIUM_HYDROGEN_CANISTER);
+		registerItem(NATURE_GAS_CANISTER);
 		
 		registerItem(OXYGENTANK_TIER_4);
 		registerItem(OXYGENTANK_TIER_5);
@@ -203,6 +205,7 @@ public class GSItems {
 		GalacticraftCore.proxy.registerCanister(new PartialCanister(EM_CANISTER, GalaxySpace.MODID, "em_canister", 6));
 		GalacticraftCore.proxy.registerCanister(new PartialCanister(HELIUM_CANISTER, GalaxySpace.MODID, "helium_canister", 6));
 		GalacticraftCore.proxy.registerCanister(new PartialCanister(HELIUM_HYDROGEN_CANISTER, GalaxySpace.MODID, "hh_canister", 6));
+		GalacticraftCore.proxy.registerCanister(new PartialCanister(NATURE_GAS_CANISTER, GalaxySpace.MODID, "naturegas_canister", 6));
 		
 	}
 	
