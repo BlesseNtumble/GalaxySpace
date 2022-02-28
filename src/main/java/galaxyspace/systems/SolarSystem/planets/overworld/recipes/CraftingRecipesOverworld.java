@@ -371,7 +371,7 @@ public class CraftingRecipesOverworld {
 	   TileEntityFuelGenerator.registerNewFuel(AsteroidsModule.fluidLiquidMethane, 50, 1.4F);
 	   TileEntityFuelGenerator.registerNewFuel(GSFluids.HeliumHydrogen, 50, 2.0F);
 	   
-	   TileEntityGasGenerator.registerNewFuel(GSFluids.NaturalGas, 20, 1.0F);
+	   TileEntityGasGenerator.registerNewFuel(GSFluids.NatureGas, 10, 1.0F);
 
 	   TileEntityDeconstructor.knownRecipes.addAll(GSRecipeUtil.getBodyRecipes());
 	   TileEntityDeconstructor.knownRecipes.addAll(GSRecipeUtil.getBoosterRecipes());

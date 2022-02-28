@@ -105,7 +105,7 @@ public class BlockFluidGS extends BlockFluidClassic{
 		if(this.isDamaged)
 			entity.attackEntityFrom(DamageSource.GENERIC, 0.5F);
 		
-		if(stack.getFluid() == GSFluids.NaturalGas) {
+		if(stack.getFluid() == GSFluids.NatureGas) {
 			boolean flag = false;
 			if(entity instanceof EntityLivingBase)
 			{

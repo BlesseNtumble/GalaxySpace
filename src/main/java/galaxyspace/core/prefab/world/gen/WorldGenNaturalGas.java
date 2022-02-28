@@ -90,7 +90,7 @@ public class WorldGenNaturalGas implements IWorldGenerator {
 
 	                                if (var39 * var39 + var42 * var42 + var45 * var45 < 1.0D && state == this.replaceBlock)
 	                                {
-	                                    par1World.setBlockState(new BlockPos(var38, var41, var44), GSFluids.BLOCK_NATURAL_GAS.getDefaultState(), 2);
+	                                    par1World.setBlockState(new BlockPos(var38, var41, var44), GSFluids.BLOCK_NATURE_GAS.getDefaultState(), 2);
 	                                }
 	                            }
 	                        }

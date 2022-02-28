@@ -311,6 +311,9 @@ public class GSUtils {
             	{
             		
             	}
+            	else if(liquid.getFluid() == GSFluids.NatureGas)
+            		FluidUtil.tryFillContainer(tank, liquid, stacks, slot, GSItems.NATURE_GAS_CANISTER); 
+            	
             	else FluidUtil.tryFillContainer(tank, liquid, stacks, slot, Items.BUCKET);
             }
         }      

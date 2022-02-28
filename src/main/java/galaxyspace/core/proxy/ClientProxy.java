@@ -590,8 +590,8 @@ public class ClientProxy extends CommonProxy{
         sludge = Item.getItemFromBlock(GSFluids.BLOCK_ETHANE);
         registerLiquid(sludge, GSFluids.BLOCK_ETHANE, "liquid_ethane", EthaneLocation);
         
-        sludge = Item.getItemFromBlock(GSFluids.BLOCK_NATURAL_GAS);
-        registerLiquid(sludge, GSFluids.BLOCK_NATURAL_GAS, "liquid_naturalgas", NaturalGasLocation);
+        sludge = Item.getItemFromBlock(GSFluids.BLOCK_NATURE_GAS);
+        registerLiquid(sludge, GSFluids.BLOCK_NATURE_GAS, "liquid_naturalgas", NaturalGasLocation);
         
         //Items
         addVariant("cobalt_sword", "tools/", "cobalt_sword");
