@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import asmodeuscore.core.utils.ACAttributePlayer;
 import galaxyspace.GalaxySpace;
+import galaxyspace.core.GSFluids;
 import galaxyspace.core.GSItems;
 import galaxyspace.core.GSPotions;
 import galaxyspace.core.configs.GSConfigCore;
@@ -13,10 +14,12 @@ import galaxyspace.core.configs.GSConfigSchematics;
 import galaxyspace.core.network.packet.GSPacketSimple;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
 import galaxyspace.core.util.GSCreativeTabs;
+import galaxyspace.core.util.GSUtils;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.items.IClickableItem;
 import micdoodle8.mods.galacticraft.core.items.ISortableItem;
+import micdoodle8.mods.galacticraft.core.items.ItemCanisterGeneric;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryItem;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
@@ -51,6 +54,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -97,7 +101,8 @@ public class ItemBasicGS extends Item implements ISortableItem{
 		PLASTIC_FAN(35),
 		CARBON_FAN(36),
 		RAW_PLASTIC(37),
-		PLASTIC(38);
+		PLASTIC(38),
+		GAS_EXTRACTOR(39);
 		
 		private int meta;
 	
@@ -148,6 +153,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
 			1800 * 3, 
 			7200 * 3, 
 			21600 * 3};
+	private static final int GAS_EXTRACTOR_DURABILITY = 50;
 	
 	public ItemBasicGS()
 	{
@@ -170,6 +176,22 @@ public class ItemBasicGS extends Item implements ISortableItem{
 	        }
         }
     }
+	
+	@Override
+	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
+	{
+		super.onUpdate(stack, worldIn, entityIn, itemSlot, isSelected);	
+		int n = stack.getItemDamage();
+		
+		if(n == BasicItems.GAS_EXTRACTOR.getMeta()) {
+			if(!stack.hasTagCompound()) 
+				stack.setTagCompound(new NBTTagCompound());
+			
+			if(!stack.getTagCompound().hasKey("destroyedLvl"))
+				stack.getTagCompound().setInteger("destroyedLvl", GAS_EXTRACTOR_DURABILITY);
+			
+		}
+	}
 	
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -249,6 +271,16 @@ public class ItemBasicGS extends Item implements ISortableItem{
 				if(stack.getTagCompound().hasKey("destroyedLvl"))
 				{
 					list.add("Durability: " + (FANS_DURABILITY[n-33] - stack.getTagCompound().getInteger("destroyedLvl")) + " / " + FANS_DURABILITY[n-33]);
+				}
+			}
+		}
+		else if(n == BasicItems.GAS_EXTRACTOR.getMeta()) {
+			list.add(GCCoreUtil.translate("gui.gas_extractor.desc"));
+			if(stack.hasTagCompound())
+			{
+				if(stack.getTagCompound().hasKey("destroyedLvl"))
+				{
+					list.add("Durability: " + stack.getTagCompound().getInteger("destroyedLvl") + " / " + GAS_EXTRACTOR_DURABILITY);
 				}
 			}
 		}
@@ -483,18 +515,63 @@ public class ItemBasicGS extends Item implements ISortableItem{
 				}
 			}
 		}
+		else if(stack.getItemDamage() == BasicItems.GAS_EXTRACTOR.getMeta()) {
+			RayTraceResult result = this.getRay(world, player, true);
+			if(result != null && result.typeOfHit == Type.BLOCK) {
+				if(world.getBlockState(result.getBlockPos()).getBlock() == GSFluids.BLOCK_NATURE_GAS) {
+					if(tryFillCanister(player, new FluidStack(GSFluids.NatureGas, 500))) {
+						player.inventoryContainer.detectAndSendChanges();
+						world.setBlockToAir(result.getBlockPos());
+						
+						if(stack.getTagCompound().getInteger("destroyedLvl") <= GAS_EXTRACTOR_DURABILITY)
+							stack.getTagCompound().setInteger("destroyedLvl", stack.getTagCompound().getInteger("destroyedLvl") - 1);
+						else
+							stack.splitStack(1);
+						return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
+					}
+				}
+			}
+		}
 		return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
+	}
+	
+	private boolean tryFillCanister(EntityPlayer player, FluidStack fluid) {
+
+		for(int i = 0; i < player.inventory.mainInventory.size(); i++) {
+			ItemStack stack = player.inventory.mainInventory.get(i);
+			
+			if(stack.getItem() instanceof ItemCanisterGeneric) {				
+				if(stack.getItem() == GSItems.NATURE_GAS_CANISTER && stack.getItemDamage() > 1) {
+					
+					if(stack.getItemDamage() + fluid.amount < stack.getMaxDamage())
+						stack.setItemDamage(stack.getItemDamage() - fluid.amount);
+					else
+						stack.setItemDamage(1);
+					
+					player.inventory.setInventorySlotContents(i, stack);
+					return true;
+				}
+				
+				if(stack.getItem() == GCItems.oilCanister && stack.getItemDamage() == ItemCanisterGeneric.EMPTY) {
+
+					stack = new ItemStack(GSItems.NATURE_GAS_CANISTER, 1, fluid.amount);
+					player.inventory.setInventorySlotContents(i, stack);
+					return true;
+				}
+			}
+		}
+				
+		return false;
 	}
 	
 	@Override
 	public boolean showDurabilityBar(ItemStack stack) {
-		if(stack.getItemDamage() == BasicItems.ANIMAL_CAGE.getMeta() || (stack.getItemDamage() >= 33 && stack.getItemDamage() <= 36))
+		
+		if(stack.hasTagCompound() && stack.getTagCompound().hasKey("destroyedLvl"))
 		{
-			if(stack.hasTagCompound())
-			{
-				return stack.getTagCompound().getInteger("destroyedLvl") >= 0;
-			}
+			return stack.getTagCompound().getInteger("destroyedLvl") >= 0;
 		}
+		
 		return stack.isItemDamaged();
 	}
 
@@ -508,11 +585,18 @@ public class ItemBasicGS extends Item implements ISortableItem{
 				return (stack.getTagCompound().getInteger("destroyedLvl") / 10D) / 0.31D;
 			}
 		}
-		if(stack.getItemDamage() >= 33 )
+		if(stack.getItemDamage() >= 33 && stack.getItemDamage() < 37 )
 		{
 			if(stack.hasTagCompound())
 			{
 				return (double)stack.getTagCompound().getInteger("destroyedLvl") / (double)FANS_DURABILITY[stack.getItemDamage()-33];
+			}
+		}
+		if(stack.getItemDamage() == BasicItems.GAS_EXTRACTOR.getMeta() )
+		{
+			if(stack.hasTagCompound())
+			{
+				return (GAS_EXTRACTOR_DURABILITY - (double)stack.getTagCompound().getInteger("destroyedLvl")) / GAS_EXTRACTOR_DURABILITY;
 			}
 		}
 		return (double) stack.getItemDamage() / (double) stack.getMaxDamage();
