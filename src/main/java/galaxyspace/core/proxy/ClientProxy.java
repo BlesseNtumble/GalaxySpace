@@ -138,7 +138,7 @@ public class ClientProxy extends CommonProxy{
 	private static ModelResourceLocation HeliumLocation = new ModelResourceLocation(GalaxySpace.TEXTURE_PREFIX + "liquid_helium", "fluid");
 	private static ModelResourceLocation HeliumHydrogenLocation = new ModelResourceLocation(GalaxySpace.TEXTURE_PREFIX + "liquid_heliumhydrogen", "fluid");
 	private static ModelResourceLocation EthaneLocation = new ModelResourceLocation(GalaxySpace.TEXTURE_PREFIX + "liquid_ethane", "fluid");
-	private static ModelResourceLocation NaturalGasLocation = new ModelResourceLocation(GalaxySpace.TEXTURE_PREFIX + "liquid_naturalgas", "fluid");
+	private static ModelResourceLocation NatureGasLocation = new ModelResourceLocation(GalaxySpace.TEXTURE_PREFIX + "liquid_naturegas", "fluid");
 	
 	@Override
     public void preload(FMLPreInitializationEvent event) {
@@ -591,7 +591,7 @@ public class ClientProxy extends CommonProxy{
         registerLiquid(sludge, GSFluids.BLOCK_ETHANE, "liquid_ethane", EthaneLocation);
         
         sludge = Item.getItemFromBlock(GSFluids.BLOCK_NATURE_GAS);
-        registerLiquid(sludge, GSFluids.BLOCK_NATURE_GAS, "liquid_naturalgas", NaturalGasLocation);
+        registerLiquid(sludge, GSFluids.BLOCK_NATURE_GAS, "liquid_naturegas", NatureGasLocation);
         
         //Items
         addVariant("cobalt_sword", "tools/", "cobalt_sword");

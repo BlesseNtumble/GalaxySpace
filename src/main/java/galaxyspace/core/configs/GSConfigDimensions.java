@@ -35,6 +35,7 @@ public class GSConfigDimensions
     public static int dimensionIDMercury;
     public static int dimensionIDVenus;
     public static int dimensionIDCeres;
+    public static int dimensionIDJupiter;
     public static int dimensionIDPluto;
     public static int dimensionIDKuiperBelt;
     public static int dimensionIDHaumea;
@@ -79,6 +80,7 @@ public class GSConfigDimensions
     public static boolean enableTriton;
     
     public static boolean enableVenusSpaceStation;
+    public static boolean enableJupiterSpaceStation;
 
     public static int idDimensionMarsOrbit;
     public static int idDimensionMarsOrbitStatic;
@@ -86,6 +88,8 @@ public class GSConfigDimensions
     public static int idDimensionVenusOrbit;
     public static int idDimensionVenusOrbitStatic;
     
+    public static int idDimensionJupiterOrbit;
+    public static int idDimensionJupiterOrbitStatic;
     
     public static void syncConfig(boolean load)
     {
@@ -218,6 +222,12 @@ public class GSConfigDimensions
             dimensionIDMiranda = prop.getInt();
             propOrder.add(prop.getName());
             
+            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "dimensionIDJupiter", -1026);
+            prop.setComment("Dimension ID for Jupiter (Only for Space Station)");
+            prop.setLanguageKey("gc.configgui.dimensionIDJupiter").setRequiresMcRestart(true);
+            dimensionIDJupiter = prop.getInt();
+            propOrder.add(prop.getName());
+            
             prop = config.get(GSConstants.DEVELOMPENT_CATEGORY, "dimensionIDTest", -1234);
             prop.setComment("Dimension ID for Test planet (only for debug)");
             prop.setLanguageKey("gc.configgui.dimensionIDTest").setRequiresMcRestart(true);
@@ -255,7 +265,19 @@ public class GSConfigDimensions
             prop.setLanguageKey("gc.configgui.idDimensionVenusOrbitStatic").setRequiresMcRestart(true);
             idDimensionVenusOrbitStatic = prop.getInt();
             propOrder.add(prop.getName());
+            /*
+            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "idDimensionJupiterOrbit", -1130);
+            prop.setComment("WorldProvider ID for Jupiter Space Stations (advanced: do not change unless you have conflicts)");
+            prop.setLanguageKey("gc.configgui.idDimensionJupiterOrbit").setRequiresMcRestart(true);
+            idDimensionJupiterOrbit = prop.getInt();
+            propOrder.add(prop.getName());
             
+            prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "idDimensionJupiterOrbitStatic", -1131);
+            prop.setComment("WorldProvider ID for Static Jupiter Space Stations (advanced: do not change unless you have conflicts)");
+            prop.setLanguageKey("gc.configgui.idDimensionJupiterOrbitStatic").setRequiresMcRestart(true);
+            idDimensionJupiterOrbitStatic = prop.getInt();
+            propOrder.add(prop.getName());
+            */
             //----------------------------------------------------------------------------------
             
             prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableMercury", true);
@@ -383,7 +405,13 @@ public class GSConfigDimensions
             prop.setLanguageKey("gc.configgui.enableVenusSpaceStation").setRequiresMcRestart(true);
             enableVenusSpaceStation = prop.getBoolean(true);
             propOrder.add(prop.getName());
-                        
+            /*
+            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableJupiterSpaceStation", true);
+            prop.setComment("Enable/Disable Jupiter Space Station");
+            prop.setLanguageKey("gc.configgui.enableJupiterSpaceStation").setRequiresMcRestart(true);
+            enableJupiterSpaceStation = prop.getBoolean(true);
+            propOrder.add(prop.getName());
+                        */
             config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 
             if (config.hasChanged())

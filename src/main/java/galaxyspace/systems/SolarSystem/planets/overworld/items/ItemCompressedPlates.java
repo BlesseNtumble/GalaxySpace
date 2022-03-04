@@ -16,7 +16,7 @@ public class ItemCompressedPlates extends Item implements ISortableItem {
 		"compressed_magnesium",
 		"compressed_nickel",
 		"compressed_sdhd120",
-		"compressed_lead"
+		//"compressed_lead"
 	};
 	
 	public ItemCompressedPlates()

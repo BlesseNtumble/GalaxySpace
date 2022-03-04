@@ -194,7 +194,7 @@ public class GSBlocks {
 		registerBlock(ADVANCED_LANDING_PAD_SINGLE, GSItemBlockDesc.class);
 		registerBlock(ADVANCED_LANDING_PAD, null);
 		registerBlock(FAKE_BLOCK, null);
-		registerBlock(RESEARCH_TABLE, GSItemBlockDesc.class);
+		//registerBlock(RESEARCH_TABLE, GSItemBlockDesc.class);
 		
 		registerBlock(DUNGEON_BLOCKS, ItemBlockDungeonBlocks.class);
 		registerBlock(TREASURE_CHEST_TIER_4, GSItemBlockDesc.class);		

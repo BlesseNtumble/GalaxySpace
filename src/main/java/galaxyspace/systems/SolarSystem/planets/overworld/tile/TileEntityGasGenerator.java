@@ -358,7 +358,7 @@ public class TileEntityGasGenerator extends TileBaseUniversalElectricalSource im
 
             if(liquidName != null)
             {
-            	if (liquidName.startsWith("naturalgas")) 
+            	if (liquidName.startsWith("naturegas")) 
             		used = this.fuelTank.fill(resource, doFill);
             }
         }

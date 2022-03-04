@@ -125,7 +125,10 @@ public class CraftingRecipesOverworld {
 	  
 	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.PLANET_SHIELD, 1, 0), new Object[] { "XYX", "VCV", "ZZZ", 'V', new ItemStack(GCBlocks.aluminumWire, 1, 1), 'X', new ItemStack(MarsItems.marsItemBasic, 1, 6), 'C', new ItemStack(GSBlocks.MACHINE_FRAMES, 1, 2), 'Z', new ItemStack(GSItems.HDP, 1, 0), 'Y', new ItemStack(GSBlocks.GRAVITATION_MODULE, 1, 0)});
 	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.ENERGY_PAD, 1, 0), new Object[] { "XYX", "VCV", "ZWZ", 'W', new ItemStack(GCBlocks.aluminumWire, 1, 1), 'Z', new ItemStack(MarsItems.marsItemBasic, 1, 5), 'C', BasicItems.WAFER_MODERN.getItemStack(), 'X', new ItemStack(GSBlocks.FUTURE_GLASS_BASIC, 1, 0), 'Y', new ItemStack(GCBlocks.platform, 1, 0), 'V', Items.REDSTONE});
-   
+	 
+	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.GAS_COLLECTOR, 1, 0), new Object[] { "XYX", "ZCV", "XWX", 'W', new ItemStack(GCItems.canister, 1, 0), 'Z', new ItemStack(GCItems.oxygenFan, 1, 0), 'C', new ItemStack(GSBlocks.MACHINE_FRAMES, 1, 1), 'X', plateDesh, 'Y', new ItemStack(GCItems.oxygenVent, 1, 0), 'V', new ItemStack(MarsItems.marsItemBasic, 1, 6)});
+	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.GAS_GENERATOR, 1, 0), new Object[] { "WYW", "WZW", "XVX", 'W', new ItemStack(GCItems.canister, 1, 0), 'X', new ItemStack(GCItems.itemBasicMoon, 1, 1), 'Y', new ItemStack(GCBlocks.spaceGlassClear, 1, OreDictionary.WILDCARD_VALUE), 'Z', new ItemStack(GSBlocks.FUEL_GENERATOR, 1, 0), 'V', BasicItems.WAFER_MODERN.getItemStack()});
+	   
 	}
 
    private static void addItemRecipes()
@@ -221,6 +224,9 @@ public class CraftingRecipesOverworld {
 		   RecipeUtil.addRecipe(new ItemStack(GSItems.INGOTS, 1, i), new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(GSItems.NUGGETS, 1, i)});
 			    
 	   }
+	   
+	   RecipeUtil.addRecipe(BasicItems.GAS_EXTRACTOR.getItemStack(), new Object[] {"XY ", "YZC", " CV", 'X', new ItemStack(GCBlocks.oxygenPipe, 1, 0), 'Y', "dyeCyan", 'Z', new ItemStack(GCItems.oxygenVent, 1, 0), 'C', plateSteel, 'V', new ItemStack(GCItems.basicItem, 1, 14)});
+	
    }
 
    private static void addBlockSmelting() {
@@ -372,6 +378,8 @@ public class CraftingRecipesOverworld {
 	   TileEntityFuelGenerator.registerNewFuel(GSFluids.HeliumHydrogen, 50, 2.0F);
 	   
 	   TileEntityGasGenerator.registerNewFuel(GSFluids.NatureGas, 10, 1.0F);
+	   TileEntityGasGenerator.registerNewFuel(FluidRegistry.getFluid("methane"), 15, 1.2F);
+	   TileEntityGasGenerator.registerNewFuel(FluidRegistry.getFluid("hydrogen"), 15, 1.5F);
 
 	   TileEntityDeconstructor.knownRecipes.addAll(GSRecipeUtil.getBodyRecipes());
 	   TileEntityDeconstructor.knownRecipes.addAll(GSRecipeUtil.getBoosterRecipes());

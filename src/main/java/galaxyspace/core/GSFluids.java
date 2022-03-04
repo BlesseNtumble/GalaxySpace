@@ -87,7 +87,7 @@ public class GSFluids {
 			ResourceLocation textureFlowing = new ResourceLocation(GalaxySpace.TEXTURE_PREFIX + "fluids/" + fluidTexture + "_flowing");
 			FluidRegistry.registerFluid(new Fluid(fluidName, textureStill, textureFlowing).setDensity(density).setViscosity(viscosity).setTemperature(temperature).setGaseous(gaseous));
 			returnFluid = FluidRegistry.getFluid(fluidName);
-			if(!returnFluid.isGaseous())
+			//if(!returnFluid.isGaseous())
 				FluidRegistry.addBucketForFluid(returnFluid);
 		} else {
 			returnFluid.setGaseous(gaseous);

@@ -5,7 +5,7 @@ import net.minecraft.world.DimensionType;
 public class GSDimensions {
 	public static DimensionType MERCURY, CERES, PLUTO, KUIPER_BELT, HAUMEA, TEST;
 	public static DimensionType PHOBOS, IO, EUROPA, GANYMEDE, CALLISTO, ENCELADUS, TITAN, MIRANDA, TRITON;
-	public static DimensionType VENUS_SS, VENUS_SS_KEEPLOADED, MARS_SS, MARS_SS_KEEPLOADED;
+	public static DimensionType VENUS_SS, VENUS_SS_KEEPLOADED, MARS_SS, MARS_SS_KEEPLOADED, JUPITER_SS, JUPITER_SS_KEEPLOADED;
 		
 	//aCentauri System
 	public static DimensionType PROXIMA_B;
