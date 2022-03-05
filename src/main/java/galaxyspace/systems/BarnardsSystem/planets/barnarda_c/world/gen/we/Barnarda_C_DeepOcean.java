@@ -5,15 +5,17 @@ import java.util.Random;
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigCore;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
 public class Barnarda_C_DeepOcean extends WE_Biome {
+	private static final int grasscolor = BRConfigCore.enableGreenBarnardaC ? 0x89AC76 : 0xdf73ff;
 
 	public Barnarda_C_DeepOcean(double min, double max) {
-		super(new BiomeProperties("barnarda_b_deepocean"), new int[] {0xdf73ff, 0x116644, 0x985cff});
+		super(new BiomeProperties("barnarda_b_deepocean"), new int[] {grasscolor, 0x116644, 0x985cff});
 		
 		biomeMinValueOnMap      =   min;
 		biomeMaxValueOnMap      =   max;

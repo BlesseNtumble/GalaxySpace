@@ -30,6 +30,7 @@ public class BRConfigCore {
     }
     
     public static boolean enableBarnardsSystems;
+    public static boolean enableGreenBarnardaC;
 
     public static boolean survivalModeOnBarnarda;
 
@@ -53,6 +54,12 @@ public class BRConfigCore {
             prop.setComment("Enable/Disable Barnards System.");
             prop.setLanguageKey("gc.configgui.enableBarnardsSystems").setRequiresMcRestart(true);
             enableBarnardsSystems = prop.getBoolean(true);
+            propOrder.add(prop.getName());
+            
+            prop = config.get(Constants.CONFIG_CATEGORY_CLIENT, "enableGreenBarnardaC", false);
+            prop.setComment("Enable/Disable old green color for grass on Barnarda C.");
+            prop.setLanguageKey("gc.configgui.enableGreenBarnardaC").setRequiresMcRestart(true);
+            enableGreenBarnardaC = prop.getBoolean(false);
             propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_DIFFICULTY, "survivalModeOnBarnarda", false);

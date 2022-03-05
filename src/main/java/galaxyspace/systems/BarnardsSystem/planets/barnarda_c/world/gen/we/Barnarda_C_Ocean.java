@@ -6,6 +6,7 @@ import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import galaxyspace.core.prefab.world.gen.WorldGenCircleBlock;
 import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigCore;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -14,8 +15,10 @@ import net.minecraft.world.biome.Biome;
 
 public class Barnarda_C_Ocean extends WE_Biome {
 
+	private static final int grasscolor = BRConfigCore.enableGreenBarnardaC ? 0x89AC76 : 0xdf73ff;
+	
 	public Barnarda_C_Ocean(double min, double max, boolean frozen) {		
-		super(new BiomeProperties("barnarda_c_ocean" + (frozen ? "_frozen" : "")), new int[] {0xdf73ff, 0x11FF66, 0x985cff});
+		super(new BiomeProperties("barnarda_c_ocean" + (frozen ? "_frozen" : "")), new int[] {grasscolor, 0x11FF66, 0x985cff});
 		
 		biomeMinValueOnMap      =   min;
 		biomeMaxValueOnMap      =   max;

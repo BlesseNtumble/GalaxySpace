@@ -5,13 +5,15 @@ import java.util.Random;
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigCore;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
 public class Barnarda_C_Beach extends WE_Biome {
+	private static final int grasscolor = BRConfigCore.enableGreenBarnardaC ? 0x89AC76 : 0x822899;
 
 	public Barnarda_C_Beach(double min, double max, int tier) {
-		super(new BiomeProperties("barnarda_c_beach" + tier), new int[] {/*0x89AC76*/0x822899, 0x11FF66, 0x985cff});
+		super(new BiomeProperties("barnarda_c_beach" + tier), new int[] {grasscolor, 0x11FF66, 0x985cff});
 		
 		biomeMinValueOnMap      =   min;
 		biomeMaxValueOnMap      =   max;

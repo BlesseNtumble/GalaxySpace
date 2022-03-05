@@ -6,6 +6,7 @@ import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import galaxyspace.core.prefab.world.gen.WorldGenCircleBlock;
 import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
+import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigCore;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Dandelions;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Grass;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.WorldGenTree_Jungle;
@@ -24,8 +25,10 @@ import net.minecraft.world.biome.Biome;
 
 public class Barnarda_C_Jungle extends WE_Biome {
 	
+	private static final int grasscolor = BRConfigCore.enableGreenBarnardaC ? 0x45AC33 : 0xdf73ff;
+	
 	public Barnarda_C_Jungle(double min, double max) {
-		super(new BiomeProperties("barnarda_c_jungle"), new int[] {/*0x45AC33*/ 0xdf73ff, 0x11FF66, 0x985cff});
+		super(new BiomeProperties("barnarda_c_jungle"), new int[] {grasscolor, 0x11FF66, 0x985cff});
 				
 		biomeMinValueOnMap      =  	min;
 		biomeMaxValueOnMap      =   max;
