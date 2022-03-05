@@ -151,6 +151,8 @@ public class TileEntityGasCollector extends TileEntityUpgradeMachine implements 
 	@Override
 	public boolean canProcess()
     {    	
+		if(this.world.getBlockState(getPos().up()).isFullBlock()) return false;
+			
     	if(this.gasTank.getFluidAmount() >= this.gasTank.getCapacity())
     		return false;
     	

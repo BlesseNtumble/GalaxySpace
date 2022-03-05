@@ -63,7 +63,6 @@ public class BlockFluidGS extends BlockFluidClassic{
 				if(world.getBlockState(pos.add(around)).getBlock() == Blocks.TORCH) flag = true;
 				if(world.getBlockState(pos.add(around)).getBlock() == Blocks.MAGMA) flag = true;
 				
-				
 				if(flag) {
 					world.newExplosion(null, pos.getX(), pos.getY(), pos.getZ(), 5F, true, true);
 					flag = false;
@@ -124,7 +123,7 @@ public class BlockFluidGS extends BlockFluidClassic{
 							GSEventHandler.consumeOxygenFromTank((EntityPlayerMP) living, 1);
 						}
 					}
-				}
+				}				
 			}
 		}
 	}

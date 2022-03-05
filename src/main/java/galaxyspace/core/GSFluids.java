@@ -69,7 +69,7 @@ public class GSFluids {
 		BLOCK_HELIUM3 = new BlockFluidGS(Helium3, HELIUM, false);
 		BLOCK_ETHANE = new BlockFluidGS(Ethane, HH, false);
 		BLOCK_HELIUM_HYDROGEN = new BlockFluidGS(HeliumHydrogen, HH, false);
-		BLOCK_NATURE_GAS = new BlockFluidGS(NatureGas, HELIUM, false);
+		BLOCK_NATURE_GAS = new BlockFluidGS(NatureGas, HELIUM, false, true);
 		
 		GSBlocks.registerBlock(BLOCK_LEMETHANE, null);
 		GSBlocks.registerBlock(BLOCK_HELIUM3, null);

@@ -136,7 +136,7 @@ public class TileEntityGasGenerator extends TileBaseUniversalElectricalSource im
             
           
             this.heatGJperTick = Math.min(this.heatGJperTick + Math.max(this.heatGJperTick * 0.05F, BASE_ACCELERATION), GENERATE_GJ_PER_TICK * mod);
-            this.storage.setMaxExtract(GENERATE_GJ_PER_TICK * mod - 10);
+            this.storage.setMaxExtract(GENERATE_GJ_PER_TICK * mod + 1);
      
         }
     	
@@ -144,6 +144,8 @@ public class TileEntityGasGenerator extends TileBaseUniversalElectricalSource im
     
     public boolean canProcess()
     {    	
+    	if(this.fuelTank.getFluid() != null && !this.fuelTank.getFluid().getFluid().isGaseous()) return false;
+    	
         if (this.fuelTank.getFluidAmount() <= 0)
         {        	
         	this.heatGJperTick = 0;
@@ -358,8 +360,14 @@ public class TileEntityGasGenerator extends TileBaseUniversalElectricalSource im
 
             if(liquidName != null)
             {
-            	if (liquidName.startsWith("naturegas")) 
-            		used = this.fuelTank.fill(resource, doFill);
+            	 for(Fuel fluid : fuel)
+                 {
+                 	if(liquidName.startsWith(fluid.getFluid().getName()))
+                 	{
+                 		used = this.fuelTank.fill(resource, doFill);
+                 		break;            		
+                 	}
+                 }       
             }
         }
 

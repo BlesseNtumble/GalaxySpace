@@ -32,7 +32,7 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 
 public class GuiModificationTable extends GuiContainerGC{
 	
-	private static final ResourceLocation guiTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/base_gui_1.png");
+	private static final ResourceLocation guiTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/modification_table.png");
 	private TileEntityModificationTable tileEntity;
     
 	private int countdown = 0;

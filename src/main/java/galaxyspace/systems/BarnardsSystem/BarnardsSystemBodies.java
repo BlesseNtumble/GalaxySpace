@@ -76,7 +76,7 @@ public class BarnardsSystemBodies implements IBodies {
 		GalaxyRegistry.registerSolarSystem(BarnardsSystem);
 		
 		Barnarda_B = BodiesRegistry.registerExPlanet(BarnardsSystem, "barnarda_b", GalaxySpace.ASSET_PREFIX, 0.25F);
-		BodiesRegistry.setOrbitData(Barnarda_B, (float) Math.PI, 2.0F, 3.9F);
+		BodiesRegistry.setOrbitData(Barnarda_B, (float) Math.PI, 1.3F, 3.9F);
 		GalaxyRegistry.registerPlanet(Barnarda_B);
 		
 		Barnarda_B1 = BodiesRegistry.registerExMoon(Barnarda_B, "barnarda_b1", GalaxySpace.ASSET_PREFIX, 15F);

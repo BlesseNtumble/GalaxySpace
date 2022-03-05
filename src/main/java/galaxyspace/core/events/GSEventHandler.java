@@ -557,16 +557,7 @@ public class GSEventHandler {
 		
 			LightningStormHandler.spawnLightning(player);
 			
-			if(BRConfigCore.enableBarnardsSystems && BRConfigDimensions.enableBarnardaC && BRConfigCore.survivalModeOnBarnarda && !gsstats.isBarnardaSurvivalMode()) { 
-				//survivalMode(player, BRConfigDimensions.dimensionIDBarnardaC);
-				WorldUtil.transferEntityToDimension(player, BRConfigDimensions.dimensionIDBarnardaC, player.getServerWorld());
-				
-				gsstats.setBarnardaSurvivalMode();
-				
-				player.sendMessage(new TextComponentString(
-						EnumColor.BRIGHT_GREEN + "[BETA] Welcome in survival mode on Barnarda C."));
-				
-			}
+			
 	        	
         	//this.updateSchematics(player, stats);
 			//this.throwMeteors(player);
@@ -578,9 +569,17 @@ public class GSEventHandler {
 			//}
 			//GalaxySpace.instance.debug(GSFluids.NaturalGas.getBlock().getDefaultState().getMaterial() + "");
 			
-			if(world.rand.nextInt(50) <= 10 && !this.getProtectArmor(player) && world.provider instanceof WorldProviderTitan && world.isRaining() && world.canBlockSeeSky(player.getPosition()))
+			if(world.getTotalWorldTime() % 15 == 0 && !this.getProtectArmor(player) && world.provider instanceof WorldProviderTitan && world.isRaining())
 			{
-				player.attackEntityFrom(GSDamageSource.acid, 1.5F);
+				boolean flag = true;
+				for(int y = 256; y > player.getPosition().getY(); y--)
+				{
+					if(!world.isAirBlock(new BlockPos(player.getPosition().getX(), y, player.getPosition().getZ()))) {
+						flag = false;
+						break;
+					}
+				}
+				if(flag) player.attackEntityFrom(GSDamageSource.acid, 0.5F);
 			}
 
 			if(player.world.provider instanceof WorldProviderKuiperBelt && player.posY <= -20)

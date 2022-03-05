@@ -155,6 +155,8 @@ public class TileEntityFuelGenerator extends TileBaseUniversalElectricalSource i
     
     public boolean canProcess()
     {    	
+    	if(this.fuelTank.getFluid() != null && this.fuelTank.getFluid().getFluid().isGaseous()) return false;
+    	
         if (this.fuelTank.getFluidAmount() <= 0)
         {        	
         		this.heatGJperTick = 0;
@@ -369,11 +371,14 @@ public class TileEntityFuelGenerator extends TileBaseUniversalElectricalSource i
 
             if(liquidName != null)
             {
-            	if (liquidName.startsWith("fuel") 
-            			|| liquidName.startsWith("biofuel") 
-            			|| liquidName.startsWith("lava")
-            		) 
-            		used = this.fuelTank.fill(resource, doFill);
+            	 for(Fuel fluid : fuel)
+                 {
+            		if(liquidName.startsWith(fluid.getFluid().getName()))
+                 	{
+                 		used = this.fuelTank.fill(resource, doFill);
+                 		break;            		
+                 	}
+                 }     	 		
             }
         }
 
