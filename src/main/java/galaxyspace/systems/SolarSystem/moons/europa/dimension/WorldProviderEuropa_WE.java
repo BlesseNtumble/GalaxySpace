@@ -187,5 +187,11 @@ public class WorldProviderEuropa_WE extends WE_WorldProviderSpace {
 	public boolean enableAdvancedThermalLevel() {
 		return true;
 	}
+	
+	@Override
+	protected float getThermalValueMod()
+	{
+		return 0.01F;
+	}
 
 }

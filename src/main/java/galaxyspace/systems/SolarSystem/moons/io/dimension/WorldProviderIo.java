@@ -196,6 +196,6 @@ public class WorldProviderIo extends WorldProviderAdvancedSpace implements IProv
 	@Override
 	protected float getThermalValueMod()
 	{
-		return 0.5F;
+		return 0.01F;
 	}
 }

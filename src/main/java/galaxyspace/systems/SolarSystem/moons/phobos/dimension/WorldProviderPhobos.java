@@ -188,5 +188,11 @@ public class WorldProviderPhobos extends WorldProviderAdvancedSpace implements I
 	public boolean enableAdvancedThermalLevel() {
 		return true;
 	}
+	
+	@Override
+	protected float getThermalValueMod()
+	{
+		return 0.01F;
+	}
 
 }

@@ -197,5 +197,11 @@ public class WorldProviderMiranda extends WorldProviderAdvancedSpace implements 
 	public boolean enableAdvancedThermalLevel() {
 		return true;
 	}
+	
+	@Override
+	protected float getThermalValueMod()
+	{
+		return 0.001F;
+	}
 
 }

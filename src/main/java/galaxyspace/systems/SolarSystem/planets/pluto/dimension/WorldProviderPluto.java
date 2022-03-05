@@ -210,7 +210,7 @@ public class WorldProviderPluto extends WorldProviderAdvancedSpace implements IP
 	@Override
 	protected float getThermalValueMod()
 	{
-		return 0.1F;
+		return 0.02F;
 	}
 
 }

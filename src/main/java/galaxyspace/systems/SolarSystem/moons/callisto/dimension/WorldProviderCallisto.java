@@ -196,7 +196,13 @@ public class WorldProviderCallisto extends WorldProviderAdvancedSpace implements
 
 	@Override
 	public boolean enableAdvancedThermalLevel() {
-		return false;
+		return true;
+	}
+	
+	@Override
+	protected float getThermalValueMod()
+	{
+		return 0.1F;
 	}
 
 }

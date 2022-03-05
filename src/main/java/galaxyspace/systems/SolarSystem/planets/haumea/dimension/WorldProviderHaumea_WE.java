@@ -226,7 +226,7 @@ public class WorldProviderHaumea_WE extends WE_WorldProviderSpace implements IPr
 
 	@Override
 	protected float getThermalValueMod() {
-		return 0.12F;
+		return 0.02F;
 	}
 
 	@Override

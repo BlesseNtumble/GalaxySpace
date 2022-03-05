@@ -198,6 +198,6 @@ public class WorldProviderMercury extends WorldProviderAdvancedSpace implements 
 	@Override
 	protected float getThermalValueMod()
 	{
-		return 1.8F;
+		return 2.35F;
 	}
 }

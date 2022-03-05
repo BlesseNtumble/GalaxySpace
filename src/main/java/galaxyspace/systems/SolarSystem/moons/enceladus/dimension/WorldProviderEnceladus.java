@@ -138,6 +138,12 @@ public class WorldProviderEnceladus extends WorldProviderAdvancedSpace implement
 
 	@Override
 	public boolean enableAdvancedThermalLevel() {
-		return false;
+		return true;
+	}
+	
+	@Override
+	protected float getThermalValueMod()
+	{
+		return 0.01F;
 	}
 }

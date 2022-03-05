@@ -196,4 +196,10 @@ public class WorldProviderEnceladus_WE extends WE_WorldProviderSpace implements 
 	@Override
 	public void recreateStructures(Chunk chunkIn, int x, int z) {		
 	}
+	
+	@Override
+	protected float getThermalValueMod()
+	{
+		return 0.01F;
+	}
 }

@@ -267,7 +267,13 @@ public class WorldProviderTitan extends WorldProviderAdvancedSpace implements IP
 
 	@Override
 	public boolean enableAdvancedThermalLevel() {
-		return false;
+		return true;
+	}
+	
+	@Override
+	protected float getThermalValueMod()
+	{
+		return 0.001F;
 	}
 
 }

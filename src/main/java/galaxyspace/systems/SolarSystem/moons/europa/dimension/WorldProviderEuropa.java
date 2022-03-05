@@ -200,7 +200,13 @@ public class WorldProviderEuropa extends WorldProviderAdvancedSpace implements I
 
 	@Override
 	public boolean enableAdvancedThermalLevel() {
-		return false;
+		return true;
+	}
+	
+	@Override
+	protected float getThermalValueMod()
+	{
+		return 0.01F;
 	}
 
 }

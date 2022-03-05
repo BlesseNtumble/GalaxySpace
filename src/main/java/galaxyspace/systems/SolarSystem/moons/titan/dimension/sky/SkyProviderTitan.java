@@ -24,7 +24,7 @@ public class SkyProviderTitan extends SkyProviderBase
 		GL11.glPushMatrix();
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glEnable(GL11.GL_ALPHA_TEST);
-		GL11.glBlendFunc(GL11.GL_DST_COLOR, GL11.GL_ONE);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		// Render saturn
 		f10 = 20.0F;
 		GL11.glScalef(0.6F, 0.6F, 0.6F);
@@ -43,7 +43,6 @@ public class SkyProviderTitan extends SkyProviderBase
 		worldRenderer.pos(-f10, -100.0D, -f10).tex(0, 0).endVertex();
 		tessellator.draw();
 
-		GL11.glBlendFunc(GL11.GL_DST_COLOR, GL11.GL_ONE);
 		 // Render saturn Rings
         f10 = 50.0F;
         FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.saturnRingsTexture);

@@ -199,4 +199,9 @@ public class WorldProviderGanymede extends WorldProviderAdvancedSpace implements
 		return true;
 	}
 
+	@Override
+	protected float getThermalValueMod()
+	{
+		return 0.1F;
+	}
 }

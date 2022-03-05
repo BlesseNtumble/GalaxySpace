@@ -209,7 +209,7 @@ public class WorldProviderTriton_WE extends WE_WorldProviderSpace implements IPr
 	
 	@Override
 	protected float getThermalValueMod() {
-		return 0.2F;
+		return 0.001F;
 	}
 
 	@Override

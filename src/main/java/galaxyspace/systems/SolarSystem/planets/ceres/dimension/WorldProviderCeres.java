@@ -179,7 +179,7 @@ public class WorldProviderCeres extends WorldProviderAdvancedSpace implements IP
 	@Override
 	protected float getThermalValueMod()
 	{
-		return 0.5F;
+		return 0.01F;
 	}
 	
 }
