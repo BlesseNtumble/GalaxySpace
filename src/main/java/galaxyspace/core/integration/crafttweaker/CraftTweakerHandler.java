@@ -24,6 +24,11 @@ public class CraftTweakerHandler {
 	}
 	
 	@ZenMethod
+	public static void addGasGeneratorRecipe(ILiquidStack fluid, int burn_time, float mod_energy) {
+		CraftTweakerAPI.apply(new ActionGasGeneratorRecipes.Add(fluid, burn_time, mod_energy));
+	}
+	
+	@ZenMethod
 	public static void addHydroponicFarmRecipe(IItemStack seed, IItemStack product, IItemStack secproduct, int secchances, int stages, IBlock block, boolean product_rand, boolean secproduct_rand) {
 		CraftTweakerAPI.apply(new ActionHydroponicRecipes.Add(seed, product, secproduct, secchances, stages, block, product_rand, secproduct_rand));
 	}
@@ -52,6 +57,11 @@ public class CraftTweakerHandler {
 	@ZenMethod
 	public static void removeFuelGeneratorRecipe(ILiquidStack fluid) {
 		CraftTweakerAPI.apply(new ActionFuelGeneratorRecipes.Remove(fluid));
+	}
+	
+	@ZenMethod
+	public static void removeGasGeneratorRecipe(ILiquidStack fluid) {
+		CraftTweakerAPI.apply(new ActionGasGeneratorRecipes.Remove(fluid));
 	}
 	
 	@ZenMethod
