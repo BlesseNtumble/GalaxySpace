@@ -68,7 +68,7 @@ public class GuiModificationTable extends GuiContainerGC{
 			ItemStack stack = this.inventorySlots.getSlot(0).getStack();
 			
 			
-			if(stack.getItem() instanceof IModificationItem)
+			if(stack.getItem() instanceof IModificationItem && ((IModificationItem)stack.getItem()).getAvailableModules() != null)
 			{
 				
 				for(ItemModule module : ((IModificationItem)stack.getItem()).getAvailableModules())

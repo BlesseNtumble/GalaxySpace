@@ -338,6 +338,7 @@ public class GSConfigCore
         //list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_ACHIEVEMENTS)).getChildElements());
         //list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_ENTITIES)).getChildElements());
         list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_KEYS)).getChildElements());
+        list.addAll(new ConfigElement(config.getCategory(GSConstants.HARDMODE_CATEGORY)).getChildElements());
         list.addAll(new ConfigElement(config.getCategory("development")).getChildElements());
 
         return list;

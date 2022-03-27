@@ -508,6 +508,8 @@ gui.animal_cage_stored.desc=Stored Animal:
 gui.plasma_tools.desc=High-tech instruments using plasma. When used, they consume a plasma charge and heat up. Automatically replenish the charge from the capsules in the inventory. Do not break.
 gui.gas_extractor.desc=Collects gases in the canisters located in the inventory.
 gui.geological_scanner.desc=Allows you to determine the rock within the radius of work, scan the depth for the presence of oil, lava, gas.
+gui.atmospheric_value_work.desc=Place the Atmospheric Value to make the mechanism work.
+
 
 gui.not_attached.desc=Not attached
 gui.attached.desc=Attached:

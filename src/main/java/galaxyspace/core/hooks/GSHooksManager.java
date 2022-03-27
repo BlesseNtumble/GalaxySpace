@@ -417,7 +417,7 @@ public class GSHooksManager {
     public static float getGravity(WorldProviderAsteroids wp)
     {
     	if(GSConfigCore.enableZeroGravityOnAsteroids)
-    		return 0.0058F;
+    		return 0.08F;
     	
     	return 0.072F;
     } 

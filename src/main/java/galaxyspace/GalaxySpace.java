@@ -322,7 +322,7 @@ public class GalaxySpace
         info.name = NAME;
         info.version = VERSION;
         info.description = "Global addon for Galacticraft 4.";
-        info.authorList = Arrays.asList("BlesseNtumble");
+        info.authorList = Arrays.asList("Vi[Told]");
     }
     
     @EventBusSubscriber(modid = MODID)
