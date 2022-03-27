@@ -79,10 +79,10 @@ public class ItemBasicGS extends Item implements ISortableItem{
 		METEORIC_IRON_FRAGMENTS(13),
 		BLANK_SCHEMATIC(14),
 		URANIUM_FRAGMENTS(15),
-		TEMP_SHIELD_CONTROL(16),
-		ICE_BUCKET(17),
-		EMERGENCY_PORTABLE_TELEPORT(18),
-		GUIDE_BOOK(19),
+		TEMP_SHIELD_CONTROL(16, 1),
+		ICE_BUCKET(17, 1),
+		EMERGENCY_PORTABLE_TELEPORT(18, 1),
+		GUIDE_BOOK(19, 1),
 		ADVANCED_EMERGENCY_KIT(20),
 		THERMAL_CLOTH_T3(21),
 		THERMAL_CLOTH_T4(22),
@@ -94,21 +94,28 @@ public class ItemBasicGS extends Item implements ISortableItem{
 		COLONIST_KIT(28),
 		EMPTY_PLASMA_CELL(29),
 		FILLED_PLASMA_CELL(30),
-		WOLF_THERMAL_SUIT(31),
-		ANIMAL_CAGE(32),		
-		IRON_FAN(33),
-		STEEL_FAN(34),
-		PLASTIC_FAN(35),
-		CARBON_FAN(36),
+		WOLF_THERMAL_SUIT(31, 1),
+		ANIMAL_CAGE(32, 1),		
+		IRON_FAN(33, 1),
+		STEEL_FAN(34, 1),
+		PLASTIC_FAN(35, 1),
+		CARBON_FAN(36, 1),
 		RAW_PLASTIC(37),
 		PLASTIC(38),
-		GAS_EXTRACTOR(39);
+		GAS_EXTRACTOR(39, 1);
 		
 		private int meta;
+		private int stacksize; 
 	
 		BasicItems(int meta)
 		{
+			this(meta, 64);
+		}
+		
+		BasicItems(int meta, int stacksize)
+		{
 			this.meta = meta;
+			this.stacksize = stacksize;
 		}
 		
 		public String getName()
@@ -131,7 +138,9 @@ public class ItemBasicGS extends Item implements ISortableItem{
 			return this.meta;
 		}		
 		
-		
+		public int getMaxStackSize() {
+			return this.stacksize;
+		}
 	}	
 	
 	public static String[] getEnumNames()
@@ -305,6 +314,18 @@ public class ItemBasicGS extends Item implements ISortableItem{
 	@Override
 	public EnumSortCategoryItem getCategory(int meta) {
 		return EnumSortCategoryItem.GENERAL;
+	}
+	
+	@Override
+	public int getItemStackLimit(ItemStack stack) {
+		int n = stack.getItemDamage();
+		
+		for(BasicItems item : BasicItems.values())
+			if(item.getMeta() == n) 
+				return item.getMaxStackSize();
+			
+
+		return this.getItemStackLimit();
 	}
 			 
 	@Override
