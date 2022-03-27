@@ -298,7 +298,8 @@ public abstract class GuiTileBase extends GuiContainerGC {
 
 	    int fuelLevel = tank != null && tank.getFluid() != null ? tank.getFluid().amount : 0;
         int fuelCapacity = tank != null ? tank.getCapacity() : 0;
-        processDesc.add(EnumColor.YELLOW + tank.getFluid().getLocalizedName() + ": " + fuelLevel + " / " + fuelCapacity);
+        if(tank.getFluid() != null)
+        	processDesc.add(EnumColor.YELLOW + tank.getFluid().getLocalizedName() + ": " + fuelLevel + " / " + fuelCapacity);
        
 	    this.fluidTankRegion.tooltipStrings = processDesc;
 	    this.fluidTankRegion.xPosition = x;
