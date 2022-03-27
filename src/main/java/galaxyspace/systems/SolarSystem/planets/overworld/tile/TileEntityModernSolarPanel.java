@@ -50,7 +50,7 @@ public class TileEntityModernSolarPanel extends TileBaseUniversalElectricalSourc
     public boolean disabled = false;
     @NetworkedField(targetSide = Side.CLIENT)
     public int disableCooldown = 0;
-    public static final int MAX_GENERATE_WATTS = 450;
+    public static final int MAX_GENERATE_WATTS = 900;
     @NetworkedField(targetSide = Side.CLIENT)
     public int generateWatts = 0;
 
@@ -245,7 +245,7 @@ public class TileEntityModernSolarPanel extends TileBaseUniversalElectricalSourc
         celestialAngle %= 360;
 
         float difference = (180.0F - Math.abs(this.currentAngle % 180 - celestialAngle)) / 180.0F;
-        return MathHelper.floor((0.01F * difference * difference * (this.solarStrength * (Math.abs(difference) * 500.0F)) * this.getSolarBoost()) * (2 * GSConfigEnergy.coefficientSolarPanel));
+        return MathHelper.floor((0.01F * difference * difference * (this.solarStrength * (Math.abs(difference) * 500.0F)) * this.getSolarBoost()) * (4 * GSConfigEnergy.coefficientSolarPanel));
     }
 
     public float getSolarBoost()
