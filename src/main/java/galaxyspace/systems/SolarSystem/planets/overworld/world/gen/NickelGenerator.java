@@ -19,7 +19,7 @@ public class NickelGenerator implements IWorldGenerator{
 	private final IBlockState nickelBlock = GSBlocks.OVERWORLD_ORES.getDefaultState().withProperty(BlockOres.BASIC_TYPE, BlockOres.EnumBlockOres.NICKEL);
 	private final IBlockState copperBlock = GCBlocks.basicBlock.getStateFromMeta(5);
 	
-	private final int maxGenerateLevel = 30;
+	private final int maxGenerateLevel = 40;
     private final int minGenerateLevel = 5;
     
     byte[][][] MATRIX = new byte[][][] { 
@@ -49,7 +49,7 @@ public class NickelGenerator implements IWorldGenerator{
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
 		
-		if (random.nextInt(100) < 20) {
+		if (random.nextInt(100) < 70) {
 			int x = chunkX * 16 + random.nextInt(16) + 8;
 			int z = chunkZ * 16 + random.nextInt(16) + 8;
 			int y = random.nextInt(Math.max(this.maxGenerateLevel - this.minGenerateLevel, 0)) + this.minGenerateLevel;
