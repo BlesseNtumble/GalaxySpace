@@ -4,7 +4,7 @@
 		"particle": "galaxyspace:blocks/barnardssystem/barnarda_c/dirt_1",
         "bottom": "galaxyspace:blocks/barnardssystem/barnarda_c/dirt_1",
         "top": "galaxyspace:blocks/barnardssystem/barnarda_c/grass_top",
-        "side": "galaxyspace:blocks/barnardssystem/barnarda_c/grass_side_2",
+        "side": "galaxyspace:blocks/barnardssystem/barnarda_c/dirt_1",
         "overlay": "galaxyspace:blocks/barnardssystem/barnarda_c/grass_side_overlay"
     }
 }

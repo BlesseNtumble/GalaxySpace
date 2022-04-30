@@ -452,5 +452,11 @@ public abstract class ItemSpaceSuit extends ItemElectricArmor implements ISensor
 		return 0;
 	}
 	
+	@Override
+	public boolean canApplyAtEnchantingTable(ItemStack stack, net.minecraft.enchantment.Enchantment enchantment)
+    {
+        return false;
+    }
+	
 	public abstract void addInfo(ItemStack stack, @Nullable World world, List<String> list, ITooltipFlag flagIn);
 }

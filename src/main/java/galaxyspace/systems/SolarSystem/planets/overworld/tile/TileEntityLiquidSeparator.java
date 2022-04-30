@@ -17,12 +17,14 @@ import micdoodle8.mods.galacticraft.core.wrappers.IFluidHandlerWrapper;
 import micdoodle8.mods.galacticraft.planets.asteroids.AsteroidsModule;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.SoundCategory;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -34,7 +36,7 @@ import net.minecraftforge.fml.relauncher.Side;
 
 public class TileEntityLiquidSeparator extends TileBaseElectricBlockWithInventory implements IFluidHandlerWrapper, ISidedInventory, IPacketReceiver {
 
-	int PROCESS_TIME_REQUIRED = 10;
+	int PROCESS_TIME_REQUIRED = 50;
 
     @NetworkedField(targetSide = Side.CLIENT)
     public int processTimeRequired = PROCESS_TIME_REQUIRED;
@@ -141,50 +143,35 @@ public class TileEntityLiquidSeparator extends TileBaseElectricBlockWithInventor
         		
         	}
         	
-        	if (this.canProcess())
+        	if (this.hasEnoughEnergyToRun)
             {
-    			if (this.hasEnoughEnergyToRun)
+        		if (this.canProcess())
                 {
-    				int boost_speed = 0, energy_boost = 0;
-            	   	
-            	   	//////////
-
+        			//////////
+                	int boost_speed = 0;
+                	int energy_boost = 0;
+                	
                 	for(int i = 0; i <= 3; i++)
                 	{
-                		if(this.getInventory().get(4 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 2)))
+                		if(this.getInventory().get(getInventory().size() - i - 1).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 2)))
                 			boost_speed++;
-                		if(this.getInventory().get(4 + i).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 3)))
+                		if(this.getInventory().get(getInventory().size() - i - 1).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 3)))
                 			energy_boost++;
                 	}
                 	
-                    this.processTicks -= 1 * (1 + boost_speed);
-                    this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 90 + (60 * boost_speed) - (20 * energy_boost) : 75 + (55 * boost_speed) - (15 * energy_boost));
+                    this.processTicks += 2 + boost_speed;
+                    this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 90 + (40 * boost_speed) - (20 * energy_boost): 75 + (35 * boost_speed) - (15 * energy_boost));
                     /////////////
-                 
-                    //50% extra speed boost for Tier 2 machine if powered by Tier 2 power
-                    if (this.tierGC == 2) this.processTimeRequired = 200 / (1 + this.poweredByTierGC);
 
-                    if (this.processTicks == 0)
+                    if (this.processTicks >= processTimeRequired)
                     {
-                        this.processTicks = this.processTimeRequired;
-                    }
-                    else
-                    {
-                        if (--this.processTicks <= 0)
-                        {
-                            this.smeltItem();
-                            this.processTicks = this.canProcess() ? this.processTimeRequired : 0;
-                        }
+                        this.processTicks = 0;
+                        this.smeltItem();
                     }
                 }
-                else if (this.processTicks > 0 && this.processTicks < this.processTimeRequired)
-                {
-                    //Apply a "cooling down" process if the electric furnace runs out of energy while smelting
-                    if (this.world.rand.nextInt(4) == 0)
-                    {
-                        this.processTicks++;
-                    }
-                }
+				else {
+					this.processTicks = 0;
+				}
             }
             else
             {

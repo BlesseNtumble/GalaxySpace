@@ -55,7 +55,8 @@ public class TileEntityWindGeneratorRenderer extends TileEntitySpecialRenderer<T
         //GL11.glScalef(2.0F, 2.0F, 2.0F);
         //this.model.renderPanel();
         
-        wind.angle = Math.min((wind.angle+((wind.getPos().getY())/100F) * (wind.getWindBoost() * 15.0F)), wind.angle + 15F) % 360;
+        wind.angle = Math.min((wind.angle+((wind.getPos().getY())/500F) * (wind.getWindBoost() * 15.0F)), wind.angle + 15F) % 360;
+ 
         GL11.glTranslatef(0.0F, 0.06F, 0.0F);
         GL11.glRotatef(wind.angle, 0F, 0F, 1.0F);
         

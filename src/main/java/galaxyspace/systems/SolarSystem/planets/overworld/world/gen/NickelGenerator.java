@@ -49,17 +49,21 @@ public class NickelGenerator implements IWorldGenerator{
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
 		
-		if (random.nextInt(100) < 70) {
-			int x = chunkX * 16 + random.nextInt(16) + 8;
-			int z = chunkZ * 16 + random.nextInt(16) + 8;
-			int y = random.nextInt(Math.max(this.maxGenerateLevel - this.minGenerateLevel, 0)) + this.minGenerateLevel;
-			BlockPos pos = new BlockPos(x, y, z);
-			this.generateOre(world, random, pos);			
-		}
-		
+		if (world.provider.getDimension() == 0)
+        {		
+        
+			if (random.nextInt(100) < 70) {
+				int x = chunkX * 16 + random.nextInt(16) + 8;
+				int z = chunkZ * 16 + random.nextInt(16) + 8;
+				int y = random.nextInt(Math.max(this.maxGenerateLevel - this.minGenerateLevel, 0)) + this.minGenerateLevel;
+				BlockPos pos = new BlockPos(x, y, z);
+				this.generateOre(world, random, pos);			
+			}
+        }
 	}
 	
 	private boolean generateOre(World world, Random rand, BlockPos pos) {
+
 		for (int py = 0; py < MATRIX.length; ++py) {
 			for (int px = 0; px < MATRIX[py].length; ++px) {
 				for (int pz = 0; pz < MATRIX[py][px].length; ++pz) {

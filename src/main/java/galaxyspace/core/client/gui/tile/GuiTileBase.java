@@ -193,7 +193,7 @@ public abstract class GuiTileBase extends GuiContainerGC {
 		        	
 		        	if(slot.isItemValid(new ItemStack(GCItems.battery)))
 		        		this.drawTexturedModalRect(containerWidth + x, containerHeight + y, 21, 62, 18, 18);
-		        	else if(slot.isItemValid(new ItemStack(Items.DYE, 1, 15)))
+		        	else if(slot.isItemValid(new ItemStack(Items.DYE, 1, 0)) && slot.getStack().getItemDamage() == 15)
 		        		this.drawTexturedModalRect(containerWidth + x, containerHeight + y, 105, 62, 18, 18);		        	
 		        	else
 		        		this.drawTexturedModalRect(containerWidth + x, containerHeight + y, 0, 62, 18, 18);	
@@ -251,13 +251,17 @@ public abstract class GuiTileBase extends GuiContainerGC {
 			Utils.drawTexturedModalRect(x - 8, y, 8, 15, 209, 109, 8, 15, invertX, invertY, 256, 256);
 		else
 			Utils.drawTexturedModalRect(x + size, y, 8, 15, 209, 109, 8, 15, invertX, invertY, 256, 256);
+		
 		int scale = 0;
 		if (ticks > 0) {
 			scale = (int) ((double) ticks / (double) max * (size + 8));
 			
-			Utils.drawTexturedModalRect(x, y, scale, 15, 181, 125, 8, 15, invertX, invertY, 256, 256);
+			Utils.drawTexturedModalRect(x, y, scale, 15, 181, 125, 6, 15, false, invertY, 256, 256);
 			if(scale > size - 8)
-				this.drawTexturedModalRect(x + size, y, 209, 125, scale - size, 16);
+				if(invertX)					
+					Utils.drawTexturedModalRect(x - 8, y, 8, 16, 209, 125, scale - size, 16, invertX, invertY, 256, 256);
+				else
+					this.drawTexturedModalRect(x + size, y, 209, 125, scale - size, 16);
 			
 
 			List<String> processDesc = new ArrayList<String>();
@@ -287,7 +291,7 @@ public abstract class GuiTileBase extends GuiContainerGC {
 		}
 	}
 
-	protected void renderFluidTank(int x, int y, FluidTank tank, int scale) {
+	protected void renderFluidTank(int x, int y, FluidTank tank, int scale, GuiElementInfoRegion element) {
 		this.drawTexturedModalRect(x, y, 180, 67, 20, 42);	
 		GSUtils.displayGauge(x + 1, y - 19, scale, tank.getFluid(), 0);
 		this.mc.renderEngine.bindTexture(this.getTexture());
@@ -301,9 +305,9 @@ public abstract class GuiTileBase extends GuiContainerGC {
         if(tank.getFluid() != null)
         	processDesc.add(EnumColor.YELLOW + tank.getFluid().getLocalizedName() + ": " + fuelLevel + " / " + fuelCapacity);
        
-	    this.fluidTankRegion.tooltipStrings = processDesc;
-	    this.fluidTankRegion.xPosition = x;
-		this.fluidTankRegion.yPosition = y;
+        element.tooltipStrings = processDesc;
+        element.xPosition = x;
+        element.yPosition = y;
 	}
 	
 	protected abstract boolean isModuleSupport();
