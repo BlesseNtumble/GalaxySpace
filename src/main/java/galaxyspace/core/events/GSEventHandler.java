@@ -78,6 +78,9 @@ import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import micdoodle8.mods.galacticraft.planets.mars.dimension.WorldProviderMars;
 import micdoodle8.mods.galacticraft.planets.mars.items.ItemTier2Rocket;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
+import net.minecraft.block.BlockCrops;
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
@@ -130,23 +133,16 @@ public class GSEventHandler {
 
 	private static List<BlockToChange> block_to_change = new ArrayList<BlockToChange>();
 	private static List<ItemsToChange> items_to_change = new ArrayList<ItemsToChange>();
-		
+	
+	private static final float hot_temp = 4F; // > 120C
+	private static final float warn_temp = 2F; // > 60C
+	private static final float cool_temp = -1.2F; // < -36
+	private static final float cold_temp = -2F; // < -60
+	
 	static {
-		OreDictionary.getOres("treeLeaves").forEach((ItemStack stack) -> {
-			
-			items_to_change.add(new ItemsToChange(stack, Blocks.AIR.getDefaultState()).setTempCheck(true).setOxygenCheck(true));
-		});
-		
-		OreDictionary.getOres("treeSapling").forEach((ItemStack stack) -> {
-			
-			//block_to_change.add(new BlockToChange(Block.getBlockFromItem(stack.getItem()).getDefaultState(), Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), 0.0F, true));
-			items_to_change.add(new ItemsToChange(stack, Blocks.DEADBUSH.getDefaultState()).setTempCheck(true).setOxygenCheck(true));
-		});
 		
 		items_to_change.add(new ItemsToChange(new ItemStack(Blocks.FURNACE), Blocks.AIR.getDefaultState()).setOxygenCheck(true));
-		items_to_change.add(new ItemsToChange(new ItemStack(Items.WATER_BUCKET), Blocks.AIR.getDefaultState()).setTempCheck(true).setOxygenCheck(false));
 		block_to_change.add(new BlockToChange(Blocks.WATER.getDefaultState(), Blocks.AIR.getDefaultState(), Blocks.ICE.getDefaultState(), 0.0F, true).setParticle("waterbubbles").setOxygenCheck(false));
-		block_to_change.add(new BlockToChange(Blocks.LEAVES.getStateFromMeta(0), Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), 0.5F, true).setParticle("waterbubbles"));
 	}
 	
 	@SubscribeEvent
@@ -295,7 +291,7 @@ public class GSEventHandler {
 		if(e.world != null && !e.world.isRemote && e.world.provider instanceof IGalacticraftWorldProvider && e.pos != null && e.block != null)
 		{
 			float thermal = ((IGalacticraftWorldProvider)e.world.provider).getThermalLevelModifier();
-			AxisAlignedBB bb = new AxisAlignedBB(e.pos.getX()-1,e.pos.getY()-1,e.pos.getZ()-1, e.pos.getX()+1,e.pos.getY()+2,e.pos.getZ()+1);
+			AxisAlignedBB bb = new AxisAlignedBB(e.pos);
 				
 			for(BlockToChange block : block_to_change)
 			{			
@@ -307,12 +303,12 @@ public class GSEventHandler {
 				if(block.need_check_temp) { 
 					if((e.block == block.state || e.block.getMaterial() == block.state.getMaterial()) && !OxygenUtil.isAABBInBreathableAirBlock(e.world, bb, true))
 					{
-						if(thermal <= -2.0F)
+						if(thermal <= cool_temp)
 						{
 							e.world.setBlockState(e.pos, block.cold_replaced);
 							e.setCanceled(true);
 						}
-						else if(thermal >= 2.5F) {
+						else if(thermal >= warn_temp) {
 							e.world.setBlockState(e.pos, block.hot_replaced);
 							block.spawnParticleHotTemp(e.world, e.pos);
 							e.setCanceled(true);
@@ -326,6 +322,39 @@ public class GSEventHandler {
 					e.setCanceled(true);
 				}
 			}				
+		}
+	}
+	
+	@SubscribeEvent
+	public void onUpdateBlocks(UpdateBlockEvent e) {
+		
+		if(!e.world.isRemote && GSConfigCore.enableOxygenForPlantsAndFoods) {
+			if (!e.world.isAreaLoaded(e.pos, 1)) return;
+			 			
+			if(e.world.provider instanceof IGalacticraftWorldProvider) {
+				float thermal = ((IGalacticraftWorldProvider)e.world.provider).getThermalLevelModifier();
+				boolean thermal_check = thermal > warn_temp || thermal < cool_temp;
+			
+				if(e.block.getBlock() instanceof BlockLeaves) {
+					AxisAlignedBB bb = new AxisAlignedBB(e.pos);
+					
+					if(!OxygenUtil.isAABBInBreathableAirBlock(e.world, bb, thermal_check)) {
+						System.out.println("tick: " + e.pos + " | " + e.block.getBlock());
+						
+						e.world.setBlockState(e.pos, GSBlocks.DRY_LEAVES.getDefaultState(), 3);
+						e.setCanceled(true);
+					}
+				}
+				
+				if(e.block.getBlock() instanceof BlockBush && e.block.getBlock() != Blocks.DEADBUSH) {
+					AxisAlignedBB bb = new AxisAlignedBB(e.pos);
+					if(!OxygenUtil.isAABBInBreathableAirBlock(e.world, bb, false)) {
+						e.world.setBlockState(e.pos, Blocks.DEADBUSH.getDefaultState(), 3);
+						e.world.setBlockState(e.pos.down(), Blocks.DIRT.getDefaultState(), 3);
+						e.setCanceled(true);
+					}
+				}
+			}
 		}
 	}
 	
@@ -376,7 +405,7 @@ public class GSEventHandler {
 				world.setBlockToAir(event.getPos());
 			}						
 			
-			if(world.provider instanceof IGalacticraftWorldProvider && GSConfigCore.enableOxygenForPlantsAndFoods)
+			if(world.provider instanceof IGalacticraftWorldProvider)
 			{
 				AxisAlignedBB bb = new AxisAlignedBB(event.getPos().up());
 				float thermal = ((IGalacticraftWorldProvider)world.provider).getThermalLevelModifier();
@@ -414,16 +443,8 @@ public class GSEventHandler {
 								world.setBlockState(event.getPos().up(), ore.replaced);
 						break;
 					}
-				}
-			
-				if(stack.getItem() instanceof ItemSeeds && world.getBlockState(event.getPos()).getBlock() == Blocks.FARMLAND)
-				{					
-					if(!OxygenUtil.isAABBInBreathableAirBlock(world, bb, true))
-					{
-						player.sendMessage(new TextComponentString(EnumColor.DARK_RED + GCCoreUtil.translate("gui.message.needoxygenthermal")));				   
-						event.setCanceled(true);
-					}						
-				}	
+				}			
+				
 			}				
 		}
 	}
@@ -468,7 +489,7 @@ public class GSEventHandler {
 		if (world == null) {
 			return;
 		}			
-		
+				
 		EntityPlayer player = event.getEntityPlayer();					
 		ItemStack i = event.getItemStack();
 				

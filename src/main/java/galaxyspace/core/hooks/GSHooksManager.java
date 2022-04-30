@@ -7,8 +7,10 @@ import java.util.Random;
 
 import asmodeuscore.api.dimension.IAdvancedSpace;
 import galaxyspace.api.block.IEnergyGeyser;
+import galaxyspace.core.GSBlocks;
 import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.events.SetBlockEvent;
+import galaxyspace.core.events.UpdateBlockEvent;
 import galaxyspace.core.hooklib.asm.Hook;
 import galaxyspace.core.hooklib.asm.ReturnCondition;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS.BasicItems;
@@ -39,12 +41,15 @@ import micdoodle8.mods.galacticraft.planets.venus.VenusBlocks;
 import micdoodle8.mods.galacticraft.planets.venus.VenusModule;
 import micdoodle8.mods.galacticraft.planets.venus.dimension.WorldProviderVenus;
 import micdoodle8.mods.galacticraft.planets.venus.tile.TileEntityGeothermalGenerator;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.village.MerchantRecipeList;
@@ -59,6 +64,15 @@ public class GSHooksManager {
     public static boolean setBlockState(World world, BlockPos pos, IBlockState newState, int flags) { 
     	return MinecraftForge.EVENT_BUS.post(new SetBlockEvent(world, pos, newState, flags)); 
     }
+	
+	@Hook(returnCondition = ReturnCondition.ALWAYS, isMandatory = true)
+	public static void randomTick(Block block, World worldIn, BlockPos pos, IBlockState state, Random rand) {
+		UpdateBlockEvent event = new UpdateBlockEvent(worldIn, pos, state, rand);
+		MinecraftForge.EVENT_BUS.post(event);
+		
+		if(!event.isCanceled())
+			block.updateTick(worldIn, pos, state, rand);
+	}
 	
 	@Hook(returnCondition = ReturnCondition.ALWAYS)
 	public static int getAirProducts(TileEntityMethaneSynthesizer te) {

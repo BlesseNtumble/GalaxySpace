@@ -40,6 +40,7 @@ import galaxyspace.systems.SolarSystem.planets.mercury.items.ItemBlocksMercury;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockAdvancedLandingPad;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockAdvancedLandingPadFull;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockDecoMetals;
+import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockDryLeaves;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockFutureGlass;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockFutureGlasses;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockMachineFrames;
@@ -132,7 +133,9 @@ public class GSBlocks {
 	public static final Block TREASURE_CHEST_TIER_5 = new BlockTier5TreasureChest("treasure_t5");
 	public static final Block BOSS_SPAWNER_CERES = new BlockBossSpawnerCeres("boss_spawner_ceres"); 
 	public static final Block BOSS_SPAWNER_IO = new BlockBossSpawnerIo("boss_spawner_io"); 
-	// MARS --------------------------------------------------------------------
+	
+	public static final Block DRY_LEAVES = new BlockDryLeaves();
+	
 	public static final Block MARS_ORES = new MarsOresBlocks().setHardness(2.0F);
 	
 	public static final Block CERES_BLOCKS = new CeresBlocks().setHardness(3.0F);	
@@ -202,6 +205,7 @@ public class GSBlocks {
 		registerBlock(BOSS_SPAWNER_CERES, null);
 		registerBlock(BOSS_SPAWNER_IO, null);
 		
+		registerBlock(DRY_LEAVES, GSItemBlockDesc.class);
 		registerBlock(FUTURE_GLASS_BASIC, GSItemBlockDesc.class);
 		registerBlock(FUTURE_GLASS_COLORED, ItemBlocksFutureGlasses.class);
 		

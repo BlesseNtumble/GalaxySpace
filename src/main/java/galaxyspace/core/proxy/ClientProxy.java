@@ -395,6 +395,7 @@ public class ClientProxy extends CommonProxy{
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.ENERGY_PAD);
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.GAS_COLLECTOR);
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.GAS_GENERATOR);
+		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.DRY_LEAVES);
 		
 		if(GCCoreUtil.isDeobfuscated()) 
 		{
