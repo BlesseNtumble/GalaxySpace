@@ -8,7 +8,9 @@ import micdoodle8.mods.galacticraft.api.tile.IFuelDock;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.IOrbitDimension;
 import micdoodle8.mods.galacticraft.core.Constants;
+import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
+import micdoodle8.mods.galacticraft.core.blocks.BlockLandingPadFull;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
 import micdoodle8.mods.galacticraft.core.event.EventLandingPadRemoval;
 import net.minecraft.block.Block;
@@ -107,9 +109,11 @@ public class EntityTier4Rocket extends EntityTieredRocketWithEngine
          	
              int amountRemoved = 0;
 
-             PADSEARCH:
+             boolean searched = false;
              for (int x = MathHelper.floor(this.posX) - 2; x <= MathHelper.floor(this.posX) + 3; x++)
              {
+            	 if(searched) break;
+            	 
                  for (int y = MathHelper.floor(this.posY) - 3; y <= MathHelper.floor(this.posY) + 1; y++)
                  {
                      for (int z = MathHelper.floor(this.posZ) - 2; z <= MathHelper.floor(this.posZ) + 3; z++)
@@ -117,19 +121,29 @@ public class EntityTier4Rocket extends EntityTieredRocketWithEngine
                          BlockPos pos = new BlockPos(x, y, z);
                          final Block block = this.world.getBlockState(pos).getBlock();
 
-                         if (block != null && block instanceof BlockAdvancedLandingPadFull)
+                         if (block != null)
                          {
-                             if (amountRemoved < 25)
+                        	 EventLandingPadRemoval event = new EventLandingPadRemoval(this.world, pos);
+                        	 MinecraftForge.EVENT_BUS.post(event);
+                        	 
+                             if (block instanceof BlockAdvancedLandingPadFull && amountRemoved < 25)
                              {
-                                 EventLandingPadRemoval event = new EventLandingPadRemoval(this.world, pos);
-                                 MinecraftForge.EVENT_BUS.post(event);
-
                                  if (event.allow)
                                  {
                                      this.world.setBlockToAir(pos);
                                      amountRemoved = 25;
                                  }
-                                 break PADSEARCH;
+                                 searched = true;
+                             }
+                             
+                             if (block instanceof BlockLandingPadFull && amountRemoved < 9)
+                             {
+                                 if (event.allow)
+                                 {
+                                     this.world.setBlockToAir(pos);
+                                     amountRemoved = 9;
+                                 }
+                                 searched = true;
                              }
                          }
                      }
@@ -137,10 +151,12 @@ public class EntityTier4Rocket extends EntityTieredRocketWithEngine
              }
 
              //Set the player's launchpad item for return on landing - or null if launchpads not removed
-             if (stats != null && amountRemoved == 25)
+             if (stats != null)
              {
-                 stats.setLaunchpadStack(new ItemStack(GSBlocks.ADVANCED_LANDING_PAD_SINGLE, 25, 0));
+            	 if(amountRemoved == 9) stats.setLaunchpadStack(new ItemStack(GCBlocks.landingPad, 9, 0));
+            	 if(amountRemoved == 25) stats.setLaunchpadStack(new ItemStack(GSBlocks.ADVANCED_LANDING_PAD_SINGLE, 25, 0));
              }
+ 
 
              this.playSound(SoundEvents.ENTITY_ITEM_PICKUP, 0.2F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
          }
