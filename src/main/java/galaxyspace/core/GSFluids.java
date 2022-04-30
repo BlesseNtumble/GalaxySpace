@@ -2,6 +2,7 @@ package galaxyspace.core;
 
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.prefab.blocks.BlockFluidGS;
+import galaxyspace.core.prefab.blocks.BlockFluidNatureGas;
 import galaxyspace.systems.SolarSystem.moons.titan.blocks.BlockLiquidEthaneMethane;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import net.minecraft.block.Block;
@@ -69,7 +70,7 @@ public class GSFluids {
 		BLOCK_HELIUM3 = new BlockFluidGS(Helium3, HELIUM, false);
 		BLOCK_ETHANE = new BlockFluidGS(Ethane, HH, false);
 		BLOCK_HELIUM_HYDROGEN = new BlockFluidGS(HeliumHydrogen, HH, false);
-		BLOCK_NATURE_GAS = new BlockFluidGS(NatureGas, HELIUM, false, true);
+		BLOCK_NATURE_GAS = new BlockFluidNatureGas(NatureGas, HELIUM);
 		
 		GSBlocks.registerBlock(BLOCK_LEMETHANE, null);
 		GSBlocks.registerBlock(BLOCK_HELIUM3, null);
