@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.lwjgl.opengl.GL11;
 
+import asmodeuscore.core.utils.Utils;
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.GSItems;
 import galaxyspace.core.client.gui.tile.GuiTileBase;
@@ -54,7 +55,7 @@ public class GuiLiquidSeparator extends GuiTileBase
     {
         super.initGui();
         
-
+/*
         
         List<String> baseTankDesc = new ArrayList<String>();
         int baseLevel = this.tileEntity.baseTank != null && this.tileEntity.baseTank.getFluid() != null ? this.tileEntity.baseTank.getFluid().amount : 0;
@@ -62,29 +63,29 @@ public class GuiLiquidSeparator extends GuiTileBase
         baseTankDesc.add(EnumColor.YELLOW + GCCoreUtil.translate("gui.message.fuel.name") + ": " + baseLevel + " / " + baseCapacity);
         this.baseTankRegion.tooltipStrings = baseTankDesc;
         this.baseTankRegion.xPosition = (this.width / 2 ) - 9;
-        this.baseTankRegion.yPosition = (this.height - this.ySize) / 2 + 40;
+        this.baseTankRegion.yPosition = (this.height - this.ySize) / 2 + 40;*/
         this.baseTankRegion.parentWidth = this.width;
         this.baseTankRegion.parentHeight = this.height;
         this.infoRegions.add(this.baseTankRegion);
-        
+        /*
         baseTankDesc = new ArrayList<String>();
         int fuelLevel = this.tileEntity.waterTank1 != null && this.tileEntity.waterTank1.getFluid() != null ? this.tileEntity.waterTank1.getFluid().amount : 0;
         int fuelCapacity = this.tileEntity.waterTank1 != null ? this.tileEntity.waterTank1.getCapacity() : 0;
         baseTankDesc.add(EnumColor.YELLOW + GCCoreUtil.translate("gui.message.fuel.name") + ": " + fuelLevel + " / " + fuelCapacity);
         this.water1TankRegion.tooltipStrings = baseTankDesc;
         this.water1TankRegion.xPosition = (this.width / 2 + this.xSize / 2) - 30;
-        this.water1TankRegion.yPosition = (this.height - this.ySize) / 2 + 40;
+        this.water1TankRegion.yPosition = (this.height - this.ySize) / 2 + 40;*/
         this.water1TankRegion.parentWidth = this.width;
         this.water1TankRegion.parentHeight = this.height;
         this.infoRegions.add(this.water1TankRegion);
-        
+        /*
         baseTankDesc = new ArrayList<String>();
         int fuel1Level = this.tileEntity.waterTank2 != null && this.tileEntity.waterTank2.getFluid() != null ? this.tileEntity.waterTank2.getFluid().amount : 0;
         int fuel1Capacity = this.tileEntity.waterTank2 != null ? this.tileEntity.waterTank2.getCapacity() : 0;
         baseTankDesc.add(EnumColor.YELLOW + GCCoreUtil.translate("gui.message.fuel.name") + ": " + fuel1Level + " / " + fuel1Capacity);
         this.water2TankRegion.tooltipStrings = baseTankDesc;
         this.water2TankRegion.xPosition = (this.width / 2) - 78;
-        this.water2TankRegion.yPosition = (this.height - this.ySize) / 2 + 40;
+        this.water2TankRegion.yPosition = (this.height - this.ySize) / 2 + 40;*/
         this.water2TankRegion.parentWidth = this.width;
         this.water2TankRegion.parentHeight = this.height;
         this.infoRegions.add(this.water2TankRegion);
@@ -139,11 +140,28 @@ public class GuiLiquidSeparator extends GuiTileBase
        
 
         //Process Bar
-
-        this.renderProgressArray(containerWidth + (!this.tileEntity.getReverse() ? 105 : 45), containerHeight + 44, 20, this.tileEntity.processTicks, this.tileEntity.processTimeRequired);
-        this.renderProgressArray(containerWidth + (!this.tileEntity.getReverse() ? 45 : 108), containerHeight + 44, 20, this.tileEntity.processTicks, this.tileEntity.processTimeRequired, true, false);
-      
+        int scale;
+        if (this.tileEntity.processTicks > 0)
+        {
+            scale = (int) ((double) this.tileEntity.processTicks / (double) this.tileEntity.processTimeRequired * 100);
+        }
+        else
+        {
+            scale = 100;
+        }
         
+        this.drawTexturedModalRect(containerWidth + (!this.tileEntity.getReverse() ? 110 : 35), containerHeight + 44, 192, 109, 26, 15);
+        this.drawTexturedModalRect(containerWidth + (!this.tileEntity.getReverse() ? 35 : 110), containerHeight + 44, 181, 142, 26, 15);
+        
+       // Utils.drawTexturedModalRect(x, y, size, 15, 181, 109, 8, 15, invertX, invertY, 256, 256);
+
+
+        if (this.tileEntity.processTicks > 0)
+        {
+            scale = (int) ((double) this.tileEntity.processTicks / (double) this.tileEntity.processTimeRequired * 26);
+            this.drawTexturedModalRect(containerWidth + (!this.tileEntity.getReverse() ? 110 : 35), containerHeight + 44, 192, 109 + 16, 26, 16);
+            this.drawTexturedModalRect(containerWidth + (!this.tileEntity.getReverse() ? 35 : 110), containerHeight + 44, 181, 142 + 16, 26, 16);
+        }
         
         //Energy
         this.renderEnergyBar(containerWidth + 6, containerHeight + 95, this.tileEntity.getScaledElecticalLevel(55), this.tileEntity.getEnergyStoredGC(), this.tileEntity.getMaxEnergyStoredGC());
@@ -151,7 +169,10 @@ public class GuiLiquidSeparator extends GuiTileBase
         
  
         //FluidTank
-               
+        this.renderFluidTank(containerWidth + this.xSize / 2 - 20, containerHeight + 38, this.tileEntity.baseTank, tileEntity.getScaledTankLevel(tileEntity.baseTank, 38), baseTankRegion);
+        this.renderFluidTank(containerWidth + this.xSize - 33 - 19, containerHeight + 38, this.tileEntity.waterTank1, tileEntity.getScaledTankLevel(tileEntity.waterTank1, 38), water1TankRegion);
+        this.renderFluidTank(containerWidth + 9, containerHeight + 38, this.tileEntity.waterTank2, tileEntity.getScaledTankLevel(tileEntity.waterTank2, 38), water2TankRegion);
+        /*
         this.drawTexturedModalRect(containerWidth + this.xSize / 2 - 20, containerHeight + 38, 180, 67, 20, 42);	
         this.drawTexturedModalRect(containerWidth + this.xSize - 33 - 19, containerHeight + 38, 180, 67, 20, 42);	
         this.drawTexturedModalRect(containerWidth + 9, containerHeight + 38, 180, 67, 20, 42);	
@@ -190,7 +211,7 @@ public class GuiLiquidSeparator extends GuiTileBase
         int fuel1Capacity = this.tileEntity.waterTank2 != null ? this.tileEntity.waterTank2.getCapacity() : 0;
         if(fluid2 != null) fuel1TankDesc.add(EnumColor.YELLOW + this.tileEntity.waterTank2.getFluid().getLocalizedName() + ": " + fuel1Level + " / " + fuel1Capacity);       
         this.water2TankRegion.tooltipStrings = fuel1TankDesc;
-      
+      */
         if(GalaxySpace.debug) GSUtils.renderDebugGui(this, containerWidth, containerHeight);
     }
     

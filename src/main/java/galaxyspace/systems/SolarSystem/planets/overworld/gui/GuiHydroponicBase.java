@@ -17,7 +17,7 @@ public class GuiHydroponicBase extends GuiTileBase
 {
 	private TileEntityHydroponicBase tileEntity;
 	private GuiElementInfoRegion electricInfoRegion = new GuiElementInfoRegion(0, 0, 56, 9, null, 0, 0, this);
-	  
+	private GuiElementInfoRegion fluidTankRegion = new GuiElementInfoRegion(0, 0, 16, 38, null, 0, 0, this);
 	
 	public GuiHydroponicBase(InventoryPlayer par1InventoryPlayer, TileEntityHydroponicBase tileEntity)
     {
@@ -38,6 +38,10 @@ public class GuiHydroponicBase extends GuiTileBase
         this.electricInfoRegion.parentWidth = this.width;
         this.electricInfoRegion.parentHeight = this.height;
         this.infoRegions.add(this.electricInfoRegion);
+        
+        this.fluidTankRegion.parentWidth = this.width;
+		this.fluidTankRegion.parentHeight = this.height;
+		this.infoRegions.add(this.fluidTankRegion);
     }
 	
 	@Override
@@ -115,7 +119,7 @@ public class GuiHydroponicBase extends GuiTileBase
         
         //Tanks 
         */
-        this.renderFluidTank(containerWidth + 6, containerHeight + 63, this.tileEntity.waterTank, this.tileEntity.getScaledFluidLevel(38));
+        this.renderFluidTank(containerWidth + 6, containerHeight + 63, this.tileEntity.waterTank, this.tileEntity.getScaledFluidLevel(38), fluidTankRegion);
         /*
 		this.drawTexturedModalRect(containerWidth + 5, containerHeight + 43, 192, 66, 20, 42);
 		//this.drawTexturedModalRect(containerWidth + this.xSize - 28, containerHeight + 40, 192, 66, 20, 42);

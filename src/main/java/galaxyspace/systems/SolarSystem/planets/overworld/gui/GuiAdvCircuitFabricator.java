@@ -127,9 +127,8 @@ public class GuiAdvCircuitFabricator extends GuiTileBase
         GSUtils.renderItemIntoSlot(this.mc.getRenderItem(), new ItemStack(Items.REDSTONE), containerWidth + this.inventorySlots.getSlot(4).xPos, containerHeight + this.inventorySlots.getSlot(4).yPos, new Vec3d(0.4D, 0.4D, 0.4D));
         
         
-        GSUtils.renderItemIntoSlot(this.mc.getRenderItem(), new ItemStack(Blocks.AIR), containerWidth + this.inventorySlots.getSlot(5).xPos, containerHeight + this.inventorySlots.getSlot(5).yPos, new Vec3d(1.0D, 1.0D, 1.0D));
+        GSUtils.renderItemIntoSlot(this.mc.getRenderItem(), new ItemStack(Blocks.REDSTONE_TORCH), containerWidth + this.inventorySlots.getSlot(5).xPos, containerHeight + this.inventorySlots.getSlot(5).yPos, new Vec3d(1.0D, 1.0D, 1.0D));
         
-        if(GalaxySpace.debug) GSUtils.renderDebugGui(this, containerWidth, containerHeight);
     }
 
 	@Override
