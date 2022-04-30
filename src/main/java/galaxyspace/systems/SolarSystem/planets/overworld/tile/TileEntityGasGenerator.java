@@ -53,12 +53,13 @@ public class TileEntityGasGenerator extends TileBaseUniversalElectricalSource im
    
     private float mod = 1.0F;
     private static List<Fuel> fuel = new ArrayList<Fuel>();
+    private Fuel current_fuel;
             
-    public static void registerNewFuel(Fluid fluid, int burn_time, float mod_energy)
+    public static void registerNewFuel(Fluid fluid, int burn_time, float mod_energy, int drain_amount)
     {
     	if(!fluid.isGaseous()) return;
     	
-    	fuel.add(new Fuel(fluid, burn_time, mod_energy));
+    	fuel.add(new Fuel(fluid, burn_time, mod_energy, drain_amount));
     }
     
     public static void removeFuel(Fluid fluid)
@@ -96,15 +97,23 @@ public class TileEntityGasGenerator extends TileBaseUniversalElectricalSource im
         {	           
         	final FluidStack liquid = FluidUtil.getFluidContained(this.getInventory().get(0));
             
-        	for(Fuel fuel : fuel)
-        	{
-        		if (FluidUtil.isFluidStrict(liquid, fuel.getFluid().getName()))  {
-        			
-        			if(fuelTank.getFluid() == null || fuelTank.getFluid() != null && fuelTank.getFluid().getFluid().equals(liquid.getFluid()))
-        			FluidUtil.loadFromContainer(fuelTank, fuel.getFluid(), this.getInventory(), 0, liquid.amount);
-        		}
-        	}        	
-        	         
+			for (Fuel fuel : fuel) {
+				if (FluidUtil.isFluidStrict(liquid, fuel.getFluid().getName())) {
+
+					if (fuelTank.getFluid() == null	|| fuelTank.getFluid() != null && fuelTank.getFluid().getFluid().equals(liquid.getFluid()))
+						FluidUtil.loadFromContainer(fuelTank, fuel.getFluid(), this.getInventory(), 0, liquid.amount);
+					
+				}
+			}
+   
+			
+			for (Fuel fuel : fuel) {
+				if(fuelTank.getFluid() != null && fuelTank.getFluid().getFluid().equals(fuel.getFluid())) {
+					current_fuel = fuel;
+					break;
+				}
+			}
+			
         	this.produce();
             this.smeltItem();
             
@@ -120,22 +129,30 @@ public class TileEntityGasGenerator extends TileBaseUniversalElectricalSource im
         {
         	//final int lavaAmount = this.fuelTank.getFluidAmount();
             //final int fuelSpace = (this.fuelTank.getCapacity() - this.fuelTank.getFluidAmount());
-
+/*
             for(Fuel fluid : fuel)
             {
             	if(this.fuelTank.getFluid().getFluid() == fluid.getFluid())
             	{
             		if(this.ticks % fluid.getDuration() == 0) {
-            			this.fuelTank.drain(1, true);
+            			this.fuelTank.drain(fluid.getDrainAmount(), true);
             			mod = fluid.getModificator(); 
             			  
             		}
             		break;            		
             	}
-            }
+            }*/
             
-          
-            this.heatGJperTick = Math.min(this.heatGJperTick + Math.max(this.heatGJperTick * 0.05F, BASE_ACCELERATION), GENERATE_GJ_PER_TICK * mod);
+    		if(this.fuelTank.getFluid().getFluid() == current_fuel.getFluid())
+        	{
+        		if(this.ticks % current_fuel.getDuration() == 0) {
+        			this.fuelTank.drain(current_fuel.getDrainAmount(), true);
+        			mod = current_fuel.getModificator(); 
+        			  
+        		}           		
+        	}
+    		
+            this.heatGJperTick = GENERATE_GJ_PER_TICK * mod;
             this.storage.setMaxExtract(GENERATE_GJ_PER_TICK * mod + 1);
      
         }
@@ -144,9 +161,11 @@ public class TileEntityGasGenerator extends TileBaseUniversalElectricalSource im
     
     public boolean canProcess()
     {    	
+    	if(current_fuel == null) return false;
+    	
     	if(this.fuelTank.getFluid() != null && !this.fuelTank.getFluid().getFluid().isGaseous()) return false;
     	
-        if (this.fuelTank.getFluidAmount() <= 0)
+        if (this.fuelTank.getFluidAmount() <= current_fuel.getDrainAmount())
         {        	
         	this.heatGJperTick = 0;
         	return false;
@@ -426,12 +445,14 @@ public class TileEntityGasGenerator extends TileBaseUniversalElectricalSource im
     	private Fluid fuel;
     	private int duration;
     	private float modificator;
+    	private int drain_amount;
     	
-    	Fuel(Fluid fluid, int duration, float modificator)
+    	Fuel(Fluid fluid, int duration, float modificator, int drain)
     	{
     		this.fuel = fluid;
     		this.duration = duration;
     		this.modificator = modificator;
+    		this.drain_amount = drain;
     	}
     	
     	public Fluid getFluid()
@@ -447,6 +468,10 @@ public class TileEntityGasGenerator extends TileBaseUniversalElectricalSource im
     	public float getModificator()
     	{
     		return this.modificator;
+    	}
+    	
+    	public int getDrainAmount() {
+    		return this.drain_amount;
     	}
     }
 	

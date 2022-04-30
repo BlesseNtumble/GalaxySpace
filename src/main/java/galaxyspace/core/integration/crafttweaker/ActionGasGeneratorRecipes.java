@@ -12,16 +12,18 @@ public class ActionGasGeneratorRecipes {
 		private final ILiquidStack liquid;
 		private final int burn_time;
 		private final float mod_energy;
-		public Add(ILiquidStack liquid, int burn_time, float mod_energy)
+		private final int drain_amount;
+		public Add(ILiquidStack liquid, int burn_time, float mod_energy, int drain_amount)
 		{
 			this.liquid = liquid;
 			this.burn_time = burn_time;
 			this.mod_energy = mod_energy;
+			this.drain_amount = drain_amount;
 		}
 		
 		@Override
 		public void apply() {
-			TileEntityGasGenerator.registerNewFuel(CraftTweakerMC.getLiquidStack(liquid).getFluid(), burn_time, mod_energy);
+			TileEntityGasGenerator.registerNewFuel(CraftTweakerMC.getLiquidStack(liquid).getFluid(), burn_time, mod_energy, drain_amount);
 		}
 
 		@Override

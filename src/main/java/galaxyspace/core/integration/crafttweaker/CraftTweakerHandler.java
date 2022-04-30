@@ -24,8 +24,8 @@ public class CraftTweakerHandler {
 	}
 	
 	@ZenMethod
-	public static void addGasGeneratorRecipe(ILiquidStack fluid, int burn_time, float mod_energy) {
-		CraftTweakerAPI.apply(new ActionGasGeneratorRecipes.Add(fluid, burn_time, mod_energy));
+	public static void addGasGeneratorRecipe(ILiquidStack fluid, int burn_time, float mod_energy, int drain_amount) {
+		CraftTweakerAPI.apply(new ActionGasGeneratorRecipes.Add(fluid, burn_time, mod_energy, drain_amount));
 	}
 	
 	@ZenMethod
