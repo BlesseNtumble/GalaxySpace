@@ -38,6 +38,7 @@ import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigDimensions;
 import galaxyspace.systems.SolarSystem.moons.titan.dimension.WorldProviderTitan;
 import galaxyspace.systems.SolarSystem.planets.kuiperbelt.dimension.WorldProviderKuiperBelt;
 import galaxyspace.systems.SolarSystem.planets.mars.dimension.WorldProviderMars_WE;
+import galaxyspace.systems.SolarSystem.planets.mars.world.MarsSaveData;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemSpaceSuit;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemThermalPaddingBase;
@@ -73,6 +74,7 @@ import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import micdoodle8.mods.galacticraft.core.world.gen.WorldGenMinableMeta;
 import micdoodle8.mods.galacticraft.core.wrappers.IFluidHandlerWrapper;
+import micdoodle8.mods.galacticraft.planets.GCPlanetDimensions;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.ItemTier3Rocket;
 import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import micdoodle8.mods.galacticraft.planets.mars.dimension.WorldProviderMars;
@@ -101,6 +103,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -120,10 +123,12 @@ import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -203,17 +208,54 @@ public class GSEventHandler {
    
 	}
 
-	/*
 	@SubscribeEvent
-    public void onPlayerJoinWorld(EntityJoinWorldEvent event)
-    {
-		if (event.getEntity() instanceof EntityPlayerMP)
-        {
-			GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_UPDATE_WORLD, GCCoreUtil.getDimensionID(event.getEntity().getEntityWorld())), (EntityPlayerMP)event.getEntity());
-        		
-        }
-    }
-	*/
+	public void onWorldTick(WorldTickEvent e) {
+		World w = e.world;
+		if(!w.isRemote) {
+			
+			boolean flag = w.getGameRules().getBoolean("doWeatherCycle");
+			
+			if(flag && w.provider.getDimensionType() == GCPlanetDimensions.MARS) {
+				MarsSaveData mars_data = MarsSaveData.get(w);
+		
+				if(!mars_data.isDustStorm) {
+					int clearWeather = mars_data.clearWeatherTime;
+		
+					if(clearWeather >= 0) {
+						mars_data.clearWeatherTime--;
+						if(clearWeather <= 0) {
+							mars_data.isDustStorm = true;
+							mars_data.tickDustStorm = w.rand.nextInt(24000) + 12000;
+							
+						 	  
+						}
+					}
+				}
+				else {
+					int stormDust = mars_data.tickDustStorm;
+					if(stormDust >= 0) {
+						mars_data.tickDustStorm--;
+						if(stormDust <= 0) {
+							mars_data.isDustStorm = false;
+							mars_data.clearWeatherTime = w.rand.nextInt(168000) + 12000;							
+							    
+						}
+					}
+				}
+				
+				mars_data.markDirty();
+				//System.out.println(mars_data.clearWeatherTime + " | " + mars_data.tickDustStorm);
+			}
+			
+		}
+	}
+	
+	@SubscribeEvent
+	public void onUnloadWorld(WorldEvent.Unload e) {
+		if(e.getWorld().provider.getDimensionType() == GCPlanetDimensions.MARS)
+			e.getWorld().getPerWorldStorage().saveAllData();
+	}
+	
 	@SubscribeEvent
     public void onPlayerLogin(PlayerLoggedInEvent event)
     {
@@ -332,26 +374,25 @@ public class GSEventHandler {
 			if (!e.world.isAreaLoaded(e.pos, 1)) return;
 			 			
 			if(e.world.provider instanceof IGalacticraftWorldProvider) {
+				if(((IGalacticraftWorldProvider)e.world.provider).hasBreathableAtmosphere()) return;
+				
 				float thermal = ((IGalacticraftWorldProvider)e.world.provider).getThermalLevelModifier();
 				boolean thermal_check = thermal > warn_temp || thermal < cool_temp;
-			
-				if(e.block.getBlock() instanceof BlockLeaves) {
-					AxisAlignedBB bb = new AxisAlignedBB(e.pos);
+				AxisAlignedBB bb = new AxisAlignedBB(e.pos);
+				if(!OxygenUtil.isAABBInBreathableAirBlock(e.world, bb, thermal_check)) {
 					
-					if(!OxygenUtil.isAABBInBreathableAirBlock(e.world, bb, thermal_check)) {
-						System.out.println("tick: " + e.pos + " | " + e.block.getBlock());
-						
+					if(e.block.getBlock() instanceof BlockLeaves) {	
 						e.world.setBlockState(e.pos, GSBlocks.DRY_LEAVES.getDefaultState(), 3);
 						e.setCanceled(true);
 					}
-				}
-				
-				if(e.block.getBlock() instanceof BlockBush && e.block.getBlock() != Blocks.DEADBUSH) {
-					AxisAlignedBB bb = new AxisAlignedBB(e.pos);
-					if(!OxygenUtil.isAABBInBreathableAirBlock(e.world, bb, false)) {
-						e.world.setBlockState(e.pos, Blocks.DEADBUSH.getDefaultState(), 3);
-						e.world.setBlockState(e.pos.down(), Blocks.DIRT.getDefaultState(), 3);
-						e.setCanceled(true);
+									
+					if(e.block.getBlock() instanceof BlockBush && e.block.getBlock() != Blocks.DEADBUSH) {
+						if(e.world.getBlockState(e.pos.down()).isBlockNormalCube()) {
+							e.world.setBlockState(e.pos, Blocks.DEADBUSH.getDefaultState(), 3);
+							e.world.setBlockState(e.pos.down(), Blocks.DIRT.getDefaultState(), 3);
+						}
+						else e.world.setBlockToAir(e.pos);
+						e.setCanceled(true);						
 					}
 				}
 			}
@@ -577,13 +618,27 @@ public class GSEventHandler {
 			final StatsCapability gsstats = GSStatsCapability.get(player);
 		
 			LightningStormHandler.spawnLightning(player);
-			
-			
+						
 	        	
         	//this.updateSchematics(player, stats);
 			//this.throwMeteors(player);
-
+			if(world.getTotalWorldTime() % 20 == 0 && world.provider.getDimensionType() == GCPlanetDimensions.MARS) {
+				MarsSaveData msd = MarsSaveData.get(world);
+				GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_UPDATE_MSD_USER, world, new Object[] {msd.isDustStorm, msd.tickDustStorm, msd.clearWeatherTime}), player);
 			
+				if(msd.isDustStorm) {
+					
+					boolean flag = true;
+					for(int y = 256; y > player.getPosition().getY(); y--)
+					{
+						if(!world.isAirBlock(new BlockPos(player.getPosition().getX(), y, player.getPosition().getZ()))) {
+							flag = false;
+							break;
+						}
+					}
+					if(flag) player.attackEntityFrom(DamageSource.CACTUS, 0.5F);
+				}
+			}
 			//if(gs_stats.getKnowledgeResearch()[0] > 0)
 			//{
 			//GalaxySpace.debug(gs_stats.getKnowledgeResearch()[0] + "");
@@ -746,6 +801,7 @@ public class GSEventHandler {
 		
 		return valid;
 	}
+	
 	@SubscribeEvent
 	public void onThermalArmorEvent(ThermalArmorEvent event) {		
 		if (event.armorStack == ItemStack.EMPTY) {

@@ -14,7 +14,10 @@ import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_CaveGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_RavineGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
+import galaxyspace.systems.SolarSystem.moons.titan.dimension.sky.WeatherProviderTitan;
 import galaxyspace.systems.SolarSystem.planets.mars.dimension.sky.SkyProviderMars;
+import galaxyspace.systems.SolarSystem.planets.mars.dimension.sky.WeatherProviderMars;
+import galaxyspace.systems.SolarSystem.planets.mars.world.MarsSaveData;
 import galaxyspace.systems.SolarSystem.planets.mars.world.gen.we.Mars_High_Plains;
 import galaxyspace.systems.SolarSystem.planets.mars.world.gen.we.Mars_Mountains;
 import galaxyspace.systems.SolarSystem.planets.mars.world.gen.we.Mars_Plains;
@@ -169,6 +172,13 @@ public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProv
     }
 
 	@Override
+    @SideOnly(Side.CLIENT)
+    public IRenderHandler getWeatherRenderer()
+    {
+        return new WeatherProviderMars();
+    }
+	
+	@Override
 	public int getDungeonSpacing() {
 		return 704;
 	}
@@ -292,8 +302,11 @@ public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProv
 
 	@Override
 	public float getFogDensity(int x, int y, int z) {
-		if(this.world.isRaining())			
-			return 0.4F;
+		MarsSaveData msd = MarsSaveData.get(world);
+		if(msd.isDustStorm)			
+			return 0.3F;
+		
+		
 		return 1.0F;
 	}
 
