@@ -19,6 +19,7 @@ import galaxyspace.core.prefab.entities.EntityAstroWolf;
 import galaxyspace.core.prefab.inventory.InventoryAstroWolf;
 import galaxyspace.core.prefab.items.modules.ItemModule;
 import galaxyspace.core.util.researches.ResearchUtil;
+import galaxyspace.systems.SolarSystem.planets.mars.world.MarsSaveData;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemSpaceSuit;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityGravitationModule;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityLiquidSeparator;
@@ -84,6 +85,7 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         S_GET_CAGE_ENTITY(Side.SERVER, Integer.class),
         S_UPDATE_RESEARCH_USER(Side.SERVER, Integer.class),
         
+        
         //CLIENT
         C_UPDATE_WORLD(Side.CLIENT),
     	C_UPDATE_RESEARCHES(Side.CLIENT, Integer[].class),
@@ -91,7 +93,8 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
     	C_GLOW_BLOCK(Side.CLIENT, BlockVec3.class, Integer.class),
     	C_UPDATE_WOLF_INV(Side.CLIENT, Integer.class, NBTTagCompound.class),
     	C_GET_CAGE_ENTITY(Side.CLIENT),
-    	C_SHOW_SCANNER_BLOCK(Side.CLIENT, Integer.class);
+    	C_SHOW_SCANNER_BLOCK(Side.CLIENT, Integer.class),
+    	C_UPDATE_MSD_USER(Side.CLIENT, Boolean.class, Integer.class, Integer.class);
     	
     	//C_OPEN_CUSTOM_GUI(Side.CLIENT, Integer.class, Integer.class, Integer.class),
     	//C_OPEN_ASTRO_WOLF_GUI(Side.CLIENT, Integer.class, Integer.class); // windowID, wolfID
@@ -214,6 +217,17 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         }*/
         switch (this.type)
         {       	
+        	case C_UPDATE_MSD_USER:
+        		boolean isDustStorm = (boolean) this.data.get(0);
+        		int tickDust = (int) this.data.get(1);
+        		int clearTick = (int) this.data.get(2);
+        		MarsSaveData msd = MarsSaveData.get(player.world);
+        		msd.isDustStorm = isDustStorm;
+        		msd.tickDustStorm = tickDust;
+        		msd.clearWeatherTime = clearTick;
+        		
+        		player.world.getPerWorldStorage().setData(msd.mapName, msd);
+        		break;
         	case C_GET_CAGE_ENTITY:
         		RayTraceResult result = Minecraft.getMinecraft().objectMouseOver;
         		if(result != null && result.typeOfHit != null) {

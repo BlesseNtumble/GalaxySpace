@@ -36,7 +36,7 @@ public class Energy extends ItemModule {
 
 	@Override
 	public ItemModule[] getForrbidenModules() {
-		return null;
+		return new ItemModule[] {new Protection()};
 	}
 
 	@Override

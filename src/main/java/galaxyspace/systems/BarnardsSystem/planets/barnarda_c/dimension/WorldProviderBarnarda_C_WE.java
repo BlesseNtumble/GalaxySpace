@@ -139,6 +139,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
     @SideOnly(Side.CLIENT)
     public Vector3 getFogColor() {
     	float f = 1.0F - this.getStarBrightness(1.0F);
+    	
         return new Vector3(140 / 255.0F * f, 167 / 255.0F * f, 207 / 255.0F * f);
     }
 
@@ -147,6 +148,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
     public Vector3 getSkyColor() {
 
     	float f = 0.5F - this.getStarBrightness(1.0F);
+    	f = Math.max(f, 0.0F);
     	if(world.isRaining())
     	{
     		f = 1.0F;

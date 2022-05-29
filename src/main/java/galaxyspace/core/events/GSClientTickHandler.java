@@ -26,6 +26,7 @@ import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.network.packet.GSPacketSimple;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
 import galaxyspace.core.util.GSThreadVersionCheck;
+import galaxyspace.systems.SolarSystem.planets.mars.world.MarsSaveData;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemGeologicalScanner;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemMatterManipulator;
@@ -128,6 +129,7 @@ public class GSClientTickHandler {
 			{
 				if(player != null && world != null)
 				{
+										
 					if(GSThreadVersionCheck.newversion && mc.inGameHasFocus && GSConfigCore.enableCheckVersion)
 					{
 						GSThreadVersionCheck.newversion = false;

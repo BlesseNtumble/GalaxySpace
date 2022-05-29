@@ -207,13 +207,7 @@ public class Barnarda_C_Leaves extends BlockLeaves implements ICustomLeaves{
 	public BlockRenderLayer getRenderLayer() {
 		return Minecraft.getMinecraft().gameSettings.fancyGraphics ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
 	}
-	
-	@SideOnly(Side.CLIENT)
-	@Override
-    public void setGraphicsLevel(boolean fancy)
-    {
-        this.leavesFancy = fancy;
-    }
+
 	
 	@Override
 	@SideOnly(Side.CLIENT)

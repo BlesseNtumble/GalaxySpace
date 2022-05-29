@@ -67,6 +67,8 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GSUtils {
 	
@@ -789,7 +791,7 @@ public class GSUtils {
         return ItemStack.EMPTY;
     }
 	
-
+	@SideOnly(Side.CLIENT)
 	public static void renderItemIntoSlot(RenderItem re, ItemStack stack, int x, int y, Vec3d color)
     {
 		GlStateManager.pushMatrix();
@@ -800,24 +802,42 @@ public class GSUtils {
 
     private static void renderItemModelIntoGUI(RenderItem re, ItemStack stack, int x, int y, IBakedModel bakedmodel, Vec3d color)
     {
+    	
         GlStateManager.pushMatrix();
-        re.textureManager.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-        re.textureManager.getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).setBlurMipmap(false, false);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+        Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).setBlurMipmap(false, false);
         GlStateManager.enableRescaleNormal();
         GlStateManager.enableAlpha();
         GlStateManager.alphaFunc(516, 0.1F);
         GlStateManager.enableBlend();
         GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        re.setupGuiTransform(x, y, bakedmodel.isGui3d());
+        setupGuiTransform(x, y, bakedmodel.isGui3d());
         bakedmodel = net.minecraftforge.client.ForgeHooksClient.handleCameraTransforms(bakedmodel, ItemCameraTransforms.TransformType.GUI, false);
         renderItem(re, stack, bakedmodel, color);
         GlStateManager.disableAlpha();
         GlStateManager.disableRescaleNormal();
         GlStateManager.disableLighting();
         GlStateManager.popMatrix();
-        re.textureManager.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-        re.textureManager.getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).restoreLastBlurMipmap();
+        Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+        Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).restoreLastBlurMipmap();
+    }
+    
+    private static void setupGuiTransform(int xPosition, int yPosition, boolean isGui3d)
+    {
+        GlStateManager.translate((float)xPosition, (float)yPosition, 100.0F + 0);
+        GlStateManager.translate(8.0F, 8.0F, 0.0F);
+        GlStateManager.scale(1.0F, -1.0F, 1.0F);
+        GlStateManager.scale(16.0F, 16.0F, 16.0F);
+
+        if (isGui3d)
+        {
+            GlStateManager.enableLighting();
+        }
+        else
+        {
+            GlStateManager.disableLighting();
+        }
     }
     
     private static void renderItem(RenderItem re, ItemStack stack, IBakedModel model, Vec3d color)
@@ -854,7 +874,7 @@ public class GSUtils {
         GlStateManager.depthFunc(514);
         GlStateManager.disableLighting();
         GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_COLOR, GlStateManager.DestFactor.ONE);
-        re.textureManager.bindTexture(RES_ITEM_GLINT);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(RES_ITEM_GLINT);
         GlStateManager.matrixMode(5890);
         GlStateManager.pushMatrix();
         GlStateManager.scale(8.0F, 8.0F, 8.0F);
@@ -875,7 +895,7 @@ public class GSUtils {
         GlStateManager.enableLighting();
         GlStateManager.depthFunc(515);
         GlStateManager.depthMask(true);
-        re.textureManager.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
     }
     
     private static void renderModel(RenderItem re, IBakedModel model, ItemStack stack, Vec3d color)
