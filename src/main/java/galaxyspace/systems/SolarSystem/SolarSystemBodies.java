@@ -83,6 +83,8 @@ import galaxyspace.systems.SolarSystem.planets.pluto.dimension.WorldProviderPlut
 import galaxyspace.systems.SolarSystem.planets.test.dimension.WorldProviderTest_WE2;
 import galaxyspace.systems.SolarSystem.satellites.jupiter.dimension.TeleportTypeJupiterSS;
 import galaxyspace.systems.SolarSystem.satellites.jupiter.dimension.WorldProviderJupiterSS;
+import galaxyspace.systems.SolarSystem.satellites.mars.dimension.TeleportTypeMarsSS;
+import galaxyspace.systems.SolarSystem.satellites.mars.dimension.WorldProviderMarsSS;
 import galaxyspace.systems.SolarSystem.satellites.venus.dimension.TeleportTypeVenusSS;
 import galaxyspace.systems.SolarSystem.satellites.venus.dimension.WorldProviderVenusSS;
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
@@ -335,7 +337,18 @@ public class SolarSystemBodies implements IBodies{
 		BodiesRegistry.setProviderData(tritonNeptune, WorldProviderTriton_WE.class, GSConfigDimensions.dimensionIDTriton, 6);
 		if(GSConfigDimensions.enableTriton) GalaxyRegistry.registerMoon(tritonNeptune);		
 
-				
+					
+		marsSpaceStation = new Satellite("spacestation.mars").setParentBody(MarsModule.planetMars);
+		marsSpaceStation.setRelativeSize(0.2667F);
+		marsSpaceStation.setRelativeDistanceFromCenter(new CelestialBody.ScalableDistance(5.5F, 5.5F));
+		marsSpaceStation.setRelativeOrbitTime(20.0F);
+		if(GSConfigDimensions.enableMarsSpaceStation) {
+			marsSpaceStation.setTierRequired(MarsModule.planetMars.getTierRequirement());
+			marsSpaceStation.setDimensionInfo(GSConfigDimensions.idDimensionMarsOrbit, GSConfigDimensions.idDimensionMarsOrbitStatic, WorldProviderMarsSS.class);
+			marsSpaceStation.setBodyIcon(new ResourceLocation("galacticraftcore:textures/gui/celestialbodies/space_station.png"));
+			marsSpaceStation.setBiomeInfo(ACBiome.ACSpace);
+			marsSpaceStation.setAtmosphere(new AtmosphereInfo(false, false, false, -1.8F, 0.0F, 0.0F));
+		}
 		
 		venusSpaceStation = new Satellite("spacestation.venus").setParentBody(VenusModule.planetVenus);
 		venusSpaceStation.setRelativeSize(0.2667F);
@@ -350,7 +363,8 @@ public class SolarSystemBodies implements IBodies{
 			venusSpaceStation.atmosphereComponent(EnumAtmosphericGas.CO2).atmosphereComponent(EnumAtmosphericGas.NITROGEN);
 			venusSpaceStation.setAtmosphere(new AtmosphereInfo(false, false, false, 0.8F, 0.4F, 0.0F));
 		}
-		
+
+		/*
 		jupiterSpaceStation = new Satellite("spacestation.jupiter").setParentBody(planetJupiter);
 		jupiterSpaceStation.setRelativeSize(0.2667F);
 		jupiterSpaceStation.setRelativeDistanceFromCenter(new CelestialBody.ScalableDistance(5.5F, 5.5F));
@@ -364,7 +378,7 @@ public class SolarSystemBodies implements IBodies{
 			jupiterSpaceStation.atmosphereComponent(EnumAtmosphericGas.CO2).atmosphereComponent(EnumAtmosphericGas.NITROGEN);
 			jupiterSpaceStation.setAtmosphere(new AtmosphereInfo(false, false, false, 0.8F, 0.4F, 0.0F));
 		}
-			
+			*/
 		//GalaxyRegistry.getRegisteredPlanets().remove(MarsModule.planetMars.getName());
 		//GalaxyRegistry.getRegisteredPlanetIDs().remove(MarsModule.planetMars.getName());
 		
@@ -482,16 +496,16 @@ public class SolarSystemBodies implements IBodies{
 			GSDimensions.VENUS_SS_KEEPLOADED = GalacticraftRegistry.registerDimension("Venus Space Station", "_venus_orbit", GSConfigDimensions.idDimensionVenusOrbitStatic, WorldProviderVenusSS.class, true);
 	    }
         
-        if(GSConfigDimensions.enableJupiterSpaceStation) {
-        	GSDimensions.JUPITER_SS = GalacticraftRegistry.registerDimension("Jupiter Space Station", "_jupiter_orbit", GSConfigDimensions.idDimensionJupiterOrbit, WorldProviderJupiterSS.class, false);
-        	if (GSDimensions.JUPITER_SS == null)
+        if(GSConfigDimensions.enableMarsSpaceStation) {
+        	GSDimensions.MARS_SS = GalacticraftRegistry.registerDimension("Mars Space Station", "_mars_orbit", GSConfigDimensions.idDimensionMarsOrbit, WorldProviderMarsSS.class, false);
+        	if (GSDimensions.MARS_SS == null)
         	{
-        		GalaxySpace.instance.debug("Failed to register space station dimension type with ID " + GSConfigDimensions.idDimensionJupiterOrbit);
+        		GalaxySpace.instance.debug("Failed to register space station dimension type with ID " + GSConfigDimensions.idDimensionMarsOrbit);
         	}
-        	GSDimensions.JUPITER_SS_KEEPLOADED = GalacticraftRegistry.registerDimension("Jupiter Space Station", "_jupiter_orbit", GSConfigDimensions.idDimensionJupiterOrbitStatic, WorldProviderJupiterSS.class, true);
+        	GSDimensions.MARS_SS_KEEPLOADED = GalacticraftRegistry.registerDimension("Mars Space Station", "_mars_orbit", GSConfigDimensions.idDimensionMarsOrbitStatic, WorldProviderMarsSS.class, true);
         }
         
-
+         
 		BodiesData data = new BodiesData(TypeBody.STAR).setStarClass(StarClass.DWARF).setStarColor(StarColor.YELLOW);
 		data.setStarHabitableZone(1.0F, 0.22F);
 		BodiesRegistry.registerBodyData(GalacticraftCore.solarSystemSol.getMainStar(), data);
@@ -543,6 +557,9 @@ public class SolarSystemBodies implements IBodies{
 	   	////MOONS
 	   	data = new BodiesData(TypeBody.MOON, null, 0, GSConfigCore.enableSolarRadiationOnMoon);
 		BodiesRegistry.registerBodyData(GalacticraftCore.moonMoon, data);
+		
+	 	data = new BodiesData(TypeBody.SATELLITE, null, 0, true);
+		BodiesRegistry.registerBodyData(marsSpaceStation, data);
 		
 		data = new BodiesData(TypeBody.MOON);
 		BodiesRegistry.registerBodyData(phobosMars, data);
@@ -603,25 +620,19 @@ public class SolarSystemBodies implements IBodies{
 		GalacticraftRegistry.registerTeleportType(WorldProviderTriton_WE.class, new TeleportTypeTriton());
 		  
 		
-		/*
-		if(GSConfigDimensions.enableMarsSS)
-		{ */
-			//GalacticraftRegistry.registerTeleportType(WorldProviderMarsSS.class, new TeleportTypeMarsSS());
-		/*	GalacticraftRegistry.registerProvider(GSConfigDimensions.dimensionIDMarsOrbit, WorldProviderMarsSS.class, false, -40);
-			GalacticraftRegistry.registerProvider(GSConfigDimensions.dimensionIDMarsOrbitStatic, WorldProviderMarsSS.class, true, -41);
-		}*/
+		
+		if(GSConfigDimensions.enableMarsSpaceStation)
+		{ 
+			GalaxyRegistry.registerSatellite(marsSpaceStation);
+			GalacticraftRegistry.registerTeleportType(WorldProviderMarsSS.class, new TeleportTypeMarsSS());
+		}
 		if(GSConfigDimensions.enableVenusSpaceStation)
 		{
 			GalaxyRegistry.registerSatellite(venusSpaceStation);
 			
 			GalacticraftRegistry.registerTeleportType(WorldProviderVenusSS.class, new TeleportTypeVenusSS());
 		}
-		if(GSConfigDimensions.enableJupiterSpaceStation)
-		{
-			GalaxyRegistry.registerSatellite(jupiterSpaceStation);
-			
-			GalacticraftRegistry.registerTeleportType(WorldProviderJupiterSS.class, new TeleportTypeJupiterSS());
-		}
+		
 		
 	}
 	
@@ -806,15 +817,15 @@ public class SolarSystemBodies implements IBodies{
 		
 		spaceStationRequirements.clear();
 		spaceStationRequirements.put("ingotTin", 32);
-		spaceStationRequirements.put("ingotCopper", 64);
+		spaceStationRequirements.put("ingotDesh", 64);
 		spaceStationRequirements.put(new ItemStack(GCItems.basicItem, 1, ItemBasic.WAFER_ADVANCED), 1);
 		spaceStationRequirements.put(Items.IRON_INGOT, 24);
 		spaceStationRequirements.put(new ItemStack(GSItems.HDP, 1, 0), 10);
 		spaceStationRequirements.put(new ItemStack(GSItems.BASIC, 1, 6), 10);
 		
-		if(GSConfigDimensions.enableJupiterSpaceStation)
-			GalacticraftRegistry.registerSpaceStation(new SpaceStationType(GSConfigDimensions.idDimensionJupiterOrbit,
-					GSConfigDimensions.dimensionIDJupiter, new SpaceStationRecipe(spaceStationRequirements)));
+		if(GSConfigDimensions.enableMarsSpaceStation)
+			GalacticraftRegistry.registerSpaceStation(new SpaceStationType(GSConfigDimensions.idDimensionMarsOrbit,
+					ConfigManagerMars.dimensionIDMars, new SpaceStationRecipe(spaceStationRequirements)));
     	 
 	}
 

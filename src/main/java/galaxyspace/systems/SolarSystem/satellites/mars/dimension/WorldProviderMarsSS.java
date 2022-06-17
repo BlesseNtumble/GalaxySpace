@@ -4,8 +4,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import asmodeuscore.api.dimension.IAdvancedSpace;
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.systems.SolarSystem.SolarSystemBodies;
+import galaxyspace.systems.SolarSystem.planets.ceres.world.gen.BiomeProviderCeres;
 import galaxyspace.systems.SolarSystem.satellites.mars.dimension.sky.SkyProviderMarsSS;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.galaxies.IChildBody;
@@ -20,11 +22,13 @@ import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
 import micdoodle8.mods.galacticraft.core.dimension.WorldProviderSpaceStation;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.galacticraft.core.world.gen.dungeon.RoomTreasure;
+import micdoodle8.mods.galacticraft.planets.mars.MarsModule;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
+import net.minecraft.world.biome.BiomeProvider;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -153,7 +157,7 @@ public class WorldProviderMarsSS extends WorldProviderSpaceStation implements IO
     @Override
     public String getPlanetToOrbit()
     {
-        return "mars";
+        return MarsModule.planetMars.getTranslationKey();
     }
 
     @Override
@@ -267,4 +271,11 @@ public class WorldProviderMarsSS extends WorldProviderSpaceStation implements IO
     {
         return null;
     }
+    
+    @Override
+    public Class<? extends BiomeProvider> getBiomeProviderClass()
+    {
+    	return BiomeProviderCeres.class;
+    }
+
 }
