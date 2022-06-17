@@ -54,10 +54,9 @@ public class Mars_High_Plains extends WE_Biome {
 	@Override
 	public void decorateBiome(World world, Random rand, int x, int z)
 	{
-		  int eggsPerChunk = 2;
           BlockPos blockpos = world.getHeight(new BlockPos(x,0,z));
 
-          for (int eggCount = 0; eggCount < eggsPerChunk; ++eggCount)
+          if(rand.nextInt(4) == 0)
           {
         	  
               blockpos = blockpos.add(rand.nextInt(16) + 8, 0, rand.nextInt(16) + 8);
