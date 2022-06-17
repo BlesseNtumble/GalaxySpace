@@ -35,7 +35,10 @@ public class SkyProviderMars  extends SkyProviderBase
 		GL11.glRotatef(80.0F, 0.0F, 0.0F, 1.0F);
 		GL11.glRotatef(40.0F, 1.0F, 0.0F, 0.0F);
 
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
+		MarsSaveData data = MarsSaveData.get(this.mc.world);
+		
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F-data.getStormStrength(ticks));
+		
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.phobosTexture);
 		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
 		worldRenderer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();
@@ -48,7 +51,7 @@ public class SkyProviderMars  extends SkyProviderBase
 		GL11.glScalef(0.8F, 0.8F, 0.8F);
 		GL11.glRotatef(-80.0F, 1.0F, 0.0F, 0.0F);
 		GL11.glRotatef(140.0F, 0.0F, 0.0F, 1.0F);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F);
+		
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(this.deimosTexture);
 		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
 		worldRenderer.pos(-f10, -100.0D, f10).tex(0, 1.0).endVertex();

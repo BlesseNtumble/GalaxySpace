@@ -108,6 +108,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
@@ -217,12 +218,16 @@ public class GSEventHandler {
 			
 			if(flag && w.provider.getDimensionType() == GCPlanetDimensions.MARS) {
 				MarsSaveData mars_data = MarsSaveData.get(w);
-		
+				mars_data.prevStormStrength = mars_data.stormStrength;
+				
 				if(!mars_data.isDustStorm) {
 					int clearWeather = mars_data.clearWeatherTime;
 		
 					if(clearWeather >= 0) {
 						mars_data.clearWeatherTime--;
+						if (mars_data.stormStrength > 0.0F) 
+							mars_data.stormStrength = (float)((double)mars_data.stormStrength - 0.01D);
+						
 						if(clearWeather <= 0) {
 							mars_data.isDustStorm = true;
 							mars_data.tickDustStorm = w.rand.nextInt(24000) + 12000;
@@ -234,7 +239,9 @@ public class GSEventHandler {
 				else {
 					int stormDust = mars_data.tickDustStorm;
 					if(stormDust >= 0) {
-						mars_data.tickDustStorm--;
+						mars_data.tickDustStorm--;						
+						mars_data.stormStrength = (float)((double)mars_data.stormStrength + 0.01D);
+						
 						if(stormDust <= 0) {
 							mars_data.isDustStorm = false;
 							mars_data.clearWeatherTime = w.rand.nextInt(168000) + 12000;							
@@ -243,8 +250,10 @@ public class GSEventHandler {
 					}
 				}
 				
+				mars_data.stormStrength = MathHelper.clamp(mars_data.stormStrength, 0.0F, 1.0F);
+				 
 				mars_data.markDirty();
-				//System.out.println(mars_data.clearWeatherTime + " | " + mars_data.tickDustStorm);
+				//System.out.println(mars_data.clearWeatherTime + " | " + mars_data.tickDustStorm + " | " + mars_data.stormStrength + " | " + mars_data.getStormStrength(1.0F));
 			}
 			
 		}
@@ -389,7 +398,6 @@ public class GSEventHandler {
 					if(e.block.getBlock() instanceof BlockBush && e.block.getBlock() != Blocks.DEADBUSH) {
 						if(e.world.getBlockState(e.pos.down()).isBlockNormalCube()) {
 							e.world.setBlockState(e.pos, Blocks.DEADBUSH.getDefaultState(), 3);
-							e.world.setBlockState(e.pos.down(), Blocks.DIRT.getDefaultState(), 3);
 						}
 						else e.world.setBlockToAir(e.pos);
 						e.setCanceled(true);						
@@ -622,9 +630,9 @@ public class GSEventHandler {
 	        	
         	//this.updateSchematics(player, stats);
 			//this.throwMeteors(player);
-			if(world.getTotalWorldTime() % 20 == 0 && world.provider.getDimensionType() == GCPlanetDimensions.MARS) {
-				MarsSaveData msd = MarsSaveData.get(world);
-				GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_UPDATE_MSD_USER, world, new Object[] {msd.isDustStorm, msd.tickDustStorm, msd.clearWeatherTime}), player);
+			if(!world.isRemote && world.getTotalWorldTime() % 20 == 0 && world.provider.getDimensionType() == GCPlanetDimensions.MARS) {
+				MarsSaveData msd = MarsSaveData.get(world);					
+				GalaxySpace.packetPipeline.sendTo(new GSPacketSimple(GSEnumSimplePacket.C_UPDATE_MSD_USER, world, new Object[] {msd.isDustStorm, msd.tickDustStorm, msd.clearWeatherTime, msd.prevStormStrength, msd.stormStrength}), player);
 			
 				if(msd.isDustStorm) {
 					

@@ -47,9 +47,9 @@ public class WeatherProviderMars extends IRenderHandler
     public void render(float partialTicks, WorldClient world, Minecraft mc)
     {
     	MarsSaveData msd = MarsSaveData.get(world);
-        float strength = 1.0F;
+        float strength = msd.getStormStrength(partialTicks);
 
-        if (msd.isDustStorm)
+        if (strength > 0.0F)
         {
             int rendererUpdateCount = 0;
             try {

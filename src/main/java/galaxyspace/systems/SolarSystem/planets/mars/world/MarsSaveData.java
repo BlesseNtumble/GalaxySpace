@@ -11,6 +11,7 @@ public class MarsSaveData extends WorldSavedData {
 	private static final String DATA_NAME = GalaxySpace.MODID + "_MarsSaveData";
 	
 	public boolean isDustStorm;
+	public float prevStormStrength, stormStrength = 0.0F;
 	public int tickDustStorm = 0;
 	public int clearWeatherTime = 24000 * 3;
 	
@@ -22,6 +23,8 @@ public class MarsSaveData extends WorldSavedData {
 	public void readFromNBT(NBTTagCompound nbt) {
 		isDustStorm = nbt.getBoolean("isDustStorm");
 		tickDustStorm = nbt.getInteger("tickDustStorm");
+		prevStormStrength = nbt.getFloat("prevStormStrength");
+		stormStrength = nbt.getFloat("stormStrength");
 		
 	}
 
@@ -29,6 +32,8 @@ public class MarsSaveData extends WorldSavedData {
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 		compound.setBoolean("isDustStorm", isDustStorm);
 		compound.setInteger("tickDustStorm", tickDustStorm);
+		compound.setFloat("prevStormStrength", prevStormStrength);
+		compound.setFloat("stormStrength", stormStrength);
 		return compound;
 	}
 
@@ -42,4 +47,9 @@ public class MarsSaveData extends WorldSavedData {
 		}
 		return instance;
 	}
+	
+	public float getStormStrength(float delta)
+    {
+        return this.prevStormStrength + (this.stormStrength - this.prevStormStrength) * delta;
+    }
 }

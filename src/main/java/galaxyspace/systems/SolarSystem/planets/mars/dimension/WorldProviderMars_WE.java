@@ -88,13 +88,18 @@ public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProv
     public Vector3 getFogColor()
     {
         float f = 1.0F - this.getStarBrightness(1.0F);
+        MarsSaveData msd = MarsSaveData.get(this.world);
+        if(msd.getStormStrength(1.0F) > 0.0F)
+        	f = Math.max(0.4F, 1.0F - msd.getStormStrength(1.0F));
+        
         return new Vector3(210F / 255F * f, 170F / 255F * f, 129F / 255F * f);        
     }
 
     @Override
     public Vector3 getSkyColor()
     {
-        float f = 1.0F - this.getStarBrightness(1.0F);
+    	float f = 1.0F - this.getStarBrightness(1.0F);
+       
         return new Vector3(184 / 255.0F * f, 134 / 255.0F * f, 86 / 255.0F * f);
        
     }
@@ -128,6 +133,23 @@ public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProv
         }
 
         return var3 * var3 * 0.5F + 0.1F;
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public float getSunBrightness(float partialTicks) {
+
+        float f = this.world.getCelestialAngle(partialTicks);
+        float f1 = 1.0F - (MathHelper.cos(f * ((float)Math.PI * 2F)) * 2.0F + 0.2F);
+        f1 = MathHelper.clamp(f1, 0.0F, 1.0F);
+        f1 = 1.0F - f1;
+        f1 = (float)((double)f1 * (1.0D - (double)(this.world.getRainStrength(partialTicks) * 5.0F) / 16.0D));
+        f1 = (float)((double)f1 * (1.0D - (double)(this.world.getThunderStrength(partialTicks) * 5.0F) / 16.0D));
+        
+        MarsSaveData msd = MarsSaveData.get(this.world);
+        if(msd.isDustStorm)
+        	f1 = (float)((double)f1 * (1.0D - (double)(msd.getStormStrength(partialTicks) * 5.0F) / 6.0D));
+        return f1 * 0.8F + 0.2F;
     }
     
     @Nullable
@@ -303,8 +325,9 @@ public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProv
 	@Override
 	public float getFogDensity(int x, int y, int z) {
 		MarsSaveData msd = MarsSaveData.get(world);
-		if(msd.isDustStorm)			
-			return 0.3F;
+		
+		if(msd.getStormStrength(1.0F) > 0.0F)			
+			return Math.max(0.3F, 1.0F - msd.getStormStrength(1.0F));
 		
 		
 		return 1.0F;

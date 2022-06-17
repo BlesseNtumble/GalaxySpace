@@ -94,7 +94,7 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
     	C_UPDATE_WOLF_INV(Side.CLIENT, Integer.class, NBTTagCompound.class),
     	C_GET_CAGE_ENTITY(Side.CLIENT),
     	C_SHOW_SCANNER_BLOCK(Side.CLIENT, Integer.class),
-    	C_UPDATE_MSD_USER(Side.CLIENT, Boolean.class, Integer.class, Integer.class);
+    	C_UPDATE_MSD_USER(Side.CLIENT, Boolean.class, Integer.class, Integer.class, Float.class, Float.class);
     	
     	//C_OPEN_CUSTOM_GUI(Side.CLIENT, Integer.class, Integer.class, Integer.class),
     	//C_OPEN_ASTRO_WOLF_GUI(Side.CLIENT, Integer.class, Integer.class); // windowID, wolfID
@@ -221,12 +221,17 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         		boolean isDustStorm = (boolean) this.data.get(0);
         		int tickDust = (int) this.data.get(1);
         		int clearTick = (int) this.data.get(2);
+        		float prevStrenghtStorm = (float) this.data.get(3);
+        		float strenghtStorm = (float) this.data.get(4);
+        		
         		MarsSaveData msd = MarsSaveData.get(player.world);
         		msd.isDustStorm = isDustStorm;
         		msd.tickDustStorm = tickDust;
         		msd.clearWeatherTime = clearTick;
+        		msd.prevStormStrength = prevStrenghtStorm;
+        		msd.stormStrength = strenghtStorm;
         		
-        		player.world.getPerWorldStorage().setData(msd.mapName, msd);
+        		//player.world.getPerWorldStorage().setData(msd.mapName, msd);
         		break;
         	case C_GET_CAGE_ENTITY:
         		RayTraceResult result = Minecraft.getMinecraft().objectMouseOver;
