@@ -46,7 +46,7 @@ public class WorldProviderJupiterSS extends WorldProviderSpaceStation implements
 	@Override
     public DimensionType getDimensionType()
     {
-        return GSDimensions.JUPITER_SS;
+        return GSDimensions.CERES;
     }
 	
 	@Override

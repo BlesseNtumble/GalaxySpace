@@ -109,10 +109,12 @@ public class Barnarda_C_Grass extends Block implements IGrowable{
         return BRBlocks.BARNARDA_C_BLOCKS.getItemDropped(BRBlocks.BARNARDA_C_BLOCKS.getDefaultState().withProperty(Barnarda_C_Blocks.BASIC_TYPE, Barnarda_C_Blocks.EnumBlockBarnardaC.DIRT), rand, fortune);
     }
 	
-	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
-		return BlockRenderLayer.CUTOUT_MIPPED;
-	}
+	@Override
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getRenderLayer()
+    {
+        return BlockRenderLayer.CUTOUT_MIPPED;
+    }
 
 	@Override
 	public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, net.minecraftforge.common.IPlantable plantable)
@@ -177,8 +179,8 @@ public class Barnarda_C_Grass extends Block implements IGrowable{
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////
 	public static enum EnumBlockGrass implements IStringSerializable {
-		GRASS(0, "barnarda_c_grass");
-		//GRASS_2(1, "barnarda_c_grass_1");
+		GRASS(0, "barnarda_c_grass"),
+		GRASS_1(1, "barnarda_c_grass_1");
 
 		private final int meta;
 		private final String name;

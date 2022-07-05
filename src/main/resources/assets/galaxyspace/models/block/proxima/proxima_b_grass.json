@@ -1,0 +1,10 @@
+{ 
+	"parent": "block/grass",
+    "textures": {
+		"particle": "galaxyspace:blocks/proximasystem/proxima_b/mud",
+        "bottom": "galaxyspace:blocks/proximasystem/proxima_b/mud",
+        "top": "galaxyspace:blocks/proximasystem/proxima_b/grass_mud_top",
+        "side": "galaxyspace:blocks/proximasystem/proxima_b/mud",
+        "overlay": "galaxyspace:blocks/proximasystem/proxima_b/grass_mud_side_overlay"
+    }
+}

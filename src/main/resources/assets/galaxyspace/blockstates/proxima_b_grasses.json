@@ -1,0 +1,5 @@
+{ 
+	"variants": { 
+		"type=proxima_b_grass": { "model": "galaxyspace:proxima/proxima_b_grass"}
+	} 
+}

@@ -1,0 +1,12 @@
+{ 
+	"parent": "block/cube_all",  
+	"textures": { 
+		"particle": "galaxyspace:blocks/proximasystem/proxima_b/mushroom_skin",
+        "down": "galaxyspace:blocks/proximasystem/proxima_b/mushroom_skin",
+        "up": "galaxyspace:blocks/proximasystem/proxima_b/mushroom_geyser",
+        "north": "galaxyspace:blocks/proximasystem/proxima_b/mushroom_skin",
+        "east": "galaxyspace:blocks/proximasystem/proxima_b/mushroom_skin",
+        "south": "galaxyspace:blocks/proximasystem/proxima_b/mushroom_skin",
+        "west": "galaxyspace:blocks/proximasystem/proxima_b/mushroom_skin"
+	}
+}

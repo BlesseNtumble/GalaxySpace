@@ -55,6 +55,7 @@ import micdoodle8.mods.galacticraft.api.item.EnumExtendedInventorySlot;
 import micdoodle8.mods.galacticraft.api.prefab.entity.EntityTieredRocket;
 import micdoodle8.mods.galacticraft.api.vector.BlockVec3Dim;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
+import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCItems;
@@ -384,6 +385,7 @@ public class GSEventHandler {
 			 			
 			if(e.world.provider instanceof IGalacticraftWorldProvider) {
 				if(((IGalacticraftWorldProvider)e.world.provider).hasBreathableAtmosphere()) return;
+				if(((IGalacticraftWorldProvider)e.world.provider).getCelestialBody().atmosphere.isGasPresent(EnumAtmosphericGas.OXYGEN)) return;
 				
 				float thermal = ((IGalacticraftWorldProvider)e.world.provider).getThermalLevelModifier();
 				boolean thermal_check = thermal > warn_temp || thermal < cool_temp;
