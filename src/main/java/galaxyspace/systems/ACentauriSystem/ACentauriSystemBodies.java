@@ -4,7 +4,6 @@ import java.io.File;
 
 import asmodeuscore.api.IBodies;
 import asmodeuscore.api.IBodiesHandler;
-import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
 import asmodeuscore.api.dimension.IAdvancedSpace.StarClass;
 import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.api.dimension.IAdvancedSpace.TypeBody;
@@ -14,10 +13,13 @@ import asmodeuscore.core.astronomy.BodiesRegistry.Galaxies;
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.proxy.ClientProxy;
 import galaxyspace.core.util.GSDimensions;
+import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.ACentauriSystem.core.ACBlocks;
 import galaxyspace.systems.ACentauriSystem.core.configs.ACConfigCore;
 import galaxyspace.systems.ACentauriSystem.core.configs.ACConfigDimensions;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.blocks.Proxima_B_Blocks.EnumBlockProximaB;
+import galaxyspace.systems.ACentauriSystem.planets.proxima_b.blocks.Proxima_B_Dandelions;
+import galaxyspace.systems.ACentauriSystem.planets.proxima_b.blocks.Proxima_B_Grass;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.dimension.TeleportTypeProxima_B;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.dimension.WorldProviderProxima_B_WE;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.recipes.CraftingRecipesProximaB;
@@ -29,6 +31,7 @@ import micdoodle8.mods.galacticraft.api.galaxies.Star;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -76,11 +79,11 @@ public class ACentauriSystemBodies implements IBodies {
         GalaxyRegistry.registerSolarSystem(ProximaSystem);		
        
         proxima_b = BodiesRegistry.registerExPlanet(ProximaSystem, "proxima_b", GalaxySpace.ASSET_PREFIX, 0.4F);
-        BodiesRegistry.setAtmosphere(proxima_b, false, true, false, 0.5F, 0.4F, 0.0F);
+        BodiesRegistry.setAtmosphere(proxima_b, false, true, false, -0.05F, 0.4F, 0.0F);
         BodiesRegistry.setOrbitData(proxima_b, (float) Math.PI*3, 1.2F, 8.0F);
-        BodiesRegistry.setPlanetData(proxima_b, 2F, 35050, BodiesRegistry.calculateGravity(8.0F), true);
+        BodiesRegistry.setPlanetData(proxima_b, 2F, 25000L * 7, BodiesRegistry.calculateGravity(8.0F), true);
         BodiesRegistry.setProviderData(proxima_b, WorldProviderProxima_B_WE.class, ACConfigDimensions.dimensionIDProxima_B, 6);
-        proxima_b.setRingColorRGB(0.0F, 0.4F, 0.9F).atmosphereComponent(EnumAtmosphericGas.CO2);
+        proxima_b.setRingColorRGB(0.0F, 0.4F, 0.9F).atmosphereComponents(EnumAtmosphericGas.CO2, EnumAtmosphericGas.OXYGEN);
         GalaxyRegistry.registerPlanet(proxima_b);	
         
         proxima_c = BodiesRegistry.registerExPlanet(ProximaSystem, "proxima_c", GalaxySpace.ASSET_PREFIX, 1.25F);
@@ -141,11 +144,28 @@ public class ACentauriSystemBodies implements IBodies {
 	public void registerRender() {
 		
 		//if(ACConfigCore.enableACentauriSystems) {
-			for (EnumBlockProximaB blockBasic : EnumBlockProximaB.values())        
-	    		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, ACBlocks.PROXIMA_B_BLOCKS, blockBasic.getMeta(), "proxima/" + blockBasic.getName());
+		for (EnumBlockProximaB blockBasic : EnumBlockProximaB.values())        
+	    	ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, ACBlocks.PROXIMA_B_BLOCKS, blockBasic.getMeta(), "proxima/" + blockBasic.getName());
 		
-			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "proxima/", ACBlocks.PROXINA_B_LOG_1);
-			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "proxima/", ACBlocks.PROXINA_B_LOG_2);
+		
+		
+		for (Proxima_B_Dandelions.EnumBlockDandelions blockBasic : Proxima_B_Dandelions.EnumBlockDandelions.values())
+			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, ACBlocks.PROXIMA_B_DANDELIONS, blockBasic.getMeta(), "proxima/" + blockBasic.getName());
+		
+		
+		String[] name = new String[Proxima_B_Grass.EnumBlockGrass.values().length];
+		for (Proxima_B_Grass.EnumBlockGrass blockBasic : Proxima_B_Grass.EnumBlockGrass.values()) {  
+			if(blockBasic.getName() != null) name[blockBasic.getMeta()] = blockBasic.getName();
+			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, ACBlocks.PROXIMA_B_GRASS, blockBasic.getMeta(), "proxima/" + blockBasic.getName());
+		}
+		//if(GCCoreUtil.isDeobfuscated()) 
+			//GSUtils.addBlockMetadataJsonFiles(ACBlocks.PROXIMA_B_GRASS, name, Proxima_B_Grass.BASIC_TYPE.getName(), "proxima/");
+		
+		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "proxima/", ACBlocks.PROXIMA_B_LOG_1);
+		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "proxima/", ACBlocks.PROXIMA_B_LOG_2);
+		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "proxima/", ACBlocks.PROXIMA_B_MUSHROOM_LOG);
+			
+		
 		//}
 		/*	
 		String[] name = new String[EnumBlockProximaB.values().length];
@@ -170,6 +190,19 @@ public class ACentauriSystemBodies implements IBodies {
 			ClientProxy.addVariant("proxima_b_blocks", "proxima/", blocks);
 			ClientProxy.addVariant("proxima_b_log_1", "proxima/", "proxima_b_log_1");
 			ClientProxy.addVariant("proxima_b_log_2", "proxima/", "proxima_b_log_2");
+			ClientProxy.addVariant("proxima_b_mushroom_log", "proxima/", "proxima_b_mushroom_log");
+			
+			blocks = new String[Proxima_B_Dandelions.EnumBlockDandelions.values().length];
+		    for(int i = 0; i < blocks.length; i++)
+		    	blocks[i] = Proxima_B_Dandelions.EnumBlockDandelions.byMetadata(i).getName();
+		    	
+		    ClientProxy.addVariant("proxima_b_dandelions", "proxima/", blocks);
+		    
+		    blocks = new String[Proxima_B_Grass.EnumBlockGrass.values().length];
+		    for(int i = 0; i < blocks.length; i++)
+		    	blocks[i] = Proxima_B_Grass.EnumBlockGrass.byMetadata(i).getName();
+		    	
+		    ClientProxy.addVariant("proxima_b_grasses", "proxima/", blocks);
 		//}
 	}
 	

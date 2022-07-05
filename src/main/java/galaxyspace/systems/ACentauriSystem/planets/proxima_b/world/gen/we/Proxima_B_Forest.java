@@ -27,8 +27,8 @@ public class Proxima_B_Forest extends WE_Biome {
 	public Proxima_B_Forest(WE_ChunkProvider chunk) {
 		super(new BiomeProperties("proxima_b_forest"), new int[] {0x00FF00, 0xEEDD44, 0x00FF00});
 		
-		biomeMinValueOnMap      =  	-0.2D;
-		biomeMaxValueOnMap      =   0.4D;
+		biomeMinValueOnMap      =  	0.2D;
+		biomeMaxValueOnMap      =   0.6D;
 		biomePersistence        =   1.6D;
 		biomeNumberOfOctaves    =      4;
 		biomeScaleX             = 280.0D;
@@ -71,10 +71,10 @@ public class Proxima_B_Forest extends WE_Biome {
 				switch(rand.nextInt(2))
 				{
 					case 0:
-						new WorldGenTree_BigJungle(ACBlocks.PROXINA_B_LOG_1.getStateFromMeta(0), Blocks.AIR.getDefaultState(), rand.nextInt(3)).generate(world, rand, pos);
+						new WorldGenTree_BigJungle(ACBlocks.PROXIMA_B_LOG_1.getStateFromMeta(0), Blocks.AIR.getDefaultState(), rand.nextInt(3)).generate(world, rand, pos);
 				    	break;
 					case 1:
-						new WorldGenTree_BigJungle2(ACBlocks.PROXINA_B_LOG_1.getStateFromMeta(0), Blocks.AIR.getDefaultState(), rand.nextInt(3)).generate(world, rand, pos);
+						new WorldGenTree_BigJungle2(ACBlocks.PROXIMA_B_LOG_1.getStateFromMeta(0), Blocks.AIR.getDefaultState(), rand.nextInt(3)).generate(world, rand, pos);
 						break;
 				}
 				//new WorldGenTree_BigJungle(ACBlocks.PROXINA_B_LOG_1.getStateFromMeta(0), Blocks.AIR.getDefaultState(), rand.nextInt(3)).generate(world, rand, pos);
@@ -87,7 +87,7 @@ public class Proxima_B_Forest extends WE_Biome {
 			
 			cangen = true;
 			for(BlockPos pos1 : pos.getAllInBox(pos.add(-3, -1, -3), pos.add(3, -1, 3)))
-				if(world.isAirBlock(pos1) || world.getBlockState(pos1) == ACBlocks.PROXINA_B_LOG_1.getStateFromMeta(0)) 
+				if(world.isAirBlock(pos1) || world.getBlockState(pos1) == ACBlocks.PROXIMA_B_LOG_1.getStateFromMeta(0)) 
 					cangen = false;
 			
     		if(!world.isAreaLoaded(pos, 13, false))
@@ -96,10 +96,10 @@ public class Proxima_B_Forest extends WE_Biome {
 	    			switch(rand.nextInt(2))
 					{
 						case 0:						
-							new WorldGenTree_Forest(ACBlocks.PROXINA_B_LOG_1.getStateFromMeta(0), Blocks.AIR.getDefaultState(), rand.nextInt(3)).generate(world, rand, pos);
+							new WorldGenTree_Forest(ACBlocks.PROXIMA_B_LOG_1.getStateFromMeta(0), Blocks.AIR.getDefaultState(), rand.nextInt(3)).generate(world, rand, pos);
 							break;
 						case 1:
-							new WorldGenTree_Forest2(ACBlocks.PROXINA_B_LOG_1.getStateFromMeta(0), Blocks.AIR.getDefaultState(), rand.nextInt(3)).generate(world, rand, pos);
+							new WorldGenTree_Forest2(ACBlocks.PROXIMA_B_LOG_1.getStateFromMeta(0), Blocks.AIR.getDefaultState(), rand.nextInt(3)).generate(world, rand, pos);
 							break;
 					}
 				}

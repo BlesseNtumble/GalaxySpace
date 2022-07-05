@@ -21,13 +21,13 @@ public class Proxima_B_Ice_Plains extends WE_Biome {
 	public Proxima_B_Ice_Plains() {
 		super(new BiomeProperties("proxima_b_ice_plains"), new int[] {0x00FF00, 0xEEDD44, 0x00FF00});
 		
-		biomeMinValueOnMap      =   0.6D;
-		biomeMaxValueOnMap      =   1.0D;
+		biomeMinValueOnMap      =   1.0D;
+		biomeMaxValueOnMap      =   1.8D;
 		biomePersistence        =   1.2D;
 		biomeNumberOfOctaves    =      4;
 		biomeScaleX             = 280.0D;
 		biomeScaleY             =   1.7D;
-		biomeSurfaceHeight      =     68;
+		biomeSurfaceHeight      =     74;
 		biomeInterpolateQuality =     15;
 
 		//-//
@@ -61,7 +61,7 @@ public class Proxima_B_Ice_Plains extends WE_Biome {
 			
 			if(cangen && world.getBlockState(pos.down()) == ACBlocks.PROXIMA_B_BLOCKS.getDefaultState().withProperty(Proxima_B_Blocks.BASIC_TYPE, Proxima_B_Blocks.EnumBlockProximaB.ICE_SURFACE))
 			{
-				new WorldGenTree_BigJungle(ACBlocks.PROXINA_B_LOG_2.getStateFromMeta(0), Blocks.AIR.getDefaultState(), rand.nextInt(3)).generate(world, rand, pos);
+				new WorldGenTree_BigJungle(ACBlocks.PROXIMA_B_LOG_2.getStateFromMeta(0), Blocks.AIR.getDefaultState(), rand.nextInt(3)).generate(world, rand, pos);
 			}
 		}
 		

@@ -1,14 +1,19 @@
 package galaxyspace.systems.ACentauriSystem.planets.proxima_b.dimension;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Nullable;
 
 import asmodeuscore.api.dimension.IProviderFog;
+import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTree_Forest;
+import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTree_Forest2;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
+import asmodeuscore.core.astronomy.dimension.world.worldengine.biome.WE_BaseBiome;
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
+import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_CaveGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_OreGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_RavineGen;
@@ -17,6 +22,9 @@ import galaxyspace.core.util.GSDimensions;
 import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.ACentauriSystem.ACentauriSystemBodies;
 import galaxyspace.systems.ACentauriSystem.core.ACBlocks;
+import galaxyspace.systems.ACentauriSystem.planets.proxima_b.blocks.Proxima_B_Blocks;
+import galaxyspace.systems.ACentauriSystem.planets.proxima_b.blocks.Proxima_B_Dandelions;
+import galaxyspace.systems.ACentauriSystem.planets.proxima_b.blocks.Proxima_B_Grass;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.dimension.sky.SkyProviderProxima_B;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.world.gen.we.Proxima_B_Beach;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.world.gen.we.Proxima_B_Forest;
@@ -31,9 +39,12 @@ import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
+import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
@@ -111,15 +122,17 @@ public class WorldProviderProxima_B_WE extends WE_WorldProviderSpace implements 
     @Override
     @SideOnly(Side.CLIENT)
     public Vector3 getFogColor() {
-    	float f = 1.0F - this.getStarBrightness(1.0F);
-        return new Vector3(66 / 255.0F * f, 70 / 255.0F * f, 80 / 255.0F * f);
+    	float f = 0.7F - this.getStarBrightness(1.0F);
+    	f = Math.max(f, 0.0F);
+        return new Vector3(226 / 255.0F * f, 145 / 255.0F * f, 90 / 255.0F * f);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public Vector3 getSkyColor() {
-    	float f = 0.7F - this.getStarBrightness(1.0F);
-        return new Vector3(80 / 255.0F * f, 93 / 255.0F * f, 100 / 255.0F * f);
+    	float f = 0.5F - this.getStarBrightness(1.0F);
+    	f = Math.max(f, 0.0F);
+        return new Vector3(226 / 255.0F * f, 145 / 255.0F * f, 90 / 255.0F * f);
     }
      
 	@Override
@@ -222,13 +235,13 @@ public class WorldProviderProxima_B_WE extends WE_WorldProviderSpace implements 
 		cp.createChunkGen_InXYZ_List.clear(); 
 		cp.decorateChunkGen_List .clear(); 
 		
-		WE_Biome.setBiomeMap(cp, 1.2D, 4, 1400.0D, 0.675D);	
+		
 		
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
 		terrainGenerator.worldStoneBlock = ACBlocks.PROXIMA_B_BLOCKS.getStateFromMeta(2);
 		terrainGenerator.worldSeaGen = true;
 		terrainGenerator.worldSeaGenBlock = Blocks.WATER.getDefaultState();
-		terrainGenerator.worldSeaGenMaxY = 64;
+		terrainGenerator.worldSeaGenMaxY = 70;
 		cp.createChunkGen_List.add(terrainGenerator);
 		
 		//-// 
@@ -258,12 +271,104 @@ public class WorldProviderProxima_B_WE extends WE_WorldProviderSpace implements 
 		
 		cp.decorateChunkGen_List.add(standardOres);
 		
-		WE_Biome.addBiomeToGeneration(cp, new Proxima_B_Plains());
-		WE_Biome.addBiomeToGeneration(cp, new Proxima_B_Forest(cp)); 
-		WE_Biome.addBiomeToGeneration(cp, new Proxima_B_Ice_Plains());
+		//WE_Biome.addBiomeToGeneration(cp, new Proxima_B_Plains());
+		
+		WE_BiomeLayer layer = new WE_BiomeLayer();
+		layer.add(ACBlocks.PROXIMA_B_BLOCKS.getStateFromMeta(11), terrainGenerator.worldStoneBlock, -256, 0, -4, -1, true);
+		layer.add(Blocks.BEDROCK.getDefaultState(), 0, 0, 1, 2, true);
+		
+		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-0.4D, 0.0D, 1.4D, 4, 78, 10, layer) {
+			@Override
+			public void decorateBiome(World world, Random rand, int x, int z)
+			{
+				int randPosX;
+				int randPosZ;
+				BlockPos pos;
+				
+				for(int i = 0; i < 80; i++) {
+					randPosX = x + rand.nextInt(16) + 8;
+					randPosZ = z + rand.nextInt(16) + 8;
+					pos = world.getHeight(new BlockPos(randPosX, 0, randPosZ));
+
+					if (world.getBlockState(pos.down()) == ACBlocks.PROXIMA_B_BLOCKS.getDefaultState().withProperty(Proxima_B_Blocks.BASIC_TYPE, Proxima_B_Blocks.EnumBlockProximaB.ROCKY_SURFACE)) {
+						world.setBlockState(pos.down(), ACBlocks.PROXIMA_B_BLOCKS.getDefaultState().withProperty(Proxima_B_Blocks.BASIC_TYPE, Proxima_B_Blocks.EnumBlockProximaB.SURFACE));
+						world.setBlockState(pos, ACBlocks.PROXIMA_B_DANDELIONS.getDefaultState().withProperty(Proxima_B_Dandelions.BASIC_TYPE, Proxima_B_Dandelions.EnumBlockDandelions.GRASS));
+					}
+			
+				}
+			}
+		});
+		
+				
+		//WE_Biome.addBiomeToGeneration(cp, new Proxima_B_Forest(cp)); 
+		layer = new WE_BiomeLayer();
+		layer.add(ACBlocks.PROXIMA_B_BLOCKS.getStateFromMeta(14), terrainGenerator.worldStoneBlock, -256, 0, -4, -1, true);
+		layer.add(ACBlocks.PROXIMA_B_GRASS.getDefaultState(), ACBlocks.PROXIMA_B_BLOCKS.getStateFromMeta(14), -256, 0, -256, 0, false);
+		layer.add(Blocks.BEDROCK.getDefaultState(), 0, 0, 1, 2, true);
+		
+		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(0.0D, 0.8D, 1.5D, 4, 72, 15, layer) {
+			@Override
+			public void decorateBiome(World world, Random rand, int x, int z)
+			{
+				int randPosX;
+				int randPosZ;
+				BlockPos pos;
+				
+				for(int i = 0; i < 80; i++) {
+					randPosX = x + rand.nextInt(16) + 8;
+					randPosZ = z + rand.nextInt(16) + 8;
+					pos = world.getHeight(new BlockPos(randPosX, 0, randPosZ));
+
+					if (world.getBlockState(pos.down()) == ACBlocks.PROXIMA_B_GRASS.getDefaultState().withProperty(Proxima_B_Grass.BASIC_TYPE, Proxima_B_Grass.EnumBlockGrass.GRASS)) {
+						world.setBlockState(pos, ACBlocks.PROXIMA_B_DANDELIONS.getDefaultState().withProperty(Proxima_B_Dandelions.BASIC_TYPE, Proxima_B_Dandelions.EnumBlockDandelions.GRASS_2));
+					}
+			
+				}
+				
+				if(rand.nextInt(2) == 0){
+					randPosX = x + rand.nextInt(16) + 8;
+					randPosZ = z + rand.nextInt(16) + 8;
+					pos = world.getHeight(new BlockPos(randPosX, 0, randPosZ));
+					
+					if (world.getBlockState(pos.down()) == ACBlocks.PROXIMA_B_GRASS.getDefaultState().withProperty(Proxima_B_Grass.BASIC_TYPE, Proxima_B_Grass.EnumBlockGrass.GRASS)) {						
+						for(int y = 0; y < 6 + rand.nextInt(5); y++) {
+							
+							int rand_pos = rand.nextInt(100);
+							if(rand_pos > 20) 
+								pos = pos.east(1);
+							if(rand_pos > 50)
+								pos = pos.east(-1).west(1);
+							
+							world.setBlockState(pos.up(y), ACBlocks.PROXIMA_B_LOG_1.getStateFromMeta(0));
+						}
+					}
+				}
+				
+				for(int i = 0; i < 6; i++){
+					randPosX = x + rand.nextInt(16) + 8;
+					randPosZ = z + rand.nextInt(16) + 8;
+					pos = world.getHeight(new BlockPos(randPosX, 0, randPosZ));
+					
+					if (world.getBlockState(pos.down()) == ACBlocks.PROXIMA_B_GRASS.getDefaultState().withProperty(Proxima_B_Grass.BASIC_TYPE, Proxima_B_Grass.EnumBlockGrass.GRASS)) {						
+						for(int y = 0; y < 6 + rand.nextInt(5); y++) {					
+							
+							if(y % 3 == 0) 
+								pos = pos.offset(EnumFacing.byHorizontalIndex(rand.nextInt(4)));
+								
+							world.setBlockState(pos.up(y), ACBlocks.PROXIMA_B_LOG_1.getStateFromMeta(0));
+						}
+					}
+				}
+			}
+		}.setColors(GSUtils.getColor(150, 20, 20, 100), GSUtils.getColor(40, 20, 20, 100), GSUtils.getColor(150, 20, 20, 100)));
 		WE_Biome.addBiomeToGeneration(cp, new Proxima_B_Mountains()); 
-		WE_Biome.addBiomeToGeneration(cp, new Proxima_B_Ocean()); 
+		WE_Biome.addBiomeToGeneration(cp, new Proxima_B_Ice_Plains());
 		WE_Biome.addBiomeToGeneration(cp, new Proxima_B_Beach());  
+		WE_Biome.addBiomeToGeneration(cp, new Proxima_B_Ocean()); 
+		
+	
+				
+		WE_Biome.setBiomeMap(cp, 1.0D, 4, cp.biomesList.size() * 450D, 2.0D);
 	}
 	
 	@Override

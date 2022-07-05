@@ -20,13 +20,13 @@ public class Proxima_B_Beach extends WE_Biome {
 	public Proxima_B_Beach() {
 		super(new BiomeProperties("proxima_b_beach"), new int[] {0x00FF00, 0xEEDD44, 0x00FF00});
 		
-		biomeMinValueOnMap      =   -0.4D;
-		biomeMaxValueOnMap      =   -0.3D;
+		biomeMinValueOnMap      =   1.8D;
+		biomeMaxValueOnMap      =   2.0D;
 		biomePersistence        =   1.0D;
 		biomeNumberOfOctaves    =      4;
 		biomeScaleX             = 280.0D;
 		biomeScaleY             =   1.7D;
-		biomeSurfaceHeight      =     66;
+		biomeSurfaceHeight      =     72;
 		biomeInterpolateQuality =     25;
 		
 		//-//

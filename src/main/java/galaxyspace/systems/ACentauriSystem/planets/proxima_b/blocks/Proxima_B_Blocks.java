@@ -39,7 +39,6 @@ public class Proxima_B_Blocks extends Block implements ISortableBlock, ITerrafor
         this.setSoundType(SoundType.STONE); 
         this.setHarvestLevel("pickaxe", 2);
           
-       // GSBlocks.GS_BLOCKS.add(this);
     }
 	
 	@Override
@@ -157,7 +156,11 @@ public class Proxima_B_Blocks extends Block implements ISortableBlock, ITerrafor
 		COPPER_ORE(7, "proxima_b_copper_ore"),
 		COAL_ORE(8, "proxima_b_coal_ore"),
 		SILICON_ORE(9, "proxima_b_silicon_ore"),
-		DIAMOND_ORE(10, "proxima_b_diamond_ore");
+		DIAMOND_ORE(10, "proxima_b_diamond_ore"),
+		ROCKY_SURFACE(11, "proxima_b_rocky_surface"),
+		MUSHROOM_SKIN(12, "proxima_b_mushroom_skin"),
+		MUSROOM_GEYSER(13, "proxima_b_mushroom_geyser"),
+		MUD(14, "proxima_b_mud");
 
         private final int meta;
         private final String name;

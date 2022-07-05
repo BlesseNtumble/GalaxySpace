@@ -21,9 +21,9 @@ public class Proxima_B_Plains extends WE_Biome {
 	
 	public Proxima_B_Plains() {
 		super(new BiomeProperties("proxima_b_plains"), new int[] {0x00FF00, 0xEEDD44, 0x00FF00});
-				
+
 		biomeMinValueOnMap      =  	-0.4D;
-		biomeMaxValueOnMap      =   0.0D;
+		biomeMaxValueOnMap      =   -0.2D;
 		biomePersistence        =   1.4D;
 		biomeNumberOfOctaves    =      5;
 		biomeScaleX             = 280.0D;

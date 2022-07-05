@@ -17,8 +17,8 @@ public class Proxima_B_Ocean extends WE_Biome {
 	public Proxima_B_Ocean() {
 		super(new BiomeProperties("proxima_b_ocean"), new int[] {0x00FF00, 0xEEDD44, 0x00FF00});
 		
-		biomeMinValueOnMap      =   -0.6D;
-		biomeMaxValueOnMap      =   -0.4D;
+		biomeMinValueOnMap      =   2.0D;
+		biomeMaxValueOnMap      =   2.6D;
 		biomePersistence        =   1.4D;
 		biomeNumberOfOctaves    =      4;
 		biomeScaleX             = 280.0D;

@@ -146,7 +146,7 @@ public class WorldGenTest extends WorldGenCustomStructure{
 	protected void generateBlock(World world, Random random, BlockPos position, int matrixValue) {	
 		switch(matrixValue) {
         case 1:
-            world.setBlockState(position, ACBlocks.PROXINA_B_LOG_1.getStateFromMeta(0));
+            world.setBlockState(position, ACBlocks.PROXIMA_B_LOG_1.getStateFromMeta(0));
             break;
         case 2:
             /*//Если на данной координате будет блок с материалом isReplaceable ...

@@ -45,8 +45,8 @@ public class CraftingRecipesProximaB {
 	}
 	
 	private static void addRecycler() {
-		RecyclerRecipes.recycling().addNewRecipe(new ItemStack(ACBlocks.PROXINA_B_LOG_2, 1, 0), new ItemStack(Blocks.LOG, 1, 0), new FluidStack(FluidRegistry.WATER, 10));
-		RecyclerRecipes.recycling().addNewRecipe(new ItemStack(ACBlocks.PROXINA_B_LOG_1, 1, 0), new ItemStack(Items.COAL, 1, 1), 60, null);
+		RecyclerRecipes.recycling().addNewRecipe(new ItemStack(ACBlocks.PROXIMA_B_LOG_2, 1, 0), new ItemStack(Blocks.LOG, 1, 0), new FluidStack(FluidRegistry.WATER, 10));
+		RecyclerRecipes.recycling().addNewRecipe(new ItemStack(ACBlocks.PROXIMA_B_LOG_1, 1, 0), new ItemStack(Items.COAL, 1, 1), 60, null);
 		
 		RecyclerRecipes.recycling().addNewRecipe(new ItemStack(ACBlocks.PROXIMA_B_BLOCKS, 1, 4), new ItemStack(Items.FLINT, 1, 0), 20, null);		
 		RecyclerRecipes.recycling().addNewRecipe(new ItemStack(ACBlocks.PROXIMA_B_BLOCKS, 1, 3), new ItemStack(ACBlocks.PROXIMA_B_BLOCKS, 1, 0), new FluidStack(FluidRegistry.WATER, 10));

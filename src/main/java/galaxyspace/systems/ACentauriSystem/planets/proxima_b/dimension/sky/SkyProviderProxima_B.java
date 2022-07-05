@@ -2,6 +2,7 @@ package galaxyspace.systems.ACentauriSystem.planets.proxima_b.dimension.sky;
 
 import org.lwjgl.opengl.GL11;
 
+import asmodeuscore.api.dimension.IProviderFog;
 import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import galaxyspace.GalaxySpace;
@@ -20,31 +21,37 @@ public class SkyProviderProxima_B extends SkyProviderBase {
 	@Override
 	protected void rendererSky(Tessellator tessellator, BufferBuilder worldRenderer, float size, float ticks) {
 		
-		GL11.glPushMatrix();		
-			World world = mc.world;
-			int phase = world.provider.getMoonPhase(world.getWorldTime());
-			
-			GL11.glRotatef(this.mc.world.getCelestialAngle(ticks) * 360.0F, 0.0F, 0.0F, 1.0F);   
-			
-			if(modeLight() != ModeLight.WITHOUT_SUN) {
-				this.renderImage(acentauri_a, -90F, 182F, 35F, 2.0F);
-				this.renderImage(acentauri_b, -90F, 180F, 40F, 1.5F);
-			}
-		GL11.glPopMatrix();
+		float rain = 1.0F - this.mc.world.getRainStrength(ticks);  
+        
+        if(rain < 0.3F) rain = 0.3F;
+		float sunBrightness = this.mc.world.isRaining() ? this.mc.world.getSunBrightness(ticks) * rain : this.mc.world.getSunBrightness(ticks);
+
 		GL11.glPushMatrix();
+			GL11.glDisable(GL11.GL_TEXTURE_2D);
 	        GL11.glShadeModel(GL11.GL_SMOOTH);
 	        GL11.glEnable(GL11.GL_BLEND);
 	        OpenGlHelper.glBlendFunc(770, 771, 1, 0);
 	    	GL11.glRotatef(this.mc.world.getCelestialAngle(ticks) * 360.0F, 0.0F, 0.0F, 1.0F);   
-	        GL11.glRotatef(35F, 1.0F, 0.0F, 0.0F);
-	        GL11.glRotatef(2F, 0.0F, 0.0F, 1.0F);
-			this.renderSunAura(tessellator, 0.1F, 0.8F);
-			GL11.glRotatef(5F, 1.0F, 0.0F, 0.0F);
-			GL11.glRotatef(-2F, 0.0F, 0.0F, 1.0F);
-			this.renderSunAura(tessellator, 0.1F, 0.5F);
+	        GL11.glRotatef(60F, 1.0F, 0.0F, 0.0F);
+	        GL11.glRotatef(1.5F, 0.0F, 0.0F, 1.0F);
+			this.renderSunAura(tessellator, 0.1F, sunBrightness, StarColor.YELLOW);
+			GL11.glRotatef(9F, 1.0F, 0.0F, 0.0F);
+			GL11.glRotatef(-1.5F, 0.0F, 0.0F, 1.0F);
+			this.renderSunAura(tessellator, 0.1F, sunBrightness, StarColor.YELLOW);
 			GL11.glDisable(GL11.GL_BLEND);
 			GL11.glShadeModel(GL11.GL_FLAT);
+			GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glPopMatrix();
+		
+		GL11.glPushMatrix();		
+			World world = mc.world;
+		
+			GL11.glRotatef(this.mc.world.getCelestialAngle(ticks) * 360.0F, 0.0F, 0.0F, 1.0F);   
+			this.renderImage(acentauri_a, -90F, 182F, 60F, 1.2F, sunBrightness);
+			this.renderImage(acentauri_b, -90F, 180F, 69F, 1.0F, sunBrightness);			
+		
+		GL11.glPopMatrix();
+		
 	}
 
 	@Override
@@ -71,15 +78,7 @@ public class SkyProviderProxima_B extends SkyProviderBase {
 	protected ModeLight modeLight() {
 		
 		if(mc.world.isRaining()) return ModeLight.WITHOUT_SUN;
-		switch(mc.world.provider.getMoonPhase(mc.world.getWorldTime()))
-		{
-			case 0:
-			case 6:	
-				if(mc.player.posY < 180)
-					return ModeLight.WITHOUT_SUN;
-				
-			default: return ModeLight.DEFAULT;
-		}
+		return ModeLight.DEFAULT;	
 		
 	}
 

@@ -22,7 +22,7 @@ public class Proxima_B_Mountains extends WE_Biome {
 		super(new BiomeProperties("proxima_b_mountains"), new int[] {0x00FF00, 0xEEDD44, 0x00FF00});
 		
 		biomeMinValueOnMap      =   0.8D;
-		biomeMaxValueOnMap      =   1.4D;
+		biomeMaxValueOnMap      =   1.0D;
 		biomePersistence        =   1.5D;
 		biomeNumberOfOctaves    =      5;
 		biomeScaleX             = 280.0D;
