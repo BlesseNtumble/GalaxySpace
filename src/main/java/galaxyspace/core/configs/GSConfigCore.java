@@ -116,10 +116,10 @@ public class GSConfigCore
             enableAdvancedThermalSystem = prop.getBoolean(true);
             propOrder.add(prop.getName());    
             
-            prop = config.get(GSConstants.HARDMODE_CATEGORY, "enableZeroGravityOnAsteroids", true);
+            prop = config.get(GSConstants.HARDMODE_CATEGORY, "enableZeroGravityOnAsteroids", false);
             prop.setComment("Enable/Disable zero gravity (like Kuiper Belt) on Astreroids.");
             prop.setLanguageKey("gc.configgui.enableZeroGravityOnAsteroids").setRequiresMcRestart(true);
-            enableZeroGravityOnAsteroids = prop.getBoolean(true);
+            enableZeroGravityOnAsteroids = prop.getBoolean(false);
             propOrder.add(prop.getName());    
             
             prop = config.get(Constants.CONFIG_CATEGORY_WORLDGEN, "enableOverworldOres", true);
