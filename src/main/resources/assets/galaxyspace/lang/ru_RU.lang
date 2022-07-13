@@ -43,6 +43,7 @@ tile.nitrogen_ice.name=Лед с Азотом
 tile.methane_ice.name=Лед с Метаном
 tile.hydrogen_ice.name=Лед с Водородом
 tile.dry_ice.name=Сухой Лед
+tile.dry_leaves.name=Мертвые Листья
 
 tile.futureglass_none.name=Футуристическое Стекло
 tile.futureglass_black.name=Черное Футуристическое Стекло
@@ -165,6 +166,14 @@ tile.proxima_b_copper_ore.name=Медная Руда
 tile.proxima_b_coal_ore.name=Угольная Руда
 tile.proxima_b_silicon_ore.name=Кремниевая Руда
 tile.proxima_b_diamond_ore.name=Алмазная Руда
+tile.proxima_b_rocky_surface.name=Каменистая Поверность
+tile.proxima_b_mushroom_skin.name=Гриб
+tile.proxima_b_mushroom_geyser.name=Гейзер Гриба
+tile.proxima_b_mud.name=Грязь
+tile.proxima_b_mushroom_log.name=Корни Гриба
+tile.proxima_b_grasses.name=Дёрн
+tile.proxima_b_tallgrass.name=Красная Трава
+tile.proxima_b_tallgrass_2.name=Красная Трава
 tile.proxima_b_log_1.name=Сгоревшее Дерево
 tile.proxima_b_log_2.name=Замерзшее Дерево
 
@@ -614,6 +623,7 @@ moon.charon=Харон
 planet.kuiperbelt=Пояс Койпера
 planet.haumea=Хаумеа
 satellite.spacestation.venus=Венерианская Атмосферная Станция
+satellite.spacestation.mars=Марсианская Космическая Станция
 
 #aCentauri System
 solarsystem.acentauri=α Центавра
@@ -623,6 +633,8 @@ planet.centauri_b=α Центавра B
 solarsystem.proxima=Проксима Центавра
 star.proxima=Проксима Центавра
 planet.proxima_b=Проксима B
+planet.proxima_c=Проксима C
+planet.proxima_d=Проксима D
 
 #Barnard's System
 solarsystem.barnards=Система Барнарда

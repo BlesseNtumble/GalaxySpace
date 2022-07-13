@@ -364,6 +364,13 @@ public abstract class ItemSpaceSuit extends ItemElectricArmor implements ISensor
         }
     }
 
+	@SideOnly(Side.CLIENT)
+	@Override
+    public boolean hasEffect(ItemStack stack)
+    {
+        return false;
+    }
+	
 	@Override
 	public boolean isBookEnchantable(ItemStack stack, ItemStack book)
     {

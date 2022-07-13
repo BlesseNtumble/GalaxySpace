@@ -38,7 +38,7 @@ public class SkyProviderMarsSS extends SkyProviderBase{
 
 		GL11.glRotatef(90F, 0.0F, 1.0F, 0.0F); 
 		f10 = 180F;
-		float alpha = 0.7F;
+		float alpha = 0.9F;
 		/*
 		
 		float k = f10;
@@ -69,6 +69,7 @@ public class SkyProviderMarsSS extends SkyProviderBase{
 		double k = (time / 8) / mod;
 	
 		buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
+
 		if(k >= 0 && k <= f10 * 2) {
 					
 			buffer.pos(-f10, -100.0D, f10 - k).color(0.0F, 0.0F, 0.0F, alpha).endVertex();
@@ -77,9 +78,9 @@ public class SkyProviderMarsSS extends SkyProviderBase{
 	        buffer.pos(-f10, -100.0D, -f10).color(0.0F, 0.0F, 0.0F, alpha).endVertex();
 	        
 		}
-		else if(k >= f10 * 8 && k <= f10 * 8.5)
+		else if(k >= f10 * 8 && k <= f10 * 9.8)
 		{			
-			k -= 1300;
+			k -= (f10 * 8);
 			
 			buffer.pos(-f10, -100.0D, f10).color(0.0F, 0.0F, 0.0F, alpha).endVertex();
 	        buffer.pos(f10, -100.0D, f10).color(0.0F, 0.0F, 0.0F, alpha).endVertex();
@@ -87,7 +88,7 @@ public class SkyProviderMarsSS extends SkyProviderBase{
 	        buffer.pos(-f10, -100.0D, 150 - k).color(0.0F, 0.0F, 0.0F, alpha).endVertex();
 	        
 		}
-		else if(k > f10 * 8.5)
+		else if(k > f10 * 9.8)
 		{
 			buffer.pos(-f10, -100.0D, f10).color(0.0F, 0.0F, 0.0F, alpha).endVertex();
 	        buffer.pos(f10, -100.0D, f10).color(0.0F, 0.0F, 0.0F, alpha).endVertex();

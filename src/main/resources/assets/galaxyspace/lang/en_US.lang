@@ -44,6 +44,7 @@ tile.nitrogen_ice.name=Nitrogen Ice
 tile.methane_ice.name=Methane Ice
 tile.hydrogen_ice.name=Hydrogen Ice
 tile.dry_ice.name=Dry Ice
+tile.dry_leaves.name=Dead Leaves
 
 tile.futureglass_none.name=Futuristic Glass
 tile.futureglass_black.name=Black Futuristic Glass
@@ -154,17 +155,25 @@ tile.triton_stone.name=Triton Stone
 tile.triton_geyser.name=Triton Geyser
 tile.triton_geyser_2.name=Triton Small Geyser
 
-tile.proxima_b_surface.name=Proxima B Surface
-tile.proxima_b_subsurface.name=Proxima B Subsurface
-tile.proxima_b_stone.name=Proxima B Stone
-tile.proxima_b_ice_surface.name=Proxima B Ice Surface
-tile.proxima_b_ash_rock.name=Proxima B Ash Rock
+tile.proxima_b_surface.name=Surface
+tile.proxima_b_subsurface.name=Subsurface
+tile.proxima_b_stone.name=Stone
+tile.proxima_b_ice_surface.name=Ice Surface
+tile.proxima_b_ash_rock.name=Ash Rock
 tile.proxima_b_gold_ore.name=Gold Ore
 tile.proxima_b_tin_ore.name=Tin Ore
 tile.proxima_b_copper_ore.name=Copper Ore
 tile.proxima_b_coal_ore.name=Coal Ore
 tile.proxima_b_silicon_ore.name=Silicon Ore
 tile.proxima_b_diamond_ore.name=Diamond Ore
+tile.proxima_b_rocky_surface.name=Rocky Surface
+tile.proxima_b_mushroom_skin.name=Mushroom Skin
+tile.proxima_b_mushroom_geyser.name=Mushroom Geyser
+tile.proxima_b_mud.name=Mud
+tile.proxima_b_mushroom_log.name=Mushroom Stem
+tile.proxima_b_grasses.name=Grass
+tile.proxima_b_tallgrass.name=Red Tallgrass
+tile.proxima_b_tallgrass_2.name=Red Tallgrass
 tile.proxima_b_log_1.name=Burnt Wood
 tile.proxima_b_log_2.name=Frozen Wood
 
@@ -642,6 +651,7 @@ moon.charon=Charon
 planet.kuiperbelt=Kuiper Belt
 planet.haumea=Haumea
 satellite.spacestation.venus=Venus Atmospheric Space Station
+satellite.spacestation.mars=Mars Space Station
 
 #aCentauri System
 solarsystem.acentauri=α Centauri
@@ -651,6 +661,8 @@ planet.centauri_b=α Centauri B
 solarsystem.proxima=Proxima Centauri
 star.proxima=Proxima Centauri
 planet.proxima_b=Proxima B
+planet.proxima_c=Proxima C
+planet.proxima_d=Proxima D
 
 #Barnard's System
 solarsystem.barnards=Barnard's System

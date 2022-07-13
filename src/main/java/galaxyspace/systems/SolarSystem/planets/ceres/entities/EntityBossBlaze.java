@@ -30,7 +30,9 @@ import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
@@ -70,25 +72,27 @@ public class EntityBossBlaze extends EntityBossBase implements IEntityBreathable
     }
 
     @Override
-    public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
+    public boolean attackEntityFrom(DamageSource ds, float par2)
     {
-        if (this.getIsInvulnerable())
-        {
+        if (this.getIsInvulnerable())        
             return false;
+        
+        if(ds.getTrueSource() instanceof EntityPlayer) {
+        	EntityPlayer player = (EntityPlayer) ds.getTrueSource();
+        	if(player.getHeldItemMainhand().isEmpty()) 
+        		return false;
+        	
+        	if(player.getHeldItemMainhand().getItem() instanceof ItemSword)
+        		return super.attackEntityFrom(ds, 3.0F);
         }
-        else if ("fireball".equals(par1DamageSource.getDamageType()) && this.getAttackingEntity() instanceof EntityPlayer)
-        {
-            super.attackEntityFrom(par1DamageSource, 5.0F);
-          
-            return true;
+        
+        if(par2 > 3.0F) {
+        	return super.attackEntityFrom(ds, 3.0F);
         }
-        else if(par2 > 3.0F) {
-        	return super.attackEntityFrom(par1DamageSource, 3.0F);
-        }
-        else
-        {
-            return super.attackEntityFrom(par1DamageSource, 3.0F);
-        }
+       
+        
+        return super.attackEntityFrom(ds, 0.0f);
+        
     }
 
     @Override
