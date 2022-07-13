@@ -47,8 +47,10 @@ public class SkyProviderProxima_B extends SkyProviderBase {
 			World world = mc.world;
 		
 			GL11.glRotatef(this.mc.world.getCelestialAngle(ticks) * 360.0F, 0.0F, 0.0F, 1.0F);   
-			this.renderImage(acentauri_a, -90F, 182F, 60F, 1.2F, sunBrightness);
-			this.renderImage(acentauri_b, -90F, 180F, 69F, 1.0F, sunBrightness);			
+			if(!this.mc.world.isRaining()) {
+				this.renderImage(acentauri_a, -90F, 182F, 60F, 1.2F, sunBrightness);
+				this.renderImage(acentauri_b, -90F, 180F, 69F, 1.0F, sunBrightness);	
+			}
 		
 		GL11.glPopMatrix();
 		

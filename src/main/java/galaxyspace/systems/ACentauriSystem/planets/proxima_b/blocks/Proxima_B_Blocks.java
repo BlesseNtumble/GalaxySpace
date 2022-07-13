@@ -2,11 +2,16 @@ package galaxyspace.systems.ACentauriSystem.planets.proxima_b.blocks;
 
 import java.util.Random;
 
+import galaxyspace.GalaxySpace;
+import galaxyspace.api.block.IEnergyGeyser;
+import galaxyspace.systems.SolarSystem.moons.triton.blocks.TritonBlocks.EnumTritonBlocks;
 import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
 import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
+import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
+import micdoodle8.mods.galacticraft.planets.venus.VenusBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -25,10 +30,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class Proxima_B_Blocks extends Block implements ISortableBlock, ITerraformableBlock, IDetectableResource{
+public class Proxima_B_Blocks extends Block implements ISortableBlock, ITerraformableBlock, IDetectableResource, IEnergyGeyser{
 	
 	public static final PropertyEnum<EnumBlockProximaB> BASIC_TYPE = PropertyEnum.create("type", EnumBlockProximaB.class);
 	
@@ -38,7 +44,39 @@ public class Proxima_B_Blocks extends Block implements ISortableBlock, ITerrafor
         this.setTranslationKey("proxima_b_blocks");
         this.setSoundType(SoundType.STONE); 
         this.setHarvestLevel("pickaxe", 2);
+        this.setTickRandomly(false);
           
+    }
+	
+	@Override
+    public void onBlockAdded(World world, BlockPos pos, IBlockState state)
+    {
+		switch(state.getValue(BASIC_TYPE))
+		{
+			case MUSHROOM_GEYSER:
+				world.scheduleBlockUpdate(pos, this, this.tickRate(world) + world.rand.nextInt(10), 0);
+				break;
+			default:
+				break;
+		}
+			
+    }
+	
+	@Override
+	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
+    {
+		if(!world.isAreaLoaded(pos, 1)) return;
+		
+		int lifetime = 1;
+		if(rand.nextInt(20) == 0 && state == state.withProperty(BASIC_TYPE, EnumBlockProximaB.MUSHROOM_GEYSER))
+		{
+			if(world.isAirBlock(pos.up()) && world.getBlockState(pos.down()).getBlock() == VenusBlocks.sulphuricAcid) {
+				GalaxySpace.proxy.spawnParticle("waterbubbles1", new Vector3(pos.getX() + rand.nextDouble(), pos.getY() + 1.0D + rand.nextDouble(), pos.getZ() + rand.nextDouble()), new Vector3(0.0D + ((rand.nextFloat() / 10) * (rand.nextBoolean() ? -1 : 1)), 0.01D, 0.0D + ((rand.nextFloat() / 20) * (rand.nextBoolean() ? -1 : 1))), new Object [] { 25 + rand.nextInt(5) + lifetime, 7, false, new Vector3(0.6F, 0.6F, 0.2F), 0.9D, 0.4D} );
+			
+			}
+		}
+		
+		world.scheduleBlockUpdate(pos, this, 0, 0);
     }
 	
 	@Override
@@ -159,7 +197,7 @@ public class Proxima_B_Blocks extends Block implements ISortableBlock, ITerrafor
 		DIAMOND_ORE(10, "proxima_b_diamond_ore"),
 		ROCKY_SURFACE(11, "proxima_b_rocky_surface"),
 		MUSHROOM_SKIN(12, "proxima_b_mushroom_skin"),
-		MUSROOM_GEYSER(13, "proxima_b_mushroom_geyser"),
+		MUSHROOM_GEYSER(13, "proxima_b_mushroom_geyser"),
 		MUD(14, "proxima_b_mud");
 
         private final int meta;
@@ -196,5 +234,11 @@ public class Proxima_B_Blocks extends Block implements ISortableBlock, ITerrafor
     {
         return new BlockStateContainer(this, BASIC_TYPE);
     }
+
+	@Override
+	public boolean isWorkGeyser(World world, IBlockState state, BlockPos pos) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
 

@@ -360,7 +360,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Dunes(-0.3D, 0.3D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(-0.0D, 0.0D, true));
 		
-		WE_Biome.setBiomeMap(cp, 0.8D, 4, cp.biomesList.size() * 200D, 3.0D);
+		WE_Biome.setBiomeMap(cp, 1.6D, 4, cp.biomesList.size() * 450D, 2.4D);
 
 	}
 

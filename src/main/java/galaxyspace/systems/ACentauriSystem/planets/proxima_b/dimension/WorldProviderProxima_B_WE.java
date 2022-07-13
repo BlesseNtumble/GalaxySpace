@@ -6,6 +6,8 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import asmodeuscore.api.dimension.IProviderFog;
+import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTree_BigJungle;
+import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTree_BigJungle2;
 import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTree_Forest;
 import asmodeuscore.core.astronomy.dimension.world.gen.features.trees.WorldGenTree_Forest2;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
@@ -26,6 +28,7 @@ import galaxyspace.systems.ACentauriSystem.planets.proxima_b.blocks.Proxima_B_Bl
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.blocks.Proxima_B_Dandelions;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.blocks.Proxima_B_Grass;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.dimension.sky.SkyProviderProxima_B;
+import galaxyspace.systems.ACentauriSystem.planets.proxima_b.world.gen.features.WorldGenMushroom;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.world.gen.we.Proxima_B_Beach;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.world.gen.we.Proxima_B_Forest;
 import galaxyspace.systems.ACentauriSystem.planets.proxima_b.world.gen.we.Proxima_B_Ice_Plains;
@@ -296,6 +299,17 @@ public class WorldProviderProxima_B_WE extends WE_WorldProviderSpace implements 
 					}
 			
 				}
+				
+				if(rand.nextInt(2) == 0)
+				{
+					randPosX = x + rand.nextInt(16) + 8;
+					randPosZ = z + rand.nextInt(16) + 8;
+					pos = world.getHeight(new BlockPos(randPosX, 0, randPosZ));
+					
+					if (world.getBlockState(pos.down()) == ACBlocks.PROXIMA_B_BLOCKS.getDefaultState().withProperty(Proxima_B_Blocks.BASIC_TYPE, Proxima_B_Blocks.EnumBlockProximaB.ROCKY_SURFACE)) {						
+						new WorldGenMushroom().generate(world, rand, pos);
+					}
+				}
 			}
 		});
 		
@@ -310,9 +324,29 @@ public class WorldProviderProxima_B_WE extends WE_WorldProviderSpace implements 
 			@Override
 			public void decorateBiome(World world, Random rand, int x, int z)
 			{
-				int randPosX;
-				int randPosZ;
-				BlockPos pos;
+				int randPosX = x + rand.nextInt(16) + 8;
+				int randPosZ = z + rand.nextInt(16) + 8;
+				BlockPos pos = world.getHeight(new BlockPos(randPosX, 0, randPosZ));
+				
+				boolean cangen = true;
+				
+				for(BlockPos pos1 : pos.getAllInBox(pos.add(-3, -1, -3), pos.add(3, -1, 3)))
+					if(world.isAirBlock(pos1)) 
+						cangen = false;
+
+				if(!world.isAreaLoaded(pos, 13, false))
+					if(cangen && world.getBlockState(pos.down()) == ACBlocks.PROXIMA_B_GRASS.getDefaultState().withProperty(Proxima_B_Grass.BASIC_TYPE, Proxima_B_Grass.EnumBlockGrass.GRASS))
+					{
+						switch(rand.nextInt(2))
+						{
+							case 0:
+								new WorldGenTree_BigJungle(ACBlocks.PROXIMA_B_LOG_1.getStateFromMeta(0), Blocks.AIR.getDefaultState(), rand.nextInt(3)).generate(world, rand, pos);
+						    	break;
+							case 1:
+								new WorldGenTree_BigJungle2(ACBlocks.PROXIMA_B_LOG_1.getStateFromMeta(0), Blocks.AIR.getDefaultState(), rand.nextInt(3)).generate(world, rand, pos);
+								break;
+						}
+					}
 				
 				for(int i = 0; i < 80; i++) {
 					randPosX = x + rand.nextInt(16) + 8;
@@ -419,13 +453,9 @@ public class WorldProviderProxima_B_WE extends WE_WorldProviderSpace implements 
 				
 		switch(this.getMoonPhase(this.getWorldTime()))
 		{
-			case 0: return 0.65F;
-			case 1: return 0.95F;
-			
-			case 3: return 0.85F;
-			
-			case 5: return 0.6F;
-			case 6: return 0.3F;
+			case 0: return 0.8F;
+			case 1: return 0.95F;			
+			case 3: return 0.85F;			
 			
 			default: return 1.0F;
 		}

@@ -13,11 +13,15 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
@@ -66,12 +70,18 @@ public class Barnarda_C_Water_Grass extends BlockBush implements IPlantable{
 	@Override
 	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
     {
-		if (entityIn instanceof EntityBoat)
-        {
-            worldIn.destroyBlock(new BlockPos(pos), true);
-        }
-		
-        entityIn.motionX = entityIn.motionZ /= 2;
+		if(!worldIn.isRemote) {
+			if (entityIn instanceof EntityBoat)
+	        {
+	            worldIn.destroyBlock(new BlockPos(pos), true);
+	        }		
+	        
+	        if(entityIn instanceof EntityLivingBase) {
+	        	EntityLivingBase living = (EntityLivingBase) entityIn;
+	   
+	        	living.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 10, 3));
+	        }
+		}
     }
 	
 	@Override

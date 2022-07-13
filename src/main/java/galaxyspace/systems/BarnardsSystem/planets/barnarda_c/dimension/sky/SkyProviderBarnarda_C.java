@@ -31,8 +31,10 @@ public class SkyProviderBarnarda_C extends SkyProviderBase{
            	this.renderImage(barnarda_c2_Texture, 10, 40, this.getCelestialAngle((long) (getDayLength() * 1.2)) + 80F, 2.5F, 0.4F);
         	
 
-    		float f = 0.4F;
+    		float f = 0.9F;
+    		GL11.glPushMatrix();
         	this.renderAtmo(tessellator, -90.0F, this.getCelestialAngle(getDayLength()), 5.2F, new Vector3(120 / 255.0F * f, 160 / 255.0F * f, 180 / 255.0F * f));
+        	GL11.glPopMatrix();         	
         }        
      
         GL11.glPopMatrix();         
