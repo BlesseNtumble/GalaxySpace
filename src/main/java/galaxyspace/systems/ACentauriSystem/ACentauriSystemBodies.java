@@ -13,7 +13,6 @@ import asmodeuscore.core.astronomy.BodiesRegistry.Galaxies;
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.proxy.ClientProxy;
 import galaxyspace.core.util.GSDimensions;
-import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.ACentauriSystem.core.ACBlocks;
 import galaxyspace.systems.ACentauriSystem.core.configs.ACConfigCore;
 import galaxyspace.systems.ACentauriSystem.core.configs.ACConfigDimensions;
@@ -31,7 +30,6 @@ import micdoodle8.mods.galacticraft.api.galaxies.Star;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -84,15 +82,15 @@ public class ACentauriSystemBodies implements IBodies {
         BodiesRegistry.setPlanetData(proxima_b, 2F, 25000L * 7, BodiesRegistry.calculateGravity(8.0F), true);
         BodiesRegistry.setProviderData(proxima_b, WorldProviderProxima_B_WE.class, ACConfigDimensions.dimensionIDProxima_B, 6);
         proxima_b.setRingColorRGB(0.0F, 0.4F, 0.9F).atmosphereComponents(EnumAtmosphericGas.CO2, EnumAtmosphericGas.OXYGEN);
-        GalaxyRegistry.registerPlanet(proxima_b);	
+        if(ACConfigDimensions.enableProxima_B) GalaxyRegistry.registerPlanet(proxima_b);	
         
         proxima_c = BodiesRegistry.registerExPlanet(ProximaSystem, "proxima_c", GalaxySpace.ASSET_PREFIX, 1.25F);
         BodiesRegistry.setOrbitData(proxima_c, (float) Math.PI / 2, 1.5F, 150F);
-        GalaxyRegistry.registerPlanet(proxima_c);
+        if(ACConfigDimensions.enableProxima_C) GalaxyRegistry.registerPlanet(proxima_c);
         
         proxima_d = BodiesRegistry.registerExPlanet(ProximaSystem, "proxima_d", GalaxySpace.ASSET_PREFIX, 0.25F);
         BodiesRegistry.setOrbitData(proxima_d, (float) Math.PI / 3, 0.8F, 3.0F);
-        GalaxyRegistry.registerPlanet(proxima_d);
+        if(ACConfigDimensions.enableProxima_D) GalaxyRegistry.registerPlanet(proxima_d);
         
         /*
         proxima_b = (Planet) BodiesHelper.registerPlanet(ProximaSystem, "proxima_b", GalaxySpace.ASSET_PREFIX, WorldProviderProxima_B_WE.class, ACConfigDimensions.dimensionIDProxima_B, 6, (float) Math.PI*3, 1.2F, 0.25F, 1.1F, ACBiome.ACSpace)

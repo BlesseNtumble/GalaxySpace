@@ -34,6 +34,8 @@ public class ACConfigDimensions {
 
     
     public static boolean enableProxima_B;
+    public static boolean enableProxima_C;
+    public static boolean enableProxima_D;
 
     
     
@@ -70,6 +72,18 @@ public class ACConfigDimensions {
             prop.setComment("Enable/Disable Proxima B");
             prop.setLanguageKey("gc.configgui.enableProxima_B").setRequiresMcRestart(true);
             enableProxima_B = prop.getBoolean(true);
+            propOrder.add(prop.getName());
+            
+            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableProxima_C", true);
+            prop.setComment("Enable/Disable Proxima C");
+            prop.setLanguageKey("gc.configgui.enableProxima_C").setRequiresMcRestart(true);
+            enableProxima_C = prop.getBoolean(true);
+            propOrder.add(prop.getName());
+            
+            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableProxima_D", true);
+            prop.setComment("Enable/Disable Proxima D");
+            prop.setLanguageKey("gc.configgui.enableProxima_D").setRequiresMcRestart(true);
+            enableProxima_D = prop.getBoolean(true);
             propOrder.add(prop.getName());
             
                                 
