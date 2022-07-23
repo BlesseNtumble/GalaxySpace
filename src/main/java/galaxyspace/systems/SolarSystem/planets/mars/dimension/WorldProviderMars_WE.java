@@ -5,6 +5,8 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import asmodeuscore.api.dimension.IProviderFog;
+import asmodeuscore.api.dimension.IProviderWeather;
+import asmodeuscore.core.astronomy.dimension.world.data.DustStormSaveData;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.biome.WE_BaseBiome;
@@ -14,10 +16,10 @@ import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_CaveGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_RavineGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
+import galaxyspace.GalaxySpace;
 import galaxyspace.systems.SolarSystem.moons.titan.dimension.sky.WeatherProviderTitan;
 import galaxyspace.systems.SolarSystem.planets.mars.dimension.sky.SkyProviderMars;
 import galaxyspace.systems.SolarSystem.planets.mars.dimension.sky.WeatherProviderMars;
-import galaxyspace.systems.SolarSystem.planets.mars.world.MarsSaveData;
 import galaxyspace.systems.SolarSystem.planets.mars.world.gen.we.Mars_High_Plains;
 import galaxyspace.systems.SolarSystem.planets.mars.world.gen.we.Mars_Mountains;
 import galaxyspace.systems.SolarSystem.planets.mars.world.gen.we.Mars_Plains;
@@ -51,8 +53,9 @@ import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProviderFog {
+public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProviderFog, IProviderWeather {
 	
+	public static final String DATA = GalaxySpace.MODID + "_MarsSaveData";
 	private final MapGenDungeon dungeonGenerator = new MapGenDungeonMars(new DungeonConfiguration(MarsBlocks.marsBlock.getDefaultState().withProperty(BlockBasicMars.BASIC_TYPE, BlockBasicMars.EnumBlockBasic.DUNGEON_BRICK), 30, 8, 16, 7, 7, RoomBossMars.class, RoomTreasureMars.class));
 	private final float[] colorsSunriseSunset = new float[4];
 	
@@ -88,7 +91,7 @@ public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProv
     public Vector3 getFogColor()
     {
         float f = 1.0F - this.getStarBrightness(1.0F);
-        MarsSaveData msd = MarsSaveData.get(this.world);
+        DustStormSaveData msd = DustStormSaveData.get(this.world, DATA);
         if(msd.getStormStrength(1.0F) > 0.0F)
         	f = Math.max(0.4F, 1.0F - msd.getStormStrength(1.0F));
         
@@ -146,8 +149,8 @@ public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProv
         f1 = (float)((double)f1 * (1.0D - (double)(this.world.getRainStrength(partialTicks) * 5.0F) / 16.0D));
         f1 = (float)((double)f1 * (1.0D - (double)(this.world.getThunderStrength(partialTicks) * 5.0F) / 16.0D));
         
-        MarsSaveData msd = MarsSaveData.get(this.world);
-        if(msd.isDustStorm)
+        DustStormSaveData msd = DustStormSaveData.get(this.world, DATA);
+        if(msd.isDustStorm())
         	f1 = (float)((double)f1 * (1.0D - (double)(msd.getStormStrength(partialTicks) * 5.0F) / 6.0D));
         return f1 * 0.8F + 0.2F;
     }
@@ -324,13 +327,28 @@ public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProv
 
 	@Override
 	public float getFogDensity(int x, int y, int z) {
-		MarsSaveData msd = MarsSaveData.get(world);
+		DustStormSaveData msd = DustStormSaveData.get(world, DATA);
 		
 		if(msd.getStormStrength(1.0F) > 0.0F)			
 			return Math.max(0.3F, 1.0F - msd.getStormStrength(1.0F));
 		
 		
 		return 1.0F;
+	}
+
+	@Override
+	public double getLightningStormFrequency() {
+		return 0;
+	}
+
+	@Override
+	public int getYPosLightning() {
+		return 0;
+	}
+
+	@Override
+	public String getDataName() {
+		return DATA;
 	}
 
 }

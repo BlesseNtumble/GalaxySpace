@@ -77,6 +77,9 @@ public abstract class ItemSpaceSuit extends ItemElectricArmor implements ISensor
 			stack.getTagCompound().setInteger(mod_count, getModificationCount(stack));
 		}
 		
+		if(!stack.getTagCompound().hasKey("Unbreakable"))
+			stack.getTagCompound().setBoolean("Unbreakable", true);
+		
 		switch(getArmorType(stack)) {
 			case HEAD:
 				if(!stack.getTagCompound().hasKey(suit_buttons[0]))
@@ -196,13 +199,9 @@ public abstract class ItemSpaceSuit extends ItemElectricArmor implements ISensor
 		float thisEnergy = this.getElectricityStored(itemStack);
 		float energyToTransfer = Math.min(Math.min(thisEnergy, energy), this.transferMax);
 
-		if (doTransfer) {
-			//Thx MJRLegend =)
-			if(!itemStack.getTagCompound().hasKey("Unbreakable"))
-				itemStack.getTagCompound().setBoolean("Unbreakable", true);
-			
+		if (doTransfer) 			
 			this.setElectricity(itemStack, thisEnergy - energyToTransfer);
-		}
+		
 
 		return energyToTransfer;
 	}

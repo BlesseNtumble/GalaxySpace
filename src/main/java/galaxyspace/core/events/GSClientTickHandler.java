@@ -26,7 +26,6 @@ import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.network.packet.GSPacketSimple;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
 import galaxyspace.core.util.GSThreadVersionCheck;
-import galaxyspace.systems.SolarSystem.planets.mars.world.MarsSaveData;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemGeologicalScanner;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemMatterManipulator;

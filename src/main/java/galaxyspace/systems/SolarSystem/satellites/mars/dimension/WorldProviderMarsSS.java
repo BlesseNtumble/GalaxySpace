@@ -157,7 +157,7 @@ public class WorldProviderMarsSS extends WorldProviderSpaceStation implements IO
     @Override
     public String getPlanetToOrbit()
     {
-        return MarsModule.planetMars.getTranslationKey();
+        return MarsModule.planetMars.getUnlocalizedName();
     }
 
     @Override

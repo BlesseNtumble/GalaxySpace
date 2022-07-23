@@ -3,9 +3,10 @@ package galaxyspace.systems.SolarSystem.planets.mars.dimension.sky;
 import org.lwjgl.opengl.GL11;
 
 import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
+import asmodeuscore.core.astronomy.dimension.world.data.DustStormSaveData;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import galaxyspace.GalaxySpace;
-import galaxyspace.systems.SolarSystem.planets.mars.world.MarsSaveData;
+import galaxyspace.systems.SolarSystem.planets.mars.dimension.WorldProviderMars_WE;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
@@ -35,7 +36,7 @@ public class SkyProviderMars  extends SkyProviderBase
 		GL11.glRotatef(80.0F, 0.0F, 0.0F, 1.0F);
 		GL11.glRotatef(40.0F, 1.0F, 0.0F, 0.0F);
 
-		MarsSaveData data = MarsSaveData.get(this.mc.world);
+		DustStormSaveData data = DustStormSaveData.get(this.mc.world, WorldProviderMars_WE.DATA);
 		
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1F-data.getStormStrength(ticks));
 		
@@ -87,9 +88,9 @@ public class SkyProviderMars  extends SkyProviderBase
 
 	@Override
 	protected ModeLight modeLight() {
-		MarsSaveData msd = MarsSaveData.get(this.mc.world);
+		DustStormSaveData msd = DustStormSaveData.get(this.mc.world, WorldProviderMars_WE.DATA);
 		
-		return msd.isDustStorm ? ModeLight.WITHOUT_SUN : ModeLight.DEFAULT;
+		return msd.isDustStorm() ? ModeLight.WITHOUT_SUN : ModeLight.DEFAULT;
 	}
 
 	@Override

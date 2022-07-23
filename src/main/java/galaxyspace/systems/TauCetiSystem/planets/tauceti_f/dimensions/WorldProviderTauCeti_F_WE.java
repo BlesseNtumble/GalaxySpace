@@ -455,4 +455,9 @@ public class WorldProviderTauCeti_F_WE extends WE_WorldProviderSpace implements 
 
 	@Override
 	public boolean isColorWorld() { return true; }
+
+	@Override
+	public String getDataName() {
+		return null;
+	}
 }

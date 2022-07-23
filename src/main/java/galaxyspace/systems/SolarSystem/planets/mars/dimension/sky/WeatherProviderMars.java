@@ -5,10 +5,10 @@ import java.util.Random;
 
 import org.lwjgl.opengl.GL11;
 
+import asmodeuscore.core.astronomy.dimension.world.data.DustStormSaveData;
 import galaxyspace.GalaxySpace;
-import galaxyspace.systems.SolarSystem.planets.mars.world.MarsSaveData;
+import galaxyspace.systems.SolarSystem.planets.mars.dimension.WorldProviderMars_WE;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
-import micdoodle8.mods.galacticraft.planets.GalacticraftPlanets;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -46,7 +46,7 @@ public class WeatherProviderMars extends IRenderHandler
     @Override
     public void render(float partialTicks, WorldClient world, Minecraft mc)
     {
-    	MarsSaveData msd = MarsSaveData.get(world);
+    	DustStormSaveData msd = DustStormSaveData.get(world, WorldProviderMars_WE.DATA);
         float strength = msd.getStormStrength(partialTicks);
 
         if (strength > 0.0F)

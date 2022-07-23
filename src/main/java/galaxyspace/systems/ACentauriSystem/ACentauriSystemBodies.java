@@ -81,7 +81,9 @@ public class ACentauriSystemBodies implements IBodies {
         BodiesRegistry.setOrbitData(proxima_b, (float) Math.PI*3, 1.2F, 8.0F);
         BodiesRegistry.setPlanetData(proxima_b, 2F, 25000L * 7, BodiesRegistry.calculateGravity(8.0F), true);
         BodiesRegistry.setProviderData(proxima_b, WorldProviderProxima_B_WE.class, ACConfigDimensions.dimensionIDProxima_B, 6);
-        proxima_b.setRingColorRGB(0.0F, 0.4F, 0.9F).atmosphereComponents(EnumAtmosphericGas.CO2, EnumAtmosphericGas.OXYGEN);
+        proxima_b.setRingColorRGB(0.0F, 0.4F, 0.9F);
+        proxima_b.atmosphere.composition.add(EnumAtmosphericGas.CO2);
+        proxima_b.atmosphere.composition.add(EnumAtmosphericGas.OXYGEN);
         if(ACConfigDimensions.enableProxima_B) GalaxyRegistry.registerPlanet(proxima_b);	
         
         proxima_c = BodiesRegistry.registerExPlanet(ProximaSystem, "proxima_c", GalaxySpace.ASSET_PREFIX, 1.25F);
