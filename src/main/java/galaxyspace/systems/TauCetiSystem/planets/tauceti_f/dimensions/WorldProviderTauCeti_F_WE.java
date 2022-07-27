@@ -460,4 +460,14 @@ public class WorldProviderTauCeti_F_WE extends WE_WorldProviderSpace implements 
 	public String getDataName() {
 		return null;
 	}
+
+	@Override
+	public boolean getDustStorm() {
+		return false;
+	}
+
+	@Override
+	public boolean getMeteoricRain() {
+		return false;
+	}
 }

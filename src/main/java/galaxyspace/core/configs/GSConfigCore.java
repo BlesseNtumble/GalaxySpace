@@ -59,6 +59,7 @@ public class GSConfigCore
     public static boolean enableOxygenForPlantsAndFoods;      
     public static boolean enableSolarRadiationOnMoon;   
     public static boolean enableGasExplosion;
+    public static boolean enableExtraWeatherOnBodies;
     //
     
     public static String spacesuit_pos = "center";
@@ -156,6 +157,12 @@ public class GSConfigCore
             prop.setComment("Enable/Disable solar radiation on Moon.");
             prop.setLanguageKey("gc.configgui.enableSolarRadiationOnMoon").setRequiresMcRestart(true);
             enableSolarRadiationOnMoon = prop.getBoolean(true);
+            propOrder.add(prop.getName());
+            
+            prop = config.get(GSConstants.HARDMODE_CATEGORY, "enableExtraWeatherOnBodies", true);
+            prop.setComment("Enable/Disable extra weather on celestial bodies (Dust Storm, Meteoric Rain, etc).");
+            prop.setLanguageKey("gc.configgui.enableExtraWeatherOnBodies").setRequiresMcRestart(true);
+            enableExtraWeatherOnBodies = prop.getBoolean(true);
             propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_CLIENT, "enableNewMenu", true);

@@ -6,7 +6,9 @@ package galaxyspace.systems.SolarSystem.planets.ceres.dimension;
 import java.util.List;
 
 import asmodeuscore.api.dimension.IProviderFreeze;
+import asmodeuscore.api.dimension.IProviderWeather;
 import asmodeuscore.core.astronomy.dimension.world.gen.WorldProviderAdvancedSpace;
+import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.systems.SolarSystem.SolarSystemBodies;
 import galaxyspace.systems.SolarSystem.planets.ceres.dimension.sky.SkyProviderCeres;
@@ -26,7 +28,7 @@ import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WorldProviderCeres extends WorldProviderAdvancedSpace implements IProviderFreeze{
+public class WorldProviderCeres extends WorldProviderAdvancedSpace implements IProviderFreeze, IProviderWeather{
 
     @Override
     public double getHorizon()
@@ -180,6 +182,31 @@ public class WorldProviderCeres extends WorldProviderAdvancedSpace implements IP
 	protected float getThermalValueMod()
 	{
 		return 0.01F;
+	}
+
+	@Override
+	public double getLightningStormFrequency() {
+		return 0;
+	}
+
+	@Override
+	public int getYPosLightning() {
+		return 0;
+	}
+
+	@Override
+	public boolean getDustStorm() {
+		return false;
+	}
+
+	@Override
+	public boolean getMeteoricRain() {
+		return GSConfigCore.enableExtraWeatherOnBodies;
+	}
+
+	@Override
+	public String getDataName() {
+		return "ceres";
 	}
 	
 }

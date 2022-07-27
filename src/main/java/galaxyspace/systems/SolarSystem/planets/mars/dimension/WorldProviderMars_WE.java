@@ -16,8 +16,7 @@ import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_CaveGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_RavineGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
-import galaxyspace.GalaxySpace;
-import galaxyspace.systems.SolarSystem.moons.titan.dimension.sky.WeatherProviderTitan;
+import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.systems.SolarSystem.planets.mars.dimension.sky.SkyProviderMars;
 import galaxyspace.systems.SolarSystem.planets.mars.dimension.sky.WeatherProviderMars;
 import galaxyspace.systems.SolarSystem.planets.mars.world.gen.we.Mars_High_Plains;
@@ -55,7 +54,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProviderFog, IProviderWeather {
 	
-	public static final String DATA = GalaxySpace.MODID + "_MarsSaveData";
+	public static final String DATA = "mars";
 	private final MapGenDungeon dungeonGenerator = new MapGenDungeonMars(new DungeonConfiguration(MarsBlocks.marsBlock.getDefaultState().withProperty(BlockBasicMars.BASIC_TYPE, BlockBasicMars.EnumBlockBasic.DUNGEON_BRICK), 30, 8, 16, 7, 7, RoomBossMars.class, RoomTreasureMars.class));
 	private final float[] colorsSunriseSunset = new float[4];
 	
@@ -349,6 +348,16 @@ public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProv
 	@Override
 	public String getDataName() {
 		return DATA;
+	}
+
+	@Override
+	public boolean getDustStorm() {
+		return GSConfigCore.enableExtraWeatherOnBodies;
+	}
+
+	@Override
+	public boolean getMeteoricRain() {
+		return false;
 	}
 
 }
