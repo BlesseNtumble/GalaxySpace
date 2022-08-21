@@ -32,6 +32,7 @@ import galaxyspace.core.prefab.entities.EntityCustomCargoRocket;
 import galaxyspace.core.prefab.entities.EntityEvolvedColdBlaze;
 import galaxyspace.core.prefab.entities.EntityIceSpike;
 import galaxyspace.core.prefab.entities.EntityLaserBeam;
+import galaxyspace.core.prefab.entities.EntityMultiSeatRocketTest;
 import galaxyspace.core.prefab.entities.EntityTier4Rocket;
 import galaxyspace.core.prefab.entities.EntityTier5Rocket;
 import galaxyspace.core.prefab.entities.EntityTier6Rocket;
@@ -248,6 +249,10 @@ public class GalaxySpace
 
     private void registerNonMobEntities()
     {
+    	// Added code
+    	GCCoreUtil.registerGalacticraftNonMobEntity(EntityMultiSeatRocketTest.class, "rocket_multi_seat", 150, 1, false);
+    	//
+    	
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityTier4Rocket.class, "rocket_tier_4", 150, 1, false);
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityTier5Rocket.class, "rocket_tier_5", 150, 1, false);
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityTier6Rocket.class, "rocket_tier_6", 150, 1, false);

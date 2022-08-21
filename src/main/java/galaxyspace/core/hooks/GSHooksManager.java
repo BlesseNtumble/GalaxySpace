@@ -1,9 +1,17 @@
 package galaxyspace.core.hooks;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
+import java.util.Set;
+
+import com.mojang.authlib.minecraft.MinecraftProfileTexture;
+import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
 
 import asmodeuscore.api.dimension.IAdvancedSpace;
 import galaxyspace.api.block.IEnergyGeyser;
@@ -13,25 +21,58 @@ import galaxyspace.core.events.SetBlockEvent;
 import galaxyspace.core.events.UpdateBlockEvent;
 import galaxyspace.core.hooklib.asm.Hook;
 import galaxyspace.core.hooklib.asm.ReturnCondition;
+import galaxyspace.core.prefab.entities.EntityMultiSeatRocket;
+import galaxyspace.core.util.GSThreadVersionCheck;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS.BasicItems;
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
+import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
+import micdoodle8.mods.galacticraft.api.entity.IEntityNoisy;
 import micdoodle8.mods.galacticraft.api.item.IItemThermal;
+import micdoodle8.mods.galacticraft.api.item.ISensorGlassesArmor;
+import micdoodle8.mods.galacticraft.api.prefab.entity.EntitySpaceshipBase;
+import micdoodle8.mods.galacticraft.api.recipe.CompressorRecipes;
+import micdoodle8.mods.galacticraft.api.vector.BlockVec3;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
+import micdoodle8.mods.galacticraft.core.Constants;
+import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
+import micdoodle8.mods.galacticraft.core.client.BubbleRenderer;
+import micdoodle8.mods.galacticraft.core.client.CloudRenderer;
+import micdoodle8.mods.galacticraft.core.client.FootprintRenderer;
+import micdoodle8.mods.galacticraft.core.client.SkyProviderMoon;
+import micdoodle8.mods.galacticraft.core.client.SkyProviderOverworld;
+import micdoodle8.mods.galacticraft.core.client.gui.GuiIdsCore;
+import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiCelestialSelection;
+import micdoodle8.mods.galacticraft.core.client.jei.GalacticraftJEI;
+import micdoodle8.mods.galacticraft.core.dimension.WorldProviderMoon;
+import micdoodle8.mods.galacticraft.core.dimension.WorldProviderSpaceStation;
 import micdoodle8.mods.galacticraft.core.entities.EntityAlienVillager;
+import micdoodle8.mods.galacticraft.core.entities.IBubbleProviderColored;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
+import micdoodle8.mods.galacticraft.core.fluid.FluidNetwork;
 import micdoodle8.mods.galacticraft.core.items.ItemBasic;
 import micdoodle8.mods.galacticraft.core.items.ItemCanisterGeneric;
+import micdoodle8.mods.galacticraft.core.network.GalacticraftPacketHandler;
+import micdoodle8.mods.galacticraft.core.network.PacketRotateRocket;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
+import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore;
+import micdoodle8.mods.galacticraft.core.tick.KeyHandlerClient;
+import micdoodle8.mods.galacticraft.core.tick.TickHandlerClient;
+import micdoodle8.mods.galacticraft.core.tile.TileEntityOxygenSealer;
+import micdoodle8.mods.galacticraft.core.tile.TileEntityScreen;
 import micdoodle8.mods.galacticraft.core.util.CompatibilityManager;
+import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.galacticraft.core.util.DamageSourceGC;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
+import micdoodle8.mods.galacticraft.core.util.MapUtil;
 import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
+import micdoodle8.mods.galacticraft.core.wrappers.BlockMetaList;
+import micdoodle8.mods.galacticraft.core.wrappers.Footprint;
 import micdoodle8.mods.galacticraft.planets.GalacticraftPlanets;
 import micdoodle8.mods.galacticraft.planets.asteroids.dimension.WorldProviderAsteroids;
 import micdoodle8.mods.galacticraft.planets.mars.entities.EntityCreeperBoss;
@@ -43,19 +84,31 @@ import micdoodle8.mods.galacticraft.planets.venus.dimension.WorldProviderVenus;
 import micdoodle8.mods.galacticraft.planets.venus.tile.TileEntityGeothermalGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.ISound;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraft.client.resources.DefaultPlayerSkin;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.WorldProviderSurface;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 public class GSHooksManager {
@@ -742,4 +795,464 @@ public class GSHooksManager {
 		ReflectionHelper.setPrivateValue(EntityAlienVillager.class, e, buyingList, "buyingList");
 	}
 
+	// Added code
+	@Hook(returnCondition = ReturnCondition.ALWAYS)
+	public static void onClientTick(TickHandlerClient object, ClientTickEvent event) {
+		final Minecraft minecraft = FMLClientHandler.instance().getClient();
+        final WorldClient world = minecraft.world;
+        final EntityPlayerSP player = minecraft.player;
+
+        if (object.teleportingGui != null)
+        {
+            if (minecraft.currentScreen != object.teleportingGui)
+            {
+                minecraft.currentScreen = object.teleportingGui;
+            }
+        }
+
+        if (object.menuReset)
+        {
+            TickHandlerClient.resetClient();
+            object.menuReset = false;
+        }
+
+        if (event.phase == Phase.START && player != null)
+        {
+            if (ClientProxyCore.playerHead == null && player.getGameProfile() != null)
+            {
+                Map<Type, MinecraftProfileTexture> map = minecraft.getSkinManager().loadSkinFromCache(player.getGameProfile());
+
+                if (map.containsKey(Type.SKIN))
+                {
+                    ClientProxyCore.playerHead = minecraft.getSkinManager().loadSkin((MinecraftProfileTexture)map.get(Type.SKIN), Type.SKIN);
+                }
+                else
+                {
+                    ClientProxyCore.playerHead = DefaultPlayerSkin.getDefaultSkin(EntityPlayer.getUUID(player.getGameProfile()));
+                }
+            }
+
+            //TickHandlerClient.tickCount++;
+            // Added code
+            long reflectedTickCount = ReflectionHelper.getPrivateValue(TickHandlerClient.class, object, "tickCount");
+            ReflectionHelper.setPrivateValue(TickHandlerClient.class, object, reflectedTickCount + 1, "tickCount");
+            //
+            
+            if (!GalacticraftCore.proxy.isPaused())
+            {
+            	// Added code
+            	Set<FluidNetwork> reflectedFluidNetworks = ReflectionHelper.getPrivateValue(TickHandlerClient.class, object, "fluidNetworks");
+            	//
+            	
+                Iterator<FluidNetwork> it = reflectedFluidNetworks.iterator();
+                while (it.hasNext())
+                {
+                    FluidNetwork network = it.next();
+
+                    if (network.getTransmitters().size() == 0)
+                    {
+                        it.remove();
+                    }
+                    else
+                    {
+                        network.clientTick();
+                    }
+                }
+            }
+
+            //if (TickHandlerClient.tickCount % 20 == 0)
+            // Added code
+            if (reflectedTickCount % 20 == 0)
+            //
+            {
+                BubbleRenderer.clearBubbles();
+
+                for (TileEntity tile : player.world.tickableTileEntities)
+                {
+                    if (tile instanceof IBubbleProviderColored)
+                    {
+                        BubbleRenderer.addBubble((IBubbleProviderColored)tile);
+                    }
+                }
+
+                if (object.updateJEIhiding)
+                {
+                	object.updateJEIhiding = false;
+                    // Update JEI to hide the ingot compressor recipe for GC steel in hard mode
+                    // Update JEI to hide adventure mode recipes when not in adventure mode
+                    GalacticraftJEI.updateHidden(CompressorRecipes.steelIngotsPresent && ConfigManagerCore.hardMode && !ConfigManagerCore.challengeRecipes, !ConfigManagerCore.challengeRecipes);
+                }
+                
+                for (List<Footprint> fpList : FootprintRenderer.footprints.values())
+                {
+                    Iterator<Footprint> fpIt = fpList.iterator();
+                    while (fpIt.hasNext())
+                    {
+                        Footprint fp = fpIt.next();
+                        fp.age += 20;
+                        fp.lightmapVal = player.world.getCombinedLight(new BlockPos(fp.position.x, fp.position.y, fp.position.z), 0);
+
+                        if (fp.age >= Footprint.MAX_AGE)
+                        {
+                            fpIt.remove();
+                        }
+                    }
+                }
+
+                if (!player.inventory.armorItemInSlot(3).isEmpty() && player.inventory.armorItemInSlot(3).getItem() instanceof ISensorGlassesArmor)
+                {
+                    ClientProxyCore.valueableBlocks.clear();
+
+                    for (int i = -4; i < 5; i++)
+                    {
+                        int x = MathHelper.floor(player.posX + i);
+                        for (int j = -4; j < 5; j++)
+                        {
+                            int y = MathHelper.floor(player.posY + j);
+                            for (int k = -4; k < 5; k++)
+                            {
+                                int z = MathHelper.floor(player.posZ + k);
+                                BlockPos pos = new BlockPos(x, y, z);
+
+                                IBlockState state = player.world.getBlockState(pos);
+                                final Block block = state.getBlock();
+
+                                if (block.getMaterial(state) != Material.AIR)
+                                {
+                                    int metadata = block.getMetaFromState(state);
+                                    boolean isDetectable = false;
+
+                                    for (BlockMetaList blockMetaList : ClientProxyCore.detectableBlocks)
+                                    {
+                                        if (blockMetaList.getBlock() == block && blockMetaList.getMetaList().contains(metadata))
+                                        {
+                                            isDetectable = true;
+                                            break;
+                                        }
+                                    }
+
+                                    if (isDetectable || (block instanceof IDetectableResource && ((IDetectableResource) block).isValueable(state)))
+                                    {
+                                        ClientProxyCore.valueableBlocks.add(new BlockVec3(x, y, z));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    TileEntityOxygenSealer nearestSealer = TileEntityOxygenSealer.getNearestSealer(world, MathHelper.floor(player.posX), MathHelper.floor(player.posY), MathHelper.floor(player.posZ));
+                    if (nearestSealer != null && !nearestSealer.sealed)
+                    {
+                        ClientProxyCore.leakTrace = nearestSealer.getLeakTraceClient();
+                    }
+                    else
+                    {
+                        ClientProxyCore.leakTrace = null;
+                    }
+                }
+                else
+                {
+                    ClientProxyCore.leakTrace = null;
+                }
+
+                if (world != null)
+                {
+                    if (MapUtil.resetClientFlag.getAndSet(false))
+                    {
+                        MapUtil.resetClientBody();
+                    }
+                }
+            }
+
+            //if (ClientProxyCore.leakTrace != null) this.spawnLeakParticles();
+            // Added code
+            if (ClientProxyCore.leakTrace != null) {
+            	try {
+            		Method reflectedSpawnLeakParticles = object.getClass().getDeclaredMethod("spawnLeakParticles");
+            		reflectedSpawnLeakParticles.setAccessible(true);
+            		reflectedSpawnLeakParticles.invoke(object);
+            	} catch (Exception e) {
+            		e.printStackTrace();
+            	}
+            }
+            //
+            
+            if (world != null && TickHandlerClient.spaceRaceGuiScheduled && minecraft.currentScreen == null && ConfigManagerCore.enableSpaceRaceManagerPopup)
+            {
+                player.openGui(GalacticraftCore.instance, GuiIdsCore.SPACE_RACE_START, player.world, (int) player.posX, (int) player.posY, (int) player.posZ);
+                TickHandlerClient.spaceRaceGuiScheduled = false;
+            }
+            
+            // Added code
+            boolean checkedVersion = false;
+            //try {
+            //	checkedVersion = ReflectionHelper.getPrivateValue(TickHandlerClient.class, object, "checkedVersion");
+            //} catch (Exception e) {
+            //	e.printStackTrace();
+            //}
+            //
+            if (world != null && checkedVersion)
+            {
+                //ThreadVersionCheck.startCheck();
+                //checkedVersion = false;
+            	
+            	// Added code
+            	try {
+            		Class<?> threadVersionClass = Class.forName("micdoodle8.mods.galacticraft.core.util.ThreadVersionCheck");
+            		Object threadVersionInstance = threadVersionClass.newInstance();
+            		threadVersionClass.getDeclaredMethod("startCheck").invoke(threadVersionInstance);
+            	
+            		ReflectionHelper.setPrivateValue(TickHandlerClient.class, object, false, "checkedVersion");
+            	} catch (Exception e) {
+            		e.printStackTrace();
+            	}
+            	//
+            }
+
+            boolean inSpaceShip = false;
+            if (player.getRidingEntity() instanceof EntitySpaceshipBase)
+            {
+                inSpaceShip = true;
+                EntitySpaceshipBase rocket = (EntitySpaceshipBase) player.getRidingEntity();
+                
+                if (rocket.prevRotationPitch != rocket.rotationPitch || rocket.prevRotationYaw != rocket.rotationYaw)
+                {
+                	// Added code
+                	if(rocket instanceof EntityMultiSeatRocket) {
+                		boolean isDriver = player.equals( ((EntityMultiSeatRocket) rocket).getDriver() );
+                		
+                		if(isDriver) {
+                			GalacticraftCore.packetPipeline.sendToServer(new PacketRotateRocket(player.getRidingEntity()));
+                		}
+                	} else {
+                	//
+                		GalacticraftCore.packetPipeline.sendToServer(new PacketRotateRocket(player.getRidingEntity()));
+                    // Added code
+                	}
+                    //
+                }
+            }
+
+            if (world != null)
+            {
+                if (world.provider instanceof WorldProviderSurface)
+                {
+                    if (world.provider.getSkyRenderer() == null && inSpaceShip &&
+                            player.getRidingEntity().posY > Constants.OVERWORLD_SKYPROVIDER_STARTHEIGHT)
+                    {
+                        world.provider.setSkyRenderer(new SkyProviderOverworld());
+                    }
+                    else if (world.provider.getSkyRenderer() instanceof SkyProviderOverworld && player.posY <= Constants.OVERWORLD_SKYPROVIDER_STARTHEIGHT)
+                    {
+                        world.provider.setSkyRenderer(null);
+                    }
+                }
+                else if (world.provider instanceof WorldProviderSpaceStation)
+                {
+                    if (world.provider.getSkyRenderer() == null)
+                    {
+                        ((WorldProviderSpaceStation) world.provider).createSkyProvider();
+                    }
+                }
+                else if (world.provider instanceof WorldProviderMoon)
+                {
+                    if (world.provider.getSkyRenderer() == null)
+                    {
+                        world.provider.setSkyRenderer(new SkyProviderMoon());
+                    }
+
+                    if (world.provider.getCloudRenderer() == null)
+                    {
+                        world.provider.setCloudRenderer(new CloudRenderer());
+                    }
+                }
+            }
+
+            if (inSpaceShip)
+            {
+                final EntitySpaceshipBase ship = (EntitySpaceshipBase) player.getRidingEntity();
+                boolean hasChanged = false;
+
+                if (minecraft.gameSettings.keyBindLeft.isKeyDown())
+                {
+                	// Added code
+                	if(ship instanceof EntityMultiSeatRocket) {
+                		boolean isDriver = player.equals( ((EntityMultiSeatRocket) ship).getDriver() );
+                		
+                		if(isDriver) {
+                			ship.turnYaw(-1.0F);
+                			hasChanged = true;
+                		}
+                	} else {
+                	//
+                		ship.turnYaw(-1.0F);
+                		hasChanged = true;
+                    // Added code
+                	}
+                    //
+                }
+
+                if (minecraft.gameSettings.keyBindRight.isKeyDown())
+                {
+                	// Added code
+                	if(ship instanceof EntityMultiSeatRocket) {
+                		boolean isDriver = player.equals( ((EntityMultiSeatRocket) ship).getDriver() );
+                		
+                		if(isDriver) {
+                			ship.turnYaw(1.0F);
+                			hasChanged = true;
+                		}
+                	} else {
+                	//
+                		ship.turnYaw(1.0F);
+                		hasChanged = true;
+                    // Added code
+                	}
+                    //
+                }
+
+                if (minecraft.gameSettings.keyBindForward.isKeyDown())
+                {
+                	// Added code
+                	if(ship instanceof EntityMultiSeatRocket) {
+                		boolean isDriver = player.equals( ((EntityMultiSeatRocket) ship).getDriver() );
+                		
+                		if(isDriver) {
+                			if(ship.getLaunched()) {
+                				ship.turnPitch(-0.7F);
+                				hasChanged = true;
+                			}
+                		}
+                	} else {
+                	//
+                    	if (ship.getLaunched())
+                    	{
+                        	ship.turnPitch(-0.7F);
+                        	hasChanged = true;
+                    	}
+                    // Added code
+            		}
+                	//
+                }
+
+                if (minecraft.gameSettings.keyBindBack.isKeyDown())
+                {
+                	// Added code
+                	if(ship instanceof EntityMultiSeatRocket) {
+                		boolean isDriver = player.equals( ((EntityMultiSeatRocket) ship).getDriver() );
+                		
+                		if(isDriver) {
+                			if(ship.getLaunched()) {
+                				ship.turnPitch(0.7F);
+                				hasChanged = true;
+                			}
+                		}
+                	} else {
+                	//
+                    	if (ship.getLaunched())
+                    	{
+                        	ship.turnPitch(0.7F);
+                        	hasChanged = true;
+                    	}
+                    // Added code
+            		}
+                	//
+                }
+
+                if (hasChanged)
+                {
+                    GalacticraftCore.packetPipeline.sendToServer(new PacketRotateRocket(ship));
+                }
+            }
+
+            if (world != null)
+            {
+                List entityList = world.loadedEntityList;
+                for (Object e : entityList)
+                {
+                    if (e instanceof IEntityNoisy)
+                    {
+                        IEntityNoisy vehicle = (IEntityNoisy) e;
+                        if (vehicle.getSoundUpdater() == null)
+                        {
+                            ISound noise = vehicle.setSoundUpdater(FMLClientHandler.instance().getClient().player);
+                            if (noise != null)
+                            {
+                                FMLClientHandler.instance().getClient().getSoundHandler().playSound(noise);
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (FMLClientHandler.instance().getClient().currentScreen instanceof GuiCelestialSelection)
+            {
+                player.motionY = 0;
+            }
+
+            if (world != null && world.provider instanceof IGalacticraftWorldProvider && OxygenUtil.noAtmosphericCombustion(world.provider) && ((IGalacticraftWorldProvider) world.provider).shouldDisablePrecipitation())
+            {
+                world.setRainStrength(0.0F);
+            }
+
+            boolean isPressed = KeyHandlerClient.spaceKey.isKeyDown();
+
+            if (!isPressed)
+            {
+                ClientProxyCore.lastSpacebarDown = false;
+            }
+
+            if (player.getRidingEntity() != null && isPressed && !ClientProxyCore.lastSpacebarDown)
+            {
+                // Added code
+            	if(player.getRidingEntity() instanceof EntityMultiSeatRocket) {
+            		boolean isDriver = player.equals( ((EntityMultiSeatRocket)player.getRidingEntity()).getDriver() );
+            		
+            		if(isDriver) {
+            			GalacticraftCore.packetPipeline.sendToServer(new PacketSimple(EnumSimplePacket.S_IGNITE_ROCKET, GCCoreUtil.getDimensionID(player.world), new Object[] {}));
+            			ClientProxyCore.lastSpacebarDown = true;
+            		}
+            	} else {
+            	//
+            		GalacticraftCore.packetPipeline.sendToServer(new PacketSimple(EnumSimplePacket.S_IGNITE_ROCKET, GCCoreUtil.getDimensionID(player.world), new Object[] {}));
+            		ClientProxyCore.lastSpacebarDown = true;
+                // Added code
+            	}
+                //
+            }
+
+            if (!(object.screenConnectionsUpdateList.isEmpty()))
+            {
+                HashSet<TileEntityScreen> updateListCopy = (HashSet<TileEntityScreen>) object.screenConnectionsUpdateList.clone();
+                object.screenConnectionsUpdateList.clear();
+                for (TileEntityScreen te : updateListCopy)
+                {
+                    if (te.getWorld().getBlockState(te.getPos()).getBlock() == GCBlocks.screen)
+                    {
+                        if (te.refreshOnUpdate)
+                        {
+                            te.refreshConnections(true);
+                        }
+                        te.getWorld().markBlockRangeForRenderUpdate(te.getPos(), te.getPos());
+                    }
+                }
+            }
+        }
+        else if (event.phase == Phase.END)
+        {
+        	// Added code
+        	List<GalacticraftPacketHandler> reflectedPacketHandlers = ReflectionHelper.getPrivateValue(TickHandlerClient.class, object, "packetHandlers");
+        	//
+        			
+            if (world != null)
+            {
+                for (GalacticraftPacketHandler handler : reflectedPacketHandlers)
+                {
+                    handler.tick(world);
+                }
+            }
+        }
+        
+        return;
+	}
 }

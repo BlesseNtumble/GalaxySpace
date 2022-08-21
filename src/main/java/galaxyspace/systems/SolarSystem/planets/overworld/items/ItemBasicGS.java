@@ -176,12 +176,17 @@ public class ItemBasicGS extends Item implements ISortableItem{
 	@Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list)    
     {
-    	if (tab == GSCreativeTabs.GSItemsTab || tab == CreativeTabs.SEARCH)
+    	if (tab == GSCreativeTabs.GSItemsTab || tab == GSCreativeTabs.GSArmorTab || tab == CreativeTabs.SEARCH)
         {
 	        for (int i = 0; i < BasicItems.values().length; i++)
 	        {
-	        	if(!BasicItems.values()[i].getName().equals("null"))
-	        		list.add(new ItemStack(this, 1, i));
+	        	if(!BasicItems.values()[i].getName().equals("null")) {
+	        		ItemStack item = new ItemStack(this, 1, i);
+	        		if(BasicItems.values()[i].equals(BasicItems.GAS_EXTRACTOR)) {
+	        			item.getItem().setCreativeTab(GSCreativeTabs.GSArmorTab);
+	        		}
+	        		list.add(item);
+	        	}
 	        }
         }
     }
