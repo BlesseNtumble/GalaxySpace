@@ -369,6 +369,6 @@ public class TileEntityGravitationModule extends TileBaseElectricBlockWithInvent
 
 	@Override
 	public int[] getSlotsForFace(EnumFacing side) {
-		return null;
+		return new int[] {0};
 	}
 }

@@ -543,6 +543,8 @@ public class GSGuiMainMenu extends GuiScreen implements GuiYesNoCallback
         GlStateManager.viewport(0, 0, 256, 256);
         this.drawPanorama(mouseX, mouseY, partialTicks);
         this.rotateAndBlurSkybox();
+        this.rotateAndBlurSkybox();
+        this.rotateAndBlurSkybox();
 
         this.mc.getFramebuffer().bindFramebuffer(true);
         GlStateManager.viewport(0, 0, this.mc.displayWidth, this.mc.displayHeight);

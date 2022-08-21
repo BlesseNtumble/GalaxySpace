@@ -80,11 +80,12 @@ public class GSClientTickHandler {
 	public static Map<IBlockState, String> blocks = new HashMap<IBlockState, String>();
 	public static int ticks;
 	
+	
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void onGuiOpenEvent(GuiOpenEvent event)
 	{
-	
+		
 		if ((event.getGui() instanceof GuiMainMenu) && GSConfigCore.enableNewMenu)
 			event.setGui(new GSGuiMainMenu());
 

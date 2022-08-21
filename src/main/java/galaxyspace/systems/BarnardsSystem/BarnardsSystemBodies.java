@@ -24,6 +24,7 @@ import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigDimensions;
 import galaxyspace.systems.BarnardsSystem.core.events.BRClientEventHandler;
 import galaxyspace.systems.BarnardsSystem.core.events.BREventHandler;
 import galaxyspace.systems.BarnardsSystem.moons.barnarda_c1.dimension.WorldProviderBarnarda_C1_WE;
+import galaxyspace.systems.BarnardsSystem.moons.barnarda_c2.dimension.WorldProviderBarnarda_C2_WE;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Blocks.EnumBlockBarnardaC;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Dandelions.EnumBlockDandelions;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Falling_Blocks.EnumFallingBlockBarnardaC;
@@ -103,10 +104,12 @@ public class BarnardsSystemBodies implements IBodies {
 		GalaxyRegistry.registerMoon(Barnarda_C1);
 		
 		Barnarda_C2 = BodiesRegistry.registerExMoon(Barnarda_C, "barnarda_c2", GalaxySpace.ASSET_PREFIX, 19.75F);
-		BodiesRegistry.setOrbitData(Barnarda_C2, (float) Math.PI / 2, 1.0F, 60.5F);
-		BodiesRegistry.setAtmosphere(Barnarda_C2, false, false, false, -2.0F, 0.0F, 0.0F);
-		BodiesRegistry.setPlanetData(Barnarda_C2, 15F, 45000, BodiesRegistry.calculateGravity(6.5F), false);
-		//BodiesHelper.setProviderData(Barnarda_C1, WorldProviderBarnarda_C2_WE.class, BRConfigDimensions.dimensionIDBarnardaC2, 1);
+		BodiesRegistry.setOrbitData(Barnarda_C2, (float) Math.PI / 2, 1.0F, 60.5F, 1.5F, 0.8F, 0.5F, 0F);
+		if(GalaxySpace.debug) {
+			BodiesRegistry.setAtmosphere(Barnarda_C2, false, false, false, 3.0F, 0.0F, 0.0F);
+			BodiesRegistry.setPlanetData(Barnarda_C2, 15F, 45000, BodiesRegistry.calculateGravity(6.5F), false);
+			BodiesRegistry.setProviderData(Barnarda_C2, WorldProviderBarnarda_C2_WE.class, BRConfigDimensions.dimensionIDBarnardaC2, 1);
+		}
 		GalaxyRegistry.registerMoon(Barnarda_C2);
 		
 		Barnarda_ABelt = BodiesRegistry.registerExPlanet(BarnardsSystem, "barnarda_d", GalaxySpace.ASSET_PREFIX, 1.25F);
@@ -146,6 +149,7 @@ public class BarnardsSystemBodies implements IBodies {
 	public void postInit(FMLPostInitializationEvent event) {		
 		GSDimensions.BARNARDA_C = WorldUtil.getDimensionTypeById(BRConfigDimensions.dimensionIDBarnardaC);
 		GSDimensions.BARNARDA_C1 = WorldUtil.getDimensionTypeById(BRConfigDimensions.dimensionIDBarnardaC1);
+		GSDimensions.BARNARDA_C2 = WorldUtil.getDimensionTypeById(BRConfigDimensions.dimensionIDBarnardaC2);
 		
 	}
 
@@ -160,7 +164,10 @@ public class BarnardsSystemBodies implements IBodies {
 	{
 		GalacticraftRegistry.registerTeleportType(WorldProviderBarnarda_C_WE.class, new TeleportTypeBarnarda_C());		
 		
-		if(GalaxySpace.debug) GalacticraftRegistry.registerTeleportType(WorldProviderBarnarda_C1_WE.class, new TeleportTypeBody());		
+		if(GalaxySpace.debug) {
+			GalacticraftRegistry.registerTeleportType(WorldProviderBarnarda_C1_WE.class, new TeleportTypeBody());		
+			GalacticraftRegistry.registerTeleportType(WorldProviderBarnarda_C2_WE.class, new TeleportTypeBody());		
+		}
 	}
 	
 	@Override

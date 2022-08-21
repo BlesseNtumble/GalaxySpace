@@ -12,7 +12,7 @@ public class GSDimensions {
 	
 	//Barnards System
 	public static DimensionType BARNARDA_C;
-	public static DimensionType BARNARDA_C1;
+	public static DimensionType BARNARDA_C1, BARNARDA_C2;
 	
 	//Tau Ceti System
 	public static DimensionType TAU_CETI_F;
