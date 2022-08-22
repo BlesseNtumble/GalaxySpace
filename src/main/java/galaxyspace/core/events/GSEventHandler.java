@@ -286,7 +286,7 @@ public class GSEventHandler {
 		if(e.world != null && !e.world.isRemote && e.world.provider instanceof IGalacticraftWorldProvider && e.pos != null && e.block != null)
 		{
 			float thermal = ((IGalacticraftWorldProvider)e.world.provider).getThermalLevelModifier();
-			AxisAlignedBB bb = new AxisAlignedBB(e.pos);
+			AxisAlignedBB bb = new AxisAlignedBB(e.pos.up());
 				
 			for(BlockToChange block : block_to_change)
 			{			
@@ -295,8 +295,10 @@ public class GSEventHandler {
 				
 				if(e.world.provider instanceof IProviderFreeze && !((IProviderFreeze)e.world.provider).isFreeze()) continue;
 				
+				if(OxygenUtil.isAABBInBreathableAirBlock(e.world, bb, true)) continue;
+				
 				if(block.need_check_temp) { 
-					if((e.block == block.state || e.block.getMaterial() == block.state.getMaterial()) && !OxygenUtil.isAABBInBreathableAirBlock(e.world, bb, true))
+					if((e.block == block.state || e.block.getMaterial() == block.state.getMaterial()))
 					{
 						if(thermal <= cool_temp)
 						{
