@@ -39,6 +39,7 @@ import galaxyspace.core.prefab.entities.EntityAstroWolf;
 import galaxyspace.core.prefab.entities.EntityCustomCargoRocket;
 import galaxyspace.core.prefab.entities.EntityEvolvedColdBlaze;
 import galaxyspace.core.prefab.entities.EntityIceSpike;
+import galaxyspace.core.prefab.entities.EntityMultiSeatRocketTest;
 import galaxyspace.core.prefab.entities.EntityTier4Rocket;
 import galaxyspace.core.prefab.entities.EntityTier5Rocket;
 import galaxyspace.core.prefab.entities.EntityTier6Rocket;
@@ -719,6 +720,10 @@ public class ClientProxy extends CommonProxy{
 	
 	public static void registerEntityRenderers()
     {
+		// Added code
+		RenderingRegistry.registerEntityRenderingHandler(EntityMultiSeatRocketTest.class, (RenderManager manager) -> new RenderRockets(manager, "tier4rocket", "Base"));
+		//
+		
 		RenderingRegistry.registerEntityRenderingHandler(EntityTier4Rocket.class, (RenderManager manager) -> new RenderRockets(manager, "tier4rocket", "Base"));
 		//RenderingRegistry.registerEntityRenderingHandler(EntityTier4Rocket.class, (RenderManager manager) -> new RenderRockets(manager, "tier4rocketGS", "Base", "NoseCone", "Rocket", "Booster1", "Booster2", "Booster3", "Booster4"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityTier5Rocket.class, (RenderManager manager) -> new RenderRockets(manager, "tier5rocket", "Base"));
