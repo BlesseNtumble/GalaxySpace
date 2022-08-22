@@ -10,7 +10,6 @@ import micdoodle8.mods.galacticraft.api.item.IItemElectricBase;
 import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
 import micdoodle8.mods.galacticraft.core.energy.EnergyConfigHandler;
 import micdoodle8.mods.galacticraft.core.energy.tile.TileBaseElectricBlockWithInventory;
-import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.miccore.Annotations.NetworkedField;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ItemStackHelper;
@@ -40,7 +39,7 @@ public class TileEntityEnergyPad extends TileBaseElectricBlockWithInventory {
 		super("tile.energy_pad.name");
 
 		this.storage.setCapacity(15000);
-		this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 45 : 25);
+		this.storage.setMaxExtract(0F);
 		this.storage.setMaxReceive(500F);
 		this.inventory = NonNullList.withSize(1, ItemStack.EMPTY);
     }
@@ -65,6 +64,12 @@ public class TileEntityEnergyPad extends TileBaseElectricBlockWithInventory {
 		}
 	}
 	
+	/* Disable discharge machine */
+	@Override
+	public void slowDischarge()
+    {       
+    }
+	
 	public static boolean canProcess()
     {
     	return true;
@@ -86,13 +91,19 @@ public class TileEntityEnergyPad extends TileBaseElectricBlockWithInventory {
 	}
 	
 	public void smeltItem(EntityPlayer player) {	
-		if(this.hasEnoughEnergyToRun && this.storage.getEnergyStoredGC() > 100D)
+		if(this.hasEnoughEnergyToRun && this.storage.getEnergyStoredGC() > 200D)
 		{
+			
 			for(ItemStack stack : player.inventory.armorInventory) 		
-				if(chargeItem(stack, 350D)) break;		
-		
+				if(chargeItem(stack, 350D)) {
+					this.storage.extractEnergyGCnoMax(200F, false);
+					break;		
+				}
 			for(ItemStack stack : player.inventory.mainInventory)		
-				if(chargeItem(stack, 350D)) break;
+				if(chargeItem(stack, 350D)) {
+					this.storage.extractEnergyGCnoMax(200F, false);
+					break;
+				}
 			
 		}
 		isCollide = isCollideTile(player);	
@@ -102,7 +113,7 @@ public class TileEntityEnergyPad extends TileBaseElectricBlockWithInventory {
 	{		
 		if(player != null && this.hasEnoughEnergyToRun)
 		{
-			double dis = getPos().distanceSqToCenter(player.posX, player.posY, player.posZ);
+			//double dis = getPos().distanceSqToCenter(player.posX, player.posY, player.posZ);
 			if(player.getPosition().equals(getPos()))			
 			{
 				return true;
