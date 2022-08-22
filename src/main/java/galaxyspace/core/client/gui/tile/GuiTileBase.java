@@ -253,6 +253,10 @@ public abstract class GuiTileBase extends GuiContainerGC {
 			Utils.drawTexturedModalRect(x + size, y, 8, 15, 209, 109, 8, 15, invertX, invertY, 256, 256);
 		
 		int scale = 0;
+		int percent = 0;
+		List<String> processDesc = new ArrayList<String>();
+	    processDesc.clear();
+	    
 		if (ticks > 0) {
 			scale = (int) ((double) ticks / (double) max * (size + 8));
 			
@@ -264,9 +268,10 @@ public abstract class GuiTileBase extends GuiContainerGC {
 					this.drawTexturedModalRect(x + size, y, 209, 125, scale - size, 16);
 			
 
-			List<String> processDesc = new ArrayList<String>();
-		    processDesc.clear();
-		    processDesc.add(GCCoreUtil.translate("gui.electric_compressor.desc.0") + ": " + scale + "%");
+			percent = (int) ((double) ticks / (double) max * 100);
+			
+			
+		    processDesc.add(GCCoreUtil.translate("gui.electric_compressor.desc.0") + ": " + percent + "%");
 		    this.processInfoRegion.tooltipStrings = processDesc;
 		    this.processInfoRegion.xPosition = x;
 			this.processInfoRegion.yPosition = y;

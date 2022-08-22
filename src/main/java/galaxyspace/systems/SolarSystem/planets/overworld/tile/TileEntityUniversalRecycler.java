@@ -227,12 +227,21 @@ public class TileEntityUniversalRecycler extends TileEntityUpgradeMachine implem
 	    			else if(this.getInventory().get(3).isItemEqual(recipe.getOutput()))
 	    				this.getInventory().get(3).grow(recipe.getOutput().getCount());  
 	    			
-	    			if(!hasRand_2 && !recipe.getOutput_2().isEmpty()) {
-	    				if(this.getInventory().get(4).isEmpty())
-		           			this.getInventory().set(4, recipe.getOutput_2().copy());	 
-		    			else if(this.getInventory().get(4).isItemEqual(recipe.getOutput_2()))
-		    				this.getInventory().get(4).grow(recipe.getOutput_2().getCount());  
+	    			if(!recipe.getOutput_2().isEmpty()) {
+	    				if(!hasRand_2) {
+		    				if(this.getInventory().get(4).isEmpty())
+			           			this.getInventory().set(4, recipe.getOutput_2().copy());	 
+			    			else if(this.getInventory().get(4).isItemEqual(recipe.getOutput_2()))
+			    				this.getInventory().get(4).grow(recipe.getOutput_2().getCount());  
+	    				}
+	    				else if(this.world.rand.nextInt(100) <= recipe.getChance_2()) {
+		    				if(this.getInventory().get(4).isEmpty())
+			           			this.getInventory().set(4, recipe.getOutput_2().copy());	 
+			    			else if(this.getInventory().get(4).isItemEqual(recipe.getOutput_2()))
+			    				this.getInventory().get(4).grow(recipe.getOutput_2().getCount()); 
+		    			}
 	    			}
+	    			
     			}
 	    		else
 	    		{
@@ -243,7 +252,7 @@ public class TileEntityUniversalRecycler extends TileEntityUpgradeMachine implem
 	    				else if(this.getInventory().get(3).isItemEqual(recipe.getOutput()))	    				 
 	    					this.getInventory().get(3).grow(recipe.getOutput().getCount());
 	    				
-	    				if(recipe.getOutput_2() != null && !recipe.getOutput_2().isEmpty() && this.world.rand.nextInt(100) <= recipe.getChance_2()) 
+	    				if(!recipe.getOutput_2().isEmpty() && this.world.rand.nextInt(100) <= recipe.getChance_2()) 
 		    			{
 		    				if(this.getInventory().get(4).isEmpty())	    				
 		    					this.getInventory().set(4, recipe.getOutput_2().copy());		    			
