@@ -9,6 +9,7 @@ import galaxyspace.systems.SolarSystem.SolarSystemBodies;
 import galaxyspace.systems.SolarSystem.planets.ceres.world.gen.BiomeProviderCeres;
 import galaxyspace.systems.SolarSystem.satellites.mars.dimension.sky.SkyProviderMarsSS;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
+import micdoodle8.mods.galacticraft.api.galaxies.IChildBody;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.IExitHeight;
 import micdoodle8.mods.galacticraft.api.world.IOrbitDimension;
@@ -175,7 +176,7 @@ public class WorldProviderMarsSS extends WorldProviderSpaceStation implements IO
 		double solarMultiplier = -1D;
 		if (solarMultiplier < 0D)
 		{
-			double s = this.getSolarSize();
+			double s = 1.0D / ((IChildBody)this.getCelestialBody()).getParentPlanet().getRelativeDistanceFromCenter().unScaledDistance;
 			solarMultiplier = s * s * s * ConfigManagerCore.spaceStationEnergyScalar;
 		}
 		return solarMultiplier;

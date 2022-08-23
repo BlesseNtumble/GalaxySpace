@@ -30,7 +30,7 @@ public class SkyProviderMarsSS extends SkyProviderBase{
 		this.renderImage(phobosTexture, 80F, -(this.mc.world.getCelestialAngle(ticks) * 360F), 40F, 4.0F);
 		this.renderImage(deimosTexture, 80F, -(this.mc.world.getCelestialAngle(ticks) * 360F) / 2, 195F, 4.0F);
 		
-		this.renderImage(marsTexture, 90F, 0F, 0F, 180F, 1.0F, .4F);
+		this.renderImage(marsTexture, 0F, 0F, 0F, 180F, 1.0F, .4F);
 		
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
