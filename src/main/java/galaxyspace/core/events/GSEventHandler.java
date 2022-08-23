@@ -1,14 +1,22 @@
 package galaxyspace.core.events;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
+import asmodeuscore.AsmodeusCore;
 import asmodeuscore.api.dimension.IAdvancedSpace;
 import asmodeuscore.api.dimension.IProviderFreeze;
 import asmodeuscore.api.item.IItemSpaceFood;
+import asmodeuscore.core.astronomy.gui.screen.NewGuiCelestialSelection;
+import asmodeuscore.core.configs.AsmodeusConfig;
 import asmodeuscore.core.event.PressureEvent;
 import asmodeuscore.core.event.RadiationEvent;
 import asmodeuscore.core.handler.LightningStormHandler;
+import asmodeuscore.core.handler.capabilities.ACStatsCapability;
+import asmodeuscore.core.network.packet.ACPacketSimple;
+import asmodeuscore.core.network.packet.ACPacketSimple.ACEnumSimplePacket;
 import galaxyspace.GalaxySpace;
 import galaxyspace.api.item.IJetpackArmor;
 import galaxyspace.core.GSBlocks;
@@ -22,9 +30,11 @@ import galaxyspace.core.handler.capabilities.GSCapabilityProviderStatsClient;
 import galaxyspace.core.handler.capabilities.GSCapabilityStatsHandler;
 import galaxyspace.core.handler.capabilities.GSStatsCapability;
 import galaxyspace.core.handler.capabilities.StatsCapability;
+import galaxyspace.core.hooks.GSHooksManager;
 import galaxyspace.core.network.packet.GSPacketSimple;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
 import galaxyspace.core.prefab.entities.EntityAstroWolf;
+import galaxyspace.core.prefab.entities.MultiSeatRocketDriverTracker;
 import galaxyspace.core.prefab.items.rockets.ItemTier4Rocket;
 import galaxyspace.core.prefab.items.rockets.ItemTier5Rocket;
 import galaxyspace.core.prefab.items.rockets.ItemTier6Rocket;
@@ -55,6 +65,7 @@ import micdoodle8.mods.galacticraft.api.vector.BlockVec3Dim;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
+import micdoodle8.mods.galacticraft.core.Constants;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.entities.EntityLanderBase;
@@ -70,6 +81,7 @@ import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.FluidUtil;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
+import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import micdoodle8.mods.galacticraft.core.world.gen.WorldGenMinableMeta;
 import micdoodle8.mods.galacticraft.core.wrappers.IFluidHandlerWrapper;
 import micdoodle8.mods.galacticraft.planets.GCPlanetDimensions;
@@ -120,6 +132,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
@@ -127,6 +140,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.server.permission.PermissionAPI;
 
 public class GSEventHandler {
 
@@ -563,7 +577,8 @@ public class GSEventHandler {
 			
 			
 		}
-				
+		
+		
 		if (living instanceof EntityPlayerMP)
 		{
 			EntityPlayerMP player = (EntityPlayerMP)living;			
@@ -571,8 +586,13 @@ public class GSEventHandler {
 			final StatsCapability gsstats = GSStatsCapability.get(player);
 		
 			LightningStormHandler.spawnLightning(player);
-						
-	        	
+			
+			// Added code
+			if(!world.isRemote) {
+				MultiSeatRocketDriverTracker.get().update();
+			}
+			//
+			
         	//this.updateSchematics(player, stats);
 			//this.throwMeteors(player);
 			

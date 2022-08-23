@@ -2,6 +2,7 @@ package galaxyspace.core.hooks;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -9,11 +10,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.util.Map.Entry;
 
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
 
+import asmodeuscore.AsmodeusCore;
 import asmodeuscore.api.dimension.IAdvancedSpace;
+import asmodeuscore.core.event.AsmodeusEvent;
+import asmodeuscore.core.handler.capabilities.ACStatsCapability;
+import asmodeuscore.core.handler.capabilities.IStatsCapability;
+import asmodeuscore.core.network.packet.ACPacketSimple;
+import asmodeuscore.core.network.packet.ACPacketSimple.ACEnumSimplePacket;
 import galaxyspace.api.block.IEnergyGeyser;
 import galaxyspace.core.GSBlocks;
 import galaxyspace.core.configs.GSConfigCore;
@@ -50,6 +58,7 @@ import micdoodle8.mods.galacticraft.core.client.jei.GalacticraftJEI;
 import micdoodle8.mods.galacticraft.core.dimension.WorldProviderMoon;
 import micdoodle8.mods.galacticraft.core.dimension.WorldProviderSpaceStation;
 import micdoodle8.mods.galacticraft.core.entities.EntityAlienVillager;
+import micdoodle8.mods.galacticraft.core.entities.EntityCelestialFake;
 import micdoodle8.mods.galacticraft.core.entities.IBubbleProviderColored;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
@@ -71,6 +80,8 @@ import micdoodle8.mods.galacticraft.core.util.DamageSourceGC;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.MapUtil;
 import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
+import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
+import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import micdoodle8.mods.galacticraft.core.wrappers.BlockMetaList;
 import micdoodle8.mods.galacticraft.core.wrappers.Footprint;
 import micdoodle8.mods.galacticraft.planets.GalacticraftPlanets;
@@ -91,6 +102,7 @@ import net.minecraft.client.audio.ISound;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.resources.DefaultPlayerSkin;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
@@ -110,6 +122,7 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
+import net.minecraftforge.server.permission.PermissionAPI;
 
 public class GSHooksManager {
 	

@@ -25,10 +25,12 @@ import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityLiquidSe
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityModificationTable;
 import io.netty.buffer.ByteBuf;
 import micdoodle8.mods.galacticraft.api.vector.BlockVec3;
+import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiTeleporting;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStatsClient;
 import micdoodle8.mods.galacticraft.core.network.NetworkUtil;
 import micdoodle8.mods.galacticraft.core.network.PacketBase;
+import micdoodle8.mods.galacticraft.core.tick.TickHandlerClient;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.GCLog;
 import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
@@ -92,7 +94,12 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
     	C_GLOW_BLOCK(Side.CLIENT, BlockVec3.class, Integer.class),
     	C_UPDATE_WOLF_INV(Side.CLIENT, Integer.class, NBTTagCompound.class),
     	C_GET_CAGE_ENTITY(Side.CLIENT),
-    	C_SHOW_SCANNER_BLOCK(Side.CLIENT, Integer.class);
+    	C_SHOW_SCANNER_BLOCK(Side.CLIENT, Integer.class),
+    	
+    	// Added code
+    	C_OPEN_WAITFORDRIVER_GUI(Side.CLIENT),
+    	C_CLOSE_WAITFORDRIVER_GUI(Side.CLIENT);
+    	//
     	
     	
     	//C_OPEN_CUSTOM_GUI(Side.CLIENT, Integer.class, Integer.class, Integer.class),
@@ -368,6 +375,20 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         		GalacticraftCore.packetPipeline.sendToServer(new PacketSimple(PacketSimple.EnumSimplePacket.S_REQUEST_CONTAINER_SLOT_REFRESH, GCCoreUtil.getDimensionID(player.world), new Object[] { player.openContainer.windowId }));
                  
         		break;*/
+        	case C_OPEN_WAITFORDRIVER_GUI:
+        		GuiTeleporting waitforGUI = new GuiTeleporting(Integer.MAX_VALUE);
+        		
+        		if(Minecraft.getMinecraft().currentScreen != waitforGUI) {
+        			Minecraft.getMinecraft().displayGuiScreen(waitforGUI);
+        		}
+        		break;
+        	case C_CLOSE_WAITFORDRIVER_GUI:
+        		Minecraft.getMinecraft().displayGuiScreen(null);
+        		
+        		if(TickHandlerClient.teleportingGui != null) {
+        			TickHandlerClient.teleportingGui = null;
+        		}
+        		break;
         	default:
         		break;
         }

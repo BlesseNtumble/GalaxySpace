@@ -818,7 +818,7 @@ public class ChunkProviderKuiperBelt extends ChunkProviderBase
 
         int i = chunk.getTopFilledSegment();
         chunk.heightMapMinimum = Integer.MAX_VALUE;
-
+        
         for (int j = 0; j < 16; ++j)
         {
             int k = 0;
