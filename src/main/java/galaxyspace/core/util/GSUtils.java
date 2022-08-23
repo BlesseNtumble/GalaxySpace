@@ -287,7 +287,11 @@ public class GSUtils {
 
             if (liquid != null)
             {
-            	if(liquid.getFluid() == GSFluids.LiquidEthaneMethane)
+            	if(liquid.isFluidEqual(new FluidStack(FluidRegistry.LAVA, 1)) && stacks.get(slot).getItem() instanceof ItemBucket)
+            		FluidUtil.tryFillContainer(tank, liquid, stacks, slot, Items.BUCKET);            
+            	else if(liquid.isFluidEqual(new FluidStack(FluidRegistry.WATER, 1)) && stacks.get(slot).getItem() instanceof ItemBucket)
+            		FluidUtil.tryFillContainer(tank, liquid, stacks, slot, Items.BUCKET);            	
+            	else if(liquid.getFluid() == GSFluids.LiquidEthaneMethane)
             		FluidUtil.tryFillContainer(tank, liquid, stacks, slot, GSItems.EM_CANISTER);            
             	else if(liquid.getFluid().getName().contains("methane"))
             		FluidUtil.tryFillContainer(tank, liquid, stacks, slot, AsteroidsItems.methaneCanister);
@@ -307,9 +311,11 @@ public class GSUtils {
             		FluidUtil.tryFillContainer(tank, liquid, stacks, slot, GCItems.fuelCanister);
             	else if(liquid.getFluid().getName().contains("nirtogen"))
             		FluidUtil.tryFillContainer(tank, liquid, stacks, slot, AsteroidsItems.canisterLN2);           
-            	else if(liquid.isFluidEqual(new FluidStack(FluidRegistry.WATER, 1)) && stacks.get(slot).getItem() instanceof ItemBucket)
-            		FluidUtil.tryFillContainer(tank, liquid, stacks, slot, Items.BUCKET);
             	else if(liquid.isFluidEqual(new FluidStack(FluidRegistry.WATER, 1)) && !(stacks.get(slot).getItem() instanceof ItemBucket))
+            	{
+            		
+            	}
+            	else if(liquid.isFluidEqual(new FluidStack(FluidRegistry.LAVA, 1)) && !(stacks.get(slot).getItem() instanceof ItemBucket))
             	{
             		
             	}

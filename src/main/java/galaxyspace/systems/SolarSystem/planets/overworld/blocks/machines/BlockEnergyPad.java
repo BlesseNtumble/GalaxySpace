@@ -23,6 +23,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -84,7 +85,7 @@ public class BlockEnergyPad extends BlockAdvancedTile implements IShiftDescripti
 			{
 				TileEntityEnergyPad tile = (TileEntityEnergyPad) world.getTileEntity(pos);
 				
-				EntityPlayer player = (EntityPlayer) entity;
+				//EntityPlayer player = (EntityPlayer) entity;
 				if(tile.hasEnoughEnergyToRun)
 					for(int i = 0; i < 5; i++)
 						Minecraft.getMinecraft().world.spawnParticle(EnumParticleTypes.REDSTONE, pos.getX() + world.rand.nextDouble(), pos.getY() + world.rand.nextDouble() + 0.2D, pos.getZ() + world.rand.nextDouble(), 0.5D, 0.9D, 0);
@@ -97,7 +98,7 @@ public class BlockEnergyPad extends BlockAdvancedTile implements IShiftDescripti
 				TileEntityEnergyPad tile = (TileEntityEnergyPad) world.getTileEntity(pos);    
 				EntityPlayer player = (EntityPlayer) entity;
 				
-				tile.smeltItem(player);			
+				tile.smeltItem(player);	
 			}
 		}
     }
