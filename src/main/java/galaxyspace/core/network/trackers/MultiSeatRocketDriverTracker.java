@@ -1,4 +1,4 @@
-package galaxyspace.core.prefab.entities;
+package galaxyspace.core.network.trackers;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -9,16 +9,17 @@ import com.google.common.collect.Maps;
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.network.packet.GSPacketSimple;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
-import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
-import micdoodle8.mods.galacticraft.core.network.PacketSimple;
-import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
 import micdoodle8.mods.galacticraft.core.tick.TickHandlerServer;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.wrappers.ScheduledDimensionChange;
 import net.minecraft.entity.player.EntityPlayerMP;
 
-// следит за действиями "водителя" многоместной ракеты и уведомляет пассажиров о выбранном водителем измерении
+/**
+ * RUS: Следит за действиями "водителя" многоместной ракеты и уведомляет пассажиров о выбранном водителем измерении
+ * EN: Tracking the multi-seats rocket 'driver' actions and notifying 'passengers' about driver's selected dimension
+ * @author gug2
+ */
 public class MultiSeatRocketDriverTracker {
 
 	private static final MultiSeatRocketDriverTracker INSTANCE = new MultiSeatRocketDriverTracker();

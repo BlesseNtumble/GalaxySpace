@@ -34,7 +34,7 @@ import galaxyspace.core.hooks.GSHooksManager;
 import galaxyspace.core.network.packet.GSPacketSimple;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
 import galaxyspace.core.prefab.entities.EntityAstroWolf;
-import galaxyspace.core.prefab.entities.MultiSeatRocketDriverTracker;
+import galaxyspace.core.network.trackers.MultiSeatRocketDriverTracker;
 import galaxyspace.core.prefab.items.rockets.ItemTier4Rocket;
 import galaxyspace.core.prefab.items.rockets.ItemTier5Rocket;
 import galaxyspace.core.prefab.items.rockets.ItemTier6Rocket;

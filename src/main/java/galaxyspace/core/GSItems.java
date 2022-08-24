@@ -80,13 +80,10 @@ public class GSItems {
 	public static Item OXYGENTANK_TIER_6 = new ItemGSOxygenTank(5, "oxygen_tank_6", 4500, false);
 	public static Item OXYGENTANK_TIER_EPP = new ItemGSOxygenTank(6, "oxygen_tank_epp_1", 2500, true);
 	
-	// Added code
-	public static Item ROCKET_MULTI_SEAT = new ItemMultiSeatRocketTest("rocket_multi_seat");
-	//
-	
 	public static Item ROCKET_TIER_4 = new ItemTier4Rocket("rocket_tier_4");
 	public static Item ROCKET_TIER_5 = new ItemTier5Rocket("rocket_tier_5");
 	public static Item ROCKET_TIER_6 = new ItemTier6Rocket("rocket_tier_6");
+	public static Item ROCKET_MULTI_SEAT = new ItemMultiSeatRocketTest("rocket_multi_seat");
 	public static Item ROCKET_FLUID_CRAGO = new ItemFluidCargoRocket("rocket_fluid_cargo");
 	public static Item MARS_ROVER = new ItemMarsRover("mars_rover");
 	
@@ -167,13 +164,10 @@ public class GSItems {
 		registerItem(OXYGENTANK_TIER_6);
 		registerItem(OXYGENTANK_TIER_EPP);
 		
-		// Added code
-		registerItem(ROCKET_MULTI_SEAT);
-		//
-		
 		registerItem(ROCKET_TIER_4);
 		registerItem(ROCKET_TIER_5);
 		registerItem(ROCKET_TIER_6);
+		registerItem(ROCKET_MULTI_SEAT);
 		//registerItem(ROCKET_FLUID_CRAGO);
 		registerItem(MARS_ROVER);
 		

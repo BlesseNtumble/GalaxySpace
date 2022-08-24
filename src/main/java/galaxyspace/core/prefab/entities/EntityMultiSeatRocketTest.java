@@ -9,6 +9,11 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
+/**
+ * RUS: Класс многоместной ракеты
+ * EN: Multi-seats rocket class
+ * @author gug2
+ */
 public class EntityMultiSeatRocketTest extends EntityMultiSeatRocket {
 
 	public EntityMultiSeatRocketTest(World par1World) {

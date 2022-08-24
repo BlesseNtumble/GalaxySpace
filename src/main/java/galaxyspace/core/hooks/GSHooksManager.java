@@ -2,7 +2,6 @@ package galaxyspace.core.hooks;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -10,27 +9,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
-import java.util.Map.Entry;
-
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
 
-import asmodeuscore.AsmodeusCore;
 import asmodeuscore.api.dimension.IAdvancedSpace;
-import asmodeuscore.core.event.AsmodeusEvent;
-import asmodeuscore.core.handler.capabilities.ACStatsCapability;
-import asmodeuscore.core.handler.capabilities.IStatsCapability;
-import asmodeuscore.core.network.packet.ACPacketSimple;
-import asmodeuscore.core.network.packet.ACPacketSimple.ACEnumSimplePacket;
 import galaxyspace.api.block.IEnergyGeyser;
-import galaxyspace.core.GSBlocks;
 import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.events.SetBlockEvent;
 import galaxyspace.core.events.UpdateBlockEvent;
 import galaxyspace.core.hooklib.asm.Hook;
 import galaxyspace.core.hooklib.asm.ReturnCondition;
 import galaxyspace.core.prefab.entities.EntityMultiSeatRocket;
-import galaxyspace.core.util.GSThreadVersionCheck;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS.BasicItems;
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
@@ -58,7 +47,6 @@ import micdoodle8.mods.galacticraft.core.client.jei.GalacticraftJEI;
 import micdoodle8.mods.galacticraft.core.dimension.WorldProviderMoon;
 import micdoodle8.mods.galacticraft.core.dimension.WorldProviderSpaceStation;
 import micdoodle8.mods.galacticraft.core.entities.EntityAlienVillager;
-import micdoodle8.mods.galacticraft.core.entities.EntityCelestialFake;
 import micdoodle8.mods.galacticraft.core.entities.IBubbleProviderColored;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
@@ -80,8 +68,6 @@ import micdoodle8.mods.galacticraft.core.util.DamageSourceGC;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.MapUtil;
 import micdoodle8.mods.galacticraft.core.util.OxygenUtil;
-import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
-import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import micdoodle8.mods.galacticraft.core.wrappers.BlockMetaList;
 import micdoodle8.mods.galacticraft.core.wrappers.Footprint;
 import micdoodle8.mods.galacticraft.planets.GalacticraftPlanets;
@@ -94,7 +80,6 @@ import micdoodle8.mods.galacticraft.planets.venus.VenusModule;
 import micdoodle8.mods.galacticraft.planets.venus.dimension.WorldProviderVenus;
 import micdoodle8.mods.galacticraft.planets.venus.tile.TileEntityGeothermalGenerator;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -102,7 +87,6 @@ import net.minecraft.client.audio.ISound;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.resources.DefaultPlayerSkin;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
@@ -110,7 +94,6 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.village.MerchantRecipeList;
@@ -122,7 +105,6 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
-import net.minecraftforge.server.permission.PermissionAPI;
 
 public class GSHooksManager {
 	
@@ -808,7 +790,13 @@ public class GSHooksManager {
 		ReflectionHelper.setPrivateValue(EntityAlienVillager.class, e, buyingList, "buyingList");
 	}
 
-	// Added code
+	/**
+	 * RUS: Хук, заменяющий метод {@link TickHandlerClient#onClientTick(ClientTickEvent)},
+	 * запрещает "пассажирам" управлять ракетой, если она многоместная
+	 * EN: Hook replacing the method {@link TickHandlerClient#onClientTick(ClientTickEvent)},
+	 * prohibits "passengers" from controlling a rocket if it is multi-seat
+	 * @author gug2
+	 */
 	@Hook(returnCondition = ReturnCondition.ALWAYS)
 	public static void onClientTick(TickHandlerClient object, ClientTickEvent event) {
 		final Minecraft minecraft = FMLClientHandler.instance().getClient();

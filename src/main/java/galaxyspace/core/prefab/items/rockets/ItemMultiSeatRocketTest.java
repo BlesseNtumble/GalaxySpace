@@ -37,201 +37,167 @@ import javax.annotation.Nullable;
 import galaxyspace.core.prefab.entities.EntityMultiSeatRocketTest;
 import galaxyspace.core.util.GSCreativeTabs;
 
-public class ItemMultiSeatRocketTest extends Item implements IHoldableItem, ISortableItem
-{
-    public ItemMultiSeatRocketTest(String assetName)
-    {
-        super();
-        this.setMaxDamage(0);
-        this.setHasSubtypes(true);
-        this.setMaxStackSize(1);
-        this.setTranslationKey(assetName);
-        //this.setTextureName("arrow");
-    }
+/**
+ * RUS: Предмет многоместной ракеты
+ * EN: Item class for multi-seats rocket
+ * @author gug2
+ */
+public class ItemMultiSeatRocketTest extends Item implements IHoldableItem, ISortableItem {
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public EnumRarity getRarity(ItemStack par1ItemStack)
-    {
-        return ClientProxyCore.galacticraftItem;
-    }
+	public ItemMultiSeatRocketTest(String assetName) {
+		super();
+		this.setMaxDamage(0);
+		this.setHasSubtypes(true);
+		this.setMaxStackSize(1);
+		this.setTranslationKey(assetName);
+		//this.setTextureName("arrow");
+	}
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public CreativeTabs getCreativeTab()
-    {
-        return GSCreativeTabs.GSVehiclesTab;
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public EnumRarity getRarity(ItemStack par1ItemStack) {
+		return ClientProxyCore.galacticraftItem;
+	}
 
-    @Override
-    public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-    {
-        boolean padFound = false;
-        TileEntity tile = null;
-        ItemStack stack = playerIn.getHeldItem(hand);
+	@SideOnly(Side.CLIENT)
+	@Override
+	public CreativeTabs getCreativeTab() {
+		return GSCreativeTabs.GSVehiclesTab;
+	}
 
-        if (worldIn.isRemote)
-        {
-            return EnumActionResult.PASS;
-        }
-        else
-        {
-            float centerX = -1;
-            float centerY = -1;
-            float centerZ = -1;
+	@Override
+	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		boolean padFound = false;
+		TileEntity tile = null;
+		ItemStack stack = playerIn.getHeldItem(hand);
 
-            for (int i = -1; i < 2; i++)
-            {
-                for (int j = -1; j < 2; j++)
-                {
-                    BlockPos pos1 = pos.add(i, 0, j);
-                    IBlockState state = worldIn.getBlockState(pos1);
-                    final Block id = state.getBlock();
-                    int meta = id.getMetaFromState(state);
+		if(worldIn.isRemote) {
+			return EnumActionResult.PASS;
+		} else {
+			float centerX = -1;
+			float centerY = -1;
+			float centerZ = -1;
 
-                    if (id == GCBlocks.landingPadFull && meta == 0)
-                    {
-                        padFound = true;
-                        tile = worldIn.getTileEntity(pos1);
+			for(int i = -1; i < 2; i++) {
+				for(int j = -1; j < 2; j++) {
+					BlockPos pos1 = pos.add(i, 0, j);
+					IBlockState state = worldIn.getBlockState(pos1);
+					final Block id = state.getBlock();
+					int meta = id.getMetaFromState(state);
 
-                        centerX = pos.getX() + i + 0.5F;
-                        centerY = pos.getY() + 0.4F;
-                        centerZ = pos.getZ() + j + 0.5F;
+					if(id == GCBlocks.landingPadFull && meta == 0) {
+						padFound = true;
+						tile = worldIn.getTileEntity(pos1);
 
-                        break;
-                    }
-                }
+						centerX = pos.getX() + i + 0.5F;
+						centerY = pos.getY() + 0.4F;
+						centerZ = pos.getZ() + j + 0.5F;
 
-                if (padFound)
-                {
-                    break;
-                }
-            }
+						break;
+					}
+				}
 
-            if (padFound)
-            {
-                if (!placeRocketOnPad(stack, worldIn, tile, centerX, centerY, centerZ))
-                {
-                    return EnumActionResult.FAIL;
-                }
+				if(padFound) {
+					break;
+				}
+			}
 
-                if (!playerIn.capabilities.isCreativeMode)
-                {
-                    stack.shrink(1);
-                }
-                return EnumActionResult.SUCCESS;
-            }
-            else
-            {
-                return EnumActionResult.PASS;
-            }
-        }
-    }
+			if(padFound) {
+				if(!placeRocketOnPad(stack, worldIn, tile, centerX, centerY, centerZ)) {
+					return EnumActionResult.FAIL;
+				}
 
-    @Override
-    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list)
-    {
-        if (tab == GSCreativeTabs.GSVehiclesTab || tab == CreativeTabs.SEARCH)
-        {
-            for (int i = 0; i < EnumRocketType.values().length; i++)
-            {
-                list.add(new ItemStack(this, 1, i));
-            }
-        }
-    }
+				if(!playerIn.capabilities.isCreativeMode) {
+					stack.shrink(1);
+				}
+				return EnumActionResult.SUCCESS;
+			} else {
+				return EnumActionResult.PASS;
+			}
+		}
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack par1ItemStack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
-    {
-        EnumRocketType type;
+	@Override
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
+		if(tab == GSCreativeTabs.GSVehiclesTab || tab == CreativeTabs.SEARCH) {
+			for(int i = 0; i < EnumRocketType.values().length; i++) {
+				list.add(new ItemStack(this, 1, i));
+			}
+		}
+	}
 
-        if (par1ItemStack.getItemDamage() < 10)
-        {
-            type = EnumRocketType.values()[par1ItemStack.getItemDamage()];
-        }
-        else
-        {
-            type = EnumRocketType.values()[par1ItemStack.getItemDamage() - 10];
-        }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack par1ItemStack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		EnumRocketType type;
 
-        if (!type.getTooltip().isEmpty())
-        {
-            tooltip.add(type.getTooltip());
-        }
+		if(par1ItemStack.getItemDamage() < 10) {
+			type = EnumRocketType.values()[par1ItemStack.getItemDamage()];
+		} else {
+			type = EnumRocketType.values()[par1ItemStack.getItemDamage() - 10];
+		}
 
-        if (type.getPreFueled())
-        {
-            tooltip.add(EnumColor.RED + "\u00a7o" + GCCoreUtil.translate("gui.creative_only.desc"));
-        }
+		if(!type.getTooltip().isEmpty()) {
+			tooltip.add(type.getTooltip());
+		}
 
-        if (par1ItemStack.hasTagCompound() && par1ItemStack.getTagCompound().hasKey("RocketFuel"))
-        {
-            EntityMultiSeatRocketTest rocket = new EntityMultiSeatRocketTest(FMLClientHandler.instance().getWorldClient(), 0, 0, 0, EnumRocketType.values()[par1ItemStack.getItemDamage()]);
-            tooltip.add(GCCoreUtil.translate("gui.message.fuel.name") + ": " + par1ItemStack.getTagCompound().getInteger("RocketFuel") + " / " + rocket.fuelTank.getCapacity());
-        }
-    }
+		if(type.getPreFueled()) {
+			tooltip.add(EnumColor.RED + "\u00a7o" + GCCoreUtil.translate("gui.creative_only.desc"));
+		}
 
-    @Override
-    public String getTranslationKey(ItemStack par1ItemStack)
-    {
-        return super.getTranslationKey(par1ItemStack) + ".msRocket";
-    }
+		if(par1ItemStack.hasTagCompound() && par1ItemStack.getTagCompound().hasKey("RocketFuel")) {
+			EntityMultiSeatRocketTest rocket = new EntityMultiSeatRocketTest(FMLClientHandler.instance().getWorldClient(), 0, 0, 0, EnumRocketType.values()[par1ItemStack.getItemDamage()]);
+			tooltip.add(GCCoreUtil.translate("gui.message.fuel.name") + ": " + par1ItemStack.getTagCompound().getInteger("RocketFuel") + " / " + rocket.fuelTank.getCapacity());
+		}
+	}
 
-    @Override
-    public boolean shouldHoldLeftHandUp(EntityPlayer player)
-    {
-        return true;
-    }
+	@Override
+	public String getTranslationKey(ItemStack par1ItemStack) {
+		return super.getTranslationKey(par1ItemStack) + ".msRocket";
+	}
 
-    @Override
-    public boolean shouldHoldRightHandUp(EntityPlayer player)
-    {
-        return true;
-    }
+	@Override
+	public boolean shouldHoldLeftHandUp(EntityPlayer player) {
+		return true;
+	}
 
-    @Override
-    public boolean shouldCrouch(EntityPlayer player)
-    {
-        return true;
-    }
+	@Override
+	public boolean shouldHoldRightHandUp(EntityPlayer player) {
+		return true;
+	}
 
-    @Override
-    public EnumSortCategoryItem getCategory(int meta)
-    {
-        return EnumSortCategoryItem.ROCKET;
-    }
+	@Override
+	public boolean shouldCrouch(EntityPlayer player) {
+		return true;
+	}
 
-    public static boolean placeRocketOnPad(ItemStack stack, World worldIn, TileEntity tile, float centerX, float centerY, float centerZ)
-    {
-        //Check whether there is already a rocket on the pad
-        if (tile instanceof TileEntityLandingPad)
-        {
-            if (((TileEntityLandingPad) tile).getDockedEntity() != null)
-            {
-                return false;
-            }
-        }
-        else
-        {
-            return false;
-        }
+	@Override
+	public EnumSortCategoryItem getCategory(int meta) {
+		return EnumSortCategoryItem.ROCKET;
+	}
 
-        EntityMultiSeatRocketTest rocket = new EntityMultiSeatRocketTest(worldIn, centerX, centerY, centerZ, EnumRocketType.values()[stack.getItemDamage()]);
+	public static boolean placeRocketOnPad(ItemStack stack, World worldIn, TileEntity tile, float centerX, float centerY, float centerZ) {
+		// Check whether there is already a rocket on the pad
+		if(tile instanceof TileEntityLandingPad) {
+			if(((TileEntityLandingPad) tile).getDockedEntity() != null) {
+				return false;
+			}
+		} else {
+			return false;
+		}
 
-        rocket.rotationYaw += 45;
-        rocket.setPosition(rocket.posX, rocket.posY + rocket.getOnPadYOffset(), rocket.posZ);
-        worldIn.spawnEntity(rocket);
+		EntityMultiSeatRocketTest rocket = new EntityMultiSeatRocketTest(worldIn, centerX, centerY, centerZ, EnumRocketType.values()[stack.getItemDamage()]);
 
-        if (rocket.getType().getPreFueled())
-        {
-            rocket.fuelTank.fill(new FluidStack(GCFluids.fluidFuel, rocket.getMaxFuel()), true);
-        }
-        else if (stack.hasTagCompound() && stack.getTagCompound().hasKey("RocketFuel"))
-        {
-            rocket.fuelTank.fill(new FluidStack(GCFluids.fluidFuel, stack.getTagCompound().getInteger("RocketFuel")), true);
-        }
-        
-        return true;
-    }
+		rocket.rotationYaw += 45;
+		rocket.setPosition(rocket.posX, rocket.posY + rocket.getOnPadYOffset(), rocket.posZ);
+		worldIn.spawnEntity(rocket);
+
+		if(rocket.getType().getPreFueled()) {
+			rocket.fuelTank.fill(new FluidStack(GCFluids.fluidFuel, rocket.getMaxFuel()), true);
+		} else if(stack.hasTagCompound() && stack.getTagCompound().hasKey("RocketFuel")) {
+			rocket.fuelTank.fill(new FluidStack(GCFluids.fluidFuel, stack.getTagCompound().getInteger("RocketFuel")), true);
+		}
+
+		return true;
+	}
 }

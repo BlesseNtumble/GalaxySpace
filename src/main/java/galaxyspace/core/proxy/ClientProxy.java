@@ -720,14 +720,11 @@ public class ClientProxy extends CommonProxy{
 	
 	public static void registerEntityRenderers()
     {
-		// Added code
-		RenderingRegistry.registerEntityRenderingHandler(EntityMultiSeatRocketTest.class, (RenderManager manager) -> new RenderRockets(manager, "tier4rocket", "Base"));
-		//
-		
 		RenderingRegistry.registerEntityRenderingHandler(EntityTier4Rocket.class, (RenderManager manager) -> new RenderRockets(manager, "tier4rocket", "Base"));
 		//RenderingRegistry.registerEntityRenderingHandler(EntityTier4Rocket.class, (RenderManager manager) -> new RenderRockets(manager, "tier4rocketGS", "Base", "NoseCone", "Rocket", "Booster1", "Booster2", "Booster3", "Booster4"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityTier5Rocket.class, (RenderManager manager) -> new RenderRockets(manager, "tier5rocket", "Base"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityTier6Rocket.class, (RenderManager manager) -> new RenderRockets(manager, "tier6rocket", "Base"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityMultiSeatRocketTest.class, (RenderManager manager) -> new RenderRockets(manager, "tier4rocket", "Base"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityCustomCargoRocket.class, (RenderManager manager) -> new RenderCargoRockets(manager, "rockets/rocket_cargo"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBossBlaze.class, (RenderManager manager) -> new RenderBossBlaze(manager));
 		RenderingRegistry.registerEntityRenderingHandler(EntityIceSpike.class, (RenderManager manager) -> new RenderIceSpike(manager));

@@ -7,9 +7,11 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 import asmodeuscore.core.handler.capabilities.ACStatsCapability;
 import asmodeuscore.core.handler.capabilities.IStatsCapability;
 import galaxyspace.GalaxySpace;
+import galaxyspace.api.entity.IMultiSeatEntity;
 import galaxyspace.core.GSItems;
 import galaxyspace.core.network.packet.GSPacketSimple;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
+import galaxyspace.core.network.trackers.MultiSeatRocketDriverTracker;
 import micdoodle8.mods.galacticraft.api.prefab.entity.EntityAutoRocket;
 import micdoodle8.mods.galacticraft.api.prefab.entity.EntityTieredRocket;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
@@ -26,7 +28,6 @@ import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.GCLog;
 import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
-import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -40,18 +41,20 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldServer;
 
+/**
+ * RUS: Базовый класс для существ с несколькими посадочными местами
+ * EN: Parent class for entities with multiply seats
+ * @author gug2
+ */
 public abstract class EntityMultiSeatRocket extends EntityTieredRocket implements IMultiSeatEntity {
 
 	static Field marsConfigAllDimsAllowed;
 
     static {
-        try
-        {
+        try {
             Class<?> marsConfig = Class.forName("micdoodle8.mods.galacticraft.planets.mars.ConfigManagerMars");
             marsConfigAllDimsAllowed = marsConfig.getField("launchControllerAllDims");
-        } catch (Exception ignore)
-        {
-        }
+        } catch (Exception ignore) {}
     }
     
 	public EntityMultiSeatRocket(World par1World) {

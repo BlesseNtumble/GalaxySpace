@@ -248,14 +248,11 @@ public class GalaxySpace
 	}
 
     private void registerNonMobEntities()
-    {
-    	// Added code
-    	GCCoreUtil.registerGalacticraftNonMobEntity(EntityMultiSeatRocketTest.class, "rocket_multi_seat", 150, 1, false);
-    	//
-    	
+    {    	
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityTier4Rocket.class, "rocket_tier_4", 150, 1, false);
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityTier5Rocket.class, "rocket_tier_5", 150, 1, false);
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityTier6Rocket.class, "rocket_tier_6", 150, 1, false);
+    	GCCoreUtil.registerGalacticraftNonMobEntity(EntityMultiSeatRocketTest.class, "rocket_multi_seat", 150, 1, false);
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityCustomCargoRocket.class, "rocket_fluid_cargo", 150, 1, false);
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityIceSpike.class, "ice_spike", 40, 100, true);
     	GCCoreUtil.registerGalacticraftNonMobEntity(EntityMarsRover.class, "mars_rover", 150, 1, false);
