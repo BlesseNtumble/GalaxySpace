@@ -201,7 +201,8 @@ public class BarnardsSystemBodies implements IBodies {
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "barnarda/",  BRBlocks.BARNARDA_C_VIOLET_LOG);
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "barnarda/",  BRBlocks.BARNARDA_C_VIOLET_GLOW_LOG);
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "barnarda/",  BRBlocks.BARNARDA_C_BIRCH_LOG);
-			
+		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "barnarda/",  BRBlocks.BARNARDA_C_CACTUS);
+		
 		int i = 0;
 		for(String basic : ItemBasicBR.names)
 		{
@@ -234,7 +235,8 @@ public class BarnardsSystemBodies implements IBodies {
 	    ClientProxy.addVariant("barnarda_c_falling_blocks", "barnarda/", blocks);
 	    
 		ClientProxy.addVariant("barnarda_c_test_log", "barnarda/", "barnarda_c_test_log");		
-		ClientProxy.addVariant("barnarda_c_birch_log", "barnarda/", "barnarda_c_birch_log");		
+		ClientProxy.addVariant("barnarda_c_birch_log", "barnarda/", "barnarda_c_birch_log");
+		ClientProxy.addVariant("barnarda_c_cactus", "barnarda/", "barnarda_c_cactus");
 		ClientProxy.addVariant("barnarda_c_test_glow_log", "barnarda/", "barnarda_c_test_glow_log");
 		ClientProxy.addVariant("barnarda_c_farmland", "barnarda/", "barnarda_c_farmland");
 		ClientProxy.addVariant("barnarda_c_water_grass", "barnarda/", "barnarda_c_water_grass");

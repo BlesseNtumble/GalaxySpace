@@ -12,6 +12,8 @@ import asmodeuscore.core.utils.worldengine2.world.properties.WE_AbstactPropertie
 import asmodeuscore.core.utils.worldengine2.world.properties.WE_BiomeProperties;
 import asmodeuscore.core.utils.worldengine2.world.properties.WE_WorldProperties;
 import galaxyspace.core.util.GSDimensions;
+import galaxyspace.systems.BarnardsSystem.moons.barnarda_c1.dimension.WorldProviderBarnarda_C1_WE;
+import galaxyspace.systems.BarnardsSystem.moons.barnarda_c2.dimension.WorldProviderBarnarda_C2_WE;
 import galaxyspace.systems.SolarSystem.SolarSystemBodies;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;

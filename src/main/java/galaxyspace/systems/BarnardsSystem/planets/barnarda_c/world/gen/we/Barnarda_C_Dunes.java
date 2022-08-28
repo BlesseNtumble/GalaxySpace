@@ -8,6 +8,7 @@ import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
 import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigCore;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Dandelions;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Falling_Blocks;
+import net.minecraft.block.BlockCactus;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntityHusk;
 import net.minecraft.entity.monster.EntitySkeleton;
@@ -58,7 +59,7 @@ public class Barnarda_C_Dunes extends WE_Biome {
 		boolean cangen = true;
 		int range = 2;
 		for(BlockPos pos1 : pos.getAllInBox(pos.add(-range, -range, -range), pos.add(range, range, range))) 
-			if(world.getBlockState(pos1) == Blocks.CACTUS.getDefaultState()) 
+			if(world.getBlockState(pos1) == BRBlocks.BARNARDA_C_CACTUS.getDefaultState()) 
 				cangen = false; 
 		
 		for(BlockPos pos1 : pos.getAllInBox(pos.add(-range, 0, -range), pos.add(range, 0, range))) 
@@ -70,7 +71,7 @@ public class Barnarda_C_Dunes extends WE_Biome {
 			{
 				for(int size = 0; size < 1 + rand.nextInt(3); size++)
 				{
-					world.setBlockState(pos.up(size), Blocks.CACTUS.getDefaultState());
+					world.setBlockState(pos.up(size), BRBlocks.BARNARDA_C_CACTUS.getDefaultState());
 				}
 			}
 			else {

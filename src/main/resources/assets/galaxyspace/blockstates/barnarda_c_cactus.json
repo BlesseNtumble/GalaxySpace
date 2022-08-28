@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "age=0": { "model": "galaxyspace:barnarda/barnarda_c_cactus" },
+        "age=1": { "model": "galaxyspace:barnarda/barnarda_c_cactus" },
+        "age=2": { "model": "galaxyspace:barnarda/barnarda_c_cactus" },
+        "age=3": { "model": "galaxyspace:barnarda/barnarda_c_cactus" },
+        "age=4": { "model": "galaxyspace:barnarda/barnarda_c_cactus" },
+        "age=5": { "model": "galaxyspace:barnarda/barnarda_c_cactus" },
+        "age=6": { "model": "galaxyspace:barnarda/barnarda_c_cactus" },
+        "age=7": { "model": "galaxyspace:barnarda/barnarda_c_cactus" },
+        "age=8": { "model": "galaxyspace:barnarda/barnarda_c_cactus" },
+        "age=9": { "model": "galaxyspace:barnarda/barnarda_c_cactus" },
+        "age=10": { "model": "galaxyspace:barnarda/barnarda_c_cactus" },
+        "age=11": { "model": "galaxyspace:barnarda/barnarda_c_cactus" },
+        "age=12": { "model": "galaxyspace:barnarda/barnarda_c_cactus" },
+        "age=13": { "model": "galaxyspace:barnarda/barnarda_c_cactus" },
+        "age=14": { "model": "galaxyspace:barnarda/barnarda_c_cactus" },
+        "age=15": { "model": "galaxyspace:barnarda/barnarda_c_cactus" }
+    }
+}

@@ -2,6 +2,7 @@ package galaxyspace.systems.BarnardsSystem.core;
 
 import galaxyspace.core.prefab.items.GSItemBlockDesc;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Blocks;
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Cactus;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Dandelions;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Falling_Blocks;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Farmland;
@@ -30,6 +31,7 @@ public class BRBlocks {
 	public static final Block BARNARDA_C_VIOLET_LOG = new Barnarda_C_Logs("barnarda_c_test_log", 1);
 	public static final Block BARNARDA_C_VIOLET_GLOW_LOG = new Barnarda_C_Logs("barnarda_c_test_glow_log", 1);
 	public static final Block BARNARDA_C_BIRCH_LOG = new Barnarda_C_Logs("barnarda_c_birch_log", 1);
+	public static final Block BARNARDA_C_CACTUS = new Barnarda_C_Cactus();
 	
 	public static final Block BARNARDA_C_DANDELIONS = new Barnarda_C_Dandelions();
 	public static final Block BARNARDA_C_LEAVES = new Barnarda_C_Leaves();
@@ -45,6 +47,7 @@ public class BRBlocks {
 		registerBlock(BARNARDA_C_FALLING_BLOCKS, ItemBlocksBarnarda_C_Falling.class);
 		registerBlock(BARNARDA_C_VIOLET_LOG, GSItemBlockDesc.class);
 		registerBlock(BARNARDA_C_BIRCH_LOG, GSItemBlockDesc.class);
+		registerBlock(BARNARDA_C_CACTUS, GSItemBlockDesc.class);
 		registerBlock(BARNARDA_C_VIOLET_GLOW_LOG, GSItemBlockDesc.class);
 		registerBlock(BARNARDA_C_DANDELIONS, ItemBlocksBarnarda_C_Dandelions.class);
 		registerBlock(BARNARDA_C_LEAVES, ItemBlocksBarnarda_C_Leaves.class);

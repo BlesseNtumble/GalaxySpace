@@ -1,0 +1,9 @@
+{
+	"parent": "block/cactus",
+    "textures": {
+        "particle": "galaxyspace:blocks/barnardssystem/barnarda_c/cactus_side",
+        "bottom": "galaxyspace:blocks/barnardssystem/barnarda_c/cactus_bottom",
+        "top": "galaxyspace:blocks/barnardssystem/barnarda_c/cactus_top",
+        "side": "galaxyspace:blocks/barnardssystem/barnarda_c/cactus_side"
+    }
+}
