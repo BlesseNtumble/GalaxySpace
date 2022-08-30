@@ -472,8 +472,19 @@ public class GSUtils {
 		}
 	}
 	
-	public static String path = "K://MCP/codding/1.12.2/src/main/resources/assets/galaxyspace/";
+	public static String path;
 
+	static {
+		path = resolvePath();
+	}
+	
+	private static String resolvePath() {
+		String path = GSUtils.class.getResource("/").getPath();
+		path = path.replace("bin", "src");
+		path += "main/resources/assets/" + GalaxySpace.ASSET_PREFIX + "/";
+		return path;
+	}
+	
 	public static void addBlockJsonFiles(Block block, String addPath){
 		try{
 			File blockStates = new File(path + "/blockstates/", block.getTranslationKey().toLowerCase().substring(5) + ".json");
