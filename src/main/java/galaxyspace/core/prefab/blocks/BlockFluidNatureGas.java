@@ -17,10 +17,13 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidFinite;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockFluidNatureGas extends BlockFluidFinite {
 
@@ -49,6 +52,19 @@ public class BlockFluidNatureGas extends BlockFluidFinite {
 			}
 		}
 	}
+	
+	@Override
+	public int getQuantaValue(IBlockAccess world, BlockPos pos) {
+		
+		return 0;
+	}
+	
+	@Override
+    @SideOnly (Side.CLIENT)
+    public Vec3d getFogColor(World world, BlockPos pos, IBlockState state, Entity entity, Vec3d originalColor, float partialTicks)
+    {
+		return new Vec3d(30D, 30D, 30D);
+    }
 	
 	@Override
 	public boolean isSideSolid(IBlockState base_state, IBlockAccess world, BlockPos pos, EnumFacing side) {

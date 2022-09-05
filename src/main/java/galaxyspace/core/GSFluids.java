@@ -57,7 +57,7 @@ public class GSFluids {
 		Ethane = registerFluid("ethane", -1000, 1000, 0, true, "liquid_ethane");
 		HeliumHydrogen = registerFluid("heliumhydrogen", 1200, 140, 90, false, "liquid_heliumhydrogen");
 		
-		NatureGas = registerFluid("naturegas", -800, 10000, 10, true, "liquid_naturegas");
+		NatureGas = registerFluid("naturegas", -800, 1000, 10, true, "liquid_naturegas");
 		
 		GalacticraftCore.proxy.registerFluidTexture(LiquidEthaneMethane, new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/fluids/liquid_ethanemethane_still.png"));
 		
