@@ -421,8 +421,9 @@ public class SolarSystemBodies implements IBodies{
 			
 			//GameRegistry.registerWorldGenerator(new OreGenerator(GSBlocks.OVERWORLD_ORES.getDefaultState().withProperty(BlockOres.BASIC_TYPE, BlockOres.EnumBlockOres.NICKEL), 6, 0, 45, 4, Blocks.STONE.getDefaultState(), 0), 1);
 			GameRegistry.registerWorldGenerator(new NickelGenerator(), 1);
-		}			
-		GameRegistry.registerWorldGenerator(new WorldGenNaturalGas(6, 35, 45, Blocks.STONE.getDefaultState(), 10, 0), 1);
+		}		
+		if(GSConfigCore.enableNatureGasGen)
+			GameRegistry.registerWorldGenerator(new WorldGenNaturalGas(6, 35, 45, Blocks.STONE.getDefaultState(), 10, 0), 1);
 		
 		// --------------------------------------------		
 		/*	if(GSConfigCore.enableOresGeneration) 
@@ -791,6 +792,8 @@ public class SolarSystemBodies implements IBodies{
 
 	@Override
 	public void registerRecipes() {
+		registerRecipesWorkBench();
+		
 		CraftingRecipesMercury.loadRecipes();
 		CraftingRecipesOverworld.loadRecipes();		
     	CraftingRecipesMars.loadRecipes();
@@ -799,9 +802,8 @@ public class SolarSystemBodies implements IBodies{
     	CraftingRecipesIo.loadRecipes();
     	CraftingRecipesEuropa.loadRecipes();
     	CraftingRecipesGanymede.loadRecipes();
-    	CraftingRecipesMiranda.loadRecipes();
+    	CraftingRecipesMiranda.loadRecipes();   	
     	
-    	registerRecipesWorkBench();
     	
 		final HashMap<Object, Integer> spaceStationRequirements = new HashMap<Object, Integer>(6, 1.0F);
 		spaceStationRequirements.put("ingotTin", 32);

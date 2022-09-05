@@ -381,43 +381,40 @@ public class CraftingRecipesOverworld {
 	   TileEntityGasGenerator.registerNewFuel(FluidRegistry.getFluid("hydrogen"), 4, 1.1F, 3);
 	   TileEntityGasGenerator.registerNewFuel(FluidRegistry.getFluid("methane"), 4, 1.2F, 3);
 
+	   TileEntityDeconstructor.addSalvage(new ItemStack(GSItems.HDP, 1, 0));
+	   TileEntityDeconstructor.addSalvage(new ItemStack(GSItems.HDP, 1, 1));
+	   TileEntityDeconstructor.addSalvage(new ItemStack(GSItems.HDP, 1, 2));
+	   
 	   TileEntityDeconstructor.knownRecipes.addAll(GSRecipeUtil.getBodyRecipes());
 	   TileEntityDeconstructor.knownRecipes.addAll(GSRecipeUtil.getBoosterRecipes());
 	   TileEntityDeconstructor.knownRecipes.addAll(GSRecipeUtil.getConeRecipes());
 	   TileEntityDeconstructor.knownRecipes.addAll(GSRecipeUtil.getEngineRecipes());
 	   TileEntityDeconstructor.knownRecipes.addAll(GSRecipeUtil.getFinsRecipes());   
-
-	   
-	   for(int i = 1; i < 3; i++) {
+   
+	   for(int i = 0; i < 2; i++) {
 
 		   List<INasaWorkbenchRecipe> knownRecipes = new LinkedList<>();
 		   HashMap<Integer, ItemStack> input = new HashMap<Integer, ItemStack>();
 		   
-		   input.put(0, new ItemStack(GSItems.ROCKET_PARTS, 1, 5 * i));
-		   input.put(1, new ItemStack(GSItems.ROCKET_PARTS, 1, 6 * i));
-		   input.put(2, new ItemStack(GSItems.ROCKET_PARTS, 1, 7 * i));
-		   input.put(3, new ItemStack(GSItems.ROCKET_PARTS, 1, 8 * i));
-		   input.put(4, new ItemStack(GSItems.ROCKET_PARTS, 1, 9 * i));
+		   input.put(0, new ItemStack(GSItems.ROCKET_PARTS, 1, 5 * i + 5));
+		   input.put(1, new ItemStack(GSItems.ROCKET_PARTS, 1, 5 * i + 6));
+		   input.put(2, new ItemStack(GSItems.ROCKET_PARTS, 1, 5 * i + 7));
+		   input.put(3, new ItemStack(GSItems.ROCKET_PARTS, 1, 5 * i + 8));
+		   input.put(4, new ItemStack(GSItems.ROCKET_PARTS, 1, 5 * i + 9));
 		   
 		   Item rocket = GSItems.ROCKET_TIER_4;
-		   if(i == 2) rocket = GSItems.ROCKET_TIER_5;
-		   if(i == 3) rocket = GSItems.ROCKET_TIER_6;
+		   if(i == 1) rocket = GSItems.ROCKET_TIER_5;
+		   if(i == 2) rocket = GSItems.ROCKET_TIER_6;
 		   for(int k = 0; k < 3; k++)
 			   knownRecipes.add(new NasaWorkbenchRecipe(new ItemStack(rocket, 1, k), input));		   
 
-		   TileEntityDeconstructor.addSalvage(new ItemStack(GSItems.ROCKET_PARTS, 1, 5 * i));
-		   TileEntityDeconstructor.addSalvage(new ItemStack(GSItems.ROCKET_PARTS, 1, 6 * i));
-		   TileEntityDeconstructor.addSalvage(new ItemStack(GSItems.ROCKET_PARTS, 1, 7 * i));
-		   TileEntityDeconstructor.addSalvage(new ItemStack(GSItems.ROCKET_PARTS, 1, 8 * i));
-		   TileEntityDeconstructor.addSalvage(new ItemStack(GSItems.ROCKET_PARTS, 1, 9 * i));
+		   TileEntityDeconstructor.addSalvage(new ItemStack(GSItems.ROCKET_PARTS, 1, 5 * i + 5));
+		   TileEntityDeconstructor.addSalvage(new ItemStack(GSItems.ROCKET_PARTS, 1, 5 * i + 6));
+		   TileEntityDeconstructor.addSalvage(new ItemStack(GSItems.ROCKET_PARTS, 1, 5 * i + 7));
+		   TileEntityDeconstructor.addSalvage(new ItemStack(GSItems.ROCKET_PARTS, 1, 5 * i + 8));
+		   TileEntityDeconstructor.addSalvage(new ItemStack(GSItems.ROCKET_PARTS, 1, 5 * i + 9));
 		   TileEntityDeconstructor.knownRecipes.addAll(knownRecipes);
 	   }
-	  
-	   
-	   TileEntityDeconstructor.addSalvage(new ItemStack(GSItems.HDP, 1, 0));
-	   TileEntityDeconstructor.addSalvage(new ItemStack(GSItems.HDP, 1, 1));
-	   TileEntityDeconstructor.addSalvage(new ItemStack(GSItems.HDP, 1, 2));
-
    }
    
    private static void addRocketRecipe(Item rocket, Item parts, int metafirstparts, ItemStack key)

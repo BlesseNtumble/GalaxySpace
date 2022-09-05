@@ -37,6 +37,7 @@ public class GSConfigCore
     public static boolean enableMarsWorldEngine;
     public static boolean enableMarsNewOres;
     public static boolean enableOverworldOres;
+    public static boolean enableNatureGasGen;
 
     public static int idSolarRadiation = 29;
     public static int idAntiRadiation = 30;
@@ -133,6 +134,12 @@ public class GSConfigCore
             prop.setComment("Enable/Disable Generation Ores on Planets/Moon (Global Config).");
             prop.setLanguageKey("gc.configgui.enableOresGeneration").setRequiresMcRestart(false);
             enableOresGeneration = prop.getBoolean(true);
+            propOrder.add(prop.getName());
+            
+            prop = config.get(Constants.CONFIG_CATEGORY_WORLDGEN, "enableNatureGasGen", true);
+            prop.setComment("Enable/Disable Generation Nature Gas on Overworld.");
+            prop.setLanguageKey("gc.configgui.enableNatureGasGen").setRequiresMcRestart(false);
+            enableNatureGasGen = prop.getBoolean(true);
             propOrder.add(prop.getName());
             
             prop = config.get(Constants.CONFIG_CATEGORY_WORLDGEN, "enableDungeonsGeneration", true);
