@@ -472,13 +472,15 @@ public class GSUtils {
 		}
 	}
 	
-	public static String path;
+	public static String path = "";
 
 	static {
 		path = resolvePath();
 	}
 	
 	private static String resolvePath() {
+		if(!GalaxySpace.debug) return "";
+		
 		String path = GSUtils.class.getResource("/").getPath();
 		path = path.replace("bin", "src");
 		path += "main/resources/assets/" + GalaxySpace.ASSET_PREFIX + "/";
