@@ -9,7 +9,7 @@ public class CloudProviderBarnarda_C extends CloudProviderBase{
 
 	@Override
 	public float getCloudMovementSpeed(World world) {
-		return 1F;
+		return world.thunderingStrength > 0 ? 4F : 1F;
 	}
 
 	@Override

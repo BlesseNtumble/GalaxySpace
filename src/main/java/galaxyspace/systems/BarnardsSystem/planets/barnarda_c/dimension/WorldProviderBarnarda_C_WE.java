@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import asmodeuscore.api.dimension.IProviderFreeze;
+import asmodeuscore.api.dimension.IProviderWeather;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
 import asmodeuscore.core.utils.worldengine.WE_Biome;
@@ -47,7 +48,7 @@ import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements IProviderFreeze {
+public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements IProviderFreeze, IProviderWeather {
 
 	private final float[] colorsSunriseSunset = new float[4];
 	public static WE_ChunkProvider chunk;
@@ -389,4 +390,29 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
 	
 	@Override
 	public boolean isColorWorld() { return true; }
+
+	@Override
+	public double getLightningStormFrequency() {
+		return this.world.thunderingStrength > 0 ? 10 : 0;
+	}
+
+	@Override
+	public int getYPosLightning() {
+		return 0;
+	}
+
+	@Override
+	public boolean getDustStorm() {
+		return false;
+	}
+
+	@Override
+	public boolean getMeteoricRain() {
+		return false;
+	}
+
+	@Override
+	public String getDataName() {
+		return null;
+	}
 }
