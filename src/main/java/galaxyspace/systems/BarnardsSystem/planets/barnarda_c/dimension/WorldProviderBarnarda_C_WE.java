@@ -395,6 +395,12 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
 	public double getLightningStormFrequency() {
 		return this.world.thunderingStrength > 0 ? 10 : 0;
 	}
+	
+	@Override
+	public float getWindLevel() {
+		float windLevel = this.getCelestialBody().atmosphere.windLevel();
+		return this.world.thunderingStrength > 0 ? windLevel * 2 : windLevel;
+	}
 
 	@Override
 	public int getYPosLightning() {
