@@ -1,5 +1,6 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.items;
 
+import java.rmi.registry.Registry;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -37,6 +38,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
@@ -46,6 +48,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -55,6 +58,7 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -378,6 +382,26 @@ public class ItemBasicGS extends Item implements ISortableItem{
 			}
 			
 		}*/
+		if(stack.getItemDamage() == BasicItems.ICE_BUCKET.getMeta()) {
+			RayTraceResult ray = this.rayTrace(world, player, false);
+			if(ray != null && !world.isRemote)
+			{
+				if(stack.hasTagCompound() && stack.getTagCompound().hasKey("current_block")) {	
+					
+					Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(stack.getTagCompound().getString("current_block")));
+					
+					if(block != null) {
+						world.setBlockState(ray.getBlockPos().up(), block.getDefaultState());
+									
+						return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, new ItemStack(Items.BUCKET));
+					}
+				}
+				
+			}
+			
+			return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
+		}
+		
 		if(stack.getItemDamage() == BasicItems.DOLOMITE_MEAL.getMeta())
 		{
 			RayTraceResult ray = this.getRay(world, player, true);

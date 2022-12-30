@@ -48,6 +48,7 @@ import galaxyspace.systems.SolarSystem.moons.titan.dimension.WorldProviderTitan;
 import galaxyspace.systems.SolarSystem.planets.kuiperbelt.dimension.WorldProviderKuiperBelt;
 import galaxyspace.systems.SolarSystem.planets.mars.dimension.WorldProviderMars_WE;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS.BasicItems;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemSpaceSuit;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemThermalPaddingBase;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.tools.ItemPlasmaSword;
@@ -127,6 +128,7 @@ import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.event.entity.player.FillBucketEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -135,6 +137,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
@@ -368,6 +371,24 @@ public class GSEventHandler {
 		}
 	}
 	
+
+	@SubscribeEvent
+	public void onFillBucket(FillBucketEvent e) {
+		World world = e.getWorld();
+		BlockPos pos = e.getTarget().getBlockPos();
+		
+		if(world.getBlockState(pos) == Blocks.ICE.getDefaultState()) {
+			
+			ItemStack ice_bucket = new ItemStack(GSItems.BASIC, 1, BasicItems.ICE_BUCKET.getMeta());
+			if(!ice_bucket.hasTagCompound())
+				ice_bucket.setTagCompound(new NBTTagCompound());
+			ice_bucket.getTagCompound().setString("current_block", world.getBlockState(pos).getBlock().getRegistryName().toString());
+			world.setBlockToAir(pos);
+			e.setFilledBucket(ice_bucket);
+			e.setResult(Result.ALLOW);
+		}
+	}
+	
 	@SubscribeEvent
 	public void onInteract(PlayerInteractEvent.RightClickBlock event)
 	{		
@@ -406,15 +427,17 @@ public class GSEventHandler {
 					}
 				}
 			}
-
+			/*
 			//ICE BUCKET
 			if(block == Blocks.ICE && stack.getItem() == Items.BUCKET)
-			{				
+			{						
 				stack.shrink(1);
-				player.inventory.addItemStackToInventory(new ItemStack(GSItems.BASIC, 1, 17));				
+				
+				
+				player.inventory.addItemStackToInventory(ice_bucket);				
 				world.setBlockToAir(event.getPos());
 			}						
-			
+			*/
 			if(world.provider instanceof IGalacticraftWorldProvider)
 			{
 				AxisAlignedBB bb = new AxisAlignedBB(event.getPos().up());
