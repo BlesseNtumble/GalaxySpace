@@ -56,7 +56,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class GSItems {
 	
 	public static ArmorMaterial SPACESUIT_LIGHT = EnumHelper.addArmorMaterial("SPACESUIT_LIGHT", "", 15, new int[] {3, 6, 7, 3}, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
-	public static ArmorMaterial SPACESUIT_TIER_1 = EnumHelper.addArmorMaterial("SPACESUIT", "", 18, new int[] {3, 6, 7, 3}, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
+	public static ArmorMaterial SPACESUIT_TIER_1 = EnumHelper.addArmorMaterial("SPACESUIT", "", 18, new int[] {6, 13, 11, 6}, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
 	public static ArmorMaterial COBALT = EnumHelper.addArmorMaterial("COBALT", "", 13, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
 	public static ToolMaterial COBALT_TOOLS = EnumHelper.addToolMaterial("cobalt", 2, 250, 6.0F, 2.0F, 14);
 	public static ToolMaterial PLASMA_TOOLS = EnumHelper.addToolMaterial("plasma", 3, 1500, 8.0F, 8.0F, 0);
