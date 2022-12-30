@@ -93,6 +93,7 @@ import micdoodle8.mods.galacticraft.planets.mars.items.ItemTier2Rocket;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
@@ -158,7 +159,7 @@ public class GSEventHandler {
 	static {
 		
 		items_to_change.add(new ItemsToChange(new ItemStack(Blocks.FURNACE), Blocks.AIR.getDefaultState()).setOxygenCheck(true));
-		block_to_change.add(new BlockToChange(Blocks.WATER.getDefaultState(), Blocks.AIR.getDefaultState(), Blocks.ICE.getDefaultState(), 0.0F, true).setParticle("waterbubbles").setOxygenCheck(false));
+		block_to_change.add(new BlockToChange(Blocks.WATER.getDefaultState().withProperty(BlockLiquid.LEVEL, 0), Blocks.AIR.getDefaultState(), Blocks.ICE.getDefaultState(), 0.0F, true).setParticle("waterbubbles").setOxygenCheck(false));
 	}
 	
 	@SubscribeEvent
@@ -427,17 +428,7 @@ public class GSEventHandler {
 					}
 				}
 			}
-			/*
-			//ICE BUCKET
-			if(block == Blocks.ICE && stack.getItem() == Items.BUCKET)
-			{						
-				stack.shrink(1);
-				
-				
-				player.inventory.addItemStackToInventory(ice_bucket);				
-				world.setBlockToAir(event.getPos());
-			}						
-			*/
+			
 			if(world.provider instanceof IGalacticraftWorldProvider)
 			{
 				AxisAlignedBB bb = new AxisAlignedBB(event.getPos().up());

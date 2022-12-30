@@ -70,5 +70,15 @@ public class Barnarda_C_River extends WE_Biome {
 			circle.generate(world, rand, pos.down());		
 			
 		}
+		
+		circle = new WorldGenCircleBlock(BRBlocks.BARNARDA_C_FALLING_BLOCKS.getStateFromMeta(0), rand.nextInt(8) + 5, BRBlocks.BARNARDA_C_GRASS.getStateFromMeta(0));
+		if(rand.nextInt(2) == 0) {
+			randPosX = x + rand.nextInt(8) + 8;
+			randPosZ = z + rand.nextInt(8) + 8;
+			pos = world.getHeight(new BlockPos(randPosX, 0, randPosZ));	
+			if(pos.getY() < 67)
+				circle.generate(world, rand, pos.down());		
+			
+		}
 	}
 }

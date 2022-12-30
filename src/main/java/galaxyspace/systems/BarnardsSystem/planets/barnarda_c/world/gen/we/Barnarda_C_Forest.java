@@ -114,7 +114,7 @@ public class Barnarda_C_Forest extends WE_Biome {
 			cangen = true;
 			for(BlockPos pos1 : pos.getAllInBox(pos.add(-3, -1, -3), pos.add(3, -1, 3)))
 				if(world.isAirBlock(pos1) || world.getBlockState(pos1) == BRBlocks.BARNARDA_C_VIOLET_LOG.getStateFromMeta(0)) 
-					cangen = false;
+					cangen = world.getBlockState(pos1).getMaterial() == Material.WATER;
 			
     		if(!world.isAreaLoaded(pos, 18, false))
 	    		if(cangen && pos.getY() > 50 && world.getBlockState(pos.down()) == BRBlocks.BARNARDA_C_GRASS.getDefaultState().withProperty(Barnarda_C_Grass.BASIC_TYPE, Barnarda_C_Grass.EnumBlockGrass.GRASS))
