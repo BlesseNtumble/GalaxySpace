@@ -7,6 +7,8 @@ import java.util.List;
 
 import asmodeuscore.api.dimension.IProviderFreeze;
 import asmodeuscore.api.dimension.IProviderWeather;
+import asmodeuscore.core.astronomy.WeatherData;
+import asmodeuscore.core.astronomy.WeatherData.WeatherType;
 import asmodeuscore.core.astronomy.dimension.world.gen.WorldProviderAdvancedSpace;
 import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.util.GSDimensions;
@@ -185,28 +187,15 @@ public class WorldProviderCeres extends WorldProviderAdvancedSpace implements IP
 	}
 
 	@Override
-	public double getLightningStormFrequency() {
-		return 0;
-	}
-
-	@Override
-	public int getYPosLightning() {
-		return 0;
-	}
-
-	@Override
-	public boolean getDustStorm() {
-		return false;
-	}
-
-	@Override
-	public boolean getMeteoricRain() {
-		return GSConfigCore.enableExtraWeatherOnBodies;
-	}
-
-	@Override
 	public String getDataName() {
 		return "ceres";
+	}
+
+	@Override
+	public WeatherData getWeather() {
+		if(GSConfigCore.enableExtraWeatherOnBodies)
+			return meteoric_rain;
+		return null;
 	}
 	
 }

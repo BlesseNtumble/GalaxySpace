@@ -95,7 +95,7 @@ public class Barnarda_C_Swampland extends WE_Biome {
 	    	boolean cangen = true;
 	    	for(BlockPos pos1 : pos.getAllInBox(pos.add(-3, -1, -3), pos.add(3, -1, 3)))
 				if(world.isAirBlock(pos1) || world.getBlockState(pos1) == BRBlocks.BARNARDA_C_VIOLET_LOG.getStateFromMeta(0)) 
-					cangen = false;
+					cangen = world.getBlockState(pos1).getMaterial() == Material.WATER;
 	  
 	    	while(!world.isBlockNormalCube(pos, true))
 	    	{

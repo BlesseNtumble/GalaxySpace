@@ -7,6 +7,8 @@ import javax.annotation.Nullable;
 
 import asmodeuscore.api.dimension.IProviderFog;
 import asmodeuscore.api.dimension.IProviderWeather;
+import asmodeuscore.core.astronomy.WeatherData;
+import asmodeuscore.core.astronomy.WeatherData.WeatherType;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.biome.WE_BaseBiome;
@@ -443,31 +445,17 @@ public class WorldProviderTauCeti_F_WE extends WE_WorldProviderSpace implements 
 	}
 
 	@Override
-	public double getLightningStormFrequency() {
-		if(this.world.isRaining()) return 1.0F;
-		return 0;
-	}
-
-	@Override
-	public int getYPosLightning() {
-		return 0;
-	}
-
-	@Override
 	public boolean isColorWorld() { return true; }
 
 	@Override
 	public String getDataName() {
 		return null;
 	}
-
+	
 	@Override
-	public boolean getDustStorm() {
-		return false;
-	}
-
-	@Override
-	public boolean getMeteoricRain() {
-		return false;
+	public WeatherData getWeather() {
+		if(this.world.isRaining())
+			return new WeatherData(WeatherType.LIGHTNING_STORM, 1D);
+		return null;
 	}
 }

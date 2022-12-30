@@ -6,6 +6,8 @@ import javax.annotation.Nullable;
 
 import asmodeuscore.api.dimension.IProviderFog;
 import asmodeuscore.api.dimension.IProviderWeather;
+import asmodeuscore.core.astronomy.WeatherData;
+import asmodeuscore.core.astronomy.WeatherData.WeatherType;
 import asmodeuscore.core.astronomy.dimension.world.data.DustStormSaveData;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
@@ -336,28 +338,13 @@ public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProv
 	}
 
 	@Override
-	public double getLightningStormFrequency() {
-		return 0;
-	}
-
-	@Override
-	public int getYPosLightning() {
-		return 0;
-	}
-
-	@Override
 	public String getDataName() {
 		return DATA;
 	}
 
 	@Override
-	public boolean getDustStorm() {
-		return GSConfigCore.enableExtraWeatherOnBodies;
-	}
-
-	@Override
-	public boolean getMeteoricRain() {
-		return false;
+	public WeatherData getWeather() {
+		return dust_storm;
 	}
 
 }
