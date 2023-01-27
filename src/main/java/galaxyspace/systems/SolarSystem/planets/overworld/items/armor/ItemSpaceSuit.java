@@ -1,5 +1,6 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.items.armor;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -54,6 +55,8 @@ public abstract class ItemSpaceSuit extends ItemElectricArmor implements ISensor
 	public static String mod_count = "modification_count";
 	public static String[] suit_buttons = new String[] {"helmet_button", "chest_button", "legs_button", "boots_button"};
 	public static boolean[] pressedKey = new boolean[3];
+	private static HashMap<EntityEquipmentSlot, ItemSpaceSuitModel> models = new HashMap<EntityEquipmentSlot, ItemSpaceSuitModel>();
+	private static ItemSpaceSuitModel jetpack_model = new ItemSpaceSuitModel(5);
 	
 	private float jumpCharge;
 	
@@ -268,11 +271,13 @@ public abstract class ItemSpaceSuit extends ItemElectricArmor implements ISensor
 	@SideOnly(Side.CLIENT)
 	@Override
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped model) {
-		ModelBiped armorModel;
+		if(models.get(armorSlot) == null)
+			models.put(armorSlot, new ItemSpaceSuitModel(armorSlot.getIndex()));
+			
+		ModelBiped armorModel = models.get(armorSlot);
 		if(armorSlot.equals(EntityEquipmentSlot.CHEST) && itemStack.hasTagCompound() && itemStack.getTagCompound().getBoolean("jetpack"))
-    		armorModel = new ItemSpaceSuitModel(5);
-		else
-			armorModel = new ItemSpaceSuitModel(armorSlot.getIndex());
+    		armorModel = jetpack_model;
+
 		
 		if (itemStack.getItem() instanceof ItemSpaceSuit) {
 			armorModel = fillingArmorModel(armorModel, entityLiving);
