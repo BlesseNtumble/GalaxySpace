@@ -39,7 +39,7 @@ public class Barnarda_C_Leaves extends BlockLeaves implements ICustomLeaves{
 		super();
 		this.setTranslationKey("barnarda_c_leaves");
 		this.setHardness(0.5F);
-        this.setSoundType(SoundType.GROUND);
+        this.setSoundType(SoundType.PLANT);
 	}
 
 	@Override
