@@ -251,6 +251,7 @@ public class ClientProxy extends CommonProxy{
 	@SideOnly(Side.CLIENT)
 	public void loadTextures(TextureStitchEvent.Pre event) {
 		GalaxySpace.proxy.registerTexture(event, "model/modern_solarpanel");
+		GalaxySpace.proxy.registerTexture(event, "model/windmill_straight");
 		GalaxySpace.proxy.registerTexture(event, "model/armor/spacesuit");
 		GalaxySpace.proxy.registerTexture(event, "model/armor/jetpack");
 		GalaxySpace.proxy.registerTexture(event, "model/hydroponic_farm");	
@@ -397,6 +398,7 @@ public class ClientProxy extends CommonProxy{
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.GAS_COLLECTOR);
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.GAS_GENERATOR);
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.DRY_LEAVES);
+		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.ADVANCED_WIND_GENERATOR);
 		
 		if(GCCoreUtil.isDeobfuscated()) 
 		{

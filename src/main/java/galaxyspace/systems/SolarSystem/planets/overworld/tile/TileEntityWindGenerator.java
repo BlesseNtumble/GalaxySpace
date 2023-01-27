@@ -5,6 +5,7 @@ import java.util.EnumSet;
 import java.util.LinkedList;
 import java.util.List;
 
+import asmodeuscore.core.utils.Utils;
 import galaxyspace.core.GSItems;
 import galaxyspace.core.configs.GSConfigEnergy;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockWindGenerator;
@@ -56,14 +57,25 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
     public float generateWatts = 0;
     private AxisAlignedBB renderAABB;
 
-    private boolean initialised = false;
+    private boolean advanced;
+    
 
     public TileEntityWindGenerator()
     {
-    	super("tile.wind_generator.name");
+    	this(false);
+    }
+    
+    public TileEntityWindGenerator(boolean adv)
+    {
+    	super(adv ? "tile.adv_wind_generator.name" : "tile.wind_generator.name");
         this.storage.setMaxExtract(this.MAX_GENERATE_WATTS);
         this.storage.setMaxReceive(this.MAX_GENERATE_WATTS);
         this.inventory = NonNullList.withSize(2, ItemStack.EMPTY);
+        this.advanced = adv;
+    }
+    
+    public boolean isAdvanced() {
+    	return this.advanced;
     }
 
     @Override
@@ -73,8 +85,12 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
 
         super.update();
 
+        
         if (!this.world.isRemote)
         {
+        	if(Utils.isDustStorm(getWorld()) && !this.advanced)
+        		return;
+        	
         	this.recharge(this.getInventory().get(0));
 
             if (this.disableCooldown > 0)
@@ -171,8 +187,10 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
     	if(getFanType() < 0)
     		return 0;
 
-        return MathHelper.floor((10.0F + 5.0F * Math.round(this.getPos().getY() / 15.0F) * (getFanType() + 1)) * this.getWindBoost()) * (GSConfigEnergy.coefficientWindTurbine) ;
-       
+    	float watts = MathHelper.floor((10.0F + 5.0F * Math.round(this.getPos().getY() / 15.0F) * (getFanType() + 1)) * this.getWindBoost()) * (GSConfigEnergy.coefficientWindTurbine) ;
+    	if(this.advanced)
+    		watts *= 2;
+    	return watts;
     }
 
     public float getWindBoost()
@@ -216,62 +234,64 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
             return;
         }
        
-        positions.add(new BlockPos(placedPosition.getX(), y, placedPosition.getZ()));
-        positions.add(new BlockPos(placedPosition.getX(), ++y, placedPosition.getZ()));
-        positions.add(new BlockPos(placedPosition.getX(), ++y, placedPosition.getZ()));
+     
 
-        if (y > buildHeight)
-        {
-            return;
+       
+        if(this.advanced) {
+        	positions.add(new BlockPos(placedPosition.getX(), y, placedPosition.getZ()));
+        	positions.add(new BlockPos(placedPosition.getX(), ++y, placedPosition.getZ()));
+        	for (int yy = 0; yy < 3; yy++)
+	        	for (int x = -1; x < 2; x++)
+	        		for (int z = -1; z < 2; z++)
+	        			positions.add(new BlockPos(placedPosition.getX() + x, y + yy + 1, placedPosition.getZ() + z));
         }
         
-        switch (this.getBlockMetadata()) {
-        	case 0:	
-        		for (int x = -1; x < 2; x++)
-                {
-                    for (int z = -1; z < 2; z++)
-                    {
-                        positions.add(new BlockPos(placedPosition.getX() - 1, y + x, placedPosition.getZ() + z));
-                    }
-                }
-        		break;
-        	case 1:	
-        		for (int x = -1; x < 2; x++)
-                {
-                    for (int z = -1; z < 2; z++)
-                    {
-                        positions.add(new BlockPos(placedPosition.getX() + z, y + x, placedPosition.getZ() - 1));
-                    }
-                }
-        		break;
-        	case 2:	
-        		for (int x = -1; x < 2; x++)
-                {
-                    for (int z = -1; z < 2; z++)
-                    {
-                        positions.add(new BlockPos(placedPosition.getX() + 1, y + x, placedPosition.getZ() + z));
-                    }
-                }
-        		break;
-        	case 3:	
-        		for (int x = -1; x < 2; x++)
-                {
-                    for (int z = -1; z < 2; z++)
-                    {
-                        positions.add(new BlockPos(placedPosition.getX() + z, y + x, placedPosition.getZ() + 1));
-                    }
-                }
-        		break;
-        	
+        if(!this.advanced) {
+        	positions.add(new BlockPos(placedPosition.getX(), y, placedPosition.getZ()));
+            positions.add(new BlockPos(placedPosition.getX(), ++y, placedPosition.getZ()));
+            positions.add(new BlockPos(placedPosition.getX(), ++y, placedPosition.getZ()));
+            
+	        switch (this.getBlockMetadata()) {
+	        	case 0:	
+	        		for (int x = -1; x < 2; x++)
+	                {
+	                    for (int z = -1; z < 2; z++)
+	                    {
+	                        positions.add(new BlockPos(placedPosition.getX() - 1, y + x, placedPosition.getZ() + z));
+	                    }
+	                }
+	        		break;
+	        	case 1:	
+	        		for (int x = -1; x < 2; x++)
+	                {
+	                    for (int z = -1; z < 2; z++)
+	                    {
+	                        positions.add(new BlockPos(placedPosition.getX() + z, y + x, placedPosition.getZ() - 1));
+	                    }
+	                }
+	        		break;
+	        	case 2:	
+	        		for (int x = -1; x < 2; x++)
+	                {
+	                    for (int z = -1; z < 2; z++)
+	                    {
+	                        positions.add(new BlockPos(placedPosition.getX() + 1, y + x, placedPosition.getZ() + z));
+	                    }
+	                }
+	        		break;
+	        	case 3:	
+	        		for (int x = -1; x < 2; x++)
+	                {
+	                    for (int z = -1; z < 2; z++)
+	                    {
+	                        positions.add(new BlockPos(placedPosition.getX() + z, y + x, placedPosition.getZ() + 1));
+	                    }
+	                }
+	        		break;
+	        	
+	        }
         }
-        /*
-        for (int x = -1; x < 2; x++)
-        {
-            for (int z = -1; z < 2; z++)
-            {
-                positions.add(new BlockPos(placedPosition.getX() + x, y, placedPosition.getZ() + z));
-            }
-        }*/
+       
     }
     
     @Override
@@ -312,11 +332,11 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
         this.targetAngle = nbt.getFloat("targetAngle");
         this.setDisabled(0, nbt.getBoolean("disabled"));
         this.disableCooldown = nbt.getInteger("disabledCooldown");
+        this.advanced = nbt.getBoolean("advanced");
 
         this.inventory = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(nbt, this.getInventory());
 
-        this.initialised = false;
     }
 
     @Override
@@ -328,6 +348,7 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
         nbt.setFloat("targetAngle", this.targetAngle);
         nbt.setInteger("disabledCooldown", this.disableCooldown);
         nbt.setBoolean("disabled", this.getDisabled(0));
+        nbt.setBoolean("advanced", this.advanced);
 
         ItemStackHelper.saveAllItems(nbt, this.getInventory());
         

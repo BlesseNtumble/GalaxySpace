@@ -91,8 +91,7 @@ public class GuiWindGenerator extends GuiTileBase
         displayString = GCCoreUtil.translate("gui.message.generating.name") + ": " + (this.tileEntity.generateWatts > 0 ? EnergyDisplayHelper.getEnergyDisplayS(this.tileEntity.generateWatts) + "/t" : GCCoreUtil.translate("gui.status.not_generating.name"));
         this.fontRenderer.drawString(color + displayString, this.xSize / 2 - this.fontRenderer.getStringWidth(displayString) / 2, 34 + 23 - 46 + offsetY, 4210752);
         float boost = Math.round((this.tileEntity.getWindBoost() - 1) * 1000) / 10.0F;
-        if(boost < 100.0F)
-        	boost = -100.0F;
+        
         displayString = GCCoreUtil.translate("gui.message.environment.name") + ": " + boost + "%";
         this.fontRenderer.drawString(color + displayString, this.xSize / 2 - this.fontRenderer.getStringWidth(displayString) / 2, 56 + 23 - 46 + offsetY, 4210752);
     }

@@ -47,6 +47,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockMachineFram
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockOres;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockSurfaceIce;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockAdvCircuitFabricator;
+import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockAdvWindGenerator;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockAssembler;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockEnergyPad;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockFuelGenerator;
@@ -125,6 +126,7 @@ public class GSBlocks {
 	public static final Block ENERGY_PAD = new BlockEnergyPad();
 	public static final Block GAS_COLLECTOR = new BlockGasCollector();
 	public static final Block GAS_GENERATOR = new BlockGasGenerator();
+	public static final Block ADVANCED_WIND_GENERATOR = new BlockAdvWindGenerator();
 	
 	public static final Block FAKE_BLOCK = new GSBlockMulti();
 	
@@ -169,6 +171,7 @@ public class GSBlocks {
 		registerBlock(GAS_GENERATOR, GSItemBlockDesc.class);
 		registerBlock(WIND_GENERATOR, GSItemBlockDesc.class);
 		registerBlock(SOLARWIND_PANEL, GSItemBlockDesc.class);
+		registerBlock(ADVANCED_WIND_GENERATOR, GSItemBlockDesc.class);
 		registerBlock(MODERN_SOLAR_PANEL, GSItemBlockDesc.class);
 
 		registerBlock(ASSEMBLER, GSItemBlockDesc.class);
