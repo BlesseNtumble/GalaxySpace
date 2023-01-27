@@ -134,7 +134,7 @@ public class WeatherProviderMars extends IRenderHandler
                         double dx = (double)this.rainXCoords[index] * 0.5D;
                         double dz = (double)this.rainYCoords[index] * 0.5D;
                         double dy = -((double)(rendererUpdateCount + x * x * 3121 + x * 45238971 + z * z * 418711 + z * 13761 & 31) + (double)partialTicks) / 80.0D * (6.0D + this.random.nextDouble());
-                        dy = -((rendererUpdateCount & 511) + partialTicks) / 64.0F;
+                        dy = -((rendererUpdateCount & 511) + partialTicks) / 512.0F;
                         
                         double d9 = this.random.nextDouble() + (double)rendererUpdateCount * 0.3D * (double)((float)this.random.nextGaussian());
                         

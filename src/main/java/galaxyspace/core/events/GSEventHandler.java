@@ -20,6 +20,7 @@ import asmodeuscore.core.network.packet.ACPacketSimple.ACEnumSimplePacket;
 import galaxyspace.GalaxySpace;
 import galaxyspace.api.item.IJetpackArmor;
 import galaxyspace.core.GSBlocks;
+import galaxyspace.core.GSFluids;
 import galaxyspace.core.GSItems;
 import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.configs.GSConfigDimensions;
@@ -160,6 +161,8 @@ public class GSEventHandler {
 		
 		items_to_change.add(new ItemsToChange(new ItemStack(Blocks.FURNACE), Blocks.AIR.getDefaultState()).setOxygenCheck(true));
 		block_to_change.add(new BlockToChange(Blocks.WATER.getDefaultState().withProperty(BlockLiquid.LEVEL, 0), Blocks.AIR.getDefaultState(), Blocks.ICE.getDefaultState(), 0.0F, true).setParticle("waterbubbles").setOxygenCheck(false));
+		block_to_change.add(new BlockToChange(GSFluids.BLOCK_LEMETHANE.getDefaultState().withProperty(BlockLiquid.LEVEL, 0), Blocks.FIRE.getDefaultState(), Blocks.AIR.getDefaultState(), 3.0F, true).setParticle("waterbubbles").setOxygenCheck(false));
+		block_to_change.add(new BlockToChange(GSFluids.BLOCK_HELIUM_HYDROGEN.getDefaultState().withProperty(BlockLiquid.LEVEL, 0), Blocks.FIRE.getDefaultState(), Blocks.AIR.getDefaultState(), 3.0F, true).setParticle("waterbubbles").setOxygenCheck(false));
 	}
 	
 	@SubscribeEvent
@@ -220,12 +223,6 @@ public class GSEventHandler {
    
 	}
 
-	
-	@SubscribeEvent
-	public void onUnloadWorld(WorldEvent.Unload e) {
-		if(e.getWorld().provider.getDimensionType() == GCPlanetDimensions.MARS)
-			e.getWorld().getPerWorldStorage().saveAllData();
-	}
 	
 	@SubscribeEvent
     public void onPlayerLogin(PlayerLoggedInEvent event)
@@ -318,12 +315,12 @@ public class GSEventHandler {
 				if(block.need_check_temp) { 
 					if((e.block == block.state || e.block.getMaterial() == block.state.getMaterial()))
 					{
-						if(thermal <= cool_temp)
+						if(thermal <= cool_temp * block.getTempModificator())
 						{
 							e.world.setBlockState(e.pos, block.cold_replaced);
 							e.setCanceled(true);
 						}
-						else if(thermal >= warn_temp) {
+						else if(thermal >= warn_temp * block.getTempModificator()) {
 							e.world.setBlockState(e.pos, block.hot_replaced);
 							block.spawnParticleHotTemp(e.world, e.pos);
 							e.setCanceled(true);
@@ -343,7 +340,7 @@ public class GSEventHandler {
 	@SubscribeEvent
 	public void onUpdateBlocks(UpdateBlockEvent e) {
 		
-		if(!e.world.isRemote && GSConfigCore.enableOxygenForPlantsAndFoods) {
+		if(!e.world.isRemote) {
 			if (!e.world.isAreaLoaded(e.pos, 1)) return;
 			 			
 			if(e.world.provider instanceof IGalacticraftWorldProvider) {
@@ -352,22 +349,25 @@ public class GSEventHandler {
 				
 				float thermal = ((IGalacticraftWorldProvider)e.world.provider).getThermalLevelModifier();
 				boolean thermal_check = thermal > warn_temp || thermal < cool_temp;
+				IBlockState state = e.block;
+				Block block = state.getBlock();
+				
 				AxisAlignedBB bb = new AxisAlignedBB(e.pos);
-				if(!OxygenUtil.isAABBInBreathableAirBlock(e.world, bb, thermal_check)) {
+				if(!OxygenUtil.isAABBInBreathableAirBlock(e.world, bb, thermal_check) && GSConfigCore.enableOxygenForPlantsAndFoods) {
 					
-					if(e.block.getBlock() instanceof BlockLeaves) {	
+					if(block instanceof BlockLeaves) {	
 						e.world.setBlockState(e.pos, GSBlocks.DRY_LEAVES.getDefaultState(), 3);
 						e.setCanceled(true);
 					}
 									
-					if(e.block.getBlock() instanceof BlockBush && e.block.getBlock() != Blocks.DEADBUSH) {
-						if(e.world.getBlockState(e.pos.down()).isBlockNormalCube()) {
-							e.world.setBlockState(e.pos, Blocks.DEADBUSH.getDefaultState(), 3);
-						}
+					if(block instanceof BlockBush && block != Blocks.DEADBUSH) {
+						if(e.world.getBlockState(e.pos.down()).isBlockNormalCube()) 
+							e.world.setBlockState(e.pos, Blocks.DEADBUSH.getDefaultState(), 3);						
 						else e.world.setBlockToAir(e.pos);
+						
 						e.setCanceled(true);						
-					}
-				}
+					}					
+				}				
 			}
 		}
 	}
@@ -1097,6 +1097,10 @@ public class GSEventHandler {
 		{
 			this.only_gs_dim = true;
 			return this;
+		}
+		
+		public float getTempModificator() {
+			return this.temp + 1.0F;
 		}
 		
 		public BlockToChange setOxygenCheck(boolean check)

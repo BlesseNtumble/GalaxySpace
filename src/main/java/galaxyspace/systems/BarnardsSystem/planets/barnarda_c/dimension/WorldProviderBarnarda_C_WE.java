@@ -398,7 +398,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
 	@Override
 	public float getWindLevel() {
 		float windLevel = this.getCelestialBody().atmosphere.windLevel();
-		return this.world.thunderingStrength > 0 ? windLevel * 2 : windLevel;
+		return this.world.isThundering() ? windLevel * 2 : windLevel;
 	}
 
 

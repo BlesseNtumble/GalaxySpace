@@ -483,7 +483,7 @@ public class GSUtils {
 		
 		String path = GSUtils.class.getResource("/").getPath();
 		path = path.replace("bin", "src");
-		path += "main/resources/assets/" + GalaxySpace.ASSET_PREFIX + "/";
+		path += "resources/assets/" + GalaxySpace.ASSET_PREFIX + "/";
 		return path;
 	}
 	

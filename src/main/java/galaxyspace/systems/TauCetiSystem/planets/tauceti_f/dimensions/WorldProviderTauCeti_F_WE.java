@@ -235,7 +235,7 @@ public class WorldProviderTauCeti_F_WE extends WE_WorldProviderSpace implements 
 		cp.decorateChunkGen_List .clear(); 
 		
 		WE_Biome.setBiomeMap(cp, 1.8D, 4, 2500.0D, 2.0D);	
-		WE_Biome.addPrelinNoise(cp, new PerlinNoise(cp.worldObj.getSeed(), 1.5D, cp.biomemapNumberOfOctaves, 400, cp.biomemapScaleY, 0));
+		WE_Biome.addPrelinNoise(cp, new PerlinNoise(cp.world.getSeed(), 1.5D, cp.biomemapNumberOfOctaves, 400, cp.biomemapScaleY, 0));
 
 		WE_TerrainGenerator terrainGenerator = new WE_TerrainGenerator(); 
 		terrainGenerator.worldStoneBlock = TCBlocks.TAUCETI_F_BLOCKS.getStateFromMeta(0); 
