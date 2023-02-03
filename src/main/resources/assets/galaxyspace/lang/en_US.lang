@@ -10,7 +10,7 @@ menu.update=Update Galaxy Space!
 #||||||||||||||||||Blocks||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 tile.mercury_surface.name=Mercury Surface Rock
-tile.mercury_subsurface.name=Mercury Subsurface Rock
+tile.mercury_subsurface.name=Mercury Sub-Surface Rock
 tile.mercury_stone.name=Mercury Stone
 tile.mercury_iron_ore.name=Iron Ore
 tile.mercury_nickel_ore.name=Nickel Ore
@@ -60,7 +60,7 @@ tile.futureglass_pink.name=Pink Futuristic Glass
 tile.futureglass_lime.name=Lime Futuristic Glass
 tile.futureglass_yellow.name=Yellow Futuristic Glass
 tile.futureglass_lightblue.name=Light Blue Futuristic Glass
-tile.futureglass_magneta.name=Magneta Futuristic Glass
+tile.futureglass_magneta.name=Magenta Futuristic Glass
 tile.futureglass_orange.name=Orange Futuristic Glass
 tile.futureglass_white.name=White Futuristic Glass
 
@@ -72,14 +72,14 @@ tile.mars_silicon.name=Silicon Ore
 tile.mars_aluminum.name=Aluminum Ore
 
 tile.ceres_grunt.name=Ceres Surface Rock
-tile.ceres_subgrunt.name=Ceres Subsurface Rock
+tile.ceres_subgrunt.name=Ceres Sub-Surface Rock
 tile.ceres_dolomite_ore.name=Dolomite Ore
 tile.ceres_meteoriciron_ore.name=Meteoric Iron Ore
-tile.ceres_dungeon_top.name=Ceres Dungeon Top
+tile.ceres_dungeon_top.name=Ceres Dungeon Ceiling
 tile.ceres_dungeon_floor.name=Ceres Dungeon Floor
 
-tile.pluto_grunt.name=Pluto Surface Rock
-tile.pluto_subgrunt.name=Pluto Subsurface Rock
+tile.pluto_grunt.name=Pluto Surface Ice
+tile.pluto_subgrunt.name=Pluto Sub-Surface Ice
 tile.pluto_stone.name=Pluto Stone
 
 tile.haumea_ground.name=Haumea Surface Rock
@@ -87,7 +87,7 @@ tile.haumea_stone.name=Haumea Stone
 tile.haumea_cobblestone.name=Haumea Cobblestone
 tile.haumea_aluminum_ore.name=Aluminum Ore
 
-tile.phobos_regolite.name=Phobos Regolite
+tile.phobos_regolite.name=Phobos Regolith
 tile.phobos_stone.name=Phobos Stone
 tile.phobos_iron_ore.name=Iron Ore
 tile.phobos_meteoriciron_ore.name=Meteoric Iron Ore
@@ -99,12 +99,12 @@ tile.io_stone.name=Io Stone
 tile.io_ash.name=Io Ash
 tile.io_copper_ore.name=Copper Ore
 tile.io_sulfur_ore.name=Sulfur Ore
-tile.io_volcanic_ore.name=Volcanic Ore
+tile.io_volcanic_ore.name=Volcanic Shard Ore
 tile.io_lava_geyser.name=Io Lava Geyser
 tile.io_sulfur_geyser.name=Io Sulfur Geyser
-tile.io_top.name=Io Dungeon Top
+tile.io_top.name=Io Dungeon Ceiling
 tile.io_floor.name=Io Dungeon Floor
-tile.io_dungeon_bricks.name=Io Dungeon Bricks
+tile.io_dungeon_bricks.name=Io Dungeon Brick
 
 tile.europa_grunt.name=Europa Surface Ice
 tile.europa_stone.name=Europa Stone
@@ -124,12 +124,12 @@ tile.callisto_grunt.name=Callisto Surface Rock
 tile.callisto_stone.name=Callisto Stone
 
 tile.enceladus_snow.name=Enceladus Ice
-tile.enceladus_grunt.name=Enceladus Subsurface Rock
+tile.enceladus_grunt.name=Enceladus Sub-Surface Rock
 tile.enceladus_coal_ore.name=Coal Ore
-tile.enceladus_crystal.name=Unknown Crystal Cluster
+tile.enceladus_crystal.name=Unknown Crystal
 
 tile.titan_grunt.name=Titan Surface Rock
-tile.titan_subgrunt.name=Titan Subsurface Rock
+tile.titan_subgrunt.name=Titan Sub-Surface Rock
 tile.titan_stone.name=Titan Stone
 tile.titan_sapphire_ore.name=Sapphire Ore
 tile.titan_emerald_ore.name=Emerald Ore
@@ -139,7 +139,7 @@ tile.titan_lapis_ore.name=Lapis Ore
 tile.titan_redstone_ore.name=Redstone Ore
 
 tile.miranda_grunt.name=Miranda Surface Rock
-tile.miranda_subgrunt.name=Miranda Subsurface Rock
+tile.miranda_subgrunt.name=Miranda Sub-Surface Rock
 tile.miranda_stone.name=Miranda Stone
 tile.miranda_ice.name=Miranda Ice
 tile.miranda_iron_ore.name=Iron Ore
@@ -150,14 +150,14 @@ tile.miranda_cobalt_ore.name=Cobalt Ore
 tile.miranda_nickel_ore.name=Nickel Ore
 
 tile.triton_grunt.name=Triton Surface Rock
-tile.triton_subgrunt.name=Triton Subsurface Rock
+tile.triton_subgrunt.name=Triton Sub-Surface Rock
 tile.triton_stone.name=Triton Stone
 tile.triton_geyser.name=Triton Geyser
 tile.triton_geyser_2.name=Triton Small Geyser
 
-tile.proxima_b_surface.name=Surface
-tile.proxima_b_subsurface.name=Subsurface
-tile.proxima_b_stone.name=Stone
+tile.proxima_b_surface.name=Proxima B Surface Rock
+tile.proxima_b_subsurface.name=Proxima B Sub-Surface Rock
+tile.proxima_b_stone.name=Proxima B Stone
 tile.proxima_b_ice_surface.name=Ice Surface
 tile.proxima_b_ash_rock.name=Ash Rock
 tile.proxima_b_gold_ore.name=Gold Ore
@@ -171,7 +171,7 @@ tile.proxima_b_mushroom_skin.name=Mushroom Skin
 tile.proxima_b_mushroom_geyser.name=Mushroom Geyser
 tile.proxima_b_mud.name=Mud
 tile.proxima_b_mushroom_log.name=Mushroom Stem
-tile.proxima_b_grasses.name=Grass
+tile.proxima_b_grasses.name=Proxima B Grass
 tile.proxima_b_tallgrass.name=Red Tallgrass
 tile.proxima_b_tallgrass_2.name=Red Tallgrass
 tile.proxima_b_log_1.name=Burnt Wood
@@ -184,10 +184,10 @@ tile.barnarda_c_sandstone.name=[WIP] Barnarda C Sandstone
 tile.barnarda_c_dirt_1.name=[WIP] Barnarda C Dirt
 tile.barnarda_c_cobblestone.name=Barnarda C Cobblestone
 tile.barnarda_c_stone_bricks.name=Barnarda C Stone Bricks
-tile.barnarda_c_oak_planks.name=Barnarda C Wood Planks
+tile.barnarda_c_oak_planks.name=Barnarda C Planks
 tile.barnarda_c_sand.name=Barnarda C Sand
-tile.barnarda_c_test_log.name=Barnarda C Violet Log
-tile.barnarda_c_test_glow_log.name=Barnarda C Glowing Violet Log
+tile.barnarda_c_test_log.name=Barnarda C Log
+tile.barnarda_c_test_glow_log.name=Barnarda C Glowing Log
 tile.barnarda_c_tall_grass.name=Barnarda C Grass
 tile.barnarda_c_hopper_flower.name=Barnarda C Hopper Flower
 tile.barnarda_c_green_fern.name=Barnarda C Green Fern
@@ -241,7 +241,7 @@ tile.gravitation_module.name=Gravity Module
 tile.gravitation_module.desc=Creates Earth-like gravity within custom radius in all directions.
 
 tile.wind_generator.name=Wind Turbine
-tile.wind_generator.desc=Generates energy from wind streams, providing some energy on planets with atmosphere.
+tile.wind_generator.desc=Generates energy from wind streams, providing some energy on a planet with an atmosphere.
 
 tile.rocket_assembler.name=Rocket Assembly
 tile.rocket_assembler.desc=Assembles rockets from components made in the NASA workbench.
@@ -286,7 +286,7 @@ tile.oxygen_module_storage.name=Oxygen Storage Cluster
 tile.oxygen_module_storage.desc=Improved Oxygen Storage. It can store four times more oxygen.
 
 tile.solarwind_panel.name=Solar Wind Panel
-tile.solarwind_panel.desc=Converts solar wind into energy. Does not work on a planets with atmosphere.
+tile.solarwind_panel.desc=Converts solar wind into energy. Does not work on a planet with an atmosphere.
 
 tile.advanced_landing_pad.name=Advanced Launch Pad
 tile.advanced_landing_pad.desc=Advanced launch pad for higher tier rockets. Should be placed as 5x5 square.
@@ -321,18 +321,18 @@ tile.coefficientcraft.desc=Crafting speed modifier
 tile.ceres_bricks.name=Ceres Dungeon Brick
 tile.io_bricks.name=Io Dungeon Brick
 
-tile.treasure_t4.name=Treasure Chest Tier 4
-tile.treasure_t4.desc=Treasure Chests 4th tier generate in Ceres Dungeons. Unlocked after killing the final boss.
+tile.treasure_t4.name=Tier 4 Treasure Chest
+tile.treasure_t4.desc=Tier 4 Treasure Chests will generate in Ceres Dungeons. They are unlockable after defeating the final boss.
 
-tile.treasure_t5.name=Treasure Chest Tier 5
-tile.treasure_t5.desc=Treasure Chests 5th tier generate in Io Dungeons. Unlocked after killing the final boss.
+tile.treasure_t5.name=Tier 5 Treasure Chest
+tile.treasure_t5.desc=Tier 5 Treasure Chests will generate in Io Dungeons. They are unlockable after defeating the final boss.
 
 |/////////////////////////////////////////|
 #|||||||||||||||||Items||||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 
 item.schematics.name=NASA Workbench Schematic
-item.hdp.name=Heavy Duty Plate
+item.hdp.name=Heavy-Duty Plate
 item.dungeon_keys.name=Dungeon Key
 item.geo_scanner.name=Geological Scanner
 
@@ -340,15 +340,15 @@ item.rocket_tier_4.name=Tier 4 Rocket
 item.rocket_tier_5.name=Tier 5 Rocket
 item.rocket_tier_6.name=Tier 6 Rocket
 
-item.space_suit_head.name=SpaceSuit Helmet
-item.space_suit_chest.name=SpaceSuit Chestplate
-item.space_suit_legs.name=SpaceSuit Leggings
-item.space_suit_feet.name=SpaceSuit Boots
+item.space_suit_head.name=Heavy Space Suit Helmet
+item.space_suit_chest.name=Heavy Space Suit Chestplate
+item.space_suit_legs.name=Heavy Space Suit Leggings
+item.space_suit_feet.name=Heavy Space Suit Boots
 
-item.space_suit_light_head.name=Light SpaceSuit Helmet
-item.space_suit_light_chest.name=Light SpaceSuit Chestplate
-item.space_suit_light_legs.name=Light SpaceSuit Leggings
-item.space_suit_light_feet.name=Light SpaceSuit Boots
+item.space_suit_light_head.name=Light Space Suit Helmet
+item.space_suit_light_chest.name=Light Space Suit Chestplate
+item.space_suit_light_legs.name=Light Space Suit Leggings
+item.space_suit_light_feet.name=Light Space Suit Boots
 
 item.jetpack.name=Electric Jetpack
 
@@ -458,10 +458,10 @@ item.ultimate_battery.name=Ultimate Battery
 
 item.hydrogen_canister.name=Hydrogen Canister
 item.ethane_canister.name=Ethane Canister
-item.em_canister.name=Ethane-Methane Canister
+item.em_canister.name=Liquid Hydrocarbon Canister
 item.helium_canister.name=Helium-3 Canister
 item.hh_canister.name=Helium-Hydrogen Canister
-item.naturegas_canister.name=Nature Gas Canister
+item.naturegas_canister.name=Natural Gas Canister
 
 item.violet_reeds.name=Violet Reeds
 item.water_grass.name=Lichen
@@ -472,9 +472,9 @@ item.yellow_fruits.name=Yellow Fruits
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 fluid.helium3=Helium-3
 fluid.ethane=Ethane
-fluid.liquidethanemethane=Liquid Ethane-Methane
+fluid.liquidethanemethane=Liquid Hydrocarbon
 fluid.heliumhydrogen=Liquid Helium-Hydrogen
-fluid.naturegas=Nature Gas
+fluid.naturegas=Natural Gas
 |/////////////////////////////////////////|
 #||||||||||||||||Potions|||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
@@ -606,10 +606,10 @@ gui.module.empty_slot=Empty slot. Place item in slot.
 #||||||||||||||Creative Tabs|||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 
-item_group.galaxyspace_blocks=GalaxySpace: Blocks
-item_group.galaxyspace_items=GalaxySpace: Items
-item_group.galaxyspace_armor=GalaxySpace: Armor
-item_group.galaxyspace_rocket=GalaxySpace: Rockets
+item_group.galaxyspace_blocks=GalaxySpace Blocks
+item_group.galaxyspace_items=GalaxySpace Items
+item_group.galaxyspace_armor=GalaxySpace Armor
+item_group.galaxyspace_rocket=GalaxySpace Rockets
 
 |/////////////////////////////////////////|
 #||||||||||||||||Entities||||||||||||||||||
@@ -654,11 +654,11 @@ satellite.spacestation.venus=Venus Atmospheric Space Station
 satellite.spacestation.mars=Mars Space Station
 
 #aCentauri System
-solarsystem.acentauri=α Centauri
+solarsystem.acentauri=α Centauri System
 star.centauri_a=α Centauri A
 planet.centauri_b=α Centauri B
 
-solarsystem.proxima=Proxima Centauri
+solarsystem.proxima=Proxima Centauri System
 star.proxima=Proxima Centauri
 planet.proxima_b=Proxima B
 planet.proxima_c=Proxima C
@@ -666,18 +666,18 @@ planet.proxima_d=Proxima D
 
 #Barnard's System
 solarsystem.barnards=Barnard's System
-star.barnarda_a=Barnarda A
+star.barnarda_a=Barnard's Star
 planet.barnarda_b=Barnarda B
 planet.barnarda_c=Barnarda C
-planet.barnarda_d=Asteroids Belt
+planet.barnarda_d=Asteroids
 planet.barnarda_e=Barnarda E
-moon.barnarda_b1=Planet Ring
+moon.barnarda_b1=Ring
 moon.barnarda_c1=Barnarda C1
 moon.barnarda_c2=Barnarda C2
 
 #Tau Ceti System
-solarsystem.tauceti=Tau Ceti
-star.tauceti=Tau Ceti A
+solarsystem.tauceti=Tau Ceti System
+star.tauceti=Tau Ceti
 planet.tauceti_g=Tau Ceti G
 planet.tauceti_h=Tau Ceti H
 planet.tauceti_e=Tau Ceti E
@@ -697,33 +697,33 @@ book.category.mechanics.name=Mechanics
 #||||||||||||||||Book-General|||||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 book.page.about_addon.name=About Galaxy Space
-book.page.about_addon.text=Galaxy Space in an addon for Galacticraft, adding an impressive amount of content. !n!nThe development of the addon has been going on for over 4 years, gradually introducing more and more game content. !n!nAll star systems are based on real data and are as close to reality as the Minecraft engine allows. This addon's tends to lay onto realistic side in other aspecs as well. 
+book.page.about_addon.text=Galaxy Space is an addon for Galacticraft, adding an impressive amount of content. !n!nThe development of the addon has been going on for over 4 years, gradually introducing more and more game content. !n!nAll star systems are based on real data and are as close to reality as the Minecraft engine allows. This addon tends to lay onto the realistic side in other aspects as well. 
 book.page.actual_update.name=Actual Update
 
 #|/////////////////////////////////////////|
 #||||||||||||Book-Celestial Bodies||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 book.page.star.sol.desc=!c_ySol - Yellow dwarf. !c_wHumanity's home star.
-book.page.solarsystem.sol.asteroids=Asteroid belt is a massive cluster of asteroids orbiting the sun. Many asteroids contain a large amount of minerals.
+book.page.solarsystem.sol.asteroids=The asteroid belt is a massive cluster of asteroids. Many asteroids contain a large amount of minerals.
 book.page.solarsystem.sol.ceres=Ceres is a dwarf planet in the Asteroid Belt. It contains copious amounts of meteoric iron and dolomite crystals.
-book.page.solarsystem.sol.jupiter=Jupiter - Gas giant with many moons that can be explored.
-book.page.solarsystem.sol.callisto=Callisto - The farthest moon of Jupiter.
+book.page.solarsystem.sol.jupiter=Jupiter is a gas giant with many moons that can be explored.
+book.page.solarsystem.sol.callisto=Callisto is Jupiter's 4th & last moon.
 
-book.page.star.barnarda_a.desc=!c_yBarnarda A - Orange dwarf. !c_wA star close to the sun.
-book.page.solarsystem.barnards.barnarda_b=Barnarda B - Gas giant located close to its star. It has a ring made of tiny stones.
-book.page.solarsystem.barnards.barnarda_b1=Planet's ring, consisting of many tiny stones.
-book.page.solarsystem.barnards.barnarda_c=Barnarda C - Planet located in the !c_ghabitable zone !c_wof its star. It has suitable conditions for humans.
-book.page.solarsystem.barnards.barnarda_c1=Barnarda C1 - Frozen moon. It's too cold for humans.
-book.page.solarsystem.barnards.barnarda_c2=Barnarda C2 - Undiscovered moon.
-book.page.solarsystem.barnards.barnarda_d=Asteroid belt is a massive cluster of asteroids orbiting the star. Many asteroids contain a large amount of minerals.
-book.page.solarsystem.barnards.barnarda_e=Barnarda E - Distant gas giant.
+book.page.star.barnarda_a.desc=!c_yBarnard's Star is an orange dwarf. It is a !c_wA star close to the sun.
+book.page.solarsystem.barnards.barnarda_b=Barnarda B is a gas giant located close to its star. It has a ring made of tiny stones.
+book.page.solarsystem.barnards.barnarda_b1=Barnarda B's ring. It is made of many tiny stones.
+book.page.solarsystem.barnards.barnarda_c=Barnarda C is a planet located in the !c_ghabitable zone !c_wof its star. It has suitable conditions for life.
+book.page.solarsystem.barnards.barnarda_c1=Barnarda C1 is a frozen moon. It's too cold for life.
+book.page.solarsystem.barnards.barnarda_c2=Barnarda C2 is an undiscovered moon.
+book.page.solarsystem.barnards.barnarda_d=The asteroid belt is a massive cluster of asteroids. Many asteroids contain a large amount of minerals.
+book.page.solarsystem.barnards.barnarda_e=Barnarda E is a distant rocky planet.
 
 #|/////////////////////////////////////////|
 #|||||||||||||||Book-Mechanics||||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 book.page.solar_radiation.name=Solar Radiation
-book.page.solar_radiation.text=Solar Radiation - a negative effect that gradually kills the player. !nWhen the radiation scale crosses the !c_rred !c_wborder effect is activated. !nIf a player is in a shelter or underground the radiation does not accumulate and decreases if the scale is above the !c_rred !c_wborder. !n!nYou can get rid of the remaining radiation by using !c_gAntiradiation Tablets. !c_w!nProtect yourself from radiation by wearing a !c_oSpacesuit !c_wor being inside a bubble from a !c_oMagnetic Field Generator.
+book.page.solar_radiation.text=Solar Radiation is a negative effect that gradually kills the player. !nWhen the radiation scale crosses the !c_rred !c_wborder effect is activated. !nIf a player is in a shelter or underground the radiation does not accumulate and decreases if the scale is above the !c_rred !c_wborder. !n!nYou can get rid of the remaining radiation by using !c_gAntiradiation Tablets. !c_w!nProtect yourself from radiation by wearing a !c_oSpace suit !c_wor being inside a bubble from a !c_oMagnetic Field Generator.
 book.page.atmosphere_pressure.name=Atmosphere Pressure
-book.page.atmosphere_pressure.text=Atmospheric pressure is one of the main problems when colonizing planets with atmosphere. !nWith a !c_rhigh !c_watmospheric pressure you'll experience various negative effects, such as: nausea, blindness and slowness. !n!nWith !c_oeven higher !c_watmospheric pressure you'll start to loose health. !nIf the pressure scale is !c_ymaxed out !c_wyou'll die instantly. !nProtect yourself from radiation by wearing a !c_oSpacesuit !c_wor being inside a !c_oGravity Module's !c_wrange. 
+book.page.atmosphere_pressure.text=Atmospheric pressure is one of the main problems when colonizing planets with atmosphere. !nWith a !c_rhigh !c_watmospheric pressure you'll experience various negative effects, such as nausea, blindness and slowness. !n!nWith !c_oeven higher !c_watmospheric pressure you'll start to lose health. !nIf the pressure scale is !c_ymaxed out !c_wyou'll die instantly. !nProtect yourself from radiation by wearing a !c_oSpacesuit !c_wor being inside a !c_oGravity Module's !c_wrange. 
 book.page.temp_on_planet.name=Temperature
-book.page.temp_on_planet.text=With GalaxySpace temperature place a much larger role. !nYou no longer can plant crops in space since they'll die instantly. Now you'll have to protect your farms by isolating them from environment. !n!n!nAdditionally, you can only take !c_gcanned food !c_wwhile in vacuum. !nLiquids in space will either freeze or varporize (depends on temperature of a planet).
+book.page.temp_on_planet.text=In GalaxySpace temperature plays a much larger role. !nYou no longer can plant crops in space since they'll die after a little while. Now you'll have to protect your farms by isolating them from environment. !n!n!nAdditionally, you can only take !c_gcanned food !c_wwhile in vacuum. !nLiquids in space will either freeze or vaporize (depending on the temperature of a planet).
