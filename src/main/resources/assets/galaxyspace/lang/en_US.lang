@@ -159,7 +159,7 @@ tile.proxima_b_surface.name=Proxima B Surface Rock
 tile.proxima_b_subsurface.name=Proxima B Sub-Surface Rock
 tile.proxima_b_stone.name=Proxima B Stone
 tile.proxima_b_ice_surface.name=Ice Surface
-tile.proxima_b_ash_rock.name=Ash Rock
+tile.proxima_b_ash_rock.name=Proxima B Ash
 tile.proxima_b_gold_ore.name=Gold Ore
 tile.proxima_b_tin_ore.name=Tin Ore
 tile.proxima_b_copper_ore.name=Copper Ore
@@ -198,7 +198,7 @@ tile.barnarda_c_desert_down.name=Barnarda C Desert Flower
 tile.barnarda_c_desert_up.name=Barnarda C Desert Flower
 tile.barnarda_c_yellow_grass_down.name=Barnarda C Yellow Grass
 tile.barnarda_c_yellow_grass_up.name=Barnarda C Yellow Grass
-tile.barnarda_c_violet_sapling.name=Violet Tree Sapling
+tile.barnarda_c_violet_sapling.name=Barnarda C Tree Sapling
 tile.barnarda_c_leaves_1.name=Barnarda C Leaves
 tile.barnarda_c_farmland.name=Barnarda C Farmland
 
@@ -232,10 +232,10 @@ tile.assembly_machine.name=Assembly Machine
 tile.assembly_machine.desc=Modified compressor. Welds materials together with a high-precision laser.
 
 tile.fuel_generator.name=Fuel Generator
-tile.fuel_generator.desc=Fuel Generator uses fuel to produce a decent amount of energy. A good option for fuel magnates.
+tile.fuel_generator.desc=Fuel Generator uses fuel or lava to produce a decent amount of energy. A good option for fuel magnates.
 
 tile.modern_solarpanel.name=Hybrid Solar Panel
-tile.modern_solarpanel.desc=A Hybrid Solar Panel using gold-platted panels, produces twice as much energy as the Advanced panel.
+tile.modern_solarpanel.desc=A Hybrid Solar Panel using gold-platted panels, produces 4 times as much energy as the Advanced panel.
 
 tile.gravitation_module.name=Gravity Module
 tile.gravitation_module.desc=Creates Earth-like gravity within custom radius in all directions.
@@ -243,11 +243,11 @@ tile.gravitation_module.desc=Creates Earth-like gravity within custom radius in 
 tile.wind_generator.name=Wind Turbine
 tile.wind_generator.desc=Generates energy from wind streams, providing some energy on a planet with an atmosphere.
 
-tile.rocket_assembler.name=Rocket Assembly
+tile.rocket_assembler.name=Rocket Assembler
 tile.rocket_assembler.desc=Assembles rockets from components made in the NASA workbench.
 
 tile.universal_recycler.name=Universal Recycler
-tile.universal_recycler.desc=Recycles one resource into another. Sometimes resulting resource is liquid.
+tile.universal_recycler.desc=Recycles one resource into another. Sometimes the resulting resource is a liquid.
 
 tile.liquid_extractor.name=Liquid Collector
 tile.liquid_extractor.desc=Gathers liquid below.
@@ -262,15 +262,15 @@ tile.hydroponic_farm.name=Hydroponic Farm Block
 tile.hydroponic_farm.desc=Install up to three of those above Hydroponic Base. Required for operation of Hydroponic Farm.
 
 tile.radiation_stabiliser.name=Magnetic Field Generator
-tile.radiation_stabiliser.desc=Creates a field that protects against solar radiation. Range can be extended by installing modules.
+tile.radiation_stabiliser.desc=Creates a field that protects you from solar radiation. Range can be extended by installing modules.
 
-tile.panel_controller.name=Mini-Panels Controller
-tile.panel_controller.desc=Collects energy from the nearby Solar Mini-Panels. Press Shift + Right Click on it to see effective range.
+tile.panel_controller.name=Mini Solar Panel Controller
+tile.panel_controller.desc=Collects energy from the nearby Mini Solar Panels. Press Shift + Right Click on it to see effective range.
 
-tile.single_solarpanel.name=Solar Mini-Panel
+tile.single_solarpanel.name=Mini Solar Panel
 tile.single_solarpanel.desc=A single variant of a solar panel. Requires Mini-Panels Controller.
 
-tile.modern_single_solarpanel.name=Modern Solar Mini-Panel
+tile.modern_single_solarpanel.name=Modern Mini Solar Panel
 tile.modern_single_solarpanel.desc=More efficient panel than normal one. Requires Mini-Panels Controller.
 
 tile.modern_storage_module.name=Modern Energy Cluster
@@ -393,9 +393,9 @@ item.schematic_box.name=Schematics Box
 item.module_base.name=Blank Module
 item.blank_schematic.name=Blank Schematic
 item.volcanic_stone.name=Volcanic Shard
-item.meteoric_iron_fragments.name=Meteoric Iron Fragments
+item.meteoric_iron_fragments.name=Fragmented Meteoric Iron
 item.uranium_fragments.name=Uranium
-item.temp_shield_control.name=Prototype Controller Shield
+item.temp_shield_control.name=Prototype Shield Controller
 item.ice_bucket.name=Ice Bucket
 item.emergency_portable_teleport.name=Portable Emergency Teleport
 item.guide_book.name=[WIP] Info-Pad
@@ -484,7 +484,7 @@ potion.antiradiation=Antiradiation Effect
 #|||||||||||||||||GUI||||||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 gui.available_modules.desc=Available modules:
-gui.schematic_oxtanks.desc=Oxygen EPP Tank
+gui.schematic_oxtanks.desc=Environmental Protection Oxygen Tank
 
 gui.tier1.desc=Tier 1
 gui.tier2.desc=Tier 2
@@ -494,7 +494,7 @@ gui.tier5.desc=Tier 5
 gui.tier6.desc=Tier 6
 
 gui.bonemeal.desc=It seems that this item works similarly to bone meal.
-gui.schematic_box.desc=Contains basic rocket schematics. Use Right Click to open it.
+gui.schematic_box.desc=Contains basic rocket schematics. Right Click to open it.
 
 gui.gravitation_module_stabilisation_1.desc=With module "Stabilization" installed
 gui.gravitation_module_stabilisation_2.desc=it will stabilize atmospheric pressure.
@@ -506,18 +506,18 @@ gui.spacesuit.desc.light=Light spacesuit provides protection from solar radiatio
 gui.spacesuit.desc.heavy=Heavy spacesuit provides protection from solar radiation and stabilizes atmospheric pressure.
 
 
-gui.module_expander.desc=Slot for the module "Expander". Increases the range of the magnetic field.
+gui.module_expander.desc=Slot for the module "Expander". It increases the range of the magnetic field.
 gui.temp_shield_control.desc=Provides protection against atmospheric corrosion, but degrades over time.
 gui.emergency_portable_teleport.desc=Emergency teleport to anchor point. Triggers with HP below 6. Shift+Right Click to set destination point, Right Click to turn on/off.
 gui.planet_shield_stability_1.desc=With module "Stabilization" the shield
-gui.planet_shield_stability_2.desc=will collect meteorite fragments in this slot.
+gui.planet_shield_stability_2.desc=will collect meteoric iron fragments in this slot.
 gui.ice_bucket.desc=You can obtain it by Right Clicking on ice with an empty bucket.
 gui.animal_cage.desc=Allows you to transport animals. It is destroyed when the animal is released.
 gui.animal_cage_stored.desc=Stored Animal:
 gui.plasma_tools.desc=High-tech instruments using plasma. When used, they consume a plasma charge and heat up. Automatically replenish the charge from the capsules in the inventory. Do not break.
 gui.gas_extractor.desc=Collects gases in the canisters located in the inventory.
 gui.geological_scanner.desc=Allows you to determine the rock within the radius of work, scan the depth for the presence of oil, lava, gas.
-gui.atmospheric_value_work.desc=Place the Atmospheric Value to make the mechanism work.
+gui.atmospheric_value_work.desc=Place the Atmospheric Valve to make the mechanism work.
 
 
 gui.not_attached.desc=Not attached
@@ -540,7 +540,7 @@ gui.status.energy_storage_is_full.name=Energy store is full!
 gui.message.active_pressure_shield.name=Atm. pressure shield is currently active.
 
 gui.message.needoxygen=Oxygen is required to perform this action.
-gui.message.needthermal=Thermal control are required to perform this action.
+gui.message.needthermal=Thermal control is required to perform this action.
 gui.message.needoxygen.food=Oxygen is required to use traditional food. You can use canned food instead.
 gui.message.invalid_teleport_conf=Invalid teleport configuration or no energy.
 gui.message.cant_place=Can't place here.
@@ -549,7 +549,7 @@ gui.message.noradiation=You don't have solar radiation! It's a good thing!
 gui.message.emergency_teleport=Emergency teleport successfully used. Coordinates:
 gui.message.can_find_in_dungeon=Can be found in dungeons.
 
-gui.message.need_advanced_lp.desc=Can only place on Advanced Landing Pad.
+gui.message.need_advanced_lp.desc=Can only be placed on the Advanced Landing Pad.
 gui.message.engine_type.name=Engine Type:
 gui.message.effect_visible.name=Show border
 
@@ -574,17 +574,17 @@ gui.module.caninstall=Can install modules in Modification Table.
 gui.module.list=List of modules:
 
 gui.module.sensor=Sensor Glasses
-gui.module.sensor.desc=Adds Sensor Glasses to helmet. Displays nearby ores and monsters.
+gui.module.sensor.desc=Adds Sensor Glasses to the helmet. Displays nearby ores and monsters.
 gui.module.nightvision=Night Vision
 gui.module.nightvision.desc=Allows you to see in the darkness. Useful for studying dark places without torches.
 gui.module.jetpack=Electric Jetpack
-gui.module.jetpack.desc=Integrated jetpack. Allows you to flutter like a butterfly until the charge in chestplate runs out.
+gui.module.jetpack.desc=Integrated jetpack. Allows you to flutter like a butterfly until the charge in the chestplate runs out.
 gui.module.speed=Speed Boosters
 gui.module.speed.desc=Installing boosters slightly increases your running speed. Now you can run away from the enemy even faster!
 gui.module.gravity=Gravity Force
 gui.module.gravity.desc=The layer of magnesium plates, as it turns out, gives the effect of gravity. Adaptation on the planets is now much better!
 gui.module.stepassist=Bigger Step
-gui.module.stepassist.desc=It would seem that the installing slimeball wouldn't do anything... But now you can run up blocks like a staircase!
+gui.module.stepassist.desc=It would seem that installing the slimeball wouldn't do anything... But now you can run up blocks like a staircase!
 gui.module.jump=High Jump
 gui.module.jump.desc=Installing pistons was a good idea! Now you can jump 2 times higher than usual!
 gui.module.energy=Advanced Battery
@@ -703,13 +703,13 @@ book.page.actual_update.name=Actual Update
 #|/////////////////////////////////////////|
 #||||||||||||Book-Celestial Bodies||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-book.page.star.sol.desc=!c_ySol - Yellow dwarf. !c_wHumanity's home star.
+book.page.star.sol.desc=!c_ySol is a yellow dwarf. !c_wIt is humanity's home star.
 book.page.solarsystem.sol.asteroids=The asteroid belt is a massive cluster of asteroids. Many asteroids contain a large amount of minerals.
 book.page.solarsystem.sol.ceres=Ceres is a dwarf planet in the Asteroid Belt. It contains copious amounts of meteoric iron and dolomite crystals.
 book.page.solarsystem.sol.jupiter=Jupiter is a gas giant with many moons that can be explored.
 book.page.solarsystem.sol.callisto=Callisto is Jupiter's 4th & last moon.
 
-book.page.star.barnarda_a.desc=!c_yBarnard's Star is an orange dwarf. It is a !c_wA star close to the sun.
+book.page.star.barnarda_a.desc=!c_yBarnard's Star is an orange dwarf. !c_wIt is a star close to the sun.
 book.page.solarsystem.barnards.barnarda_b=Barnarda B is a gas giant located close to its star. It has a ring made of tiny stones.
 book.page.solarsystem.barnards.barnarda_b1=Barnarda B's ring. It is made of many tiny stones.
 book.page.solarsystem.barnards.barnarda_c=Barnarda C is a planet located in the !c_ghabitable zone !c_wof its star. It has suitable conditions for life.
@@ -723,7 +723,7 @@ book.page.solarsystem.barnards.barnarda_e=Barnarda E is a distant rocky planet.
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 book.page.solar_radiation.name=Solar Radiation
 book.page.solar_radiation.text=Solar Radiation is a negative effect that gradually kills the player. !nWhen the radiation scale crosses the !c_rred !c_wborder effect is activated. !nIf a player is in a shelter or underground the radiation does not accumulate and decreases if the scale is above the !c_rred !c_wborder. !n!nYou can get rid of the remaining radiation by using !c_gAntiradiation Tablets. !c_w!nProtect yourself from radiation by wearing a !c_oSpace suit !c_wor being inside a bubble from a !c_oMagnetic Field Generator.
-book.page.atmosphere_pressure.name=Atmosphere Pressure
-book.page.atmosphere_pressure.text=Atmospheric pressure is one of the main problems when colonizing planets with atmosphere. !nWith a !c_rhigh !c_watmospheric pressure you'll experience various negative effects, such as nausea, blindness and slowness. !n!nWith !c_oeven higher !c_watmospheric pressure you'll start to lose health. !nIf the pressure scale is !c_ymaxed out !c_wyou'll die instantly. !nProtect yourself from radiation by wearing a !c_oSpacesuit !c_wor being inside a !c_oGravity Module's !c_wrange. 
+book.page.atmosphere_pressure.name=Atmospheric Pressure
+book.page.atmosphere_pressure.text=Atmospheric pressure is one of the main problems when colonizing planets with atmosphere. !nWith a !c_rhigh !c_watmospheric pressure you'll experience various negative effects, such as nausea, blindness and slowness. !n!nWith !c_oeven higher !c_watmospheric pressure you'll start to lose health. !nIf the pressure scale is !c_ymaxed out !c_wyou'll die instantly. !nProtect yourself from radiation by wearing a !c_oSpace suit !c_wor being inside a !c_oGravity Module's !c_wrange. 
 book.page.temp_on_planet.name=Temperature
-book.page.temp_on_planet.text=In GalaxySpace temperature plays a much larger role. !nYou no longer can plant crops in space since they'll die after a little while. Now you'll have to protect your farms by isolating them from environment. !n!n!nAdditionally, you can only take !c_gcanned food !c_wwhile in vacuum. !nLiquids in space will either freeze or vaporize (depending on the temperature of a planet).
+book.page.temp_on_planet.text=In GalaxySpace temperature plays a much larger role. !nYou no longer can plant crops in space since they'll die after a little while. Now you'll have to protect your farms by isolating them from the environment. !n!n!nAdditionally, you can only take !c_gcanned food !c_wwhile in vacuum. !nLiquids in space will either freeze or vaporize (depending on the temperature of a planet).
