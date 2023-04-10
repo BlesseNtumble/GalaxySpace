@@ -81,8 +81,6 @@ import galaxyspace.systems.SolarSystem.planets.overworld.world.gen.NickelGenerat
 import galaxyspace.systems.SolarSystem.planets.pluto.dimension.TeleportTypePluto;
 import galaxyspace.systems.SolarSystem.planets.pluto.dimension.WorldProviderPluto;
 import galaxyspace.systems.SolarSystem.planets.test.dimension.WorldProviderTest_WE2;
-import galaxyspace.systems.SolarSystem.satellites.jupiter.dimension.TeleportTypeJupiterSS;
-import galaxyspace.systems.SolarSystem.satellites.jupiter.dimension.WorldProviderJupiterSS;
 import galaxyspace.systems.SolarSystem.satellites.mars.dimension.TeleportTypeMarsSS;
 import galaxyspace.systems.SolarSystem.satellites.mars.dimension.WorldProviderMarsSS;
 import galaxyspace.systems.SolarSystem.satellites.venus.dimension.TeleportTypeVenusSS;

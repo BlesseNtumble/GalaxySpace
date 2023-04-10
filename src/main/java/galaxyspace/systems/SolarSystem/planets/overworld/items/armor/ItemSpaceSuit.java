@@ -56,7 +56,7 @@ public abstract class ItemSpaceSuit extends ItemElectricArmor implements ISensor
 	public static String[] suit_buttons = new String[] {"helmet_button", "chest_button", "legs_button", "boots_button"};
 	public static boolean[] pressedKey = new boolean[3];
 	private static HashMap<EntityEquipmentSlot, ItemSpaceSuitModel> models = new HashMap<EntityEquipmentSlot, ItemSpaceSuitModel>();
-	private static ItemSpaceSuitModel jetpack_model = new ItemSpaceSuitModel(5);
+	private static ItemSpaceSuitModel jetpack_model;
 	
 	private float jumpCharge;
 	
@@ -276,8 +276,12 @@ public abstract class ItemSpaceSuit extends ItemElectricArmor implements ISensor
 			
 		ModelBiped armorModel = models.get(armorSlot);
 		if(armorSlot.equals(EntityEquipmentSlot.CHEST) && itemStack.hasTagCompound() && itemStack.getTagCompound().getBoolean("jetpack"))
-    		armorModel = jetpack_model;
-
+		{
+			if(jetpack_model == null)
+				jetpack_model = new ItemSpaceSuitModel(5);
+			
+			armorModel = jetpack_model;
+		}
 		
 		if (itemStack.getItem() instanceof ItemSpaceSuit) {
 			armorModel = fillingArmorModel(armorModel, entityLiving);

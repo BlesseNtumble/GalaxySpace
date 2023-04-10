@@ -167,7 +167,7 @@ public class GSItems {
 		registerItem(ROCKET_TIER_4);
 		registerItem(ROCKET_TIER_5);
 		registerItem(ROCKET_TIER_6);
-		registerItem(ROCKET_MULTI_SEAT);
+		//registerItem(ROCKET_MULTI_SEAT);
 		//registerItem(ROCKET_FLUID_CRAGO);
 		registerItem(MARS_ROVER);
 		

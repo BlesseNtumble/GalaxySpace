@@ -9,7 +9,7 @@ import galaxyspace.core.GSItems;
 import galaxyspace.core.prefab.items.modules.ItemModule;
 import galaxyspace.core.util.GSCreativeTabs;
 import galaxyspace.core.util.GSUtils.Module_Type;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.modules.EPP;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.modules.armor.EPP;
 import micdoodle8.mods.galacticraft.core.items.ItemOxygenTank;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;

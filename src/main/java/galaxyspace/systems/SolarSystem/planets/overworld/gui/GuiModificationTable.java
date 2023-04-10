@@ -45,6 +45,7 @@ public class GuiModificationTable extends GuiContainerGC{
     {
         super(new ContainerModificationTable(par1InventoryPlayer, tileEntity));
         this.tileEntity = tileEntity;
+        this.xSize = 250;
         this.ySize = 204;        
     }
 	
@@ -114,7 +115,7 @@ public class GuiModificationTable extends GuiContainerGC{
 
 		int containerWidth = (this.width - this.xSize) / 2;
 		int containerHeight = (this.height - this.ySize) / 2;
-		this.drawTexturedModalRect(containerWidth, containerHeight, 0, 0, this.xSize, this.ySize); // Base Gui
+		this.drawTexturedModalRect(containerWidth, containerHeight, 0, 0, this.xSize - 74, this.ySize); // Base Gui
   
 		// Slots
         for(int i = 0; i < this.inventorySlots.inventorySlots.size(); i++)
@@ -217,9 +218,9 @@ public class GuiModificationTable extends GuiContainerGC{
 
 					GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 					//Left side
-					this.drawTexturedModalRect(containerWidth - 88, containerHeight + 12, 0, 12, xSize / 2, ySize / 2 + 1);
+					this.drawTexturedModalRect(containerWidth - 88, containerHeight + 12, 0, 12, (xSize - 74)/ 2, ySize / 2 + 1);
 		        	//Right side
-					this.drawTexturedModalRect(containerWidth + 173, containerHeight + 12, 85, 12, xSize / 2, ySize / 2 + 1);
+					this.drawTexturedModalRect(containerWidth + 173, containerHeight + 12, 85, 12, (xSize - 74) / 2, ySize / 2 + 1);
 		        	
 					this.fontRenderer.drawSplitString(GCCoreUtil.translate("gui.message.required_equipment.name"), containerWidth - 65, containerHeight + 15, 80, 0xFFFF);
 										

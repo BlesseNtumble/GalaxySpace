@@ -7,7 +7,6 @@ import javax.annotation.Nullable;
 import asmodeuscore.api.dimension.IProviderFog;
 import asmodeuscore.api.dimension.IProviderWeather;
 import asmodeuscore.core.astronomy.WeatherData;
-import asmodeuscore.core.astronomy.WeatherData.WeatherType;
 import asmodeuscore.core.astronomy.dimension.world.data.DustStormSaveData;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
@@ -18,7 +17,6 @@ import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_CaveGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_RavineGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
-import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.systems.SolarSystem.planets.mars.dimension.sky.SkyProviderMars;
 import galaxyspace.systems.SolarSystem.planets.mars.dimension.sky.WeatherProviderMars;
 import galaxyspace.systems.SolarSystem.planets.mars.world.gen.we.Mars_High_Plains;
@@ -279,11 +277,11 @@ public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProv
 		mount_layer.add(MarsBlocks.marsBlock.getStateFromMeta(5), MarsBlocks.marsBlock.getStateFromMeta(6), -256, 0,   -2, -1,  true);
 		mount_layer.add(Blocks.BEDROCK.getDefaultState(), 0, 2, 0, 0, true);
 		
-		WE_Biome.addBiomeToGeneration(cp, new Mars_Plains(-0.0D, 0.0D));
-		WE_Biome.addBiomeToGeneration(cp, new Mars_High_Plains(-0.8D, 0.8D));
-		WE_Biome.addBiomeToGeneration(cp, new Mars_Mountains(-1.2D, 1.2D));		
-		WE_Biome.addBiomeToGeneration(cp, new Mars_High_Plains(-1.8D, 1.8D));
-		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-2.2D, 2.2D, 2.4F, 4, 180, 30, layer));
+		WE_Biome.addBiomeToGeneration(cp, new Mars_Plains(-0.0D, 0.0D).setAbsoluteValue());
+		WE_Biome.addBiomeToGeneration(cp, new Mars_High_Plains(-0.4D, 0.4D).setAbsoluteValue());
+		WE_Biome.addBiomeToGeneration(cp, new Mars_Mountains(-1.2D, 1.2D).setAbsoluteValue());		
+		WE_Biome.addBiomeToGeneration(cp, new Mars_High_Plains(-2.0D, 2.0D).setAbsoluteValue());
+		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-2.8D, 2.8D, 2.4F, 4, 180, 30, layer).setAbsoluteValue());
 		/*WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(0D, 0D, 2.8F, 3, 95, 25, layer));
 		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-0.4D, 0.4D, 11.4F, 3, 155, 5, mount_layer));
 		WE_Biome.addBiomeToGeneration(cp, new WE_BaseBiome(-1.4D, 1.1D, 2.8F, 3, 95, 15, layer));*/

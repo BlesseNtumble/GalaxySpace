@@ -187,7 +187,7 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
     	if(getFanType() < 0)
     		return 0;
 
-    	float watts = MathHelper.floor((10.0F + 5.0F * Math.round(this.getPos().getY() / 15.0F) * (getFanType() + 1)) * this.getWindBoost()) * (GSConfigEnergy.coefficientWindTurbine) ;
+    	float watts = MathHelper.floor((10.0F + 5.0F  * (getFanType() + 1)) * this.getWindBoost()) * (GSConfigEnergy.coefficientWindTurbine) ;
     	if(this.advanced)
     		watts *= 2;
     	return watts;
@@ -197,10 +197,10 @@ public class TileEntityWindGenerator extends TileBaseUniversalElectricalSource i
     {
     	if(this.world.provider instanceof IGalacticraftWorldProvider && !(this.world.provider instanceof WorldProviderSpaceStation))
     		if(this.world.canBlockSeeSky(this.getPos().up()))
-    			return ((IGalacticraftWorldProvider) this.world.provider).getWindLevel();
+    			return ((IGalacticraftWorldProvider) this.world.provider).getWindLevel() * Math.round(this.getPos().getY() / 60.0F);
     	
     	if(this.world.provider instanceof WorldProviderSurface)
-    		return this.world.isThundering() ? 3.0F : 1.0F ;
+    		return (this.world.isThundering() ? 3.0F : 1.0F) * this.getPos().getY() / 60.0F;
     	
         return 0.0F;
     }

@@ -1,0 +1,31 @@
+{
+    "display": {
+        "title": {
+            "translate": "advancement.galaxyspace.root.title",
+            "bold": true,
+            "color": "gray"
+        },
+        "description": {
+            "translate": "advancement.galaxyspace.root.description"
+        },
+        "icon": {
+            "item": "galaxyspace:rocket_tier_4",
+            "data": 0
+        },
+        "frame": "task",
+        "show_toast": false,
+        "announce_to_chat": false,
+        "hidden": false,
+        "background": "galaxyspace:textures/blocks/solarsystem/ceres/ceres_dungeon_floor.png"
+    },
+    "criteria": {
+        "tick": {
+            "trigger": "minecraft:tick"
+        }
+    },
+    "requirements": [
+        [
+            "tick"
+        ]
+    ]
+}

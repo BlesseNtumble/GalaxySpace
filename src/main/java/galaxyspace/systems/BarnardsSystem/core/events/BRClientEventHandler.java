@@ -39,8 +39,8 @@ public class BRClientEventHandler {
         	{
 				GL11.glEnable(GL11.GL_BLEND);
                 minecraft.renderEngine.bindTexture(ringTexture);
-                float size = ((GuiCelestialSelection)minecraft.currentScreen).getWidthForCelestialBody(event.celestialBody) / 6.0F;
-                ((GuiCelestialSelection)minecraft.currentScreen).drawTexturedModalRect(-9.2F * size, -1.75F * size, 17.9F * size, 3.5F * size, 0, 0, 32, 7, false, false, 32, 7);
+                float size = ((GuiCelestialSelection)minecraft.currentScreen).getWidthForCelestialBody(event.celestialBody) / 6.1F;
+                ((GuiCelestialSelection)minecraft.currentScreen).drawTexturedModalRect(-8.6F * size, -.7F * size, 17.9F * size, 3.5F * size, 0, 0, 32, 7, false, false, 32, 7);
             }
         }
     }
