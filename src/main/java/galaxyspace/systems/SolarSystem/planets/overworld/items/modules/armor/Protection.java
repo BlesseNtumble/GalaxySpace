@@ -1,41 +1,41 @@
-package galaxyspace.systems.SolarSystem.planets.overworld.items.modules;
+package galaxyspace.systems.SolarSystem.planets.overworld.items.modules.armor;
 
+import galaxyspace.core.GSItems;
 import galaxyspace.core.prefab.items.modules.ItemModule;
 import galaxyspace.core.util.GSUtils.Module_Type;
-import micdoodle8.mods.galacticraft.core.GCItems;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 
-public class SensorLens extends ItemModule {
+public class Protection extends ItemModule {
 
 	@Override
 	public String getName() {
-		return "sensor";
+		return "protection";
 	}
 
 	@Override
 	public ItemStack getIcon() {
-		return new ItemStack(GCItems.sensorGlasses);
+		return new ItemStack(GSItems.COBALT_CHEST, 1, 0);
 	}
-
+	
 	@Override
 	public EntityEquipmentSlot getEquipmentSlot() {
-		return EntityEquipmentSlot.HEAD;
+		return null;
 	}
 
 	@Override
 	public boolean isActiveModule() {
-		return true;
+		return false;
 	}
 
 	@Override
 	public ItemStack[] getItemsForModule() {
-		return new ItemStack[] { new ItemStack(GCItems.sensorGlasses, 1, 0) };
+		return new ItemStack[] { new ItemStack(GSItems.INGOTS, 16, 0)};		
 	}
 
 	@Override
 	public ItemModule[] getForrbidenModules() {
-		return new ItemModule[] { new Nightvision() };
+		return new ItemModule[] {new Energy()};
 	}
 
 	@Override
@@ -44,5 +44,6 @@ public class SensorLens extends ItemModule {
 	}
 	
 	@Override
-	public int getDischargeCount() { return 2; }
+	public int getDischargeCount() { return 0; }
+	
 }

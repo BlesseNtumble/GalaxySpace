@@ -1,4 +1,4 @@
-package galaxyspace.systems.SolarSystem.planets.overworld.items.modules;
+package galaxyspace.systems.SolarSystem.planets.overworld.items.modules.armor;
 
 import galaxyspace.core.GSItems;
 import galaxyspace.core.prefab.items.modules.ItemModule;
@@ -6,36 +6,36 @@ import galaxyspace.core.util.GSUtils.Module_Type;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 
-public class Protection extends ItemModule {
+public class Gravity extends ItemModule {
 
 	@Override
 	public String getName() {
-		return "protection";
+		return "gravity";
 	}
 
 	@Override
 	public ItemStack getIcon() {
-		return new ItemStack(GSItems.COBALT_CHEST, 1, 0);
+		return new ItemStack(GSItems.COMPRESSED_PLATES, 1, 1);
 	}
 	
 	@Override
 	public EntityEquipmentSlot getEquipmentSlot() {
-		return null;
+		return EntityEquipmentSlot.FEET;
 	}
 
 	@Override
 	public boolean isActiveModule() {
-		return false;
+		return true;
 	}
 
 	@Override
 	public ItemStack[] getItemsForModule() {
-		return new ItemStack[] { new ItemStack(GSItems.INGOTS, 16, 0)};		
+		return new ItemStack[] { new ItemStack(GSItems.COMPRESSED_PLATES, 2, 1) };		
 	}
 
 	@Override
 	public ItemModule[] getForrbidenModules() {
-		return new ItemModule[] {new Energy()};
+		return new ItemModule[] {new Jump() };
 	}
 
 	@Override
@@ -44,6 +44,6 @@ public class Protection extends ItemModule {
 	}
 	
 	@Override
-	public int getDischargeCount() { return 0; }
+	public int getDischargeCount() { return 2; }
 	
 }

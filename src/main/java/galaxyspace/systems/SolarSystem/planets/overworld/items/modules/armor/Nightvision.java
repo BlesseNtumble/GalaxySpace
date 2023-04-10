@@ -1,4 +1,4 @@
-package galaxyspace.systems.SolarSystem.planets.overworld.items.modules;
+package galaxyspace.systems.SolarSystem.planets.overworld.items.modules.armor;
 
 import galaxyspace.core.prefab.items.modules.ItemModule;
 import galaxyspace.core.util.GSUtils.Module_Type;

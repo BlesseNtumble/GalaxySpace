@@ -1,4 +1,4 @@
-package galaxyspace.systems.SolarSystem.planets.overworld.items.modules;
+package galaxyspace.systems.SolarSystem.planets.overworld.items.modules.armor;
 
 import galaxyspace.core.GSItems;
 import galaxyspace.core.prefab.items.modules.ItemModule;
@@ -7,16 +7,16 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class Energy extends ItemModule {
+public class EPP extends ItemModule{
 
 	@Override
 	public String getName() {
-		return "energy";
+		return "epp";
 	}
 
 	@Override
 	public ItemStack getIcon() {
-		return new ItemStack(GSItems.ADVANCED_BATTERY, 1, GSItems.ADVANCED_BATTERY.getMaxDamage());
+		return new ItemStack(GSItems.OXYGENTANK_TIER_EPP, 1, 1);
 	}
 
 	@Override
@@ -31,16 +31,17 @@ public class Energy extends ItemModule {
 
 	@Override
 	public ItemStack[] getItemsForModule() {
-		return new ItemStack[] { new ItemStack(GSItems.ADVANCED_BATTERY, 1, OreDictionary.WILDCARD_VALUE) };
+		return new ItemStack[] { new ItemStack(GSItems.OXYGENTANK_TIER_EPP, 1, OreDictionary.WILDCARD_VALUE) };
 	}
 
 	@Override
 	public ItemModule[] getForrbidenModules() {
-		return new ItemModule[] {new Protection()};
+		return null;
 	}
 
 	@Override
 	public Module_Type getType() {
-		return Module_Type.SPACESUIT;
+		return Module_Type.OXYGEN_TANK;
 	}
+
 }
