@@ -593,6 +593,8 @@ gui.module.protection=Protection
 gui.module.protection.desc=Cobalt inserts in the suit give you extra protection against damage.
 gui.module.water_breathing=Water Breathing
 gui.module.water_breathing.desc=This module will allow you to be underwater much longer, consuming oxygen from your tanks.
+gui.module.autofeeding=Autofeeding
+gui.module.autofeeding.desc=Automatically consumes food from the inventory, saturating the player.
 
 gui.module.sublight_engine=Sublight Engine
 gui.module.sublight_engine.desc=Next generation spacecraft engine. Allows space travel between Solar Systems.

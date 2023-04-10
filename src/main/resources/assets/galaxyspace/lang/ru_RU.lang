@@ -565,6 +565,9 @@ gui.module.protection=Защита
 gui.module.protection.desc=Кобальтовые вставки в костюм придали ему большую защиту от урона.
 gui.module.water_breathing=Подводное дыхание
 gui.module.water_breathing.desc=Этот модуль позволит вам намного дольше быть под водой, затрачивая кислород из ваших баллонов.
+gui.module.autofeeding=Автокормление
+gui.module.autofeeding.desc=Автоматически потребляет еду из инвентаря, насыщая игрока.
+
 
 gui.module.sublight_engine=Суб-световой двигатель
 gui.module.sublight_engine.desc=Двигатель нового поколения. Позволяет покинуть пределы текущей звездной системы.
