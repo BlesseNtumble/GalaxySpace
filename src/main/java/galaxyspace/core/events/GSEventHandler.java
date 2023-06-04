@@ -206,7 +206,6 @@ public class GSEventHandler {
         newStats.copyFrom(oldStats, !event.isWasDeath()|| event.getOriginal().world.getGameRules().getBoolean("keepInventory"));
    
 	}
-
 	
 	@SubscribeEvent
     public void onPlayerLogin(PlayerLoggedInEvent event)
@@ -524,7 +523,7 @@ public class GSEventHandler {
 	{
 		return !s.isEmpty() && s.getItem() instanceof ItemFood && !(s.getItem() instanceof micdoodle8.mods.galacticraft.core.items.ItemFood) && !(s.getItem() instanceof IItemSpaceFood);
 	}
-
+	/*
 	@SubscribeEvent
 	public void onPortalCreated(BlockEvent.PortalSpawnEvent e)
 	{
@@ -535,7 +534,7 @@ public class GSEventHandler {
 			}
 		}
 	}
-	
+	*/
 	@SubscribeEvent
 	public void onEntityUpdate(LivingUpdateEvent event)
 	{
