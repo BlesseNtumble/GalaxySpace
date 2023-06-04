@@ -66,9 +66,6 @@ public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProv
     
     @Override
     public double getFuelUsageMultiplier() { return 0.8; }
-
-    @Override
-    public double getMeteorFrequency() { return 1.0; }
  
     @Override
     public float getSoundVolReductionAmount() { return Float.MAX_VALUE; }
