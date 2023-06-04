@@ -262,8 +262,8 @@ public class SolarSystemBodies implements IBodies{
 		BodiesRegistry.setProviderData(planetKuiperBelt, WorldProviderKuiperBelt.class, GSConfigDimensions.dimensionIDKuiperBelt, 6, ACBiome.ACSpace);
 		if(GSConfigDimensions.enableKuiperBelt) GalaxyRegistry.registerPlanet(planetKuiperBelt);
 		
-		planetHaumea = BodiesRegistry.registerExPlanet(sol, "haumea", GalaxySpace.ASSET_PREFIX, 3.75F);
-		BodiesRegistry.setOrbitData(planetHaumea, (float) Math.PI + 1.64F, 1.0F, 392.9F);
+		planetHaumea = BodiesRegistry.registerExPlanet(sol, "haumea", GalaxySpace.ASSET_PREFIX, 3.5F);
+		BodiesRegistry.setOrbitData(planetHaumea, (float) Math.PI + 1.64F, 1.0F, 392.9F, 0, 0, -55F, 0F);
 		BodiesRegistry.setAtmosphere(planetHaumea, false, false, false, -8.0F, 0.0F, 0.0F);
 		BodiesRegistry.setPlanetData(planetHaumea, 0F, 12000, BodiesRegistry.calculateGravity(2.02F), true);
 		BodiesRegistry.setProviderData(planetHaumea, WorldProviderHaumea_WE.class, GSConfigDimensions.dimensionIDHaumea, 6, ACBiome.ACSpace);
