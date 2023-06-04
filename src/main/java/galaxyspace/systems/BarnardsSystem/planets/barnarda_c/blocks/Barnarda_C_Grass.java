@@ -34,7 +34,7 @@ public class Barnarda_C_Grass extends Block implements IGrowable{
 		super(Material.GRASS);
 		this.setTranslationKey("barnarda_c_grasses");
 		this.setHardness(0.8F);
-        this.setSoundType(SoundType.GROUND);
+        this.setSoundType(SoundType.PLANT);
         this.setHarvestLevel("shovel", 0);
 	}
 
