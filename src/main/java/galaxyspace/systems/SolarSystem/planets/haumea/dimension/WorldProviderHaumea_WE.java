@@ -127,6 +127,7 @@ public class WorldProviderHaumea_WE extends WE_WorldProviderSpace implements IPr
         return new CloudRenderer();
     }
 
+    @Override
 	@SideOnly(Side.CLIENT)
     public IRenderHandler getSkyRenderer()
     {

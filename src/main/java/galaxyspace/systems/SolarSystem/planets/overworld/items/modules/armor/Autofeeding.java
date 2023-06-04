@@ -49,8 +49,8 @@ public class Autofeeding extends ItemModule{
 		if(!world.isRemote && player.getFoodStats().needFood()) {
 			for(ItemStack stack : player.inventory.mainInventory) {			
 				if(stack.getItem() instanceof net.minecraft.item.ItemFood) {
-					stack.shrink(1);					
 					player.getFoodStats().addStats((net.minecraft.item.ItemFood)stack.getItem(), stack);
+					stack.shrink(1);										
 					break;
 				}
 			}

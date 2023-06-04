@@ -61,7 +61,7 @@ public class UniversalRecyclerRecipeWrapper implements IRecipeWrapper
     		minecraft.fontRenderer.drawString("Chances: ", recipeWidth / 2 - 20, 4, 0xFFFFFF);
     		minecraft.fontRenderer.drawString("Primary slot: " + getChance() + "%", recipeWidth / 2 - 4*8 - 4, 13, 0xFFFFFF);
         	
-    		if(this.output_2 != null)
+    		if(this.output_2 != ItemStack.EMPTY)
     			minecraft.fontRenderer.drawString("Secondary slot: " + getChance_2() + "%", recipeWidth / 2 - 4*9 - 4, 17 + 5, 0xFFFFFF);
     	}
     	
