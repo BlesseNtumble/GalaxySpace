@@ -124,7 +124,7 @@ public class TileEntityWindGeneratorRenderer extends TileEntitySpecialRenderer<T
 			GL11.glRotatef(wind.getBlockMetadata() * 90 + 90, 0.0F, 1.0F, 0.0F);
 			GL11.glScalef(0.87F, 0.87F, 0.87F);
 			this.model.renderPole(0.0625F);
-			GL11.glTranslatef(0.0F, 0.06F, 0.0F);
+			GL11.glTranslatef(0.0F, 0.0F, 0.0F);
 			GL11.glRotatef(wind.angle, 0F, 0F, 1.0F);
 			
 			if (wind.getFanType() >= 0) {
