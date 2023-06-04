@@ -22,7 +22,7 @@ public class SkyProviderKuiperBelt extends SkyProviderBase
 
 	@Override
 	protected float sunSize() {
-		return 1.5F;
+		return 0.4F;
 	}
 
 	@Override
@@ -57,6 +57,6 @@ public class SkyProviderKuiperBelt extends SkyProviderBase
 	public boolean enableRenderPlanet() {return false;}
 	
 	@Override
-	public int expandSizeAura() {return -2;}
+	public int expandSizeAura() {return -4;}
 
 }
