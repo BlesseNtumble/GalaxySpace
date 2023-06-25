@@ -27,6 +27,7 @@ import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.FluidUtil;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockCommandBlock;
 import net.minecraft.block.BlockEnchantmentTable;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.BlockGlass;
@@ -37,6 +38,7 @@ import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.BlockSponge;
 import net.minecraft.block.BlockStainedGlass;
+import net.minecraft.block.BlockStructure;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -52,17 +54,23 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.Packet;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -982,5 +990,87 @@ public class GSUtils {
         tessellator.draw();
         GlStateManager.enableTexture2D();
         GlStateManager.disableBlend();
+    }
+    
+    public static void tryHarvestBlock(ItemStack stack, World worldIn, BlockPos pos, EntityLivingBase entityLiving, int breakRadius) {
+    	   EntityPlayer player = (EntityPlayer) entityLiving;
+           EnumFacing facing = entityLiving.getHorizontalFacing();
+
+           if (entityLiving.rotationPitch < -45.0F)
+           {
+               facing = EnumFacing.UP;
+           }
+           else if (entityLiving.rotationPitch > 45.0F)
+           {
+               facing = EnumFacing.DOWN;
+           }
+           
+           boolean yAxis = facing.getAxis() == EnumFacing.Axis.Y;
+           boolean xAxis = facing.getAxis() == EnumFacing.Axis.X;
+           
+           for (int i = -breakRadius; i <= breakRadius; ++i)
+           {
+               for (int j = -breakRadius; j <= breakRadius && !stack.isEmpty(); ++j)
+               {
+                   if (i == 0 && j == 0)
+                   {
+                       continue;
+                   }
+
+                   BlockPos pos1;
+                   if (yAxis)
+                   {
+                       pos1 = pos.add(i, 0, j);
+                   }
+                   else if (xAxis)
+                   {
+                       pos1 = pos.add(0, i, j);
+                   }
+                   else
+                   {
+                       pos1 = pos.add(i, j, 0);
+                   }
+
+                   //:Replicate logic of PlayerInteractionManager.tryHarvestBlock(pos1)
+                   IBlockState state1 = worldIn.getBlockState(pos1);
+                   float f = state1.getBlockHardness(worldIn, pos1);
+                   if (f >= 0F)
+                   {
+                       BlockEvent.BreakEvent event = new BlockEvent.BreakEvent(worldIn, pos1, state1, player);
+                       MinecraftForge.EVENT_BUS.post(event);
+                       if (!event.isCanceled())
+                       {
+                           Block block = state1.getBlock(); 
+                           if ((block instanceof BlockCommandBlock || block instanceof BlockStructure) && !player.canUseCommandBlock())
+                           {
+                               worldIn.notifyBlockUpdate(pos1, state1, state1, 3);
+                               continue;
+                           }
+                           if(worldIn.isAirBlock(pos1)) continue;
+                           
+                           TileEntity tileentity = worldIn.getTileEntity(pos1);
+                           if (tileentity != null)
+                           {
+                               Packet<?> pkt = tileentity.getUpdatePacket();
+                               if (pkt != null)
+                               {
+                                   ((EntityPlayerMP)player).connection.sendPacket(pkt);
+                               }
+                           }
+       
+                           boolean canHarvest = block.canHarvestBlock(worldIn, pos1, player);
+                           if(canHarvest) {	
+	                           boolean destroyed = block.removedByPlayer(state1, worldIn, pos1, player, canHarvest);	                 
+	                           if (destroyed)
+	                           {
+	                        	   block.onPlayerDestroy(worldIn, pos1, state1);
+	                               block.harvestBlock(worldIn, player, pos1, state1, tileentity, stack);
+	                               //stack.damageItem(1, player);
+	                           }
+                           }
+                       }
+                   }
+               }
+           }
     }
 }

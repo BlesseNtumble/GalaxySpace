@@ -8,6 +8,7 @@ import galaxyspace.api.item.IModificationItem;
 import galaxyspace.core.GSItems;
 import galaxyspace.core.prefab.items.ItemAxeGS;
 import galaxyspace.core.prefab.items.modules.ItemModule;
+import galaxyspace.core.util.GSUtils;
 import galaxyspace.core.util.GSUtils.Module_Type;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS.BasicItems;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
@@ -31,7 +32,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemPlasmaAxe extends ItemAxeGS implements IModificationItem{
 
 	public static String heat = "plasma_heat";
-	private static float max_heat = 10.0F;
+	private static float max_heat = 50.0F;
 	
 	public ItemPlasmaAxe() {
 		super("plasma_axe", GSItems.PLASMA_TOOLS);
@@ -116,6 +117,7 @@ public class ItemPlasmaAxe extends ItemAxeGS implements IModificationItem{
         	if(stack.hasTagCompound() && stack.getTagCompound().hasKey(heat) && stack.getTagCompound().getFloat(heat) < max_heat) 
     			stack.getTagCompound().setFloat(heat, stack.getTagCompound().getFloat(heat) + 0.5F);
         	
+        	//GSUtils.tryHarvestBlock(stack, worldIn, pos, entityLiving, 1);
             stack.damageItem(1, entityLiving);
         }
 
@@ -134,7 +136,7 @@ public class ItemPlasmaAxe extends ItemAxeGS implements IModificationItem{
 		
 		return material != Material.WOOD && material != Material.PLANTS && material != Material.VINE
 				? super.getDestroySpeed(stack, state)
-				: this.efficiency;
+				: 30.0F;
 	}
 	
 	private void tryConsumePlasmaCell(ItemStack stack, EntityLivingBase entityLiving) {
