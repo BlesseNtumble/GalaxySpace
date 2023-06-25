@@ -2,19 +2,16 @@ package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.sky;
 
 import org.lwjgl.opengl.GL11;
 
-import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarClass;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import galaxyspace.GalaxySpace;
 import galaxyspace.systems.BarnardsSystem.BarnardsSystemBodies;
-import galaxyspace.systems.BarnardsSystem.moons.barnarda_c1.dimension.WorldProviderBarnarda_C1_WE;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.WorldProviderBarnarda_C_WE;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.Vec3d;
 
 public class SkyProviderBarnarda_C extends SkyProviderBase{
 
@@ -33,7 +30,7 @@ public class SkyProviderBarnarda_C extends SkyProviderBase{
 
     		float f = 0.9F;
     		GL11.glPushMatrix();
-        	this.renderAtmo(tessellator, -90.0F, this.getCelestialAngle(getDayLength()), 5.2F, new Vector3(120 / 255.0F * f, 160 / 255.0F * f, 180 / 255.0F * f));
+        	this.renderAtmo(tessellator, -90.0F, this.getCelestialAngle(getDayLength()), 5.2F, new Vec3d(120 / 255.0F * f, 160 / 255.0F * f, 180 / 255.0F * f));
         	GL11.glPopMatrix();         	
         }        
      
@@ -66,16 +63,16 @@ public class SkyProviderBarnarda_C extends SkyProviderBase{
 	}
 
 	@Override
-	protected StarColor colorSunAura() {
-		return StarColor.ORANGE;
+	protected StarClass colorSunAura() {
+		return StarClass.ORANGE;
 	}
 
 	@Override
-	protected Vector3 getAtmosphereColor() {
+	protected Vec3d getAtmosphereColor() {
 		if(this.mc.world.provider instanceof WE_WorldProviderSpace)
-			return ((WE_WorldProviderSpace)this.mc.world.provider).getSkyColor();
+			return ((WE_WorldProviderSpace)this.mc.world.provider).getSkyColor().toVec3();
 		
-		return ((WorldProviderSpace)this.mc.world.provider).getSkyColor();
+		return ((WorldProviderSpace)this.mc.world.provider).getSkyColor().toVec3();
 		
 	}
 

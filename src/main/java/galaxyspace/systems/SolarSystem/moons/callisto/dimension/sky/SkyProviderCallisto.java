@@ -2,13 +2,13 @@ package galaxyspace.systems.SolarSystem.moons.callisto.dimension.sky;
 
 import org.lwjgl.opengl.GL11;
 
-import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarClass;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import galaxyspace.GalaxySpace;
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.Vec3d;
 
 public class SkyProviderCallisto extends SkyProviderBase
 {
@@ -34,7 +34,7 @@ public class SkyProviderCallisto extends SkyProviderBase
 	    	if(!test) {
 		    	this.renderImage(jupiterTexture, 0F, 90F, 0F, 20.0F);
 		    	float f = 0.9F;
-		    	this.renderAtmo(tessellator, 90.0F, 0.0F, 20 - 2, new Vector3(120 / 255.0F * f, 110 / 255.0F * f, 120 / 255.0F * f));
+		    	this.renderAtmo(tessellator, 90.0F, 0.0F, 20 - 2, new Vec3d(120 / 255.0F * f, 110 / 255.0F * f, 120 / 255.0F * f));
 		    }
 
 	        if(wait > 0) wait--;
@@ -45,7 +45,7 @@ public class SkyProviderCallisto extends SkyProviderBase
 	        if(test) {
 		    	this.renderImage(jupiterTexture, 0F, 90F, 0F, 20.0F);
 		    	float f = 0.9F;
-		    	this.renderAtmo(tessellator, 90.0F, 0.0F, 20 - 2, new Vector3(120 / 255.0F * f, 110 / 255.0F * f, 120 / 255.0F * f));
+		    	this.renderAtmo(tessellator, 90.0F, 0.0F, 20 - 2, new Vec3d(120 / 255.0F * f, 110 / 255.0F * f, 120 / 255.0F * f));
 		    }
 	    GL11.glPopMatrix(); 
 	}
@@ -76,12 +76,12 @@ public class SkyProviderCallisto extends SkyProviderBase
 	}
 
 	@Override
-	protected StarColor colorSunAura() {
-		return StarColor.WHITE;
+	protected StarClass colorSunAura() {
+		return StarClass.WHITE;
 	}
 
 	@Override
-	protected Vector3 getAtmosphereColor() {
+	protected Vec3d getAtmosphereColor() {
 		return null;
 	}
 	

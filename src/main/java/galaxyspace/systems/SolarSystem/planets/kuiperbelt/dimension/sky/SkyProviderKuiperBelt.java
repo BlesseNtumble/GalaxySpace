@@ -1,12 +1,12 @@
 package galaxyspace.systems.SolarSystem.planets.kuiperbelt.dimension.sky;
 
-import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarClass;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import galaxyspace.GalaxySpace;
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.Vec3d;
 
 public class SkyProviderKuiperBelt extends SkyProviderBase
 {
@@ -41,12 +41,12 @@ public class SkyProviderKuiperBelt extends SkyProviderBase
 	}
 
 	@Override
-	protected StarColor colorSunAura() {
-		return StarColor.WHITE;
+	protected StarClass colorSunAura() {
+		return StarClass.WHITE;
 	}
 
 	@Override
-	protected Vector3 getAtmosphereColor() {
+	protected Vec3d getAtmosphereColor() {
 		return null;
 	}
 	

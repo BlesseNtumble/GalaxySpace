@@ -2,15 +2,14 @@ package galaxyspace.systems.ACentauriSystem.planets.proxima_b.dimension.sky;
 
 import org.lwjgl.opengl.GL11;
 
-import asmodeuscore.api.dimension.IProviderFog;
-import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarClass;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import galaxyspace.GalaxySpace;
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class SkyProviderProxima_B extends SkyProviderBase {
@@ -34,10 +33,10 @@ public class SkyProviderProxima_B extends SkyProviderBase {
 	    	GL11.glRotatef(this.mc.world.getCelestialAngle(ticks) * 360.0F, 0.0F, 0.0F, 1.0F);   
 	        GL11.glRotatef(60F, 1.0F, 0.0F, 0.0F);
 	        GL11.glRotatef(1.5F, 0.0F, 0.0F, 1.0F);
-			this.renderSunAura(tessellator, 0.1F, sunBrightness, StarColor.YELLOW);
+			this.renderSunAura(tessellator, 0.1F, sunBrightness, StarClass.YELLOW);
 			GL11.glRotatef(9F, 1.0F, 0.0F, 0.0F);
 			GL11.glRotatef(-1.5F, 0.0F, 0.0F, 1.0F);
-			this.renderSunAura(tessellator, 0.1F, sunBrightness, StarColor.YELLOW);
+			this.renderSunAura(tessellator, 0.1F, sunBrightness, StarClass.YELLOW);
 			GL11.glDisable(GL11.GL_BLEND);
 			GL11.glShadeModel(GL11.GL_FLAT);
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
@@ -85,12 +84,12 @@ public class SkyProviderProxima_B extends SkyProviderBase {
 	}
 
 	@Override
-	protected StarColor colorSunAura() {
-		return StarColor.ORANGE;
+	protected StarClass colorSunAura() {
+		return StarClass.ORANGE;
 	}
 
 	@Override
-	protected Vector3 getAtmosphereColor() {
+	protected Vec3d getAtmosphereColor() {
 		return null;
 	}
 

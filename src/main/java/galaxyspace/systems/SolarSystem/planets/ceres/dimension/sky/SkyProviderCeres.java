@@ -2,22 +2,22 @@ package galaxyspace.systems.SolarSystem.planets.ceres.dimension.sky;
 
 import org.lwjgl.opengl.GL11;
 
-import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarClass;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import galaxyspace.GalaxySpace;
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.Constants;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.client.FMLClientHandler;
 
 public class SkyProviderCeres extends SkyProviderBase
 {
-	private static final ResourceLocation meteor1Texture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/environment/background/meteor1.png");
-	private static final ResourceLocation meteor2Texture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/environment/background/meteor2.png");
-	private static final ResourceLocation meteor3Texture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/environment/background/meteor3.png");
+	//private static final ResourceLocation meteor1Texture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/environment/background/meteor1.png");
+	//private static final ResourceLocation meteor2Texture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/environment/background/meteor2.png");
+	//private static final ResourceLocation meteor3Texture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/environment/background/meteor3.png");
 	private static final ResourceLocation meteorpoleTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/environment/background/meteorpole.png");
 	
 	private static final ResourceLocation jupiterTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/celestialbodies/sol/jupiter.png");
@@ -67,7 +67,7 @@ public class SkyProviderCeres extends SkyProviderBase
 		tessellator.draw();
 		
 		float f = 0.3F;
-		this.renderAtmo(tessellator, 0.0F, 0.0F, f10 - 0.5F, new Vector3(120 / 255.0F * f, 110 / 255.0F * f, 120 / 255.0F * f));
+		this.renderAtmo(tessellator, 0.0F, 0.0F, f10 - 0.5F, new Vec3d(120 / 255.0F * f, 110 / 255.0F * f, 120 / 255.0F * f));
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glPopMatrix();
 		GL11.glPushMatrix();
@@ -121,12 +121,12 @@ public class SkyProviderCeres extends SkyProviderBase
 	}
 
 	@Override
-	protected StarColor colorSunAura() {
-		return StarColor.WHITE;
+	protected StarClass colorSunAura() {
+		return StarClass.WHITE;
 	}
 
 	@Override
-	protected Vector3 getAtmosphereColor() {
+	protected Vec3d getAtmosphereColor() {
 		return null;
 	}
 	

@@ -2,16 +2,16 @@ package galaxyspace.systems.SolarSystem.satellites.mars.dimension.sky;
 
 import org.lwjgl.opengl.GL11;
 
-import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarClass;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import galaxyspace.GalaxySpace;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.Constants;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.Vec3d;
 
 public class SkyProviderMarsSS extends SkyProviderBase{
 	
@@ -102,7 +102,7 @@ public class SkyProviderMarsSS extends SkyProviderBase{
 		
 		GL11.glPushMatrix();
 		float f = 1.0F - mc.world.getStarBrightness(ticks);
-		this.renderAtmo(tessellator, 90F, 0F, f10 - 8, new Vector3(120 / 255.0F * f, 90 / 255.0F * f, 90 / 255.0F * f));
+		this.renderAtmo(tessellator, 90F, 0F, f10 - 8, new Vec3d(120 / 255.0F * f, 90 / 255.0F * f, 90 / 255.0F * f));
 		
 		GL11.glPopMatrix();
 	}
@@ -133,12 +133,12 @@ public class SkyProviderMarsSS extends SkyProviderBase{
 	}
 
 	@Override
-	protected StarColor colorSunAura() {
-		return StarColor.WHITE;
+	protected StarClass colorSunAura() {
+		return StarClass.WHITE;
 	}
 
 	@Override
-	protected Vector3 getAtmosphereColor() {
+	protected Vec3d getAtmosphereColor() {
 		return null;
 	}
 	

@@ -4,10 +4,9 @@ import java.io.File;
 
 import asmodeuscore.api.IBodies;
 import asmodeuscore.api.IBodiesHandler;
-import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
 import asmodeuscore.api.dimension.IAdvancedSpace.StarClass;
-import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
-import asmodeuscore.api.dimension.IAdvancedSpace.TypeBody;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarType;
+import asmodeuscore.api.dimension.IAdvancedSpace.Body;
 import asmodeuscore.core.astronomy.BodiesData;
 import asmodeuscore.core.astronomy.BodiesRegistry;
 import asmodeuscore.core.astronomy.BodiesRegistry.Galaxies;
@@ -93,7 +92,7 @@ public class TauCetiSystemBodies implements IBodies{
 	@Override
 	public void postInit(FMLPostInitializationEvent event) {		
 		
-		BodiesData data = new BodiesData(TypeBody.STAR).setStarClass(StarClass.DWARF).setStarColor(StarColor.YELLOW);
+		BodiesData data = new BodiesData(Body.STAR).setStarType(StarType.DWARF).setStarClass(StarClass.YELLOW);
 		data.setStarHabitableZone(1.1F, 0.22F);
 		BodiesRegistry.registerBodyData(TauCetiSystem.getMainStar(), data);		
 		

@@ -2,15 +2,15 @@ package galaxyspace.systems.SolarSystem.moons.phobos.dimension.sky;
 
 import org.lwjgl.opengl.GL11;
 
-import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarClass;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import galaxyspace.GalaxySpace;
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.Constants;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.Vec3d;
 
 public class SkyProviderPhobos extends SkyProviderBase
 {
@@ -68,7 +68,7 @@ public class SkyProviderPhobos extends SkyProviderBase
 		
 		GL11.glPushMatrix();
 		float f = 0.9F - mc.world.getStarBrightness(ticks);
-		this.renderAtmo(tessellator, 90F, 90F, f10 - 8, new Vector3(30 / 255.0F * f, 40 / 255.0F * f, 40 / 255.0F * f));
+		this.renderAtmo(tessellator, 90F, 90F, f10 - 8, new Vec3d(30 / 255.0F * f, 40 / 255.0F * f, 40 / 255.0F * f));
 		
 		GL11.glPopMatrix();
 	
@@ -100,12 +100,12 @@ public class SkyProviderPhobos extends SkyProviderBase
 	}
 
 	@Override
-	protected StarColor colorSunAura() {
-		return StarColor.WHITE;
+	protected StarClass colorSunAura() {
+		return StarClass.WHITE;
 	}
 
 	@Override
-	protected Vector3 getAtmosphereColor() {
+	protected Vec3d getAtmosphereColor() {
 		return null;
 	}
 	

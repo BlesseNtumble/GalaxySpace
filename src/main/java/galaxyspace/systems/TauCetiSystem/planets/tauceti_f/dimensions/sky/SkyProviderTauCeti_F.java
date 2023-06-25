@@ -2,13 +2,13 @@ package galaxyspace.systems.TauCetiSystem.planets.tauceti_f.dimensions.sky;
 
 import org.lwjgl.opengl.GL11;
 
-import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarClass;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import galaxyspace.systems.TauCetiSystem.TauCetiSystemBodies;
-import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.Vec3d;
 
 public class SkyProviderTauCeti_F extends SkyProviderBase{
 
@@ -53,14 +53,14 @@ public class SkyProviderTauCeti_F extends SkyProviderBase{
 	}
 
 	@Override
-	protected StarColor colorSunAura() {
-		return StarColor.YELLOW;
+	protected StarClass colorSunAura() {
+		return StarClass.YELLOW;
 	}
 
 	@Override
-	protected Vector3 getAtmosphereColor() {
+	protected Vec3d getAtmosphereColor() {
 		float f = mc.world.getSunBrightness(ticks) + 0.2F;
-		return new Vector3(120 / 255.0F * f, 120 / 255.0F * f, 160 / 255.0F * f);
+		return new Vec3d(120 / 255.0F * f, 120 / 255.0F * f, 160 / 255.0F * f);
 	}
 
 }
