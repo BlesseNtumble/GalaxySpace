@@ -43,8 +43,12 @@ public class ItemSpaceSuitTier1 extends ItemSpaceSuit implements IArmorCorrosion
 	public void addInfo(ItemStack stack, World world, List<String> list, ITooltipFlag flagIn) {
 		list.add(GCCoreUtil.translate("gui.spacesuit.type") + " " + EnumColor.YELLOW +  GCCoreUtil.translate("gui.spacesuit.type.2"));
 		list.addAll(FMLClientHandler.instance().getClient().fontRenderer.listFormattedStringToWidth(GCCoreUtil.translate("gui.spacesuit.desc.heavy"), 250));	
-		
-		
+	}
+	
+	@Override
+	public float getMaxElectricityStored(ItemStack stack) {		
+		boolean energy = stack.hasTagCompound() && stack.getTagCompound().hasKey("energy");
+		return energy ? 180000.0F : 90000.0F;		
 	}
 	
 }

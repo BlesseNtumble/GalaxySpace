@@ -256,7 +256,7 @@ public abstract class ItemSpaceSuit extends ItemElectricArmor implements ISensor
 		return TextFormatting.DARK_RED + "- ";		
 	}
 	
-	private EntityEquipmentSlot getArmorType(ItemStack stack) {
+	protected EntityEquipmentSlot getArmorType(ItemStack stack) {
         EntityEquipmentSlot i = EntityLiving.getSlotForItemStack(stack);
         return i;
 	}

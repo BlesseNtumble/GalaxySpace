@@ -3,9 +3,9 @@ package galaxyspace.systems.SolarSystem.planets.overworld.items.modules.armor;
 import galaxyspace.core.prefab.items.modules.ItemModule;
 import galaxyspace.core.util.GSUtils.Module_Type;
 import micdoodle8.mods.galacticraft.core.GCItems;
-import micdoodle8.mods.galacticraft.core.items.ItemFood;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -48,8 +48,8 @@ public class Autofeeding extends ItemModule{
 		
 		if(!world.isRemote && player.getFoodStats().needFood()) {
 			for(ItemStack stack : player.inventory.mainInventory) {			
-				if(stack.getItem() instanceof net.minecraft.item.ItemFood) {
-					player.getFoodStats().addStats((net.minecraft.item.ItemFood)stack.getItem(), stack);
+				if(stack.getItem() instanceof ItemFood) {
+					player.getFoodStats().addStats((ItemFood)stack.getItem(), stack);
 					stack.shrink(1);										
 					break;
 				}

@@ -69,4 +69,10 @@ public class ItemSpaceSuitLight extends ItemSpaceSuit implements IItemRadiation{
 		list.addAll(FMLClientHandler.instance().getClient().fontRenderer.listFormattedStringToWidth(GCCoreUtil.translate("gui.spacesuit.desc.light"), 250));	
 				
 	}
+	
+	@Override
+	public float getMaxElectricityStored(ItemStack stack) {		
+		boolean energy = stack.hasTagCompound() && stack.getTagCompound().hasKey("energy");
+		return energy ? 120000.0F : 60000.0F;		
+	}
 }
