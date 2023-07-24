@@ -2,7 +2,7 @@ package galaxyspace.systems.SolarSystem.satellites.venus.dimension.sky;
 
 import org.lwjgl.opengl.GL11;
 
-import asmodeuscore.api.dimension.IAdvancedSpace.StarClass;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import galaxyspace.GalaxySpace;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.WorldProviderSpace;
@@ -114,7 +114,7 @@ public class SkyProviderVenusSS extends SkyProviderBase{
 	}
 
 	@Override
-	protected StarClass colorSunAura() {
+	protected StarColor colorSunAura() {
 		return null;
 	}
 

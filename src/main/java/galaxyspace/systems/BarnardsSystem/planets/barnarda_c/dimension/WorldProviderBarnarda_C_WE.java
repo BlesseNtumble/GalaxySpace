@@ -401,12 +401,6 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
 		return this.world.isThundering() ? windLevel * 2 : windLevel;
 	}
 
-
-	@Override
-	public String getDataName() {
-		return null;
-	}
-
 	@Override
 	public WeatherData getWeather() {
 		return lightning_storm.withFrequence(this.world.thunderingStrength > 0 ? 10 : 0);

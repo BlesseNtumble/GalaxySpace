@@ -7,10 +7,10 @@ import java.util.Map.Entry;
 
 import asmodeuscore.api.IBodies;
 import asmodeuscore.api.IBodiesHandler;
-import asmodeuscore.api.dimension.IAdvancedSpace.Body;
 import asmodeuscore.api.dimension.IAdvancedSpace.ClassBody;
-import asmodeuscore.api.dimension.IAdvancedSpace.StarClass;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.api.dimension.IAdvancedSpace.StarType;
+import asmodeuscore.api.dimension.IAdvancedSpace.TypeBody;
 import asmodeuscore.core.astronomy.BodiesData;
 import asmodeuscore.core.astronomy.BodiesRegistry;
 import asmodeuscore.core.astronomy.dimension.world.OreGenerator;
@@ -505,7 +505,7 @@ public class SolarSystemBodies implements IBodies{
         }
         
          
-		BodiesData data = new BodiesData(Body.STAR).setStarType(StarType.DWARF).setStarClass(StarClass.YELLOW);
+		BodiesData data = new BodiesData(TypeBody.STAR).setStarType(StarType.DWARF).setStarColor(StarColor.YELLOW);
 		data.setStarHabitableZone(1.0F, 0.22F);
 		BodiesRegistry.registerBodyData(GalacticraftCore.solarSystemSol.getMainStar(), data);
 	}
@@ -550,21 +550,21 @@ public class SolarSystemBodies implements IBodies{
 		data = new BodiesData(null, /*BodiesRegistry.calculateGravity(5.37F),*/ 0, /*24660,*/ false);
 		BodiesRegistry.registerBodyData(MarsModule.planetMars, data);
 		    	
-		data = new BodiesData(Body.ASTEROID, ClassBody.ASTEROID, 0, true);
+		data = new BodiesData(TypeBody.ASTEROID, ClassBody.ASTEROID, 0, true);
 		BodiesRegistry.registerBodyData(AsteroidsModule.planetAsteroids, data);
     	
 	   	////MOONS
-	   	data = new BodiesData(Body.MOON, null, 0, GSConfigCore.enableSolarRadiationOnMoon);
+	   	data = new BodiesData(TypeBody.MOON, null, 0, GSConfigCore.enableSolarRadiationOnMoon);
 		BodiesRegistry.registerBodyData(GalacticraftCore.moonMoon, data);
 		
-	 	data = new BodiesData(Body.SATELLITE, null, 0, true);
+	 	data = new BodiesData(TypeBody.SATELLITE, null, 0, true);
 		BodiesRegistry.registerBodyData(marsSpaceStation, data);
 		
-		data = new BodiesData(Body.MOON);
+		data = new BodiesData(TypeBody.MOON);
 		BodiesRegistry.registerBodyData(phobosMars, data);
 		
 		if(GSConfigCore.enableUnreachable) {
-			BodiesData unreachableData = new BodiesData(Body.MOON);	
+			BodiesData unreachableData = new BodiesData(TypeBody.MOON);	
 			BodiesRegistry.registerBodyData(oberonUranus, unreachableData);
 			BodiesRegistry.registerBodyData(proteusNeptune, unreachableData);
 			BodiesRegistry.registerBodyData(mimasSaturn, unreachableData); 	

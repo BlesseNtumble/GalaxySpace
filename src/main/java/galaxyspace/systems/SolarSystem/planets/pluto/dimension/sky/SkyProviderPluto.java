@@ -2,7 +2,7 @@ package galaxyspace.systems.SolarSystem.planets.pluto.dimension.sky;
 
 import org.lwjgl.opengl.GL11;
 
-import asmodeuscore.api.dimension.IAdvancedSpace.StarClass;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import galaxyspace.GalaxySpace;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -62,8 +62,8 @@ public class SkyProviderPluto extends SkyProviderBase
 	}
 
 	@Override
-	protected StarClass colorSunAura() {
-		return StarClass.WHITE;
+	protected StarColor colorSunAura() {
+		return StarColor.WHITE;
 	}
 
 	@Override

@@ -2,7 +2,7 @@ package galaxyspace.systems.TauCetiSystem.planets.tauceti_f.dimensions.sky;
 
 import org.lwjgl.opengl.GL11;
 
-import asmodeuscore.api.dimension.IAdvancedSpace.StarClass;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import galaxyspace.systems.TauCetiSystem.TauCetiSystemBodies;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -53,8 +53,8 @@ public class SkyProviderTauCeti_F extends SkyProviderBase{
 	}
 
 	@Override
-	protected StarClass colorSunAura() {
-		return StarClass.YELLOW;
+	protected StarColor colorSunAura() {
+		return StarColor.YELLOW;
 	}
 
 	@Override

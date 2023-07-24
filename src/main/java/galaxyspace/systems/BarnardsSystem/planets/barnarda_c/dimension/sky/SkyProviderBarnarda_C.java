@@ -2,7 +2,7 @@ package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.sky;
 
 import org.lwjgl.opengl.GL11;
 
-import asmodeuscore.api.dimension.IAdvancedSpace.StarClass;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import galaxyspace.GalaxySpace;
@@ -63,8 +63,8 @@ public class SkyProviderBarnarda_C extends SkyProviderBase{
 	}
 
 	@Override
-	protected StarClass colorSunAura() {
-		return StarClass.ORANGE;
+	protected StarColor colorSunAura() {
+		return StarColor.ORANGE;
 	}
 
 	@Override

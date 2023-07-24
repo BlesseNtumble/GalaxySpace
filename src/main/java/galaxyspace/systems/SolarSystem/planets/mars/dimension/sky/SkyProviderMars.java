@@ -2,7 +2,7 @@ package galaxyspace.systems.SolarSystem.planets.mars.dimension.sky;
 
 import org.lwjgl.opengl.GL11;
 
-import asmodeuscore.api.dimension.IAdvancedSpace.StarClass;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.core.astronomy.dimension.world.data.DustStormSaveData;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import galaxyspace.GalaxySpace;
@@ -94,8 +94,8 @@ public class SkyProviderMars  extends SkyProviderBase
 	}
 
 	@Override
-	protected StarClass colorSunAura() {
-		return StarClass.WHITE;
+	protected StarColor colorSunAura() {
+		return StarColor.WHITE;
 	}
 
 	@Override

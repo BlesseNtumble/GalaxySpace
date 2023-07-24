@@ -4,9 +4,9 @@ import java.io.File;
 
 import asmodeuscore.api.IBodies;
 import asmodeuscore.api.IBodiesHandler;
-import asmodeuscore.api.dimension.IAdvancedSpace.StarClass;
+import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.api.dimension.IAdvancedSpace.StarType;
-import asmodeuscore.api.dimension.IAdvancedSpace.Body;
+import asmodeuscore.api.dimension.IAdvancedSpace.TypeBody;
 import asmodeuscore.core.astronomy.BodiesData;
 import asmodeuscore.core.astronomy.BodiesRegistry;
 import asmodeuscore.core.astronomy.BodiesRegistry.Galaxies;
@@ -155,7 +155,7 @@ public class BarnardsSystemBodies implements IBodies {
 
 	private static void registrycelestial()
 	{
-		BodiesData data = new BodiesData(Body.STAR).setStarType(StarType.DWARF).setStarClass(StarClass.ORANGE);
+		BodiesData data = new BodiesData(TypeBody.STAR).setStarType(StarType.DWARF).setStarColor(StarColor.ORANGE);
 		data.setStarHabitableZone(0.7F, 0.1F);
 		BodiesRegistry.registerBodyData(BarnardsSystem.getMainStar(), data);
 	}

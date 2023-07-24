@@ -187,11 +187,6 @@ public class WorldProviderCeres extends WorldProviderAdvancedSpace implements IP
 	}
 
 	@Override
-	public String getDataName() {
-		return "ceres";
-	}
-
-	@Override
 	public WeatherData getWeather() {
 		if(GSConfigCore.enableExtraWeatherOnBodies)
 			return meteoric_rain;

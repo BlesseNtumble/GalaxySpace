@@ -333,11 +333,6 @@ public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProv
 	}
 
 	@Override
-	public String getDataName() {
-		return DATA;
-	}
-
-	@Override
 	public WeatherData getWeather() {
 		return dust_storm;
 	}
