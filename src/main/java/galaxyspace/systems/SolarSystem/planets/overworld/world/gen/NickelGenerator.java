@@ -26,13 +26,13 @@ public class NickelGenerator implements IWorldGenerator{
     	{
     		{0,0,0,0},
     		{0,1,1,0},
-    		{0,1,0,0},
+    		{0,1,1,0},
     		{0,0,0,0}
     	},{
     		{0,1,1,0},
-    		{1,2,3,1},
-    		{1,3,1,0},
-    		{0,1,0,0}
+    		{1,2,2,1},
+    		{1,3,2,1},
+    		{0,1,1,0}
     	},{
     		{1,1,1,0},
     		{1,2,1,0},
@@ -52,7 +52,7 @@ public class NickelGenerator implements IWorldGenerator{
 		if (world.provider.getDimension() == 0)
         {		
         
-			if (random.nextInt(100) < 70) {
+			if (random.nextInt(100) < 85) {
 				int x = chunkX * 16 + random.nextInt(16) + 8;
 				int z = chunkZ * 16 + random.nextInt(16) + 8;
 				int y = random.nextInt(Math.max(this.maxGenerateLevel - this.minGenerateLevel, 0)) + this.minGenerateLevel;
@@ -75,16 +75,17 @@ public class NickelGenerator implements IWorldGenerator{
 					int matrix1 = MATRIX[py][px][pz];
 
 					switch (rand.nextInt(4)) {
-					case 0:
-						break;
-					case 1:
-						matrix1 = MATRIX[py][pz][px];
-						break;
-					case 2:
-						matrix1 = MATRIX[py][(MATRIX[py].length - 1) - px][(MATRIX[py][px].length - 1) - pz];
-					case 3:
-						matrix1 = MATRIX[py][(MATRIX[py][px].length - 1) - pz][(MATRIX[py].length - 1) - px];
-						break;
+						case 0:
+							break;
+						case 1:
+							matrix1 = MATRIX[py][pz][px];
+							break;
+						case 2:
+							matrix1 = MATRIX[py][(MATRIX[py].length - 1) - px][(MATRIX[py][px].length - 1) - pz];
+							break;
+						case 3:
+							matrix1 = MATRIX[py][(MATRIX[py][px].length - 1) - pz][(MATRIX[py].length - 1) - px];
+							break;
 					}
 					generateBlock(world, rand, new BlockPos(pos.getX() + px2, pos.getY() + py2, pos.getZ() + pz2),	matrix1);
 				}
