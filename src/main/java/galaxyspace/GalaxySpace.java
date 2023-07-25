@@ -103,7 +103,7 @@ import net.minecraftforge.fml.relauncher.Side;
 @Mod(
 		   modid = GalaxySpace.MODID,
 		   version = GalaxySpace.VERSION,
-		   dependencies = Constants.DEPENDENCIES_FORGE + "required-after:galacticraftcore@[4.0.2.282,); required-after:galacticraftplanets; required-after:asmodeuscore@[0.0.32,)",
+		   dependencies = Constants.DEPENDENCIES_FORGE + "required-after:galacticraftcore@[4.0.2.282,); required-after:galacticraftplanets; required-after:asmodeuscore@[1.0.0,)",
 		   acceptedMinecraftVersions = "[1.12.2]",
 		   name = GalaxySpace.NAME,
 		   guiFactory = "galaxyspace.core.client.gui.GSConfigGuiFactory"
@@ -111,8 +111,8 @@ import net.minecraftforge.fml.relauncher.Side;
 public class GalaxySpace
 {
 	public static final int major_version = 2;
-	public static final int minor_version = 0;
-	public static final int build_version = 20;
+	public static final int minor_version = 1;
+	public static final int build_version = 0;
 	
 	public static final String NAME = "GalaxySpace";
 	public static final String MODID = "galaxyspace";
