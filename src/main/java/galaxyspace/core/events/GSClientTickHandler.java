@@ -185,70 +185,7 @@ public class GSClientTickHandler {
         		{
         			OverlayRocketHelp.renderSpaceshipOverlay();
         		}*/
-        		
-        		if(minecraft.currentScreen == null && GalaxySpace.debug)
-        		{
-        			
-        			long t1 = player.world.provider instanceof WorldProviderSpace ? ((WorldProviderSpace) player.world.provider).getDayLength() : 24000;
-        			long time = player.world.getWorldTime() % (t1 > 0 ? t1 : 1);
-        		
-        			float temp = player.world.provider instanceof IGalacticraftWorldProvider ? ((IGalacticraftWorldProvider) player.world.provider).getThermalLevelModifier() : 1.0F;
-        			boolean isWE = player.getEntityWorld().provider instanceof WE_WorldProvider;
-        			double count = 0;
-        			
-        			World world = ColorBlockHandler.world;
-        			if(isWE && player.getEntityWorld().provider != null && world.provider instanceof WE_WorldProvider) {
-	        			WE_ChunkProvider chunk = ((WE_WorldProvider)world.provider).chunk_provider;
-	        			if(chunk != null) {
-		        			double scaleX = chunk.biomemapScaleX;
-		        			double persistance = chunk.biomemapPersistence;
-		        			count = WE_PerlinNoise.PerlinNoise2D((player.getEntityWorld().getSeed() * 11) ^ 6,	player.getEntityWorld().getChunk(player.getPosition()).x / scaleX, player.getEntityWorld().getChunk(player.getPosition()).z / scaleX,
-		        					persistance, chunk.biomemapNumberOfOctaves)
-		        				* chunk.biomemapScaleY;
-	        			}
-        			}        			
-       			
-        			String[] s = { 
-        					GalaxySpace.NAME + " " + GalaxySpace.VERSION + " DEBUG Mode",
-        					"MC Version: 1.12.2",
-        					"Celestial Body: " + ((player.getEntityWorld().provider instanceof IGalacticraftWorldProvider) ? ((IGalacticraftWorldProvider)player.getEntityWorld().provider).getCelestialBody().getLocalizedName() : "Unnamed"),
-        					"FPS: " + mc.getDebugFPS(),
-        					"",
-        					"Player Data:",
-        					"X: " + (int) player.posX,
-        					"Y: " + (int) player.posY,
-        					"Z: " + (int) player.posZ,
-        					"Current Item: " + (player.inventory.getCurrentItem() != null ? Item.REGISTRY.getNameForObject(player.inventory.getCurrentItem().getItem()) + ":" +  player.inventory.getCurrentItem().getItemDamage(): "None"),
-        					
-        					"",
-        					"World Data:",
-        					"Dimension: " + player.world.provider.getDimensionType().getName() + " (ID: " + player.world.provider.getDimensionType().getId() + ")",
-        					"Temperature: " + temp + "F",
-        					"Biome: " + player.world.getBiomeForCoordsBody(new BlockPos((int)player.posX, (int)player.posY, (int)player.posZ)).getBiomeName(),
-        					"Current Time: " + time + " | Day Length: " + (player.world.provider instanceof WorldProviderSpace ? ((WorldProviderSpace) player.world.provider).getDayLength() : player.world.provider instanceof WE_WorldProviderSpace ?  ((WE_WorldProviderSpace) player.world.provider).getDayLength() : "24000") + " | Total Time: " + player.world.getWorldTime(),
-        					"Moon Phase: " + player.world.getMoonPhase(),
-        					"Chunk Pos: x" + player.getEntityWorld().getChunk(player.getPosition()).x + " z" + player.getEntityWorld().getChunk(player.getPosition()).z,
-        					"",
-        					"Is Galacticraft Provider: " + ((player.getEntityWorld().provider instanceof IGalacticraftWorldProvider) ? "Yes" : "No"),
-        					"Is Advance Space Provider: " + ((player.getEntityWorld().provider instanceof IAdvancedSpace) ? "Yes" : "No"), 
-        					"Is Enable Oregen: " + (GSConfigCore.enableOresGeneration == true ? "Yes" : "No"),
-        					"Is World Engine Provider: " + (isWE ? "Yes" : "No"),
-        					"[WE] Biome Perlin Count: " + count
-        					
-        					
-        			};
-            			
-        			int k = 4;
-        			if(mc.gameSettings.isKeyDown(mc.gameSettings.keyBindSneak)) k = s.length;
-        			GL11.glPushMatrix();
-        			//GlStateManager.disableLighting();
-        			for(int i = 0; i < k; i++)
-        				if(!minecraft.gameSettings.hideGUI)
-        					minecraft.fontRenderer.drawStringWithShadow(s[i], 10, 28 + i*10, ColorUtil.to32BitColor(255, 255, 255, 255));
-        			//GlStateManager.enableLighting();
-        			GL11.glPopMatrix();
 
-        		}
         		GlStateManager.disableLighting();
         		
         		GlStateManager.pushMatrix();
