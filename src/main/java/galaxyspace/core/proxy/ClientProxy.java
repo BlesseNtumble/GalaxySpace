@@ -1,17 +1,9 @@
 package galaxyspace.core.proxy;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.vecmath.Quat4f;
-import javax.vecmath.Vector3f;
-
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Maps;
-
 import asmodeuscore.AsmodeusCore;
 import asmodeuscore.api.IBodies;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Maps;
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.GSBlocks;
 import galaxyspace.core.GSFluids;
@@ -20,11 +12,8 @@ import galaxyspace.core.client.GSKeyHandlerClient;
 import galaxyspace.core.client.fx.GSEffectHandler;
 import galaxyspace.core.client.models.BakedModelBrightFour;
 import galaxyspace.core.client.models.BakedModelFullbright;
-import galaxyspace.core.client.render.entity.RenderAstroWolf;
-import galaxyspace.core.client.render.entity.RenderCargoRockets;
-import galaxyspace.core.client.render.entity.RenderEvolvedColdBlaze;
-import galaxyspace.core.client.render.entity.RenderIceSpike;
-import galaxyspace.core.client.render.entity.RenderRockets;
+import galaxyspace.core.client.models.BakedModelGlowBlockOverlay;
+import galaxyspace.core.client.render.entity.*;
 import galaxyspace.core.client.render.entity.layers.LayerOxygenTank;
 import galaxyspace.core.client.render.entity.layers.LayerThermalPadding;
 import galaxyspace.core.client.render.item.ItemModelRocketT4;
@@ -35,14 +24,7 @@ import galaxyspace.core.events.GSClientTickHandler;
 import galaxyspace.core.handler.GSMapHandler;
 import galaxyspace.core.handler.GSSkyProviderHandler;
 import galaxyspace.core.prefab.blocks.DungeonBlocks;
-import galaxyspace.core.prefab.entities.EntityAstroWolf;
-import galaxyspace.core.prefab.entities.EntityCustomCargoRocket;
-import galaxyspace.core.prefab.entities.EntityEvolvedColdBlaze;
-import galaxyspace.core.prefab.entities.EntityIceSpike;
-import galaxyspace.core.prefab.entities.EntityMultiSeatRocketTest;
-import galaxyspace.core.prefab.entities.EntityTier4Rocket;
-import galaxyspace.core.prefab.entities.EntityTier5Rocket;
-import galaxyspace.core.prefab.entities.EntityTier6Rocket;
+import galaxyspace.core.prefab.entities.*;
 import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.SolarSystem.moons.callisto.blocks.CallistoBlocks;
 import galaxyspace.systems.SolarSystem.moons.enceladus.blocks.EnceladusBlocks;
@@ -68,21 +50,9 @@ import galaxyspace.systems.SolarSystem.planets.mars.entities.EntityMarsRover;
 import galaxyspace.systems.SolarSystem.planets.mars.render.entities.RenderMarsRover;
 import galaxyspace.systems.SolarSystem.planets.mars.render.item.ItemModelMarsRover;
 import galaxyspace.systems.SolarSystem.planets.mercury.blocks.MercuryBlocks;
-import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockDecoMetals;
-import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockFutureGlasses;
-import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockMachineFrames;
-import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockOres;
-import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockSurfaceIce;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
+import galaxyspace.systems.SolarSystem.planets.overworld.blocks.*;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.*;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS.BasicItems;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemCompressedPlates;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemHeavyDutyPlates;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemIngots;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemRocketModules;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemRocketParts;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemSchematics;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemTierKeysChest;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemUpgrades;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.armor.ItemThermalPaddingBase;
 import galaxyspace.systems.SolarSystem.planets.overworld.render.item.ItemRendererHydroponicFarm;
 import galaxyspace.systems.SolarSystem.planets.overworld.render.item.ItemRendererJetpack;
@@ -110,6 +80,7 @@ import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
@@ -126,6 +97,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.vecmath.Quat4f;
+import javax.vecmath.Vector3f;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 public class ClientProxy extends CommonProxy{
 	
@@ -140,7 +117,9 @@ public class ClientProxy extends CommonProxy{
 	private static ModelResourceLocation HeliumHydrogenLocation = new ModelResourceLocation(GalaxySpace.TEXTURE_PREFIX + "liquid_heliumhydrogen", "fluid");
 	private static ModelResourceLocation EthaneLocation = new ModelResourceLocation(GalaxySpace.TEXTURE_PREFIX + "liquid_ethane", "fluid");
 	private static ModelResourceLocation NatureGasLocation = new ModelResourceLocation(GalaxySpace.TEXTURE_PREFIX + "liquid_naturegas", "fluid");
-	
+
+	private static Map<String, BakedModelGlowBlockOverlay> glow_blocks = new HashMap<>();
+
 	@Override
     public void preload(FMLPreInitializationEvent event) {
 		
@@ -157,7 +136,36 @@ public class ClientProxy extends CommonProxy{
 		
 		//ClientProxy.setupCapes();
 		registerEntityRenderers();
-		MinecraftForge.EVENT_BUS.register(this);			
+
+		glow_blocks.put("barnarda_c_glow_plant_1", new BakedModelGlowBlockOverlay(BakedModelGlowBlockOverlay.QuadType.CROSS)
+				.addTexture(EnumFacing.NORTH, "galaxyspace:blocks/barnardssystem/barnarda_c/glow_plant_1_glow")
+				.setBrightness(250));
+
+		glow_blocks.put("barnarda_c_glow_plant_2", new BakedModelGlowBlockOverlay(BakedModelGlowBlockOverlay.QuadType.CROSS)
+				.addTexture(EnumFacing.NORTH, "galaxyspace:blocks/barnardssystem/barnarda_c/glow_plant_2_glow")
+				.setBrightness(250));
+
+		glow_blocks.put("barnarda_c_glow_plant_3", new BakedModelGlowBlockOverlay(BakedModelGlowBlockOverlay.QuadType.CROSS)
+				.addTexture(EnumFacing.NORTH, "galaxyspace:blocks/barnardssystem/barnarda_c/glow_plant_3_glow")
+				.setBrightness(250));
+
+		glow_blocks.put("barnarda_c_glow_plant_4", new BakedModelGlowBlockOverlay(BakedModelGlowBlockOverlay.QuadType.CROSS)
+				.addTexture(EnumFacing.NORTH, "galaxyspace:blocks/barnardssystem/barnarda_c/glow_plant_4_glow")
+				.setBrightness(250));
+
+		glow_blocks.put("modification_table", new BakedModelGlowBlockOverlay(BakedModelGlowBlockOverlay.QuadType.BLOCK)
+				.addTexture(EnumFacing.UP, "galaxyspace:blocks/overworld/modification_table_top_glow_1")
+				.setBrightness(150));
+
+		/*glow_blocks.put("barnarda_c_test_glow_log", new BakedModelGlowBlockOverlay(BakedModelGlowBlockOverlay.QuadType.BLOCK)
+				.addTexture(EnumFacing.NORTH, "galaxyspace:blocks/barnardssystem/barnarda_c/log_oak_layer")
+				.addTexture(EnumFacing.SOUTH, "galaxyspace:blocks/barnardssystem/barnarda_c/log_oak_layer")
+				.addTexture(EnumFacing.EAST, "galaxyspace:blocks/barnardssystem/barnarda_c/log_oak_layer")
+				.addTexture(EnumFacing.WEST, "galaxyspace:blocks/barnardssystem/barnarda_c/log_oak_layer")
+				.setBrightness(250));*/
+
+		MinecraftForge.EVENT_BUS.register(this);
+
 		
 	}
 
@@ -170,8 +178,11 @@ public class ClientProxy extends CommonProxy{
     	
     	Minecraft.getMinecraft().getRenderManager().getSkinMap().get("default").addLayer(new LayerThermalPadding(Minecraft.getMinecraft().getRenderManager().playerRenderer));
     	Minecraft.getMinecraft().getRenderManager().getSkinMap().get("slim").addLayer(new LayerThermalPadding(Minecraft.getMinecraft().getRenderManager().playerRenderer));
-    	
-    	//GS_MUSIC = EnumHelper.addEnum(MusicTicker.MusicType.class, "GS_MUSIC", new Class[] { SoundEvent.class, Integer.TYPE, Integer.TYPE }, GSSounds.music, 12000, 24000);
+
+
+
+
+		//GS_MUSIC = EnumHelper.addEnum(MusicTicker.MusicType.class, "GS_MUSIC", new Class[] { SoundEvent.class, Integer.TYPE, Integer.TYPE }, GSSounds.music, 12000, 24000);
     	   
     /*
     	ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySolarWind.class, new TileEntitySolarWindPanelRenderer());
@@ -220,29 +231,40 @@ public class ClientProxy extends CommonProxy{
         replaceModelDefault(event, "armor/jetpack", "jetpack.obj", ImmutableList.of("wing1", "wing2", "corp"), ItemRendererJetpack.class, TRSRTransformation.identity());
         //replaceModelDefault(event, "tools/matter_manipulator", "matter_manipulator.obj", ImmutableList.of("Up", "Down", "Mid"), ItemRendererMatterManipulator.class, TRSRTransformation.identity());
 
-        
-        if(!FMLClientHandler.instance().hasOptifine())
+
 	        for (ModelResourceLocation resource : event.getModelRegistry().getKeys()) {
 	            if (resource.getNamespace().equals(GalaxySpace.MODID)) {
-	            	
-	            	if(resource.getPath().equals("dungeon_blocks")) {
-	            		
-		            	if(resource.getVariant().contains("ceres_bricks"))	{            	
-		            		event.getModelRegistry().putObject(resource, new BakedModelFullbright(event.getModelRegistry().getObject(resource), "galaxyspace:blocks/solarsystem/ceres/ceres_bricks_layer", 250, 0.45D));
-		            		continue;
-		            	}
-		            	
-		            	if(resource.getVariant().contains("io_bricks")) {
-		            		event.getModelRegistry().putObject(resource, new BakedModelFullbright(event.getModelRegistry().getObject(resource), "galaxyspace:blocks/solarsystem/io/io_bricks_layer", 250, 1.0D));
-		            		continue;
-		            	}
-		            }
-	            	
+					if(!FMLClientHandler.instance().hasOptifine()) {
+						if (resource.getPath().equals("dungeon_blocks")) {
+
+							if (resource.getVariant().contains("ceres_bricks")) {
+								event.getModelRegistry().putObject(resource, new BakedModelFullbright(event.getModelRegistry().getObject(resource), "galaxyspace:blocks/solarsystem/ceres/ceres_bricks_layer", 250, 0.45D));
+								continue;
+							}
+
+							if (resource.getVariant().contains("io_bricks")) {
+								event.getModelRegistry().putObject(resource, new BakedModelFullbright(event.getModelRegistry().getObject(resource), "galaxyspace:blocks/solarsystem/io/io_bricks_layer", 250, 1.0D));
+								continue;
+							}
+						}
+					}
 	            	if(resource.getPath().equals("barnarda_c_test_glow_log")) {
 	            		String top = "galaxyspace:blocks/barnardssystem/barnarda_c/log_oak_top";            		
 	            		event.getModelRegistry().putObject(resource, new BakedModelBrightFour(event.getModelRegistry().getObject(resource), "galaxyspace:blocks/barnardssystem/barnarda_c/log_oak_layer", top, 250, 1.0D));
 	            		continue;
 	            	}
+					for(Map.Entry<String, BakedModelGlowBlockOverlay> glow : glow_blocks.entrySet()){
+						if(resource.getPath().equals(glow.getKey()) || resource.getVariant().contains(glow.getKey())) {
+							BakedModelGlowBlockOverlay overlay = glow.getValue();
+							overlay.setModel(event.getModelRegistry().getObject(resource));
+							event.getModelRegistry().putObject(resource, overlay);
+						}
+					}
+					/*if(resource.getVariant().contains("barnarda_c_glow_plant")) {
+						String top = "galaxyspace:blocks/barnardssystem/barnarda_c/glow_plant_1_glow";
+						event.getModelRegistry().putObject(resource, new BakedModelGlowBlockOverlay(event.getModelRegistry().getObject(resource), top, 250, 1.0D));
+						continue;
+					}*/
 	            }
 	        }
     }
@@ -263,10 +285,16 @@ public class ClientProxy extends CommonProxy{
 		GalaxySpace.proxy.registerTexture(event, "model/cargo_rocket");	
 		GalaxySpace.proxy.registerTexture(event, "model/mars_rover");	
 		
-		if(!FMLClientHandler.instance().hasOptifine()) {
-			GalaxySpace.proxy.registerTexture(event, "blocks/solarsystem/ceres/ceres_bricks_layer");	
-			GalaxySpace.proxy.registerTexture(event, "blocks/solarsystem/io/io_bricks_layer");
-			GalaxySpace.proxy.registerTexture(event, "blocks/barnardssystem/barnarda_c/log_oak_layer");
+
+		GalaxySpace.proxy.registerTexture(event, "blocks/solarsystem/ceres/ceres_bricks_layer");
+		GalaxySpace.proxy.registerTexture(event, "blocks/solarsystem/io/io_bricks_layer");
+		GalaxySpace.proxy.registerTexture(event, "blocks/barnardssystem/barnarda_c/log_oak_layer");
+		//GalaxySpace.proxy.registerTexture(event, "blocks/barnardssystem/barnarda_c/glow_plant_1_glow");
+		for(Map.Entry<String, BakedModelGlowBlockOverlay> glow : glow_blocks.entrySet()){
+			glow.getValue().getSprites().forEach((k,v) -> {
+				GalaxySpace.proxy.registerTexture(event, v.split(":")[1]);
+			});
+
 		}
 	}
 	
@@ -527,7 +555,7 @@ public class ClientProxy extends CommonProxy{
     	addVariant("futureglass", "", blocks);
     	addVariant("mercuryblocks", "", "mercury_surface", "mercury_subsurface", "mercury_stone", "mercury_nickel_ore", "mercury_iron_ore", "mercury_magnesium_ore");
     	addVariant("gsores", "", "cobaltum_ore", "nickel_ore", "uranium_ore");
-    	addVariant("decoblocks", "", "deco_cobaltum", "deco_magnesium", "deco_nickel", "deco_copper", "cobalt_block", "nickel_block", "magnesium_block");
+    	addVariant("decoblocks", "", "deco_cobaltum_1", "deco_magnesium_1", "deco_nickel_1", "deco_copper_1", "deco_cobaltum_2", "deco_magnesium_2", "deco_nickel_2", "deco_copper_2", "cobalt_block", "nickel_block", "magnesium_block");
     	addVariant("marsores", "", "mars_diamond", "mars_gold", "mars_coal", "mars_redstone", "mars_silicon", "mars_aluminum");
     	addVariant("ceresblocks", "", "ceres_grunt", "ceres_subgrunt", "ceres_dolomite_ore", "ceres_meteoriciron_ore", "ceres_dungeon_top", "ceres_dungeon_floor");
     	addVariant("plutoblocks", "", "pluto_grunt_1", "pluto_grunt_2", "pluto_grunt_3", "pluto_grunt_4", "pluto_subgrunt", "pluto_stone");

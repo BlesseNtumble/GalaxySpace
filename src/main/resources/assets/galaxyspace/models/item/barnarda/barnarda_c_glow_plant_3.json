@@ -1,0 +1,7 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "galaxyspace:blocks/barnardssystem/barnarda_c/glow_plant_3",
+        "layer1": "galaxyspace:blocks/barnardssystem/barnarda_c/glow_plant_3_glow"
+    }
+}

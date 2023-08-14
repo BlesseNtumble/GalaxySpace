@@ -1,22 +1,10 @@
 package galaxyspace.systems.BarnardsSystem.core;
 
+import galaxyspace.core.prefab.blocks.BlockDoorGS;
+import galaxyspace.core.prefab.blocks.BlockTrapDoorGS;
 import galaxyspace.core.prefab.items.GSItemBlockDesc;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Blocks;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Cactus;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Dandelions;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Falling_Blocks;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Farmland;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Grass;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Leaves;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Logs;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Ores;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Water_Grass;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.items.ItemBlocksBarnarda_C;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.items.ItemBlocksBarnarda_C_Dandelions;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.items.ItemBlocksBarnarda_C_Falling;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.items.ItemBlocksBarnarda_C_Grasses;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.items.ItemBlocksBarnarda_C_Leaves;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.items.ItemBlocksBarnarda_C_Ores;
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.*;
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.items.*;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
@@ -34,13 +22,15 @@ public class BRBlocks {
 	public static final Block BARNARDA_C_CACTUS = new Barnarda_C_Cactus();
 	
 	public static final Block BARNARDA_C_DANDELIONS = new Barnarda_C_Dandelions();
+	public static final Block BARNARDA_C_GLOW_DANDELIONS = new Barnarda_C_Glow_Dandelions();
 	public static final Block BARNARDA_C_LEAVES = new Barnarda_C_Leaves();
 	//public static final Block BARNARDA_C_REEDS = new Barnarda_C_Reeds();
 	public static final Block BARNARDA_C_FARMLAND = new Barnarda_C_Farmland();
 	public static final Block BARNARDA_C_WATER_GRASS = new Barnarda_C_Water_Grass();
 	public static final Block BARNARDA_C_ORES = new Barnarda_C_Ores();
-	
-	public static void initialize() 
+	public static final BlockDoorGS BARNARDA_C_VIOLET_DOOR = new BlockDoorGS("barnarda_c_violet_door");
+	public static final BlockTrapDoorGS BARNARDA_C_VIOLET_TRAPDOOR = new BlockTrapDoorGS("barnarda_c_violet_trapdoor");
+	public static void initialize()
 	{	
 		registerBlock(BARNARDA_C_GRASS, ItemBlocksBarnarda_C_Grasses.class);
 		registerBlock(BARNARDA_C_BLOCKS, ItemBlocksBarnarda_C.class);
@@ -50,10 +40,13 @@ public class BRBlocks {
 		registerBlock(BARNARDA_C_CACTUS, GSItemBlockDesc.class);
 		registerBlock(BARNARDA_C_VIOLET_GLOW_LOG, GSItemBlockDesc.class);
 		registerBlock(BARNARDA_C_DANDELIONS, ItemBlocksBarnarda_C_Dandelions.class);
+		registerBlock(BARNARDA_C_GLOW_DANDELIONS, ItemBlocksBarnarda_C_Glow_Dandelions.class);
 		registerBlock(BARNARDA_C_LEAVES, ItemBlocksBarnarda_C_Leaves.class);
 		registerBlock(BARNARDA_C_FARMLAND, GSItemBlockDesc.class);
 		registerBlock(BARNARDA_C_WATER_GRASS, GSItemBlockDesc.class);
 		registerBlock(BARNARDA_C_ORES, ItemBlocksBarnarda_C_Ores.class);
+		registerBlock(BARNARDA_C_VIOLET_DOOR, null);
+		registerBlock(BARNARDA_C_VIOLET_TRAPDOOR, GSItemBlockDesc.class);
 	}
 	
 	public static void oreDictRegistration() 

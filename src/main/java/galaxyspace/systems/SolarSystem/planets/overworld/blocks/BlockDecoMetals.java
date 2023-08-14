@@ -66,13 +66,17 @@ public class BlockDecoMetals extends Block implements ISortableBlock{
 	
 	public enum EnumBlockDecoMetals implements IStringSerializable
 	{
-		DECO_COBALT(0, "deco_cobaltum"),
-		DECO_MAGNESIUM(1, "deco_magnesium"),
-		DECO_NICKEL(2, "deco_nickel"),
-		DECO_COOPER(3, "deco_copper"),
-		COBALT_BLOCK(4, "cobalt_block"),
-		NICKEL_BLOCK(5, "nickel_block"),
-		MAGNESIUM_BLOCK(6, "magnesium_block");
+		DECO_COBALT_1(0, "deco_cobaltum_1"),
+		DECO_MAGNESIUM_1(1, "deco_magnesium_1"),
+		DECO_NICKEL_1(2, "deco_nickel_1"),
+		DECO_COOPER_1(3, "deco_copper_1"),
+		DECO_COBALT_2(4, "deco_cobaltum_2"),
+		DECO_MAGNESIUM_2(5, "deco_magnesium_2"),
+		DECO_NICKEL_2(6, "deco_nickel_2"),
+		DECO_COOPER_2(7, "deco_copper_2"),
+		COBALT_BLOCK(8, "cobalt_block"),
+		NICKEL_BLOCK(9, "nickel_block"),
+		MAGNESIUM_BLOCK(10, "magnesium_block");
 
 		private final int meta;
 		private final String name;

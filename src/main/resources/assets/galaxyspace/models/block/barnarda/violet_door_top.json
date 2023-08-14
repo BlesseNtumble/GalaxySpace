@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_top",
+    "textures": {
+        "bottom": "galaxyspace:blocks/barnardssystem/barnarda_c/violet_door_lower",
+        "top": "galaxyspace:blocks/barnardssystem/barnarda_c/violet_door_upper"
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "parent": "block/trapdoor_open",
+    "textures": {
+        "texture": "galaxyspace:blocks/barnardssystem/barnarda_c/violet_trapdoor"       
+    }
+}

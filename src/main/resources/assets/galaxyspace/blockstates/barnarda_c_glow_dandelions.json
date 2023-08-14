@@ -1,0 +1,8 @@
+{ 
+	"variants": { 		
+		"type=barnarda_c_glow_plant_1": {"model": "galaxyspace:barnarda/barnarda_c_glow_plant_1"},
+		"type=barnarda_c_glow_plant_2": {"model": "galaxyspace:barnarda/barnarda_c_glow_plant_2"},
+		"type=barnarda_c_glow_plant_3": {"model": "galaxyspace:barnarda/barnarda_c_glow_plant_3"},
+		"type=barnarda_c_glow_plant_4": {"model": "galaxyspace:barnarda/barnarda_c_glow_plant_4"}
+	} 
+}

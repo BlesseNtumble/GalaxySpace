@@ -17,7 +17,7 @@ import net.minecraft.util.EnumFacing;
 
 
 public class BakedModelDelegate implements IBakedModel {
-    protected final IBakedModel base;
+    protected IBakedModel base;
 
     public BakedModelDelegate(IBakedModel base) {
         this.base = base;
