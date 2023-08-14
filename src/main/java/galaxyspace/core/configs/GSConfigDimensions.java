@@ -1,13 +1,5 @@
 package galaxyspace.core.configs;
 
-import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.logging.log4j.Level;
-
 import galaxyspace.core.util.GSConstants;
 import micdoodle8.mods.galacticraft.core.Constants;
 import net.minecraftforge.common.config.ConfigElement;
@@ -15,6 +7,13 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.client.config.IConfigElement;
 import net.minecraftforge.fml.common.FMLLog;
+import org.apache.logging.log4j.Level;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
 
 public class GSConfigDimensions
 {
@@ -32,52 +31,49 @@ public class GSConfigDimensions
     }
     
     // DIMENSIONS
-    public static int dimensionIDMercury;
-    public static int dimensionIDVenus;
-    public static int dimensionIDCeres;
-    public static int dimensionIDJupiter;
-    public static int dimensionIDPluto;
-    public static int dimensionIDKuiperBelt;
-    public static int dimensionIDHaumea;
-    public static int dimensionIDMakemake;
-   // public static int dimensionIDEris;
+    public static int dimensionIDMercury,
+            dimensionIDVenus,
+            dimensionIDCeres,
+            dimensionIDJupiter,
+            dimensionIDPluto,
+            dimensionIDKuiperBelt,
+            dimensionIDHaumea,
+            dimensionIDMakemake,
+            dimensionIDTest;
 
-    public static int dimensionIDTest;
-
-    public static int dimensionIDPhobos;
-    public static int dimensionIDDeimos;
-    public static int dimensionIDIo;
-    public static int dimensionIDEuropa;
-    public static int dimensionIDGanymede;
-    public static int dimensionIDCallisto;
-    public static int dimensionIDEnceladus;
-    public static int dimensionIDTitan;
-    public static int dimensionIDOberon;
-    public static int dimensionIDMiranda;
-    public static int dimensionIDProteus;
-    public static int dimensionIDTriton;
+    public static int dimensionIDPhobos,
+            dimensionIDDeimos,
+            dimensionIDIo,
+            dimensionIDEuropa,
+            dimensionIDGanymede,
+            dimensionIDCallisto,
+            dimensionIDEnceladus,
+            dimensionIDTitan,
+            dimensionIDOberon,
+            dimensionIDMiranda,
+            dimensionIDProteus,
+            dimensionIDTriton;
     
-    public static boolean enableMercury;
-    public static boolean enableVenus;
-    public static boolean enableCeres;
-    public static boolean enableKuiperBelt;
-    public static boolean enablePluto;
-    public static boolean enableHaumea;
-    public static boolean enableMakemake;
-   // public static boolean enableEris;
-    
-    public static boolean enablePhobos;
-    public static boolean enableDeimos;
-    public static boolean enableEuropa;
-    public static boolean enableCallisto;
-    public static boolean enableIo;
-    public static boolean enableGanymede;
-    public static boolean enableEnceladus;
-    public static boolean enableTitan;
-    public static boolean enableOberon;
-    public static boolean enableMiranda;
-    public static boolean enableProteus;
-    public static boolean enableTriton;
+    public static boolean enableMercury,
+            enableVenus,
+            enableCeres,
+            enableKuiperBelt,
+            enablePluto,
+            enableHaumea,
+            enableMakemake,
+            enablePhobos,
+            enableDeimos,
+            enableEuropa,
+            enableCallisto,
+            enableIo,
+            enableGanymede,
+            enableEnceladus,
+            enableTitan,
+            enableOberon,
+            enableMiranda,
+            enableProteus,
+            enableTriton,
+            enableJupiter, enableSaturn, enableUranus, enableNeptune;
     
     public static boolean enableVenusSpaceStation;
     public static boolean enableMarsSpaceStation;
@@ -397,7 +393,31 @@ public class GSConfigDimensions
             prop.setLanguageKey("gc.configgui.enableMarsSpaceStation").setRequiresMcRestart(true);
             enableMarsSpaceStation = prop.getBoolean(true);
             propOrder.add(prop.getName());
-           
+
+            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableJupiter", true);
+            prop.setComment("Enable/Disable Jupiter (only on map for moons)");
+            prop.setLanguageKey("gc.configgui.enableJupiter").setRequiresMcRestart(true);
+            enableJupiter = prop.getBoolean(true);
+            propOrder.add(prop.getName());
+
+            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableSaturn", true);
+            prop.setComment("Enable/Disable Saturn (only on map for moons)");
+            prop.setLanguageKey("gc.configgui.enableSaturn").setRequiresMcRestart(true);
+            enableSaturn = prop.getBoolean(true);
+            propOrder.add(prop.getName());
+
+            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableUranus", true);
+            prop.setComment("Enable/Disable Uranus (only on map for moons)");
+            prop.setLanguageKey("gc.configgui.enableUranus").setRequiresMcRestart(true);
+            enableUranus = prop.getBoolean(true);
+            propOrder.add(prop.getName());
+
+            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableNeptune", true);
+            prop.setComment("Enable/Disable Neptune (only on map for moons)");
+            prop.setLanguageKey("gc.configgui.enableNeptune").setRequiresMcRestart(true);
+            enableNeptune = prop.getBoolean(true);
+            propOrder.add(prop.getName());
+
             config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 
             if (config.hasChanged())
