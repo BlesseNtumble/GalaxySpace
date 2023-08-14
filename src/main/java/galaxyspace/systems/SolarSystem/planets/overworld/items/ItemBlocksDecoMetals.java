@@ -22,6 +22,6 @@ public class ItemBlocksDecoMetals extends GSItemBlockDesc
 	@Override
 	public String getTranslationKey(ItemStack is) {
 		int metadata = is.getItemDamage();
-		return "tile." + BlockDecoMetals.EnumBlockDecoMetals.byMetadata(metadata).getName();
+		return "tile." + BlockDecoMetals.EnumBlockDecoMetals.byMetadata(metadata).getName().replace("_1", "").replace("_2", "");
 	}
 }
