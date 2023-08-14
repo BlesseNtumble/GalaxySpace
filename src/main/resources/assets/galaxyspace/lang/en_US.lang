@@ -243,6 +243,8 @@ tile.gravitation_module.desc=Creates Earth-like gravity within custom radius in 
 tile.wind_generator.name=Wind Turbine
 tile.wind_generator.desc=Generates energy from wind streams, providing some energy on planets with atmosphere.
 
+tile.adv_wind_generator.name=Advanced Wind Turbine
+
 tile.rocket_assembler.name=Rocket Assembly
 tile.rocket_assembler.desc=Assembles rockets from components made in the NASA workbench.
 

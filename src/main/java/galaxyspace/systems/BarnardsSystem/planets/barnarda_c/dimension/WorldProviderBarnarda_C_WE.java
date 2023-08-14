@@ -1,18 +1,12 @@
 package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import asmodeuscore.api.dimension.IProviderFreeze;
 import asmodeuscore.api.dimension.IProviderWeather;
 import asmodeuscore.core.astronomy.WeatherData;
-import asmodeuscore.core.astronomy.WeatherData.WeatherType;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_ChunkProviderSpace;
 import asmodeuscore.core.astronomy.dimension.world.worldengine.WE_WorldProviderSpace;
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.WE_ChunkProvider;
-import asmodeuscore.core.utils.worldengine.perlinnoise.PerlinNoise;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_CaveGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_OreGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_RavineGen;
@@ -22,17 +16,7 @@ import galaxyspace.systems.BarnardsSystem.BarnardsSystemBodies;
 import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.sky.CloudProviderBarnarda_C;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.sky.SkyProviderBarnarda_C;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Beach;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_DeepOcean;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Dunes;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Forest;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Jungle;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Mountains;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Ocean;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Plains;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_River;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_SnowPlains;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.Barnarda_C_Swampland;
+import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we.*;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.event.EventHandlerGC;
@@ -49,6 +33,9 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements IProviderFreeze, IProviderWeather {
 
@@ -363,7 +350,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Dunes(-0.3D, 0.3D));
 		WE_Biome.addBiomeToGeneration(cp, new Barnarda_C_Ocean(-0.0D, 0.0D, true));
 		
-		WE_Biome.setBiomeMap(cp, 1.6D, 4, cp.biomesList.size() * 450D, 2.4D);
+		WE_Biome.setBiomeMap(cp, 1.8D, 4, cp.biomesList.size() * 450D, 2.4D);
 
 	}
 

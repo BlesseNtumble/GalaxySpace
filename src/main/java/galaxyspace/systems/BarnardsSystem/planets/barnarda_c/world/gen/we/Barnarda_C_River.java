@@ -1,7 +1,5 @@
 package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we;
 
-import java.util.Random;
-
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
 import galaxyspace.core.prefab.world.gen.WorldGenCircleBlock;
@@ -13,9 +11,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
+import java.util.Random;
+
 public class Barnarda_C_River extends WE_Biome {
-	
-	private static final int grasscolor = BRConfigCore.enableGreenBarnardaC ? 0x89AC76 : 0x88BB44;
+
+	private static final int grasscolor = BRConfigCore.enableGreenBarnardaC ? 0x45AC33 : 0xdf73ff;
 	
 	public Barnarda_C_River(double min, double max) {
 		super(new BiomeProperties("barnarda_c_river"), new int[] {grasscolor, 0x11FF66, 0x985cff});

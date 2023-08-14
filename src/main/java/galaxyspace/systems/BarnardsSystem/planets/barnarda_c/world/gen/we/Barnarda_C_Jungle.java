@@ -1,10 +1,7 @@
 package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.world.gen.we;
 
-import java.util.Random;
-
 import asmodeuscore.core.utils.worldengine.WE_Biome;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_BiomeLayer;
-import galaxyspace.core.prefab.world.gen.WorldGenCircleBlock;
 import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
 import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigCore;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Dandelions;
@@ -22,6 +19,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+
+import java.util.Random;
 
 public class Barnarda_C_Jungle extends WE_Biome {
 	
@@ -85,7 +84,7 @@ public class Barnarda_C_Jungle extends WE_Biome {
 		BlockPos pos = world.getHeight(new BlockPos(randPosX, 0, randPosZ));
 		
 		
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 5; i++) {
 
 			randPosX = x + rand.nextInt(16);
 			randPosZ = z + rand.nextInt(16);
@@ -162,7 +161,17 @@ public class Barnarda_C_Jungle extends WE_Biome {
 			if(world.getBlockState(pos.down()) == BRBlocks.BARNARDA_C_GRASS.getDefaultState().withProperty(Barnarda_C_Grass.BASIC_TYPE, Barnarda_C_Grass.EnumBlockGrass.GRASS))
 				world.setBlockState(pos, BRBlocks.BARNARDA_C_DANDELIONS.getDefaultState().withProperty(Barnarda_C_Dandelions.BASIC_TYPE, Barnarda_C_Dandelions.EnumBlockDandelions.GRASS));
 		}
-		
+
+		if(rand.nextInt(100) < 10)
+			for(int i = 0; i < 15; i++){
+				randPosX = x + rand.nextInt(16) + 8;
+				randPosZ = z + rand.nextInt(16) + 8;
+				pos = world.getHeight(new BlockPos(randPosX, 0, randPosZ));
+
+				if(world.getBlockState(pos.down()) == BRBlocks.BARNARDA_C_GRASS.getDefaultState().withProperty(Barnarda_C_Grass.BASIC_TYPE, Barnarda_C_Grass.EnumBlockGrass.GRASS))
+					world.setBlockState(pos, BRBlocks.BARNARDA_C_GLOW_DANDELIONS.getStateFromMeta(rand.nextInt(4)));
+			}
+
 		for(int i = 0; i < 8; i++){
 			for(int y = 40; y < 150; y++) {
 				randPosX = x + rand.nextInt(16) + 8;

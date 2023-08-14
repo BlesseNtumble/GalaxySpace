@@ -108,7 +108,7 @@ public class BlockAdvWindGenerator extends BlockAdvancedTile implements IShiftDe
     @Override
     public String getShiftDescription(int meta)
     {
-        return GCCoreUtil.translate(this.getTranslationKey() + ".desc");
+        return GCCoreUtil.translate("tile.wind_generator.desc");
     }
 
 	@Override
