@@ -1,0 +1,241 @@
+buildscript {
+    repositories {
+		mavenCentral()
+		maven { url = 'https://maven.minecraftforge.net/' }		
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+		//classpath 'net.minecraftforge.gradle:ForgeGradle:3.+'
+    }
+}
+apply plugin: 'net.minecraftforge.gradle.forge'
+//Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
+
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+options.encoding = 'UTF-8'
+}
+
+version = "1.12.2"
+group = "main" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "AllJar"
+
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+
+//repositories {	
+//	mavenLocal()
+//	maven { url "https://maven.galacticraft.net/repository/legacy/" }	
+//	mavenCentral()
+//}
+minecraft {
+    version = "1.12.2-14.23.5.2847"
+    runDir = "run"
+    
+    // the mappings can be changed at any time, and must be in the following format.
+    // snapshot_YYYYMMDD   snapshot are built nightly.
+    // stable_#            stables are built at the discretion of the MCP team.
+    // Use non-default mappings at your own risk. they may not always work.
+    // simply re-run your setup task after changing the mappings to update your workspace.
+    mappings = "stable_39"
+	//mappings = "snapshot_20171003"
+    makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+}
+
+runClient {
+    jvmArgs += "-Dfml.coreMods.load=galaxyspace.core.hooks.GSHooksLoader"
+}
+
+dependencies {
+
+	compile fileTree(dir: 'lib', include: ['*.jar'])
+	//compile "micdoodle8.mods:galacticraft:4.0.2.284-deobf"
+	
+    // you may put jars on which you depend on in ./libs
+    // or you may define them like so..
+    //compile "some.group:artifact:version:classifier"
+    //compile "some.group:artifact:version"
+      
+    // real examples
+    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
+    //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
+
+    // the 'provided' configuration is for optional dependencies that exist at compile-time but might not at runtime.
+    //provided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
+
+    // the deobf configurations:  'deobfCompile' and 'deobfProvided' are the same as the normal compile and provided,
+    // except that these dependencies get remapped to your current MCP mappings
+    //deobfCompile 'com.mod-buildcraft:buildcraft:6.0.8:dev'
+    //deobfProvided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
+	
+	 
+    // for more info...
+    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
+    // http://www.gradle.org/docs/current/userguide/dependency_management.html
+
+}
+
+jar {
+    //manifest.attributes('FMLAT': 'gs_at.cfg')
+	manifest.attributes('FMLAT': 'asmodeuscore_at.cfg')
+}
+
+processResources {
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+                
+        // replace version and mcversion
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+        
+    // copy everything else except the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+		
+    }
+}
+
+task gsJar(type: Jar) {
+		
+	from(zipTree("build/libs/" + archivesBaseName + "-" + version + ".jar")) {
+		exclude 'asmodeuscore/**'
+		exclude 'assets/asmodeuscore/**'
+		exclude 'beyondspace/**'
+		exclude 'assets/beyondspace/**'
+		exclude 'starmaker/**'
+		exclude 'assets/starmaker/**'
+		exclude 'spaceambient/**'
+		exclude 'assets/spaceambient/**'
+	}
+	baseName = "GalaxySpace"
+	version = "1.12.2"
+	archiveName = "${baseName}-${version}.${extension}"
+	
+	manifest.attributes('FMLAT': 'gs_at.cfg')
+	manifest.attributes('FMLCorePlugin': 'galaxyspace.core.hooks.GSHooksLoader')
+	manifest.attributes('FMLCorePluginContainsFMLMod': 'true')
+}
+
+task smJar(type: Jar) {
+		
+	from(zipTree("build/libs/" + archivesBaseName + "-" + version + ".jar")) {
+		exclude 'asmodeuscore/**'
+		exclude 'assets/asmodeuscore/**'
+		exclude 'beyondspace/**'
+		exclude 'assets/beyondspace/**'
+		exclude 'galaxyspace/**'
+		exclude 'assets/galaxyspace/**'
+		exclude 'spaceambient/**'
+		exclude 'assets/spaceambient/**'
+	}
+	baseName = "StarMaker"
+	version = "1.12.2"
+	archiveName = "${baseName}-${version}.${extension}"
+	
+	manifest.attributes('FMLCorePlugin': 'starmaker.utils.asm.AssetPlugin')
+	manifest.attributes('FMLCorePluginContainsFMLMod': 'true')
+}
+
+task coreJar(type: Jar) {
+	
+	from(zipTree("build/libs/" + archivesBaseName + "-" + version + ".jar")) {
+		exclude 'galaxyspace/**'
+		exclude 'assets/galaxyspace/**'
+		exclude 'beyondspace/**'
+		exclude 'assets/beyondspace/**'
+		exclude 'starmaker/**'
+		exclude 'assets/starmaker/**'
+		exclude 'spaceambient/**'
+		exclude 'assets/spaceambient/**'
+	}
+	
+	baseName = "AsmodeusCore"
+	version = "1.12.2"
+	archiveName = "${baseName}-${version}.${extension}"
+	
+	manifest.attributes('FMLAT': 'asmodeuscore_at.cfg')
+	//manifest.attributes('FMLCorePlugin': 'asmodeuscore.core.hooklib.minecraft.HookLoader')
+	//manifest.attributes('FMLCorePluginContainsFMLMod': 'true')
+	
+}
+
+task deobfJar(type: Jar) {
+	baseName = "AsmodeusCore"
+	version = "1.12.2"
+	
+    from(sourceSets.main.output)
+	{
+		exclude 'assets/**'
+		exclude 'galaxyspace/**'
+		exclude 'beyondspace/**'
+		exclude 'starmaker/**'
+		exclude 'spaceambient/**'
+		exclude 'mcmod.info'
+		exclude 'methods.bin'
+	}
+	
+	from(sourceSets.main.allSource)
+	{
+		exclude 'asmodeuscore/core/astronomy/gui/**'
+		exclude 'asmodeuscore/core/utils/worldengine/**'
+		exclude 'galaxyspace/**'
+		exclude 'beyondspace/**'
+		exclude 'assets/galaxyspace/**'
+		exclude 'assets/beyondspace/**'
+		exclude 'starmaker/**'
+		exclude 'assets/starmaker/**'
+		exclude 'spaceambient/**'
+		exclude 'assets/spaceambient/**'
+	}
+	archiveName = "${baseName}-${version}-dev.${extension}"
+	
+	manifest.attributes('FMLAT': 'asmodeuscore_at.cfg')
+	//manifest.attributes('FMLCorePlugin': 'asmodeuscore.core.hooklib.minecraft.HookLoader')
+	//manifest.attributes('FMLCorePluginContainsFMLMod': 'true')
+}
+
+task deobfGSJar(type: Jar) {
+
+	baseName = "GalaxySpace"
+	version = "1.12.2"
+	
+    from(sourceSets.main.output)
+	{
+		exclude 'assets/**'
+		exclude 'asmodeuscore/**'
+		exclude 'beyondspace/**'
+		exclude 'starmaker/**'
+		exclude 'spaceambient/**'
+		exclude 'mcmod.info'
+	}
+	from(sourceSets.main.allSource)
+	{
+		exclude 'asmodeuscore/**'
+		exclude 'beyondspace/**'
+		exclude 'starmaker/**'
+		exclude 'assets/asmodeuscore/**'
+		exclude 'assets/beyondspace/**'
+		exclude 'assets/starmaker/**'
+		exclude 'spaceambient/**'
+		exclude 'assets/spaceambient/**'
+	}
+	archiveName = "${baseName}-${version}-dev.${extension}"
+	
+	manifest.attributes('FMLAT': 'gs_at.cfg')
+	manifest.attributes('FMLCorePlugin': 'galaxyspace.core.hooks.GSHooksLoader')
+	manifest.attributes('FMLCorePluginContainsFMLMod': 'true')
+}
+
+/*
+artifacts {
+	archives coreJar
+	archives gsJar
+    archives deobfJar
+	archives deobfGSJar
+}
+*/
