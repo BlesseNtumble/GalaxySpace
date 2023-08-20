@@ -1,0 +1,26 @@
+///Changelog///
+e.-----------------------2.1.0----------------------------
+e.1. Added meteoric rain on Ceres.
+e.2. Moved gas extractor to armor creative tab.
+e.3. Fixed crash on Mars Spacestation after place any solar panel.
+e.4. Fixed the amount of charged energy on the charging panel.
+e.5. Changed actual version AsmodeusCore.
+e.6. Fixed Universal Recycler gui.
+e.7. Fixed transform empty canister into bucket in Liquid Collector.
+e.8. Added Violet Cactus on Barnarda C.
+e.9. Fixed crash with Nature gas.
+e.10. Added config for disable generation nature gas.
+e.11. Added Lightning bolts if storm on Barnarda C.
+e.12. Increased protection in heavy spacesuit.
+e.13. Added Advanced Wind Generator.
+e.14. Fixed sound for grass, ground and leaves Barnarda C.
+e.15. Added render cache for spacesuit model.
+e.16. Added Autofeeding module for spacesuit.
+e.17. Changed orbit for Haumea.
+e.18. Changed few textures.
+e.19. Changed meteor frequence on Mars like in GC.
+e.20. All parts spacesuits now have fixed energy stored.
+e.21. Increased chance nickel asteroid gen on Overworld.
+e.22. Added Barnarda C trapdoors, doors, glow plants, new decometals blocks.
+e.23. Changed top texture for modification table
+e.24. Added config for disable Gas Giant register.
