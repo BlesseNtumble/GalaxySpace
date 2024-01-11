@@ -146,8 +146,8 @@ public class TileEntityFuelGenerator extends TileBaseUniversalElectricalSource i
             }
             
           
-            this.heatGJperTick = Math.min(this.heatGJperTick + Math.max(this.heatGJperTick * 0.005F, TileEntityFuelGenerator.BASE_ACCELERATION), TileEntityFuelGenerator.MAX_GENERATE_GJ_PER_TICK * mod);
-            this.storage.setMaxExtract(TileEntityFuelGenerator.MAX_GENERATE_GJ_PER_TICK * mod - TileEntityFuelGenerator.MIN_GENERATE_GJ_PER_TICK - 1);
+            this.heatGJperTick = Math.min(this.heatGJperTick + Math.max(this.heatGJperTick * 0.005F, TileEntityFuelGenerator.BASE_ACCELERATION), TileEntityFuelGenerator.MAX_GENERATE_GJ_PER_TICK * mod - 1);
+            this.storage.setMaxExtract(TileEntityFuelGenerator.MAX_GENERATE_GJ_PER_TICK * mod - TileEntityFuelGenerator.MIN_GENERATE_GJ_PER_TICK);
             
         }
     	
