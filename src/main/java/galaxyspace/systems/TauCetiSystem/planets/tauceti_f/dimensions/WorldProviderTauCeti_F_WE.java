@@ -449,8 +449,6 @@ public class WorldProviderTauCeti_F_WE extends WE_WorldProviderSpace implements 
 
 	@Override
 	public WeatherData getWeather() {
-		if(this.world.isRaining())
-			return new WeatherData(WeatherType.LIGHTNING_STORM, 1D);
-		return null;
+		return lightning_storm.withFrequence(this.world.thunderingStrength > 0 ? 20 : this.world.isRaining() ? 10 : 0);
 	}
 }

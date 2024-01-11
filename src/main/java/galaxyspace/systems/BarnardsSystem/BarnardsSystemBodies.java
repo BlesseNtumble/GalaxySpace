@@ -57,6 +57,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.io.File;
 
@@ -172,6 +173,7 @@ public class BarnardsSystemBodies implements IBodies {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerRender() {
 		//	if(BRConfigCore.enableBarnardsSystems) {
 
@@ -227,6 +229,7 @@ public class BarnardsSystemBodies implements IBodies {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerVariant() {
 		String[] blocks = new String[EnumBlockBarnardaC.values().length];
 		for(int i = 0; i < blocks.length; i++)

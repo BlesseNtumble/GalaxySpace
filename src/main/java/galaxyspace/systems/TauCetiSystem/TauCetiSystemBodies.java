@@ -104,6 +104,7 @@ public class TauCetiSystemBodies implements IBodies{
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerRender() {	
 
 		String[] name = new String[EnumBlockTauCetiF.values().length];

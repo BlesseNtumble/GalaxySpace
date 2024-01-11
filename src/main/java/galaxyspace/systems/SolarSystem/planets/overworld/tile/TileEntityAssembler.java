@@ -51,7 +51,6 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements ISided
         this.setTierGC(1);
     }
 
-       
     @Override
     public void update()
     {
