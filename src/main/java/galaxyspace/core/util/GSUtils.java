@@ -22,6 +22,7 @@ import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GCFluids;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.fluid.OxygenPressureProtocol;
+import micdoodle8.mods.galacticraft.core.util.BlockUtil;
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
 import micdoodle8.mods.galacticraft.core.util.EnumColor;
 import micdoodle8.mods.galacticraft.core.util.FluidUtil;
@@ -368,10 +369,15 @@ public class GSUtils {
 				return -1;
 			} else if (block instanceof BlockLiquid) {
 				return -1;
-			} else if (OxygenPressureProtocol.nonPermeableBlocks.containsKey(block)) {
-				ArrayList<Integer> metaList = OxygenPressureProtocol.nonPermeableBlocks.get(block);
-				if (metaList.contains(-1) || metaList.contains(state.getBlock().getMetaFromState(state))) {
-					return -1;
+			}
+			for (BlockUtil.MultiBlockStateHolder mbsh : OxygenPressureProtocol.newNonPermeableBlockStateList)
+			{
+				if (mbsh.getBlock().equals(block))
+				{
+					if (mbsh.getBlockstateList().contains(state))
+					{
+						return -1;
+					}
 				}
 			}
 		} else {
