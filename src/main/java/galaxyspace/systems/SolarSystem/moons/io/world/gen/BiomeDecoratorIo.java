@@ -78,14 +78,14 @@ public class BiomeDecoratorIo extends BiomeDecoratorSpace
     		
     			this.getCurrentWorld().setBlockState(new BlockPos(x, y - 1, z), Blocks.FLOWING_LAVA.getDefaultState(), 2);
     			if(rand.nextInt(2) == 0)
-    				this.getCurrentWorld().setBlockState(new BlockPos(x, y, z), GSBlocks.IO_BLOCKS.getDefaultState().withProperty(IoBlocks.BASIC_TYPE, IoBlocks.EnumIoBlocks.IO_LAVA_GEYSER), 2);
+    				this.getCurrentWorld().setBlockState(new BlockPos(x, y, z), GSBlocks.IO_BLOCKS.getDefaultState().withProperty(IoBlocks.BASIC_TYPE, IoBlocks.EnumIoBlocks.IO_LAVA_GEYSER), 3);
     			this.getCurrentWorld().setBlockState(new BlockPos(x, y + 1 + rand.nextInt(1), z), Blocks.FLOWING_LAVA.getDefaultState(), 2);
     				
     		}
     		
     		if(state.getMaterial() == Material.LAVA)
     		{
-    			this.getCurrentWorld().setBlockState(new BlockPos(x, y - 1, z), GSBlocks.IO_BLOCKS.getDefaultState().withProperty(IoBlocks.BASIC_TYPE, IoBlocks.EnumIoBlocks.IO_LAVA_GEYSER), 2);
+    			this.getCurrentWorld().setBlockState(new BlockPos(x, y - 1, z), GSBlocks.IO_BLOCKS.getDefaultState().withProperty(IoBlocks.BASIC_TYPE, IoBlocks.EnumIoBlocks.IO_LAVA_GEYSER), 3);
     			this.getCurrentWorld().setBlockState(new BlockPos(x, y - 2, z), Blocks.LAVA.getDefaultState(), 2);    			
     		}
     		

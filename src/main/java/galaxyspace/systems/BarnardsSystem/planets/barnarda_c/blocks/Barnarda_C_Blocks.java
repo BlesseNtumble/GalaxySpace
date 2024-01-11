@@ -42,13 +42,14 @@ public class Barnarda_C_Blocks  extends Block implements ISortableBlock, ITerraf
         this.setHarvestLevel("pickaxe", 0, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.STONE));
         this.setHarvestLevel("pickaxe", 0, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.COBBLESTONE));
         this.setHarvestLevel("pickaxe", 0, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.STONE_BRICKS));
-        //this.setHarvestLevel("shovel", 0, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.DIRT));
-        //this.setHarvestLevel("shovel", 0, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.DIRT_1));
+        this.setHarvestLevel("shovel", 0, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.DIRT));
+        this.setHarvestLevel("shovel", 0, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.DIRT_1));
         this.setHarvestLevel("pickaxe", 0, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.SANDSTONE));
         this.setHarvestLevel("axe", 0, this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.OAK_PLANKS));
         
     }
-		
+
+
 	@Override
 	public float getBlockHardness(IBlockState state, World world, BlockPos pos)
     {
@@ -57,7 +58,7 @@ public class Barnarda_C_Blocks  extends Block implements ISortableBlock, ITerraf
         {
 			case DIRT: 
 			case DIRT_1:
-				return 0.2F;
+				return 0.5F;
 			case SANDSTONE:
 				return 1.0F;
 			case STONE: 

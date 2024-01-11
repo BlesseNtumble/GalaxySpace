@@ -50,7 +50,7 @@ public class IoBlocks extends Block implements ISortableBlock, ITerraformableBlo
         this.setTranslationKey("ioblocks");
         this.setSoundType(SoundType.STONE); 
         this.setHarvestLevel("pickaxe", 2);
-        this.setTickRandomly(false);
+        this.setTickRandomly(true);
     }
 
 	@SideOnly(Side.CLIENT)
@@ -111,8 +111,9 @@ public class IoBlocks extends Block implements ISortableBlock, ITerraformableBlo
 
 		if(state == state.withProperty(BASIC_TYPE, EnumIoBlocks.IO_LAVA_GEYSER))
 		{
-			if(world.isAirBlock(pos.up()) && world.getBlockState(pos.down()).getMaterial() == Material.LAVA && !world.isBlockNormalCube(pos.up(), true) && world.rand.nextInt(4) == 0)
+			if(world.getBlockState(pos.down()).getMaterial() == Material.LAVA && !world.isBlockNormalCube(pos.up(), true) && world.rand.nextInt(4) == 0)
 			{
+
 				GalaxySpace.proxy.spawnParticle("waterbubbles", new Vector3(pos.getX() + rand.nextDouble(), pos.getY() + 1.0D + rand.nextDouble(), pos.getZ() + rand.nextDouble()), new Vector3(0.0D + ((rand.nextFloat() / 10) * (rand.nextBoolean() ? -1 : 1)), 0.01D, 0.0D + ((rand.nextFloat() / 10) * (rand.nextBoolean() ? -1 : 1))), new Object [] { 200 + rand.nextInt(40), 4, false, new Vector3(0.1F, 0.1F, 0.1F), 1.0D} );
 	    		GalaxySpace.proxy.spawnParticle("waterbubbles", new Vector3(pos.getX() + rand.nextDouble(), pos.getY() + 1.0D + rand.nextDouble(), pos.getZ() + rand.nextDouble()), new Vector3(0.0D + ((rand.nextFloat() / 10) * (rand.nextBoolean() ? -1 : 1)), 0.01D, 0.0D + ((rand.nextFloat() / 10) * (rand.nextBoolean() ? -1 : 1))), new Object [] { 200 + rand.nextInt(40), 4, false, new Vector3(0.1F, 0.1F, 0.1F), 1.0D} );
 	    		GalaxySpace.proxy.spawnParticle("waterbubbles", new Vector3(pos.getX() + rand.nextDouble(), pos.getY() + 1.0D + rand.nextDouble(), pos.getZ() + rand.nextDouble()), new Vector3(0.0D + ((rand.nextFloat() / 10) * (rand.nextBoolean() ? -1 : 1)), 0.01D, 0.0D + ((rand.nextFloat() / 10) * (rand.nextBoolean() ? -1 : 1))), new Object [] { 200 + rand.nextInt(40), 6, false, new Vector3(0.1F, 0.1F, 0.1F), 1.0D} );
