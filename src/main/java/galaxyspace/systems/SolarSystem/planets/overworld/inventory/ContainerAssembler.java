@@ -21,7 +21,7 @@ public class ContainerAssembler extends Container
     public ContainerAssembler(InventoryPlayer par1InventoryPlayer, TileEntityAssembler tileEntity)
     {
         this.tileEntity = tileEntity;
-        tileEntity.testCraftMatrix.eventHandler = this;
+        tileEntity.testCraftMatrix.gs_eventHandler = this;
 
         for (int x = 0; x < 3; x++)
         {

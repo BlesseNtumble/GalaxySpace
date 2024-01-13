@@ -23,11 +23,14 @@ archivesBaseName = "AllJar"
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
-//repositories {	
-//	mavenLocal()
-//	maven { url "https://maven.galacticraft.net/repository/legacy/" }	
-//	mavenCentral()
-//}
+repositories {	
+	mavenLocal()
+	maven { url "https://maven.galacticraft.net/repository/legacy/" }	
+	maven { url = "http://maven.thiakil.com" }
+    maven { url = "http://dvs1.progwml6.com/files/maven" }
+    maven { url "https://www.cursemaven.com" }
+	mavenCentral()
+}
 minecraft {
     version = "1.12.2-14.23.5.2847"
     runDir = "run"
@@ -43,13 +46,14 @@ minecraft {
 }
 
 runClient {
-    jvmArgs += "-Dfml.coreMods.load=galaxyspace.core.hooks.GSHooksLoader"
+    jvmArgs += "-Dfml.coreMods.load=galaxyspace.core.hooks.GSHooksLoader,starmaker.utils.asm.AssetPlugin"
 }
 
 dependencies {
 
 	compile fileTree(dir: 'lib', include: ['*.jar'])
-	//compile "micdoodle8.mods:galacticraft:4.0.2.284-deobf"
+	compile "dev.galacticraft:galacticraft-legacy:4.0.2.284"
+	//deobfCompile "mezz.jei:jei_1.12.2:4.13.1.220"
 	
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..

@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 import galaxyspace.core.GSItems;
+import galaxyspace.core.prefab.inventory.GSPersistantInventoryCrafting;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockAssembler;
 import galaxyspace.systems.SolarSystem.planets.overworld.recipes.AssemblyRecipes;
 import micdoodle8.mods.galacticraft.api.recipe.ShapedRecipesGC;
@@ -41,7 +42,7 @@ public class TileEntityAssembler extends TileBaseElectricBlock implements ISided
     private ItemStack producingStack = ItemStack.EMPTY;
     private static Random randnum = new Random();
   
-    public PersistantInventoryCrafting testCraftMatrix = new PersistantInventoryCrafting();
+    public GSPersistantInventoryCrafting testCraftMatrix = new GSPersistantInventoryCrafting();
     
     public TileEntityAssembler()
     {

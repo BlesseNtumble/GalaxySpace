@@ -22,6 +22,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
@@ -52,6 +53,121 @@ public class EntityCustomCargoRocket extends EntityAutoRocket implements IRocket
         this.rocketType = rocketType;
         this.stacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
         this.setSize(0.98F, 2F);
+    }
+
+    @Override
+    protected void entityInit()
+    {
+    }
+
+    @Override
+    public boolean isEmpty()
+    {
+        for (ItemStack itemstack : this.stacks)
+        {
+            if (!itemstack.isEmpty())
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    @Override
+    public ItemStack getStackInSlot(int index)
+    {
+        if (this.stacks == null)
+        {
+            return ItemStack.EMPTY;
+        }
+
+        return this.stacks.get(index);
+    }
+
+    @Override
+    public ItemStack decrStackSize(int index, int count)
+    {
+        ItemStack itemstack = ItemStackHelper.getAndSplit(this.stacks, index, count);
+
+        if (!itemstack.isEmpty())
+        {
+            this.markDirty();
+        }
+
+        return itemstack;
+    }
+
+    @Override
+    public ItemStack removeStackFromSlot(int index)
+    {
+        return ItemStackHelper.getAndRemove(this.stacks, index);
+    }
+
+    @Override
+    public void setInventorySlotContents(int index, ItemStack stack)
+    {
+        this.stacks.set(index, stack);
+
+        if (stack.getCount() > this.getInventoryStackLimit())
+        {
+            stack.setCount(this.getInventoryStackLimit());
+        }
+
+        this.markDirty();
+    }
+
+    @Override
+    public int getInventoryStackLimit()
+    {
+        return 64;
+    }
+
+
+    @Override
+    public void markDirty() {
+    }
+
+    @Override
+    public boolean isUsableByPlayer(EntityPlayer entityplayer)
+    {
+        return !this.isDead && entityplayer.getDistanceSq(this) <= 64.0D;
+    }
+
+
+    @Override
+    public void openInventory(EntityPlayer entityPlayer) {
+
+    }
+
+    @Override
+    public void closeInventory(EntityPlayer entityPlayer) {
+
+    }
+
+    @Override
+    public boolean isItemValidForSlot(int i, ItemStack itemstack)
+    {
+        return false;
+    }
+
+    @Override
+    public int getField(int i) {
+        return 0;
+    }
+
+    @Override
+    public void setField(int i, int i1) {
+
+    }
+
+    @Override
+    public int getFieldCount() {
+        return 0;
+    }
+
+    @Override
+    public void clear() {
     }
 
     @Override
@@ -323,8 +439,6 @@ public class EntityCustomCargoRocket extends EntityAutoRocket implements IRocket
     	if (world.isRemote) return;
         nbt.setInteger("Type", this.rocketType.getIndex());
 
-        super.writeEntityToNBT(nbt);
-        
         if (this.fluidTank.getFluid() != null)
         {
             nbt.setTag("fluidTank", this.fluidTank.writeToNBT(new NBTTagCompound()));
@@ -336,8 +450,6 @@ public class EntityCustomCargoRocket extends EntityAutoRocket implements IRocket
     {
         this.rocketType = EnumRocketType.values()[nbt.getInteger("Type")];
 
-        super.readEntityFromNBT(nbt);
-        
         if (nbt.hasKey("fluidTank"))
         {
             this.fluidTank.readFromNBT(nbt.getCompoundTag("fluidTank"));

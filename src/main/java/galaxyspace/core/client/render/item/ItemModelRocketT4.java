@@ -9,10 +9,12 @@ import micdoodle8.mods.galacticraft.core.util.ClientUtil;
 import micdoodle8.mods.galacticraft.core.wrappers.ModelTransformWrapper;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
+import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraftforge.common.model.TRSRTransformation;
 
 public class ItemModelRocketT4 extends ModelTransformWrapper
 {
+
     public ItemModelRocketT4(IBakedModel modelToWrap)
     {
         super(modelToWrap);
