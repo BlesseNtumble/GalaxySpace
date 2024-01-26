@@ -1,4 +1,11 @@
 ///Changelog///
+e.-----------------------2.1.2----------------------------
+e.1. Fixed tick geyser blocks, fixed dirt harvest tool on Barnarda C.
+e.2. Fixed generate energy in fuel generator (gen = max input).
+e.3. Fixed crash assembler on 4.0.6 GC Legacy.
+e.-----------------------2.1.1----------------------------
+e.1. Fixed crash on servers.
+e.2. Fixed crash on Tau Ceti F.
 e.-----------------------2.1.0----------------------------
 e.1. Added meteoric rain on Ceres.
 e.2. Moved gas extractor to armor creative tab.
