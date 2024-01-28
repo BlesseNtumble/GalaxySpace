@@ -105,6 +105,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
@@ -285,17 +286,17 @@ public class GSEventHandler {
 		{
 			float thermal = ((IGalacticraftWorldProvider)e.world.provider).getThermalLevelModifier();
 			AxisAlignedBB bb = new AxisAlignedBB(e.pos.up());
-				
+
 			for(BlockToChange block : block_to_change)
-			{			
+			{
 				if(block.only_gs_dim && !(e.world.provider instanceof IProviderFreeze))
-					continue;		
-				
+					continue;
+
 				if(e.world.provider instanceof IProviderFreeze && !((IProviderFreeze)e.world.provider).isFreeze()) continue;
-				
+
 				if(OxygenUtil.isAABBInBreathableAirBlock(e.world, bb, true)) continue;
-				
-				if(block.need_check_temp) { 
+
+				if(block.need_check_temp) {
 					if((e.block == block.state || e.block.getMaterial() == block.state.getMaterial()))
 					{
 						if(thermal <= cool_temp * block.getTempModificator())
@@ -316,7 +317,7 @@ public class GSEventHandler {
 					block.spawnParticleHotTemp(e.world, e.pos);
 					e.setCanceled(true);
 				}
-			}				
+			}
 		}
 	}
 	
@@ -359,6 +360,9 @@ public class GSEventHandler {
 	@SubscribeEvent
 	public void onFillBucket(FillBucketEvent e) {
 		World world = e.getWorld();
+		if(e.getTarget() == null) return;
+		if(e.getTarget().typeOfHit != RayTraceResult.Type.BLOCK) return;
+
 		BlockPos pos = e.getTarget().getBlockPos();
 		
 		if(world.getBlockState(pos) == Blocks.ICE.getDefaultState()) {
