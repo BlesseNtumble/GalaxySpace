@@ -17,7 +17,7 @@ public class GSPotions {
 	private static void initPotions()
 	{
 		
-		antiradiation = new AntiRadiation(true, GSUtils.getColor(255, 10, 100, 10));		
+		antiradiation = new AntiRadiation(false, GSUtils.getColor(255, 10, 100, 10));		
 	
 		ForgeRegistries.POTIONS.register(antiradiation);
 	}
