@@ -1,0 +1,165 @@
+package galaxyspace.systems.SolarSystem.planets.venus.entities;
+
+import java.util.UUID;
+
+import micdoodle8.mods.galacticraft.api.entity.IEntityBreathable;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAIAvoidEntity;
+import net.minecraft.entity.ai.EntityAICreeperSwell;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
+import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.passive.EntityOcelot;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
+import net.minecraft.world.World;
+
+
+public class EntityEvolvedFireCreeper extends EntityCreeper implements IEntityBreathable
+{
+    private float sizeXBase = -1.0F;
+    private float sizeYBase;
+    private static final UUID babySpeedBoostUUID = UUID.fromString("ef67a435-32a4-4efd-b218-e7431438b109");
+    private static final AttributeModifier babySpeedBoostModifier = new AttributeModifier(babySpeedBoostUUID, "Baby speed boost evolved fire creeper", 0.5D, 1);
+
+    public EntityEvolvedFireCreeper(World par1World)
+    {
+        super(par1World);
+        this.tasks.taskEntries.clear();
+        this.tasks.addTask(1, new EntityAISwimming(this));
+        this.tasks.addTask(2, new EntityAICreeperSwell(this));
+        this.tasks.addTask(3, new EntityAIAvoidEntity(this, EntityOcelot.class, 6.0F, 0.25F, 0.3F));
+        this.tasks.addTask(4, new EntityAIAttackOnCollide(this, 0.25F, false));
+        this.tasks.addTask(5, new EntityAIWander(this, 0.2F));
+        this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        this.tasks.addTask(6, new EntityAILookIdle(this));
+        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+        this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
+        this.setSize(0.6F, 1.8F);
+        this.isImmuneToFire = true;
+    }
+
+    protected void entityInit()
+    {
+        super.entityInit();
+        this.getDataWatcher().addObject(12, Byte.valueOf((byte) 0));
+    }
+
+    @Override
+    protected void collideWithEntity(Entity entity)
+    {
+        entity.applyEntityCollision(this);
+        entity.attackEntityFrom(DamageSource.inFire, 0.1F);
+    }
+    
+    @Override
+    protected void applyEntityAttributes()
+    {
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(25.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0F);
+        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(5.0F);
+    }
+
+    @Override
+    public void writeEntityToNBT(NBTTagCompound nbt)
+    {
+        super.writeEntityToNBT(nbt);
+
+        if (this.isChild())
+        {
+            nbt.setBoolean("IsBaby", true);
+        }
+    }
+
+    @Override
+    public void readEntityFromNBT(NBTTagCompound nbt)
+    {
+        super.readEntityFromNBT(nbt);
+
+        if (nbt.getBoolean("IsBaby"))
+        {
+            this.setChild(true);
+        }
+    }
+
+    @Override
+    public boolean canBreath()
+    {
+        return true;
+    }
+
+    public void setChildSize(boolean isChild)
+    {
+        this.setCreeperScale(isChild ? 0.5F : 1.0F);
+    }
+
+    protected final void setSize(float sizeX, float sizeY)
+    {
+        boolean flag = this.sizeXBase > 0.0F && this.sizeYBase > 0.0F;
+        this.sizeXBase = sizeX;
+        this.sizeYBase = sizeY;
+
+        if (!flag)
+        {
+            this.setCreeperScale(1.0F);
+        }
+    }
+
+    protected final void setCreeperScale(float scale)
+    {
+        super.setSize(this.sizeXBase * scale, this.sizeYBase * scale);
+        //FMLLog.info("" + this.sizeYBase + " " + scale);
+    }
+
+    public boolean isChild()
+    {
+        return this.getDataWatcher().getWatchableObjectByte(12) == 1;
+    }
+
+    protected int getExperiencePoints(EntityPlayer p_70693_1_)
+    {
+        if (this.isChild())
+        {
+            this.experienceValue = (this.experienceValue * 5) / 2;
+        }
+
+        return super.getExperiencePoints(p_70693_1_);
+    }
+
+    public void setChild(boolean isChild)
+    {
+        this.getDataWatcher().updateObject(12, Byte.valueOf((byte) (isChild ? 1 : 0)));
+
+        if (this.worldObj != null && !this.worldObj.isRemote)
+        {
+            IAttributeInstance iattributeinstance = this.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
+            iattributeinstance.removeModifier(babySpeedBoostModifier);
+
+            if (isChild)
+            {
+                iattributeinstance.applyModifier(babySpeedBoostModifier);
+            }
+        }
+
+        this.setChildSize(isChild);
+    }
+    
+    public void onLivingUpdate()
+    {
+    	//GalaxySpace.proxy.spawnParticle("largeflame", new Vector3(posX, posY + 0.5D, posZ), new Vector3(0.0D, 0.1D, 0.0D), new Object [] { });
+        worldObj.spawnParticle("flame", this.posX + this.rand.nextDouble() - 0.5D * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, 0.0D, 0.0D, 0.0D);
+        worldObj.spawnParticle("flame", this.posX + this.rand.nextDouble() - 0.5D * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, 0.0D, 0.0D, 0.0D);
+        
+    	super.onLivingUpdate();
+    }
+}

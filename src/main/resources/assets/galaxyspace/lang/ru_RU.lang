@@ -1,0 +1,696 @@
+#Russian (RU)
+|/////////////////////////////////////////|
+#||||||||||||||Achievements||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+achievement.miningcoppergc=Это мы уже видели...
+achievement.miningcoppergc.desc=Добудьте Медную руду.
+achievement.miningtingc=Здравствуй старый друг
+achievement.miningtingc.desc=Добудьте Оловянную руду.
+achievement.miningaluminiumgc=А это что такое?
+achievement.miningaluminiumgc.desc=Добудьте Алюминиевую руду.
+achievement.miningsilicongc=Кремень? Серьезно?
+achievement.miningsilicongc.desc=Добудьте Кремниевую руду.
+achievement.leadarmorgc=А это не опасно?
+achievement.leadarmorgc.desc=Создайте весь Свинцовый доспех.
+achievement.electricgc=Потоковая Энергия
+achievement.electricgc.desc=Создайте свой первый Алюминиевый провод.
+achievement.electric2gc=Первое Улучшение
+achievement.electric2gc.desc=Улучшите Алюминиевый провод.
+achievement.energycellgc=Складируем Энергию
+achievement.energycellgc.desc=Создайте Модуль "Хранилище энергии".
+achievement.coalgeneratorgc=Добытчик Энергии
+achievement.coalgeneratorgc.desc=Создайте Угольный Генератор.
+achievement.geothermalgeneratorgs=Тепловая Энергия
+achievement.geothermalgeneratorgs.desc=Создайте Топливный генератор и залейте в него лаву.
+achievement.solargc=Солнечная Энергия
+achievement.solargc.desc=Создайте Основную солнечную панель
+achievement.circuitgc=Наноинженерия
+achievement.circuitgc.desc=Создайте Производитель микросхем.
+achievement.compressorgc=Вселеннское сжатие
+achievement.compressorgc.desc=Создайте Компрессор, используя Основую полупроводниковую пластину.
+achievement.fangc=И зачем эта безделушка?
+achievement.fangc.desc=Создайте Вентилятор.
+achievement.hdpgc=Идеальная пластина
+achievement.hdpgc.desc=Создайте Сверхпрочное Покрытие 1 уровня.
+achievement.hdp2gc=Еще идеальней!
+achievement.hdp2gc.desc=Создайте Сверхпрочное Покрытие 2 уровня.
+achievement.furancegc=Электрическая Горячая штучка
+achievement.furancegc.desc=Создайте Электропечь.
+achievement.assemblygc=Это что-то из фантастики...
+achievement.assemblygc.desc=Создайте Сборочный Цех.
+achievement.nasagc=Ракетостроение
+achievement.nasagc.desc=Создайте Верстак NASA, чтобы сделать свою первую ракету!
+achievement.refinerygc=Переработка Черного Золота
+achievement.refinerygc.desc=Сделайте Очистительный завод, чтобы производить топливо для ракет.
+achievement.oilgc=Черное Золото
+achievement.oilgc.desc=Добудьте немного нефти вашим ведром.
+achievement.fuelgc=ОГНЕОПАСНО!
+achievement.fuelgc.desc=Перелейте топливо в ваше ведро и носите с собой.
+achievement.rocketgc=Почти в космосе!
+achievement.rocketgc.desc=Сделать ракету 1 уровня.
+achievement.moongc=Здесь ступала нога человека!
+achievement.moongc.desc=Приземлитесь на Луну!
+achievement.bossmoongc=И это все, на что ты способен?
+achievement.bossmoongc.desc=Победить босса в подземелье Луны.
+achievement.fallingmetallgc=Космическая драгоценность
+achievement.fallingmetallgc.desc=Добыть первый кусочек метеоритного железа.
+achievement.jetpackgc=Креатив? А зачем?
+achievement.jetpackgc.desc=Создайте Реактивный ранец.
+achievement.rocket2gc=Она лучше!
+achievement.rocket2gc.desc=Сделать ракету 2 уровня.
+achievement.marsgc=Проект: Mars One!
+achievement.marsgc.desc=Приземлитесь на Марс!
+
+menu.update=Обновить [Galaxy Space]!
+
+|/////////////////////////////////////////|
+#||||||||||||||||||Blocks||||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+tile.MercurySurface.name=Грунт Меркурия
+tile.MercurySubSurface.name=Подповерхностный Грунт Меркурия
+tile.MercuryStone.name=Камень Меркурия
+tile.MercuryIronOre.name=Железная Руда
+tile.MercuryNickelOre.name=Никелевая Руда
+
+tile.VenusGrunt.name=Грунт Венеры
+tile.VenusSubGrunt.name=Подповерхностный Грунт Венеры
+tile.VenusSulfurOre.name=Серная Руда
+tile.VenusDiamondOre.name=Алмазная Руда
+tile.VenusVolcanicStone.name=Вулканический Камень
+
+tile.DecoCobaltum.name=Декоративный Кобальтовый Блок
+tile.DecoMagnesium.name=Декоративный Магниевый Блок
+tile.DecoNickel.name=Декоративный Никелевый Блок
+tile.DecoCopper.name=Декоративный Медный Блок
+
+tile.CobaltOre.name=Кобальтовая Руда
+tile.NickelOre.name=Никелевая Руда
+tile.SurfaceIce.name=Поверхностный Лед
+tile.SapphireOre.name=Сапфировая Руда
+tile.UraniumOre.name=Урановая Руда
+tile.SapphireBlock.name=Сапфировый Блок
+
+tile.MarsOreDiamond.name=Алмазная Руда
+tile.MarsOreGold.name=Золотая Руда
+tile.MarsOreCoal.name=Угольная Руда
+tile.MarsOreRedstone.name=Руда Красного Камня
+tile.MarsOreSilicon.name=Кремниевая Руда
+tile.MarsOreAluminum.name=Алюминивая Руда
+
+tile.FutureGlass_None.name=Футуристическое Стекло
+tile.FutureGlass_Black.name=Черное Футуристическое Стекло
+tile.FutureGlass_Red.name=Красное Футуристическое Стекло
+tile.FutureGlass_Green.name=Зеленое Футуристическое Стекло
+tile.FutureGlass_Brown.name=Коричневое Футуристическое Стекло
+tile.FutureGlass_Blue.name=Синее Футуристическое Стекло
+tile.FutureGlass_Purple.name=Фиолетовое Футуристическое Стекло
+tile.FutureGlass_Cyan.name=Бирюзовое Футуристическое Стекло
+tile.FutureGlass_Lightgray.name=Светло-серое Футуристическое Стекло
+tile.FutureGlass_Gray.name=Серое Футуристическое Стекло
+tile.FutureGlass_Pink.name=Розовое Футуристическое Стекло
+tile.FutureGlass_Lime.name=Лаймовое Футуристическое Стекло
+tile.FutureGlass_Yellow.name=Желтое Футуристическое Стекло
+tile.FutureGlass_Lightblue.name=Светло-синее Футуристическое Стекло
+tile.FutureGlass_Magneta.name=Пурпурное Футуристическое Стекло
+tile.FutureGlass_Orange.name=Оранжевое Футуристическое Стекло
+tile.FutureGlass_White.name=Белое Футуристическое Стекло
+
+tile.CeresGrunt.name=Грунт Цереры
+tile.CeresSubGrunt.name=Подповерхность Цереры
+tile.CeresMeteoricIronOre.name=Руда Метеоритного Железа
+tile.CeresDolomiteOre.name=Доломитовая Руда
+tile.CeresWeb.name=Паутина Цереры
+tile.CeresTop.name=Потолок Подземелья Цереры
+tile.CeresFloor.name=Пол Подземелья Цереры
+
+tile.PlutoGrunt.name=Грунт Плутона
+tile.PlutoSubGrunt.name=Подповерхность Плутона
+tile.PlutoStone.name=Камень Плутона
+
+tile.PhobosGrunt.name=Грунт Фобоса
+tile.PhobosSubGrunt.name=Подповерхностный Грунт Фобоса
+tile.PhobosStone.name=Камень Фобоса
+
+tile.IoGrunt.name=Поверхность Ио
+tile.IoStone.name=Камень Ио
+tile.IoAsh.name=Пепельный Реголит Ио
+tile.IoCopperOre.name=Медная Руда
+tile.IoSulfurOre.name=Серная Руда
+tile.IoTop.name=Потолок Подземелья Ио
+tile.IoFloor.name=Пол Подземелья Ио
+tile.IoSulfurGeyser.name=Серный Гейзер Ио
+tile.IoLavaGeyser.name=Лавовый Гейзер Ио
+
+tile.EuropaGrunt.name=Поверхностный Грунт Европы
+tile.EuropaStone.name=Камень Европы
+tile.EuropaBrownIce.name=Бурый Лед Европы
+tile.EuropaEmeraldOre.name=Изумрудная Руда
+tile.EuropaSiliconOre.name=Кремниевая Руда
+tile.EuropaAluminumOre.name=Алюминиевая Руда
+tile.EuropaGeyzer.name=Гейзер Европы
+tile.EuropaUnderwaterGeyser.name=Гейзер Европы
+
+tile.GanymedeGrunt.name=Грунт Ганимеда
+tile.GanymedeSubGrunt.name=Подповерхностный Грунт Ганимеда
+tile.GanymedeMagnesiumOre.name=Магниевая Руда
+tile.GanymedeTitanuimOre.name=Ильменитовая Руда
+
+tile.CallistoGrunt.name=Поверхность Каллисто
+tile.CallistoSubGrunt.name=Подповерхность Каллисто
+
+tile.EnceladusSnow.name=Снег Энцелада
+tile.EnceladusGrunt.name=Грунт Энцелада
+tile.EnceladusCoalOre.name=Угольная Руда
+tile.Crystall.name=Неизвестный Кристалл
+
+tile.TitanGrunt.name=Поверхностный Грунт Титана
+tile.TitanSubGrunt.name=Подповерхностный Грунт Титана
+tile.TitanStone.name=Камень Титана
+
+tile.MirandaGrunt.name=Поверхностный Грунт Миранды
+tile.MirandaSubGrunt.name=Подповерхностный Грунт Миранды
+tile.MirandaStone.name=Камень Миранды
+tile.MirandaIronOre.name=Железная Руда
+tile.MirandaDolomiteOre.name=Доломитовая Руда
+
+tile.TritonGrunt.name=Поверхностный Грунт Тритона
+tile.TritonGrunt_1.name=Поверхностный Грунт Тритона
+tile.TritonSubGrunt.name=Подповерхностный Грунт Тритона
+tile.TritonStone.name=Камень Тритона
+tile.TritonGeyser.name=Поверхностный Гейзер Тритона
+tile.TritonUraniumOre.name=Урановая Руда
+
+tile.Proxima_B_Surface.name=Поверхность Проксимы Б
+tile.Proxima_B_Subsurface.name=Подповерхность Проксимы Б
+tile.Proxima_B_Stone.name=Камень Проксимы Б
+tile.Proxima_B_Ice_Surface.name=Замершая Поверхность Проксимы Б
+tile.Proxima_B_Ash_Rock.name=Пепельный Гравий Проксимы Б
+tile.Proxima_B_Gold_Ore.name=Золотая Руда
+tile.Proxima_B_Tin_Ore.name=Оловянная Руда
+tile.Proxima_B_Copper_Ore.name=Медная Руда
+tile.Proxima_B_Coal_Ore.name=Угольная Руда
+tile.Proxima_B_Silicon_Ore.name=Кремниевая Руда
+tile.Proxima_B_Emerald_Ore.name=Изумрудная Руда
+
+tile.FrozenLog.name=Замершее Дерево
+tile.BurntLog.name=Сгоревшее Дерево
+
+tile.BarnardaCGrass.name=Трава Барнарды С
+tile.BarnardaCLog.name=Фиолетовый Дуб Барнарды С
+tile.BarnardaCBlocks.dirt.name=Земля Барнарды С
+tile.BarnardaCBlocks.stone.name=Камень Барнарды С
+tile.BarnardaCBlocks.cobblestone.name=Булыжник Барнарды С
+tile.BarnardaCBlocks.stone_bricks.name=Каменные кирпичи Барнарды С
+tile.BarnardaCBlocks.oak_planks.name=Фиолетовые доски Барнарды С
+tile.BarnardaCOres.coal_ore.name=Угольная Руда
+tile.BarnardaCOres.iron_ore.name=Железная Руда
+tile.BarnardaCOres.gold_ore.name=Золотая Руда
+tile.BarnardaCOres.redstone_ore.name=Руда Красного Камня
+tile.BarnardaCOres.lapis_ore.name=Лазуритовая Руда
+tile.BarnardaCOres.diamond_ore.name=Алмазная Руда 
+tile.BarnardaCOres.silicon_ore.name=Кремниевая Руда
+tile.BarnardaCOres.copper_ore.name=Медная Руда
+tile.BarnardaCOres.tin_ore.name=Оловянная Руда
+tile.BarnardaCOres.aluminum_ore.name=Алюминиевая Руда
+tile.BarnardaCOres.quartz_ore.name=Кварцевая Руда
+tile.BarnardaCOres.cobaltum_ore.name=Кобальтовая Руда
+tile.BarnardaCOres.nickel_ore.name=Никелевая Руда
+tile.BarnardaCLeaves.violet_leaves.name=Фиолетовая Листва Барнарды С
+tile.BarnardaCFallingBlocks.sand.name=Песок Барнарды С
+tile.BarnardaCDandelions.hopper_flower.name=Воротник Барнарды С
+tile.BarnardaCDandelions.leaves_balls.name=Лиственные Шарики Барнарды С
+tile.BarnardaCDandelions.light_balls.name=Светящиеся Шарики Барнарды С
+tile.BarnardaCDandelions.tallgrass.name=Трава Барнарды С
+tile.BarnardaCDandelions.desert_flower_down.name=Пустынный Цветок Барнарды С
+tile.BarnardaCDandelions.desert_flower_up.name=Пустынный Цветок Барнарды С
+tile.BarnardaCDandelions.reeds.name=Тростник Барнарды С
+tile.BarnardaCDandelions.reeds_fruits.name=Фруктовый Тростник Барнарды С
+tile.BarnardaCWaterGrass.name=Лишайник Барнарды С
+
+tile.BarnardaEBlocks.grunt.name=Грунт Барнарды Е
+tile.BarnardaEBlocks.subgrunt.name=Подповерхность Барнарды Е
+tile.BarnardaEBlocks.oreIron.name=Железная Руда
+tile.BarnardaEBlocks.oreGold.name=Золотая Руда
+
+tile.VegaBGrunt.name=Поверхность Веги B
+tile.VegaBSubGrunt.name=Подповерхность Веги B
+
+tile.TCetiFGrunt.name=Поверхность Тау Кита F
+tile.TCetiFSubGrunt.name=Подповерхность Тау Кита F
+tile.TCetiFStone.name=Камень Тау Кита F
+tile.TCetiFBlockDandelions.TCetiFDandelion1.name=Водоросли Тау Кита F
+tile.TCetiFBlockDandelions.TCetiFDandelion2.name=Водоросли Тау Кита F
+tile.TCetiFBlockDandelions.TCetiFDandelion3.name=Водоросли Тау Кита F
+tile.TCetiFBlockDandelions.TCetiFDandelion4.name=Водоросли Тау Кита F
+tile.TCetiFBlockDandelions.TCetiFDandelion5.name=Водоросли Тау Кита F
+tile.TCetiFBlockDandelions.TCetiFDandelion6.name=Водоросли Тау Кита F
+|/////////////////////////////////////////|
+#||||||||||||Tile Description||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+
+tile.AssemblyMachine.name=Сборочный Цех
+tile.AssemblyMachine.desc=Продвинутая версия компрессора. Сплавливает материалы высокочувствительным лазером.
+tile.FuelGenerator.name=Топливный Генератор
+tile.FuelGenerator.desc=Топливный Генератор потребляет топливо или лаву, и вырабатывает неплохое кол-во энергии. Хороший вариант для топливных магнатов.
+tile.SolarWindPanel.name=Панель Солнечного Ветра
+tile.SolarWindPanel.desc=Преобразует солнечный ветер в энергию. Не работает на планетах с атмосферой.
+tile.ConverterSurface.name=Преобразователь Грунта
+tile.ConverterSurface.desc=Преобразует планетный грунт в блоки травы. Полезная машина для терраформирования планеты.
+tile.StorageModuleT3_4.name=Улучшенный Энергетический Массив
+tile.StorageModule.desc=Продвинутая версия Энергетического Кластера. Может содержать довольное большое количество энергии.
+tile.OxygenStorageModuleT2_4.name=Улучшенное Хранилище Кислорода
+tile.OxygenStorageModule.desc=Улучшенная версия Хранилища Кислорода. Может хранить в двое больше кислорода.
+tile.SolarPanel.name=Гибридная Солнечная Панель
+tile.SolarHybrid.desc=Покрытая золотом гибридная панель, вырабатывает в полтора раза больше энергии, чем Продвинутая панель.
+tile.GravitationModule_4.name=Гравитационный Механизм
+tile.GravitationModule.desc=Создает земную гравитацию в радиусе 8 блоков во все стороны.
+tile.WindTurbine.name=Ветровая Турбина
+tile.WindTurbine.desc=Генерирует энергию из потоков ветра.
+tile.RocketAssembly.name=Ракетный Цех
+tile.RocketAssembly.desc=Собирает готовые ракеты из частей, сделанных на верстаке NASA.
+tile.Recycler.name=Универсальный Переработчик
+tile.Recycler.desc=Перерабатывает один ресурс в другой. Также может переработать ресурс в жидкость.
+tile.LiquidExtractor.name=Жидкостный Экстрактор 
+tile.LiquidExtractor.desc=Собирает жидкость ниже себя в небольшом радиусе.
+tile.PortableNuclearReactor.name=Портативный Ядерный Реактор
+tile.PortableNuclearReactor.desc=Продвинутый генератор энергии, работающий на слитках урана. При работе необходимо охлаждение реактора с помощью воды или азота.
+tile.FluidTank.name=Жидкостный Резервуар
+tile.FluidTank.desc=Может хранить различные жидкости. Сверху вход, снизу выход.
+tile.AdvFuelLoader.name=Улучшенный Загрузчик Топлива
+tile.AdvFuelLoader.desc=Загружает топливо в ракеты 5 уровня и выше. Работает только с Улучшенной Взлётной Площадкой.
+tile.AdvLandingPad.name=Улучшенная Взлетная Площадка
+tile.AdvLandingPad.desc=Улучшенная взлетная площадка для ракет высокого уровня. Должна быть размещена квадратом 5х5.
+tile.HydroponicBase.name=Основание Гидропонной Фермы
+tile.HydroponicBase.desc=Базовый блок для создания гидропонной фермы. Сверху устанавливаются блоки фермы.
+tile.HydroponicFarm.name=Стеклянный Блок Гидропонной Фермы
+tile.HydroponicFarm.desc=Устанавливается наверх основания или на другой блок фермы. Нужен для работы гидропонной фермы. Можно установить до 3 блоков вверх.
+tile.LiquidSeparator.name=Жидкостный Сепаратор
+tile.LiquidSeparator.desc=Разделяет жидкости на элементы или объединяет их.
+tile.radiation_stabiliser.name=Генератор Магнитного Поля
+tile.radiation_stabiliser.desc=Создает поле, которое защищает от солнечной радиации. Поддерживает модуль для расширения радиуса действия.
+tile.ModificationTable.name=Модификационный Стол
+tile.ModificationTable.desc=Позволяет модифицировать особые предметы и броню.
+tile.OxygenFiller.name=Кислородный Напонитель
+tile.OxygenFiller.desc=Наполняет кислородом канистры и баллоны. Лучше компрессора!
+
+tile.BaseMachineFrame.name=Базовый Корпус Машин
+tile.MachineFrame.name=Улучшенный Корпус Машин
+tile.coefficient.desc=Коэффициент генерации
+tile.coefficientcraft.desc=Коэффициент скорости создания
+
+tile.DungeonBricks.name=Кирпич Сокровищницы
+tile.DungeonGlowstone.name=Светокамень Сокровищницы
+
+tile.T4Chest.name=Сундук с Сокровищами 4-го уровня
+tile.T5Chest.name=Сундук с Сокровищами 5-го уровня
+
+tile.tier4chest.description=Сундуки с сокровищами 4-го уровня будут генерироватся на Церере. Доступны для открытия после победы над финальным боссом.
+tile.tier5chest.description=Сундуки с сокровищами 5-го уровня будут генерироватся на Ио. Доступны для открытия после победы над финальным боссом.
+
+|/////////////////////////////////////////|
+#|||||||||||||||||Items||||||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+
+item.Tier4Rocket.t4Rocket.name=Ракета 4-го уровня
+item.Tier5Rocket.t5Rocket.name=Ракета 5-го уровня
+item.Tier6Rocket.t6Rocket.name=Ракета 6-го уровня
+
+item.Schematic.name=Схема для верстака NASA
+item.TierKeys.name=Ключ от подземелья
+item.HeavyDutyPlate.name=Сверхпрочное покрытие
+
+item.NickelIngot.name=Никелевый Слиток
+item.CobaltumIngot.name=Кобальтовый Слиток
+item.MagnesiumIngot.name=Магниевый Слиток
+item.UraniumIngot.name=Урановый Слиток
+
+item.CompressedNickel.name=Сжатый Никель
+item.CompressedCobaltum.name=Сжатый Кобальт
+item.CompressedMagnesium.name=Сжатый Магний
+item.CompressedCoal.name=Сжатый Уголь
+item.CompressedSDHD120.name=Сжатый Сплав "SDHD-120"
+item.UnknowCrystal.name=Осколок Неизвестного Кристалла
+item.Sulfur.name=Сера
+item.ModuleElectrolyse.name=Модуль "Электролиз"
+item.DolomiteCrystal.name=Доломитовый Кристалл
+item.DolomiteMeal.name=Доломитовая Пыль
+item.Sapphire.name=Сапфир
+item.WaferModern.name=Модернизированная Полупроводниковая Пластина
+item.Hematite.name=Гематит
+item.Antiradiation.name=Противорадиационные Таблетки
+item.SchematicBox.name=Коробка со Схемами
+item.VolcanicStone.name=Вулканический Осколок
+item.ModuleExpander.name=Модуль "Расширение"
+item.ModulePressure.name=Модуль "Стабилизация"
+item.UraniumFragments.name=Уран
+item.AncientRelic.name=Древняя Реликвия
+item.GuideBook.name=[WIP] Инфо-Планшет
+item.UraniumRod.name=Урановый Стержень
+
+item.hydrogenCanister.name=Канистра Водорода
+item.heliumCanister.name=Канистра Жидкого Гелия
+item.heliumhydrogenCanister.name=Канистра Обогащенного Водорода
+
+item.SulfurAcidBucket.name=Ведро Серной Кислоты
+item.ModuleSmallFuelCanister.name=Маленький Топливный Бак
+item.ModuleSmallCanister.name=Заготовка Топливного Бака
+item.ModuleLander.name=Посадочный Модуль 1-го уровня
+item.ModuleLander2.name=Посадочный Модуль 2-го уровня
+item.ModuleLander3.name=Посадочный Модуль 3-го уровня
+item.ThermalClothT2.name=Термоустройчивая Ткань
+item.thermalHelmT2.name=Теплоустойчивый Шлем
+item.thermalChestplateT2.name=Теплоустойчивая Кираса
+item.thermalLeggingsT2.name=Теплоустойчивые Поножи
+item.thermalBootsT2.name=Теплоустойчивые Ботинки
+
+item.PartSolarFlares.name=Часть Солнечного Паруса
+item.SolarFlares.name=Солнечный Парус
+item.IceBucket.name=Ведро со Льдом
+
+item.AdvancedBattery.name=Улучшенная Батарейка
+item.ModernBattery.name=Продвинутая Батарейка
+item.ExtraBattery.name=Объемная Батарейка
+item.UltraBattery.name=Превосходная Батарейка
+
+item.oxygentank_t4.name=Улучшенная Большая Канистра Кислорода
+item.oxygentank_t5.name=Максимальная Канистра Кислорода
+item.oxygentank_t6.name=Улучшенная Максимальная Канистра Кислорода
+item.oxygentank_epp_t1.name=EPP Канистра Кислорода
+
+item.RocketCone.name=Прочный головной обтекатель
+item.RocketBody.name=Прочный ракетный корпус
+item.RocketEngine.name=Прочный ракетный двигатель
+item.RocketBooster.name=Улучшенный Ускоритель
+item.RocketStabilizer.name=Прочный ракетный стабилизатор
+
+item.HeliumHydrogenBucket.name=Ведро с Обогащенным Водородом
+item.EthaneMethaneBucket.name=Ведро со смесью Этана-Метана
+
+item.CeresGlowstoneDust.name=Светопыль Цереры
+item.IoGlowstoneDust.name=Светопыль Ио
+item.small_oxygen_canister.name=Малая канистра кислорода
+
+item.yellow_fruit.name=Желтые Фрукты
+
+|/////////////////////////////////////////|
+#||||||||||||Armors\Weapons||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+item.JetPack.name=Реактивный Электроранец
+
+item.spacesuit_helmet.name=Шлем Космического Костюма
+item.spacesuit_plate.name=Нагрудник Космического Костюма
+item.spacesuit_leg.name=Поножи Космического Костюма
+item.spacesuit_boots.name=Ботинки Космического Костюма
+
+item.cobalt_helmet.name=Кобальтовый Шлем
+item.cobalt_plate.name=Кобальтовый Нагрудник
+item.cobalt_leg.name=Кобальтовые Поножи
+item.cobalt_boots.name=Кобальтовые Ботинки
+
+item.cobalt_axe.name=Кобальтовый Топор
+item.cobalt_hoe.name=Кобальтовая Мотыга
+item.cobalt_pickaxe.name=Кобальтовая Кирка
+item.cobalt_sword.name=Кобальтовый Меч
+item.cobalt_shovel.name=Кобальтовая Лопата
+
+item.plasmasword.name=Плазменный Меч
+item.plasmaaxe.name=Плазменный Топор
+item.plasmapickaxe.name=Плазменная Кирка
+item.plasmahoe.name=Плазменная Мотыга
+item.plasmashovel.name=Плазменная Лопата
+
+item.QuantBow.name=Кобальтовый Лук
+
+item.ancient_pickaxe.name=Древняя Кирка
+item.ancient_sword.name=Древний Меч
+|/////////////////////////////////////////|
+#||||||||||||||||||Fluids||||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+fluid.helium3=Гелий-3
+fluid.hydrogen2=Тяжелая Вода
+fluid.heliumhydrogen=Обогащенный гелием Водород
+fluid.liquidethanemethane=Этано-Метановая смесь
+fluid.sulfuricacid=Серная Кислота
+|/////////////////////////////////////////|
+#||||||||||||||||Potions|||||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+
+potion.radiation=Солнечная Радиация
+potion.antiradiation=Антирадиационный Эффект
+
+|/////////////////////////////////////////|
+#|||||||||||||||||GUI||||||||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+
+gui.schematic_oxtanks.desc=EPP Канистра Кислорода
+
+gui.trade=Инопланетный Торговец
+
+gui.tier1.desc=1-ый уровень
+gui.tier2.desc=2-ой уровень
+gui.tier3.desc=3-ий уровень
+gui.tier4.desc=4-ый уровень
+gui.tier5.desc=5-ый уровень
+gui.tier6.desc=6-ый уровень
+
+gui.thermal2.desc1=Сохраняет тепло в условиях от -80С до +80С поверхности.
+gui.bonemeal.desc=Кажется, что этот предмет работает аналогично костной муке.
+gui.schematicbox.desc=Содержит базовые схемы для ракет.
+
+gui.spacesuit.desc=Костюм высокой прочности. Стабилизирует атмосферное давление. Дает защиту от Солнечной радиации.
+gui.spacesuit_helmet.desc=Шлем позволяет дольше находится под водой.
+
+gui.module.desc=Ракетный Модуль
+gui.module_expander.desc=Слот для модуля "Расширение". Увеличивает радиус действия магнитного поля.
+gui.module_pressure.desc=Слот для модуля "Стабилизация". Создает защитный слой, который стабилизирует атмосферное давление.
+
+gui.message.need_advanced_lp.desc=Можно поставить только на Улучшенную Взлетную Площадку.
+gui.message.fuel_type.desc=Тип топлива:
+
+gui.status.nolava.name=Нет Лавы
+gui.message.lava.name=Лава
+gui.message.water.name=Вода
+gui.message.helium.name=Гелий-3
+gui.message.hydrogen.name=Водород
+gui.message.needfrequencyModule=Я не понимаю их без Частотного модуля!
+gui.message.needoxygen=Нужен кислород, чтобы совершить действие!
+gui.message.needoxygenthermal=Нужен кислород и термальный контроль, чтобы совершить действие!
+gui.message.needoxygen.food=Нужен кислород, чтобы употребить земную еду!
+gui.message.needoxygenthermal.food=Нужен кислород и термальный контроль, чтобы употребить земную еду!
+gui.status.nofuelgenerator.name=Нет Топлива
+gui.status.nowatergenerator.name=Нет Тяжелой Воды
+gui.warning.atmosphericPressure=Высокое атмосферное давление!
+gui.warning.solarRadiation=Критический уровень облучения!
+gui.message.younothaveradiation=Вы не облучены солнечной радиацией!
+gui.message.cooling=Охлаждение
+gui.message.active_pressure_shield.name=Активен щит от атм. давления.
+
+keybind.togglehelmet.name=[GS] Вкл\Выкл сенсорные очки в шлеме
+keybind.togglejetpack.name=[GS] Вкл\Выкл реактивный ранец  
+gui.togglehelmet=Cенсорные очки:
+gui.togglejetpack=Реактивный ранец: 
+
+|/////////////////////////////////////////|
+#|||||||||Celestial Bodies INFO||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+gui.info.brown.name=Коричневый
+gui.info.red.name=Красный
+gui.info.orange.name=Оранжевый
+gui.info.yellow.name=Желтый
+gui.info.white.name=Белый
+gui.info.lightblue.name=Светло-синий
+
+gui.info.dwarf.name=Карлик
+gui.info.subdwarf.name=Суб-Карлик
+gui.info.blackhole.name=Черная Дыра
+
+gui.info.selena.name=Селена
+gui.info.desert.name=Пустыня
+gui.info.terra.name=Терра
+gui.info.gasgiant.name=Газовый Гигант
+gui.info.icegiant.name=Ледянной Гигант
+gui.info.iceworld.name=Ледянной Мир
+gui.info.asteroid.name=Астероид
+gui.info.oceanide.name=Океанида
+gui.info.titan.name=Титан
+gui.info.icy.name=Ледяной
+
+gui.info.hot.name=Горячая
+gui.info.warm.name=Теплая
+gui.info.comfort.name=Комфортная
+gui.info.cool.name=Прохладная
+gui.info.cold.name=Холодная
+
+gui.message.generalinformation=Главная Информация:
+gui.message.physicalparameters=Физические Параметры:
+gui.message.atmosphericparameters=Атмоферные Параметры:
+gui.message.atmosphericcomponents=Состав Атмосферы:
+gui.message.required_equipment.name=Необходимое Снаряжение:
+gui.message.type=Тип:
+gui.message.star=Звезда
+gui.message.planet=Планета
+gui.message.planets=Планет:
+gui.message.moon=Луна
+gui.message.satellite=Спутник
+gui.message.moons=Спутников:
+gui.message.class=Класс:
+gui.message.gravity=Гравитация:
+gui.message.daylength=Сутки:
+gui.message.atmopressure=Атм. Давление:
+gui.message.temperature=Температура:
+gui.message.windspeed=Модиф. Ветра:
+gui.message.breathableatmo=Обитаема:
+gui.message.solarradiation=Солнечная Радиация:
+gui.message.solarenergy=Модиф. Солнца:
+gui.message.windenergy=Модиф. Сол. Ветра:
+gui.message.unknown=Неизвестно
+gui.message.traveltime=Время полета:
+gui.message.noatmosphere=Нет атмосферы
+gui.message.fuelset=Остаток топлива:
+
+gui.message.yes=Да
+gui.message.no=Нет
+
+gui.module.caninstall=Можно установить модули в Модификационном Столе.
+gui.module.list=Список модулей:
+gui.module.available_modules=Доступно модулей:
+
+gui.module.sensor=Сенсорные Очки
+gui.module.sensor.desc=Инкоструированные сенсорные очки в шлем. Сканируют область вокруг игрока и отображают руду на экране. Также подсвечивают монстров.
+gui.module.nightvision=Ночное Зрение
+gui.module.nightvision.desc=Позволяет видеть в темноте. Полезно для исследований темных мест, и при отсутсвии факелов.
+gui.module.jetpack=Реактивный Электроранец
+gui.module.jetpack.desc=Инконструированный реактивный ранец. Позволяет вам порхать как бабочка, пока не закончится заряд в нагруднике.
+gui.module.speed=Ускорители бега
+gui.module.speed.desc=Установка ускорителей позволила незначительно увеличить скорость бега. Теперь вы еще быстрее сможете убежать от противника!
+gui.module.gravity=Гравитационная сила
+gui.module.gravity.desc=Прослойка магниевых пластин, как оказалось, дала эффект притяжения. Адаптация на планетах теперь значительно лучше!
+gui.module.stepassist=Увеличенный шаг
+gui.module.stepassist.desc=Казалось бы, что установка слизнего шарика ни к чему не приведет... Но теперь вы сможете бегать по блокам, слово бегаете по лестнице!
+gui.module.jump=Высокий прыжок
+gui.module.jump.desc=Установка поршней была одной из удачных идей. Теперь ваш прыжок в 2 раза выше обычного!
+gui.module.energy=Улучшенные Энергоносители
+gui.module.energy.desc=Увеличивает максимальный запас энергии в предмете.
+gui.module.thaumvision=Таумоматический Взор
+gui.module.thaumvision.desc=Позволяет видеть потоки Вис.
+
+gui.message.forrbiden_modules.name=Несовместимо с:
+gui.module.active=Активный модуль
+gui.module.passive=Пассивный модуль
+gui.module.empty_slot=Пустой слот. Положите предмет в слот.
+
+gui.message.effectVisible.name=Отобразить границу
+gui.quantbow.desc1=Имеет х1.5 прочность. Урон х2.
+gui.quantbow.desc2=Зажигательные стрелы.
+
+gui.status.nowind.name=Нет ветра!
+gui.gravity.radius.name=Радиус действия:
+
+gui.tank.passiveOxygenRegen.desc1=Пассивная генерация кислорода,
+gui.tank.passiveOxygenRegen.desc2=если игрок находится в пригодной сфере (Пузырь, Уплотненная комната).
+
+gui.ancient_item=Древний предмет.
+
+gui.pickaxe.drillmode=Имеется режим бура.
+gui.pickaxe.drillmodeon=Режим бура включен.
+gui.pickaxe.drillmodeoff=Режим бура выключен.
+
+gui.sword.chargeon=Меч заряжен.
+gui.sword.chargeoff=Меч разряжен.
+
+gui.pickaxe.ancient1=В обычном режиме 20% шанс потери прочности.
+gui.pickaxe.ancient2=В режиме бура потеря 1 прочности за 1 использование.
+
+gui.ancient_relic=Сохраняет ваш инвентарь после смерти. Разрушается после воскрешения.
+
+gui.ancient_sword_1=В обычном режиме 20% шанс потери прочности.
+gui.ancient_sword_2=В режиме заряда урон х2 и потеря 4 прочности за 1 использование.
+gui.ancient_sword_3=В режиме заряда и при блокировки отталкивает нападающего и разряжается.
+
+gs.success.name=Актуальная версия:
+gs.update.available=Доступна новая версия!
+gs.update.download=Скачать
+gs.update.changelog=Changelog
+
+|/////////////////////////////////////////|
+#||||||||||||||Creative Tabs|||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+
+itemGroup.AddonsBlocks=GalaxySpace: Блоки
+itemGroup.AddonsItems=GalaxySpace: Предметы
+itemGroup.AddonsArmor=GalaxySpace: Броня
+itemGroup.AddonsRocket=GalaxySpace: Ракеты
+
+|/////////////////////////////////////////|
+#||||||||||||||||Entities||||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+
+entity.EvolvedBossBlaze.name=Эволюционировавший Босс Ледянной Ифрит
+entity.EvolvedBossGhast.name=Эволюционировавший Босс Гаст
+entity.EvolvedFireCreeper.name=Эволюционировавший Огненный Крипер
+entity.EvolvedFireSpider.name=Эволюционировавший Огненный Паук
+entity.EvolvedFireSkeleton.name=Эволюционировавший Огненный Скелет
+entity.EvolvedColdBlaze.name=Эволюционировавший Ледянной Ифрит
+entity.EvolvedBlaze.name=Эволюционировавший Огненный Ифрит
+
+|/////////////////////////////////////////|
+#||||||||||||Celestial Bodies||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+
+satellite.spaceStation.mars=Космическая станция Марса
+
+planet.ceres=Церера
+moon.phobos=Фобос
+moon.deimos=Деймос
+moon.io=Ио
+moon.europa=Европа
+moon.ganymede=Ганимед
+moon.callisto=Каллисто
+moon.mimas=Мимас
+moon.enceladus=Энцелад
+moon.tethys=Тефия
+moon.dione=Диона
+moon.rheya=Рея
+moon.titan=Титан
+moon.iapetus=Япет
+moon.miranda=Миранда
+moon.ariel=Ариель
+moon.umbriel=Умбриэль
+moon.titania=Титания
+moon.oberon=Оберон
+moon.proteus=Протей
+moon.triton=Тритон
+planet.pluto=Плутон
+moon.charon=Харон
+planet.kuiperbelt=Пояс Койпера
+planet.haumea=Хаумеа
+planet.makemake=Макемаке
+planet.eris=Эрида
+planet.deedee=ДиДи
+
+solarsystem.acentauri=α Центавра
+solarsystem.proxima=Проксима Центавра
+star.centauri_a=α Центавра А
+star.proxima=Проксима Центавра
+planet.centauri_b=α Центавра B
+planet.proxima_b=Проксима Б
+
+solarsystem.barnards=Барнарда
+star.barnarda_a=Барнарда А
+planet.barnarda_b=Барнарда B
+planet.barnarda_c=Барнарда C
+planet.barnarda_e=Барнарда Е
+
+solarsystem.VegaSystem=Система Вега
+star.Vega=Вега
+planet.Vega1=Вега B
+planet.Vega2=Вега C
+planet.VegaAsteroids=Пояс Астероидов
+planet.VegaAsteroids2=Пояс Астероидов
+
+solarsystem.tauceti=Система τ Кита
+star.TauCetiA=τ Кита А
+planet.TauCetiH=τ Кита H
+planet.TauCetiE=τ Кита Е
+planet.TauCetiF=τ Кита F
+planet.TauCetiG=τ Кита G

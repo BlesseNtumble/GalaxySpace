@@ -1,0 +1,93 @@
+package galaxyspace.systems.BarnardsSystem.planets.barnardaC.items;
+
+import java.util.List;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import galaxyspace.GalaxySpace;
+import galaxyspace.core.util.GSCreativeTabs;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumAction;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
+
+public class ItemBasicBR extends Item
+{
+    public static String[] names = 
+    { 
+    		"yellow_fruit"  	
+    };
+    
+    protected IIcon[] icons = new IIcon[ItemBasicBR.names.length];
+
+    public ItemBasicBR()
+    {
+        super();
+        this.setHasSubtypes(true);
+        this.setMaxStackSize(64);
+        this.setUnlocalizedName("br_basic");        
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public CreativeTabs getCreativeTab()
+    {
+        return GSCreativeTabs.GSItemsTab;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister iconRegister)
+    {
+        int i = 0;
+
+        for (String name : ItemBasicBR.names)
+        {
+            this.icons[i++] = iconRegister.registerIcon(GalaxySpace.ASSET_PREFIX + ":" + "barnarda/basic/" + name);
+        }
+    }
+
+    @Override
+    public IIcon getIconFromDamage(int damage)
+    {
+        if (this.icons.length > damage)
+        {
+            return this.icons[damage];
+        }
+
+        return super.getIconFromDamage(damage);
+    }
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @Override
+    public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List)
+    {
+        for (int i = 0; i < ItemBasicBR.names.length; i++)
+        {
+            par3List.add(new ItemStack(par1, 1, i));
+        }
+    }
+
+    @Override
+    public String getUnlocalizedName(ItemStack par1ItemStack)
+    {
+        if (this.icons.length > par1ItemStack.getItemDamage())
+        {
+            return "item." + ItemBasicBR.names[par1ItemStack.getItemDamage()];
+        }
+
+        return "unnamed";
+    }
+
+    @Override
+    public int getMetadata(int par1)
+    {
+        return par1;
+    }
+
+}
