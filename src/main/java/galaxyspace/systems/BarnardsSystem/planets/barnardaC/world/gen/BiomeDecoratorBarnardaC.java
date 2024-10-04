@@ -385,24 +385,20 @@ public class BiomeDecoratorBarnardaC extends BiomeDecoratorSpace{
 				else world.setBlock(randPosX, y, randPosZ, BRBlocks.BarnardaCDandelions, 5, 3);
 			}
 		}
-		/*
-		for(int i = 0; i < 1; i++){*/
 		randPosX = this.chunkX + this.rand.nextInt(16) + 7;
 		randPosZ = this.chunkZ + this.rand.nextInt(16) + 7;
-		y = this.world.getTopSolidOrLiquidBlock(randPosX, randPosZ);
-			
-		for(int xPos = -1; xPos < 1; xPos++)
-			for(int zPos = -1; zPos < 1; zPos++)
-				if(!world.isAirBlock(xPos, y + 1, zPos)) continue;
-			
-			if(getBiome(randPosX, randPosZ) instanceof Barnarda_C_Dunes)
-			{
-				for(int height = 0; height < rand.nextInt(5); height++)				
+		y = this.world.getTopSolidOrLiquidBlock(randPosX, randPosZ);	
+		/**
+		 * The Code Below used to be responsible for the crashing when loading Barnarda C, as well as make loading times for Barnarda C fairly long.
+		 * Using the canPlaceBlockAt method fixed these issues
+		 * -GamingB3ast
+		 */
+		if(Blocks.cactus.canPlaceBlockAt(world, randPosX, y,randPosZ)) {
+			if (getBiome(randPosX, randPosZ) instanceof Barnarda_C_Dunes) {
+				for (int height = 0; height < rand.nextInt(5); height++)
 					world.setBlock(randPosX, y + height, randPosZ, Blocks.cactus);
-				
 			}
-		//}
-		
+		}
 		this.generateOre(20, coalGen, 5, 180);		
 	}
 
