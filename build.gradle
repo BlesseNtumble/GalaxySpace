@@ -4,7 +4,7 @@ buildscript {
 		maven { url = 'https://maven.minecraftforge.net/' }		
     }
     dependencies {
-		classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+		classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '6.0+', changing: true
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
@@ -24,7 +24,6 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(8)
 
 repositories {	
 	mavenLocal()
-	maven { url "https://maven.galacticraft.net/repository/legacy/" }	
 	maven { url = "https://maven.thiakil.com" }
     maven { url = "https://dvs1.progwml6.com/files/maven" }
     maven { url "https://www.cursemaven.com" }
@@ -100,14 +99,14 @@ minecraft {
 dependencies {
 
 	minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2854'
-	
-	//runtimeOnly fileTree('lib')
-	compileOnly fileTree('lib')
+
+	runtimeOnly fileTree('libs') { include '*.jar' }
+	compileOnly fileTree('libs')
 
 	
 	//compileOnly "dev.galacticraft:galacticraft-legacy:4.0.2.284"
-	runtimeOnly "dev.galacticraft:galacticraft-legacy:4.0.2.283"
-	runtimeOnly files('lib/jei_1.12.2-4.13.1.220.jar')
+	//runtimeOnly "dev.galacticraft:galacticraft-legacy:4.0.2.283"
+	//runtimeOnly files('lib/jei_1.12.2-4.13.1.220.jar')
 }
 
 jar {
@@ -117,7 +116,6 @@ jar {
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 jar.finalizedBy('reobfJar')
-
 
 task gsJar(type: Jar) {
 		
@@ -131,9 +129,9 @@ task gsJar(type: Jar) {
 		exclude 'spaceambient/**'
 		exclude 'assets/spaceambient/**'
 	}
-	baseName = "GalaxySpace"
+	archiveBaseName = "GalaxySpace"
 	version = "1.12.2"
-	archiveName = "${baseName}-${version}.${extension}"
+	archiveFileName = "${archiveBaseName}-${version}.${archiveExtension}"
 	
 	manifest.attributes('FMLAT': 'gcgsac_at.cfg')
 	manifest.attributes('FMLCorePlugin': 'galaxyspace.core.hooks.GSHooksLoader')
@@ -152,9 +150,9 @@ task smJar(type: Jar) {
 		exclude 'spaceambient/**'
 		exclude 'assets/spaceambient/**'
 	}
-	baseName = "StarMaker"
+	archiveBaseName = "StarMaker"
 	version = "1.12.2"
-	archiveName = "${baseName}-${version}.${extension}"
+	archiveFileName = "${archiveBaseName}-${version}.${archiveExtension}"
 	
 	manifest.attributes('FMLCorePlugin': 'starmaker.utils.asm.AssetPlugin')
 	manifest.attributes('FMLCorePluginContainsFMLMod': 'true')
@@ -172,10 +170,10 @@ task coreJar(type: Jar) {
 		exclude 'spaceambient/**'
 		exclude 'assets/spaceambient/**'
 	}
-	
-	baseName = "AsmodeusCore"
+
+	archiveBaseName = "AsmodeusCore"
 	version = "1.12.2"
-	archiveName = "${baseName}-${version}.${extension}"
+	archiveFileName = "${archiveBaseName}-${version}.${archiveExtension}"
 	
 	manifest.attributes('FMLAT': 'gcgsac_at.cfg')
 	//manifest.attributes('FMLCorePlugin': 'asmodeuscore.core.hooklib.minecraft.HookLoader')
@@ -184,7 +182,7 @@ task coreJar(type: Jar) {
 }
 
 task deobfJar(type: Jar) {
-	baseName = "AsmodeusCore"
+	archiveBaseName = "AsmodeusCore"
 	version = "1.12.2"
 	
     from(sourceSets.main.output)
@@ -211,7 +209,7 @@ task deobfJar(type: Jar) {
 		exclude 'spaceambient/**'
 		exclude 'assets/spaceambient/**'
 	}
-	archiveName = "${baseName}-${version}-dev.${extension}"
+	archiveFileName = "${archiveBaseName}-${version}-dev.${archiveExtension}"
 	
 	//manifest.attributes('FMLAT': 'asmodeuscore_at.cfg')
 	//manifest.attributes('FMLCorePlugin': 'asmodeuscore.core.hooklib.minecraft.HookLoader')
@@ -220,7 +218,7 @@ task deobfJar(type: Jar) {
 
 task deobfGSJar(type: Jar) {
 
-	baseName = "GalaxySpace"
+	archiveBaseName = "GalaxySpace"
 	version = "1.12.2"
 	
     from(sourceSets.main.output)
@@ -243,7 +241,7 @@ task deobfGSJar(type: Jar) {
 		exclude 'spaceambient/**'
 		exclude 'assets/spaceambient/**'
 	}
-	archiveName = "${baseName}-${version}-dev.${extension}"
+	archiveFileName = "${archiveBaseName}-${version}-dev.${archiveExtension}"
 	
 	manifest.attributes('FMLAT': 'gcgsac_at.cfg')
 	manifest.attributes('FMLCorePlugin': 'galaxyspace.core.hooks.GSHooksLoader')

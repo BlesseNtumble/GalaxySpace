@@ -26,5 +26,4 @@ $RECYCLE.BIN/
 .gradle/
 .idea/
 build/
-libs/
 run/
