@@ -266,6 +266,11 @@ public class GSBlocks {
 		
 		OreDictionary.registerOre("oreAluminum", new ItemStack(HAUMEA_BLOCKS, 1, 3));
 		
+		OreDictionary.registerOre("oreIron", new ItemStack(PHOBOS_BLOCKS, 1, 2));
+		OreDictionary.registerOre("oreMeteroricIron", new ItemStack(PHOBOS_BLOCKS, 1, 3));
+		OreDictionary.registerOre("oreNickel", new ItemStack(PHOBOS_BLOCKS, 1, 4));
+		OreDictionary.registerOre("oreDesh", new ItemStack(PHOBOS_BLOCKS, 1, 5));
+
 		OreDictionary.registerOre("oreCopper", new ItemStack(IO_BLOCKS, 1, 3));
 		OreDictionary.registerOre("oreSulfur", new ItemStack(IO_BLOCKS, 1, 4));
 		OreDictionary.registerOre("oreVolcanic", new ItemStack(IO_BLOCKS, 1, 5));
