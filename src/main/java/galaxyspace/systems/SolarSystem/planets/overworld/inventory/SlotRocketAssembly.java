@@ -1,11 +1,15 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.inventory;
 
+import galaxyspace.core.integration.minetweaker.handlers.MTHandler_RocketAssembly;
 import galaxyspace.core.registers.items.GSItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SlotRocketAssembly extends Slot
 {
@@ -22,64 +26,140 @@ public class SlotRocketAssembly extends Slot
     @Override
     public boolean isItemValid(ItemStack par1ItemStack)
     {
-        switch (this.index)
+		List<ItemStack> list;
+		switch (this.index)
         {
-        	case 2: return 
-        			par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 0
-        			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 5
-        			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 10
-        			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 15
-        			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 20;
-        	
-        	case 3: return 
+			//Cone
+        	case 2:
+					boolean isCone = false;
+					list = MTHandler_RocketAssembly.material.get(0);
+					for(ItemStack stack : list)
+					{
+						isCone = stack.isItemEqual(par1ItemStack);
+						if(isCone)
+							return true;
+					}
+					return par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 0
+					|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 5
+					|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 10
+					|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 15
+					|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 20;
+
+        	//Body Right
+        	case 3:
+					boolean isBodyR = false;
+					list = MTHandler_RocketAssembly.material.get(1);
+					for(ItemStack stack : list)
+					{
+						isBodyR = stack.isItemEqual(par1ItemStack);
+						if(isBodyR)
+							return true;
+					}
+					return
         			par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 1
         			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 6
         			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 11
         			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 16
         			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 21;
-        	
-        	case 4: return 
+        	//Body Left
+        	case 4:
+					boolean isBodyL = false;
+					list = MTHandler_RocketAssembly.material.get(2);
+					for(ItemStack stack : list)
+					{
+						isBodyL = stack.isItemEqual(par1ItemStack);
+						if(isBodyL)
+							return true;
+					}
+					return
         			par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 1
         			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 6
         			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 11
         			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 16
         			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 21;
-        	
-        	case 5: return 
+        	//Engine
+        	case 5:
+					boolean isEngine = false;
+					list = MTHandler_RocketAssembly.material.get(3);
+					for(ItemStack stack : list)
+					{
+						isEngine = stack.isItemEqual(par1ItemStack);
+						if(isEngine)
+							return true;
+					}
+					return
         			par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 2
         			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 7
         			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 12
         			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 17
         			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 22;
-        	
-        	case 6: return 
+        	//Booster Top
+        	case 6:
+					boolean isBoosterT = false;
+					list = MTHandler_RocketAssembly.material.get(4);
+					for(ItemStack stack : list)
+					{
+						isBoosterT = stack.isItemEqual(par1ItemStack);
+						if(isBoosterT)
+							return true;
+					}
+					return
         			par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 3
         			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 8
         			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 13
         			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 18
         			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 23;
-        	
-        	case 7: return 
+        	//Booster Bottom
+        	case 7:
+					boolean isBoosterB = false;
+					list = MTHandler_RocketAssembly.material.get(5);
+					for(ItemStack stack : list)
+					{
+						isBoosterB = stack.isItemEqual(par1ItemStack);
+						if(isBoosterB)
+							return true;
+					}
+
+				return
         			par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 3
         			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 8
         			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 13
         			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 18
         			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 23;
-        	
-        	case 8: return 
+        	//Vane Top
+        	case 8:
+					boolean isVaneT = false;
+					list = MTHandler_RocketAssembly.material.get(6);
+					for(ItemStack stack : list)
+					{
+						isVaneT = stack.isItemEqual(par1ItemStack);
+						if(isVaneT)
+							return true;
+					}
+				return
         			par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 4
         			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 9
         			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 14
         			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 19
         			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 24;
-        	
-        	case 9: return 
-        			par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 4
-        			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 9
-        			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 14
-        			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 19
-        			|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 24;
-        	
+        	//Vane Bottom
+        	case 9:
+					boolean isVaneB = false;
+					list = MTHandler_RocketAssembly.material.get(7);
+					for(ItemStack stack : list)
+					{
+						isVaneB = stack.isItemEqual(par1ItemStack);
+						if(isVaneB)
+							return true;
+					}
+					return
+					par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 4
+					|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 9
+					|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 14
+					|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 19
+					|| par1ItemStack.getItem() == GSItems.RocketParts && par1ItemStack.getItemDamage() == 24;
+
+        	//Chests
         	case 10: return par1ItemStack.getItem() == Item.getItemFromBlock(Blocks.chest);
         	case 11: return par1ItemStack.getItem() == Item.getItemFromBlock(Blocks.chest);
         	case 12: return par1ItemStack.getItem() == Item.getItemFromBlock(Blocks.chest);
