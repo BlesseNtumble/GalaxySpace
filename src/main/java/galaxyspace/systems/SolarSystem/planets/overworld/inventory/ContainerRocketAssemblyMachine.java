@@ -1,5 +1,6 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.inventory;
 
+import galaxyspace.core.integration.minetweaker.handlers.MTHandler_RocketAssembly;
 import galaxyspace.core.registers.items.GSItems;
 import galaxyspace.systems.SolarSystem.planets.overworld.tile.TileEntityRocketAssemblyMachine;
 import micdoodle8.mods.galacticraft.api.item.IItemElectric;
@@ -188,6 +189,21 @@ public class ContainerRocketAssemblyMachine extends Container
                         return null;
                     }
                 }
+                else if (MTHandler_RocketAssembly.itemIsMaterial(var4))
+                {
+                    for(int i = 0; i < this.inventorySlots.size(); i++)
+                    {
+                        if(((Slot)inventorySlots.get(i)).isItemValid(var4) && !(((Slot)inventorySlots.get(i)).getHasStack()))
+                        {
+                            if (!this.mergeOneItem(var4, i, i+1, false))
+                            {
+                                return null;
+                            }
+                        }
+                    }
+
+                }
+
  
             }
 

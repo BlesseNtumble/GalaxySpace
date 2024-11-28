@@ -29,6 +29,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class RocketAssemblyRecipes {
+    public static final RocketAssemblyRecipes instance = new RocketAssemblyRecipes();
     private static List<IRecipe> recipes = new ArrayList<IRecipe>();
 
     public static ShapedRecipes addRecipe(ItemStack output, Object ... inputList) {
@@ -207,6 +208,20 @@ public class RocketAssemblyRecipes {
 
     public static List<IRecipe> getRecipeList() {
         return recipes;
+    }
+    public void removeRecipe(ItemStack stack)
+    {
+        int index = 0;
+
+        for(IRecipe recipes : getRecipeList())
+        {
+            if(recipes.getRecipeOutput().isItemEqual(stack))
+            {
+                index = getRecipeList().indexOf(recipes);
+            }
+        }
+
+        getRecipeList().remove(index);
     }
 }
 

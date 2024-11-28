@@ -4,6 +4,7 @@ import galaxyspace.GalaxySpace;
 import galaxyspace.core.integration.minetweaker.handlers.MTHandler_Assembler;
 import galaxyspace.core.integration.minetweaker.handlers.MTHandler_HydroponicFarm;
 import galaxyspace.core.integration.minetweaker.handlers.MTHandler_Recycler;
+import galaxyspace.core.integration.minetweaker.handlers.MTHandler_RocketAssembly;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IIngredient;
 import minetweaker.api.item.IItemStack;
@@ -22,6 +23,7 @@ public class GSMinetweakerConfig {
 		MineTweakerAPI.registerClass(MTHandler_Assembler.class);
 		MineTweakerAPI.registerClass(MTHandler_Recycler.class);
 		MineTweakerAPI.registerClass(MTHandler_HydroponicFarm.class);
+		MineTweakerAPI.registerClass(MTHandler_RocketAssembly.class);
 	}
 	
 	public static ItemStack getStack(IItemStack stack) {
