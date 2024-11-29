@@ -27,6 +27,10 @@ repositories {
 	maven { url = "https://maven.thiakil.com" }
     maven { url = "https://dvs1.progwml6.com/files/maven" }
     maven { url "https://www.cursemaven.com" }
+	maven {
+        name = "chickenbones"
+        url = "https://maven.covers1624.net/" //"https://chickenbones.net/maven" //or https://maven.covers1624.net/
+    }
 	mavenCentral()
 }
 
@@ -99,7 +103,8 @@ minecraft {
 dependencies {
 
 	minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2854'
-
+	compileOnly fg.deobf("codechicken:CodeChickenLib:1.12.2-3.2.3.358:universal")
+	
 	runtimeOnly fileTree('libs') { include '*.jar' }
 	compileOnly fileTree('libs')
 
