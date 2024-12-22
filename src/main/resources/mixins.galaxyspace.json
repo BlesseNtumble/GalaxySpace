@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8.3",
+  "compatibilityLevel": "JAVA_8",
+  "package": "galaxyspace.core.mixins",
+  "refmap": "mixins.galaxyspace.refmap.json",
+  "mixins": [
+    "MixinEntityAlienVillager",
+    "MixinGCPlayerHandler",
+    "MixinTileEntityGasLiquefier",
+    "MixinTileEntityGeothermalGenerator",
+    "MixinTileEntityMethaneSynthesizer",
+    "MixinWorld",
+    "MixinWorldProviderAsteroids",
+    "MixinWorldProviderVenus"
+  ],
+  "client": [],
+  "server": []
+}
