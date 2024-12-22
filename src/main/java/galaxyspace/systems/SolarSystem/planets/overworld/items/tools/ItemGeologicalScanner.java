@@ -45,7 +45,7 @@ public class ItemGeologicalScanner extends ItemElectricBase implements ISortable
 	@Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list)    
     {
-    	if (tab == GSCreativeTabs.GSItemsTab || tab == CreativeTabs.SEARCH)        
+    	if (tab == GSCreativeTabs.GSArmorTab || tab == CreativeTabs.SEARCH)
     		list.add(new ItemStack(this, 1, this.getMaxDamage()));
         
     }

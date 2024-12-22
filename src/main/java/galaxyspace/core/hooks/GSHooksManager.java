@@ -104,12 +104,12 @@ import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 public class GSHooksManager {
 	
-	@Hook(returnCondition = ReturnCondition.ON_TRUE, booleanReturnConstant = false)
+	//@Hook(returnCondition = ReturnCondition.ON_TRUE, booleanReturnConstant = false)
     public static boolean setBlockState(World world, BlockPos pos, IBlockState newState, int flags) { 
     	return MinecraftForge.EVENT_BUS.post(new SetBlockEvent(world, pos, newState, flags)); 
     }
 	
-	@Hook(returnCondition = ReturnCondition.ALWAYS, isMandatory = true)
+	//@Hook(returnCondition = ReturnCondition.ALWAYS, isMandatory = true)
 	public static void randomTick(Block block, World worldIn, BlockPos pos, IBlockState state, Random rand) {
 		UpdateBlockEvent event = new UpdateBlockEvent(worldIn, pos, state, rand);
 		MinecraftForge.EVENT_BUS.post(event);
@@ -118,7 +118,7 @@ public class GSHooksManager {
 			block.updateTick(worldIn, pos, state, rand);
 	}
 	
-	@Hook(returnCondition = ReturnCondition.ALWAYS)
+	//@Hook(returnCondition = ReturnCondition.ALWAYS)
 	public static int getAirProducts(TileEntityMethaneSynthesizer te) {
 		
 		WorldProvider WP = te.getWorld().provider;
@@ -157,7 +157,7 @@ public class GSHooksManager {
         return 0;
 	}
 	
-	@Hook(returnCondition = ReturnCondition.ALWAYS)
+	//@Hook(returnCondition = ReturnCondition.ALWAYS)
 	public static int getAirProducts(TileEntityGasLiquefier te) {
 		WorldProvider WP = te.getWorld().provider;
 		if (WP instanceof IGalacticraftWorldProvider) {
@@ -344,12 +344,12 @@ public class GSHooksManager {
         }
     }
 
-	@Hook(returnCondition = ReturnCondition.ALWAYS)
+	//@Hook(returnCondition = ReturnCondition.ALWAYS)
 	public static double getSolarEnergyMultiplier(WorldProviderVenus wp) {
 		return 0;
 	}
 	
-	@Hook(returnCondition = ReturnCondition.ALWAYS)
+	//@Hook(returnCondition = ReturnCondition.ALWAYS)
 	public static ItemStack getGuaranteedLoot(EntityCreeperBoss creeper, Random rand)
 	{
 		  List<ItemStack> stackList = new LinkedList<>();
@@ -358,7 +358,7 @@ public class GSHooksManager {
 	      return stackList.get(rand.nextInt(stackList.size())).copy();
 	}
 	
-	@Hook(injectOnLine=59, returnCondition = ReturnCondition.ALWAYS)
+	//@Hook(injectOnLine=59, returnCondition = ReturnCondition.ALWAYS)
     public static void update(TileEntityGeothermalGenerator te)
     {		
 		if (te.ticks % 20 == 0)
@@ -471,7 +471,7 @@ public class GSHooksManager {
         return (int) Math.floor((Math.sin(te.ticks / 50.0F) * 0.5F + 0.5F) * diff + TileEntityGeothermalGenerator.MIN_GENERATE_GJ_PER_TICK);
     }
 	
-    @Hook(returnCondition = ReturnCondition.ALWAYS)
+   // @Hook(returnCondition = ReturnCondition.ALWAYS)
     public static float getGravity(WorldProviderAsteroids wp)
     {
     	if(GSConfigCore.enableZeroGravityOnAsteroids)
@@ -755,8 +755,8 @@ public class GSHooksManager {
 	*/
 	private static final EntityAlienVillager.ITradeList[] DEFAULT_TRADE_LIST_MAP = new EntityAlienVillager.ITradeList[] {
 			  	new EntityAlienVillager.ItemAndEmeraldToItem(new ItemStack(GCItems.schematic, 1, 1), new EntityAlienVillager.PriceInfo(40, 55), BasicItems.SCHEMATIC_BOX.getItemStack()),
-	            
-			  
+
+
 			  	new EntityAlienVillager.ListItemForEmeralds(new ItemStack(GCItems.oxMask, 1, 0), new EntityAlienVillager.PriceInfo(1, 2)),
 	            new EntityAlienVillager.ListItemForEmeralds(new ItemStack(GCItems.oxTankLight, 1, 235), new EntityAlienVillager.PriceInfo(3, 4)),
 	            new EntityAlienVillager.ListItemForEmeralds(new ItemStack(GCItems.oxygenGear, 1, 0), new EntityAlienVillager.PriceInfo(3, 4)),
@@ -772,7 +772,7 @@ public class GSHooksManager {
 	            new EntityAlienVillager.EmeraldForItems(new ItemStack(Blocks.SAPLING, 1, 3), new EntityAlienVillager.PriceInfo(11, 39)) //The one thing Alien Villagers don't have and can't get is jungle trees...
 	  };
 	  
-	@Hook(returnCondition = ReturnCondition.ALWAYS)
+	//@Hook(returnCondition = ReturnCondition.ALWAYS)
 	public static void populateBuyingList(EntityAlienVillager e) {
 		MerchantRecipeList buyingList =  ReflectionHelper.getPrivateValue(EntityAlienVillager.class, e, "buyingList");
 		if (buyingList == null) {

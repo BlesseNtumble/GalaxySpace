@@ -63,7 +63,7 @@ public class ItemGasExtractor extends ItemElectricBase implements ISortableItem,
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list)
     {
-        if (tab == GSCreativeTabs.GSItemsTab || tab == CreativeTabs.SEARCH)
+        if (tab == GSCreativeTabs.GSArmorTab || tab == CreativeTabs.SEARCH)
             list.add(new ItemStack(this, 1, this.getMaxDamage()));
 
     }

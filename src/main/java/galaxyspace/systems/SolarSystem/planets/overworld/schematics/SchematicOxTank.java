@@ -1,6 +1,7 @@
 package galaxyspace.systems.SolarSystem.planets.overworld.schematics;
 
 import galaxyspace.core.GSItems;
+import galaxyspace.core.configs.GSConfigSchematics;
 import galaxyspace.systems.SolarSystem.planets.overworld.gui.schematics.GuiSchematicOxTank;
 import galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics.ContainerSchematicOxTank;
 import micdoodle8.mods.galacticraft.api.recipe.SchematicPage;
@@ -18,7 +19,7 @@ public class SchematicOxTank extends SchematicPage
     @Override
     public int getPageID()
     {
-        return ConfigManagerAsteroids.idSchematicRocketT3;//GSConfigSchematics.idSchematicOxTank;
+        return GSConfigSchematics.idSchematicOxTank;
     }
 
     @Override
