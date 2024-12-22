@@ -244,14 +244,14 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
 							else
 								this.getInventory().set(8, ItemStack.EMPTY);
 						}
-						if (this.processTicks_1 % 100 == 0) {
+						if (this.processTicks_1 % 100 == 0 && moduleLevel > 1) {
 							this.processTicks_1 += 2000;
 							if (this.getInventory().get(8).getCount() > 1)
 								this.getInventory().get(8).shrink(1);
 							else
 								this.getInventory().set(8, ItemStack.EMPTY);
 						}
-						if (this.processTicks_2 % 100 == 0) {
+						if (this.processTicks_2 % 100 == 0 && moduleLevel > 2) {
 							this.processTicks_2 += 2000;
 							if (this.getInventory().get(8).getCount() > 1)
 								this.getInventory().get(8).shrink(1);
@@ -410,7 +410,7 @@ public class TileEntityHydroponicBase extends TileBaseElectricBlockWithInventory
 							int scale = ticks > 0 ? (int) ((double) ticks/ (double) this.processTimeRequired * (int) data.getStages()) : (int) data.getStages();
 						
 							farm.setPlant(data.getBlock());
-							farm.setMetaPlant(data.getStages() - scale);
+							farm.setMetaPlant(scale);
 							farm.markDirty();
 						}
 						else
