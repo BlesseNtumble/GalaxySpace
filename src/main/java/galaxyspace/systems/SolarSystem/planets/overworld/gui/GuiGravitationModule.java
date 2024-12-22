@@ -59,7 +59,10 @@ public class GuiGravitationModule extends GuiTileBase implements ITextBoxCallbac
         moduleInfoX = this.inventorySlots.getSlotFromInventory(tileEntity, 1).xPos;
 		moduleInfoY = this.inventorySlots.getSlotFromInventory(tileEntity, 1).yPos;
         radius = tileEntity.getGravityRadius();
-        moduleList = new ItemStack[] {new ItemStack(GSItems.UPGRADES, 1, 0), new ItemStack(GSItems.UPGRADES, 1, 3)};
+        moduleList = new ItemStack[] {
+                new ItemStack(GSItems.UPGRADES, 1, 0),
+                new ItemStack(GSItems.UPGRADES, 1, 1),
+                new ItemStack(GSItems.UPGRADES, 1, 3)};
     }
 
     @Override
