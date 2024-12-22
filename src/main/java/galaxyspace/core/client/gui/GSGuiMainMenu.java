@@ -664,7 +664,10 @@ public class GSGuiMainMenu extends GuiScreen implements GuiYesNoCallback
         List<String> brandings_new = new ArrayList<String>();
         brandings_new.add(brandings.get(0));
         brandings_new.add(brandings.get(1));
-        brandings_new.add(brandings.get(3) + " | " +brandings.get(2));
+        if(brandings.size() > 3)
+            brandings_new.add(brandings.get(3) + " | " +brandings.get(2));
+        else
+            brandings_new.add(brandings.get(2));
         for (int i = 0; i < brandings_new.size(); i++)
         {        	
             String brd = brandings_new.get(i);            
