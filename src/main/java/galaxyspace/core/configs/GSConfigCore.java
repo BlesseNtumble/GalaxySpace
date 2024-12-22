@@ -68,7 +68,8 @@ public class GSConfigCore
     public static boolean enableDebug;
     
     public static String[] radiation_armor;
-    
+
+    public static String[] unsuffocation_entity;
     public static String keyOverrideToggleHelmet, keyOverrideToggleChest, keyOverrideToggleLegs, keyOverrideToggleBoots;
     public static int keyOverrideToggleHelmetI, keyOverrideToggleChestI, keyOverrideToggleLegsI, keyOverrideToggleBootsI;
     
@@ -325,7 +326,20 @@ public class GSConfigCore
             keyOverrideToggleBoots = prop.getString();
             keyOverrideToggleBootsI = parseKeyValue(keyOverrideToggleBoots);
             propOrder.add(prop.getName());
-            
+
+
+            prop = config.get(Constants.CONFIG_CATEGORY_ENTITIES, "Entity List",
+                    new String[]
+                            {
+                                    "matteroverdrive:rogue_android",
+                                    "matteroverdrive:ranged_rogue_android"
+                            });
+
+            prop.setComment("List entity for ignore suffocation damage. Format: 'modid:entity' ");
+            prop.setLanguageKey("gc.configgui.unsuffocation_entity").setRequiresMcRestart(false);
+            unsuffocation_entity = prop.getStringList();
+            propOrder.add(prop.getName());
+
             config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
 
             config.save();
