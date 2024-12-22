@@ -802,6 +802,8 @@ public class EntityTier6Rocket extends EntityTieredRocket implements ICustomEngi
         ItemStack rocket = new ItemStack(GSItems.ROCKET_TIER_6, 1, this.rocketType.getIndex());
         rocket.setTagCompound(new NBTTagCompound());
         rocket.getTagCompound().setInteger("RocketFuel", this.fuelTank.getFluidAmount());
+        rocket.getTagCompound().setBoolean(engine_type.getName(), true);
+        rocket.getTagCompound().setInteger(ItemSpaceSuit.mod_count, 0);
         droppedItems.add(rocket);
         return droppedItems;
     }

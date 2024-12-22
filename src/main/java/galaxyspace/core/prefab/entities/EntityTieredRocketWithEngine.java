@@ -268,6 +268,9 @@ public abstract class EntityTieredRocketWithEngine extends EntityTieredRocket im
         ItemStack rocket = getPickedResult(null);
         rocket.setTagCompound(new NBTTagCompound());
         rocket.getTagCompound().setInteger("RocketFuel", this.fuelTank.getFluidAmount());
+        rocket.getTagCompound().setBoolean(engine_type.getName(), true);
+        if(engine_type != Engine_Type.FUEL_ENGINE)
+            rocket.getTagCompound().setInteger(ItemSpaceSuit.mod_count, 0);
         droppedItems.add(rocket);
         return droppedItems;
     }
