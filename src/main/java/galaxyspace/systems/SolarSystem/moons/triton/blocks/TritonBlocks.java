@@ -8,6 +8,7 @@ import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockIce;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -63,19 +64,20 @@ public class TritonBlocks  extends Block implements ISortableBlock, IEnergyGeyse
 		
 		if(state == state.withProperty(BASIC_TYPE, EnumTritonBlocks.TRITON_GEYSER))
 		{
-			if(world.isAirBlock(pos.up()) && world.getBlockState(pos.down()).getBlock() == FluidRegistry.WATER.getBlock()) {
+			if(world.isAirBlock(pos.up()) && (world.getBlockState(pos.down()).getBlock() == FluidRegistry.WATER.getBlock() || world.getBlockState(pos.down()).getBlock() instanceof BlockIce)) {
 				GalaxySpace.proxy.spawnParticle("waterbubbles1", new Vector3(pos.getX() + rand.nextDouble(), pos.getY() + 1.0D + rand.nextDouble(), pos.getZ() + rand.nextDouble()), new Vector3(0.0D + ((rand.nextFloat() / 10) * (rand.nextBoolean() ? -1 : 1)), 0.0001D, 0.0D + ((rand.nextFloat() / 20) * (rand.nextBoolean() ? -1 : 1))), new Object [] { 200 + rand.nextInt(100) + lifetime, 7, false, new Vector3(0.3F, 0.35F, 0.3F), 1.9D, 5.0D} );
 				GalaxySpace.proxy.spawnParticle("waterbubbles1", new Vector3(pos.getX() + rand.nextDouble(), pos.getY() + 1.0D + rand.nextDouble(), pos.getZ() + rand.nextDouble()), new Vector3(0.0D + ((rand.nextFloat() / 20) * (rand.nextBoolean() ? -1 : 1)), 0.0001D, 0.0D + ((rand.nextFloat() / 20) * (rand.nextBoolean() ? -1 : 1))), new Object [] { 200 + rand.nextInt(100) + lifetime, 7, false, new Vector3(0.4F, 0.4F, 0.4F), 1.9D, 5.0D} );
     			GalaxySpace.proxy.spawnParticle("waterbubbles1", new Vector3(pos.getX() + rand.nextDouble(), pos.getY() + 1.0D + rand.nextDouble(), pos.getZ() + rand.nextDouble()), new Vector3(0.0D + ((rand.nextFloat() / 20) * (rand.nextBoolean() ? -1 : 1)), 0.0001D, 0.0D + ((rand.nextFloat() / 20) * (rand.nextBoolean() ? -1 : 1))), new Object [] { 200 + rand.nextInt(100) + lifetime, 7, false, new Vector3(0.1F, 0.1F, 0.1F), 1.9D, 5.0D} );
     		
 			}
+
 		}
 		
 		if(world.provider instanceof WorldProviderSurface) lifetime = -60;
 		
 		if(state == state.withProperty(BASIC_TYPE, EnumTritonBlocks.TRITON_GEYSER_2))
 		{
-			if(world.isAirBlock(pos.up()) && world.getBlockState(pos.down()).getBlock() == FluidRegistry.WATER.getBlock()) {
+			if(world.isAirBlock(pos.up()) && (world.getBlockState(pos.down()).getBlock() == FluidRegistry.WATER.getBlock() || world.getBlockState(pos.down()).getBlock() instanceof BlockIce)) {
 				GalaxySpace.proxy.spawnParticle("waterbubbles1", new Vector3(pos.getX() + rand.nextDouble(), pos.getY() + 1.0D + rand.nextDouble(), pos.getZ() + rand.nextDouble()), new Vector3(0.0D + ((rand.nextFloat() / 5) * (rand.nextBoolean() ? -1 : 1)), 1.0D + rand.nextFloat(), 0.0D + ((rand.nextFloat() / 5) * (rand.nextBoolean() ? -1 : 1))), new Object [] { 40 + rand.nextInt(14) + lifetime, 7, true, new Vector3(0.3F, 0.35F, 0.3F), 1.0D, 1.0D} );
 				GalaxySpace.proxy.spawnParticle("waterbubbles1", new Vector3(pos.getX() + rand.nextDouble(), pos.getY() + 1.0D + rand.nextDouble(), pos.getZ() + rand.nextDouble()), new Vector3(0.0D + ((rand.nextFloat() / 20) * (rand.nextBoolean() ? -1 : 1)), 1.0D + rand.nextFloat(), 0.0D + ((rand.nextFloat() / 20) * (rand.nextBoolean() ? -1 : 1))), new Object [] { 40 + rand.nextInt(14) + lifetime, 7, true, new Vector3(0.4F, 0.4F, 0.4F), 1.0D, 1.0D} );
     			GalaxySpace.proxy.spawnParticle(
