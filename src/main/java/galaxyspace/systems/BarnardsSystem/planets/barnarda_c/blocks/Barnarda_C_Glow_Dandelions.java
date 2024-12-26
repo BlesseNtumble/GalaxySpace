@@ -1,5 +1,6 @@
 package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks;
 
+import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
@@ -153,7 +154,6 @@ public class Barnarda_C_Glow_Dandelions extends BlockBush implements IGrowable, 
 		
 		if(!world.isRemote && state == this.getDefaultState().withProperty(BASIC_TYPE, type))
 		{
-			//GalaxySpace.debug("123");
 			boolean is_forriden = true;
 			for(IBlockState block : valide)
 				if(world.getBlockState(pos.down()) == block)
@@ -168,10 +168,12 @@ public class Barnarda_C_Glow_Dandelions extends BlockBush implements IGrowable, 
 	}
 	
 	@Override
-	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
-    {
-
-    }
+	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+		canPlaceAt(state, world, pos, placer, EnumBlockGlowDandelions.GLOW_PLANT_1, BRBlocks.BARNARDA_C_GRASS.getDefaultState(), BRBlocks.BARNARDA_C_BLOCKS.getDefaultState().withProperty(Barnarda_C_Blocks.BASIC_TYPE, Barnarda_C_Blocks.EnumBlockBarnardaC.DIRT));
+		canPlaceAt(state, world, pos, placer, EnumBlockGlowDandelions.GLOW_PLANT_2, BRBlocks.BARNARDA_C_GRASS.getDefaultState(), BRBlocks.BARNARDA_C_BLOCKS.getDefaultState().withProperty(Barnarda_C_Blocks.BASIC_TYPE, Barnarda_C_Blocks.EnumBlockBarnardaC.DIRT));
+		canPlaceAt(state, world, pos, placer, EnumBlockGlowDandelions.GLOW_PLANT_3, BRBlocks.BARNARDA_C_GRASS.getDefaultState(), BRBlocks.BARNARDA_C_BLOCKS.getDefaultState().withProperty(Barnarda_C_Blocks.BASIC_TYPE, Barnarda_C_Blocks.EnumBlockBarnardaC.DIRT));
+		canPlaceAt(state, world, pos, placer, EnumBlockGlowDandelions.GLOW_PLANT_4, BRBlocks.BARNARDA_C_GRASS.getDefaultState(), BRBlocks.BARNARDA_C_BLOCKS.getDefaultState().withProperty(Barnarda_C_Blocks.BASIC_TYPE, Barnarda_C_Blocks.EnumBlockBarnardaC.DIRT));
+	}
 	
 	@Override
     public void breakBlock(World world, BlockPos pos, IBlockState state)

@@ -234,7 +234,7 @@ public class Barnarda_C_Dandelions extends BlockBush implements IGrowable, IShea
 		
 		if(!world.isRemote && state == this.getDefaultState().withProperty(BASIC_TYPE, type))
 		{
-			//GalaxySpace.debug("123");
+
 			boolean is_forriden = true;
 			for(IBlockState block : valide)
 				if(world.getBlockState(pos.down()) == block)
@@ -267,7 +267,14 @@ public class Barnarda_C_Dandelions extends BlockBush implements IGrowable, IShea
 				world.setBlockState(pos.up(), this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.YELLOW_GRASS_UP));
 		}
 		
-		
+		canPlaceAt(state, world, pos, placer, EnumBlockDandelions.GRASS, BRBlocks.BARNARDA_C_GRASS.getDefaultState(), BRBlocks.BARNARDA_C_BLOCKS.getDefaultState().withProperty(Barnarda_C_Blocks.BASIC_TYPE, Barnarda_C_Blocks.EnumBlockBarnardaC.DIRT));
+		canPlaceAt(state, world, pos, placer, EnumBlockDandelions.HOPPER, BRBlocks.BARNARDA_C_GRASS.getDefaultState(), BRBlocks.BARNARDA_C_BLOCKS.getDefaultState().withProperty(Barnarda_C_Blocks.BASIC_TYPE, Barnarda_C_Blocks.EnumBlockBarnardaC.DIRT));
+		canPlaceAt(state, world, pos, placer, EnumBlockDandelions.LIGHT_BALLS, BRBlocks.BARNARDA_C_GRASS.getDefaultState(), BRBlocks.BARNARDA_C_BLOCKS.getDefaultState().withProperty(Barnarda_C_Blocks.BASIC_TYPE, Barnarda_C_Blocks.EnumBlockBarnardaC.DIRT));
+		canPlaceAt(state, world, pos, placer, EnumBlockDandelions.YELLOW_GRASS_DOWN, BRBlocks.BARNARDA_C_GRASS.getDefaultState(), BRBlocks.BARNARDA_C_BLOCKS.getDefaultState().withProperty(Barnarda_C_Blocks.BASIC_TYPE, Barnarda_C_Blocks.EnumBlockBarnardaC.DIRT));
+		canPlaceAt(state, world, pos, placer, EnumBlockDandelions.RED_FERN, BRBlocks.BARNARDA_C_GRASS.getDefaultState(), BRBlocks.BARNARDA_C_BLOCKS.getDefaultState().withProperty(Barnarda_C_Blocks.BASIC_TYPE, Barnarda_C_Blocks.EnumBlockBarnardaC.DIRT));
+		canPlaceAt(state, world, pos, placer, EnumBlockDandelions.TALLGRASS_DARK, BRBlocks.BARNARDA_C_GRASS.getDefaultState(), BRBlocks.BARNARDA_C_BLOCKS.getDefaultState().withProperty(Barnarda_C_Blocks.BASIC_TYPE, Barnarda_C_Blocks.EnumBlockBarnardaC.DIRT));
+		canPlaceAt(state, world, pos, placer, EnumBlockDandelions.DESERT_DOWN, BRBlocks.BARNARDA_C_GRASS.getDefaultState(), BRBlocks.BARNARDA_C_BLOCKS.getDefaultState().withProperty(Barnarda_C_Blocks.BASIC_TYPE, Barnarda_C_Blocks.EnumBlockBarnardaC.DIRT));
+		canPlaceAt(state, world, pos, placer, EnumBlockDandelions.GREEN_FERN, BRBlocks.BARNARDA_C_GRASS.getDefaultState(), BRBlocks.BARNARDA_C_BLOCKS.getDefaultState().withProperty(Barnarda_C_Blocks.BASIC_TYPE, Barnarda_C_Blocks.EnumBlockBarnardaC.DIRT));
     }
 	
 	@Override

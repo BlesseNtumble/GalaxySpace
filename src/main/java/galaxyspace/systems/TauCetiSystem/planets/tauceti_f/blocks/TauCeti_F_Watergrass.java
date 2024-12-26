@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import galaxyspace.systems.TauCetiSystem.core.TCBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockLiquid;
@@ -254,7 +255,30 @@ public class TauCeti_F_Watergrass extends BlockBush implements IGrowable, IShear
 	
 	@Override
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
-    {		
+    {
+		canPlaceAt(state, world, pos, placer, EnumBlockDandelions.WATERGRASS_RED,
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.GRASS),
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.DIRT));
+		canPlaceAt(state, world, pos, placer, EnumBlockDandelions.WATERGRASS_STANDART_BOTTOM,
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.GRASS),
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.DIRT));
+		canPlaceAt(state, world, pos, placer, EnumBlockDandelions.WATERGRASS_STANDART_MIDDLE,
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.GRASS),
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.DIRT));
+		canPlaceAt(state, world, pos, placer, EnumBlockDandelions.WATERGRASS_STANDART_TOP,
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.GRASS),
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.DIRT));
+		canPlaceAt(state, world, pos, placer, EnumBlockDandelions.WATERGRASS_SLIME_BOTTOM,
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.GRASS),
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.DIRT));
+		canPlaceAt(state, world, pos, placer, EnumBlockDandelions.WATERGRASS_SLIME_TOP,
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.GRASS),
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.DIRT),
+				this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.WATERGRASS_SLIME_BOTTOM));
+		canPlaceAt(state, world, pos, placer, EnumBlockDandelions.WATERGRASS_THICK_GREEN,
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.GRASS),
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.DIRT));
+
 		//canPlaceAt(state, world, pos, placer, EnumBlockDandelions.REEDS, BRBlocks.BARNARDA_C_GRASS.getDefaultState(), this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS));
 		
 		//canPlaceAt(state, world, pos, placer, EnumBlockDandelions.VIOLET_TREE_SAPLING, BRBlocks.BARNARDA_C_GRASS.getDefaultState(), BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(0));

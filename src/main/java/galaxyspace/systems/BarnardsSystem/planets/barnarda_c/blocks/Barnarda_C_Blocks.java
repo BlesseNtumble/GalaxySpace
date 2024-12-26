@@ -22,6 +22,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
@@ -76,7 +77,15 @@ public class Barnarda_C_Blocks  extends Block implements ISortableBlock, ITerraf
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		return new ItemStack(Item.getItemFromBlock(this), 1, this.getMetaFromState(state));
 	}
-	
+
+	@Override
+	public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, net.minecraftforge.common.IPlantable plantable)
+	{
+		if(state != this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockBarnardaC.DIRT))
+			return false;
+
+		return super.canSustainPlant(state, world, pos, direction, plantable);
+	}
 	@SideOnly(Side.CLIENT)
     @Override
     public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)

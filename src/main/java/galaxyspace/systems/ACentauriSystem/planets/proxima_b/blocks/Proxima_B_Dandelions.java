@@ -1,10 +1,7 @@
 package galaxyspace.systems.ACentauriSystem.planets.proxima_b.blocks;
 
-import java.util.List;
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
+import galaxyspace.systems.ACentauriSystem.core.ACBlocks;
+import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
@@ -23,11 +20,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -36,6 +29,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Random;
 
 public class Proxima_B_Dandelions extends BlockBush implements IGrowable, IShearable {
 
@@ -159,7 +156,7 @@ public class Proxima_B_Dandelions extends BlockBush implements IGrowable, IShear
 		
 		if(!world.isRemote && state == this.getDefaultState().withProperty(BASIC_TYPE, type))
 		{
-			//GalaxySpace.debug("123");
+
 			boolean is_forrbiden = true;
 			for(IBlockState block : valide)
 				if(world.getBlockState(pos.down()) == block)
@@ -177,10 +174,9 @@ public class Proxima_B_Dandelions extends BlockBush implements IGrowable, IShear
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {		
 		//canPlaceAt(state, world, pos, placer, EnumBlockDandelions.REEDS, BRBlocks.BARNARDA_C_GRASS.getDefaultState(), this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS));
-		
-		
-		
-    }
+		canPlaceAt(state, world, pos, placer, EnumBlockDandelions.GRASS, ACBlocks.PROXIMA_B_BLOCKS.getDefaultState().withProperty(Proxima_B_Grass.BASIC_TYPE, Proxima_B_Grass.EnumBlockGrass.GRASS));
+		canPlaceAt(state, world, pos, placer, EnumBlockDandelions.GRASS_2, ACBlocks.PROXIMA_B_BLOCKS.getDefaultState().withProperty(Proxima_B_Grass.BASIC_TYPE, Proxima_B_Grass.EnumBlockGrass.GRASS));
+	}
 	
 	@Override
     public void breakBlock(World world, BlockPos pos, IBlockState state)

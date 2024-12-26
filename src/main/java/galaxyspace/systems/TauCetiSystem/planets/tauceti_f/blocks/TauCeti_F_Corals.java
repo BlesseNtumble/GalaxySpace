@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import galaxyspace.systems.TauCetiSystem.core.TCBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockLiquid;
@@ -255,22 +256,31 @@ public class TauCeti_F_Corals extends BlockBush implements IGrowable, IShearable
 	@Override
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {		
-		//canPlaceAt(state, world, pos, placer, EnumBlockDandelions.REEDS, BRBlocks.BARNARDA_C_GRASS.getDefaultState(), this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS));
-		
-		//canPlaceAt(state, world, pos, placer, EnumBlockDandelions.VIOLET_TREE_SAPLING, BRBlocks.BARNARDA_C_GRASS.getDefaultState(), BRBlocks.BARNARDA_C_BLOCKS.getStateFromMeta(0));
-		
-		/*if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.DESERT_DOWN))
-		{
-			if(world.isAirBlock(pos.up()))
-				world.setBlockState(pos.up(), this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.DESERT_UP));
-		}
-		
-		if(state == this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.YELLOW_GRASS_DOWN))
-		{
-			if(world.isAirBlock(pos.up()))
-				world.setBlockState(pos.up(), this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.YELLOW_GRASS_UP));
-		}
-		*/
+		canPlaceAt(state, world, pos, placer, EnumBlockCorals.FIRE_CORAL_FAN,
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.GRASS),
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.DIRT));
+		canPlaceAt(state, world, pos, placer, EnumBlockCorals.BUBBLE_CORAL,
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.GRASS),
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.DIRT));
+		canPlaceAt(state, world, pos, placer, EnumBlockCorals.FIRE_CORAL_FAN,
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.GRASS),
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.DIRT));
+		canPlaceAt(state, world, pos, placer, EnumBlockCorals.HORN_CORAL,
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.GRASS),
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.DIRT));
+		canPlaceAt(state, world, pos, placer, EnumBlockCorals.BRAIN_CORAL,
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.GRASS),
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.DIRT));
+		canPlaceAt(state, world, pos, placer, EnumBlockCorals.SPONGE_CORAL,
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.GRASS),
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.DIRT));
+		canPlaceAt(state, world, pos, placer, EnumBlockCorals.BUBBLE_CORAL_FAN,
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.GRASS),
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.DIRT));
+		canPlaceAt(state, world, pos, placer, EnumBlockCorals.HORN_CORAL_FAN,
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.GRASS),
+				TCBlocks.TAUCETI_F_BLOCKS.getDefaultState().withProperty(TauCeti_F_Blocks.BASIC_TYPE, TauCeti_F_Blocks.EnumBlockTauCetiF.DIRT));
+
 		
     }
 	
