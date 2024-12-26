@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import net.minecraft.client.renderer.RenderHelper;
 import org.lwjgl.opengl.GL11;
 
 import com.google.common.base.Function;
@@ -109,7 +110,7 @@ public class RenderRockets extends Render<EntityAutoRocket>
         GlStateManager.enableCull();
         GlStateManager.color(1F, 1F, 1F);
         GlStateManager.popMatrix();
-        //RenderHelper.enableStandardItemLighting();
+        RenderHelper.enableStandardItemLighting();
     }
 
     @Override
