@@ -46,6 +46,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+
 import micdoodle8.mods.galacticraft.core.blocks.GCBlocks;
 import micdoodle8.mods.galacticraft.core.items.GCItems;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
@@ -71,7 +72,8 @@ implements IConfigureNEI {
     private static HashMap<HashMap<Integer, PositionedStack>, PositionedStack> rocketAssemblyRecipes = new HashMap();
     private static HashMap<HashMap<Integer, PositionedStack>, PositionedStack> assemblyMachineRecipes = new HashMap();
     private static HashMap<HashMap<Integer, PositionedStack>, PositionedStack> circuitFabricatorRecipes = new HashMap();
-    private static HashMap<ArrayList<PositionedStack>, PositionedStack> rocketBenchT2Recipes = new HashMap();
+    private static HashMap<ArrayList<PositionedStack>, PositionedStack> rocketBenchRecipes = new HashMap();
+  
 
     public void loadConfig() {
         this.registerRecipes();
@@ -191,11 +193,12 @@ implements IConfigureNEI {
     }
 
     public void registerRocketBenchRecipe(ArrayList<PositionedStack> input, PositionedStack output) {
-        rocketBenchT2Recipes.put(input, output);
+        rocketBenchRecipes.put(input, output);
+        
     }
 
     public static Set<Map.Entry<ArrayList<PositionedStack>, PositionedStack>> getRocketBenchRecipes() {
-        return rocketBenchT2Recipes.entrySet();
+        return rocketBenchRecipes.entrySet();
     }
 
     public void registerRecipes() {
@@ -208,6 +211,7 @@ implements IConfigureNEI {
         this.addFinsRecipes();
         this.addOxTankRecipes();
         this.addPortNuclearRecipes();
+        this.addRocketT1Recipes();
         this.addRocketT2Recipes();
         HashMap<Integer, PositionedStack> input1 = new HashMap<Integer, PositionedStack>();
         input1 = new HashMap();
@@ -449,8 +453,65 @@ implements IConfigureNEI {
             this.registerRocketAssemblyRecipe(input1, new PositionedStack((Object)rec.getRecipeOutput(), 154, 62));
         }
     }
+    private void addRocketT1Recipes() {
+
+        //Tier 1
+
+
+        int changeY = 25;
+        int changeX = -15;
+        ArrayList<PositionedStack> input1 = new ArrayList<PositionedStack>();
+        input1.add(new PositionedStack((Object)new ItemStack(GCItems.partNoseCone), 30, 17));
+        input1.add(new PositionedStack((Object)new ItemStack(GCItems.heavyPlatingTier1, 1, 3), 21, 35));
+        input1.add(new PositionedStack((Object)new ItemStack(GCItems.heavyPlatingTier1, 1, 3), 21, 53));
+        input1.add(new PositionedStack((Object)new ItemStack(GCItems.heavyPlatingTier1, 1, 3), 21, 71));
+        input1.add(new PositionedStack((Object)new ItemStack(GCItems.heavyPlatingTier1, 1, 3), 21, 89));
+        input1.add(new PositionedStack((Object)new ItemStack(GCItems.heavyPlatingTier1, 1, 3), 21, 107));
+        input1.add(new PositionedStack((Object)new ItemStack(GCItems.heavyPlatingTier1, 1, 3), 39, 35));
+        input1.add(new PositionedStack((Object)new ItemStack(GCItems.heavyPlatingTier1, 1, 3), 39, 53));
+        input1.add(new PositionedStack((Object)new ItemStack(GCItems.heavyPlatingTier1, 1, 3), 39, 71));
+        input1.add(new PositionedStack((Object)new ItemStack(GCItems.rocketEngine), 30, 125));
+        input1.add(new PositionedStack((Object)new ItemStack(GCItems.partFins), 3, 107));
+        input1.add(new PositionedStack((Object)new ItemStack(GCItems.partFins), 3, 125));
+        input1.add(new PositionedStack((Object)new ItemStack(GCItems.partFins), 57, 107));
+        input1.add(new PositionedStack((Object)new ItemStack(GCItems.partFins), 57, 125));
+        input1.add(new PositionedStack((Object)new ItemStack(GSItems.RocketModules, 1, 1), 67, 25));
+        input1.add(new PositionedStack((Object)new ItemStack(GSItems.RocketModules, 1, 3), 67, 42));
+        input1.add(new PositionedStack((Object)new ItemStack(GSItems.RocketModules, 1, 3), 67, 59));
+        this.registerRocketBenchRecipe(input1, new PositionedStack((Object)new ItemStack(GCItems.rocketTier1, 1, 0), 129, 107));
+        ArrayList<PositionedStack> input2 = new ArrayList<PositionedStack>(input1);
+        input2.add(new PositionedStack((Object)new ItemStack((Block)Blocks.chest), 90, 10));
+        this.registerRocketBenchRecipe(input2, new PositionedStack((Object)new ItemStack(GCItems.rocketTier1, 1, 1), 129, 107));
+        input2 = new ArrayList<PositionedStack>(input1);
+        input2.add(new PositionedStack((Object)new ItemStack((Block)Blocks.chest), 116, 10));
+        this.registerRocketBenchRecipe(input2, new PositionedStack((Object)new ItemStack(GCItems.rocketTier1, 1, 1), 129, 107));
+        input2 = new ArrayList<PositionedStack>(input1);
+        input2.add(new PositionedStack((Object)new ItemStack((Block)Blocks.chest), 142, 10));
+        this.registerRocketBenchRecipe(input2, new PositionedStack((Object)new ItemStack(GCItems.rocketTier1, 1, 1), 129, 107));
+        input2 = new ArrayList<PositionedStack>(input1);
+        input2.add(new PositionedStack((Object)new ItemStack((Block)Blocks.chest), 90, 10));
+        input2.add(new PositionedStack((Object)new ItemStack((Block)Blocks.chest), 116, 10));
+        this.registerRocketBenchRecipe(input2, new PositionedStack((Object)new ItemStack(GCItems.rocketTier1, 1, 2), 129, 107));
+        input2 = new ArrayList<PositionedStack>(input1);
+        input2.add(new PositionedStack((Object)new ItemStack((Block)Blocks.chest), 116, 10));
+        input2.add(new PositionedStack((Object)new ItemStack((Block)Blocks.chest), 142, 10));
+        this.registerRocketBenchRecipe(input2, new PositionedStack((Object)new ItemStack(GCItems.rocketTier1, 1, 2), 129, 107));
+        input2 = new ArrayList<PositionedStack>(input1);
+        input2.add(new PositionedStack((Object)new ItemStack((Block)Blocks.chest), 90, 10));
+        input2.add(new PositionedStack((Object)new ItemStack((Block)Blocks.chest), 142, 10));
+        this.registerRocketBenchRecipe(input2, new PositionedStack((Object)new ItemStack(GCItems.rocketTier1, 1, 2), 129, 107));
+        input2 = new ArrayList<PositionedStack>(input1);
+        input2.add(new PositionedStack((Object)new ItemStack((Block)Blocks.chest), 90, 10));
+        input2.add(new PositionedStack((Object)new ItemStack((Block)Blocks.chest), 116, 10));
+        input2.add(new PositionedStack((Object)new ItemStack((Block)Blocks.chest), 142, 10));
+        this.registerRocketBenchRecipe(input2, new PositionedStack((Object)new ItemStack(GCItems.rocketTier1, 1, 3), 129, 107));
+    }
 
     private void addRocketT2Recipes() {
+
+        //Tier 2
+
+
         int changeY = 25;
         int changeX = -15;
         ArrayList<PositionedStack> input1 = new ArrayList<PositionedStack>();
@@ -503,6 +564,7 @@ implements IConfigureNEI {
         input2.add(new PositionedStack((Object)new ItemStack((Block)Blocks.chest), 116, 10));
         input2.add(new PositionedStack((Object)new ItemStack((Block)Blocks.chest), 142, 10));
         this.registerRocketBenchRecipe(input2, new PositionedStack((Object)new ItemStack(MarsItems.spaceship, 1, 3), 129, 107));
+
     }
 }
 

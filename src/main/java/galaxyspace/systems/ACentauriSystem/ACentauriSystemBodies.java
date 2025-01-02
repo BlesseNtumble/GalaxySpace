@@ -51,7 +51,7 @@ public class ACentauriSystemBodies implements IBodiesHandler{
 	{
 		
 		// TODO aCentauri System ----------------------------------------
-    	aCentauriSystem = BodiesHelper.registerSolarSystem(GalaxySpace.ASSET_PREFIX, "acentauri", Galaxies.MILKYWAY, new Vector3(1.5F, 0.0F, 0.0F), "centauri_a", 1.3F);
+    	aCentauriSystem = BodiesHelper.registerSolarSystem(GalaxySpace.ASSET_PREFIX, "aсentauri", Galaxies.MILKYWAY, new Vector3(1.5F, 0.0F, 0.0F), "centauri_a", 1.3F);
     	ProximaSystem = BodiesHelper.registerSolarSystem(GalaxySpace.ASSET_PREFIX, "proxima", Galaxies.MILKYWAY, new Vector3(1.7F, -0.2F, 0.0F), "proxima", 0.8F);
     	
         centauriB = (Planet) BodiesHelper.registerPlanet(aCentauriSystem, "centauri_b", GalaxySpace.ASSET_PREFIX, null, -1, -1, (float) Math.PI, 1.5F, 0.3F, 1000F).setRingColorRGB(0.0F, 0.0F, 0.0F);

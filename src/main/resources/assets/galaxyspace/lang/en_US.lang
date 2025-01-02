@@ -375,6 +375,7 @@ item.ModuleSmallCanister.name=Blank Fuel Tank
 item.ModuleLander.name=Lander Tier 1
 item.ModuleLander2.name=Lander Tier 2
 item.ModuleLander3.name=Lander Tier 3
+item.ModuleTurboPump.name=Fuel Turbo Pump
 item.ThermalClothT2.name=Thermal Cloth
 item.thermalHelmT2.name=Thermal Padding Helmet
 item.thermalChestplateT2.name=Thermal Padding Chestplate

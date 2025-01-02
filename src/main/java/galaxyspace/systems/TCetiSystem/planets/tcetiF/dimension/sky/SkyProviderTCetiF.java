@@ -25,7 +25,7 @@ public class SkyProviderTCetiF extends SkyProviderBase{
 
 	@Override
 	protected ResourceLocation sunImage() {
-		return new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/celestialbodies/tceti/TCetiA.png");
+		return new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/celestialbodies/tauceti/TauCetiA.png");
 	}
 
 	@Override

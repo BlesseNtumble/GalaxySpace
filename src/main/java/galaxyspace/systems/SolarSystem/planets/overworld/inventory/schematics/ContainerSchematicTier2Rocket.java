@@ -45,7 +45,7 @@ public class ContainerSchematicTier2Rocket extends Container {
 
         // Left fins
         this.addSlotToContainer(new SlotSchematicTier2Rocket(this.craftMatrix, 12, 20 + xOffset, 73 + change, x, y, z, par1InventoryPlayer.player));
-        this.addSlotToContainer(new SlotSchematicTier2Rocket(this.craftMatrix, 13, 20 + xOffset, 92 + change, x, y, z, par1InventoryPlayer.player));
+        this.addSlotToContainer(new SlotSchematicTier2Rocket(this.craftMatrix, 13, 20 + xOffset, 91 + change, x, y, z, par1InventoryPlayer.player));
         this.addSlotToContainer(new SlotSchematicTier2Rocket(this.craftMatrix, 14, 20 + xOffset, 110 + change, x, y, z, par1InventoryPlayer.player));
 
         // Engine
@@ -53,7 +53,7 @@ public class ContainerSchematicTier2Rocket extends Container {
 
         // Right fins
         this.addSlotToContainer(new SlotSchematicTier2Rocket(this.craftMatrix, 16, 76 + xOffset, 73 + change, x, y, z, par1InventoryPlayer.player));
-        this.addSlotToContainer(new SlotSchematicTier2Rocket(this.craftMatrix, 17, 76 + xOffset, 92 + change, x, y, z, par1InventoryPlayer.player));
+        this.addSlotToContainer(new SlotSchematicTier2Rocket(this.craftMatrix, 17, 76 + xOffset, 91 + change, x, y, z, par1InventoryPlayer.player));
         this.addSlotToContainer(new SlotSchematicTier2Rocket(this.craftMatrix, 18, 76 + xOffset, 110 + change, x, y, z, par1InventoryPlayer.player));
 
         // Addons

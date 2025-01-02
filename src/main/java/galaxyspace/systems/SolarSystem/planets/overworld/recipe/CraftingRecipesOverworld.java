@@ -51,7 +51,7 @@ public class CraftingRecipesOverworld {
 	}
 
 	private static void addBlockRecipes() {
-	   
+
 	    /*RecipeUtil.addRecipe(new ItemStack(GSBlocks.MetalsBlock, 1, 0), new Object[] { "XXX", "XXX", "XXX", 'X', "ingotLead"});
 	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.MetalsBlock, 1, 1), new Object[] { "XXX", "XXX", "XXX", 'X', "ingotAdamantite"});
 	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.MetalsBlock, 1, 2), new Object[] { "XXX", "XXX", "XXX", 'X', "ingotCobalt"});
@@ -62,8 +62,8 @@ public class CraftingRecipesOverworld {
 	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.MetalsBlock, 1, 7), new Object[] { "XXX", "XXX", "XXX", 'X', "ingotPlatinum"});
 	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.MetalsBlock, 1, 8), new Object[] { "XXX", "XXX", "XXX", 'X', "ingotTungsten"});
 	   RecipeUtil.addRecipe(new ItemStack(GSBlocks.MetalsBlock, 1, 9), new Object[] { "XXX", "XXX", "XXX", 'X', "ingotDuralumin"});
-	   
-	  
+
+
 	   RecipeUtil.addRecipe(new ItemStack(GSItems.Ingots, 9, 0), new Object[] { "X", 'X', new ItemStack(GSBlocks.MetalsBlock, 1, 1)});
 	   RecipeUtil.addRecipe(new ItemStack(GSItems.Ingots, 9, 1), new Object[] { "X", 'X', new ItemStack(GSBlocks.MetalsBlock, 1, 2)});
 	   RecipeUtil.addRecipe(new ItemStack(GSItems.Ingots, 9, 2), new Object[] { "X", 'X', new ItemStack(GSBlocks.MetalsBlock, 1, 9)});
@@ -147,8 +147,6 @@ public class CraftingRecipesOverworld {
 	   RecipeUtil.addRecipe(new ItemStack(GSItems.BasicItems, 1, 15), new Object[] { "XZX", "CYC", "BBB", 'X', new ItemStack(GCBlocks.aluminumWire, 1, 1), 'Y', new ItemStack(GSItems.BasicItems, 1, 10), 'Z', new ItemStack(GSItems.BasicItems, 1, 7), 'C', new ItemStack(Items.gold_ingot, 1, 0), 'B', plateSteel });
 		  
 	   int var2 = 100;
-	   /*for (int var2 = 0; var2 < 100; var2 += 100)
-       {*/
 
 	   RecipeUtil.addRecipe(new ItemStack(GSItems.JetPack, 1, 100), new Object[] { "ABA", "CDC", "EFE", 'A', MarsBlocks.hydrogenPipe, 'B', new ItemStack(GCItems.battery, 1, var2), 'C', "compressedMeteoricIron", 'D', GCItems.steelChestplate, 'E', new ItemStack(GCItems.fuelCanister, 1, 1), 'F', new ItemStack(GCBlocks.aluminumWire, 1, 1) });
 	   RecipeUtil.addRecipe(new ItemStack(GSItems.PlasmaSword, 1), new Object[] { " X ", " X ", "ZVZ", 'X', "plateCobalt", 'Z', new ItemStack(GCBlocks.aluminumWire, 1, 0), 'V', new ItemStack(GCItems.battery, 1, var2) });
@@ -156,15 +154,12 @@ public class CraftingRecipesOverworld {
 	   RecipeUtil.addRecipe(new ItemStack(GSItems.PlasmaPickaxe, 1), new Object[] { "XXX", " Y ", "ZVZ", 'X', "plateCobalt", 'Z', new ItemStack(GCBlocks.aluminumWire, 1, 0), 'V', new ItemStack(GCItems.battery, 1, var2), 'Y', GCItems.flagPole });
 	   RecipeUtil.addRecipe(new ItemStack(GSItems.PlasmaShovel, 1), new Object[] { " X ", " Y ", "ZVZ", 'X', "plateCobalt", 'Z', new ItemStack(GCBlocks.aluminumWire, 1, 0), 'V', new ItemStack(GCItems.battery, 1, var2), 'Y', GCItems.flagPole });
 	   RecipeUtil.addRecipe(new ItemStack(GSItems.PlasmaHoe, 1), new Object[] { "XX ", " Y ", "ZVZ", 'X', "plateCobalt", 'Z', new ItemStack(GCBlocks.aluminumWire, 1, 0), 'V', new ItemStack(GCItems.battery, 1, var2), 'Y', GCItems.flagPole });
-
-      //}
 	  
 	   RecipeUtil.addRecipe(new ItemStack(GSItems.AdvancedBattery, 1, GSItems.AdvancedBattery.getMaxDamage()), new Object[] { " T ", "TRT", "TCT", 'T', "plateNickel", 'R', new ItemStack(GCItems.battery, 1, GCItems.battery.getMaxDamage()), 'C', Items.redstone });
 	   RecipeUtil.addRecipe(new ItemStack(GSItems.ModernBattery, 1, GSItems.ModernBattery.getMaxDamage()), new Object[] { "RTR", "TYT", "TCT", 'T', plateTitanium, 'R', new ItemStack(GSItems.AdvancedBattery, 1, GSItems.AdvancedBattery.getMaxDamage()), 'C', Items.redstone, 'Y', new ItemStack(GSItems.BasicItems, 1, 9) });
 	   RecipeUtil.addRecipe(new ItemStack(GSItems.ExtraBattery, 1, GSItems.ExtraBattery.getMaxDamage()), new Object[] { "RTR", "TYT", "TCT", 'T', new ItemStack(GSItems.HeavyDutyPlates, 1, 0), 'R', new ItemStack(GSItems.ModernBattery, 1, GSItems.ModernBattery.getMaxDamage()), 'C', Items.redstone, 'Y', new ItemStack(GSItems.BasicItems, 1, 9) });
 	   RecipeUtil.addRecipe(new ItemStack(GSItems.UltraBattery, 1, GSItems.UltraBattery.getMaxDamage()), new Object[] { "RTR", "TYT", "TCT", 'T', new ItemStack(GSItems.HeavyDutyPlates, 1, 0), 'R', new ItemStack(GSItems.ExtraBattery, 1, GSItems.ExtraBattery.getMaxDamage()), 'C', Items.redstone, 'Y', new ItemStack(GSItems.BasicItems, 1, 10) });
-	  
-	 //  RecipeUtil.addRecipe(new ItemStack(GSItems.NickelBattery, 1, 100), new Object[] { " T ", "TRT", "TCT", 'T', "plateNickel", 'R', Items.coal, 'C', Items.redstone });
+
 	   RecipeUtil.addRecipe(new ItemStack(GSItems.QuantBow, 1), new Object[] { " XY", "XTY", " XY", 'X', "ingotCobalt", 'Y', Items.string, 'T', Items.blaze_rod });
 	   RecipeUtil.addRecipe(new ItemStack(GSItems.BasicItems, 1, 1), new Object[] { "X  ", "YX ", "VZX", 'Y', plateSteel, 'X', GCItems.flagPole, 'V', new ItemStack(GCItems.basicItem, 1, 1), 'Z', plateIron});
 	   RecipeUtil.addRecipe(new ItemStack(GSItems.BasicItems, 1, 2), new Object[] { "YXY", "XYX", "YXY", 'X', new ItemStack(GSItems.BasicItems, 1, 1), 'Y', GCItems.flagPole });
@@ -173,10 +168,7 @@ public class CraftingRecipesOverworld {
        {
 		   RecipeUtil.addRecipe(new ItemStack(GSItems.RocketModules, 1, 1), new Object[] { "ZXZ", "YVY", "ZYZ", 'Z', new ItemStack(Items.string, 1, 0), 'X', new ItemStack(GCItems.parachute, 1, var3), 'Y', GCItems.canvas, 'V', new ItemStack(GSItems.RocketModules, 1, 0)});
        }
-	   RecipeUtil.addRecipe(new ItemStack(GSItems.RocketModules, 1, 2), new Object[] { "ZXZ", "YWY", "ZZZ", 'Z', plateSteel, 'X', new ItemStack(Blocks.chest, 1, 0), 'Y', new ItemStack(GCItems.flagPole, 1, 0), 'W', new ItemStack(GCItems.partBuggy, 1, 1)});
-	 //  RecipeUtil.addRecipe(new ItemStack(GSItems.MagnesiumBattery, 1, 100), new Object[] { " T ", "TRT", "TCT", 'T', "plateMagnesium", 'R', GSItems.SulfurVenus, 'C', Items.redstone });
-	 //  RecipeUtil.addRecipe(new ItemStack(GSItems.PlatinumBattery, 1, 100), new Object[] { " T ", "TRT", "TCT", 'T', "platePlatinum", 'R', GSItems.SulfurVenus, 'C', GSItems.UnknowCrystal });
-	   
+	   RecipeUtil.addRecipe(new ItemStack(GSItems.RocketModules, 1, 2), new Object[] { "ZXZ", "YWY", "ZZZ", 'Z', plateSteel, 'X', new ItemStack(Blocks.chest, 1, 0), 'Y', new ItemStack(GCItems.flagPole, 1, 0), 'W', new ItemStack(GSItems.RocketModules, 1, 1)});
 	   RecipeUtil.addRecipe(new ItemStack(GSItems.OxygenTankTier4, 1, GSItems.OxygenTankTier4.getMaxDamage()), new Object[] { "XYX", "ZCZ", "ZZZ", 'X', new ItemStack(Blocks.wool, 1, 11), 'Y', GCBlocks.oxygenPipe, 'C', new ItemStack(GCItems.oxTankHeavy, 1, GCItems.oxTankHeavy.getMaxDamage()), 'Z', new ItemStack(AsteroidsItems.basicItem , 1, 6) });
 	   RecipeUtil.addRecipe(new ItemStack(GSItems.OxygenTankTier5, 1, GSItems.OxygenTankTier5.getMaxDamage()), new Object[] { "XYX", "ZCZ", "ZZZ", 'X', new ItemStack(GCItems.oxygenConcentrator, 1, 0), 'Y', GCBlocks.oxygenPipe, 'C', new ItemStack(GSItems.OxygenTankTier4, 1, GSItems.OxygenTankTier4.getMaxDamage()), 'Z', new ItemStack(AsteroidsItems.basicItem , 1, 6) });
 	   RecipeUtil.addRecipe(new ItemStack(GSItems.OxygenTankTier6, 1, GSItems.OxygenTankTier6.getMaxDamage()), new Object[] { "XYA", "ZCZ", "ZZZ", 'X', new ItemStack(GCItems.oxygenVent, 1, 0), 'Y', GCBlocks.oxygenPipe, 'C', new ItemStack(GSItems.OxygenTankTier5, 1, GSItems.OxygenTankTier5.getMaxDamage()), 'Z', new ItemStack(AsteroidsItems.basicItem , 1, 6), 'A', GCItems.oxygenConcentrator });
@@ -231,7 +223,8 @@ public class CraftingRecipesOverworld {
 	   AssemberRecipes.instance.addShapelessRecipe(new ItemStack(GSItems.CompressedPlates, 1, 4), "plateBronze", "plateCoal", "plateAluminum");
 	   AssemberRecipes.instance.addShapelessRecipe(new ItemStack(GSItems.BasicItems, 1, 0), plateSteel, plateSteel, plateSteel, plateSteel, Blocks.glass_pane, plateSteel, plateSteel, plateSteel, plateSteel);
 	   AssemberRecipes.instance.addShapelessRecipe(new ItemStack(GSItems.RocketModules, 1, 3), new ItemStack(GSItems.CompressedPlates, 1, 4), new ItemStack(GSItems.BasicItems, 1, 0), new ItemStack(GSItems.CompressedPlates, 1, 4));
-	   
+	   AssemberRecipes.instance.addShapelessRecipe(new ItemStack(GSItems.RocketModules, 1, 4), new ItemStack(GSItems.CompressedPlates, 1, 2), new ItemStack(GSItems.RocketModules, 1, 3), new ItemStack(GSItems.CompressedPlates, 1, 2), new ItemStack(GCItems.basicItem, 1, 13), new ItemStack(GCItems.oxygenFan), new ItemStack(GCItems.basicItem, 1, 13), new ItemStack(GCItems.basicItem, 1, 8), new ItemStack(GCItems.basicItem, 1, 6), new ItemStack(GCItems.basicItem, 1, 8));
+
 	   AssemberRecipes.instance.addShapelessRecipe(new ItemStack(GSItems.SpacesuitHelmet, 1), new ItemStack(GSItems.CompressedPlates, 1, 4), plateSteel, new ItemStack(GSItems.CompressedPlates, 1, 4), plateSteel, new ItemStack(Blocks.stained_glass_pane, 1, 1), plateSteel, new ItemStack(GSItems.CompressedPlates, 1, 4), GCItems.oxygenConcentrator, new ItemStack(GSItems.CompressedPlates, 1, 4));
 	   AssemberRecipes.instance.addShapelessRecipe(new ItemStack(GSItems.SpacesuitPlate, 1), plateSteel, "ingotNickel", plateSteel, new ItemStack(GSItems.CompressedPlates, 1, 4), new ItemStack(GCItems.steelChestplate, 1, 0), new ItemStack(GSItems.CompressedPlates, 1, 4), plateSteel, new ItemStack(GSItems.CompressedPlates, 1, 4), plateSteel);
 	   AssemberRecipes.instance.addShapelessRecipe(new ItemStack(GSItems.SpacesuitLeg, 1), new ItemStack(GSItems.CompressedPlates, 1, 4), plateSteel, new ItemStack(GSItems.CompressedPlates, 1, 4), plateSteel, "ingotNickel", plateSteel, plateSteel, "ingotNickel", plateSteel);
@@ -265,7 +258,7 @@ public class CraftingRecipesOverworld {
 	   RecyclerRecipes.recycling().addNewRecipe(new ItemStack(GSBlocks.Ores, 1, 3), new ItemStack(GSItems.BasicItems, 1, 16), null);
    }
    
-  private static void addRocketRecipe(Item rocket, Item parts, int metafirstparts)
+   private static void addRocketRecipe(Item rocket, Item parts, int metafirstparts)
    {
 	   /**
 		* Meta first parts:

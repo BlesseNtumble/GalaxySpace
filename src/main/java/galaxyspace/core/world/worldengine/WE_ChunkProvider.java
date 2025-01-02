@@ -36,7 +36,7 @@ import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 public class WE_ChunkProvider extends ChunkProviderGenerate {
 	public World worldObj;
 	public Random rand;
-	
+
 	//////////////////
 	//- Generators -//
 	//////////////////
@@ -45,10 +45,10 @@ public class WE_ChunkProvider extends ChunkProviderGenerate {
 	public List<WE_CreateChunkGen_InXYZ> createChunkGen_InXYZ_List = new ArrayList();
 	public List<IWorldGenerator        > decorateChunkGen_List     = new ArrayList();
 	public List<MapGenBaseMeta		   > worldGenerators 		   = new ArrayList();
-	
-	
+
+
 	private BiomeDecoratorSpace decorator;
-	
+
 	//////////////////////
 	//- Biome Map Info -//
 	//////////////////////
@@ -57,21 +57,21 @@ public class WE_ChunkProvider extends ChunkProviderGenerate {
 	//-//
 	public double biomemapPersistence = 1.0D, biomemapScaleX = 1.0D, biomemapScaleY = 1.0D;
 	public int biomemapNumberOfOctaves = 1;
-	
+
 	public WE_Biome currentbiome;
 	/////
 	//=//
 	/////
-	
+
 	public WE_ChunkProvider(WE_WorldProvider wp) {
 		super(wp.worldObj, wp.getSeed(), wp.worldObj.getWorldInfo().isMapFeaturesEnabled());
 		worldObj =              wp.worldObj;
 		rand     = new Random(wp.getSeed());
-		
+
 		/////
 		//=//
 		/////
-		
+
 		createChunkGen_List.add(new WE_TerrainGenerator());
 		createChunkGen_List.add(new WE_CaveGen         ());
 		createChunkGen_List.add(new WE_RavineGen       ());
@@ -175,8 +175,8 @@ public class WE_ChunkProvider extends ChunkProviderGenerate {
 		WE_Biome b = WE_Biome.getBiomeAt(this, (long)chunkX * 16L + (long)rand.nextInt(16), (long)chunkZ * 16L + (long)rand.nextInt(16));
 		for(int i = 0; i < b.decorateChunkGen_List.size(); i++)
 			b.decorateChunkGen_List.get(i).generate(rand, chunkX, chunkZ, worldObj, this, this);
-		
-		
+
+
 		this.decorateWorld(worldObj, rand, chunkX * 16, chunkZ * 16);
 		/////
 		//=//

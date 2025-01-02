@@ -44,23 +44,18 @@ public class MTHandler_RocketAssembly {
 			for(ItemStack stack : list)
 			{
 				if(stack.isItemEqual(s)) {
-					System.out.println(s.getDisplayName() + " is material, sending to slot");
 						return true;
 				}
 			}
 		}
-		System.out.println(s.getDisplayName() + " is not material");
 		return false;
 	}
 	@ZenMethod
     public static void addRecipe(IItemStack output, IIngredient[] ingredients) {
-		System.out.println("Length of ingredients: " + ingredients.length + " Length of materials: " + material.size());
 			if(ingredients.length != 0) {
 				for (int i = 0; i < ingredients.length; i++) {
 					material.get(i).add((ItemStack)getObjects(ingredients)[i]);
-					System.out.println("Added " + ((ItemStack) getObjects(ingredients)[i]).getDisplayName() + " to materials");
 				}
-				System.out.println("Materials: " + material.toString());
 		}
         MineTweakerAPI.apply(new Add(getStack(output), getObjects(ingredients)));
     }

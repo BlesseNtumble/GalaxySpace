@@ -38,14 +38,7 @@ import galaxyspace.systems.SolarSystem.planets.mercury.dimension.TeleportTypeMer
 import galaxyspace.systems.SolarSystem.planets.mercury.dimension.WorldProviderMercury;
 import galaxyspace.systems.SolarSystem.planets.mercury.recipe.CraftingRecipesMercury;
 import galaxyspace.systems.SolarSystem.planets.overworld.recipe.CraftingRecipesOverworld;
-import galaxyspace.systems.SolarSystem.planets.overworld.recipe.schematic.SchematicBodyRecipe;
-import galaxyspace.systems.SolarSystem.planets.overworld.recipe.schematic.SchematicBoosterRecipe;
-import galaxyspace.systems.SolarSystem.planets.overworld.recipe.schematic.SchematicConeRecipe;
-import galaxyspace.systems.SolarSystem.planets.overworld.recipe.schematic.SchematicEngineRecipe;
-import galaxyspace.systems.SolarSystem.planets.overworld.recipe.schematic.SchematicFinsRecipe;
-import galaxyspace.systems.SolarSystem.planets.overworld.recipe.schematic.SchematicOxTankRecipe;
-import galaxyspace.systems.SolarSystem.planets.overworld.recipe.schematic.SchematicPortableNuclearRecipe;
-import galaxyspace.systems.SolarSystem.planets.overworld.recipe.schematic.SchematicTier2Recipe;
+import galaxyspace.systems.SolarSystem.planets.overworld.recipe.schematic.*;
 import galaxyspace.systems.SolarSystem.planets.overworld.schematic.SchematicBody;
 import galaxyspace.systems.SolarSystem.planets.overworld.schematic.SchematicBooster;
 import galaxyspace.systems.SolarSystem.planets.overworld.schematic.SchematicCone;
@@ -73,6 +66,7 @@ import micdoodle8.mods.galacticraft.api.recipe.SchematicRegistry;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.IAtmosphericGas;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
+import micdoodle8.mods.galacticraft.core.schematic.SchematicRocketT1;
 import micdoodle8.mods.galacticraft.planets.asteroids.AsteroidsModule;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import micdoodle8.mods.galacticraft.planets.asteroids.schematic.SchematicTier3Rocket;
@@ -279,19 +273,27 @@ public class SolarSystemBodies implements IBodiesHandler{
 		for(ISchematicPage page : SchematicRegistry.schematicRecipes)
 		{
 			if(page instanceof SchematicTier2Rocket) {
-				SchematicRegistry.schematicRecipes.remove(page);	
+				SchematicRegistry.schematicRecipes.remove(page);
 				break;
-			}			
+			}
 		}
 		
 		for(ISchematicPage page : SchematicRegistry.schematicRecipes)
 		{
 			if(page instanceof SchematicTier3Rocket) {
-				SchematicRegistry.schematicRecipes.remove(page);	
+				SchematicRegistry.schematicRecipes.remove(page);
 				break;
-			}			
+			}
 		}
-		
+		for(ISchematicPage page : SchematicRegistry.schematicRecipes)
+		{
+			if(page instanceof SchematicRocketT1)
+			{
+				SchematicRegistry.schematicRecipes.remove(page);
+                break;
+			}
+		}
+		SchematicRegistry.registerSchematicRecipe(new galaxyspace.systems.SolarSystem.planets.overworld.schematic.SchematicTier1Rocket());
 		SchematicRegistry.registerSchematicRecipe(new galaxyspace.systems.SolarSystem.planets.overworld.schematic.SchematicTier2Rocket());
 	}
 	
@@ -306,7 +308,9 @@ public class SolarSystemBodies implements IBodiesHandler{
 		}
     	SchematicOxTankRecipe.registerRecipeWorkBench();
     	SchematicPortableNuclearRecipe.registerRecipeWorkBench();
+		SchematicTier1Recipe.registerRecipeWorkBench();
     	SchematicTier2Recipe.registerRecipeWorkBench();
+
     }
 	
 	private static void registryDungeonLoot()

@@ -32,6 +32,7 @@ public class RocketAssemblyRecipes {
     public static final RocketAssemblyRecipes instance = new RocketAssemblyRecipes();
     private static List<IRecipe> recipes = new ArrayList<IRecipe>();
 
+
     public static ShapedRecipes addRecipe(ItemStack output, Object ... inputList) {
         String s = "";
         int i = 0;
@@ -97,6 +98,7 @@ public class RocketAssemblyRecipes {
             arraylist.add(new ItemStack((Block)object1));
         }
         recipes.add((IRecipe)new ShapelessOreRecipe(par1ItemStack, arraylist.toArray()));
+
     }
 
     public static ItemStack findMatchingRecipe(IInventory inventory, World par2World) {

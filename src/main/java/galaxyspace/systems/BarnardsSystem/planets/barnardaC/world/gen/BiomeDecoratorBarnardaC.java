@@ -385,9 +385,10 @@ public class BiomeDecoratorBarnardaC extends BiomeDecoratorSpace{
 				else world.setBlock(randPosX, y, randPosZ, BRBlocks.BarnardaCDandelions, 5, 3);
 			}
 		}
+
 		randPosX = this.chunkX + this.rand.nextInt(16) + 7;
 		randPosZ = this.chunkZ + this.rand.nextInt(16) + 7;
-		y = this.world.getTopSolidOrLiquidBlock(randPosX, randPosZ);	
+		y = this.world.getTopSolidOrLiquidBlock(randPosX, randPosZ);
 		/**
 		 * The Code Below used to be responsible for the crashing when loading Barnarda C, as well as make loading times for Barnarda C fairly long.
 		 * Using the canPlaceBlockAt method fixed these issues
@@ -399,6 +400,7 @@ public class BiomeDecoratorBarnardaC extends BiomeDecoratorSpace{
 					world.setBlock(randPosX, y + height, randPosZ, Blocks.cactus);
 			}
 		}
+		
 		this.generateOre(20, coalGen, 5, 180);		
 	}
 

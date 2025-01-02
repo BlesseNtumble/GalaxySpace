@@ -1,5 +1,6 @@
 package galaxyspace.core.client.render.entity;
 
+import galaxyspace.core.prefab.entity.EntityEntryPod;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
@@ -72,7 +73,7 @@ public class RenderEntryPod extends Render{
 		        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		        RenderHelper.enableStandardItemLighting();
 	        GL11.glPopMatrix();
-        } else if(!entity.onGround){
+        } else if(!((EntityEntryPod)(entity)).landed() && entity.riddenByEntity != null) {
         	GL11.glPushMatrix();
         	GL11.glTranslatef((float) par2 - 1.25F, (float) par4 + 2.93F, (float) par6 - 0.3F);
             GL11.glScalef(2.5F, 3.0F, 2.5F);
