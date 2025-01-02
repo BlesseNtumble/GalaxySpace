@@ -129,7 +129,6 @@ public class GSEventHandler {
 	    }
 
 	}
-		
 	@SubscribeEvent
 	public void onFall(LivingFallEvent e) {
 		if (e.entityLiving instanceof EntityPlayer) {

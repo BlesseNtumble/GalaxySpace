@@ -29,7 +29,7 @@ import net.minecraft.util.IIcon;
 
 public class ItemModulesRocket
 extends Item {
-    public static String[] names = new String[]{"ModuleLander", "ModuleLander2", "ModuleLander3", "ModuleSmallFuelCanister"};
+    public static String[] names = new String[]{"ModuleLander", "ModuleLander2", "ModuleLander3", "ModuleSmallFuelCanister", "ModuleTurboPump"};
     protected IIcon[] icons = new IIcon[names.length];
 
     public ItemModulesRocket() {

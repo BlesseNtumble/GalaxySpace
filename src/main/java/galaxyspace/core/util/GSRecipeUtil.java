@@ -3,14 +3,7 @@ package galaxyspace.core.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics.InventorySchematicBody;
-import galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics.InventorySchematicBooster;
-import galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics.InventorySchematicCone;
-import galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics.InventorySchematicEngine;
-import galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics.InventorySchematicFins;
-import galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics.InventorySchematicOxTank;
-import galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics.InventorySchematicPortNuclearReactor;
-import galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics.InventorySchematicTier2Rocket;
+import galaxyspace.systems.SolarSystem.planets.overworld.inventory.schematics.*;
 import micdoodle8.mods.galacticraft.api.recipe.INasaWorkbenchRecipe;
 import net.minecraft.item.ItemStack;
 
@@ -23,6 +16,7 @@ public class GSRecipeUtil
 	private static List<INasaWorkbenchRecipe> rocketBenchFinsRecipes = new ArrayList<INasaWorkbenchRecipe>();
 	private static List<INasaWorkbenchRecipe> rocketBenchOxTankRecipes = new ArrayList<INasaWorkbenchRecipe>();
 	private static List<INasaWorkbenchRecipe> rocketBenchPNRRecipes = new ArrayList<INasaWorkbenchRecipe>();
+    private static List<INasaWorkbenchRecipe> rocketBenchT1Recipes = new ArrayList<INasaWorkbenchRecipe>();
 	private static List<INasaWorkbenchRecipe> rocketBenchT2Recipes = new ArrayList<INasaWorkbenchRecipe>();
 	
 	public static ItemStack findMatchingConeRecipe(InventorySchematicCone craftMatrix)
@@ -115,6 +109,18 @@ public class GSRecipeUtil
 
         return null;
     }
+    public static ItemStack findMatchingSpaceshipT1Recipe(InventorySchematicTier1Rocket inventoryRocketBench)
+    {
+        for (INasaWorkbenchRecipe recipe : GSRecipeUtil.getRocketT1Recipes())
+        {
+            if (recipe.matches(inventoryRocketBench))
+            {
+                return recipe.getRecipeOutput();
+            }
+        }
+
+        return null;
+    }
     
 	public static ItemStack findMatchingSpaceshipT2Recipe(InventorySchematicTier2Rocket inventoryRocketBench)
     {
@@ -199,11 +205,18 @@ public class GSRecipeUtil
         return GSRecipeUtil.rocketBenchPNRRecipes;
     }
 
+    public static void addT1RocketRecipe(INasaWorkbenchRecipe recipe)
+    {
+        GSRecipeUtil.rocketBenchT1Recipes.add(recipe);
+    }
     public static void addT2RocketRecipe(INasaWorkbenchRecipe recipe)
     {
     	GSRecipeUtil.rocketBenchT2Recipes.add(recipe);
     }
-    
+    public static List<INasaWorkbenchRecipe> getRocketT1Recipes()
+    {
+        return GSRecipeUtil.rocketBenchT1Recipes;
+    }
     public static List<INasaWorkbenchRecipe> getRocketT2Recipes()
     {
         return GSRecipeUtil.rocketBenchT2Recipes;

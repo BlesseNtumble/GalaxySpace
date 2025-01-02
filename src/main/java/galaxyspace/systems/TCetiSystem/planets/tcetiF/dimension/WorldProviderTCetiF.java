@@ -8,6 +8,7 @@ import java.util.Random;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import galaxyspace.api.dimension.IAdvancedSpace;
+import galaxyspace.core.prefab.entity.EntityEntryPod;
 import galaxyspace.core.world.gen.WorldProviderAdvancedSpace;
 import galaxyspace.systems.ACentauriSystem.planets.proximaB.dimension.sky.CloudProviderProximaB;
 import galaxyspace.systems.ACentauriSystem.planets.proximaB.dimension.sky.SkyProviderProximaB;
@@ -181,7 +182,7 @@ public class WorldProviderTCetiF extends WorldProviderAdvancedSpace implements I
                 player.capabilities.isFlying = false;
             }
 
-            EntityLandingBalloons lander = new EntityLandingBalloons(player);
+            EntityEntryPod lander = new EntityEntryPod(player);
 
             if (!arg0.isRemote)
             {

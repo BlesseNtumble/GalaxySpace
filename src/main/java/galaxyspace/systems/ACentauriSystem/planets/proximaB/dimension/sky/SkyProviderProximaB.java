@@ -15,8 +15,8 @@ import net.minecraft.world.World;
 
 public class SkyProviderProximaB extends SkyProviderBase
 {
-	private ResourceLocation acentauri_a = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/celestialbodies/acentauri/centauri_a.png");
-	private ResourceLocation acentauri_b = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/celestialbodies/acentauri/centauri_b.png");
+	private ResourceLocation acentauri_a = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/celestialbodies/aсentauri/centauri_a.png");
+	private ResourceLocation acentauri_b = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/celestialbodies/aсentauri/centauri_b.png");
 	
 	@Override
 	protected void rendererSky(Tessellator tessellator, float f10, float partialTicks) {
