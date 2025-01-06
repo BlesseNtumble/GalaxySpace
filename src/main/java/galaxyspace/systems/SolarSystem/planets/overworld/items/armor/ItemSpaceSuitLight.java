@@ -38,7 +38,7 @@ public class ItemSpaceSuitLight extends ItemSpaceSuit implements IItemRadiation{
 
 	@Override
 	public ItemModule[] getAvailableModules() {
-		return new ItemModule[] { new Autofeeding(), new WaterBreathing(), new SensorLens(), new Nightvision(), new Jetpack(), new Jump(), new Energy(), new Speed() };
+		return new ItemModule[] { new Autofeeding(), new WaterBreathing(), new SensorLens(), new Nightvision(), new Jump(), new Energy(), new Speed() };
 	}
 	
 	@Override

@@ -114,13 +114,11 @@ import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.world.ChunkWatchEvent;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
@@ -305,6 +303,12 @@ public class GSEventHandler {
             EntityPlayerMP player = (EntityPlayerMP) e.getEntityLiving();
             World world = player.getEntityWorld();
             if (!world.isRemote && world.provider instanceof IGalacticraftWorldProvider) {
+
+                if (((IGalacticraftWorldProvider) world.provider).hasBreathableAtmosphere())
+                    return;
+                if (((IGalacticraftWorldProvider) world.provider).getCelestialBody().atmosphere.isGasPresent(EnumAtmosphericGas.OXYGEN))
+                    return;
+
                 WorldServer worldServer = player.getServerWorld();
 
                 if (!GSConfigCore.enableOxygenForPlantsAndFoods) return;
@@ -362,7 +366,7 @@ public class GSEventHandler {
         }
 
     }
-
+/*
     //TODO: in default methods
     @SubscribeEvent
     public void onUpdateBlocks(UpdateBlockEvent e) {
@@ -400,7 +404,7 @@ public class GSEventHandler {
         }
     }
 
-
+*/
     @SubscribeEvent
     public void onFillBucket(FillBucketEvent e) {
         World world = e.getWorld();
@@ -845,7 +849,7 @@ public class GSEventHandler {
             float level = event.getPressureLevel();
 
             if (!player.capabilities.isCreativeMode)
-                event.setCanceled(!GSConfigCore.enablePressureSystem || this.getProtectArmor(player) || this.inGravityZone(world, player, true) || player.getRidingEntity() instanceof EntityLanderBase || player.getRidingEntity() instanceof EntityTieredRocket);
+                event.setCanceled(!GSConfigCore.enablePressureSystem || getProtectArmor(player) || inGravityZone(world, player, true) || player.getRidingEntity() instanceof EntityLanderBase || player.getRidingEntity() instanceof EntityTieredRocket);
 
         }
     }
@@ -858,10 +862,12 @@ public class GSEventHandler {
             String[] meta = string.split(":");
             Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(string));
 
+            if (item == null) continue;
+
             if (meta.length > 2) {
-                for (int i = 0; i <= 3; i++) {
+                for (int i = 0; i < player.inventory.armorInventory.size(); i++) {
                     ItemStack itemstack = new ItemStack(item, 1, Integer.parseInt(meta[2]));
-                    check[i] = !player.inventory.armorInventory.get(i).isEmpty() && player.inventory.armorInventory.get(i) == itemstack;
+                    check[i] = !player.inventory.armorInventory.get(i).isEmpty() && player.inventory.armorInventory.get(i).equals(itemstack);
                     if (check[i]) break;
                 }
             } else
@@ -890,7 +896,6 @@ public class GSEventHandler {
                     TileEntityGravitationModule gravity = (TileEntityGravitationModule) tile;
 
                     if (!gravity.disabled && gravity.hasEnoughEnergyToRun && gravity.inGravityZone(world, player)) {
-                        if (!checkStabilisationModule) return true;
 
                         if (checkStabilisationModule) {
                             for (int i = 0; i < 4; i++)
@@ -899,7 +904,7 @@ public class GSEventHandler {
 
                             return false;
                         }
-
+                        return true;
                     }
                 }
             }

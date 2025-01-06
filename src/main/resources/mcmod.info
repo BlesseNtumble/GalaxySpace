@@ -1,0 +1,16 @@
+[
+{
+  "modid": "asmodeuscore",
+  "name": "AsmodeusCore",
+  "description": "Lib for GS, SM 1.12.2",
+  "version": "1.0.2",
+  "mcversion": "1.12.2",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["ViTold"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
