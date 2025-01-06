@@ -1,4 +1,20 @@
 ///Changelog///
+e.-----------------------2.1.5----------------------------
+e.1. Changed anti-radiation to a positive effect.
+e.2. Added Phobos ores in OreDict.
+e.3. Now Mixins. Disabled hooklib.
+e.4. Added config for ignore sufocation damage for entities.
+e.5. Changed method for update blocks.
+e.6. Moved geological scanner and gas extractor in armor tab.
+e.7. Fixed: Sublight/Ion engine is voided after removing rocket from launch pad.
+e.8. Fixed: Hydroponic Farm's growing animation is in reverse
+e.9. Fixed: Hydroponic Farm uses 3x more resources regardless of how many farms are attached.
+e.10. Try fix: IndexOutOfBoundsException when loading into Main Menu.
+e.11. Added module stabilization in avaiable list gravity module
+e.12. Fixed the ability to place plants on all blocks.
+e.13. Fixed a rocket rendering issue that was breaking shadows.
+e.14. Fixed triton geysers. Again.
+e.15. Removed jetpack module from light spacesuit.
 e.-----------------------2.1.4----------------------------
 e.1. Fixed Io freezes.
 e.2. Removed plasma tools from loot in dungeons.
