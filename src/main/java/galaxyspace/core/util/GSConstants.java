@@ -22,9 +22,10 @@ public class GSConstants {
 	public static final int GEAR_ID_THERMAL_PADDING_T4_LEGGINGS = 51;
 	public static final int GEAR_ID_THERMAL_PADDING_T4_BOOTS = 52;
 	
-	public static final String HARDMODE_CATEGORY = "hardmode"; 
-	public static final String DEVELOMPENT_CATEGORY = "development"; 
-	
+	public static final String CATEGORY_HARDMODE = "hardmode";
+	public static final String CATEGORY_DEVELOMPENT = "development";
+	public static final String CATEGORY_ITEMS = "items";
+
 	public static final ResourceLocation GUI_MACHINE_CLASSIC = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/classic_gui.png");
 	public static final ResourceLocation GUI_MACHINE_MODERN = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/modern_gui.png");
 	

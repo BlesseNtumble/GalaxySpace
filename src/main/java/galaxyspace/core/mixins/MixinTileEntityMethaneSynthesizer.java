@@ -1,6 +1,5 @@
 package galaxyspace.core.mixins;
 
-import galaxyspace.GalaxySpace;
 import micdoodle8.mods.galacticraft.api.world.EnumAtmosphericGas;
 import micdoodle8.mods.galacticraft.api.world.IGalacticraftWorldProvider;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityMethaneSynthesizer;
@@ -20,7 +19,6 @@ public class MixinTileEntityMethaneSynthesizer extends TileEntity {
      */
     @Overwrite(remap = false)
     public int getAirProducts(){
-        GalaxySpace.info("MIXIN TEST AIR PRODUCTS IN MS");
         WorldProvider WP = this.getWorld().provider;
         if (WP instanceof IGalacticraftWorldProvider) {
             ArrayList<EnumAtmosphericGas> atmos = ((IGalacticraftWorldProvider) WP).getCelestialBody().atmosphere.composition;

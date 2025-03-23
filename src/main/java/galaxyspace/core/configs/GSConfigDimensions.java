@@ -222,7 +222,7 @@ public class GSConfigDimensions
             dimensionIDJupiter = prop.getInt();
             propOrder.add(prop.getName());
             
-            prop = config.get(GSConstants.DEVELOMPENT_CATEGORY, "dimensionIDTest", -1234);
+            prop = config.get(GSConstants.CATEGORY_DEVELOMPENT, "dimensionIDTest", -1234);
             prop.setComment("Dimension ID for Test planet (only for debug)");
             prop.setLanguageKey("gc.configgui.dimensionIDTest").setRequiresMcRestart(true);
             dimensionIDTest = prop.getInt();
