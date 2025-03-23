@@ -46,6 +46,8 @@ public class TileEntityGravitationModule extends TileBaseElectricBlockWithInvent
 	
 	private int radius;
 
+	private float strength;
+
 	private AxisAlignedBB aabb;
 	private boolean initialised = false;
 	public static boolean check = false;
@@ -57,6 +59,7 @@ public class TileEntityGravitationModule extends TileBaseElectricBlockWithInvent
 		super("tile.gravitation_module.name");
         this.initialised = true;
 		this.radius = 8;
+		this.strength = 1.0F;
 		this.storage.setCapacity(15000);
 		this.storage.setMaxExtract(ConfigManagerCore.hardMode ? 60 : 45);
 		this.inventory = NonNullList.withSize(1 + 4, ItemStack.EMPTY);
@@ -181,11 +184,7 @@ public class TileEntityGravitationModule extends TileBaseElectricBlockWithInvent
 				this.getPos().getZ() + getGravityRadius());
 		
 		if (this.world.provider instanceof IGalacticraftWorldProvider) {
-			final double g;
-			if (this.world.provider instanceof WorldProviderSpaceStation)
-				g = 1.80665D;
-			else
-				g = (1.0 - ((IGalacticraftWorldProvider) world.provider).getGravity()) / 0.08F;
+			double g = (getGravityStrength() - ((IGalacticraftWorldProvider) world.provider).getGravity()) / 0.08F;
 
 			//if(getGravityRadius() > 14) g /= 2;
 			final List list = world.getEntitiesWithinAABB(Entity.class, aabb);
@@ -282,7 +281,12 @@ public class TileEntityGravitationModule extends TileBaseElectricBlockWithInvent
         if(par1NBTTagCompound.hasKey("gravityradius")) {
             int grav = par1NBTTagCompound.getInteger("gravityradius");
             this.setGravityRadius(grav == 0 ? 1 : grav);
-        } 
+        }
+
+		if(par1NBTTagCompound.hasKey("gravitystrength")) {
+			float strength = par1NBTTagCompound.getFloat("gravitystrength");
+			this.setGravityStrength(strength);
+		}
     }
 
     @Override
@@ -293,6 +297,7 @@ public class TileEntityGravitationModule extends TileBaseElectricBlockWithInvent
     	super.writeToNBT(par1NBTTagCompound);
         par1NBTTagCompound.setInteger("smeltingTicks", this.processTicks);
         par1NBTTagCompound.setInteger("gravityradius", radius > 16 ? 16 : radius);
+		par1NBTTagCompound.setFloat("gravitystrength", this.strength);
         
         ItemStackHelper.saveAllItems(par1NBTTagCompound, this.getInventory());
         
@@ -331,6 +336,10 @@ public class TileEntityGravitationModule extends TileBaseElectricBlockWithInvent
 	{
 		return this.radius;
 	}
+
+	public void setGravityStrength(float strength) { this.strength = strength; }
+
+	public float getGravityStrength() { return this.strength; }
 
 	@Override
 	public EnumFacing getFront() {

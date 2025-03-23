@@ -76,7 +76,7 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
          * - BlockVec3 pos: position of the block
          * - Integer gravityStrength
          */
-        S_GRAVITY_RADIUS(Side.SERVER, BlockVec3.class, Integer.class),        
+        S_GRAVITY_DATA(Side.SERVER, BlockVec3.class, Integer.class, Float.class),
         S_ON_ADVANCED_GUI_CLICKED_INT(Side.SERVER, Integer.class, Integer.class, Integer.class, Integer.class, Integer.class),
         S_CHANGE_FLIGHT_STATE(Side.SERVER, Boolean.class),
         S_REVERSE_SEPATATOR(Side.SERVER, BlockVec3.class),   
@@ -495,13 +495,15 @@ public class GSPacketSimple extends PacketBase implements Packet<INetHandler>
         	boolean state = (boolean) this.data.get(0);
         	GSEventHandler.enableFlight(player, state);
         	break;
-        case S_GRAVITY_RADIUS:
+        case S_GRAVITY_DATA:
             BlockVec3 pos = (BlockVec3) this.data.get(0);
-            int strength = (int) this.data.get(1);        
+            int radius = (int) this.data.get(1);
+			float strength = (float) this.data.get(2);
             
             tileEntity = pos.getTileEntity(playerBase.world);
             if(tileEntity instanceof TileEntityGravitationModule) {
-                ((TileEntityGravitationModule)tileEntity).setGravityRadius(strength);
+                ((TileEntityGravitationModule)tileEntity).setGravityRadius(radius);
+                ((TileEntityGravitationModule)tileEntity).setGravityStrength(strength);
                 tileEntity.markDirty();
                 //playerBase.world.update(tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord);
             }

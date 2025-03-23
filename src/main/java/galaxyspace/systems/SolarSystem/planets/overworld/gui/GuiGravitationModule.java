@@ -35,52 +35,54 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class GuiGravitationModule extends GuiTileBase implements ITextBoxCallback, ICheckBoxCallback
-{
-   
+public class GuiGravitationModule extends GuiTileBase implements ITextBoxCallback, ICheckBoxCallback {
+
     private GuiElementCheckbox checkboxRenderEffects;
-    
+
     private TileEntityGravitationModule tileEntity;
-    
+
     protected List<GuiElementTextBox> inputFieldList = new ArrayList();
     private GuiButton disableButton;
-    private GuiElementTextBox strengthField;
+    private GuiElementTextBox radiusField, strengthField;
     public final int BTN_ENABLE = 6;
-    public final int FIELD_STRENGTH= 10;
-    
-    private int radius; 
-    
-    
-    public GuiGravitationModule(InventoryPlayer par1InventoryPlayer, TileEntityGravitationModule tileEntity)
-    {
+    public final int FIELD_RADIUS = 1;
+    public final int FIELD_STRENGTH = 2;
+
+    private int radius;
+    private float strength;
+
+
+    public GuiGravitationModule(InventoryPlayer par1InventoryPlayer, TileEntityGravitationModule tileEntity) {
         super(new ContainerGravitationModule(par1InventoryPlayer, tileEntity), 2, 1);
         this.tileEntity = tileEntity;
         this.ySize = 204;
         moduleInfoX = this.inventorySlots.getSlotFromInventory(tileEntity, 1).xPos;
-		moduleInfoY = this.inventorySlots.getSlotFromInventory(tileEntity, 1).yPos;
+        moduleInfoY = this.inventorySlots.getSlotFromInventory(tileEntity, 1).yPos;
         radius = tileEntity.getGravityRadius();
-        moduleList = new ItemStack[] {
+        strength = tileEntity.getGravityStrength();
+        moduleList = new ItemStack[]{
                 new ItemStack(GSItems.UPGRADES, 1, 0),
                 new ItemStack(GSItems.UPGRADES, 1, 1),
                 new ItemStack(GSItems.UPGRADES, 1, 3)};
     }
 
     @Override
-    public void initGui()
-    {
+    public void initGui() {
         super.initGui();
 
         this.buttonList.clear();
         final int var5 = (this.width - this.xSize) / 2;
         final int var6 = (this.height - this.ySize) / 2;
-        
-        disableButton = new GuiButton(BTN_ENABLE, var5 + 110, var6 + 63, 50, 20, GCCoreUtil.translate("gui.button.disable.name"));
 
-        this.checkboxRenderEffects = new GuiElementCheckbox(0, this, var5 + 10, var6 + 65, EnumColor.WHITE + GCCoreUtil.translate("gui.message.effect_visible.name"));
+        disableButton = new GuiButton(BTN_ENABLE, var5 + 110, var6 + 78, 50, 20, GCCoreUtil.translate("gui.button.disable.name"));
+
+        this.checkboxRenderEffects = new GuiElementCheckbox(0, this, var5 + 10, var6 + 80, EnumColor.WHITE + GCCoreUtil.translate("gui.message.effect_visible.name"));
         this.buttonList.add(this.checkboxRenderEffects);
         this.buttonList.add(disableButton);
-        
-        this.strengthField = new GuiElementTextBox(FIELD_STRENGTH, this, var5 + 110, var6 + 41, 38, 18, "0", true, 2, true);
+
+        this.radiusField = new GuiElementTextBox(FIELD_RADIUS, this, var5 + 110, var6 + 60, 38, 18, "0", true, 2, true);
+        this.strengthField = new GuiElementTextBox(FIELD_STRENGTH, this, var5 + 110, var6 + 40, 38, 18, "0", false, 3, true);
+        this.addInputField(this.radiusField);
         this.addInputField(this.strengthField);
 
     }
@@ -90,51 +92,48 @@ public class GuiGravitationModule extends GuiTileBase implements ITextBoxCallbac
      * the items)
      */
     @Override
-    protected void drawGuiContainerForegroundLayer(int par1, int par2)
-    {
-    	super.drawGuiContainerForegroundLayer(par1, par2);
-    	TextFormatting color = getStyle() == Style.MODERN ? TextFormatting.WHITE : TextFormatting.DARK_GRAY;
-        
-    	this.checkboxRenderEffects.displayString = color + GCCoreUtil.translate("gui.message.effect_visible.name");
-    	this.fontRenderer.drawString(color + GCCoreUtil.translate("gui.gravity.radius.name"), 11, 46, 4210752);
-        
+    protected void drawGuiContainerForegroundLayer(int par1, int par2) {
+        super.drawGuiContainerForegroundLayer(par1, par2);
+        TextFormatting color = getStyle() == Style.MODERN ? TextFormatting.WHITE : TextFormatting.DARK_GRAY;
+
+        this.checkboxRenderEffects.displayString = color + GCCoreUtil.translate("gui.message.effect_visible.name");
+        this.fontRenderer.drawString(color + GCCoreUtil.translate("gui.gravity.strength.name"), 11, 45, 4210752);
+        this.fontRenderer.drawString(color + GCCoreUtil.translate("gui.gravity.radius.name"), 11, 65, 4210752);
+
         String displayText = "";
 
-        if(tileEntity.getDisabled(0)) {
+        if (tileEntity.getDisabled(0)) {
 
-        	displayText = EnumColor.RED + GCCoreUtil.translate("gui.status.disabled.name");
+            displayText = EnumColor.RED + GCCoreUtil.translate("gui.status.disabled.name");
             disableButton.displayString = GCCoreUtil.translate("gui.button.enable.name");
         } else {
-        	
-        	if (this.tileEntity.hasEnoughEnergyToRun)
-            {
+
+            if (this.tileEntity.hasEnoughEnergyToRun) {
                 displayText = EnumColor.BRIGHT_GREEN + GCCoreUtil.translate("gui.status.running.name");
+            } else {
+                displayText = EnumColor.ORANGE + GCCoreUtil.translate("gui.status.idle.name");
             }
-        	else
-        	{
-        		displayText = EnumColor.ORANGE + GCCoreUtil.translate("gui.status.idle.name");
-        	}
             disableButton.displayString = GCCoreUtil.translate("gui.button.disable.name");
 
         }
 
 
         this.fontRenderer.drawString(color + GCCoreUtil.translate("gui.message.status.name") + ": " + displayText, 100, 104, 4210752);
-    
-        for(int i = 0; i < 4; i++)
-        	if(this.tileEntity.getStackInSlot(i+1).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 1))) {
-        		this.fontRenderer.drawSplitString(EnumColor.BRIGHT_GREEN + GCCoreUtil.translate("gui.message.active_pressure_shield.name"), 10, 20, 160, 4210752);
-        		break;
-        	}
-       
-        this.strengthField.text = tileEntity.getGravityRadius() + "";
-       // this.fontRenderer.drawString(EnumColor.BRIGHT_GREEN + "" + tileEntity.getGravityRadius() , 30, 5, 0xFFFFFF);
+
+        for (int i = 0; i < 4; i++)
+            if (this.tileEntity.getStackInSlot(i + 1).isItemEqual(new ItemStack(GSItems.UPGRADES, 1, 1))) {
+                this.fontRenderer.drawSplitString(EnumColor.BRIGHT_GREEN + GCCoreUtil.translate("gui.message.active_pressure_shield.name"), 10, 20, 160, 4210752);
+                break;
+            }
+
+        this.radiusField.text = tileEntity.getGravityRadius() + "";
+
+        // this.fontRenderer.drawString(EnumColor.BRIGHT_GREEN + "" + tileEntity.getGravityRadius() , 30, 5, 0xFFFFFF);
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
-    {
-    	super.drawGuiContainerBackgroundLayer(par1, par2, par3);
+    protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
+        super.drawGuiContainerBackgroundLayer(par1, par2, par3);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
         int containerWidth = (this.width - this.xSize) / 2;
@@ -144,138 +143,143 @@ public class GuiGravitationModule extends GuiTileBase implements ITextBoxCallbac
         this.renderEnergyBar(containerWidth + 4, containerHeight + 102, this.tileEntity.getScaledElecticalLevel(55), this.tileEntity.getEnergyStoredGC(), this.tileEntity.getMaxEnergyStoredGC());
 
         this.checkboxRenderEffects.isSelected = this.tileEntity.shouldRenderEffects;
-                       
-     }
 
-	@Override
-	public void onSelectionChanged(GuiElementCheckbox checkbox, boolean newSelected) {
-		this.tileEntity.shouldRenderEffects = newSelected;
-        GalaxySpace.packetPipeline.sendToServer(new GSPacketSimple(GSEnumSimplePacket.S_ON_ADVANCED_GUI_CLICKED_INT, GCCoreUtil.getDimensionID(this.mc.world),new Object[] { 6, this.tileEntity.getPos().getX(), this.tileEntity.getPos().getY(), this.tileEntity.getPos().getZ(), newSelected ? 1 : 0 }));
-   
-	}
-	
-	protected void sendDataToServer()
-    {
-        BlockVec3 pos = new BlockVec3(tileEntity);
-        int actualStrength = radius;
-
-        if(actualStrength > 16) actualStrength = 16;
-        
-        GalaxySpace.packetPipeline.sendToServer(new GSPacketSimple(GSEnumSimplePacket.S_GRAVITY_RADIUS, GCCoreUtil.getDimensionID(this.mc.world), pos, actualStrength));
-        tileEntity.setGravityRadius(actualStrength);
     }
 
-	@Override
-    protected void actionPerformed(GuiButton btn)
-    {
-        switch(btn.id) {
-        case BTN_ENABLE:
-            GalacticraftCore.packetPipeline.sendToServer(new PacketSimple(EnumSimplePacket.S_UPDATE_DISABLEABLE_BUTTON, GCCoreUtil.getDimensionID(this.mc.world), new Object[] { this.tileEntity.getPos(), 0 }));
-            break;
+    @Override
+    public void onSelectionChanged(GuiElementCheckbox checkbox, boolean newSelected) {
+        this.tileEntity.shouldRenderEffects = newSelected;
+        GalaxySpace.packetPipeline.sendToServer(new GSPacketSimple(GSEnumSimplePacket.S_ON_ADVANCED_GUI_CLICKED_INT, GCCoreUtil.getDimensionID(this.mc.world), new Object[]{6, this.tileEntity.getPos().getX(), this.tileEntity.getPos().getY(), this.tileEntity.getPos().getZ(), newSelected ? 1 : 0}));
+
+    }
+
+    protected void sendDataToServer() {
+        BlockVec3 pos = new BlockVec3(tileEntity);
+        int actualRadius = radius;
+        float actualStrength = strength;
+
+        if (actualRadius > 16) actualRadius = 16;
+        if (actualStrength > 2.0F) actualStrength = 2.0F;
+        if (actualStrength < -0.0F) actualStrength = 0.0F;
+
+        GalaxySpace.packetPipeline.sendToServer(new GSPacketSimple(GSEnumSimplePacket.S_GRAVITY_DATA, GCCoreUtil.getDimensionID(this.mc.world), pos, actualRadius, actualStrength));
+        tileEntity.setGravityRadius(actualRadius);
+        tileEntity.setGravityStrength(actualStrength);
+    }
+
+    @Override
+    protected void actionPerformed(GuiButton btn) {
+        switch (btn.id) {
+            case BTN_ENABLE:
+                GalacticraftCore.packetPipeline.sendToServer(new PacketSimple(EnumSimplePacket.S_UPDATE_DISABLEABLE_BUTTON, GCCoreUtil.getDimensionID(this.mc.world), new Object[]{this.tileEntity.getPos(), 0}));
+                break;
         }
     }
-	
-	@Override
-	protected void keyTyped(char keyChar, int keyID) throws IOException {
-		if (keyID != Keyboard.KEY_ESCAPE /* && keyID != this.mc.gameSettings.keyBindInventory.getKeyCode() */) {
-			// do the fields
-			for (GuiElementTextBox box : inputFieldList) {
-				if (box.keyTyped(keyChar, keyID)) {
-					return;
-				}
-			}
-		}
 
-		super.keyTyped(keyChar, keyID);
-	}
-	 
-	@Override
-	public boolean canPlayerEdit(GuiElementCheckbox checkbox, EntityPlayer player) {
-		return true;
-	}
+    @Override
+    protected void keyTyped(char keyChar, int keyID) throws IOException {
+        if (keyID != Keyboard.KEY_ESCAPE /* && keyID != this.mc.gameSettings.keyBindInventory.getKeyCode() */) {
+            // do the fields
+            for (GuiElementTextBox box : inputFieldList) {
+                if (box.keyTyped(keyChar, keyID)) {
+                    return;
+                }
+            }
+        }
+        super.keyTyped(keyChar, keyID);
+    }
 
-	@Override
-	public boolean getInitiallySelected(GuiElementCheckbox checkbox) {
-		return this.tileEntity.shouldRenderEffects;
-	}
+    @Override
+    public boolean canPlayerEdit(GuiElementCheckbox checkbox, EntityPlayer player) {
+        return true;
+    }
 
-	@Override
-	public void onIntruderInteraction() {
-		
-	}
-	
-	protected void addInputField(GuiElementTextBox box)
-    {
+    @Override
+    public boolean getInitiallySelected(GuiElementCheckbox checkbox) {
+        return this.tileEntity.shouldRenderEffects;
+    }
+
+    @Override
+    public void onIntruderInteraction() {
+
+    }
+
+    protected void addInputField(GuiElementTextBox box) {
         this.buttonList.add(box);
         this.inputFieldList.add(box);
     }
 
-	@Override
-	public boolean canPlayerEdit(GuiElementTextBox textBox, EntityPlayer player) {
-		return false;
-	}
+    @Override
+    public boolean canPlayerEdit(GuiElementTextBox textBox, EntityPlayer player) {
+        return textBox.id == FIELD_STRENGTH;
+    }
 
-	@Override
-	public void onTextChanged(GuiElementTextBox textBox, String newText) {
-		if(newText == null) {
+    @Override
+    public void onTextChanged(GuiElementTextBox textBox, String newText) {
+        if (newText == null) {
             // don't do anything
             return;
         }
         double newValue;
-        try
-        {
+        try {
             newValue = Double.parseDouble(newText);
             //newValue = Integer.parseInt(newText);
-        } catch(NumberFormatException wat) {
+        } catch (NumberFormatException wat) {
             // this is ridiculous
             return;
         }
-        if(newValue < 0) {
+        if (newValue < 0) {
             return;
         }
-        
-        switch(textBox.id) {
-        case FIELD_STRENGTH:
-            radius = (int) newValue;
-            break;
-        default:
-            return;
+
+        switch (textBox.id) {
+            case FIELD_STRENGTH:
+                if(newValue > 2.0F) newValue = 2.0F;
+                strength = (float) newValue;
+                break;
+            case FIELD_RADIUS:
+                radius = (int) newValue;
+                break;
+            default:
+                return;
         }
         this.sendDataToServer();
-	}
+    }
 
-	@Override
-	public String getInitialText(GuiElementTextBox textBox) {
-		switch(textBox.id) {
-		case FIELD_STRENGTH:
-            return Integer.toString(radius);
-		}
+    @Override
+    public String getInitialText(GuiElementTextBox textBox) {
+        switch (textBox.id) {
+            case FIELD_RADIUS:
+                return Integer.toString(radius);
+            case FIELD_STRENGTH:
+                return Float.toString(strength);
+        }
 
-		return Integer.toString(textBox.id);
-	}
+        return Integer.toString(textBox.id);
+    }
 
-	@Override
-	public int getTextColor(GuiElementTextBox textBox) {
-		return ColorUtil.to32BitColor(255, 20, 255, 20);
-	}
+    @Override
+    public int getTextColor(GuiElementTextBox textBox) {
+        return ColorUtil.to32BitColor(255, 20, 255, 20);
+    }
 
-	@Override
-	public void onIntruderInteraction(GuiElementTextBox textBox) {
-		
-	}
+    @Override
+    public void onIntruderInteraction(GuiElementTextBox textBox) {
 
-	@Override
-	protected boolean isModuleSupport() {
-		return true;
-	}
+    }
 
-	@Override
-	protected String getName() {
-		return tileEntity.getName();
-	}
+    @Override
+    protected boolean isModuleSupport() {
+        return true;
+    }
 
-	@Override
-	protected Slot getBatterySlot() {
-		return inventorySlots.getSlotFromInventory(tileEntity, 0);
-	}
+    @Override
+    protected String getName() {
+        return tileEntity.getName();
+    }
+
+    @Override
+    protected Slot getBatterySlot() {
+        return inventorySlots.getSlotFromInventory(tileEntity, 0);
+    }
 }
