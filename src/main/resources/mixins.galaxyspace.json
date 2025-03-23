@@ -6,6 +6,7 @@
   "refmap": "mixins.galaxyspace.refmap.json",
   "mixins": [
     "MixinEntityAlienVillager",
+    "MixinEntityCreeperBoss",
     "MixinGCPlayerHandler",
     "MixinTileEntityGasLiquefier",
     "MixinTileEntityGeothermalGenerator",
