@@ -71,10 +71,10 @@ public class GSItems {
 	public static Item DUNGEON_KEYS = new ItemTierKeysChest();
 	public static Item UPGRADES = new ItemUpgrades();
 	
-	public static Item OXYGENTANK_TIER_4 = new ItemGSOxygenTank(3, "oxygen_tank_4", 3500, false);
-	public static Item OXYGENTANK_TIER_5 = new ItemGSOxygenTank(4, "oxygen_tank_5", 4000, false);
-	public static Item OXYGENTANK_TIER_6 = new ItemGSOxygenTank(5, "oxygen_tank_6", 4500, false);
-	public static Item OXYGENTANK_TIER_EPP = new ItemGSOxygenTank(6, "oxygen_tank_epp_1", 2500, true);
+	public static Item OXYGENTANK_TIER_4 = new ItemGSOxygenTank(3, "oxygen_tank_4", GSConfigCore.storageOxygenTankTier4, false);
+	public static Item OXYGENTANK_TIER_5 = new ItemGSOxygenTank(4, "oxygen_tank_5", GSConfigCore.storageOxygenTankTier5, false);
+	public static Item OXYGENTANK_TIER_6 = new ItemGSOxygenTank(5, "oxygen_tank_6", GSConfigCore.storageOxygenTankTier6, false);
+	public static Item OXYGENTANK_TIER_EPP = new ItemGSOxygenTank(-1, "oxygen_tank_epp_1", GSConfigCore.storageOxygenTankTierEPP, true);
 	
 	public static Item ROCKET_TIER_4 = new ItemTier4Rocket("rocket_tier_4");
 	public static Item ROCKET_TIER_5 = new ItemTier5Rocket("rocket_tier_5");

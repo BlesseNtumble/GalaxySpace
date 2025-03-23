@@ -738,7 +738,7 @@ public class GSEventHandler {
                         ItemStack tank = inv.getStackInSlot(i);
                         if (tank.getItemDamage() != 0) {
                             if (player.ticksExisted % 10 == 0) {
-                                tank.setItemDamage(tank.getItemDamage() - 2);
+                                tank.setItemDamage(tank.getItemDamage() - GSConfigCore.rechargeOxygenTankTierEPP);
                             }
                         }
                     }
@@ -868,12 +868,12 @@ public class GSEventHandler {
                 for (int i = 0; i < player.inventory.armorInventory.size(); i++) {
                     ItemStack itemstack = new ItemStack(item, 1, Integer.parseInt(meta[2]));
                     check[i] = !player.inventory.armorInventory.get(i).isEmpty() && player.inventory.armorInventory.get(i).equals(itemstack);
-                    if (check[i]) break;
+
                 }
             } else
                 for (int i = 0; i <= 3; i++) {
                     check[i] = !player.inventory.armorInventory.get(i).isEmpty() && player.inventory.armorInventory.get(i).getItem() == item;
-                    if (check[i]) break;
+                    
                 }
 
 

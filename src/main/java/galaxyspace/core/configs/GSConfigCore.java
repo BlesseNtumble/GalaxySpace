@@ -22,6 +22,7 @@ public class GSConfigCore
 {
     public static Configuration config;
 
+
     public GSConfigCore(File file)
     {
         GSConfigCore.config = new Configuration(file);
@@ -72,7 +73,13 @@ public class GSConfigCore
     public static String[] unsuffocation_entity;
     public static String keyOverrideToggleHelmet, keyOverrideToggleChest, keyOverrideToggleLegs, keyOverrideToggleBoots;
     public static int keyOverrideToggleHelmetI, keyOverrideToggleChestI, keyOverrideToggleLegsI, keyOverrideToggleBootsI;
-    
+
+    public static int storageOxygenTankTier4 = 3500;
+    public static int storageOxygenTankTier5 = 4000;
+    public static int storageOxygenTankTier6 = 4500;
+    public static int storageOxygenTankTierEPP = 2500;
+    public static int rechargeOxygenTankTierEPP = 2;
+
     public static void syncConfig(boolean load)
     {
         List<String> propOrder = new ArrayList<String>();
@@ -89,13 +96,13 @@ public class GSConfigCore
                 }
             }
             
-            prop = config.get(GSConstants.HARDMODE_CATEGORY, "enableOxygenForPlantsAndFoods", true);
+            prop = config.get(GSConstants.CATEGORY_HARDMODE, "enableOxygenForPlantsAndFoods", true);
             prop.setComment("Enable/Disable the need oxygen for plants and foods.");
             prop.setLanguageKey("gc.configgui.enableOxygenForPlantsAndFoods").setRequiresMcRestart(true);
             enableOxygenForPlantsAndFoods = prop.getBoolean(true);
             propOrder.add(prop.getName());   
             
-            prop = config.get(GSConstants.HARDMODE_CATEGORY, "enableGasExplosion", true);
+            prop = config.get(GSConstants.CATEGORY_HARDMODE, "enableGasExplosion", true);
             prop.setComment("Enable/Disable explosion gas (Nature gas, etc) from fire, torch, magma.");
             prop.setLanguageKey("gc.configgui.enableGasExplosion").setRequiresMcRestart(true);
             enableGasExplosion = prop.getBoolean(true);
@@ -107,19 +114,19 @@ public class GSConfigCore
             enableCheckVersion = prop.getBoolean(true);
             propOrder.add(prop.getName());                    
             
-            prop = config.get(GSConstants.HARDMODE_CATEGORY, "enableAdvancedRocketCraft", true);
+            prop = config.get(GSConstants.CATEGORY_HARDMODE, "enableAdvancedRocketCraft", true);
             prop.setComment("Enable/Disable advanced craft for rocket tier 2-6.");
             prop.setLanguageKey("gc.configgui.enableAdvancedRocketCraft").setRequiresMcRestart(true);
             enableAdvancedRocketCraft = prop.getBoolean(true);
             propOrder.add(prop.getName());   
             
-            prop = config.get(GSConstants.HARDMODE_CATEGORY, "enableAdvancedThermalSystem", true);
+            prop = config.get(GSConstants.CATEGORY_HARDMODE, "enableAdvancedThermalSystem", true);
             prop.setComment("Enable/Disable advanced thermal system on celestial bodies.");
             prop.setLanguageKey("gc.configgui.enableAdvancedThermalSystem").setRequiresMcRestart(false);
             enableAdvancedThermalSystem = prop.getBoolean(true);
             propOrder.add(prop.getName());    
             
-            prop = config.get(GSConstants.HARDMODE_CATEGORY, "enableZeroGravityOnAsteroids", false);
+            prop = config.get(GSConstants.CATEGORY_HARDMODE, "enableZeroGravityOnAsteroids", false);
             prop.setComment("Enable/Disable zero gravity (like Kuiper Belt) on Astreroids.");
             prop.setLanguageKey("gc.configgui.enableZeroGravityOnAsteroids").setRequiresMcRestart(true);
             enableZeroGravityOnAsteroids = prop.getBoolean(false);
@@ -149,25 +156,25 @@ public class GSConfigCore
             enableDungeonsGeneration = prop.getBoolean(true);
             propOrder.add(prop.getName());
             
-            prop = config.get(GSConstants.HARDMODE_CATEGORY, "enableRadiationSystem", true);
+            prop = config.get(GSConstants.CATEGORY_HARDMODE, "enableRadiationSystem", true);
             prop.setComment("Enable/Disable solar radiation system.");
             prop.setLanguageKey("gc.configgui.enableRadiationSystem").setRequiresMcRestart(false);
             enableRadiationSystem = prop.getBoolean(true);
             propOrder.add(prop.getName());
             
-            prop = config.get(GSConstants.HARDMODE_CATEGORY, "enablePressureSystem", true);
+            prop = config.get(GSConstants.CATEGORY_HARDMODE, "enablePressureSystem", true);
             prop.setComment("Enable/Disable atmosphere pressure system.");
             prop.setLanguageKey("gc.configgui.enablePressureSystem").setRequiresMcRestart(false);
             enablePressureSystem = prop.getBoolean(true);
             propOrder.add(prop.getName());
             
-            prop = config.get(GSConstants.HARDMODE_CATEGORY, "enableSolarRadiationOnMoon", true);
+            prop = config.get(GSConstants.CATEGORY_HARDMODE, "enableSolarRadiationOnMoon", true);
             prop.setComment("Enable/Disable solar radiation on Moon.");
             prop.setLanguageKey("gc.configgui.enableSolarRadiationOnMoon").setRequiresMcRestart(true);
             enableSolarRadiationOnMoon = prop.getBoolean(true);
             propOrder.add(prop.getName());
             
-            prop = config.get(GSConstants.HARDMODE_CATEGORY, "enableExtraWeatherOnBodies", true);
+            prop = config.get(GSConstants.CATEGORY_HARDMODE, "enableExtraWeatherOnBodies", true);
             prop.setComment("Enable/Disable extra weather on celestial bodies (Dust Storm, Meteoric Rain, etc).");
             prop.setLanguageKey("gc.configgui.enableExtraWeatherOnBodies").setRequiresMcRestart(true);
             enableExtraWeatherOnBodies = prop.getBoolean(true);
@@ -277,7 +284,7 @@ public class GSConfigCore
             spacesuit_pos = prop.getString();
             propOrder.add(prop.getName());   
             
-            prop = config.get(GSConstants.DEVELOMPENT_CATEGORY, "enableDebug", false);
+            prop = config.get(GSConstants.CATEGORY_DEVELOMPENT, "enableDebug", false);
             prop.setComment("Enable/Disable Debug mode");
             prop.setLanguageKey("gc.configgui.enableDebug").setRequiresMcRestart(false);
             enableDebug = prop.getBoolean(false);
@@ -322,7 +329,7 @@ public class GSConfigCore
             
             prop = config.get(Constants.CONFIG_CATEGORY_KEYS, "Toggle Boots Key", "KEY_J");
             prop.setComment("Leave 'KEY_' value, adding the intended keyboard character to replace the letter. Values 0-9 and A-Z are accepted");
-            prop.setLanguageKey("gc.configgui.keyOverrideToggleBoots").setRequiresMcRestart(false);
+            prop.setLanguageKey("gs.configgui.keyOverrideToggleBoots").setRequiresMcRestart(false);
             keyOverrideToggleBoots = prop.getString();
             keyOverrideToggleBootsI = parseKeyValue(keyOverrideToggleBoots);
             propOrder.add(prop.getName());
@@ -336,8 +343,38 @@ public class GSConfigCore
                             });
 
             prop.setComment("List entity for ignore suffocation damage. Format: 'modid:entity' ");
-            prop.setLanguageKey("gc.configgui.unsuffocation_entity").setRequiresMcRestart(false);
+            prop.setLanguageKey("gs.configgui.unsuffocation_entity").setRequiresMcRestart(false);
             unsuffocation_entity = prop.getStringList();
+            propOrder.add(prop.getName());
+
+            prop = config.get(GSConstants.CATEGORY_ITEMS, "storageOxygenTankTier4", storageOxygenTankTier4);
+            prop.setComment("Amount storage for Oxygen Tank Tier 4");
+            prop.setLanguageKey("gs.configgui.storageOxygenTankTier4").setRequiresMcRestart(true);
+            storageOxygenTankTier4 = prop.getInt();
+            propOrder.add(prop.getName());
+
+            prop = config.get(GSConstants.CATEGORY_ITEMS, "storageOxygenTankTier5", storageOxygenTankTier5);
+            prop.setComment("Amount storage for Oxygen Tank Tier 5");
+            prop.setLanguageKey("gs.configgui.storageOxygenTankTier5").setRequiresMcRestart(true);
+            storageOxygenTankTier5 = prop.getInt();
+            propOrder.add(prop.getName());
+
+            prop = config.get(GSConstants.CATEGORY_ITEMS, "storageOxygenTankTier6", storageOxygenTankTier6);
+            prop.setComment("Amount storage for Oxygen Tank Tier 6");
+            prop.setLanguageKey("gs.configgui.storageOxygenTankTier6").setRequiresMcRestart(true);
+            storageOxygenTankTier6 = prop.getInt();
+            propOrder.add(prop.getName());
+
+            prop = config.get(GSConstants.CATEGORY_ITEMS, "storageOxygenTankTierEPP", storageOxygenTankTierEPP);
+            prop.setComment("Amount storage for Oxygen Tank Tier EPP");
+            prop.setLanguageKey("gs.configgui.storageOxygenTankTierEPP").setRequiresMcRestart(true);
+            storageOxygenTankTierEPP = prop.getInt();
+            propOrder.add(prop.getName());
+
+            prop = config.get(GSConstants.CATEGORY_ITEMS, "rechargeOxygenTankTierEPP", rechargeOxygenTankTierEPP);
+            prop.setComment("Amount recharge per tick for Oxygen Tank Tier EPP");
+            prop.setLanguageKey("gs.configgui.rechargeOxygenTankTierEPP").setRequiresMcRestart(true);
+            rechargeOxygenTankTierEPP = prop.getInt();
             propOrder.add(prop.getName());
 
             config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);
@@ -366,8 +403,9 @@ public class GSConfigCore
         //list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_ACHIEVEMENTS)).getChildElements());
         //list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_ENTITIES)).getChildElements());
         list.addAll(new ConfigElement(config.getCategory(Constants.CONFIG_CATEGORY_KEYS)).getChildElements());
-        list.addAll(new ConfigElement(config.getCategory(GSConstants.HARDMODE_CATEGORY)).getChildElements());
-        list.addAll(new ConfigElement(config.getCategory("development")).getChildElements());
+        list.addAll(new ConfigElement(config.getCategory(GSConstants.CATEGORY_HARDMODE)).getChildElements());
+        list.addAll(new ConfigElement(config.getCategory(GSConstants.CATEGORY_DEVELOMPENT)).getChildElements());
+        list.addAll(new ConfigElement(config.getCategory(GSConstants.CATEGORY_ITEMS)).getChildElements());
 
         return list;
     }
