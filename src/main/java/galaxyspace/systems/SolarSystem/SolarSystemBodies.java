@@ -214,19 +214,31 @@ public class SolarSystemBodies implements IBodies{
 		//BodiesRegistry.setAtmosphere(planetJupiter, false, false, false, -5.0F, 0.0F, 0.0F);
 		//BodiesRegistry.setProviderData(planetJupiter, WorldProviderCeres.class, GSConfigDimensions.dimensionIDJupiter, 100, ACBiome.ACSpace);
 		//planetJupiter.setUnreachable();
-		if(GSConfigDimensions.enableJupiter) GalaxyRegistry.registerPlanet(planetJupiter);
+		if(GSConfigDimensions.enableJupiter)
+			GalaxyRegistry.registerPlanet(planetJupiter);
+		else
+			planetJupiter = (Planet) GalaxyRegistry.getCelestialBodyFromUnlocalizedName("jupiter");
 
 		planetSaturn = BodiesRegistry.registerExPlanet(sol, "saturn", GalaxySpace.ASSET_PREFIX, 2.25F);
 		BodiesRegistry.setOrbitData(planetSaturn, (float) Math.PI / 2, 1.5F, 29.46F);
-		if(GSConfigDimensions.enableSaturn) GalaxyRegistry.registerPlanet(planetSaturn);
+		if(GSConfigDimensions.enableSaturn)
+			GalaxyRegistry.registerPlanet(planetSaturn);
+		else
+			planetSaturn = (Planet) GalaxyRegistry.getCelestialBodyFromUnlocalizedName("saturn");
 
 		planetUranus = BodiesRegistry.registerExPlanet(sol, "uranus", GalaxySpace.ASSET_PREFIX, 2.5F);
 		BodiesRegistry.setOrbitData(planetUranus, (float) Math.PI / 4, 1.2F, 84.06F);
-		if(GSConfigDimensions.enableUranus) GalaxyRegistry.registerPlanet(planetUranus);
+		if(GSConfigDimensions.enableUranus)
+			GalaxyRegistry.registerPlanet(planetUranus);
+		else
+			planetUranus = (Planet) GalaxyRegistry.getCelestialBodyFromUnlocalizedName("uranus");
 
 		planetNeptune = BodiesRegistry.registerExPlanet(sol, "neptune", GalaxySpace.ASSET_PREFIX, 2.75F);
 		BodiesRegistry.setOrbitData(planetNeptune, (float) Math.PI, 1.2F, 164.84F);
-		if(GSConfigDimensions.enableNeptune) GalaxyRegistry.registerPlanet(planetNeptune);
+		if(GSConfigDimensions.enableNeptune)
+			GalaxyRegistry.registerPlanet(planetNeptune);
+		else
+			planetNeptune = (Planet) GalaxyRegistry.getCelestialBodyFromUnlocalizedName("neptune");
 
 		planetPluto = BodiesRegistry.registerExPlanet(sol, "pluto", GalaxySpace.ASSET_PREFIX, 3.0F);
 		BodiesRegistry.setOrbitData(planetPluto, 0.0F, 0.5F, 250.0F, 0, 0, 25F, 0F);
@@ -234,7 +246,10 @@ public class SolarSystemBodies implements IBodies{
 		BodiesRegistry.setAtmosphere(planetPluto, false, false, false, -7.8F, 0.0F, 0.0F);
 		BodiesRegistry.setProviderData(planetPluto, WorldProviderPluto.class, GSConfigDimensions.dimensionIDPluto, 6, ACBiome.ACSpace, ACBiome.ACSpaceLowPlains, ACBiome.ACSpaceLowHills, ACBiome.ACSpaceMidPlains);
 		planetPluto.atmosphereComponent(EnumAtmosphericGas.NITROGEN);
-		if(GSConfigDimensions.enablePluto) GalaxyRegistry.registerPlanet(planetPluto);
+		if(GSConfigDimensions.enablePluto)
+			GalaxyRegistry.registerPlanet(planetPluto);
+		else
+			planetPluto = (Planet) GalaxyRegistry.getCelestialBodyFromUnlocalizedName("pluto");
 
 		planetKuiperBelt = (ExPlanet) BodiesRegistry.registerExPlanet(sol, "kuiperbelt", GalaxySpace.ASSET_PREFIX, 3.25F).setRingColorRGB(1.1F, 0.0F, 0.0F);
 		planetKuiperBelt.setClassPlanet(ClassBody.ASTEROID);
