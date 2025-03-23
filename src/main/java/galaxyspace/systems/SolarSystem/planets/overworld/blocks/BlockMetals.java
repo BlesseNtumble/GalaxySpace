@@ -20,14 +20,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockDecoMetals extends Block implements ISortableBlock{
-	public static final PropertyEnum<EnumBlockDecoMetals> BASIC_TYPE = PropertyEnum.create("type", EnumBlockDecoMetals.class);
+public class BlockMetals extends Block implements ISortableBlock{
+	public static final PropertyEnum<EnumBlockMetals> BASIC_TYPE = PropertyEnum.create("type", EnumBlockMetals.class);
 
-	public BlockDecoMetals()
+	public BlockMetals()
     {
         super(Material.ROCK);
-        this.setTranslationKey("decoblocks");
-        this.setSoundType(SoundType.STONE); 
+        this.setTranslationKey("blocksmetals");
+        this.setSoundType(SoundType.METAL);
         this.setHarvestLevel("pickaxe", 2);
     }
 	
@@ -35,7 +35,7 @@ public class BlockDecoMetals extends Block implements ISortableBlock{
     @Override
     public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
     {
-        for (EnumBlockDecoMetals blockBasic : EnumBlockDecoMetals.values())
+        for (EnumBlockMetals blockBasic : EnumBlockMetals.values())
         {
             list.add(new ItemStack(this, 1, blockBasic.getMeta()));
         }
@@ -49,7 +49,7 @@ public class BlockDecoMetals extends Block implements ISortableBlock{
 	@Override
     public int damageDropped(IBlockState state)
     {
-		EnumBlockDecoMetals type = ((EnumBlockDecoMetals) state.getValue(BASIC_TYPE));
+		EnumBlockMetals type = ((EnumBlockMetals) state.getValue(BASIC_TYPE));
 		switch (type)
         {
         	default:
@@ -64,23 +64,16 @@ public class BlockDecoMetals extends Block implements ISortableBlock{
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	public enum EnumBlockDecoMetals implements IStringSerializable
+	public enum EnumBlockMetals implements IStringSerializable
 	{
-		DECO_COBALT_1(0, "deco_cobaltum_1"),
-		DECO_MAGNESIUM_1(1, "deco_magnesium_1"),
-		DECO_NICKEL_1(2, "deco_nickel_1"),
-		DECO_COOPER_1(3, "deco_copper_1"),
-		DECO_COBALT_2(4, "deco_cobaltum_2"),
-		DECO_MAGNESIUM_2(5, "deco_magnesium_2"),
-		DECO_NICKEL_2(6, "deco_nickel_2"),
-		DECO_COOPER_2(7, "deco_copper_2"),
-		DECO_ALUMINUM_1(8, "deco_aluminum_1"),
-		DECO_ALUMINUM_2(9, "deco_aluminum_2");
+		COBALT_BLOCK(0, "cobalt_block"),
+		NICKEL_BLOCK(1, "nickel_block"),
+		MAGNESIUM_BLOCK(2, "magnesium_block");
 
 		private final int meta;
 		private final String name;
 
-		EnumBlockDecoMetals(int meta, String name)
+		EnumBlockMetals(int meta, String name)
 		{
 			this.meta = meta;
 			this.name = name;
@@ -88,8 +81,8 @@ public class BlockDecoMetals extends Block implements ISortableBlock{
 
 		public int getMeta() { return this.meta; }       
 
-		private final static EnumBlockDecoMetals[] values = values();
-		public static EnumBlockDecoMetals byMetadata(int meta) { return values[meta % values.length]; }
+		private final static EnumBlockMetals[] values = values();
+		public static EnumBlockMetals byMetadata(int meta) { return values[meta % values.length]; }
 
 		@Override
 		public String getName() { return this.name; }
@@ -99,12 +92,12 @@ public class BlockDecoMetals extends Block implements ISortableBlock{
 	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
-		return this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDecoMetals.byMetadata(meta));
+		return this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockMetals.byMetadata(meta));
 	}
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		return ((EnumBlockDecoMetals) state.getValue(BASIC_TYPE)).getMeta();
+		return ((EnumBlockMetals) state.getValue(BASIC_TYPE)).getMeta();
 	}	
 
 	@Override

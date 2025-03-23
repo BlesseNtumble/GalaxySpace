@@ -80,14 +80,17 @@ public class CraftingRecipesOverworld {
         RecipeUtil.addRecipe(new ItemStack(GSBlocks.DECO_METALS, 4, 5), new Object[]{"YY ", "YY ", " X ", 'X', "plateMagnesium", 'Y', Blocks.STONE});
         RecipeUtil.addRecipe(new ItemStack(GSBlocks.DECO_METALS, 4, 6), new Object[]{"YY ", "YY ", " X ", 'X', "plateNickel", 'Y', Blocks.STONE});
         RecipeUtil.addRecipe(new ItemStack(GSBlocks.DECO_METALS, 4, 7), new Object[]{"YY ", "YY ", " X ", 'X', plateCopper, 'Y', Blocks.STONE});
+        RecipeUtil.addRecipe(new ItemStack(GSBlocks.DECO_METALS, 4, 8), new Object[]{"YY ", "YYX", "   ", 'X', plateAluminum, 'Y', Blocks.STONE});
+        RecipeUtil.addRecipe(new ItemStack(GSBlocks.DECO_METALS, 4, 9), new Object[]{"YY ", "YY ", " X ", 'X', plateAluminum, 'Y', Blocks.STONE});
 
-        RecipeUtil.addRecipe(new ItemStack(GSBlocks.DECO_METALS, 1, 8), new Object[]{"XXX", "XXX", "XXX", 'X', "ingotCobalt"});
-        RecipeUtil.addRecipe(new ItemStack(GSBlocks.DECO_METALS, 1, 9), new Object[]{"XXX", "XXX", "XXX", 'X', "ingotNickel"});
-        RecipeUtil.addRecipe(new ItemStack(GSBlocks.DECO_METALS, 1, 10), new Object[]{"XXX", "XXX", "XXX", 'X', "ingotMagnesium"});
 
-        RecipeUtil.addRecipe(new ItemStack(GSItems.INGOTS, 9, 0), new Object[]{"X", 'X', new ItemStack(GSBlocks.DECO_METALS, 1, 8)});
-        RecipeUtil.addRecipe(new ItemStack(GSItems.INGOTS, 9, 2), new Object[]{"X", 'X', new ItemStack(GSBlocks.DECO_METALS, 1, 9)});
-        RecipeUtil.addRecipe(new ItemStack(GSItems.INGOTS, 9, 1), new Object[]{"X", 'X', new ItemStack(GSBlocks.DECO_METALS, 1, 10)});
+        RecipeUtil.addRecipe(new ItemStack(GSBlocks.METALS, 1, 0), new Object[]{"XXX", "XXX", "XXX", 'X', "ingotCobalt"});
+        RecipeUtil.addRecipe(new ItemStack(GSBlocks.METALS, 1, 1), new Object[]{"XXX", "XXX", "XXX", 'X', "ingotNickel"});
+        RecipeUtil.addRecipe(new ItemStack(GSBlocks.METALS, 1, 2), new Object[]{"XXX", "XXX", "XXX", 'X', "ingotMagnesium"});
+
+        RecipeUtil.addRecipe(new ItemStack(GSItems.INGOTS, 9, 0), new Object[]{"X", 'X', new ItemStack(GSBlocks.METALS, 1, 0)});
+        RecipeUtil.addRecipe(new ItemStack(GSItems.INGOTS, 9, 2), new Object[]{"X", 'X', new ItemStack(GSBlocks.METALS, 1, 1)});
+        RecipeUtil.addRecipe(new ItemStack(GSItems.INGOTS, 9, 1), new Object[]{"X", 'X', new ItemStack(GSBlocks.METALS, 1, 2)});
 
         RecipeUtil.addRecipe(new ItemStack(GSBlocks.FUTURE_GLASS_BASIC, 8, 0), new Object[]{"XXX", "XWX", "XXX", 'W', new ItemStack(GCItems.flagPole, 1, 0), 'X', Blocks.GLASS});
 

@@ -331,6 +331,9 @@ public class ClientProxy extends CommonProxy{
 		for(BlockDecoMetals.EnumBlockDecoMetals block : BlockDecoMetals.EnumBlockDecoMetals.values())
 			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.DECO_METALS, block.getMeta(), block.getName());
 
+		for(BlockMetals.EnumBlockMetals block : BlockMetals.EnumBlockMetals.values())
+			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.METALS, block.getMeta(), block.getName());
+
 		for(MarsOresBlocks.EnumMarsOresBlocks block : MarsOresBlocks.EnumMarsOresBlocks.values())
 			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, GSBlocks.MARS_ORES, block.getMeta(), block.getName());
 
@@ -552,7 +555,8 @@ public class ClientProxy extends CommonProxy{
 		addVariant("futureglass", "", blocks);
 		addVariant("mercuryblocks", "", "mercury_surface", "mercury_subsurface", "mercury_stone", "mercury_nickel_ore", "mercury_iron_ore", "mercury_magnesium_ore");
 		addVariant("gsores", "", "cobaltum_ore", "nickel_ore", "uranium_ore");
-		addVariant("decoblocks", "", "deco_cobaltum_1", "deco_magnesium_1", "deco_nickel_1", "deco_copper_1", "deco_cobaltum_2", "deco_magnesium_2", "deco_nickel_2", "deco_copper_2", "cobalt_block", "nickel_block", "magnesium_block");
+		addVariant("decoblocks", "", "deco_cobaltum_1", "deco_magnesium_1", "deco_nickel_1", "deco_copper_1", "deco_cobaltum_2", "deco_magnesium_2", "deco_nickel_2", "deco_copper_2", "deco_aluminum_1", "deco_aluminum_2");
+		addVariant("blocksmetals", "", "cobalt_block", "nickel_block", "magnesium_block");
 		addVariant("marsores", "", "mars_diamond", "mars_gold", "mars_coal", "mars_redstone", "mars_silicon", "mars_aluminum");
 		addVariant("ceresblocks", "", "ceres_grunt", "ceres_subgrunt", "ceres_dolomite_ore", "ceres_meteoriciron_ore", "ceres_dungeon_top", "ceres_dungeon_floor");
 		addVariant("plutoblocks", "", "pluto_grunt_1", "pluto_grunt_2", "pluto_grunt_3", "pluto_grunt_4", "pluto_subgrunt", "pluto_stone");

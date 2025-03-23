@@ -20,6 +20,7 @@ tile.deco_cobaltum.name=Cobalt Decoration Block
 tile.deco_magnesium.name=Magnesium Decoration Block
 tile.deco_nickel.name=Nickel Decoration Block
 tile.deco_copper.name=Copper Decoration Block
+tile.deco_aluminum.name=Aluminum Decoration Block
 tile.cobalt_block.name=Cobalt Block
 tile.nickel_block.name=Nickel Block
 tile.magnesium_block.name=Magnesium Block
@@ -563,6 +564,7 @@ gui.tank.passive_oxygen_regen.desc1=Passively generates oxygen
 gui.tank.passive_oxygen_regen.desc2=if the player is in oxygen filled area (bubble, sealed room).
 
 gui.gravity.radius.name=Working area:
+gui.gravity.strength.name=Gravity strength:
 
 gs.success.name=Available version:
 gs.update.available=New version available!

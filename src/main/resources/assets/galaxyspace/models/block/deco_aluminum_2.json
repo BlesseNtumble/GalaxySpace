@@ -1,0 +1,12 @@
+{ 
+	"parent": "block/cube_all", 
+ 	"textures": { 
+		"down": "galaxyspace:blocks/overworld/blocks_decometals/deco_aluminum_block",
+        "up": "galaxyspace:blocks/overworld/blocks_decometals/deco_aluminum_block",
+        "north": "galaxyspace:blocks/overworld/blocks_decometals/deco_aluminum_block",
+        "south": "galaxyspace:blocks/overworld/blocks_decometals/deco_aluminum_block",
+        "west": "galaxyspace:blocks/overworld/blocks_decometals/deco_aluminum_block",
+        "east": "galaxyspace:blocks/overworld/blocks_decometals/deco_aluminum_block",
+        "particle": "galaxyspace:blocks/overworld/blocks_decometals/deco_aluminum_block"
+	}
+}

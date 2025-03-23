@@ -1,0 +1,7 @@
+{ 
+	"variants": { 
+		"type=cobalt_block": { "model": "galaxyspace:cobalt_block"},
+		"type=nickel_block": { "model": "galaxyspace:nickel_block"},
+		"type=magnesium_block": { "model": "galaxyspace:magnesium_block"}
+	} 
+}

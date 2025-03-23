@@ -8,8 +8,7 @@
 		"type=deco_magnesium_2": { "model": "galaxyspace:deco_magnesium_2"}, 
 		"type=deco_nickel_2": { "model": "galaxyspace:deco_nickel_2"}, 
 		"type=deco_copper_2": { "model": "galaxyspace:deco_copper_2"},
-		"type=cobalt_block": { "model": "galaxyspace:cobalt_block"},
-		"type=nickel_block": { "model": "galaxyspace:nickel_block"},
-		"type=magnesium_block": { "model": "galaxyspace:magnesium_block"}
+		"type=deco_aluminum_1": { "model": "galaxyspace:deco_aluminum_1"},
+		"type=deco_aluminum_2": { "model": "galaxyspace:deco_aluminum_2"}
 	} 
 }

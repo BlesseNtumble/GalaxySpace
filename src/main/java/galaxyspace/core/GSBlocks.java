@@ -37,15 +37,7 @@ import galaxyspace.systems.SolarSystem.planets.mars.blocks.MarsOresBlocks;
 import galaxyspace.systems.SolarSystem.planets.mars.items.ItemBlocksMarsOres;
 import galaxyspace.systems.SolarSystem.planets.mercury.blocks.MercuryBlocks;
 import galaxyspace.systems.SolarSystem.planets.mercury.items.ItemBlocksMercury;
-import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockAdvancedLandingPad;
-import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockAdvancedLandingPadFull;
-import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockDecoMetals;
-import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockDryLeaves;
-import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockFutureGlass;
-import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockFutureGlasses;
-import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockMachineFrames;
-import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockOres;
-import galaxyspace.systems.SolarSystem.planets.overworld.blocks.BlockSurfaceIce;
+import galaxyspace.systems.SolarSystem.planets.overworld.blocks.*;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockAdvCircuitFabricator;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockAdvWindGenerator;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockAssembler;
@@ -72,11 +64,7 @@ import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockSi
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockSolarWindPanel;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockUniversalRecycler;
 import galaxyspace.systems.SolarSystem.planets.overworld.blocks.machines.BlockWindGenerator;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBlocksDecoMetals;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBlocksFutureGlasses;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBlocksIce;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBlocksMachineFrames;
-import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBlocksOres;
+import galaxyspace.systems.SolarSystem.planets.overworld.items.*;
 import galaxyspace.systems.SolarSystem.planets.pluto.blocks.PlutoBlocks;
 import galaxyspace.systems.SolarSystem.planets.pluto.items.ItemBlocksPluto;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
@@ -91,9 +79,9 @@ public class GSBlocks {
 	//public static final List<Block> GS_BLOCKS = new ArrayList<Block>();
 	
 	public static final Block MERCURY_BLOCKS = new MercuryBlocks().setHardness(3.0F);
-	
 	public static final Block OVERWORLD_ORES = new BlockOres().setHardness(2.0F);
 	public static final Block DECO_METALS = new BlockDecoMetals().setHardness(1.0F);
+	public static final Block METALS = new BlockMetals().setHardness(1.0F);
 	public static final Block SURFACE_ICE = new BlockSurfaceIce();
 	public static final Block FUTURE_GLASS_COLORED = new BlockFutureGlasses().setHardness(0.2F);
 	public static final Block FUTURE_GLASS_BASIC = new BlockFutureGlass().setHardness(0.2F);
@@ -214,6 +202,7 @@ public class GSBlocks {
 		
 		registerBlock(OVERWORLD_ORES, ItemBlocksOres.class);
 		registerBlock(DECO_METALS, ItemBlocksDecoMetals.class);
+		registerBlock(METALS, ItemBlocksMetals.class);
 		registerBlock(SURFACE_ICE, ItemBlocksIce.class);
 		
 		registerBlock(MERCURY_BLOCKS, ItemBlocksMercury.class);
