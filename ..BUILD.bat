@@ -1,5 +1,5 @@
 :start
 @start /B 
-gradlew clean build coreJar gsJar smJar deobfJar deobfGSJar
+gradlew clean build gsJar deobfGSJar
 @pause >nul
 @goto start

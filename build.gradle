@@ -26,9 +26,7 @@ tasks.withType(JavaCompile) {
 
 version = "1.12.2"
 group = "main" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "ExampleMod"
-
-
+archivesBaseName = "All"
 
 repositories {	
 	mavenLocal()
@@ -63,7 +61,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
 			//args '-Dfml.coreMods.load=galaxyspace.core.hooks.GSHooksLoader,starmaker.utils.asm.AssetPlugin'
-			args '-torg.spongepowered.asm.launch.MixinTweaker',	'-Dnet.minecraftforge.gradle.test_certs=false'
+			args '-torg.spongepowered.asm.launch.MixinTweaker', '--mixin', 'mixins.galaxyspace.json', '-Dnet.minecraftforge.gradle.test_certs=false'
         }
         server {
             workingDirectory project.file('run')
@@ -85,10 +83,11 @@ minecraft {
 
 dependencies {
 
-	minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2854'
+	minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2860'
 
 	implementation "org.spongepowered:mixin:0.8.5"
 	annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+	testAnnotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
 	implementation files('libs/buildcraft-api-7.99.24.8.jar')
 	implementation files('libs/industrialcraft-2-2.8.222-ex112-api.jar')
@@ -106,11 +105,6 @@ dependencies {
 	//compileOnly fileTree('libs')
 }
 
-mixin {
-	config mod_mixin_configs.replace('${mod_id}', mod_id)
-	add sourceSets.main, "mixins.${mod_id}.refmap.json"
-}
-
 idea {	module { inheritOutputDirs=true }}
 
 
@@ -121,7 +115,7 @@ jar {
 				"Implementation-Title"    : project.name,
 				"Implementation-Version"  : project.version,
 				"TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
-				"MixinConfigs": "mixins.test.json",
+				"MixinConfigs": "mixins.asmodeuscore.json,mixins.galaxyspace.json",
 				"FMLCorePluginContainsFMLMod": "true",
 				"FMLAT": "gcgsac_at.cfg",
 				"ForceLoadAsMod": "true",
@@ -153,7 +147,7 @@ processResources {
 	}
 }
 
-task gsJar(type: Jar) {
+tasks.register('gsJar', Jar) {
 
 	from(zipTree("build/libs/" + archivesBaseName + "-" + project.version + ".jar")) {
 		exclude 'asmodeuscore/**'
@@ -165,121 +159,61 @@ task gsJar(type: Jar) {
 		exclude 'spaceambient/**'
 		exclude 'assets/spaceambient/**'
 	}
-	archiveBaseName = "GalaxySpace"
-	version = "1.12.2"
-	archiveFileName = "${archiveBaseName}-${project.version}.${archiveExtension}"
+	
+	archiveFileName = "GalaxySpace-${project.version}.jar"
 
-	manifest.attributes('FMLAT': 'gcgsac_at.cfg')
-	manifest.attributes('FMLCorePlugin': 'galaxyspace.core.hooks.GSHooksLoader')
-	manifest.attributes('FMLCorePluginContainsFMLMod': 'true')
-}
-
-task smJar(type: Jar) {
-
-	from(zipTree("build/libs/" + archivesBaseName + "-" + project.version + ".jar")) {
-		exclude 'asmodeuscore/**'
-		exclude 'assets/asmodeuscore/**'
-		exclude 'beyondspace/**'
-		exclude 'assets/beyondspace/**'
-		exclude 'galaxyspace/**'
-		exclude 'assets/galaxyspace/**'
-		exclude 'spaceambient/**'
-		exclude 'assets/spaceambient/**'
+	manifest {
+		attributes([
+				"Implementation-Title"    : project.name,
+				"Implementation-Version"  : project.version,
+				"TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
+				"MixinConfigs": "mixins.galaxyspace.json",
+				"FMLCorePluginContainsFMLMod": "true",
+				"FMLAT": "gcgsac_at.cfg",
+				"ForceLoadAsMod": "true",
+				"Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+		])
 	}
-	archiveBaseName = "StarMaker"
-	version = "1.12.2"
-	archiveFileName = "${archiveBaseName}-${archiveVersion}.${archiveExtension}"
-
-	manifest.attributes('FMLCorePlugin': 'starmaker.utils.asm.AssetPlugin')
-	manifest.attributes('FMLCorePluginContainsFMLMod': 'true')
 }
 
-task coreJar(type: Jar) {
-
-	from(zipTree("build/libs/" + archivesBaseName + "-" + project.version + ".jar")) {
-		exclude 'galaxyspace/**'
-		exclude 'assets/galaxyspace/**'
+tasks.register('deobfGSJar', Jar) {
+	
+	from(sourceSets.main.output)
+	{
+		exclude 'assets/**'
+		exclude 'asmodeuscore/**'
 		exclude 'beyondspace/**'
-		exclude 'assets/beyondspace/**'
 		exclude 'starmaker/**'
+		exclude 'spaceambient/**'
+		exclude 'mcmod.info'
+	}
+	from(sourceSets.main.allSource)
+	{
+		exclude 'asmodeuscore/**'
+		exclude 'beyondspace/**'
+		exclude 'starmaker/**'
+		exclude 'assets/asmodeuscore/**'
+		exclude 'assets/beyondspace/**'
 		exclude 'assets/starmaker/**'
 		exclude 'spaceambient/**'
 		exclude 'assets/spaceambient/**'
 	}
 
-	archiveBaseName = "AsmodeusCore"
-	version = "1.12.2"
-	archiveFileName = "${archiveBaseName}-${project.version}.${archiveExtension}"
+	archiveFileName = "GalaxySpace-${project.version}-dev.jar"
 
-	manifest.attributes('FMLAT': 'gcgsac_at.cfg')
-	//manifest.attributes('FMLCorePlugin': 'asmodeuscore.core.hooklib.minecraft.HookLoader')
+	manifest {
+		attributes([
+				"Implementation-Title"    : project.name,
+				"Implementation-Version"  : project.version,
+				"TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
+				"MixinConfigs": "mixins.galaxyspace.json",
+				"FMLCorePluginContainsFMLMod": "true",
+				"FMLAT": "gcgsac_at.cfg",
+				"ForceLoadAsMod": "true",
+				"Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+		])
+	}
+	//manifest.attributes('FMLAT': 'gcgsac_at.cfg')
+	//manifest.attributes('FMLCorePlugin': 'galaxyspace.core.hooks.GSHooksLoader')
 	//manifest.attributes('FMLCorePluginContainsFMLMod': 'true')
-
-}
-
-task deobfJar(type: Jar) {
-	archiveBaseName = "AsmodeusCore"
-	version = "1.12.2"
-
-	from(sourceSets.main.output)
-			{
-				exclude 'assets/**'
-				exclude 'galaxyspace/**'
-				exclude 'beyondspace/**'
-				exclude 'starmaker/**'
-				exclude 'spaceambient/**'
-				exclude 'mcmod.info'
-				exclude 'methods.bin'
-			}
-
-	from(sourceSets.main.allSource)
-			{
-				exclude 'asmodeuscore/core/astronomy/gui/**'
-				exclude 'asmodeuscore/core/utils/worldengine/**'
-				exclude 'galaxyspace/**'
-				exclude 'beyondspace/**'
-				exclude 'assets/galaxyspace/**'
-				exclude 'assets/beyondspace/**'
-				exclude 'starmaker/**'
-				exclude 'assets/starmaker/**'
-				exclude 'spaceambient/**'
-				exclude 'assets/spaceambient/**'
-			}
-	archiveFileName = "${archiveBaseName}-${project.version}-dev.${archiveExtension}"
-
-	//manifest.attributes('FMLAT': 'asmodeuscore_at.cfg')
-	//manifest.attributes('FMLCorePlugin': 'asmodeuscore.core.hooklib.minecraft.HookLoader')
-	//manifest.attributes('FMLCorePluginContainsFMLMod': 'true')
-}
-
-task deobfGSJar(type: Jar) {
-
-	archiveBaseName = "GalaxySpace"
-	version = "1.12.2"
-
-	from(sourceSets.main.output)
-			{
-				exclude 'assets/**'
-				exclude 'asmodeuscore/**'
-				exclude 'beyondspace/**'
-				exclude 'starmaker/**'
-				exclude 'spaceambient/**'
-				exclude 'mcmod.info'
-			}
-	from(sourceSets.main.allSource)
-			{
-				exclude 'asmodeuscore/**'
-				exclude 'beyondspace/**'
-				exclude 'starmaker/**'
-				exclude 'assets/asmodeuscore/**'
-				exclude 'assets/beyondspace/**'
-				exclude 'assets/starmaker/**'
-				exclude 'spaceambient/**'
-				exclude 'assets/spaceambient/**'
-			}
-	archiveFileName = "${archiveBaseName}-${version}-dev.${archiveExtension}"
-
-	manifest.attributes('FMLAT': 'gcgsac_at.cfg')
-	manifest.attributes('FMLCorePlugin': 'galaxyspace.core.hooks.GSHooksLoader')
-	manifest.attributes('FMLCorePluginContainsFMLMod': 'true')
 }
