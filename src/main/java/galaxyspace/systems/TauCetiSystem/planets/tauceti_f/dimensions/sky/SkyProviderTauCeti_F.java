@@ -1,5 +1,6 @@
 package galaxyspace.systems.TauCetiSystem.planets.tauceti_f.dimensions.sky;
 
+import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import org.lwjgl.opengl.GL11;
 
 import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
@@ -58,9 +59,9 @@ public class SkyProviderTauCeti_F extends SkyProviderBase{
 	}
 
 	@Override
-	protected Vec3d getAtmosphereColor() {
+	protected Vector3 getAtmosphereColor() {
 		float f = mc.world.getSunBrightness(ticks) + 0.2F;
-		return new Vec3d(120 / 255.0F * f, 120 / 255.0F * f, 160 / 255.0F * f);
+		return new Vector3(120 / 255.0F * f, 120 / 255.0F * f, 160 / 255.0F * f);
 	}
 
 }

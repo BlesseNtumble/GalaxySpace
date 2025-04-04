@@ -1,5 +1,6 @@
 package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.sky;
 
+import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import org.lwjgl.opengl.GL11;
 
 import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
@@ -68,11 +69,11 @@ public class SkyProviderBarnarda_C extends SkyProviderBase{
 	}
 
 	@Override
-	protected Vec3d getAtmosphereColor() {
+	protected Vector3 getAtmosphereColor() {
 		if(this.mc.world.provider instanceof WE_WorldProviderSpace)
-			return ((WE_WorldProviderSpace)this.mc.world.provider).getSkyColor().toVec3();
+			return ((WE_WorldProviderSpace)this.mc.world.provider).getSkyColor();
 		
-		return ((WorldProviderSpace)this.mc.world.provider).getSkyColor().toVec3();
+		return ((WorldProviderSpace)this.mc.world.provider).getSkyColor();
 		
 	}
 

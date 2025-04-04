@@ -1,5 +1,6 @@
 package galaxyspace.systems.SolarSystem.planets.ceres.dimension.sky;
 
+import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import org.lwjgl.opengl.GL11;
 
 import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
@@ -126,7 +127,7 @@ public class SkyProviderCeres extends SkyProviderBase
 	}
 
 	@Override
-	protected Vec3d getAtmosphereColor() {
+	protected Vector3 getAtmosphereColor() {
 		return null;
 	}
 	

@@ -3,6 +3,7 @@ package galaxyspace.systems.SolarSystem.planets.kuiperbelt.dimension.sky;
 import asmodeuscore.api.dimension.IAdvancedSpace.StarColor;
 import asmodeuscore.core.astronomy.sky.SkyProviderBase;
 import galaxyspace.GalaxySpace;
+import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
@@ -46,7 +47,7 @@ public class SkyProviderKuiperBelt extends SkyProviderBase
 	}
 
 	@Override
-	protected Vec3d getAtmosphereColor() {
+	protected Vector3 getAtmosphereColor() {
 		return null;
 	}
 	
