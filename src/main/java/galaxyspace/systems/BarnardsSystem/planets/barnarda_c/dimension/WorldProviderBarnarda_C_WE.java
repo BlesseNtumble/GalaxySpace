@@ -12,6 +12,7 @@ import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_OreGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_RavineGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
 import galaxyspace.core.configs.GSConfigCore;
+import galaxyspace.core.configs.GSConfigWorld;
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.systems.BarnardsSystem.BarnardsSystemBodies;
 import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
@@ -293,7 +294,7 @@ public class WorldProviderBarnarda_C_WE extends WE_WorldProviderSpace implements
 		cp.createChunkGen_List.add(rg);
 
 		WE_OreGen standardOres = new WE_OreGen();
-		if(GSConfigCore.enableOresGeneration) {
+		if(GSConfigWorld.enableOresGeneration) {
 			//Coal
 			standardOres.add(BRBlocks.BARNARDA_C_ORES.getStateFromMeta(0), terrainGenerator.worldStoneBlock, 15, 5, 150, 20);
 			//Iron

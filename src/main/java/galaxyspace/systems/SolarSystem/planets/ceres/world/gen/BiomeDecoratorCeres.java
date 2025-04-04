@@ -2,6 +2,7 @@ package galaxyspace.systems.SolarSystem.planets.ceres.world.gen;
 
 import galaxyspace.core.GSBlocks;
 import galaxyspace.core.configs.GSConfigCore;
+import galaxyspace.core.configs.GSConfigWorld;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.core.world.gen.WorldGenMinableMeta;
 import net.minecraft.world.World;
@@ -26,7 +27,7 @@ public class BiomeDecoratorCeres extends BiomeDecoratorSpace
     @Override
     protected void decorate()
     {
-    	if(GSConfigCore.enableOresGeneration) 
+    	if(GSConfigWorld.enableOresGeneration)
     	{    		
     		this.generateOre(12, dolomiteGen, 10, 60);
     		this.generateOre(12, meteoricIronGen, 5, 40);

@@ -12,10 +12,7 @@ import galaxyspace.api.item.IJetpackArmor;
 import galaxyspace.core.GSBlocks;
 import galaxyspace.core.GSFluids;
 import galaxyspace.core.GSItems;
-import galaxyspace.core.configs.GSConfigCore;
-import galaxyspace.core.configs.GSConfigDimensions;
-import galaxyspace.core.configs.GSConfigEnergy;
-import galaxyspace.core.configs.GSConfigSchematics;
+import galaxyspace.core.configs.*;
 import galaxyspace.core.handler.capabilities.*;
 import galaxyspace.core.network.packet.GSPacketSimple;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
@@ -86,6 +83,7 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -793,7 +791,7 @@ public class GSEventHandler {
 
     @SubscribeEvent
     public void onPlanetDecorated(GCCoreEventPopulate.Post event) {
-        if (GSConfigCore.enableMarsNewOres && (event.world.provider instanceof WorldProviderMars || event.world.provider instanceof WorldProviderMars_WE)) {
+        if (GSConfigWorld.enableMarsNewOres && (event.world.provider instanceof WorldProviderMars || event.world.provider instanceof WorldProviderMars_WE)) {
             genOre(event.world, event.pos, new WorldGenMinableMeta(GSBlocks.MARS_ORES, 4, 0, true, MarsBlocks.marsBlock, 9), 6, 4, 18);    //diamond
             genOre(event.world, event.pos, new WorldGenMinableMeta(GSBlocks.MARS_ORES, 6, 1, true, MarsBlocks.marsBlock, 9), 10, 6, 30); //gold
             genOre(event.world, event.pos, new WorldGenMinableMeta(GSBlocks.MARS_ORES, 16, 2, true, MarsBlocks.marsBlock, 9), 15, 6, 70);    //coal
@@ -801,6 +799,33 @@ public class GSEventHandler {
             genOre(event.world, event.pos, new WorldGenMinableMeta(GSBlocks.MARS_ORES, 8, 4, true, MarsBlocks.marsBlock, 9), 4, 6, 20);    //silicon
             genOre(event.world, event.pos, new WorldGenMinableMeta(GSBlocks.MARS_ORES, 6, 5, true, MarsBlocks.marsBlock, 9), 16, 6, 45);    //aluminum
 
+        }
+
+        if(event.world.provider instanceof IGalacticraftWorldProvider) {
+            for(String lines : GSConfigWorld.OREGEN_SETTINGS) {
+                String[] line = lines.split(":");
+
+                int dimId = Integer.parseInt(line[0]);
+                String blockModId = line[1];
+                String blockName = line[2];
+                int blockMeta = Integer.parseInt(line[3]);
+
+                String replaceBlockModId = line[4];
+                String replaceBlockName = line[5];
+                int replaceBlockMeta = Integer.parseInt(line[6]);
+
+                int veinSize = Integer.parseInt(line[7]);
+                int amountPerChunk = Integer.parseInt(line[8]);
+                int minY = Integer.parseInt(line[9]);
+                int maxY = Integer.parseInt(line[10]);
+
+                Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(blockModId + ":" + blockName));
+                Block replaceBlock = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(replaceBlockModId + ":" + replaceBlockName));
+
+                if(event.world.provider.getDimension() == dimId) {
+                    genOre(event.world, event.pos, new WorldGenMinableMeta(block, veinSize, blockMeta, true, replaceBlock, replaceBlockMeta), amountPerChunk, minY, maxY);
+                }
+            }
         }
     }
 
@@ -835,7 +860,13 @@ public class GSEventHandler {
                 }
             }
             if (!player.capabilities.isCreativeMode)
-                event.setCanceled(checkAirLock || !GSConfigCore.enableRadiationSystem || this.getProtectArmor(player) || player.getRidingEntity() instanceof EntityLanderBase || player.getRidingEntity() instanceof EntityTieredRocket || this.inRadiationBubble(player.getEntityWorld(), player.posX, player.posY, player.posZ));
+                event.setCanceled(checkAirLock
+                        || !GSConfigCore.enableRadiationSystem
+                        || this.getProtectArmor(player)
+                        || player.getRidingEntity() instanceof EntityLanderBase
+                        || player.getRidingEntity() instanceof EntityTieredRocket
+                        || this.inRadiationBubble(player.getEntityWorld(), player.posX, player.posY, player.posZ)
+                        || !(GSConfigCore.enableRadiationEffectForAndroid && CompatibilityManager.isAndroid(player)));
         }
     }
 
@@ -849,7 +880,13 @@ public class GSEventHandler {
             float level = event.getPressureLevel();
 
             if (!player.capabilities.isCreativeMode)
-                event.setCanceled(!GSConfigCore.enablePressureSystem || getProtectArmor(player) || inGravityZone(world, player, true) || player.getRidingEntity() instanceof EntityLanderBase || player.getRidingEntity() instanceof EntityTieredRocket);
+                event.setCanceled(
+                        !GSConfigCore.enablePressureSystem
+                        || getProtectArmor(player)
+                        || inGravityZone(world, player, true)
+                        || player.getRidingEntity() instanceof EntityLanderBase
+                        || player.getRidingEntity() instanceof EntityTieredRocket
+                        || !(GSConfigCore.enablePressureEffectForAndroid && CompatibilityManager.isAndroid(player)));
 
         }
     }

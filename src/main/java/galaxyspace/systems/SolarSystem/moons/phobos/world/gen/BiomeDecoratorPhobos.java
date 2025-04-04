@@ -2,6 +2,7 @@ package galaxyspace.systems.SolarSystem.moons.phobos.world.gen;
 
 import galaxyspace.core.GSBlocks;
 import galaxyspace.core.configs.GSConfigCore;
+import galaxyspace.core.configs.GSConfigWorld;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.core.world.gen.WorldGenMinableMeta;
 import net.minecraft.world.World;
@@ -25,7 +26,7 @@ public class BiomeDecoratorPhobos extends BiomeDecoratorSpace
     @Override
     protected void decorate()
     {
-    	if(GSConfigCore.enableOresGeneration) {
+    	if(GSConfigWorld.enableOresGeneration) {
     		this.generateOre(16, OreGenIron, 10, 60);
     		this.generateOre(4, OreGenMeteoricIron, 10, 30);
     		this.generateOre(8, OreGenNickel, 10, 40);

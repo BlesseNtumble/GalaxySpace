@@ -30,15 +30,10 @@ public class GSConfigCore
     }
 
     public static boolean enableCheckVersion;
-
-    public static boolean enableOresGeneration;
     public static boolean enableDungeonsGeneration;
     public static boolean enableNewMenu;
-    
     public static boolean enableMarsWorldEngine;
-    public static boolean enableMarsNewOres;
-    public static boolean enableOverworldOres;
-    public static boolean enableNatureGasGen;
+
 
     public static int idSolarRadiation = 29;
     public static int idAntiRadiation = 30;
@@ -62,6 +57,9 @@ public class GSConfigCore
     public static boolean enableSolarRadiationOnMoon;   
     public static boolean enableGasExplosion;
     public static boolean enableExtraWeatherOnBodies;
+
+    public static boolean enableRadiationEffectForAndroid;
+    public static boolean enablePressureEffectForAndroid;
     //
     
     public static String spacesuit_pos = "center";
@@ -132,23 +130,9 @@ public class GSConfigCore
             enableZeroGravityOnAsteroids = prop.getBoolean(false);
             propOrder.add(prop.getName());    
             
-            prop = config.get(Constants.CONFIG_CATEGORY_WORLDGEN, "enableOverworldOres", true);
-            prop.setComment("Enable/Disable Generation Ores on Overworld.");
-            prop.setLanguageKey("gc.configgui.enableOverworldOres").setRequiresMcRestart(false);
-            enableOverworldOres = prop.getBoolean(true);
-            propOrder.add(prop.getName());
+
             
-            prop = config.get(Constants.CONFIG_CATEGORY_WORLDGEN, "enableOresGeneration", true);
-            prop.setComment("Enable/Disable Generation Ores on Planets/Moon (Global Config).");
-            prop.setLanguageKey("gc.configgui.enableOresGeneration").setRequiresMcRestart(false);
-            enableOresGeneration = prop.getBoolean(true);
-            propOrder.add(prop.getName());
-            
-            prop = config.get(Constants.CONFIG_CATEGORY_WORLDGEN, "enableNatureGasGen", true);
-            prop.setComment("Enable/Disable Generation Nature Gas on Overworld.");
-            prop.setLanguageKey("gc.configgui.enableNatureGasGen").setRequiresMcRestart(false);
-            enableNatureGasGen = prop.getBoolean(true);
-            propOrder.add(prop.getName());
+
             
             prop = config.get(Constants.CONFIG_CATEGORY_WORLDGEN, "enableDungeonsGeneration", true);
             prop.setComment("Enable/Disable Dungeons Generation on Planets/Moon (Global Config).");
@@ -197,13 +181,7 @@ public class GSConfigCore
             prop.setLanguageKey("gc.configgui.enableMethaneParticle").setRequiresMcRestart(false);
             enableMethaneParticle = prop.getBoolean(true);
             propOrder.add(prop.getName());   
-            
-            prop = config.get(Constants.CONFIG_CATEGORY_WORLDGEN, "enableMarsNewOres", true);
-            prop.setComment("Enable/Disable New Mars oregen (diamonds, coal, gold, etc).");
-            prop.setLanguageKey("gc.configgui.enableMarsNewOres").setRequiresMcRestart(true);
-            enableMarsNewOres = prop.getBoolean(true);
-            propOrder.add(prop.getName());    
-            
+
             prop = config.get(Constants.CONFIG_CATEGORY_DIMENSIONS, "enableMarsWorldEngine", true);
             prop.setComment("Enable/Disable New Mars worldgen (WE).");
             prop.setLanguageKey("gc.configgui.enableMarsWorldEngine").setRequiresMcRestart(true);
@@ -375,6 +353,18 @@ public class GSConfigCore
             prop.setComment("Amount recharge per tick for Oxygen Tank Tier EPP");
             prop.setLanguageKey("gs.configgui.rechargeOxygenTankTierEPP").setRequiresMcRestart(true);
             rechargeOxygenTankTierEPP = prop.getInt();
+            propOrder.add(prop.getName());
+
+            prop = config.get(Constants.CONFIG_CATEGORY_COMPATIBILITY, "enableRadiationEffectForAndroid", true);
+            prop.setComment("Enable/Disable radiation effect for Android from MatterOverdrive.");
+            prop.setLanguageKey("gc.configgui.enableRadiationEffectForAndroid").setRequiresMcRestart(true);
+            enableRadiationEffectForAndroid = prop.getBoolean(false);
+            propOrder.add(prop.getName());
+
+            prop = config.get(Constants.CONFIG_CATEGORY_COMPATIBILITY, "enablePressureEffectForAndroid", true);
+            prop.setComment("Enable/Disable pressure effect for Android from MatterOverdrive.");
+            prop.setLanguageKey("gc.configgui.enablePressureEffectForAndroid").setRequiresMcRestart(true);
+            enablePressureEffectForAndroid = prop.getBoolean(false);
             propOrder.add(prop.getName());
 
             config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);

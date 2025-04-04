@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import galaxyspace.core.configs.*;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Logger;
 
@@ -19,10 +20,6 @@ import galaxyspace.core.GSFluids;
 import galaxyspace.core.GSItems;
 import galaxyspace.core.GSPotions;
 import galaxyspace.core.client.gui.book.BookRegister;
-import galaxyspace.core.configs.GSConfigCore;
-import galaxyspace.core.configs.GSConfigDimensions;
-import galaxyspace.core.configs.GSConfigEnergy;
-import galaxyspace.core.configs.GSConfigSchematics;
 import galaxyspace.core.events.GSEventHandler;
 import galaxyspace.core.handler.GSGuiHandler;
 import galaxyspace.core.handler.capabilities.GSCapabilityStatsHandler;
@@ -103,7 +100,7 @@ import net.minecraftforge.fml.relauncher.Side;
 @Mod(
 		   modid = GalaxySpace.MODID,
 		   version = GalaxySpace.VERSION,
-		   dependencies = Constants.DEPENDENCIES_FORGE + "required-after:galacticraftcore@[4.0.2.282,); required-after:galacticraftplanets; required-after:asmodeuscore@[1.0.2,)",
+		   dependencies = Constants.DEPENDENCIES_FORGE + "required-after:galacticraftcore@[4.0.2.282,); required-after:galacticraftplanets; required-after:asmodeuscore@[1.0.4,)",
 		   acceptedMinecraftVersions = "[1.12.2]",
 		   name = GalaxySpace.NAME,
 		   guiFactory = "galaxyspace.core.client.gui.GSConfigGuiFactory"
@@ -112,7 +109,7 @@ public class GalaxySpace
 {
 	public static final int major_version = 2;
 	public static final int minor_version = 1;
-	public static final int build_version = 5;
+	public static final int build_version = 6;
 	
 	public static final String NAME = "GalaxySpace";
 	public static final String MODID = "galaxyspace";
@@ -147,7 +144,8 @@ public class GalaxySpace
     	new GSConfigSchematics(new File(event.getModConfigurationDirectory(), "GalaxySpace/schematics.conf"));
     	new GSConfigCore(new File(event.getModConfigurationDirectory(), "GalaxySpace/core.conf"));
     	new GSConfigEnergy(new File(event.getModConfigurationDirectory(), "GalaxySpace/energy.conf"));
-    	
+    	new GSConfigWorld(new File(event.getModConfigurationDirectory(), "GalaxySpace/world.conf"));
+
     	this.initModInfo(event.getModMetadata());
     	
     	debug = GSConfigCore.enableDebug;

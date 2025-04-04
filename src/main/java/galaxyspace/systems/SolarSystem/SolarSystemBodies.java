@@ -18,6 +18,7 @@ import galaxyspace.core.GSBlocks;
 import galaxyspace.core.GSItems;
 import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.configs.GSConfigDimensions;
+import galaxyspace.core.configs.GSConfigWorld;
 import galaxyspace.core.prefab.world.gen.WorldGenNaturalGas;
 import galaxyspace.core.util.GSConstants;
 import galaxyspace.core.util.GSDimensions;
@@ -413,14 +414,14 @@ public class SolarSystemBodies implements IBodies{
 
 		// --------------------------------------------
 		// TODO Overworld -----------------------------
-		if(GSConfigCore.enableOverworldOres) {
+		if(GSConfigWorld.enableOverworldOres) {
 			if(!CompatibilityManager.isTConstructLoaded)
 				GameRegistry.registerWorldGenerator(new OreGenerator(GSBlocks.OVERWORLD_ORES.getDefaultState().withProperty(BlockOres.BASIC_TYPE, BlockOres.EnumBlockOres.COBALT), 6, 0, 60, 5, Blocks.STONE.getDefaultState(), 0), 0);
 
 			//GameRegistry.registerWorldGenerator(new OreGenerator(GSBlocks.OVERWORLD_ORES.getDefaultState().withProperty(BlockOres.BASIC_TYPE, BlockOres.EnumBlockOres.NICKEL), 6, 0, 45, 4, Blocks.STONE.getDefaultState(), 0), 1);
 			GameRegistry.registerWorldGenerator(new NickelGenerator(), 1);
 		}
-		if(GSConfigCore.enableNatureGasGen)
+		if(GSConfigWorld.enableNatureGasGen)
 			GameRegistry.registerWorldGenerator(new WorldGenNaturalGas(6, 35, 45, Blocks.STONE.getDefaultState(), 10, 0), 1);
 
 		// --------------------------------------------

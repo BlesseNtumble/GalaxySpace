@@ -21,6 +21,7 @@ import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_OreGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_RavineGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
 import galaxyspace.core.configs.GSConfigCore;
+import galaxyspace.core.configs.GSConfigWorld;
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.ACentauriSystem.ACentauriSystemBodies;
@@ -266,7 +267,7 @@ public class WorldProviderProxima_B_WE extends WE_WorldProviderSpace implements 
 		
 		WE_OreGen standardOres = new WE_OreGen();
 		standardOres.add(ACBlocks.PROXIMA_B_BLOCKS.getStateFromMeta(1), terrainGenerator.worldStoneBlock, 14, 30, 100, 150);
-		if(GSConfigCore.enableOresGeneration) {
+		if(GSConfigWorld.enableOresGeneration) {
 			standardOres.add(ACBlocks.PROXIMA_B_BLOCKS.getStateFromMeta(5), terrainGenerator.worldStoneBlock, 6, 10, 80, 8);
 			standardOres.add(ACBlocks.PROXIMA_B_BLOCKS.getStateFromMeta(6), terrainGenerator.worldStoneBlock, 6, 20, 90, 10);
 			standardOres.add(ACBlocks.PROXIMA_B_BLOCKS.getStateFromMeta(7), terrainGenerator.worldStoneBlock, 6, 20, 90, 15);

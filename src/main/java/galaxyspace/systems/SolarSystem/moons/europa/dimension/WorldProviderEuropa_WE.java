@@ -8,6 +8,7 @@ import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_OreGen;
 import asmodeuscore.core.utils.worldengine.standardcustomgen.WE_TerrainGenerator;
 import galaxyspace.core.GSBlocks;
 import galaxyspace.core.configs.GSConfigCore;
+import galaxyspace.core.configs.GSConfigWorld;
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.systems.SolarSystem.SolarSystemBodies;
 import galaxyspace.systems.SolarSystem.moons.europa.dimension.sky.SkyProviderEuropa;
@@ -164,7 +165,7 @@ public class WorldProviderEuropa_WE extends WE_WorldProviderSpace {
 		terrainGenerator.worldSeaGenMaxY = 64;
 		cp.createChunkGen_List.add(terrainGenerator);
 
-		if(GSConfigCore.enableOresGeneration) {
+		if(GSConfigWorld.enableOresGeneration) {
 			WE_OreGen standardOres = new WE_OreGen();
 			standardOres.add(GSBlocks.EUROPA_BLOCKS.getStateFromMeta(3), terrainGenerator.worldStoneBlock, 2, 1, 8, 4);
 			standardOres.add(GSBlocks.EUROPA_BLOCKS.getStateFromMeta(4), terrainGenerator.worldStoneBlock, 6, 1, 25, 6);

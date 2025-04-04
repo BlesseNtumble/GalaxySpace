@@ -2,6 +2,7 @@ package galaxyspace.systems.SolarSystem.moons.enceladus.world.gen;
 
 import galaxyspace.core.GSBlocks;
 import galaxyspace.core.configs.GSConfigCore;
+import galaxyspace.core.configs.GSConfigWorld;
 import galaxyspace.systems.SolarSystem.moons.enceladus.blocks.EnceladusBlocks;
 import galaxyspace.systems.SolarSystem.moons.enceladus.blocks.EnceladusBlocks.EnumEnceladusBlocks;
 import galaxyspace.systems.SolarSystem.moons.enceladus.blocks.EnceladusCrystal;
@@ -27,7 +28,7 @@ public class BiomeDecoratorEnceladus extends BiomeDecoratorSpace
     @Override
     protected void decorate()
     {
-    	if(GSConfigCore.enableOresGeneration) {
+    	if(GSConfigWorld.enableOresGeneration) {
     		this.generateOre(10, coalGen, 10, 60);
     	}    	
     	

@@ -2,6 +2,7 @@ package galaxyspace.systems.SolarSystem.moons.ganymede.world.gen;
 
 import galaxyspace.core.GSBlocks;
 import galaxyspace.core.configs.GSConfigCore;
+import galaxyspace.core.configs.GSConfigWorld;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.core.world.gen.WorldGenMinableMeta;
 import net.minecraft.world.World;
@@ -25,7 +26,7 @@ public class BiomeDecoratorGanymede extends BiomeDecoratorSpace
     @Override
     protected void decorate()
     {
-    	if(GSConfigCore.enableOresGeneration) {
+    	if(GSConfigWorld.enableOresGeneration) {
     		this.generateOre(16, OreGenMagnesium, 10, 60);
     		this.generateOre(10, OreGenIlmenite, 10, 40);
     	}    	

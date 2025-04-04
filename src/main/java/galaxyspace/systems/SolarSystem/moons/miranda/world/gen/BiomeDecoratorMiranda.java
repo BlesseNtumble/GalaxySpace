@@ -3,6 +3,7 @@ package galaxyspace.systems.SolarSystem.moons.miranda.world.gen;
 import asmodeuscore.core.astronomy.dimension.world.gen.WorldGenLakes;
 import galaxyspace.core.GSBlocks;
 import galaxyspace.core.configs.GSConfigCore;
+import galaxyspace.core.configs.GSConfigWorld;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.core.world.gen.WorldGenMinableMeta;
 import net.minecraft.block.state.IBlockState;
@@ -40,7 +41,7 @@ public class BiomeDecoratorMiranda extends BiomeDecoratorSpace
     @Override
     protected void decorate()
     {
-    	if(GSConfigCore.enableOresGeneration) {
+    	if(GSConfigWorld.enableOresGeneration) {
     		this.generateOre(16, OreGenIron, 10, 80);
     		this.generateOre(10, OreGenDolomite, 10, 40);
     		this.generateOre(4, OreGenDiamond, 5, 16);

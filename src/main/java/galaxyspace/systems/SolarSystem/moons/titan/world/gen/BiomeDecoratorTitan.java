@@ -2,6 +2,7 @@ package galaxyspace.systems.SolarSystem.moons.titan.world.gen;
 
 import galaxyspace.core.GSBlocks;
 import galaxyspace.core.configs.GSConfigCore;
+import galaxyspace.core.configs.GSConfigWorld;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.core.world.gen.WorldGenMinableMeta;
 import net.minecraft.util.math.BlockPos;
@@ -33,7 +34,7 @@ public class BiomeDecoratorTitan extends BiomeDecoratorSpace
 
 
     	this.generateOre(25, subgruntGen, 0, 256);
-        if(GSConfigCore.enableOresGeneration) {
+        if(GSConfigWorld.enableOresGeneration) {
             this.generateOre(6, sapphireOre, 0, 40);
             this.generateOre(4, emeraldOre, 0, 20);
             this.generateOre(6, diamondOre, 0, 20);

@@ -19,9 +19,7 @@ public class BiomeDecoratorCallisto extends BiomeDecoratorSpace
     @Override
     protected void decorate()
     {
-    	if(GSConfigCore.enableOresGeneration) {
 
-    	}    	
     }
 
     @Override

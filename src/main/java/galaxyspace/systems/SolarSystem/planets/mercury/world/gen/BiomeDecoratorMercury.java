@@ -2,6 +2,7 @@ package galaxyspace.systems.SolarSystem.planets.mercury.world.gen;
 
 import galaxyspace.core.GSBlocks;
 import galaxyspace.core.configs.GSConfigCore;
+import galaxyspace.core.configs.GSConfigWorld;
 import micdoodle8.mods.galacticraft.api.prefab.world.gen.BiomeDecoratorSpace;
 import micdoodle8.mods.galacticraft.core.world.gen.WorldGenMinableMeta;
 import net.minecraft.init.Blocks;
@@ -28,7 +29,7 @@ public class BiomeDecoratorMercury extends BiomeDecoratorSpace
     @Override
     protected void decorate()
     {
-    	if(GSConfigCore.enableOresGeneration) {
+    	if(GSConfigWorld.enableOresGeneration) {
     		this.generateOre(18, ironGen, 5, 60);
     		this.generateOre(12, nickelGen, 5, 60);
     		this.generateOre(8, magnesiumGen, 5, 40);
