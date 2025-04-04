@@ -334,20 +334,20 @@ public class ItemBasicGS extends Item implements ISortableItem{
 			
 		}*/
 		if(stack.getItemDamage() == BasicItems.ICE_BUCKET.getMeta()) {
-			RayTraceResult ray = this.rayTrace(world, player, false);
+		/*	RayTraceResult ray = this.rayTrace(world, player, false);
 			if(ray != null && !world.isRemote) {
 				if(stack.hasTagCompound() && stack.getTagCompound().hasKey("current_block")) {
 
 					Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(stack.getTagCompound().getString("current_block")));
 
-					if(block != null) {
+					if(block != null && world.isAirBlock(ray.getBlockPos().up())) {
 						world.setBlockState(ray.getBlockPos().up(), block.getDefaultState());
 
 						return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, new ItemStack(Items.BUCKET));
 					}
 				}
 
-			}
+			}*/
 
 			return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
 		}
