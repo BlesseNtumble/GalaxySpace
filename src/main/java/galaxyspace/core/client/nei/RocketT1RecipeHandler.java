@@ -1,0 +1,143 @@
+package galaxyspace.core.client.nei;
+
+import codechicken.lib.gui.GuiDraw;
+import codechicken.nei.NEIServerUtils;
+import codechicken.nei.PositionedStack;
+import codechicken.nei.recipe.TemplateRecipeHandler;
+import galaxyspace.GalaxySpace;
+import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
+import micdoodle8.mods.galacticraft.planets.mars.MarsModule;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
+
+import java.util.ArrayList;
+import java.util.Map.Entry;
+import java.util.Set;
+
+public class RocketT1RecipeHandler extends TemplateRecipeHandler
+{
+	private static final ResourceLocation GuiTexture = new ResourceLocation(GalaxySpace.ASSET_PREFIX, "textures/gui/schematics/schematic_clear.png");
+	   
+    private static final ResourceLocation rocketGuiTexture = new ResourceLocation(MarsModule.ASSET_PREFIX, "textures/gui/schematic_rocket_T2.png");
+
+    public String getRecipeId()
+    {
+        return "galacticraft.rocketT1";
+    }
+
+    @Override
+    public int recipiesPerPage()
+    {
+        return 1;
+    }
+
+    public Set<Entry<ArrayList<PositionedStack>, PositionedStack>> getRecipes()
+    {
+        return NEIGalaxySpaceConfig.getRocketBenchRecipes();
+    }
+
+    @Override
+    public void drawBackground(int recipe)
+    {
+    	GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        GuiDraw.renderEngine.bindTexture(this.GuiTexture);
+        GuiDraw.drawTexturedModalRect(-4, -10, 10, 0, 174, 155);
+    }
+
+    @Override
+    public void loadTransferRects()
+    {
+    }
+
+    @Override
+    public void loadCraftingRecipes(String outputId, Object... results)
+    {
+        if (outputId.equals(this.getRecipeId()))
+        {
+            for (final Entry<ArrayList<PositionedStack>, PositionedStack> irecipe : this.getRecipes())
+            {
+                this.arecipes.add(new CachedRocketRecipe(irecipe));
+            }
+        }
+        else
+        {
+            super.loadCraftingRecipes(outputId, results);
+        }
+    }
+
+    @Override
+    public void loadCraftingRecipes(ItemStack result)
+    {
+        for (final Entry<ArrayList<PositionedStack>, PositionedStack> irecipe : this.getRecipes())
+        {
+            if (NEIServerUtils.areStacksSameTypeCrafting(irecipe.getValue().item, result))
+            {
+                this.arecipes.add(new CachedRocketRecipe(irecipe));
+            }
+        }
+    }
+
+    @Override
+    public void loadUsageRecipes(ItemStack ingredient)
+    {
+        for (final Entry<ArrayList<PositionedStack>, PositionedStack> irecipe : this.getRecipes())
+        {
+            for (final PositionedStack pstack : irecipe.getKey())
+            {
+                if (NEIServerUtils.areStacksSameTypeCrafting(ingredient, pstack.item))
+                {
+                    this.arecipes.add(new CachedRocketRecipe(irecipe));
+                    break;
+                }
+            }
+        }
+    }
+
+    public class CachedRocketRecipe extends CachedRecipe
+    {
+        public ArrayList<PositionedStack> input;
+        public PositionedStack output;
+
+        @Override
+        public ArrayList<PositionedStack> getIngredients()
+        {
+            return this.input;
+        }
+
+        @Override
+        public PositionedStack getResult()
+        {
+            return this.output;
+        }
+
+        public CachedRocketRecipe(ArrayList<PositionedStack> pstack1, PositionedStack pstack2)
+        {
+            super();
+            this.input = pstack1;
+            this.output = pstack2;
+        }
+
+        public CachedRocketRecipe(Entry<ArrayList<PositionedStack>, PositionedStack> recipe)
+        {
+            this(recipe.getKey(), recipe.getValue());
+        }
+    }
+
+    @Override
+    public String getRecipeName()
+    {
+        return GCCoreUtil.translate("tile.rocketWorkbench.name");
+    }
+
+    @Override
+    public String getGuiTexture()
+    {
+        return this.GuiTexture.toString();
+    }
+
+    @Override
+    public void drawForeground(int recipe)
+    {
+    }
+}
