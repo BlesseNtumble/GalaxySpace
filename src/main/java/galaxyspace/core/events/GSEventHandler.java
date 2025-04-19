@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
@@ -13,6 +14,8 @@ import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import cpw.mods.fml.common.registry.GameData;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import galaxyspace.GalaxySpace;
 import galaxyspace.api.dimension.IAdvancedSpace;
 import galaxyspace.api.dimension.IProviderFreeze;
@@ -25,7 +28,9 @@ import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.handler.GSLightningStormHandler;
 import galaxyspace.core.network.packet.GSPacketSimple;
 import galaxyspace.core.network.packet.GSPacketSimple.GSEnumSimplePacket;
+import galaxyspace.core.prefab.entity.EntityEntryPod;
 import galaxyspace.core.prefab.entity.GSEntityMeteor;
+import galaxyspace.core.proxy.ClientProxy;
 import galaxyspace.core.registers.blocks.GSBlocks;
 import galaxyspace.core.registers.fluids.GSFluids;
 import galaxyspace.core.registers.items.GSItems;
@@ -101,6 +106,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldProviderSurface;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
@@ -486,7 +492,11 @@ public class GSEventHandler {
 			}
 		}
 	}
-
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void pre(RenderPlayerEvent.Pre event) {
+        event.setCanceled(event.entityPlayer != null && event.entityPlayer.ridingEntity instanceof EntityEntryPod);
+	}
 	@SubscribeEvent
     public void onThermalArmorEvent(ThermalArmorEvent event)
     {
@@ -566,14 +576,15 @@ public class GSEventHandler {
 			if(player.ridingEntity instanceof EntityLanderBase)
 			{
 				EntityLanderBase lander = (EntityLanderBase) player.ridingEntity;
-				
 				//GalaxySpace.debug(GCPlayer.spaceshipTier + "");
+
 				if(GCPlayer.spaceshipTier >= 5 && lander.fuelTank.getFluid() != null && lander.fuelTank.getFluid().getFluid() == GalacticraftCore.fluidFuel)
 				{
 					//GalaxySpace.debug(lander.fuelTank.getFluid() + "");
 					lander.fuelTank.setFluid(new FluidStack(GSFluids.HeliumHydrogen, lander.fuelTank.getFluidAmount()));
 				}
 			}
+
 			
 			if(player.ticksExisted % 20 == 0 && player.getHeldItem() != null && player.inventory.getCurrentItem().getItem() == GSItems.BasicItems && player.inventory.getCurrentItem().getItemDamage() == 13)
 			{
