@@ -107,6 +107,7 @@ tile.io_top.name=Io Dungeon Top
 tile.io_floor.name=Io Dungeon Floor
 tile.io_dungeon_bricks.name=Io Dungeon Bricks
 
+tile.europa_surface_ice_2.name=Europa Surface Ice
 tile.europa_grunt.name=Europa Surface Ice
 tile.europa_stone.name=Europa Stone
 tile.europa_brown_ice.name=Brown Europa Ice
