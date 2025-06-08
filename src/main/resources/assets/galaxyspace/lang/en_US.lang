@@ -107,6 +107,7 @@ tile.io_top.name=Io Dungeon Top
 tile.io_floor.name=Io Dungeon Floor
 tile.io_dungeon_bricks.name=Io Dungeon Bricks
 
+tile.europa_surface_ice_2.name=Europa Surface Ice
 tile.europa_grunt.name=Europa Surface Ice
 tile.europa_stone.name=Europa Stone
 tile.europa_brown_ice.name=Brown Europa Ice
@@ -204,6 +205,7 @@ tile.barnarda_c_leaves_1.name=Barnarda C Leaves
 tile.barnarda_c_farmland.name=Barnarda C Farmland
 tile.barnarda_c_glow_dandelions.name=Barnarda C Glow Plant
 tile.barnarda_c_violet_trapdoor.name=Barnarda C Trapdoor
+tile.barnarda_c_cactus.name=Barnarda C cactus
 
 tile.tauceti_f_grass.name=Tau Ceti F Grass
 tile.tauceti_f_dirt.name=Tau Ceti F Dirt
