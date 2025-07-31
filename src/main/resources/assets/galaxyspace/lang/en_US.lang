@@ -276,10 +276,10 @@ tile.liquid_separator.name=Liquid Separator
 tile.liquid_separator.desc=Separates liquids into elements or combines them.
 
 tile.hydroponic_base.name=Hydroponic Base
-tile.hydroponic_base.desc=Base block for Hydroponic Farm. Install the Hydroponic Farm Block on top of this machine.
+tile.hydroponic_base.desc=Base block for a Hydroponic Farm. Install a few Hydroponic Farm blocks on top of this machine.
 
 tile.hydroponic_farm.name=Hydroponic Farm Block
-tile.hydroponic_farm.desc=Install up to three of these above the Hydroponic Base. Required for the operation of the Hydroponic Farm.
+tile.hydroponic_farm.desc=Install up to three above a Hydroponic Base. Required for the operation of a Hydroponic Farm.
 
 tile.radiation_stabiliser.name=Magnetic Field Generator
 tile.radiation_stabiliser.desc=Creates a field that protects against solar radiation. The range can be extended by installing additional modules.
@@ -345,7 +345,7 @@ tile.treasure_t4.name=Treasure Chest Tier 4
 tile.treasure_t4.desc=Tier 4 treasure chests generate in Ceres dungeons. Unlocked after killing the final boss.
 
 tile.treasure_t5.name=Treasure Chest Tier 5
-tile.treasure_t5.desc=Tier 5 treasure chests generate in Io Dungeons. Unlocked after killing the final boss.
+tile.treasure_t5.desc=Tier 5 treasure chests generate in Io dungeons. Unlocked after killing the final boss.
 
 |/////////////////////////////////////////|
 #|||||||||||||||||Items||||||||||||||||||||
@@ -606,7 +606,7 @@ gui.module.speed.desc=Installing boosters slightly increases your running speed.
 gui.module.gravity=Gravity Force
 gui.module.gravity.desc=The layer of magnesium plates gives the effect of gravity. Adaptation on planets is now much easier!
 gui.module.stepassist=Bigger Step
-gui.module.stepassist.desc=Installing a slimeball seemed useless... But now you can run up blocks like a staircase!
+gui.module.stepassist.desc=Installing a slimeball seems useless... But now you can run up blocks like a staircase!
 gui.module.jump=High Jump
 gui.module.jump.desc=Installing pistons was a good idea! Now you can jump twice as high as usual!
 gui.module.energy=Advanced Battery
@@ -624,7 +624,7 @@ gui.module.sublight_engine.desc=Next-generation spacecraft engine. Allows space 
 gui.message.forrbiden_modules.name=Incompatible with:
 gui.module.active=Active module
 gui.module.passive=Passive module
-gui.module.empty_slot=Empty slot. Place the item in the slot.
+gui.module.empty_slot=Empty slot. Place a module in the slot.
 
 |/////////////////////////////////////////|
 #||||||||||||||Creative Tabs|||||||||||||||
