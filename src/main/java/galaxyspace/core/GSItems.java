@@ -224,16 +224,16 @@ public class GSItems {
 			 OreDictionary.registerOre("plateAluminum", new ItemStack(GCItems.basicItem, 1, 8));
 			 OreDictionary.registerOre("plateSteel", new ItemStack(GCItems.basicItem, 1, 9));
 			 OreDictionary.registerOre("plateBronze", new ItemStack(GCItems.basicItem, 1, 10));
-			 OreDictionary.registerOre("plateIron",new ItemStack(GCItems.basicItem, 1, 11));
-			 OreDictionary.registerOre("plateDesh",new ItemStack(MarsItems.marsItemBasic, 1, 5));
-			 OreDictionary.registerOre("plateTitanium",new ItemStack(AsteroidsItems.basicItem, 1, 6));			 
+			 OreDictionary.registerOre("plateIron", new ItemStack(GCItems.basicItem, 1, 11));
+			 OreDictionary.registerOre("plateDesh", new ItemStack(MarsItems.marsItemBasic, 1, 5));
+			 OreDictionary.registerOre("plateTitanium", new ItemStack(AsteroidsItems.basicItem, 1, 6));
 		 }
-		 
-		 OreDictionary.registerOre("plateCoal",new ItemStack(GSItems.COMPRESSED_PLATES, 1, 0));
-		 OreDictionary.registerOre("plateCobalt", new ItemStack(GSItems.COMPRESSED_PLATES, 1, 1));
-		 OreDictionary.registerOre("plateMagnesium", new ItemStack(GSItems.COMPRESSED_PLATES, 1, 2));
-		 OreDictionary.registerOre("plateNickel", new ItemStack(GSItems.COMPRESSED_PLATES, 1, 3));
-		 
+
+			 OreDictionary.registerOre("plateCoal", new ItemStack(GSItems.COMPRESSED_PLATES, 1, 0));
+			 OreDictionary.registerOre("plateCobalt", new ItemStack(GSItems.COMPRESSED_PLATES, 1, 1));
+			 OreDictionary.registerOre("plateMagnesium", new ItemStack(GSItems.COMPRESSED_PLATES, 1, 2));
+			 OreDictionary.registerOre("plateNickel", new ItemStack(GSItems.COMPRESSED_PLATES, 1, 3));
+
 		 OreDictionary.registerOre("ingotLead", new ItemStack(VenusItems.basicItem, 1, 1));
     }
 	

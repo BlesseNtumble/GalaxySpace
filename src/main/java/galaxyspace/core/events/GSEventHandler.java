@@ -79,6 +79,7 @@ import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.inventory.IInventory;
@@ -139,7 +140,7 @@ public class GSEventHandler {
     static {
 
         items_to_change.add(new ItemsToChange(new ItemStack(Blocks.FURNACE), Blocks.AIR.getDefaultState()).setOxygenCheck(true));
-        block_to_change.add(new BlockToChange(Blocks.WATER.getDefaultState().withProperty(BlockLiquid.LEVEL, 0), Blocks.AIR.getDefaultState(), Blocks.ICE.getDefaultState(), 0.0F, true).setParticle("waterbubbles").setOxygenCheck(false));
+        //block_to_change.add(new BlockToChange(Blocks.WATER.getDefaultState().withProperty(BlockLiquid.LEVEL, 0), Blocks.AIR.getDefaultState(), Blocks.ICE.getDefaultState(), 0.0F, true).setParticle("waterbubbles").setOxygenCheck(false));
         block_to_change.add(new BlockToChange(GSFluids.BLOCK_LEMETHANE.getDefaultState().withProperty(BlockLiquid.LEVEL, 0), Blocks.FIRE.getDefaultState(), Blocks.AIR.getDefaultState(), 3.0F, true).setParticle("waterbubbles").setOxygenCheck(false));
         block_to_change.add(new BlockToChange(GSFluids.BLOCK_HELIUM_HYDROGEN.getDefaultState().withProperty(BlockLiquid.LEVEL, 0), Blocks.FIRE.getDefaultState(), Blocks.AIR.getDefaultState(), 3.0F, true).setParticle("waterbubbles").setOxygenCheck(false));
     }
@@ -405,13 +406,15 @@ public class GSEventHandler {
 */
     @SubscribeEvent
     public void onFillBucket(FillBucketEvent e) {
+
+
         World world = e.getWorld();
         if (e.getTarget() == null) return;
         if (e.getTarget().typeOfHit != RayTraceResult.Type.BLOCK) return;
 
         BlockPos pos = e.getTarget().getBlockPos();
 
-        if (world.getBlockState(pos) == Blocks.ICE.getDefaultState()) {
+        if (e.getEmptyBucket().getItem() == Items.BUCKET && world.getBlockState(pos) == Blocks.ICE.getDefaultState()) {
 
             ItemStack ice_bucket = new ItemStack(GSItems.BASIC, 1, BasicItems.ICE_BUCKET.getMeta());
             if (!ice_bucket.hasTagCompound())
@@ -421,12 +424,25 @@ public class GSEventHandler {
             e.setFilledBucket(ice_bucket);
             e.setResult(Result.ALLOW);
         }
+
+
+        if (e.getEmptyBucket().getItem() == Items.WATER_BUCKET) {
+            if (world.provider instanceof IGalacticraftWorldProvider) {
+                float thermal = ((IGalacticraftWorldProvider) world.provider).getThermalLevelModifier();
+                ItemStack water_bucket = new ItemStack(Items.WATER_BUCKET);
+
+                if (!GSUtils.getThermalControl(world, e.getTarget().getBlockPos()) && (thermal > 2.0F || thermal < -2.0F)) {
+                    e.setFilledBucket(water_bucket);
+                    e.setResult(Result.ALLOW);
+                }
+            }
+        }
     }
 
     @SubscribeEvent
     public void onInteract(PlayerInteractEvent.RightClickBlock event) {
         //Skip events triggered from Thaumcraft Golems and other non-players
-        if (event.getEntityPlayer() == null || event.getEntityPlayer().inventory == null || event.getPos() == null || (event.getPos().getX() == 0 && event.getPos().getY() == 0 && event.getPos().getZ() == 0)) {
+        if (event.getEntityPlayer() == null || event.getEntityPlayer().inventory == null || (event.getPos().getX() == 0 && event.getPos().getY() == 0 && event.getPos().getZ() == 0)) {
             return;
         }
 
@@ -446,6 +462,8 @@ public class GSEventHandler {
         }
 
         if (!world.isRemote && !block.hasTileEntity(state)) {
+
+
             if (CompatibilityManager.isIc2Loaded()) {
                 //IC2 WIND TURBINE
                 if (world.provider instanceof IGalacticraftWorldProvider && ((IGalacticraftWorldProvider) world.provider).hasNoAtmosphere() && ((IGalacticraftWorldProvider) world.provider).getWindLevel() <= 0.0F) {

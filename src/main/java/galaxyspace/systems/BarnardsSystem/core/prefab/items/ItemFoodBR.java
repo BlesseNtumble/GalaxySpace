@@ -1,4 +1,4 @@
-package galaxyspace.systems.BarnardsSystem.planets.barnarda_c.items;
+package galaxyspace.systems.BarnardsSystem.core.prefab.items;
 
 import galaxyspace.core.util.GSCreativeTabs;
 import micdoodle8.mods.galacticraft.core.items.ISortableItem;

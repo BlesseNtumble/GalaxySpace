@@ -151,7 +151,7 @@ public class Proxima_B_Dandelions extends BlockBush implements IGrowable, IShear
 		
     }
 	
-	private void canPlaceAt(IBlockState state, World world, BlockPos pos, EntityLivingBase placer, EnumBlockDandelions type, IBlockState... valide)
+	private boolean canPlaceAt(IBlockState state, World world, BlockPos pos, EntityLivingBase placer, EnumBlockDandelions type, IBlockState... valide)
 	{
 		
 		if(!world.isRemote && state == this.getDefaultState().withProperty(BASIC_TYPE, type))
@@ -167,15 +167,23 @@ public class Proxima_B_Dandelions extends BlockBush implements IGrowable, IShear
 				if(placer instanceof EntityPlayer && !((EntityPlayer) placer).capabilities.isCreativeMode)
 					world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(this.getDefaultState().getBlock(), 1, this.getMetaFromState(state))));
 			}
-		}		
+			return is_forrbiden;
+		}
+		return super.canPlaceBlockAt(world, pos);
 	}
 	
 	@Override
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {		
 		//canPlaceAt(state, world, pos, placer, EnumBlockDandelions.REEDS, BRBlocks.BARNARDA_C_GRASS.getDefaultState(), this.getDefaultState().withProperty(BASIC_TYPE, EnumBlockDandelions.REEDS));
-		canPlaceAt(state, world, pos, placer, EnumBlockDandelions.GRASS, ACBlocks.PROXIMA_B_BLOCKS.getDefaultState().withProperty(Proxima_B_Grass.BASIC_TYPE, Proxima_B_Grass.EnumBlockGrass.GRASS));
-		canPlaceAt(state, world, pos, placer, EnumBlockDandelions.GRASS_2, ACBlocks.PROXIMA_B_BLOCKS.getDefaultState().withProperty(Proxima_B_Grass.BASIC_TYPE, Proxima_B_Grass.EnumBlockGrass.GRASS));
+		canPlaceAt(state, world, pos, placer, EnumBlockDandelions.GRASS, ACBlocks.PROXIMA_B_GRASS.getDefaultState().withProperty(Proxima_B_Grass.BASIC_TYPE, Proxima_B_Grass.EnumBlockGrass.GRASS));
+		canPlaceAt(state, world, pos, placer, EnumBlockDandelions.GRASS_2, ACBlocks.PROXIMA_B_GRASS.getDefaultState().withProperty(Proxima_B_Grass.BASIC_TYPE, Proxima_B_Grass.EnumBlockGrass.GRASS));
+	}
+
+	@Override
+	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+	{
+		return true;
 	}
 	
 	@Override
@@ -344,11 +352,6 @@ public class Proxima_B_Dandelions extends BlockBush implements IGrowable, IShear
     {
 		return true;
     }
-	
-	@Override
-	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
-    {
-		return true;
-    }
+
 
 }

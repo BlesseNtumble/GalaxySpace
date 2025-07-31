@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
 
+import galaxyspace.core.util.GSUtils;
 import org.lwjgl.opengl.GL11;
 
 import asmodeuscore.api.dimension.IAdvancedSpace;
@@ -245,7 +246,7 @@ public class GSClientTickHandler {
 		ItemStack stack = player.getHeldItemMainhand();
 		
 		if(player != null && stack != null && stack.getItem() instanceof ItemGeologicalScanner && stack.getItemDamage() < stack.getMaxDamage() && stack.getTagCompound().getInteger("mode") == 0) {	
-			RayTraceResult ray = ItemBasicGS.getRay(player.getEntityWorld(), player, false);
+			RayTraceResult ray = GSUtils.getRay(player.getEntityWorld(), player, false);
     		
 			if(ray != null && ray.hitVec.distanceTo(player.getPositionVector()) < 5.0F) {
 				final Tessellator tess = Tessellator.getInstance();
@@ -330,7 +331,7 @@ public class GSClientTickHandler {
 		
 		if(stack.getItem() instanceof ItemMatterManipulator)
 		{
-			RayTraceResult ray = ItemBasicGS.getRay(player.getEntityWorld(), player, false);
+			RayTraceResult ray = GSUtils.getRay(player.getEntityWorld(), player, false);
     		if(ray != null && ray.hitVec.distanceTo(player.getPositionVector()) < 15.0F)
     		{
     			ItemMatterManipulator.drawLine(player.getPosition().add(0, player.getEyeHeight(), 0), ray.getBlockPos(), player.posX, player.posY, player.posZ);

@@ -2,8 +2,8 @@ package galaxyspace.systems.BarnardsSystem.core;
 
 import galaxyspace.core.GSItems;
 import galaxyspace.core.prefab.items.ItemDoorGS;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.items.ItemBasicBR;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.items.ItemFoodBR;
+import galaxyspace.systems.BarnardsSystem.core.prefab.items.ItemBasicBR;
+import galaxyspace.systems.BarnardsSystem.core.prefab.items.ItemFoodBR;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
