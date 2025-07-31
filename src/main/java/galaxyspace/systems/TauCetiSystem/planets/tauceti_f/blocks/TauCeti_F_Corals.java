@@ -246,7 +246,7 @@ public class TauCeti_F_Corals extends BlockBush implements IGrowable, IShearable
 					is_forriden = false;
 				
 			if(is_forriden) {
-				world.destroyBlock(pos, true);
+				world.destroyBlock(pos, false);
 				if(placer instanceof EntityPlayer && !((EntityPlayer) placer).capabilities.isCreativeMode)
 					world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(this.getDefaultState().getBlock(), 1, this.getMetaFromState(state))));
 			}
