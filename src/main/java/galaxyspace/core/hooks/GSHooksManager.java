@@ -17,8 +17,7 @@ import galaxyspace.api.block.IEnergyGeyser;
 import galaxyspace.core.configs.GSConfigCore;
 import galaxyspace.core.events.SetBlockEvent;
 import galaxyspace.core.events.UpdateBlockEvent;
-import galaxyspace.core.hooklib.asm.Hook;
-import galaxyspace.core.hooklib.asm.ReturnCondition;
+
 import galaxyspace.core.prefab.entities.EntityMultiSeatRocket;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS.BasicItems;
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
@@ -179,8 +178,7 @@ public class GSHooksManager {
 
 		return 35;
 	}
-	
-	@Hook(returnCondition = ReturnCondition.ALWAYS)
+
 	public static void checkThermalStatus(GCPlayerHandler handler, EntityPlayerMP player, GCPlayerStats playerStats)
     {
         if (player.world.provider instanceof IGalacticraftWorldProvider && !player.capabilities.isCreativeMode && !CompatibilityManager.isAndroid(player))
