@@ -1,9 +1,5 @@
 package galaxyspace.systems.SolarSystem.satellites.mars.dimension;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import galaxyspace.core.util.GSDimensions;
 import galaxyspace.systems.SolarSystem.SolarSystemBodies;
 import galaxyspace.systems.SolarSystem.planets.ceres.world.gen.BiomeProviderCeres;
@@ -27,8 +23,13 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.BiomeProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class WorldProviderMarsSS extends WorldProviderSpaceStation implements IOrbitDimension, IZeroGDimension, ISolarLevel, IExitHeight{
 
@@ -217,6 +218,12 @@ public class WorldProviderMarsSS extends WorldProviderSpaceStation implements IO
     {
         freefallingEntities.clear();
         super.updateWeather();
+    }
+
+    @Override
+    public Class<? extends IChunkGenerator> getChunkProviderClass()
+    {
+        return ChunkProviderMarsSS.class;
     }
 
     @Override
