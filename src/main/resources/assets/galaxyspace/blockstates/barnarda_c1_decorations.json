@@ -1,0 +1,14 @@
+{ 
+	"variants": { 	
+		"type=barnarda_c1_dripstone_base,up=false": { "model": "galaxyspace:barnarda/barnarda_c1_dripstone_base_down"}, 
+		"type=barnarda_c1_dripstone_base,up=true": { "model": "galaxyspace:barnarda/barnarda_c1_dripstone_base_up"}, 
+		"type=barnarda_c1_dripstone_large,up=false": { "model": "galaxyspace:barnarda/barnarda_c1_dripstone_large_down"}, 
+		"type=barnarda_c1_dripstone_large,up=true": { "model": "galaxyspace:barnarda/barnarda_c1_dripstone_large_up"}, 
+		"type=barnarda_c1_dripstone_medium,up=false": { "model": "galaxyspace:barnarda/barnarda_c1_dripstone_medium_down"}, 
+		"type=barnarda_c1_dripstone_medium,up=true": { "model": "galaxyspace:barnarda/barnarda_c1_dripstone_medium_up"}, 
+		"type=barnarda_c1_dripstone_small,up=false": { "model": "galaxyspace:barnarda/barnarda_c1_dripstone_small_down"}, 
+		"type=barnarda_c1_dripstone_small,up=true": { "model": "galaxyspace:barnarda/barnarda_c1_dripstone_small_up"}, 
+		"type=barnarda_c1_dripstone_thin,up=false": { "model": "galaxyspace:barnarda/barnarda_c1_dripstone_thin_down"}, 
+		"type=barnarda_c1_dripstone_thin,up=true": { "model": "galaxyspace:barnarda/barnarda_c1_dripstone_thin_up"}	
+	} 
+}

@@ -123,7 +123,7 @@ public class ItemGasExtractor extends ItemElectricBase implements ISortableItem,
         if(this.getElectricityStored(stack) < DISCHARGE_COUNT)
             return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
 
-        RayTraceResult result = ItemBasicGS.getRay(world, player, true);
+        RayTraceResult result = GSUtils.getRay(world, player, true);
 
         if(result != null && result.typeOfHit == RayTraceResult.Type.BLOCK) {
             if(world.getBlockState(result.getBlockPos()).getBlock() == GSFluids.BLOCK_NATURE_GAS) {

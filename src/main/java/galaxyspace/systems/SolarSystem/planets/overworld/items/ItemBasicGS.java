@@ -353,7 +353,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
 		}
 
 		if(stack.getItemDamage() == BasicItems.DOLOMITE_MEAL.getMeta()) {
-			RayTraceResult ray = this.getRay(world, player, true);
+			RayTraceResult ray = GSUtils.getRay(world, player, true);
 			if (ray != null && ItemDye.applyBonemeal(stack, world, ray.getBlockPos(), player, hand)) {
 				if (!world.isRemote) {
 					world.playEvent(2005, ray.getBlockPos(), 0);
@@ -461,7 +461,7 @@ public class ItemBasicGS extends Item implements ISortableItem{
 				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
 
 			} else {
-				RayTraceResult result = this.getRay(world, player, false);
+				RayTraceResult result = GSUtils.getRay(world, player, false);
 				if(result != null && result.typeOfHit != null) {
 					if(result.typeOfHit == Type.BLOCK && stack.getTagCompound().hasKey("entityData")) {
 
@@ -574,21 +574,5 @@ public class ItemBasicGS extends Item implements ISortableItem{
         return -1;
     }
     
-    public static RayTraceResult getRay(World world, EntityPlayer player, boolean useLiquids) {
-		float f = player.rotationPitch;
-		float f1 = player.rotationYaw;
-		double d0 = player.posX;
-		double d1 = player.posY + (double) player.getEyeHeight();
-		double d2 = player.posZ;
-		Vec3d vec3d = new Vec3d(d0, d1, d2);
-		float f2 = MathHelper.cos(-f1 * 0.017453292F - (float) Math.PI);
-		float f3 = MathHelper.sin(-f1 * 0.017453292F - (float) Math.PI);
-		float f4 = -MathHelper.cos(-f * 0.017453292F);
-		float f5 = MathHelper.sin(-f * 0.017453292F);
-		float f6 = f3 * f4;
-		float f7 = f2 * f4;
-		double d3 = player.getEntityAttribute(EntityPlayer.REACH_DISTANCE).getAttributeValue() + 10;
-		Vec3d vec3d1 = vec3d.add((double) f6 * d3, (double) f5 * d3, (double) f7 * d3);
-		return world.rayTraceBlocks(vec3d, vec3d1, useLiquids, !useLiquids, false);
-	}
+
 }

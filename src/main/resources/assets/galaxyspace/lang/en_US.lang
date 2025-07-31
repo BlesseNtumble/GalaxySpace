@@ -205,6 +205,19 @@ tile.barnarda_c_farmland.name=Barnarda C Farmland
 tile.barnarda_c_glow_dandelions.name=Barnarda C Glow Plant
 tile.barnarda_c_violet_trapdoor.name=Barnarda C Trapdoor
 
+tile.barnarda_c1_snowy_surface.name=Barnarda C1 Snowy Surface
+tile.barnarda_c1_snowy_subsurface.name=Barnarda C1 Snowy Subsurface
+tile.barnarda_c1_stone.name=Barnarda C1 Stone
+tile.barnarda_c1_onyx_ore.name=Onyx Ore
+tile.barnarda_c1_iron_ore.name=Iron Ore
+tile.barnarda_c1_copper_ore.name=Copper Ore
+tile.barnarda_c1_tin_ore.name=Tin Ore
+tile.barnarda_c1_dripstone_base.name=Barnarda C1 Dripstone Base
+tile.barnarda_c1_dripstone_large.name=Barnarda C1 Dripstone Large
+tile.barnarda_c1_dripstone_medium.name=Barnarda C1 Dripstone Medium
+tile.barnarda_c1_dripstone_small.name=Barnarda C1 Dripstone Small
+tile.barnarda_c1_dripstone_thin.name=Barnarda C1 Dripstone Thin
+
 tile.tauceti_f_grass.name=Tau Ceti F Grass
 tile.tauceti_f_dirt.name=Tau Ceti F Dirt
 tile.tauceti_f_stone.name=Tau Ceti F Stone
@@ -473,6 +486,7 @@ item.water_grass.name=Lichen
 item.tree_juice.name=Tree Juice
 item.yellow_fruits.name=Yellow Fruits
 item.barnarda_c_violet_door.name=Barnarda C Door
+item.onyx.name=Onyx
 
 |/////////////////////////////////////////|
 #||||||||||||||||||Fluids||||||||||||||||||

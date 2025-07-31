@@ -64,9 +64,10 @@ public class Barnarda_C_Reeds extends Block {
 	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
-	
+
+	@Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT_MIPPED;
     }
     

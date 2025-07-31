@@ -309,7 +309,7 @@ public class WorldProviderMars_WE extends WE_WorldProviderSpace implements IProv
 	}
 
 	@Override
-	public void recreateStructures(Chunk chunkIn, int x, int z) {		
+	public void recreateStructures(Chunk chunkIn, int x, int z) {
 		dungeonGenerator.generate(this.world, x, z, null);
 	}
 

@@ -1,0 +1,12 @@
+{ 
+	"variants": { 	
+		"type=barnarda_c1_snowy_surface": { "model": "galaxyspace:barnarda/barnarda_c1_snowy_surface"}, 
+		"type=barnarda_c1_snowy_subsurface": { "model": "galaxyspace:barnarda/barnarda_c1_snowy_subsurface"}, 
+		"type=barnarda_c1_icy_subsurface": { "model": "galaxyspace:barnarda/barnarda_c1_icy_subsurface"},
+		"type=barnarda_c1_stone": { "model": "galaxyspace:barnarda/barnarda_c1_stone"},
+		"type=barnarda_c1_onyx_ore": { "model": "galaxyspace:barnarda/barnarda_c1_onyx_ore"},
+		"type=barnarda_c1_iron_ore": { "model": "galaxyspace:barnarda/barnarda_c1_iron_ore"},
+		"type=barnarda_c1_copper_ore": { "model": "galaxyspace:barnarda/barnarda_c1_copper_ore"},
+		"type=barnarda_c1_tin_ore": { "model": "galaxyspace:barnarda/barnarda_c1_tin_ore"}
+	} 
+}

@@ -216,13 +216,13 @@ public class TileEntityAdvLandingPad extends TileEntityMulti implements IMultiBl
     {
         HashSet<ILandingPadAttachable> connectedTiles = new HashSet<ILandingPadAttachable>();
 
-        for (int x = this.getPos().getX() -2; x < this.getPos().getX() + 3; x++)
+        for (int x = this.getPos().getX() -3; x < this.getPos().getX() + 3; x++)
         {
         	this.testConnectedTile(x, this.getPos().getZ() - 3, connectedTiles);
         	this.testConnectedTile(x, this.getPos().getZ() + 3, connectedTiles);
         }
 
-        for (int z = this.getPos().getZ() -2; z < this.getPos().getZ() + 3; z++)
+        for (int z = this.getPos().getZ() -3; z < this.getPos().getZ() + 3; z++)
         {
         	this.testConnectedTile(this.getPos().getX() - 3, z, connectedTiles);
         	this.testConnectedTile(this.getPos().getX() + 3, z, connectedTiles);

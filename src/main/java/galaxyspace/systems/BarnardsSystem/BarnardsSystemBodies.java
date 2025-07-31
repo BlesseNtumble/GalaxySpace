@@ -21,7 +21,10 @@ import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigCore;
 import galaxyspace.systems.BarnardsSystem.core.configs.BRConfigDimensions;
 import galaxyspace.systems.BarnardsSystem.core.events.BRClientEventHandler;
 import galaxyspace.systems.BarnardsSystem.core.events.BREventHandler;
+import galaxyspace.systems.BarnardsSystem.moons.barnarda_c1.blocks.Barnarda_C1_Blocks;
+import galaxyspace.systems.BarnardsSystem.moons.barnarda_c1.blocks.Barnarda_C1_Decorations;
 import galaxyspace.systems.BarnardsSystem.moons.barnarda_c1.dimension.WorldProviderBarnarda_C1_WE;
+import galaxyspace.systems.BarnardsSystem.moons.barnarda_c1.recipes.CraftingRecipesBarnarda_C1;
 import galaxyspace.systems.BarnardsSystem.moons.barnarda_c2.dimension.WorldProviderBarnarda_C2_WE;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Blocks.EnumBlockBarnardaC;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Dandelions.EnumBlockDandelions;
@@ -33,8 +36,8 @@ import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_O
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.Barnarda_C_Ores.EnumBlockBarnardaCOres;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.TeleportTypeBarnarda_C;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.dimension.WorldProviderBarnarda_C_WE;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.items.ItemBasicBR;
-import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.items.ItemFoodBR.BR_Food;
+import galaxyspace.systems.BarnardsSystem.core.prefab.items.ItemBasicBR;
+import galaxyspace.systems.BarnardsSystem.core.prefab.items.ItemFoodBR.BR_Food;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.recipes.CraftingRecipesBarnarda_C;
 import micdoodle8.mods.galacticraft.api.GalacticraftRegistry;
 import micdoodle8.mods.galacticraft.api.galaxies.CelestialBody.ScalableDistance;
@@ -99,11 +102,9 @@ public class BarnardsSystemBodies implements IBodies {
 
 		Barnarda_C1 = BodiesRegistry.registerExMoon(Barnarda_C, "barnarda_c1", GalaxySpace.ASSET_PREFIX, 10.75F);
 		BodiesRegistry.setOrbitData(Barnarda_C1, (float) Math.PI / 2, 1.0F, 25.5F);
-		if(GalaxySpace.debug) {
-			BodiesRegistry.setAtmosphere(Barnarda_C1, false, false, false, -4.0F, 3.0F, 0.0F);
-			BodiesRegistry.setPlanetData(Barnarda_C1, 15F, 45000, BodiesRegistry.calculateGravity(6.5F), false);
-			BodiesRegistry.setProviderData(Barnarda_C1, WorldProviderBarnarda_C1_WE.class, BRConfigDimensions.dimensionIDBarnardaC1, BRConfigCore.survivalModeOnBarnarda ? 1 : 6, ACBiome.ACSpace);
-		}
+		BodiesRegistry.setAtmosphere(Barnarda_C1, false, false, false, -1.3F, 3.0F, 0.0F);
+		BodiesRegistry.setPlanetData(Barnarda_C1, 15F, 45000, BodiesRegistry.calculateGravity(6.5F), false);
+		BodiesRegistry.setProviderData(Barnarda_C1, WorldProviderBarnarda_C1_WE.class, BRConfigDimensions.dimensionIDBarnardaC1, BRConfigCore.survivalModeOnBarnarda ? 1 : 6, ACBiome.ACSpace);
 		Barnarda_C1.atmosphereComponent(EnumAtmosphericGas.CO2).atmosphereComponent(EnumAtmosphericGas.NITROGEN).atmosphereComponent(EnumAtmosphericGas.ARGON);
 		GalaxyRegistry.registerMoon(Barnarda_C1);
 
@@ -166,8 +167,9 @@ public class BarnardsSystemBodies implements IBodies {
 	private static void registryteleport() {
 		GalacticraftRegistry.registerTeleportType(WorldProviderBarnarda_C_WE.class, new TeleportTypeBarnarda_C());
 
+
+		GalacticraftRegistry.registerTeleportType(WorldProviderBarnarda_C1_WE.class, new TeleportTypeBody());
 		if(GalaxySpace.debug) {
-			GalacticraftRegistry.registerTeleportType(WorldProviderBarnarda_C1_WE.class, new TeleportTypeBody());
 			GalacticraftRegistry.registerTeleportType(WorldProviderBarnarda_C2_WE.class, new TeleportTypeBody());
 		}
 	}
@@ -201,6 +203,12 @@ public class BarnardsSystemBodies implements IBodies {
 			ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, BRBlocks.BARNARDA_C_ORES, blockBasic.getMeta(), "barnarda/" + blockBasic.getName());
 		}
 		GSUtils.addBlockMetadataJsonFiles(BRBlocks.BARNARDA_C_ORES, name, Barnarda_C_Ores.BASIC_TYPE.getName(), "barnarda/");
+
+		for (Barnarda_C1_Blocks.EnumBlockBarnardaC1 blockBasic : Barnarda_C1_Blocks.EnumBlockBarnardaC1.values())
+				ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, BRBlocks.BARNARDA_C1_BLOCKS, blockBasic.getMeta(), "barnarda/" + blockBasic.getName());
+
+		for (Barnarda_C1_Decorations.EnumBlockBarnardaC1Decoration blockBasic : Barnarda_C1_Decorations.EnumBlockBarnardaC1Decoration.values())
+				ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX, BRBlocks.BARNARDA_C1_DECORATIONS, blockBasic.getMeta(), "barnarda/" + blockBasic.getName());
 
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "barnarda/",  BRBlocks.BARNARDA_C_FARMLAND);
 		ClientUtil.registerBlockJson(GalaxySpace.TEXTURE_PREFIX + "barnarda/",  BRBlocks.BARNARDA_C_WATER_GRASS);
@@ -282,6 +290,18 @@ public class BarnardsSystemBodies implements IBodies {
 
 		ClientProxy.addVariant("barnarda_c_ores", "barnarda/", blocks);
 
+		blocks = new String[Barnarda_C1_Blocks.EnumBlockBarnardaC1.values().length];
+		for(int i = 0; i < blocks.length; i++)
+			blocks[i] = Barnarda_C1_Blocks.EnumBlockBarnardaC1.byMetadata(i).getName();
+
+		ClientProxy.addVariant("barnarda_c1_blocks", "barnarda/", blocks);
+
+		blocks = new String[Barnarda_C1_Decorations.EnumBlockBarnardaC1Decoration.values().length];
+		for(int i = 0; i < blocks.length; i++)
+			blocks[i] = Barnarda_C1_Decorations.EnumBlockBarnardaC1Decoration.byMetadata(i).getName();
+
+		ClientProxy.addVariant("barnarda_c1_decorations", "barnarda/", blocks);
+
 		//ModelLoader.setCustomStateMapper(BRBlocks.BARNARDA_C_REEDS, new StateMap.Builder().ignore(BlockLiquid.LEVEL).build());
 
 		ClientProxy.addVariant("br_basic", "barnarda/basic/", ItemBasicBR.names);
@@ -296,7 +316,9 @@ public class BarnardsSystemBodies implements IBodies {
 
 	@Override
 	public void registerRecipes() {
+
 		CraftingRecipesBarnarda_C.loadRecipes();
+		CraftingRecipesBarnarda_C1.loadRecipes();
 	}
 
 	@Override

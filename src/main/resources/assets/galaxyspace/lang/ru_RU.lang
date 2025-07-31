@@ -205,6 +205,18 @@ tile.barnarda_c_farmland.name=Пашня Барнарды С
 tile.barnarda_c_glow_dandelions.name=Светящееся Растение Барнарды С
 tile.barnarda_c_violet_trapdoor.name=Фиолетовый Люк Барнарды С
 
+tile.barnarda_c1_snowy_surface.name=Снежная Поверхность Барнарды C1
+tile.barnarda_c1_snowy_subsurface.name=Снежная Подповерхность Барнарды C1
+tile.barnarda_c1_stone.name=Камень Барнарды C1
+tile.barnarda_c1_onyx_ore.name=Руда Оникса
+tile.barnarda_c1_iron_ore.name=Железная Руда
+tile.barnarda_c1_copper_ore.name=Медная Руда
+tile.barnarda_c1_tin_ore.name=Оловянная Руда
+tile.barnarda_c1_dripstone_base.name=Основание Капельника Барнарды C1
+tile.barnarda_c1_dripstone_large.name=Большой Капельник Барнарды C1
+tile.barnarda_c1_dripstone_medium.name=Средний Капельник Барнарды C1
+tile.barnarda_c1_dripstone_small.name=Малый Капельник Барнарды C1
+tile.barnarda_c1_dripstone_thin.name=Тонкий Капельник Барнарды C1
 
 tile.tauceti_f_grass.name=Трава Тау Кита F
 tile.tauceti_f_dirt.name=Земля Тау Кита F
@@ -418,6 +430,7 @@ item.water_grass.name=Лишайник
 item.tree_juice.name=Древесный Сок
 item.yellow_fruits.name=Желтые Фрукты
 item.barnarda_c_violet_door.name=Фиолетовая Дверь Барнарды С
+item.onyx.name=Оникс
 #|/////////////////////////////////////////|
 #|||||||||||||Armors\Weapons||||||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|

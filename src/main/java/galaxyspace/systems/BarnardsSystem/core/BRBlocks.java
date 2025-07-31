@@ -3,6 +3,10 @@ package galaxyspace.systems.BarnardsSystem.core;
 import galaxyspace.core.prefab.blocks.BlockDoorGS;
 import galaxyspace.core.prefab.blocks.BlockTrapDoorGS;
 import galaxyspace.core.prefab.items.GSItemBlockDesc;
+import galaxyspace.systems.BarnardsSystem.moons.barnarda_c1.blocks.Barnarda_C1_Blocks;
+import galaxyspace.systems.BarnardsSystem.moons.barnarda_c1.blocks.Barnarda_C1_Decorations;
+import galaxyspace.systems.BarnardsSystem.moons.barnarda_c1.items.ItemBlocksBarnarda_C1;
+import galaxyspace.systems.BarnardsSystem.moons.barnarda_c1.items.ItemBlocksBarnarda_C1_Decorations;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.blocks.*;
 import galaxyspace.systems.BarnardsSystem.planets.barnarda_c.items.*;
 import micdoodle8.mods.galacticraft.core.GCBlocks;
@@ -30,6 +34,10 @@ public class BRBlocks {
 	public static final Block BARNARDA_C_ORES = new Barnarda_C_Ores();
 	public static final BlockDoorGS BARNARDA_C_VIOLET_DOOR = new BlockDoorGS("barnarda_c_violet_door");
 	public static final BlockTrapDoorGS BARNARDA_C_VIOLET_TRAPDOOR = new BlockTrapDoorGS("barnarda_c_violet_trapdoor");
+
+	public static final Block BARNARDA_C1_BLOCKS = new Barnarda_C1_Blocks();
+	public static final Block BARNARDA_C1_DECORATIONS = new Barnarda_C1_Decorations();
+
 	public static void initialize()
 	{	
 		registerBlock(BARNARDA_C_GRASS, ItemBlocksBarnarda_C_Grasses.class);
@@ -47,6 +55,9 @@ public class BRBlocks {
 		registerBlock(BARNARDA_C_ORES, ItemBlocksBarnarda_C_Ores.class);
 		registerBlock(BARNARDA_C_VIOLET_DOOR, null);
 		registerBlock(BARNARDA_C_VIOLET_TRAPDOOR, GSItemBlockDesc.class);
+
+		registerBlock(BARNARDA_C1_BLOCKS, ItemBlocksBarnarda_C1.class);
+		registerBlock(BARNARDA_C1_DECORATIONS, ItemBlocksBarnarda_C1_Decorations.class);
 	}
 	
 	public static void oreDictRegistration() 
@@ -74,8 +85,10 @@ public class BRBlocks {
 		OreDictionary.registerOre("oreAluminum", new ItemStack(BARNARDA_C_ORES, 1, 9));	
 		OreDictionary.registerOre("oreQuartz", new ItemStack(BARNARDA_C_ORES, 1, 10));	
 		OreDictionary.registerOre("oreCobalt", new ItemStack(BARNARDA_C_ORES, 1, 11));	
-		OreDictionary.registerOre("oreNickel", new ItemStack(BARNARDA_C_ORES, 1, 12));	
-		
+		OreDictionary.registerOre("oreNickel", new ItemStack(BARNARDA_C_ORES, 1, 12));
+
+		OreDictionary.registerOre("stone", new ItemStack(BARNARDA_C1_BLOCKS, 1, 3));
+
 	}
 	
 	public static void registerBlock(Block block, Class<? extends ItemBlock> itemClass)
