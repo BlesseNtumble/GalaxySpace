@@ -200,7 +200,7 @@ tile.barnarda_c_desert_down.name=Barnard C Desert Flower
 tile.barnarda_c_desert_up.name=Barnard C Desert Flower
 tile.barnarda_c_yellow_grass_down.name=Barnard C Yellow Grass
 tile.barnarda_c_yellow_grass_up.name=Barnard C Yellow Grass
-tile.barnarda_c_violet_sapling.name=Violet Tree Sapling
+tile.barnarda_c_violet_sapling.name=Barnard C Violet Tree Sapling
 tile.barnarda_c_leaves_1.name=Barnard C Violet Leaves
 tile.barnarda_c_farmland.name=Barnard C Farmland
 tile.barnarda_c_glow_dandelions.name=Barnard C Glow Plant
@@ -483,11 +483,11 @@ item.helium_canister.name=Helium-3 Canister
 item.hh_canister.name=Helium-Hydrogen Canister
 item.naturegas_canister.name=Natural Gas Canister
 
-item.violet_reeds.name=Violet Reeds
-item.water_grass.name=Lichen
+item.violet_reeds.name=Barnard C Violet Reeds
+item.water_grass.name=Barnard C Lichen
 item.tree_juice.name=Tree Juice
 item.yellow_fruits.name=Yellow Fruits
-item.barnarda_c_violet_door.name=Barnarda C Violet Door
+item.barnarda_c_violet_door.name=Barnard C Violet Door
 item.onyx.name=Onyx
 
 |/////////////////////////////////////////|
