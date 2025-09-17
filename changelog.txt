@@ -1,4 +1,16 @@
 ///Changelog///
+e.-----------------------2.2.0----------------------------
+e.1. Added Barnarda C1.
+e.2. The storage of oxygen tanks is now configured.
+e.3. Added mixin in EntityCreeperBoss for change rewards logic.
+e.4. Added configurable strength gravity in gravity module gui.
+e.5. Added Deco ALuminum blocks.
+e.6. Now get first registered planet for moons if disabled planet from GS.
+e.7. New config file (config/GalaxySpace/world.conf) with new OREGEN_SETTINGS (beta).
+e.8. Disabled right click with bucket ice in hand.
+e.9. Updated some blocks, ores textures.
+e.10. Changed base generation mars spacestation.
+e.11. Fix double drop plants.
 e.-----------------------2.1.5----------------------------
 e.1. Changed anti-radiation to a positive effect.
 e.2. Added Phobos ores in OreDict.
