@@ -20,7 +20,13 @@ public class CraftingRecipesBarnarda_C {
 	private static void addBlockRecipes() {
 		 RecipeUtil.addRecipe(new ItemStack(BRBlocks.BARNARDA_C_BLOCKS, 1, 5), new Object[] { "XX", "XX", 'X', new ItemStack(BRBlocks.BARNARDA_C_BLOCKS, 1, 1)});
 		 RecipeUtil.addRecipe(new ItemStack(BRBlocks.BARNARDA_C_BLOCKS, 4, 6), new Object[] { "X", 'X', new ItemStack(BRBlocks.BARNARDA_C_VIOLET_LOG, 1, 0)});
-		  
+		
+//		 RecipeUtil.addRecipe(new ItemStack(BRBlocks.BARNARDA_C_VIOLET_TRAPDOOR, 2), new Object[]{"XXX", "XXX", 'X', new ItemStack(BRBlocks.BARNARDA_C_BLOCKS, 1, 6)});
+		
+//       Currently the recipe above is supposed to make the Barnard C wood trapdoor craftable, but it conflicts with the vanilla trapdoor recipe, yes trapdoors
+//		 for anything other then oak were not added until 1.13.
+
+         RecipeUtil.addRecipe(new ItemStack(BRItems.VIOLET_DOOR, 3), new Object[]{ "XX", "XX", "XX", 'X', new ItemStack(BRBlocks.BARNARDA_C_BLOCKS, 1, 6)});
 	}
 	
 	private static void addItemRecipes() {
