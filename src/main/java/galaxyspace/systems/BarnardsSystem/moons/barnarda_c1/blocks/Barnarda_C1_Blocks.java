@@ -101,6 +101,27 @@ public class Barnarda_C1_Blocks extends Block implements ISortableBlock, ITerraf
     }
 
     @Override
+    public int quantityDropped(IBlockState state, int fortune, Random random)
+    {
+        int bonus = 0;
+
+        if (fortune > 0 && Item.getItemFromBlock(this) != this.getItemDropped(state, random, fortune))
+        {
+            int j = random.nextInt(fortune + 2) - 1;
+
+            if (j < 0)
+            {
+                j = 0;
+            }
+            return this.quantityDropped(random) * (j + 1) + bonus;
+        }
+        else
+        {
+            return this.quantityDropped(random) + bonus;
+        }
+    }
+
+    @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
         Random rand = world instanceof World ? ((World)world).rand : RANDOM;

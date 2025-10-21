@@ -113,12 +113,17 @@ public class Barnarda_C1_Decorations extends Block implements ISortableBlock {
     }
 
     @Override
+    public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player)
+    {
+       return true;
+    }
+
+    @Override
     public int damageDropped(IBlockState state)
     {
         EnumBlockBarnardaC1Decoration type = state.getValue(BASIC_TYPE);
 
         switch (type) {
-            //case STONE: return 4;
             default: return this.getMetaFromState(state);
         }
     }

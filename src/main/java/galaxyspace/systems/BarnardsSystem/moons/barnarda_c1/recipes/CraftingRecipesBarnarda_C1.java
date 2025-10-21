@@ -2,8 +2,8 @@ package galaxyspace.systems.BarnardsSystem.moons.barnarda_c1.recipes;
 
 import galaxyspace.systems.BarnardsSystem.core.BRBlocks;
 import galaxyspace.systems.BarnardsSystem.core.BRItems;
-import galaxyspace.systems.BarnardsSystem.moons.barnarda_c1.blocks.Barnarda_C1_Blocks;
 import galaxyspace.systems.SolarSystem.planets.overworld.items.ItemBasicGS;
+import galaxyspace.systems.SolarSystem.planets.overworld.recipes.RecyclerRecipes;
 import micdoodle8.mods.galacticraft.api.recipe.CircuitFabricatorRecipes;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import net.minecraft.init.Items;
@@ -19,6 +19,7 @@ public class CraftingRecipesBarnarda_C1 {
         addItemRecipes();
         addBlockSmelting();
         addCircuitFabricator();
+        addRecycler();
     }
 
     private static void addBlockRecipes() {
@@ -48,5 +49,10 @@ public class CraftingRecipesBarnarda_C1 {
                         new ItemStack(Items.REDSTONE),
                         new ItemStack(GCItems.basicItem, 1, 14)
                 ));
+    }
+
+    private static void addRecycler() {
+        //RecyclerRecipes.recycling().addNewRecipe(new ItemStack(BRItems.BASIC, 1, 3),  new ItemStack(GCItems.itemBasicMoon, 1, 2), null);
+
     }
 }
