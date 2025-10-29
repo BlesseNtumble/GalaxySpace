@@ -7,8 +7,10 @@ import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.network.PacketSimple.EnumSimplePacket;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.util.List;
@@ -64,10 +66,12 @@ public class SlotSchematicTier1Rocket extends Slot
     	List<INasaWorkbenchRecipe> recipes = GSRecipeUtil.getRocketT1Recipes();
     	for (INasaWorkbenchRecipe recipe : recipes)
         {
+            //TODO: Check to see that chest item validation works, if not, just eh, undo it
+            if (index >= 15 && index <= 17 && par1ItemStack.getItem() == Item.getItemFromBlock(Blocks.chest))
+                return true;
             ItemStack stack = recipe.getRecipeInput().get(this.index);
-    		if(stack == null) return true;
 
-            if (par1ItemStack.isItemEqual(stack)) {
+            if (stack != null && par1ItemStack.isItemEqual(stack)) {
                 return true;
             }
         }
