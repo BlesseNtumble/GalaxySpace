@@ -66,7 +66,6 @@ public class SlotSchematicTier1Rocket extends Slot
     	List<INasaWorkbenchRecipe> recipes = GSRecipeUtil.getRocketT1Recipes();
     	for (INasaWorkbenchRecipe recipe : recipes)
         {
-            //TODO: Check to see that chest item validation works, if not, just eh, undo it
             if (index >= 15 && index <= 17 && par1ItemStack.getItem() == Item.getItemFromBlock(Blocks.chest))
                 return true;
             ItemStack stack = recipe.getRecipeInput().get(this.index);

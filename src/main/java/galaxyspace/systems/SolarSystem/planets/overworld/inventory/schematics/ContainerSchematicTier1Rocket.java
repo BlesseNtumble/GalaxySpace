@@ -130,7 +130,6 @@ public class ContainerSchematicTier1Rocket extends Container {
 
             boolean done = false;
             int matrixSlots = this.craftMatrix.getSizeInventory();
-            System.out.println("Matrix size: " + matrixSlots);
             if (index < matrixSlots)
             {
                 if (!this.mergeItemStack(stackInSlot, matrixSlots, this.inventorySlots.size(), true))
@@ -151,7 +150,6 @@ public class ContainerSchematicTier1Rocket extends Container {
                                 return null;
                             }
                             done = true;
-                            System.out.println("Placing " + stackInSlot.getDisplayName() + " in slot " + i);
                             break;
                         }
                     }
