@@ -73,8 +73,9 @@ public class GSConfigDimensions
             enableMiranda,
             enableProteus,
             enableTriton,
-            enableJupiter, enableSaturn, enableUranus, enableNeptune;
-    
+            enableJupiter, enableSaturn, enableUranus, enableNeptune,
+            enableJupiterMoons, enableSaturnMoons, enableUranusMoons, enableNeptuneMoons;
+
     public static boolean enableVenusSpaceStation;
     public static boolean enableMarsSpaceStation;
 
@@ -416,6 +417,30 @@ public class GSConfigDimensions
             prop.setComment("Enable/Disable Neptune (only on map for moons)");
             prop.setLanguageKey("gc.configgui.enableNeptune").setRequiresMcRestart(true);
             enableNeptune = prop.getBoolean(true);
+            propOrder.add(prop.getName());
+
+            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableJupiterMoons", true);
+            prop.setComment("Force Enable Jupiter Moons (for starmaker pack use)");
+            prop.setLanguageKey("gc.configgui.enableJupiterMoons").setRequiresMcRestart(true);
+            enableJupiterMoons = prop.getBoolean(false);
+            propOrder.add(prop.getName());
+
+            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableSaturnMoons", true);
+            prop.setComment("Force Enable Saturn Moons (for starmaker pack use)");
+            prop.setLanguageKey("gc.configgui.enableSaturnMoons").setRequiresMcRestart(true);
+            enableSaturnMoons = prop.getBoolean(false);
+            propOrder.add(prop.getName());
+
+            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableUranusMoons", true);
+            prop.setComment("Force Enable Uranus Moons (for starmaker pack use)");
+            prop.setLanguageKey("gc.configgui.enableUranusMoons").setRequiresMcRestart(true);
+            enableUranusMoons = prop.getBoolean(false);
+            propOrder.add(prop.getName());
+
+            prop = config.get(Constants.CONFIG_CATEGORY_GENERAL, "enableNeptuneMoons", true);
+            prop.setComment("Force Enable Neptune Moons (for starmaker pack use)");
+            prop.setLanguageKey("gc.configgui.enableNeptuneMoons").setRequiresMcRestart(true);
+            enableNeptuneMoons = prop.getBoolean(false);
             propOrder.add(prop.getName());
 
             config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder);

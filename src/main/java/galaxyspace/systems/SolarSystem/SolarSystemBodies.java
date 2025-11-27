@@ -217,28 +217,28 @@ public class SolarSystemBodies implements IBodies{
 		//planetJupiter.setUnreachable();
 		if(GSConfigDimensions.enableJupiter)
 			GalaxyRegistry.registerPlanet(planetJupiter);
-		else
+		else if(!GSConfigDimensions.enableJupiterMoons)
 			planetJupiter = (Planet) GalaxyRegistry.getCelestialBodyFromUnlocalizedName("jupiter");
 
 		planetSaturn = BodiesRegistry.registerExPlanet(sol, "saturn", GalaxySpace.ASSET_PREFIX, 2.25F);
 		BodiesRegistry.setOrbitData(planetSaturn, (float) Math.PI / 2, 1.5F, 29.46F);
 		if(GSConfigDimensions.enableSaturn)
 			GalaxyRegistry.registerPlanet(planetSaturn);
-		else
+		else if(!GSConfigDimensions.enableSaturnMoons)
 			planetSaturn = (Planet) GalaxyRegistry.getCelestialBodyFromUnlocalizedName("saturn");
 
 		planetUranus = BodiesRegistry.registerExPlanet(sol, "uranus", GalaxySpace.ASSET_PREFIX, 2.5F);
 		BodiesRegistry.setOrbitData(planetUranus, (float) Math.PI / 4, 1.2F, 84.06F);
 		if(GSConfigDimensions.enableUranus)
 			GalaxyRegistry.registerPlanet(planetUranus);
-		else
+		else if(!GSConfigDimensions.enableUranusMoons)
 			planetUranus = (Planet) GalaxyRegistry.getCelestialBodyFromUnlocalizedName("uranus");
 
 		planetNeptune = BodiesRegistry.registerExPlanet(sol, "neptune", GalaxySpace.ASSET_PREFIX, 2.75F);
 		BodiesRegistry.setOrbitData(planetNeptune, (float) Math.PI, 1.2F, 164.84F);
 		if(GSConfigDimensions.enableNeptune)
 			GalaxyRegistry.registerPlanet(planetNeptune);
-		else
+		else if(!GSConfigDimensions.enableNeptuneMoons)
 			planetNeptune = (Planet) GalaxyRegistry.getCelestialBodyFromUnlocalizedName("neptune");
 
 		planetPluto = BodiesRegistry.registerExPlanet(sol, "pluto", GalaxySpace.ASSET_PREFIX, 3.0F);
@@ -275,7 +275,7 @@ public class SolarSystemBodies implements IBodies{
 		BodiesRegistry.setPlanetData(phobosMars, 0F, 12000, 0.066F, true);
 		if(GSConfigDimensions.enablePhobos) GalaxyRegistry.registerMoon(phobosMars);
 
-		if(GSConfigDimensions.enableJupiter) {
+		if(GSConfigDimensions.enableJupiter || GSConfigDimensions.enableJupiterMoons) {
 			ioJupiter = BodiesRegistry.registerExMoon(planetJupiter, "io", GalaxySpace.ASSET_PREFIX, 10F);
 			BodiesRegistry.setOrbitData(ioJupiter, 1.0F, 0.0017F, 50F);
 			BodiesRegistry.setAtmosphere(ioJupiter, false, false, false, -5.8F, 0.0F, 0.0F);
@@ -304,7 +304,7 @@ public class SolarSystemBodies implements IBodies{
 			BodiesRegistry.setProviderData(callistoJupiter, WorldProviderCallisto.class, GSConfigDimensions.dimensionIDCallisto, 4);
 			if (GSConfigDimensions.enableCallisto) GalaxyRegistry.registerMoon(callistoJupiter);
 		}
-		if(GSConfigDimensions.enableSaturn) {
+		if(GSConfigDimensions.enableSaturn || GSConfigDimensions.enableSaturnMoons) {
 			enceladusSaturn = BodiesRegistry.registerExMoon(planetSaturn, "enceladus", GalaxySpace.ASSET_PREFIX, 15F);
 			BodiesRegistry.setOrbitData(enceladusSaturn, (float) Math.PI / 3, 0.0017F, 50F);
 			BodiesRegistry.setAtmosphere(enceladusSaturn, false, false, false, -8.0F, 0.0F, 0.0F);
@@ -321,7 +321,7 @@ public class SolarSystemBodies implements IBodies{
 			titanSaturn.atmosphereComponent(EnumAtmosphericGas.NITROGEN);
 			if (GSConfigDimensions.enableTitan) GalaxyRegistry.registerMoon(titanSaturn);
 		}
-		if(GSConfigDimensions.enableUranus) {
+		if(GSConfigDimensions.enableUranus || GSConfigDimensions.enableUranusMoons) {
 			mirandaUranus = BodiesRegistry.registerExMoon(planetUranus, "miranda", GalaxySpace.ASSET_PREFIX, 10F);
 			BodiesRegistry.setOrbitData(mirandaUranus, (float) Math.PI, 0.0017F, 20F);
 			BodiesRegistry.setAtmosphere(mirandaUranus, false, false, false, -7.2F, 0.0F, 0.0F);
@@ -329,7 +329,7 @@ public class SolarSystemBodies implements IBodies{
 			BodiesRegistry.setProviderData(mirandaUranus, WorldProviderMiranda.class, GSConfigDimensions.dimensionIDMiranda, 5, ACBiome.ACSpace, ACBiome.ACSpaceLowPlains, ACBiome.ACSpaceMidHills);
 			if (GSConfigDimensions.enableMiranda) GalaxyRegistry.registerMoon(mirandaUranus);
 		}
-		if(GSConfigDimensions.enableNeptune) {
+		if(GSConfigDimensions.enableNeptune || GSConfigDimensions.enableNeptuneMoons) {
 			tritonNeptune = BodiesRegistry.registerExMoon(planetNeptune, "triton", GalaxySpace.ASSET_PREFIX, 25F);
 			BodiesRegistry.setOrbitData(tritonNeptune, (float) Math.PI, 0.0017F, -200F);
 			BodiesRegistry.setAtmosphere(tritonNeptune, false, false, false, -7.9F, 0.0F, 0.0F);
@@ -634,7 +634,7 @@ public class SolarSystemBodies implements IBodies{
 			deimosMars = registerDummyMoon("deimos", MarsModule.planetMars,  16.0F);
 			if(deimosMars != null)
 				BodiesRegistry.setOrbitData(deimosMars, 1.0F, 0.0017F, 300F);
-			if(GSConfigDimensions.enableSaturn) {
+			if(GSConfigDimensions.enableSaturn || GSConfigDimensions.enableSaturnMoons) {
 				//SATURN MOONS
 				mimasSaturn = registerDummyMoon("mimas", planetSaturn, 10F);
 				if (mimasSaturn != null)
@@ -656,7 +656,7 @@ public class SolarSystemBodies implements IBodies{
 				if (iapetusSaturn != null)
 					BodiesRegistry.setOrbitData(iapetusSaturn, (float) Math.PI, 0.0017F, 350F);
 			}
-			if(GSConfigDimensions.enableUranus) {
+			if(GSConfigDimensions.enableUranus || GSConfigDimensions.enableUranusMoons) {
 				//URANUS
 				arielUranus = registerDummyMoon("ariel", planetUranus, 15F);
 				if (arielUranus != null)
@@ -674,7 +674,7 @@ public class SolarSystemBodies implements IBodies{
 				if (oberonUranus != null)
 					BodiesRegistry.setOrbitData(oberonUranus, (float) Math.PI / 4, 0.0017F, 220F);
 			}
-			if(GSConfigDimensions.enableNeptune) {
+			if(GSConfigDimensions.enableNeptune || GSConfigDimensions.enableNeptuneMoons) {
 				proteusNeptune = registerDummyMoon("proteus", planetNeptune, 10F);
 				if (proteusNeptune != null)
 					BodiesRegistry.setOrbitData(proteusNeptune, (float) Math.PI, 0.0017F, 50F);
