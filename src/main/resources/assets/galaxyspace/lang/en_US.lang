@@ -626,6 +626,8 @@ gui.message.forrbiden_modules.name=Incompatible with:
 gui.module.active=Active module
 gui.module.passive=Passive module
 gui.module.empty_slot=Empty slot. Place a module in the slot.
+gui.module.epp=Environmental Protection Oxygen Tank
+gui.module.epp.desc=Passively generates oxygen if the player is in oxygen filled area (bubble, sealed room).
 
 |/////////////////////////////////////////|
 #||||||||||||||Creative Tabs|||||||||||||||
