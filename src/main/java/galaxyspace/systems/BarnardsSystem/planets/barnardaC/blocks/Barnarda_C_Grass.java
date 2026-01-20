@@ -1,17 +1,16 @@
 package galaxyspace.systems.BarnardsSystem.planets.barnardaC.blocks;
 
-import java.util.List;
 import java.util.Random;
-
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import galaxyspace.GalaxySpace;
+import galaxyspace.api.block.IOverlayBlock;
+import galaxyspace.core.client.render.block.LayerBlockRender;
 import galaxyspace.core.util.GSCreativeTabs;
 import galaxyspace.core.world.worldengine.WE_Biome;
-import galaxyspace.core.world.worldengine.WE_WorldProvider;
 import galaxyspace.systems.BarnardsSystem.core.registers.blocks.BRBlocks;
-import galaxyspace.systems.BarnardsSystem.planets.barnardaC.world.gen.we.Barnarda_C_Forest;
-import galaxyspace.systems.BarnardsSystem.planets.barnardaC.world.gen.we.Barnarda_C_Swampland;
+import galaxyspace.systems.BarnardsSystem.planets.barnardaC.dimension.WorldProviderBarnardaC_WE;
 import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -26,19 +25,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class Barnarda_C_Grass extends Block implements ITerraformableBlock{
-	
-	public static String[] metadata = new String[] {
-		"plains_grass",
-		"forest_grass",
-		"swampland_grass",
-		"jungle_grass"
-	};
-	
-    protected IIcon[] BlockIconSide = new IIcon[metadata.length];
-    protected IIcon[] BlockIconTop = new IIcon[metadata.length];
-    protected IIcon[] BlockIconBottom = new IIcon[metadata.length];
-	
+public class Barnarda_C_Grass extends Block implements ITerraformableBlock, IOverlayBlock {
+    protected IIcon blockIconSide;
+    protected IIcon blockIconTop;
+    protected IIcon blockIconSideSnow;
+    protected IIcon blockIconSideOverlay;
+    /**
+     * Used by the ISBRH renderer to easily render the biome colored textures.
+     **/
+    boolean isRenderingOverlay;
+
 	public Barnarda_C_Grass() {
 		super(Material.grass);
 		this.setBlockName("BarnardaCGrass");
@@ -64,64 +60,56 @@ public class Barnarda_C_Grass extends Block implements ITerraformableBlock{
 	@Override
     public int getDamageValue(World world, int x, int y, int z)
     {
-        return world.getBlockMetadata(x, y, z);
+        return 0;
     }
     
     @Override
     public int damageDropped(int metadata) {
-    	switch(metadata)
-    	{
-    		default: return metadata;
-    	}
+    	return 0;
     }
 
     @Override
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack is) {
-		world.setBlockMetadataWithNotify(x, y, z, is.getItemDamage(), 3);
-	}
-    
-    @Override
-	public void getSubBlocks(Item block, CreativeTabs creativeTabs, List list)
-	{
-		for (int i = 0; i < this.metadata.length; ++i)
-		{
-			list.add(new ItemStack(block, 1, i));
-		}
+		world.setBlockMetadataWithNotify(x, y, z, 0, 3);
 	}
     
     @SideOnly(Side.CLIENT)
     @Override
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
-    	for (int i = 0; i < metadata.length; i++) {
-    		BlockIconSide[i] = par1IconRegister.registerIcon(GalaxySpace.ASSET_PREFIX + ":" + "barnardssystem/barnardaC/"+metadata[i]+"_side");
-    		BlockIconTop[i] = par1IconRegister.registerIcon(GalaxySpace.ASSET_PREFIX + ":" + "barnardssystem/barnardaC/"+metadata[i]+"_top");
-    		BlockIconBottom[i] = par1IconRegister.registerIcon(GalaxySpace.ASSET_PREFIX + ":" + "barnardssystem/barnardaC/dirt");
-    	}
+		blockIconSide = par1IconRegister.registerIcon(GalaxySpace.ASSET_PREFIX + ":barnardssystem/barnardaC/grass_side");
+		blockIconTop = par1IconRegister.registerIcon(GalaxySpace.ASSET_PREFIX + ":barnardssystem/barnardaC/grass_top");
+        blockIconSideSnow = par1IconRegister.registerIcon(GalaxySpace.ASSET_PREFIX + ":barnardssystem/barnardaC/grass_snowed");
+        blockIconSideOverlay = par1IconRegister.registerIcon(GalaxySpace.ASSET_PREFIX + ":barnardssystem/barnardaC/grass_side_overlay");
     }
     
     @Override
 	public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection side, IPlantable plant)
 	{
-		return true;
+		return (plant instanceof Barnarda_C_Dandelions) || (plant.getPlantMetadata(world, x, y, z) == 0 || plant.getPlantMetadata(world, x, y, z) == 3 || plant.getPlantMetadata(world, x, y, z) > 5);
 	}
-    
+
     @SideOnly(Side.CLIENT)
     @Override
     public IIcon getIcon(int side, int meta)
     {
-        
-    	if (meta < 0 || meta >= this.metadata.length)
-        {
-             return this.BlockIconBottom[0];
+        switch(ForgeDirection.getOrientation(side)) {
+            case UP:
+                return blockIconTop;
+            case DOWN:
+                return BRBlocks.BarnardaCBlocks.getIcon(0, 0);
+            case NORTH:
+            case EAST:
+            case SOUTH:
+            case WEST:
+                if(isRenderingOverlay) //This is how it knows whether you do colors or not
+                    return blockIconSideOverlay;
+                return blockIconSide;
         }
-    	
-        if (side == 1 ) { return BlockIconTop[meta]; }
-        else if (side == 0) { return BlockIconBottom[meta]; }
-        //else if (side != meta) { return BlockIconSide[meta]; }
-        else { return BlockIconSide[meta]; }
+        return blockIconTop;
     }
-    
+
+
     @Override
 	public void updateTick(World world, int par2, int par3, int par4, Random par5Random)
 	{
@@ -144,39 +132,71 @@ public class Barnarda_C_Grass extends Block implements ITerraformableBlock{
 					{
 						if (world.getBlockLightValue(var7, var8 + 1, var9) >= 4 && var10.getLightOpacity() <= 2)
 						{
-							int meta = 0;
-							if(world.provider instanceof WE_WorldProvider) {
-								if(WE_Biome.getBiomeAt(var7, var9) instanceof Barnarda_C_Forest) meta = 1;
-								if(WE_Biome.getBiomeAt(var7, var9) instanceof Barnarda_C_Swampland) meta = 2;
-							}
-							world.setBlock(var7, var8, var9, BRBlocks.BarnardaCGrass, meta, 3);
+							world.setBlock(var7, var8, var9, BRBlocks.BarnardaCGrass, 0, 3);
 						}
 					}
 				}
 			}
 		}
 	}
-    
+
     @Override
    	public boolean isTerraformable(World world, int x, int y, int z) {
    		return false;
    	}
-   /* 
+
+    @Override
+    public boolean hasBlockOnSide(IBlockAccess world, Block blockToCheckFor, int x, int y, int z, int side) {
+       if(ForgeDirection.getOrientation(side) == ForgeDirection.UP)
+           return world.getBlock(x, y + 1, z) == blockToCheckFor;
+       return false;
+    }
+
+    @Override
+    public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
+        if(isRenderingOverlay && side == 0) //Bottom face
+            return false;
+        if(!isRenderingOverlay && side == 1) //Top face
+            return false;
+        return super.shouldSideBeRendered(world, x, y, z, side);
+    }
+
+    @Override
+    public boolean shouldOverlayColor(int meta) {
+        return true;
+    }
+    @Override
+    public boolean getIsRenderingOverlay() {
+        return isRenderingOverlay;
+    }
+    @Override
+    public void setIsRenderingOverlay(boolean bool) {
+        isRenderingOverlay = bool;
+    }
+    @Override
+    public int getRenderType() {
+        return LayerBlockRender.glowBlockID;
+    }
+
+	//TODO: TEST THIS STUFF, MAKE SURE TO TWEAK THE BIOME COLOR SETTINGS IN THE BIOME PROVIDERS IF IT WORKS
+
     @Override
     @SideOnly(Side.CLIENT)   
     public int getBlockColor()
     {
         double d0 = 0.5D;
         double d1 = 1.0D;
-        return 0x89AC76;//ColorizerGrass.getGrassColor(d0, d1);
+        return 0x89AC76;
+		//TODO: Maybe use this line, look into how grass works for vanilla
+		//ColorizerGrass.getGrassColor(d0, d1);
     }
 
     /**
      * Returns the color this block should be rendered. Used by leaves.
-     
+	 **/
     @Override
     @SideOnly(Side.CLIENT)
-    public int getRenderColor(int p_149741_1_)
+    public int getRenderColor(int meta)
     {
         return this.getBlockColor();
     }
@@ -185,25 +205,30 @@ public class Barnarda_C_Grass extends Block implements ITerraformableBlock{
     @SideOnly(Side.CLIENT)
     public int colorMultiplier(IBlockAccess worldAc, int x, int y, int z)
     {
-        int l = 0;
-        int i1 = 0;
-        int j1 = 0;
+        int r = 0;
+        int g = 0;
+        int b = 0;
         World world = FMLClientHandler.instance().getWorldClient();
-        
-        for (int k1 = -1; k1 <= 1; ++k1)
-        {
-            for (int l1 = -1; l1 <= 1; ++l1)
-            {
-            	int i2 = 0x89AC76;//world.getBiomeGenForCoords(x + l1, z + k1).getBiomeGrassColor(x + l1, y, z + k1);
-            	if(world.provider instanceof WE_WorldProvider)
-            		i2 = WE_Biome.getBiomeAt(x, z).biomeGrassColor;
-                
-                l += (i2 & 16711680) >> 16;
-                i1 += (i2 & 65280) >> 8;
-                j1 += i2 & 255;
+        for (int xi = -1; xi <= 1; ++xi) {
+            for (int zi = -1; zi <= 1; ++zi) {
+                int color = 0x89AC76;
+                if (world.provider instanceof WorldProviderBarnardaC_WE) {
+                    try {
+                        color = WE_Biome.getBiomeAt(WorldProviderBarnardaC_WE.chunk, x + xi, z + zi).biomeGrassColor;
+                    } catch (Exception e) {
+                        GalaxySpace.info("[ERROR] Failed to get world provider and biome for dimension: " + world.provider);
+                    }
+
+                }
+
+                r += (color & 0xFF0000) >> 16;
+                g += (color & 0x00FF00) >> 8;
+                b += color & 0x0000FF;
             }
         }
+        //Average of colors in 3x3 area.
+        //Returns 0x000000 if worldAc is not world
+        return (r / 9 & 255) << 16 | (g / 9 & 255) << 8 | b / 9 & 255;
+    }
 
-        return (l / 9 & 255) << 16 | (i1 / 9 & 255) << 8 | j1 / 9 & 255;
-    }*/
 }

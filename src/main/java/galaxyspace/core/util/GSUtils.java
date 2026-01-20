@@ -367,8 +367,8 @@ public class GSUtils {
 		
 		// callback to the tool the player uses. Called on both sides. This damages the
 		// tool n stuff.
-		player.getCurrentEquippedItem().func_150999_a(world, block, x, y, z, player);
-
+		if(player.getCurrentEquippedItem() != null)
+			player.getCurrentEquippedItem().func_150999_a(world, block, x, y, z, player);
 		// server sided handling
 		if (!world.isRemote) {
 			// serverside we reproduce ItemInWorldManager.tryHarvestBlock
@@ -380,7 +380,6 @@ public class GSUtils {
 																		// above
 			{
 				block.onBlockDestroyedByPlayer(world, x, y, z, meta);
-				block.harvestBlock(world, player, x, y, z, meta);
 				block.dropXpOnBlockBreak(world, x, y, z, event.getExpToDrop());
 			}
 
@@ -394,7 +393,6 @@ public class GSUtils {
 			// call. This should not send any new packets
 			// the code above, executed on the server, sends a block-updates that give us
 			// the correct state of the block we destroy.
-
 			// following code can be found in PlayerControllerMP.onPlayerDestroyBlock
 			world.playAuxSFX(2001, x, y, z, Block.getIdFromBlock(block) + (meta << 12));
 			if (block.removedByPlayer(world, player, x, y, z, true)) {

@@ -33,7 +33,9 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.client.IRenderHandler;
 
 public class WorldProviderBarnardaC_WE extends WE_WorldProvider{
-	    
+
+	public static WE_ChunkProvider chunk;
+
     @Override
 	public double getSolarEnergyMultiplier()
 	{
@@ -153,6 +155,7 @@ public class WorldProviderBarnardaC_WE extends WE_WorldProvider{
 	
 	@Override
 	public void genSettings(WE_ChunkProvider cp) {
+		chunk = cp;
 		cp.createChunkGen_List.clear(); 
 		cp.createChunkGen_InXZ_List.clear(); 
 		cp.createChunkGen_InXYZ_List.clear(); 

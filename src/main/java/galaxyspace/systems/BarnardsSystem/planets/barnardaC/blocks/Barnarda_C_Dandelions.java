@@ -6,33 +6,23 @@ import java.util.List;
 import java.util.Random;
 
 import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
-import micdoodle8.mods.galacticraft.core.items.ItemBlockDesc.IBlockShiftDesc;
-import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.IShearable;
 import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.util.GSCreativeTabs;
-import galaxyspace.core.util.GSUtils;
-import galaxyspace.systems.BarnardsSystem.core.registers.blocks.BRBlocks;
 import galaxyspace.systems.BarnardsSystem.core.registers.blocks.BRItems;
 
 public class Barnarda_C_Dandelions extends BlockBush implements ITerraformableBlock, IShearable
@@ -48,7 +38,7 @@ public class Barnarda_C_Dandelions extends BlockBush implements ITerraformableBl
 		"reeds_fruits"
 	};
 	
-	protected IIcon[] textures = new IIcon[this.metadata.length];
+	protected IIcon[] textures = new IIcon[metadata.length];
 	
     public Barnarda_C_Dandelions()    
     {
@@ -57,11 +47,32 @@ public class Barnarda_C_Dandelions extends BlockBush implements ITerraformableBl
         this.setStepSound(Block.soundTypeGrass);
         this.setBlockTextureName("dirt");
         this.setTickRandomly(true);
-        
-        //float var4 = 0.5F;
-		//this.setBlockBounds(0.5F - var4, 0.0F, 0.5F - var4, 0.5F + var4, var4 * 3.0F, 0.5F + var4);
-
     }
+	@Override
+	public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
+		if (world.getBlock(x, y, z) instanceof Barnarda_C_Dandelions) {
+			switch(world.getBlockMetadata(x, y, z)) {
+				case 0:
+					this.setBlockBounds(0.3F, 0.0F, 0.3F, 0.7F, 0.8F, 0.7F);
+					return;
+				case 1:
+					this.setBlockBounds(0.15F, 0F, 0.15F, 0.85F, 1F, 0.85F);
+				case 2:
+				case 3:
+					this.setBlockBounds(0.15F, 0.0F, 0.15F, 0.85F, 0.75F, 0.85F);
+					return;
+				case 4:
+					this.setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 1F, 0.8F);
+					return;
+				case 5:
+					this.setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.5F, 0.8F);
+					return;
+				case 6:
+				case 7:
+					this.setBlockBounds(0.15F, 0.0F, 0.15F, 0.85F, 1F, 0.85F);
+			}
+		}
+	}
 
     @Override
 	public void getSubBlocks(Item block, CreativeTabs creativeTabs, List list)
@@ -94,26 +105,7 @@ public class Barnarda_C_Dandelions extends BlockBush implements ITerraformableBl
     	
         return false;
     }
-    
-    @Override
-	public boolean canPlaceBlockOnSide(World world, int x, int y, int z, int side)
-	{
-   	
-    	Block block = world.getBlock(x, y - 1, z);
-		int block_meta = world.getBlockMetadata(x, y - 1, z);
 
-		if (side == 0)		
-			return true;	
-				
-		return block == this || block == BRBlocks.BarnardaCFallingBlocks || block == BRBlocks.BarnardaCLeaves || block == BRBlocks.BarnardaCGrass || (block == BRBlocks.BarnardaCBlocks && block_meta == 0);
-
-	}
-    
-    public boolean canBlockStay(World p_149718_1_, int p_149718_2_, int p_149718_3_, int p_149718_4_)
-    {
-		return blockConstructorCalled;
-    	
-    }
         
     @Override
     public int getLightValue(IBlockAccess world, int x, int y, int z)
@@ -128,10 +120,28 @@ public class Barnarda_C_Dandelions extends BlockBush implements ITerraformableBl
 
 	@Override
 	public ArrayList<ItemStack> onSheared(ItemStack item, IBlockAccess world, int x, int y, int z, int fortune) {
-		
 		ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
-		ret.add(new ItemStack(this, 1, world.getBlockMetadata(x, y, z)));
+		int meta = world.getBlockMetadata(x, y, z);
+		switch (meta) {
+			case 5:
+				if (world.getBlock(x, y - 1, z) == this)
+					ret.add(new ItemStack(this, 1, 4));
+				else
+					ret.add(new ItemStack(this, 1, 5));
+				break;
+			case 7:
+				ret.add(new ItemStack(this, 1, 6));
+				//The berries are dropped by getDrops();
+				break;
+		default:
+			ret.add(new ItemStack(this, 1, meta));
+		}
 		return ret;
+	}
+
+	@Override
+	protected boolean canSilkHarvest() {
+		return true;
 	}
 
 	@Override
@@ -145,12 +155,11 @@ public class Barnarda_C_Dandelions extends BlockBush implements ITerraformableBl
     @Override
     public IIcon getIcon(int side, int meta)
     {
-       if (meta < 0 || meta >= this.textures.length)
-       {
-            return this.textures[0];
-       }
-
-       return this.textures[meta];
+        if (meta < 0 || meta >= this.textures.length)
+        {
+			return this.textures[0];
+        }
+        return this.textures[meta];
     }
         
     @Override
@@ -161,24 +170,18 @@ public class Barnarda_C_Dandelions extends BlockBush implements ITerraformableBl
     
     @Override
     public int damageDropped(int metadata) {
-    	switch(metadata)
-    	{
-    		default: return metadata;
-    	}
+        return metadata;
     }
-    
+
     @Override
     public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune)
     {
-        ArrayList<ItemStack> ret = super.getDrops(world, x, y, z, metadata, fortune);
+        ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
         if (metadata == 7) {
-        	ret.clear();
             ret.add(new ItemStack(BRItems.Food, 1, 0));
-            ret.add(new ItemStack(this, 1, 6));
         }
         return ret;
     }
-    
     @Override
     public Item getItemDropped(int meta, Random random, int par3)
     {
@@ -191,42 +194,41 @@ public class Barnarda_C_Dandelions extends BlockBush implements ITerraformableBl
         return 1;
     }
     
-    @Override
-	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack is) {
-		world.setBlockMetadataWithNotify(x, y, z, is.getItemDamage(), 3);
-		
-		if(is.getItemDamage() == 4 && world.isAirBlock(x, y + 1, z)) {
-			world.setBlock(x, y + 1, z, this, 5, 3);
-		}
-		
-		if(is.getItemDamage() == 6 && !(world.getBlock(x, y - 1, z) instanceof Barnarda_C_Grass))		
-			GSUtils.destroyBlock(world, x, y, z, (EntityPlayer) entity, x, y, z);
-		
-		
-	}
-    
 
     @Override
     public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest)
     {
-    	if(world.getBlock(x, y, z) == this && world.getBlockMetadata(x, y, z) == 4)
-    		if(world.getBlock(x, y + 1, z) == this)
-    			GSUtils.destroyBlock(world, x, y + 1, z, player, x, y, z);
-    	
-    	
-    	if(world.getBlock(x, y, z) == this && world.getBlockMetadata(x, y, z) >= 6)
-    	{
-    		for(int y1 = 0; y1 < 4; y1++)
-    			if(world.getBlock(x, y + y1, z) == this && world.getBlockMetadata(x, y + y1, z) >= 6) {
-					this.dropBlockAsItem(world, x, y + y1, z, world.getBlockMetadata(x, y + y1, z), 0);
-					world.setBlockToAir(x, y + y1, z);
-    			}
-    	}
-    	
-    	return super.removedByPlayer(world, player, x, y, z, willHarvest);
-    }
+		if(world.getBlock(x, y, z) == this) {
+			switch (world.getBlockMetadata(x, y, z)) {
+				case 4:
+					if (world.getBlock(x, y + 1, z) == this)
+						world.setBlockToAir(x, y+1, z);
+					break;
+				case 5:
+					if (world.getBlock(x, y - 1, z) == this)
+						world.setBlockToAir(x, y-1, z);
+					break;
+			}
+		}
+		return super.removedByPlayer(world, player, x, y, z, willHarvest);
+	}
 
-    
+
+	@Override
+	public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbor) {
+		int meta = world.getBlockMetadata(x, y, z);
+		if(meta == 1) {
+			if (!isValidPosition(world, x, y, z, ForgeDirection.DOWN, meta)) {
+				this.dropBlockAsItem(world, x, y, z, meta, 0);
+				world.setBlockToAir(x, y, z);
+			}
+		}
+		else if (meta != 4)
+			if(!isValidPosition(world, x, y, z, ForgeDirection.UP, meta)) {
+				this.dropBlockAsItem(world, x, y, z, meta, 0);
+				world.setBlockToAir(x, y, z);
+			}
+	}
     @Override
     public void updateTick(World world, int x, int y, int z, Random rand)
     {
@@ -234,18 +236,13 @@ public class Barnarda_C_Dandelions extends BlockBush implements ITerraformableBl
 		{
 	    	if((world.getBlock(x, y, z) == this && world.getBlockMetadata(x, y, z) >= 6))
 	    	{
-	    		if (world.getBlock(x, y - 1, z) == Blocks.air)
-	        	{
-	        		this.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-	                world.setBlockToAir(x, y, z);
-	        	}		    		
-	    		else if(world.isAirBlock(x, y + 1, z) )
+	    		if(world.isAirBlock(x, y + 1, z) )
 	    		{
-	    			int lenght = 1;
-	    			while(world.getBlock(x, y - lenght, z) == this)
-	    				lenght++;
+	    			int length = 1;
+	    			while(world.getBlock(x, y - length, z) == this)
+	    				length++;
 	    			
-	    			if(lenght < 4)
+	    			if(length < 4)
 	    				world.setBlock(x, y + 1, z, this, 6, 3);
 	    		
 	    		}
@@ -259,10 +256,46 @@ public class Barnarda_C_Dandelions extends BlockBush implements ITerraformableBl
 		}
     }
 
-    
-    @Override
-    public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable)
-    {                
-        return true;
+    public boolean isValidPosition(World world, int x, int y, int z, ForgeDirection direction, int metadata)
+    {
+		if ((metadata == 1))
+			return direction == ForgeDirection.DOWN && world.getBlock(x, y+1, z) instanceof Barnarda_C_Leaves;
+		if(direction != ForgeDirection.UP)
+			return false;
+		Block block = world.getBlock(x, y-1, z);
+		switch (metadata) {
+			case 4:
+				if(world.isAirBlock(x, y+1, z)) {
+					if(block instanceof Barnarda_C_FallingBlocks) {
+						world.setBlock(x, y, z, this, 4, 3);
+						world.setBlock(x, y + 1, z, this, 5, 3);
+						//Copy of onItemUse() in net.minecraft.item.ItemHoe
+						world.playSoundEffect(x+0.5D, y+0.5D,z+0.5D,this.stepSound.getBreakSound() , (this.stepSound.getVolume() + 1.0F) / 2.0F, this.stepSound.getPitch() * 0.8F);
+						return true;
+					}
+				}
+				return false;
+			case 5:
+				return block instanceof Barnarda_C_FallingBlocks || (block instanceof Barnarda_C_Dandelions && world.getBlockMetadata(x, y-1, z) == 4);
+			case 6:
+			case 7:
+				return block instanceof Barnarda_C_Grass || (block == this && world.getBlockMetadata(x, y-1, z) >= 6);
+			default:
+				return block instanceof Barnarda_C_Grass;
+
+		}
     }
+
+	/**
+	 * THIS METHOD SHOULD NOT BE CALLED UNLESS YOU KNOW WHAT YOU ARE DOING, USE isValidPosition() IN MOST COMMON CASES.
+	 * [GalaxySpace] If this method is called with itemStack.stackSize < 1 then unknown issues can occur. This should never happen, but it's food for thought.
+	 */
+	@Override
+	public boolean canReplace(World world, int x, int y, int z, int side, ItemStack itemStack)
+	{
+		int meta = itemStack != null ? itemStack.getItemDamage() : 0;
+		if(meta == 4)
+			itemStack.stackSize--;
+		return isValidPosition(world, x, y, z, ForgeDirection.getOrientation(side), meta);
+	}
 }

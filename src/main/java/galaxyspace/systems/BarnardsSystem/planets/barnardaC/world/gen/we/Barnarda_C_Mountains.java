@@ -27,7 +27,7 @@ public class Barnarda_C_Mountains extends WE_Biome {
 		biomeSurfaceHeight      =       height;
 		biomeInterpolateQuality =       35;
 		
-		biomeGrassColor = 0x89AC76;
+		biomeGrassColor = 0x890076;
 		//-//
 		decorateChunkGen_List.clear();		
 		createChunkGen_InXZ_List.clear();

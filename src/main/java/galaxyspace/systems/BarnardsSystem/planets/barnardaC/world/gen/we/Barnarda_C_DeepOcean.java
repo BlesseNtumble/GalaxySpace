@@ -19,7 +19,8 @@ public class Barnarda_C_DeepOcean extends WE_Biome {
 		biomeSurfaceHeight      =     35;
 		biomeInterpolateQuality =     65;	
 		
-		biomeGrassColor = 0x89AC76;
+		//biomeGrassColor = 0x89AC76;
+		biomeGrassColor = 0x89DC76;
 		//-//
 		decorateChunkGen_List.clear();		
 		createChunkGen_InXZ_List.clear();

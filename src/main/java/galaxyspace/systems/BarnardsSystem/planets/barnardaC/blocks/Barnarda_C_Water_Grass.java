@@ -1,5 +1,6 @@
 package galaxyspace.systems.BarnardsSystem.planets.barnardaC.blocks;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -13,10 +14,13 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.IShearable;
 
-public class Barnarda_C_Water_Grass extends BlockLilyPad {
+public class Barnarda_C_Water_Grass extends BlockLilyPad implements IShearable {
 
 	public Barnarda_C_Water_Grass()
 	{
@@ -55,12 +59,46 @@ public class Barnarda_C_Water_Grass extends BlockLilyPad {
         {
             world.func_147480_a(x,y,z, true);
         }
-		
-        entity.motionX = entity.motionZ /= 2;
+        entity.motionX /= 2;
+        entity.motionZ /= 2;
 	}
 	
 	@Override
 	public Item getItemDropped(int meta, Random random, int par3) {
 		return null;
 	}
+
+    @Override
+    public boolean isShearable(ItemStack item, IBlockAccess world, int x, int y, int z) {
+        return true;
+    }
+
+    @Override
+    public ArrayList<ItemStack> onSheared(ItemStack item, IBlockAccess world, int x, int y, int z, int fortune) {
+
+        ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
+        ret.add(new ItemStack(this, 1, world.getBlockMetadata(x, y, z)));
+        return ret;
+    }
+//    TODO: Eventually get to making Barnard C have a purple config.
+//    @SideOnly(Side.CLIENT)
+//    public int colorMultiplier(IBlockAccess p_149720_1_, int p_149720_2_, int p_149720_3_, int p_149720_4_)
+//    {
+//        return 0x9930A1;
+//    }
+//    @SideOnly(Side.CLIENT)
+//    public int getBlockColor()
+//    {
+//        return 0x9930A1;
+//    }
+//
+//    /**
+//     * Returns the color this block should be rendered. Used by leaves.
+//     */
+//    @SideOnly(Side.CLIENT)
+//    public int getRenderColor(int p_149741_1_)
+//    {
+//        return 0xA955AA;
+//
+//    }
 }

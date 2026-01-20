@@ -19,7 +19,8 @@ public class Barnarda_C_Beach extends WE_Biome {
 		biomeSurfaceHeight      =     68;
 		biomeInterpolateQuality =     20;
 		
-		biomeGrassColor = 0x89AC76;
+		//biomeGrassColor = 0x89AC76;
+		biomeGrassColor = 0x44AC76;
 				
 		//-//
 		decorateChunkGen_List.clear();		

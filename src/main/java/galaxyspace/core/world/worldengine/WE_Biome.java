@@ -32,7 +32,7 @@ public class WE_Biome extends BiomeGenBase {
 	public int biomeNumberOfOctaves = 1,
 		biomeSurfaceHeight = 63,
 		biomeInterpolateQuality = 16,		
-		biomeGrassColor = 0xFFFFFF;
+		biomeGrassColor = 0xCCCCCC; //If grass is grey something broke
 	
 	//////////////////
 	//- Generators -//
@@ -133,7 +133,8 @@ public class WE_Biome extends BiomeGenBase {
 	public static WE_Biome getBiomeAt(long x, long z) {
 		return getBiomeAt(chunk_provider, x, z);
 	}
-	
+	//TODO: Find where this returns the titan chunk provider.
+	//TOOD: Check to make sure all worlds have the correct chunk provider.
 	public static WE_Biome getBiomeAt(WE_ChunkProvider cp, long x, long z) {
 		double biomeMapData = WE_PerlinNoise.PerlinNoise2D((cp.worldObj.getSeed() * 11) ^ 6,
 			x / cp.biomemapScaleX, z / cp.biomemapScaleX,

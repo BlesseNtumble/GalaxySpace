@@ -10,15 +10,7 @@ public class ItemBlocksBarnardaCGrass extends ItemBlock
     public ItemBlocksBarnardaCGrass(Block block) {
         super(block);
         setMaxDamage(0);
-        setHasSubtypes(true);
-    }
-    
-    public String getUnlocalizedName(ItemStack is) {
-        int metadata = is.getItemDamage();
-        if (metadata >= 0 && metadata < Barnarda_C_Grass.metadata.length) {
-            return "tile.BarnardaCGrass";//super.getUnlocalizedName() + "." + Barnarda_C_Grass.metadata[metadata];
-        }
-        return super.getUnlocalizedName();
+        setHasSubtypes(false);
     }
 }
 

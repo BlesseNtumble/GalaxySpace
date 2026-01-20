@@ -2,11 +2,9 @@ package galaxyspace.systems.BarnardsSystem.planets.barnardaC.items;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import galaxyspace.GalaxySpace;
 import galaxyspace.systems.BarnardsSystem.planets.barnardaC.blocks.Barnarda_C_Dandelions;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemMultiTexture;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;

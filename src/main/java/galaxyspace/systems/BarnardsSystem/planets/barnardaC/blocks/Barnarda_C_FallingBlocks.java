@@ -2,6 +2,7 @@ package galaxyspace.systems.BarnardsSystem.planets.barnardaC.blocks;
 
 import galaxyspace.GalaxySpace;
 import galaxyspace.core.util.GSCreativeTabs;
+import galaxyspace.core.util.GSUtils;
 import galaxyspace.systems.BarnardsSystem.core.registers.blocks.BRBlocks;
 import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
 import net.minecraft.block.Block;
@@ -9,7 +10,7 @@ import net.minecraft.block.BlockFalling;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.init.Blocks;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -129,5 +130,12 @@ public class Barnarda_C_FallingBlocks extends BlockFalling implements ITerraform
 		}
    		return super.canSustainPlant(world, x, y, z, side, plantable);
    	}
+    @Override
+    public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
+        if (world.getBlock(x, y, z) == this)
+            if (world.getBlock(x, y + 1, z) instanceof Barnarda_C_Dandelions && world.getBlockMetadata(x, y + 1, z) == 4)
+                GSUtils.destroyBlock(world, x, y + 1, z, player, x, y, z);
+        return super.removedByPlayer(world, player, x, y, z, willHarvest);
+    }
 
 }

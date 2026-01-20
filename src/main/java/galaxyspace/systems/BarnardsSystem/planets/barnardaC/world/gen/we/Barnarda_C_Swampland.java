@@ -24,7 +24,7 @@ public class Barnarda_C_Swampland extends WE_Biome {
 		biomeSurfaceHeight      =     64;
 		biomeInterpolateQuality =     5;
 		
-		biomeGrassColor = 0x89AC76;
+		biomeGrassColor = 0x89AA70;
 		//-//
 		decorateChunkGen_List.clear();		
 		createChunkGen_InXZ_List.clear();

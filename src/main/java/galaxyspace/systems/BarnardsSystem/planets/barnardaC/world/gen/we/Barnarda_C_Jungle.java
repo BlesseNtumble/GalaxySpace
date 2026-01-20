@@ -30,7 +30,8 @@ public class Barnarda_C_Jungle extends WE_Biome {
 		biomeSurfaceHeight      =     68;
 		biomeInterpolateQuality =     30;
 		
-		biomeGrassColor = 0x89AC76;
+		//biomeGrassColor = 0x89AC76;
+		biomeGrassColor = 0x89FC56;
 		//-//
 		decorateChunkGen_List.clear();		
 		createChunkGen_InXZ_List.clear();

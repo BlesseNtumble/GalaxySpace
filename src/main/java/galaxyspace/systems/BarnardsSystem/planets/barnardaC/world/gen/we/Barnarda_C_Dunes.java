@@ -14,7 +14,7 @@ public class Barnarda_C_Dunes extends WE_Biome {
 
 	public Barnarda_C_Dunes(double min, double max) {
 		super(0, false);
-		
+		this.setBiomeName("barnard_c_dunes");
 		biomeMinValueOnMap      =   min;
 		biomeMaxValueOnMap      =   max;
 		biomePersistence        =   1.8D;
@@ -24,7 +24,8 @@ public class Barnarda_C_Dunes extends WE_Biome {
 		biomeSurfaceHeight      =     72;
 		biomeInterpolateQuality =     15;		
 		
-		biomeGrassColor = 0x89AC76;
+		//biomeGrassColor = 0x89AC76;
+		biomeGrassColor = 0x81AC46;
 		//-//
 		decorateChunkGen_List.clear();		
 		createChunkGen_InXZ_List.clear();
