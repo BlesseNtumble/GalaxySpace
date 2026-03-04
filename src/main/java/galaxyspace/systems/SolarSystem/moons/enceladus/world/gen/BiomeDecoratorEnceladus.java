@@ -26,23 +26,17 @@ public class BiomeDecoratorEnceladus extends BiomeDecoratorSpace
 		
 		for (int i = 0; i < 50; i++) {
 			 
-	        int randPosX = chunkX + rand.nextInt(16);
+	        int randPosX = this.chunkX + rand.nextInt(16);
 	        int randPosY = rand.nextInt(80);
 	        int randPosZ = chunkZ + rand.nextInt(16);
-       
-	        if (this.world.getBlock(randPosX, randPosY - 1, randPosZ) == GSBlocks.EnceladusBlocks && this.world.getBlockMetadata(randPosX, randPosY - 1, randPosZ) == 1 && this.world.isAirBlock(randPosX, randPosY, randPosZ))
-	        {
-	        	
-	        	this.world.setBlock(randPosX, randPosY, randPosZ, GSBlocks.EnceladusCrystal);
-	        	
-	        }
-	        
-	        if (this.world.getBlock(randPosX, randPosY + 1, randPosZ) == GSBlocks.EnceladusBlocks && this.world.getBlockMetadata(randPosX, randPosY + 1, randPosZ) == 1 && this.world.isAirBlock(randPosX, randPosY, randPosZ))
-	        {	        	
-	        	this.world.setBlock(randPosX, randPosY, randPosZ, GSBlocks.EnceladusCrystal);	        	
-	        }
-	        
-        
+			for (int attempts = 0; attempts < 4; attempts++) {
+				int side = rand.nextInt(6);
+				if (GSBlocks.EnceladusCrystal.canPlaceBlockOnSide(world, randPosX, randPosY, randPosZ, side) && this.world.isAirBlock(randPosX, randPosY, randPosZ)) {
+					this.world.setBlock(randPosX, randPosY, randPosZ, GSBlocks.EnceladusCrystal, side, 3);
+
+					break;
+				}
+			}
 		}
 	}
 
