@@ -8,7 +8,7 @@ buildscript {
 		//maven { url = 'https://maven.daporkchop.net/' }
     }
     dependencies {
-		classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
+		classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.0.+', changing: true
 		classpath "org.spongepowered:mixingradle:0.7-SNAPSHOT"
 	}
 }
@@ -37,6 +37,10 @@ repositories {
         url = "https://maven.covers1624.net/" //"https://chickenbones.net/maven" //or https://maven.covers1624.net/
     }
 	mavenCentral()
+	
+	flatDir {
+		dir 'libs'
+	}
 }
 
 minecraft {
@@ -98,8 +102,10 @@ dependencies {
 	implementation files('libs/Mekanism-1.12.2-9.4.13.349-api.jar')
 	implementation files('libs/PlanetProgression-1.12.2-0.4.8-api.jar')
 	implementation files('libs/RedstoneFlux-1.12-2.1.0.6-universal.jar')
-	compileOnly fg.deobf("codechicken:CodeChickenLib:1.12.2-3.2.3.358:universal")
-	implementation fg.deobf("curse.maven:project-564236:3633263")
+	
+	compileOnly fg.deobf("libs:CodeChickenLib-1.12.2:3.2.3.358:universal")
+	implementation files("libs/AsmodeusCore-1.12.2-1.0.4-dev.jar")
+	implementation fg.deobf("libs:Galacticraft-1.12.2:4.0.2.283")
 
 	//runtimeOnly fileTree('lib') { include '*.jar' }
 	//compileOnly fileTree('libs')
