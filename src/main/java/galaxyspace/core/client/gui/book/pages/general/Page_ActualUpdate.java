@@ -95,7 +95,7 @@ public class Page_ActualUpdate extends Page_WithScroll{
 		
 		if(checkClick(mouseX, mouseY, x + 280, y + 45, 120, 16))
 			try {
-				Desktop.getDesktop().browse(new URI("https://minecraft.curseforge.com/projects/galaxy-space-addon-for-galacticraft/files"));
+				Desktop.getDesktop().browse(new URI("https://www.curseforge.com/minecraft/mc-mods/galaxy-space-addon-for-galacticraft/files/all?page=1&pageSize=20&showAlphaFiles=show"));
 			} catch (IOException | URISyntaxException e) {
 				
 				e.printStackTrace();
