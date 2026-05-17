@@ -10,14 +10,14 @@ menu.update=Mise à Jour De Galaxyspace !
 #||||||||||||||||||Blocks||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 tile.mercury_surface.name=Roche De Surface Mercurienne
-tile.mercury_subsurface.name=Roche De Sous-Surface Mercurienne
+tile.mercury_subsurface.name=Roche Souterraine Mercurienne
 tile.mercury_stone.name=Roche Mercurienne
 tile.mercury_iron_ore.name=Minerai De Fer (Mercure)
 tile.mercury_nickel_ore.name=Minerai De Nickel (Mercure)
 tile.mercury_magnesium_ore.name=Minerai De Magnésium (Mercure)
 
 tile.deco_cobaltum.name=Bloc De Décoration En Cobalt
-tile.deco_magnesium.name=Bloc De Décoration En Magnesium
+tile.deco_magnesium.name=Bloc De Décoration En Magnésium
 tile.deco_nickel.name=Bloc De Décoration En Nickel
 tile.deco_copper.name=Bloc De Décoration En Cuivre
 tile.cobalt_block.name=Bloc De Cobalt
@@ -39,29 +39,29 @@ tile.tin_ore.name=Minerai D'Étain
 tile.aluminum_ore.name=Minerai D'Aluminium
 tile.quartz_ore.name=Minerai De Quartz
 
-tile.oxygen_ice.name=Glace Oxygène
+tile.oxygen_ice.name=Glace D'Oxygène
 tile.nitrogen_ice.name=Glace De Nitrogène
 tile.methane_ice.name=Glace De Méthane
 tile.hydrogen_ice.name=Glace D'Hydrogène
 tile.dry_ice.name=Glace Carbonique
 
-tile.futureglass_none.name=Verre Futuriste
-tile.futureglass_black.name=Verre Futuriste Noir
-tile.futureglass_red.name=Verre Futuriste Rouge
-tile.futureglass_green.name=Verre Futuriste Vert
-tile.futureglass_brown.name=Verre Futuriste Brun
-tile.futureglass_blue.name=Verre Futuriste Bleu
-tile.futureglass_purple.name=Verre Futuriste Violet
-tile.futureglass_cyan.name=Verre Futuriste Cyan
-tile.futureglass_lightgray.name=Verre Futuriste Gris-Clair
-tile.futureglass_gray.name=Verre Futuriste Gris
-tile.futureglass_pink.name=Verre Futuriste Rose
-tile.futureglass_lime.name=Verre Futuriste Vert-Clair
-tile.futureglass_yellow.name=Verre Futuriste Jaune
-tile.futureglass_lightblue.name=Verre Futuriste Bleu-Clair
-tile.futureglass_magneta.name=Verre Futuriste Magenta
-tile.futureglass_orange.name=Verre Futuriste Orange
-tile.futureglass_white.name=Verre Futuriste Blanc
+tile.futureglass_none.name=Verre Futuristique
+tile.futureglass_black.name=Verre Futuristique Noir
+tile.futureglass_red.name=Verre Futuristique Rouge
+tile.futureglass_green.name=Verre Futuristique Vert
+tile.futureglass_brown.name=Verre Futuristique Brun
+tile.futureglass_blue.name=Verre Futuristique Bleu
+tile.futureglass_purple.name=Verre Futuristique Violet
+tile.futureglass_cyan.name=Verre Futuristique Cyan
+tile.futureglass_lightgray.name=Verre Futuristique Gris-Clair
+tile.futureglass_gray.name=Verre Futuristique Gris
+tile.futureglass_pink.name=Verre Futuristique Rose
+tile.futureglass_lime.name=Verre Futuristique Vert-Clair
+tile.futureglass_yellow.name=Verre Futuristique Jaune
+tile.futureglass_lightblue.name=Verre Futuristique Bleu-Clair
+tile.futureglass_magneta.name=Verre Futuristique Magenta
+tile.futureglass_orange.name=Verre Futuristique Orange
+tile.futureglass_white.name=Verre Futuristique Blanc
 
 tile.mars_diamond.name=Minerai De Diamant (Mars)
 tile.mars_gold.name=Minerai D'Or (Mars)
@@ -71,14 +71,14 @@ tile.mars_silicon.name=Minerai De Silicium (Mars)
 tile.mars_aluminum.name=Minerai D'Aluminium (Mars)
 
 tile.ceres_grunt.name=Roche De Surface De Cérès
-tile.ceres_subgrunt.name=Roche De Sous-Surface De Cérès
-tile.ceres_dolomite_ore.name=Minerai De Dolomite (Ceres)
-tile.ceres_meteoriciron_ore.name=Minerai De Fer Météorique (Ceres)
-tile.ceres_dungeon_top.name=Haut D'un Donjon De Cérès
-tile.ceres_dungeon_floor.name=Sol D'Un Donjon De Cérès
+tile.ceres_subgrunt.name=Roche Souterraine De Cérès
+tile.ceres_dolomite_ore.name=Minerai De Dolomite (Cérès)
+tile.ceres_meteoriciron_ore.name=Minerai De Fer Météorique (Cérès)
+tile.ceres_dungeon_top.name=Dessus De Donjon De Cérès
+tile.ceres_dungeon_floor.name=Sol De Donjon De Cérès
 
 tile.pluto_grunt.name=Roche De Surface Plutonienne
-tile.pluto_subgrunt.name=Roche De Sous-Surface Plutonienne
+tile.pluto_subgrunt.name=Roche Souterraine Plutonienne
 tile.pluto_stone.name=Roche Plutonienne
 
 tile.haumea_ground.name=Roche De Surface D'Hauméa
@@ -101,9 +101,9 @@ tile.io_sulfur_ore.name=Minerai De Soufre (io)
 tile.io_volcanic_ore.name=Minerai Volcanique (Io)
 tile.io_lava_geyser.name=Geyser De Lave D'Io
 tile.io_sulfur_geyser.name=Geyser De Soufre D'Io
-tile.io_top.name=Haut D'Un Donjon D'Io
-tile.io_floor.name=Sol D'Un Donjon D'Io
-tile.io_dungeon_bricks.name=Brique D'Un Donjon D'Io 
+tile.io_top.name=Dessus De Donjon D'Io
+tile.io_floor.name=Sol De Donjon D'Io
+tile.io_dungeon_bricks.name=Briques De Donjon D'Io 
 
 tile.europa_grunt.name=Glace De Surface D'Europe
 tile.europa_stone.name=Roche D'Europe
