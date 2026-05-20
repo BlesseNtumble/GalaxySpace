@@ -220,10 +220,10 @@ tile.sponge_coral.name=Corail Éponges (τ Ceti f)
 #||||||||||||Tile Description||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 tile.assembly_machine.name=Machine D'Assemblement
-tile.assembly_machine.desc=Compresseur modifié. Soude les matériaux avec un laser de haute précision.
+tile.assembly_machine.desc=Compresseur modifié. Soude les matériaux avec un laser à haute précision.
 
 tile.fuel_generator.name=Générateur À Fuel
-tile.fuel_generator.desc=Le générateur à fuel utilise du fuel pour produire une quantité décente d'énergie. Une bonne option pour les grands consommateurs de carburant.
+tile.fuel_generator.desc=Le générateur à fuel utilise du fuel pour produire une quantité décente d'énergie. Une bonne option pour les magnats de carburant.
 
 tile.modern_solarpanel.name=Panneau Solaire Hybride
 tile.modern_solarpanel.desc=Un panneau solaire hybride, utilisant des panneaux en plaque d'or, produit deux fois plus d'énergie que le panneau solaire avancé.
@@ -232,16 +232,16 @@ tile.gravitation_module.name=Module De Gravité
 tile.gravitation_module.desc=Crée une gravité semblable à la Terre dans un rayon personalisable dans toutes les directions.
 
 tile.wind_generator.name=Éolienne
-tile.wind_generator.desc=Génère de l'énergie à partir des courants de vent, fournissant de l'énergie sur les planètes avec une atmosphère.
+tile.wind_generator.desc=Génère de l'énergie à partir du vent environnant, fournissant de l'énergie sur les planètes possèdant une atmosphère.
 
 tile.rocket_assembler.name=Assembleur De Fusée
-tile.rocket_assembler.desc=Assemble des fusées à partir de composants fabriqués dans l'établi de la NASA.
+tile.rocket_assembler.desc=Assemble des fusées à partir de composants fabriqués dans l'atelier de la NASA.
 
 tile.universal_recycler.name=Recycleur Universel
 tile.universal_recycler.desc=Recycle une ressource en une autre. Parfois, la ressource résultante est liquide.
 
 tile.liquid_extractor.name=Collecteur De Liquide
-tile.liquid_extractor.desc=Recueille les liquides en-dessous de lui.
+tile.liquid_extractor.desc=Recueille les liquides par le dessous.
 
 tile.liquid_separator.name=Séparateur De Liquide
 tile.liquid_separator.desc=Sépare les liquides en éléments ou les combine entre eux pour former d'autre liquide.
@@ -250,37 +250,37 @@ tile.hydroponic_base.name=Base Hydroponique
 tile.hydroponic_base.desc=Bloc de base pour une ferme hydroponique. Placez un bloc de ferme hydroponique sur le dessus de cette machine.
 
 tile.hydroponic_farm.name=Bloc De Ferme Hydroponique
-tile.hydroponic_farm.desc=Installez jusqu'à trois de ces blocs au-dessus de la base hydroponique. Requis pour le fonctionnement de la ferme hydroponique.
+tile.hydroponic_farm.desc=Installez jusqu'à trois de ces blocs au-dessus d'une base hydroponique. Requis pour le fonctionnement de la ferme hydroponique.
 
 tile.radiation_stabiliser.name=Générateur De Champ Magnétique
-tile.radiation_stabiliser.desc=Crée un champ qui protège contre les rayonnements solaire dangereux (radiations solaire). La portée du champs magntiques peut être étendue en installant des modules.
+tile.radiation_stabiliser.desc=Crée un champ qui protège contre les radiations solaires. La portée peut être étendue en installant des modules.
 
 tile.panel_controller.name=Contrôleur De Mini-Panneau Solaire
-tile.panel_controller.desc=Récupère l'énergie que les mini-panneaux solaires à proximité ont récoltés. Appuyez sur Maj + clic droit sur ce bloc pour voir la portée effective.
+tile.panel_controller.desc=Récupère l'énergie que les mini-panneaux solaires à proximité ont récoltés. Appuyez sur Maj + Clic Droit sur ce bloc pour voir la portée effective.
 
 tile.single_solarpanel.name=Mini-Panneau Solaire
-tile.single_solarpanel.desc=Fonctionne comme un panneau solaire basique,ais nécessite un contrôleur de mini-panneaux.
+tile.single_solarpanel.desc=Fonctionne comme un panneau solaire, mais nécessite un contrôleur de mini-panneaux.
 
 tile.modern_single_solarpanel.name=Mini-Panneau Solaire Moderne
-tile.modern_single_solarpanel.desc=Panneau plus efficace que le mini-panneau classic. Nécessite un contrôleur de mini-panneaux.
+tile.modern_single_solarpanel.desc=Panneau plus efficace que le mini-panneau classique. Nécessite un contrôleur de mini-panneaux.
 
-tile.modern_storage_module.name=Cluster De Réservoir D'Énergie Moderne
-tile.modern_storage_module.desc=Version moderne du Cluster D'Énergie. Il peut stocker une plus grande quantité d'énergie.
+tile.modern_storage_module.name=Groupement Moderne De Réservoir D'Énergie
+tile.modern_storage_module.desc=Version moderne du Groupement De Stockage D'Énergie. Il peut stocker une plus grande quantité d'énergie.
 
 tile.modification_table.name=Table De Mofification
-tile.modification_table.desc=Vous permet d'installer des modules sur un équipement qui les prennent en charge.
+tile.modification_table.desc=Permet d'installer des modules sur un équipement qui les prennent en charge.
 
 tile.gas_burner.name=Brûleur De Gaz
 tile.gas_burner.desc=Brûle les gaz fournis.
 
-tile.oxygen_storage_module_1.name=Cluster De Réservoir D'Oxygène Moderne
-tile.oxygen_storage_module_1.desc=Améliore le stockage du réservoir d'oxygène. Il peut en stocker quatre fois plus.
+tile.oxygen_storage_module_1.name=Groupement Moderne De Réservoir D'Oxygène
+tile.oxygen_storage_module_1.desc=Stockage D'Oxygène amélioré. Il peut stocker quatre fois plus que la version précédente.
 
 tile.solarwind_panel.name=Panneau À Vent Solaire
-tile.solarwind_panel.desc=Convertit les vents solaires en énergie. Ne fonctionne pas sur une planète avec une atmosphère.
+tile.solarwind_panel.desc=Convertit les vents solaires en énergie. Ne fonctionne pas sur une planète possèdant une atmosphère.
 
 tile.advanced_landing_pad.name=Rampe De lancement avancée
-tile.advanced_landing_pad.desc=Rampe de lancement avancée pour les fusées de rang supérieur (T4, T5 et T6). Doit être placé en 5x5.
+tile.advanced_landing_pad.desc=Rampe de lancement avancée pour les fusées de rang supérieur. Devrait être placées en 5x5.
 
 tile.adv_circuit_fabricator.name=Fabricateur De Circuits Avancés
 tile.adv_circuit_fabricator.desc=Version avancée du Fabricateur De Circuits, deux fois plus efficace. Prend en charge les modules.
@@ -292,7 +292,7 @@ tile.planet_shield.name=Bouclier Planétaire
 tile.planet_shield.desc=Protège la zone des chutes de météorites.
 
 tile.energy_pad.name=Plateforme Énergétique
-tile.energy_pad.desc=Charge tous les objets électriques que le joueur porte sur lui. Nécessite d'être dessus.
+tile.energy_pad.desc=Charge tous les objets électriques que le joueur porte sur lui.
 
 tile.port_nuclear_reactor.name=[WIP] Réacteur Nucléaire Portatif
 tile.port_nuclear_reactor.desc=Générateur d'énergie avancé qui utilise l'uranium comme combustible. Un refroidissement à l'eau ou à l'azote est nécessaire.
@@ -303,8 +303,8 @@ tile.modern_frame.name=Structure Moderne Pour Machine
 tile.coefficient.desc=Modificateur de génération
 tile.coefficientcraft.desc=Modificateur de vitesse de fabrication
 
-tile.ceres_bricks.name=Brique D'Un Donjon De Cérès
-tile.io_bricks.name=Brique D'Un donjon d'Io
+tile.ceres_bricks.name=Brique De Donjon De Cérès
+tile.io_bricks.name=Brique De Donjon d'Io
 
 tile.treasure_t4.name=Coffre Au Trésor Tier 4
 tile.treasure_t4.desc=Les coffres au trésor de tier 4 sont générés dans les donjons de Cérès. Débloqué après avoir tué le boss.
