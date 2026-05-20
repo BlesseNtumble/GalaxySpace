@@ -1,4 +1,5 @@
 #Français (FR)
+# Made by Lucki
 menu.update=Mise à Jour De Galaxyspace !
 
 |/////////////////////////////////////////|
@@ -390,10 +391,10 @@ item.empty_plasma_cell.name=Cellule De Plasma Vide
 item.filled_plasma_cell.name=Cellule De Plasma Remplie
 item.wolf_thermal_suit.name=Combinaison Thermique Pour Loup
 item.animal_cage.name=Cage Pour Animal
-item.iron_fan.name=Ventilateur En Fer
-item.steel_fan.name=Ventilateur En Acier
-item.plastic_fan.name=Ventilateur En Plastique
-item.carbon_fan.name=Ventilateur En Carbone
+item.iron_fan.name=Rotor En Fer
+item.steel_fan.name=Rotor En Acier
+item.plastic_fan.name=Rotor En Plastique
+item.carbon_fan.name=Rotor En Carbone
 item.raw_plastic.name=Plastique Brut
 item.plastic.name=Fragment De Plastique
 
@@ -403,8 +404,8 @@ item.module_stabiliser.name=Module "Stabilisateur"
 item.module_speed.name=Module "Vitesse"
 item.module_energy.name=Module "Énergie"
 
-item.module_small_fuelcanister.name=Petite Canette De Carburant
-item.module_smallcanister.name=Canette De Carburant Vide
+item.module_small_fuelcanister.name=Petite Cannette De Carburant
+item.module_smallcanister.name=Cannette De Carburant Vide
 item.module_lander_1.name=Atterrisseur Tier 1
 item.module_lander_2.name=Atterrisseur Tier 2
 item.module_lander_3.name=Atterrisseur Tier 3
@@ -435,11 +436,11 @@ item.modern_battery.name=Batterie Moderne
 item.extra_battery.name=Batterie Extra
 item.ultimate_battery.name=Batterie Ultime
 
-item.hydrogen_canister.name=Canette D'Hydrogène
-item.ethane_canister.name=Canette D'Éthane
-item.em_canister.name=Canette D'Éthane-Méthane
-item.helium_canister.name=Canette D'Hélium-3
-item.hh_canister.name=Canette D'Hélium-Hydrogène
+item.hydrogen_canister.name=Cannette D'Hydrogène
+item.ethane_canister.name=Cannette D'Éthane
+item.em_canister.name=Cannette D'Éthane-Méthane
+item.helium_canister.name=Cannette D'Hélium-3
+item.hh_canister.name=Cannette D'Hélium-Hydrogène
 
 item.violet_reeds.name=Roseaux Violets
 item.water_grass.name=Lichen
@@ -455,13 +456,13 @@ fluid.heliumhydrogen=Hélium-Hydrogène Liquide
 |/////////////////////////////////////////|
 #||||||||||||||||Potions|||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-potion.antiradiation=Effet Antiradiation
+potion.antiradiation=Antiradiation
 
 |/////////////////////////////////////////|
 #|||||||||||||||||GUI||||||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-gui.available_modules.desc=Module Disponible: 
-gui.schematic_oxtanks.desc=Bonbnne D'Oxygène E (EPP)
+gui.available_modules.desc=Modules Disponibles: 
+gui.schematic_oxtanks.desc=Bonbonne D'Oxygène Environementale
 
 gui.tier1.desc=Tier 1
 gui.tier2.desc=Tier 2
@@ -470,29 +471,28 @@ gui.tier4.desc=Tier 4
 gui.tier5.desc=Tier 5
 gui.tier6.desc=Tier 6
 
-gui.bonemeal.desc=Il semble que cet item fonctionne de la même manière que de la poudre d'os.
-gui.schematic_box.desc=Contient des schémas de fusée de base. Utilisez le clic droit pour l'ouvrir.
+gui.bonemeal.desc=Il semble que cet item fonctionne comme de la poudre d'os.
+gui.schematic_box.desc=Contient des plans basiques de fusée. Faites Clic-Droit pour l'ouvrir.
 
 gui.gravitation_module_stabilisation_1.desc=Avec le module "Stabilisation" installé.
 gui.gravitation_module_stabilisation_2.desc=Il stabilisera la pression atmosphérique.
 
 gui.spacesuit.type=Type de combinaison spatiale:
-gui.spacesuit.type.1=Légeère
+gui.spacesuit.type.1=Légère
 gui.spacesuit.type.2=Lourde
 gui.spacesuit.desc.light=La combinaison spatiale légère offre une protection contre le rayonnement solaire.
 gui.spacesuit.desc.heavy=La combinaison spatiale lourde offre une protection contre le rayonnement solaire et stabilise la pression atmosphérique.
 
-gui.module_expander.desc=Emplacement pour le module "Expander". Augmente la portée du champ magnétique.
-gui.temp_shield_control.desc=Fournit une protection contre la corrosion atmosphérique, mais se dégrade avec le temps.
-gui.emergency_portable_teleport.desc=Téléportation d'urgence au point d'ancrage. Se déclenche quand votre vie est inférieur à 6. Maj + clic droit sur un bloc pour définir le point de destination, clic droit pour activer / désactiver.
-gui.planet_shield_stability_1.desc=Avec le module "Stabilisation" le bouclier
+gui.module_expander.desc=Emplacement pour le module "Extanseur". Augmente la portée du champ magnétique.
+gui.temp_shield_control.desc=Fournit une protection contre la corrosion atmosphérique, mais s'endommage avec le temps.
+gui.emergency_portable_teleport.desc=Téléportation d'urgence au point d'ancrage. Se déclenche quand votre vie est inférieur à 6. Faites Maj + Clic-Droit sur un bloc pour définir le point d'ancrage, Clic-Droit pour activer / désactiver.
+gui.planet_shield_stability_1.desc=Avec le module "Stabilisateur", le bouclier
 gui.planet_shield_stability_2.desc=collectera des fragments de météorite dans cet emplacement.
-gui.ice_bucket.desc=Vous pouvez l'obtenir en faisant un clic droit sur de la glace avec un seau vide.
+gui.ice_bucket.desc=Vous pouvez l'obtenir en faisant Clic-Droit sur de la glace avec un seau vide.
 gui.animal_cage.desc=Permet de transporter des animaux. Il se détruit lorsque l'animal est relâché.
 gui.animal_cage_stored.desc=Animal stocké:
-gui.plasma_tools.desc=Instruments "High-Tech" utilisant du plasma. Lorsqu'ils sont utilisés, ils consomment la charge de plasma et chauffent. Reconstituez automatiquement la charge des capsules dans l'inventaire. Ne se casse pas.
-
-gui.not_attached.desc=Pas attaché
+gui.plasma_tools.desc=Instruments de haute technologie utilisant du plasma. Lorsqu'ils sont utilisés, ils consomment un cellule de plasma et chauffent. Regénère automatiquement la charge des cellules dans l'inventaire. Incassable.
+gui.not_attached.desc=Non-attaché
 gui.attached.desc=Attaché:
 gui.enabled.desc=Activé:
 gui.charge=Charge:
@@ -508,19 +508,19 @@ gui.status.nowind.name=Pas de vent
 gui.status.wind.name=Du vent
 gui.status.nowater.name=Pas d'eau
 gui.status.heat.name=Chaleur
-gui.message.active_pressure_shield.name=le bouclier de pression atm. est actuellement actif.
+gui.message.active_pressure_shield.name=Le bouclier de pression atm. est actuellement actif.
 
 gui.message.needoxygen=De L'oxygène est nécessaire pour effectuer cette action.
-gui.message.needthermal=Un contrôle thermique est nécessaire pour effectuer cette action.
-gui.message.needoxygen.food=De l'oxygène est nécessaire pour utiliser des aliments habituels. Vous pouvez utiliser des aliments en conserve à la place.
+gui.message.needthermal=Une combinaison thermique est nécessaire pour effectuer cette action.
+gui.message.needoxygen.food=De l'oxygène est nécessaire pour consommer de la nourriture standard. Vous pouvez utiliser des aliments en conserve à la place.
 gui.message.invalid_teleport_conf=Configuration de la téléportation invalide ou pas d'énergie.
 gui.message.cant_place=Impossible de le placer ici.
  
-gui.message.noradiation=Vous n'avez pas de radiations solaire ! C'est une bonne chose!
+gui.message.noradiation=Vous n'avez pas de radiation solaire, c'est une bonne chose!
 gui.message.emergency_teleport=Téléportation d'urgence utilisée avec succès. Coordonnées :
-gui.message.can_find_in_dungeon=Can be found in dungeons.
+gui.message.can_find_in_dungeon= Peut être trouvé dans les donjons.
 
-gui.message.need_advanced_lp.desc=Ne peut être placé que sur une plateforme de lancement avancée.
+gui.message.need_advanced_lp.desc=Ne peut uniquement être placé sur une rampe de lancement avancée.
 gui.message.engine_type.name=Type de moteur:
 gui.message.effect_visible.name=Afficher la bordure
 
@@ -534,8 +534,8 @@ gs.update.available=Nouvelle version disponible!
 gs.update.download=Télécharger
 gs.update.changelog=Changelog
 
-gui.rotor_slot_desc.0=Emplacement du rotor, placez le rotor ici.
-gui.rotor_slot_desc.1=Plus le rotor est performant, plus il génèra de l'énergie.
+gui.rotor_slot_desc.0=Placez le rotor ici.
+gui.rotor_slot_desc.1=Plus le rotor est performant, plus il générera de l'énergie.
 
 #|/////////////////////////////////////////|
 #|||||||||||||SpaceSuit Modules|||||||||||||
@@ -553,9 +553,9 @@ gui.module.jetpack.desc=Intègre un Jetpack. Vous permet de voler comme un oisea
 gui.module.speed=Boosters De Vitesse
 gui.module.speed.desc=L'installation de boosters augmente votre vitesse de course. Maintenant, vous pouvez fuir un ennemi encore plus rapidement!
 gui.module.gravity=Force Gravitationelle
-gui.module.gravity.desc=Il s'avère qu'une plaque de magnésium donne l'effet de la gravité. L'adaptation sur des planètes est désormais bien meilleure!
+gui.module.gravity.desc=Il s'avèreait qu'une plaque de magnésium donne l'effet de la gravité terrestre. L'adaptation sur des planètes est désormais bien meilleure!
 gui.module.stepassist=Grand Pas
-gui.module.stepassist.desc=Il semblerait que l'installation de slimeball ne ferait rien... Mais maintenant, vous pouvez monter des blocs comme sur un escalier!
+gui.module.stepassist.desc=Il semblerait que l'installation de boule de slime ne servirait... pas à grand chose. Mais maintenant, vous pouvez grimper des blocs comme si c'était un escalier!
 gui.module.jump=Booster De Saut
 gui.module.jump.desc=L'installation de pistons sur des bottes est une bonne idée! Maintenant, vous pouvez sauter 2 fois plus haut que normalement!
 gui.module.energy=Batterie Avancée
@@ -565,8 +565,8 @@ gui.module.protection.desc=Les parties en cobalt de la combinaison vous offrent 
 gui.module.water_breathing=Respiration Aquatique
 gui.module.water_breathing.desc=Ce module vous permettra de rester sous l'eau beaucoup plus longtemps, en consommant l'oxygène de vos réservoirs.
 
-gui.module.sublight_engine=Moteur De "Sous-Vitesse Lumière"
-gui.module.sublight_engine.desc=Une nouvelle génération de moteur à vaisseau. Permet de voyager dans l'espace entre les systèmes solaires.
+gui.module.sublight_engine=Moteur "Sublight"
+gui.module.sublight_engine.desc=Une nouvelle génération de moteur à vaisseau. Permet de voyager dans l'espace vers d'autre système stellaire.
 
 gui.message.forrbiden_modules.name=Incompatible avec:
 gui.module.active=Module actif
@@ -633,23 +633,23 @@ star.proxima=Proxima Centauri
 planet.proxima_b=Proxima B
 
 #Barnard's System
-solarsystem.barnards=Système De Barnarda
-star.barnarda_a=Barnarda A
-planet.barnarda_b=Barnarda B
-planet.barnarda_c=Barnarda C
+solarsystem.barnards=Système De Barnard
+star.barnarda_a=Barnard A
+planet.barnarda_b=Barnard B
+planet.barnarda_c=Barnard C
 planet.barnarda_d=Ceinture D'Astéroïde
-planet.barnarda_e=Barnarda E
+planet.barnarda_e=Barnard E
 moon.barnarda_b1=Anneau Planétaire
-moon.barnarda_c1=Barnarda C1
-moon.barnarda_c2=Barnarda C2
+moon.barnarda_c1=Barnard C1
+moon.barnarda_c2=Barnard C2
 
 #Tau Ceti System
-solarsystem.tauceti=Tau Ceti
-star.tauceti=Tau Ceti A
-planet.tauceti_g=Tau Ceti G
-planet.tauceti_h=Tau Ceti H
-planet.tauceti_e=Tau Ceti E
-planet.tauceti_f=Tau Ceti F
+solarsystem.tauceti=τ Ceti
+star.tauceti=τ Ceti A
+planet.tauceti_g=τ Ceti G
+planet.tauceti_h=τ Ceti H
+planet.tauceti_e=τ Ceti E
+planet.tauceti_f=τ Ceti F
 #|/////////////////////////////////////////|
 #|||||||||||||||||||Book||||||||||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
@@ -665,45 +665,40 @@ book.category.mechanics.name=Mécaniques
 #||||||||||||||||Book-General|||||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 book.page.about_addon.name=À propos de Galaxyspace
-book.page.about_addon.text=Galaxyspace est un addon pour Galacticraft, ajoutant une quantité impressionnante de contenu. !n!nLe développement de l'addon dure depuis plus de 4 ans déjà, introduisant progressivement de plus en plus de contenu au jeu. !n!nTout les systèmes stellaires sont basés sur des données réelles et sont aussi proches de la réalité que le permet le moteur Minecraft. Cet addon a également tendance à être réaliste dans d'autres aspects. 
+book.page.about_addon.text=Galaxyspace est un addon pour Galacticraft, ajoutant une quantité impressionnante de contenu. !n!nLe développement de l'addon dure depuis plus de 6 ans déjà, introduisant progressivement de plus en plus de contenu au jeu. !n!nTout les systèmes stellaires sont basés sur des données réelles et sont aussi proches de la réalité que le permet le moteur de Minecraft. Cet addon a également tendance à être réaliste dans d'autres aspects. 
 book.page.actual_update.name=Mise À Jour Actuelle
 
 #|/////////////////////////////////////////|
 #||||||||||||Book-Celestial Bodies||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
-book.page.star.sol.desc=!c_ySol - Naine jaune. !c_wNotre étoile, notre cher Soleil.
+book.page.star.sol.desc=!c_ySol - Naine jaune. !c_wNotre étoile, le Soleil.
 book.page.solarsystem.sol.asteroids=Une ceinture d'astéroïdes est un immense amas d'astéroïdes en orbite autour d'une étoile. Beacoup d'entre eux  contiennent une grande quantité de minerais.
 book.page.solarsystem.sol.ceres=Cérès est une planète naine de la ceinture d'astéroïdes. Il contient de grandes quantités de fer météoriques et de crystaaux de dolomite.
 book.page.solarsystem.sol.jupiter=Jupiter - Une Géante gazeuse avec de nombreuses lunes qui peuvent être explorées.
 book.page.solarsystem.sol.callisto=Callisto - La lune galiléennes la plus éloignée de Jupiter.
 
-book.page.star.barnarda_a.desc=!c_yBarnarda A - Naine orange. !c_wA étoile proche du soleil.
-book.page.solarsystem.barnards.barnarda_b=Barnarda B - Une Géante gazeuse orbitant à proximité de son étoile. Il a un anneau fait de roches.
+book.page.star.barnarda_a.desc=!c_yBarnarda A - Naine orange. !c_wA Une étoile proche du soleil.
+book.page.solarsystem.barnards.barnarda_b=Barnarda B - Une Géante gazeuse orbitant à proximité de son étoile. Il a un anneau composé de roches.
 book.page.solarsystem.barnards.barnarda_b1=Un Anneau Planétaire, composé de nombreuses petites roches.
 book.page.solarsystem.barnards.barnarda_c=Barnarda C - Planète située dans la !c_gzone habitable !c_wde son étoile. Il habrite des conditions favorables pour les humains.
 book.page.solarsystem.barnards.barnarda_c1=Barnarda C1 - Lune gelée. Il fait trop froid pour les humains.
 book.page.solarsystem.barnards.barnarda_c2=Barnarda C2 - Lune non découverte.
-book.page.solarsystem.barnards.barnarda_d=Une ceinture d'astéroïdes est un immense amas d'astéroïdes en orbite autour d'une étoile. Beacoup d'entre eux  contiennent une grande quantité de minerais.
+book.page.solarsystem.barnards.barnarda_d=Une ceinture d'astéroïdes est un immense amas d'astéroïdes en orbite autour d'une étoile. Beacoup d'entre eux contiennent une grande quantité de minerais.
 book.page.solarsystem.barnards.barnarda_e=Barnarda E - Une Géante gazeuse lointaine.
 
 #|/////////////////////////////////////////|
 #|||||||||||||||Book-Mechanics||||||||||||||
 #|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 book.page.solar_radiation.name=Radiation Solaire
-book.page.solar_radiation.text=Radiation Solaire - un effet négatif poue toute forme d'être vivant qui tue progressivement le joueur. !nLorsque la barre de rayonnement croise l'effet !c_rbordure !c_wrouge est activé. !nSi un joueur est dans un abri ou sous terre, le rayonnement ne s'accumule pas et diminue si l'échelle est au-dessus de la !c_rbordure !c_wrouge. !n!nVous pouvez vous débarrasser des radiations restantes en utilisant des !c_gtablettes anti-radiations. !c_w!nProtégez-vous des radiations en portant une !c_oCombinaison Spatiale !c_wou en étant à l'intérieur d'une bulle d'un !c_oGénérateur de Champ Magnétique.
+book.page.solar_radiation.text=Radiation Solaire - un effet négatif poue toute forme d'être vivant qui tue progressivement le joueur. !nLorsque la barre de rayonnement croise l'effet, la !c_rbordure !c_wrouge est activé. !nSi un joueur est dans un abri ou sous terre, le rayonnement ne s'accumule pas et diminue si l'échelle est au-dessus de la !c_rbordure !c_wrouge. !n!nVous pouvez vous débarrasser des radiations restantes en utilisant des !c_gtablettes anti-radiations. !c_w!nProtégez-vous des radiations en portant une !c_oCombinaison Spatiale !c_wou en étant à l'intérieur d'une bulle d'un !c_oGénérateur de Champ Magnétique.
 book.page.atmosphere_pressure.name=Pression Atmosphérique
-book.page.atmosphere_pressure.text=La pression atmosphérique est l'un des principaux problèmes lors de la colonisation de planètes ayant une atmosphère. !nAvec une !c_rgrande !c_pression atmosphérique, vous ressentirez divers effets négatifs, tels que : nausées, cécité et lenteur. !n!nAvec !c_oune pression !c_atmosphérique encore plus élevée, vous commencerez à perdre de la vie. !nSi la barre de la pression atteint le !c_ymax, !c_wvous mourrez instantanément. !nProtégez-vous des radiations en portant une !c_oCombinaison Spatiale !c_wou à l'intérieur de la zone !c_waction d'un !c_oModule De Gravité.
+book.page.atmosphere_pressure.text=La pression atmosphérique est l'un des principaux problèmes lors de la colonisation de planètes ayant une atmosphère. !nAvec une !c_rgrande !c_pression atmosphérique, vous obtiendrez divers effets négatifs, tels que : nausées, cécité et lenteur. !n!nAvec !c_oune pression !c_atmosphérique encore plus élevée, vous commencerez à perdre de la vie. !nSi la barre de la pression atteint le !c_ymaximum, !c_wvous mourrez instantanément. !nProtégez-vous de la pression en portant une !c_oCombinaison Spatiale !c_wou à l'intérieur de la zone !c_wd'action d'un !c_oModule De Gravité.
 book.page.temp_on_planet.name=Température
-book.page.temp_on_planet.text=Avec GalaxySpace, la température joue un rôle beaucoup plus important. !nVous ne pouvez plus planter vos cultures dans l'espace puisqu'elles mourront instantanément. Maintenant, vous devrez protéger vos fermes en les isolant de l'environnement dangereux de l'espace. !n!n!nDe plus, vous ne pouvez que manger !c_gdes aliments en conserve !c_wsi vous êtes sous-vide (pas isolé de l'espace). !nLes liquides dans l'espace gèleront ou se vaporiseront instantanément (cela dépend de la température d'une planète) si elles sont pas isolé de l'environnement spatial.
+book.page.temp_on_planet.text=Avec GalaxySpace, la température joue un rôle beaucoup plus important. !nVous ne pouvez plus planter vos cultures dans l'espace puisqu'elles mourront instantanément. Maintenant, vous devrez protéger vos fermes en les isolant de l'environnement dangereux de l'espace. !n!n!nDe plus, vous ne pouvez que manger !c_gdes aliments en conserve !c_wsi vous êtes dans le vide spatail. !nLes liquides dans l'espace gèleront ou se vaporiseront instantanément (cela dépend de la température de l'astre) si elles ne sont pas isolé de l'environnement spatial.
 
-#This fr_FR translation is made by me... What? You say than you don't know "me"? Nevermind. If you have any question or problem about this translation, feel free to add me on discord with this id: Lucki#7270, but be cool and nice (like start with "hello"), and don't spam me please.
-#Cette traduction fr_FR est fait par moi... Quoi? Vous me dites que vous me connaissez pas? Pas grave. Si vous avez des questions ou des problèmes à rapport à cette traduction, n'hésitez pas à m'ajoutez sur Discord avec cette id: Lucki#7270, mais restez cool et sympa (comme commencer avec "salut"), et évitez de spam s'il vous plaît.
 
-#French is really not an easy language to use, especially for translating text. Honestly, is it a "real" language?
-#Le français est vraiment pas un language facile d'utilisationb surtout pour traduire du texte. Franchement, est ce que c'est vraiment un "vrai" language ?
+#This fr_FR translation is made by me... (I know, right ?). And you can call me Lucki. If you have any question or correction you want to share, fell free to contact me on Discord: Lucki7270.
+#Cette traduction fr_FR est faite par moi... (Sans blague). Tu peux m’appeler Lucki. Si tu as une question ou une correction à me faire part, n’hésite pas à me contacter sur Discord : Lucki7270.
 
-#Me after I finish the translation: LET'S GOOOOOOOOOO !!!!
-#Moi après que j'ai fini la traduction: LET'S GOOOOOOOOO !!!!
-
-#Mhh... what can I say... OH, I know: AMOUGUS !
-#Mhh...qu'est ce que je peux dire de plus... OH, je sais: AMOUGUS !
+# And by the way, if you're reading this right now, it surely means that you know atleast some French (I assume). If that's the case, welcome the French community of Galaxyspace ! (Yeah !)
+# Et au fait, si tu lis cela, ça veut sûrement dire que tu connais au moins un peu de français (je suppose). Si c’est le cas, bienvenue dans la communauté française de Galaxyspace ! (Yeah !) 
