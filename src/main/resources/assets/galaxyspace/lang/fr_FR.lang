@@ -316,9 +316,9 @@ tile.treasure_t5.desc=Les coffres au trésor de tier 5 sont générés dans les 
 #|||||||||||||||||Items||||||||||||||||||||
 |\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
 
-item.schematics.name=Schéma Pour Établi De La NASA
+item.schematics.name=Plan Pour Atelier De La NASA
 item.hdp.name=Plaque Robuste
-item.dungeon_keys.name=Clé D'Un Donjon
+item.dungeon_keys.name=Clé De Donjon
 item.geo_scanner.name=Scanneur Géologique
 
 item.rocket_tier_4.name=Fusée De Tier 4
@@ -354,28 +354,28 @@ item.plasma_pickaxe.name=Pioche En Plasma
 
 item.nickel_ingot.name=Lingot De Nickel
 item.cobaltum_ingot.name=Lingot De Cobalt
-item.magnesium_ingot.name=Lingot De Magnesium
+item.magnesium_ingot.name=Lingot De Magnésium
 item.uranium_ingot.name=Lingot D'Uranium
 
 item.compressed_nickel.name=Nickel Compréssé
 item.compressed_cobaltum.name=Cobalt Compréssé
-item.compressed_magnesium.name=Magnesium Compréssé
+item.compressed_magnesium.name=Magnésium Compréssé
 item.compressed_coal.name=Charbon Compréssé
 item.compressed_sdhd120.name=Alliage "SDHC-120" Compréssé
 item.unknow_crystal.name=Fragment De Cystal Inconnu
-item.sulfur.name=Souffre
+item.sulfur.name=Soufre
 item.dolomite_crystal.name=Crystal De Dolomite
 item.dolomite_meal.name=Poudre De Dolomite
-item.wafer_modern.name=Galette Moderne
+item.wafer_modern.name=Plaquette Moderne
 item.hematite.name=Hématite
 item.antiradiation_tablets.name=Tablette Anti-Radiation
-item.schematic_box.name=Boîte De Shcémas 
+item.schematic_box.name=Boîte De Schémas 
 item.module_base.name=Module Vide
 item.blank_schematic.name=Schéma Vide
 item.volcanic_stone.name=Fragment Volcanique
 item.meteoric_iron_fragments.name=Fragment De Fer Météorique
 item.uranium_fragments.name=Uranium
-item.temp_shield_control.name=Bouclier De Contrôleur Prototype
+item.temp_shield_control.name=Bouclier Prototype Du Contrôleur
 item.ice_bucket.name=Seau De Glace
 item.emergency_portable_teleport.name=Téléporteur D'Urgence Portable
 item.guide_book.name=[WIP] Tablette D'infos
@@ -387,7 +387,7 @@ item.hydrogen_ice_crystal.name=Fragment De Glace D'Hydrogène
 item.dry_ice_crystal.name=Fragment De Glace Carbonisé
 item.colonist_kit.name=Kit Du Colonisateur
 item.empty_plasma_cell.name=Cellule De Plasma Vide
-item.filled_plasma_cell.name=Cellule De Plasma Plein
+item.filled_plasma_cell.name=Cellule De Plasma Remplie
 item.wolf_thermal_suit.name=Combinaison Thermique Pour Loup
 item.animal_cage.name=Cage Pour Animal
 item.iron_fan.name=Ventilateur En Fer
@@ -398,19 +398,19 @@ item.raw_plastic.name=Plastique Brut
 item.plastic.name=Fragment De Plastique
 
 item.module_electrolyse.name=Module "Électrolyseur"
-item.module_expander.name=Module "Expanseur"
-item.module_stabiliser.name=Module "Stabilisation"
+item.module_expander.name=Module "Extenseur"
+item.module_stabiliser.name=Module "Stabilisateur"
 item.module_speed.name=Module "Vitesse"
 item.module_energy.name=Module "Énergie"
 
-item.module_small_fuelcanister.name=Petit Canette De Carburant
+item.module_small_fuelcanister.name=Petite Canette De Carburant
 item.module_smallcanister.name=Canette De Carburant Vide
 item.module_lander_1.name=Atterrisseur Tier 1
 item.module_lander_2.name=Atterrisseur Tier 2
 item.module_lander_3.name=Atterrisseur Tier 3
 item.ion_engine.name=Moteur Ionique
 item.plasma_engine.name=[WIP] Moteur À Plasma
-item.sublight_engine.name=Moteur De "Sous-Vitesse Lumière"
+item.sublight_engine.name=Moteur "Sublight"
 item.blackhole_engine.name=[WIP] Moteur À Trou Noir
 item.license_t4.name=Licence De Fusée
 item.license_t5.name=Licence De Fusée
@@ -419,16 +419,16 @@ item.license_t6.name=Licence De Fusée
 item.rocket_cone.name=Cockpit Durable
 item.rocket_body.name=Fuselage De Fusée Durable
 item.rocket_engine.name=Moteur De Fusée Durable
-item.rocket_booster.name=Gros Booster
+item.rocket_booster.name=Booster Lourd
 item.rocket_stabiliser.name=Ailette De Fusée Durable
 
-item.part_solarflares.name=Partie De Panneau D'Éruption Solaire
-item.solarflares.name=Panneau D'Éruption Solaire
+item.part_solarflares.name=Partie De Panneau À Éruption Solaire
+item.solarflares.name=Panneau À Éruption Solaire
 
 item.oxygen_tank_4.name=Très Grosse Bonbonne D'Oxygène
-item.oxygen_tank_5.name=Extrêmement Grosse bonbonne d'oxygène
+item.oxygen_tank_5.name=Extrêmement Grosse Bonbonne D'Oxygène
 item.oxygen_tank_6.name=Bonbonne D'Oxygène Ultime
-item.oxygen_tank_epp_1.name=Bonbonne D'Oxygène environnementale
+item.oxygen_tank_epp_1.name=Bonbonne D'Oxygène Environementale
 
 item.advanced_battery.name=Batterie Avancée
 item.modern_battery.name=Batterie Moderne
@@ -443,7 +443,7 @@ item.hh_canister.name=Canette D'Hélium-Hydrogène
 
 item.violet_reeds.name=Roseaux Violets
 item.water_grass.name=Lichen
-item.tree_juice.name=Jus D'arbre
+item.tree_juice.name=Sève
 item.yellow_fruits.name=Fruits Jaunes
 |/////////////////////////////////////////|
 #||||||||||||||||||Fluids||||||||||||||||||
