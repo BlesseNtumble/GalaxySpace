@@ -268,7 +268,7 @@ tile.modern_single_solarpanel.desc=Panneau plus efficace que le mini-panneau cla
 tile.modern_storage_module.name=Groupement Moderne De Réservoir D'Énergie
 tile.modern_storage_module.desc=Version moderne du Groupement De Stockage D'Énergie. Il peut stocker une plus grande quantité d'énergie.
 
-tile.modification_table.name=Table De Mofification
+tile.modification_table.name=Table De Modification
 tile.modification_table.desc=Permet d'installer des modules sur un équipement qui les prennent en charge.
 
 tile.gas_burner.name=Brûleur De Gaz
