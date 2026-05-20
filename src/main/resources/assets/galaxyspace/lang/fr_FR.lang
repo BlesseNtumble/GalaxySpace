@@ -112,7 +112,7 @@ tile.europa_emerald_ore.name=Minerai D'Émeraude (Europe)
 tile.europa_silicon_ore.name=Minerai De Silicium (Europe)
 tile.europa_aluminum_ore.name=Minerai D'Aluminium (Europe)
 tile.europa_geyser.name=Geyser D'Europe
-tile.europa_uwgeyser.name=Geyser D'Europa
+tile.europa_uwgeyser.name=Geyser D'Europe
 
 tile.ganymede_grunt.name=Roche De Surface Ganymédienne
 tile.ganymede_stone.name=Roche Ganymédienne
@@ -123,12 +123,12 @@ tile.callisto_grunt.name=Roche De Surface De Callisto
 tile.callisto_stone.name=Roche De Callisto
 
 tile.enceladus_snow.name=Glace Enceladienne
-tile.enceladus_grunt.name=Roche De Sous-Surface Enceladienne
+tile.enceladus_grunt.name=Roche Souterraine Enceladienne
 tile.enceladus_coal_ore.name=Minerai De Charbon (Encelade)
 tile.enceladus_crystal.name=Agrégat De Cristal Inconnu
 
 tile.titan_grunt.name=Roche De Surface Titanienne
-tile.titan_subgrunt.name=Roche De Sous-Surface Titanienne
+tile.titan_subgrunt.name=Roche Souterraine Titanienne
 tile.titan_stone.name=Roche Titanienne
 tile.titan_sapphire_ore.name=Minerai De Saphire (Titan)
 tile.titan_emerald_ore.name=Minerai D'Émeraude (Titan)
@@ -138,7 +138,7 @@ tile.titan_lapis_ore.name=Minerai De Lapis (Titan)
 tile.titan_redstone_ore.name=Minerai De Redstone (Titan)
 
 tile.miranda_grunt.name=Roche De Surface De Miranda
-tile.miranda_subgrunt.name=Roche De Sous-Surface De Miranda
+tile.miranda_subgrunt.name=Roche Souterraine De Miranda
 tile.miranda_stone.name=Roche De Miranda
 tile.miranda_ice.name=Glace De Miranda
 tile.miranda_iron_ore.name=Minerai De Fer (Miranda)
@@ -149,24 +149,24 @@ tile.miranda_cobalt_ore.name=Minerai De Cobalt (Miranda)
 tile.miranda_nickel_ore.name=Minerai De Nickel (Miranda)
 
 tile.triton_grunt.name=Roche De Surface Tritonienne
-tile.triton_subgrunt.name=Roche De Sous-Surface Tritonienne
+tile.triton_subgrunt.name=Roche Souterraine Tritonienne
 tile.triton_stone.name=Roche Tritonienne
-tile.triton_geyser.name=Geyser Tritonienne
-tile.triton_geyser_2.name=Petit Geyser Tritonienne
+tile.triton_geyser.name=Geyser Tritonien
+tile.triton_geyser_2.name=Petit Geyser Tritonien
 
-tile.proxima_b_surface.name=Surface De Proxiam B
-tile.proxima_b_subsurface.name=Sous-Surface De Proxiam B
+tile.proxima_b_surface.name=Surface De Proxima B
+tile.proxima_b_subsurface.name=Souterrain De Proxima B
 tile.proxima_b_stone.name=Roche De Proxiam B
-tile.proxima_b_ice_surface.name=Surface Glacé De Proxiam B
-tile.proxima_b_ash_rock.name=Roche De Cendre De Proxima B
+tile.proxima_b_ice_surface.name=Surface Gelée De Proxiam B
+tile.proxima_b_ash_rock.name=Roche Cendrée De Proxima B
 tile.proxima_b_gold_ore.name=Minerai D'Or (Proxima B)
 tile.proxima_b_tin_ore.name=Minerai D'Étain (Proxima B)
 tile.proxima_b_copper_ore.name=Minerai De Cuivre (Proxima B)
 tile.proxima_b_coal_ore.name=Minerai De Charbon (Proxima B)
 tile.proxima_b_silicon_ore.name=Minerai De Silicium (Proxima B)
 tile.proxima_b_diamond_ore.name=Minerai De Diamant (Proxima B)
-tile.proxima_b_log_1.name=Bûche Brûlée
-tile.proxima_b_log_2.name=Bûche Congelée
+tile.proxima_b_log_1.name=Bûche Brûlée de Proxima B
+tile.proxima_b_log_2.name=Bûche Congelée de Proxima B
 
 tile.barnarda_c_grass.name=Bloc D'Herbe De Barnarda C
 tile.barnarda_c_dirt.name=Terre De Barnarda C
