@@ -180,6 +180,7 @@ tile.proxima_b_log_1.name=Proxima B Burnt Wood
 tile.proxima_b_log_2.name=Proxima B Frozen Wood
 
 tile.barnarda_c_grass.name=Barnard C Grass
+tile.barnarda_c_grass_1.name=[WIP] Barnard C Grass
 tile.barnarda_c_dirt.name=Barnard C Dirt
 tile.barnarda_c_stone.name=Barnard C Stone
 tile.barnarda_c_sandstone.name=[WIP] Barnard C Sandstone
@@ -206,6 +207,8 @@ tile.barnarda_c_farmland.name=Barnard C Farmland
 tile.barnarda_c_glow_dandelions.name=Barnard C Glow Plant
 tile.barnarda_c_violet_trapdoor.name=Barnard C Violet Trapdoor
 tile.barnarda_c_cactus.name=Barnard C Cactus
+tile.barnarda_c_birch_log.name=Barnard C Birch Wood
+tile.barnarda_c_tallgrass_dark.name=Barnard C Dark Tallgrass
 
 tile.barnarda_c1_snowy_surface.name=Barnard C1 Snowy Surface
 tile.barnarda_c1_snowy_subsurface.name=Barnard C1 Snowy Subsurface
@@ -724,6 +727,11 @@ book.category.mechanics.name=Mechanics
 book.page.about_addon.name=About Galaxy Space
 book.page.about_addon.text=Galaxy Space in an addon for Galacticraft, adding an impressive amount of content. !n!nThe development of the addon has been going on for over 4 years, gradually introducing more and more game content. !n!nAll star systems are based on real data and are as close to reality as the Minecraft engine allows. This addon's tends to lay onto realistic side in other aspecs as well. 
 book.page.actual_update.name=Actual Update
+book.page.bosses.name=Bosses
+book.page.bosses.blaze.name=
+book.page.bosses.blaze.text=
+book.page.bosses.ghast.name=
+book.page.bosses.ghast.text=
 
 #|/////////////////////////////////////////|
 #||||||||||||Book-Celestial Bodies||||||||||
