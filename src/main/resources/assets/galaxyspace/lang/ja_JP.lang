@@ -541,3 +541,274 @@ planet.barnarda_e=バーナードE
 moon.barnarda_b1=惑星の環
 moon.barnarda_c1=バーナードC1
 moon.barnarda_c2=バーナードC2
+
+|/////////////////////////////////////////|
+#||||||||||||||||||Blocks||||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+tile.adv_wind_generator.name=高性能風力発電機
+
+tile.oxygen_ice.name=酸素の氷
+tile.nitrogen_ice.name=窒素の氷
+tile.methane_ice.name=メタンの氷
+tile.hydrogen_ice.name=水素の氷
+tile.dry_ice.name=ドライアイス
+tile.dry_leaves.name=枯れ葉
+
+tile.deco_aluminum.name=アルミ装飾ブロック
+
+tile.europa_surface_ice_2.name=エウロパ表面の氷
+
+tile.phobos_regolite.name=フォボスのレゴリス
+tile.phobos_stone.name=フォボスの石
+tile.phobos_iron_ore.name=鉄鉱石
+tile.phobos_meteoriciron_ore.name=流星鉄鉱石
+tile.phobos_nickel_ore.name=ニッケル鉱石
+tile.phobos_desh_ore.name=デッシュ鉱石
+
+tile.haumea_ground.name=ハウメア地表の土壌
+tile.haumea_stone.name=ハウメアの石
+tile.haumea_cobblestone.name=ハウメアの丸石
+tile.haumea_aluminum_ore.name=アルミ鉱石
+
+tile.io_dungeon_bricks.name=イオダンジョンのレンガ
+
+tile.triton_grunt.name=トリトン地表の土壌
+tile.triton_subgrunt.name=トリトン地中の土壌
+tile.triton_stone.name=トリトンの石
+tile.triton_geyser.name=トリトンの間欠泉
+tile.triton_geyser_2.name=トリトンの小型間欠泉
+
+tile.proxima_b_rocky_surface.name=プロキシマBの岩肌
+tile.proxima_b_mushroom_skin.name=プロキシマBのキノコ外皮
+tile.proxima_b_mushroom_geyser.name=プロキシマBのキノコ間欠泉
+tile.proxima_b_mud.name=プロキシマBの泥
+tile.proxima_b_mushroom_log.name=プロキシマBのキノコ茎
+tile.proxima_b_grasses.name=プロキシマBの草
+tile.proxima_b_tallgrass.name=プロキシマBの赤い背の高い草
+tile.proxima_b_tallgrass_2.name=プロキシマBの赤い背の高い草
+
+tile.barnarda_c_glow_dandelions.name=バーナードCのグロウプラント
+tile.barnarda_c_violet_trapdoor.name=バーナードCの菫色のトラップドア
+tile.barnarda_c_cactus.name=バーナードCのサボテン
+
+tile.barnarda_c1_snowy_surface.name=バーナードC1の雪面
+tile.barnarda_c1_snowy_subsurface.name=バーナードC1の雪地中
+tile.barnarda_c1_icy_subsurface.name=バーナードC1の氷地中
+tile.barnarda_c1_stone.name=バーナードC1の石
+tile.barnarda_c1_onyx_ore.name=オニキス鉱石
+tile.barnarda_c1_iron_ore.name=鉄鉱石
+tile.barnarda_c1_copper_ore.name=銅鉱石
+tile.barnarda_c1_tin_ore.name=スズ鉱石
+tile.barnarda_c1_dripstone_base.name=バーナードC1の鍾乳石ベース
+tile.barnarda_c1_dripstone_large.name=バーナードC1の大型鍾乳石
+tile.barnarda_c1_dripstone_medium.name=バーナードC1の中型鍾乳石
+tile.barnarda_c1_dripstone_small.name=バーナードC1の小型鍾乳石
+tile.barnarda_c1_dripstone_thin.name=バーナードC1の細い鍾乳石
+
+tile.tauceti_f_grass.name=τケチF星の草
+tile.tauceti_f_dirt.name=τケチF星の土
+tile.tauceti_f_stone.name=τケチF星の石
+
+tile.watergrass_red.name=赤藻
+tile.watergrass_standart_bottom.name=藻ベース
+tile.watergrass_standart_middle.name=藻
+tile.watergrass_standart_top.name=藻のてっぺん
+tile.watergrass_slime_bottom.name=スライム藻ベース
+tile.watergrass_slime_top.name=スライム藻のてっぺん
+tile.watergrass_thick_green.name=厚い藻
+tile.kelp.name=小型ケルプ
+tile.brain_coral.name=脳サンゴ
+tile.brain_coral_fan.name=脳サンゴの扇
+tile.bubble_coral.name=泡サンゴ
+tile.bubble_coral_fan.name=泡サンゴの扇
+tile.fire_coral.name=炎サンゴ
+tile.fire_coral_fan.name=炎サンゴの扇
+tile.horn_coral.name=角サンゴ
+tile.horn_coral_fan.name=角サンゴの扇
+tile.tube_coral.name=管サンゴ
+tile.tube_coral_fan.name=管サンゴの扇
+tile.sponge_coral.name=スポンジサンゴ
+
+|/////////////////////////////////////////|
+#||||||||||||Tile Description||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+tile.oxygen_storage_module_1.name=酸素蓄積クラスター
+tile.oxygen_storage_module_1.desc=酸素蓄積モジュールの改善版. 4倍の酸素を蓄積できる.
+
+tile.energy_pad.name=エネルギーパッド
+tile.energy_pad.desc=プレイヤーとそのインベントリ内の電気アイテムをすべて充電する.
+
+tile.gas_collector.name=ガス収集機
+tile.gas_collector.desc=稼働半径内のガスを収集する. モジュールを取り付けることで半径を拡大できる.
+
+tile.gas_generator.name=ガス発電機
+tile.gas_generator.desc=ガスを燃焼させてエネルギーを発生させる.
+
+tile.port_nuclear_reactor.desc=[WIP]ウランを燃料とする高性能発電機. 水または窒素による冷却が必要.
+
+tile.treasure_t5.name=レベル5 宝箱
+tile.treasure_t5.desc=イオのダンジョンに生成される. 最終ボスを倒した後に解錠できる.
+
+|/////////////////////////////////////////|
+#|||||||||||||||||Items||||||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+item.geo_scanner.name=地質スキャナー
+
+item.space_suit_light_head.name=軽量宇宙服 ヘルメット
+item.space_suit_light_chest.name=軽量宇宙服 チェストプレート
+item.space_suit_light_legs.name=軽量宇宙服 レギンス
+item.space_suit_light_feet.name=軽量宇宙服 ブーツ
+
+item.plasma_sword.name=プラズマの剣
+item.plasma_axe.name=プラズマの斧
+item.plasma_pickaxe.name=プラズマのツルハシ
+
+item.nickel_nugget.name=ニッケルの欠片
+item.cobaltum_nugget.name=コバルトの欠片
+item.magnesium_nugget.name=マグネシウムの欠片
+
+item.oxygen_ice_crystal.name=酸素の氷の欠片
+item.nitrogen_ice_crystal.name=窒素の氷の欠片
+item.methane_ice_crystal.name=メタンの氷の欠片
+item.hydrogen_ice_crystal.name=水素の氷の欠片
+item.dry_ice_crystal.name=ドライアイスの欠片
+
+item.colonist_kit.name=入植者キット
+item.empty_plasma_cell.name=空のプラズマセル
+item.filled_plasma_cell.name=充填済みプラズマセル
+item.wolf_thermal_suit.name=ウルフ断熱スーツ
+item.animal_cage.name=動物用ケージ
+item.iron_fan.name=鉄製ファン
+item.steel_fan.name=鋼製ファン
+item.plastic_fan.name=プラスチック製ファン
+item.carbon_fan.name=カーボン製ファン
+item.raw_plastic.name=生プラスチック
+item.plastic.name=プラスチック片
+item.gas_extractor.name=ガス抽出器
+
+item.license_t4.name=ロケットライセンス
+item.license_t5.name=ロケットライセンス
+item.license_t6.name=ロケットライセンス
+
+item.naturegas_canister.name=天然ガス缶
+
+item.barnarda_c_violet_door.name=バーナードCの菫色のドア
+item.onyx.name=オニキス
+item.tree_juice.name=樹液
+
+|/////////////////////////////////////////|
+#||||||||||||||||||Fluids||||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+fluid.naturegas=天然ガス
+
+|/////////////////////////////////////////|
+#||||||||||||||||Potions|||||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+potion.antiradiation=抗放射線効果
+
+|/////////////////////////////////////////|
+#|||||||||||||||||GUI||||||||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+gui.available_modules.desc=利用可能なモジュール:
+
+gui.gravitation_module_stabilisation_1.desc=モジュール"安定化"を取り付けると
+gui.gravitation_module_stabilisation_2.desc=大気圧を安定させる.
+
+gui.spacesuit.type=宇宙服の種類:
+gui.spacesuit.type.1=軽量
+gui.spacesuit.type.2=重装
+gui.spacesuit.desc.light=軽量宇宙服は太陽放射から保護する.
+gui.spacesuit.desc.heavy=重装宇宙服は太陽放射から保護し、大気圧を安定させる.
+
+gui.ice_bucket.desc=空のバケツで氷を右クリックすることで入手できる.
+gui.animal_cage.desc=動物を運搬できる. 動物を放つと壊れる.
+gui.animal_cage_stored.desc=収容中の動物:
+gui.plasma_tools.desc=プラズマを使用する高性能ツール. 使用するとプラズマ充填分を消費し加熱する. インベントリ内のカプセルから自動充填する. 壊れない.
+gui.gas_extractor.desc=インベントリ内の缶にガスを収集する.
+gui.geological_scanner.desc=稼働半径内の岩石の種類を特定し、石油・溶岩・ガスの深度をスキャンできる.
+gui.atmospheric_value_work.desc=大気バルブを設置して機構を起動してください.
+
+gui.status.heat.name=高温
+gui.status.energy_storage_is_full.name=エネルギーが満タンです!
+
+gui.message.needthermal=この行動をするには温度コントロールが必要です.
+gui.message.cant_place=ここには設置できません.
+
+gui.rotor_slot_desc.0=ローターのスロット. ここにローターを設置してください.
+gui.rotor_slot_desc.1=ローターの性能が良いほど、より多くのエネルギーを生産します.
+
+gui.gravity.strength.name=重力の強さ:
+
+gui.module.protection=プロテクション
+gui.module.protection.desc=スーツにコバルトの補強材を入れることでダメージへの耐性が向上する.
+gui.module.water_breathing=水中呼吸
+gui.module.water_breathing.desc=タンクの酸素を消費することで水中にいられる時間を大幅に延長する.
+gui.module.autofeeding=自動摂食
+gui.module.autofeeding.desc=インベントリ内の食料を自動的に消費し、空腹を満たす.
+
+|/////////////////////////////////////////|
+#||||||||||||||||Entities||||||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+entity.evolved_boss_ghast.name=宇宙のガストキング
+entity.astro_wolf.name=アストロウルフ
+
+|/////////////////////////////////////////|
+#||||||||||||Celestial Bodies||||||||||||||
+|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+planet.haumea=ハウメア
+planet.proxima_c=プロキシマC
+planet.proxima_d=プロキシマD
+satellite.spacestation.mars=火星宇宙ステーション
+
+solarsystem.tauceti=τケチ星系
+star.tauceti=τケチ
+planet.tauceti_g=τケチG星
+planet.tauceti_h=τケチH星
+planet.tauceti_e=τケチE星
+planet.tauceti_f=τケチF星
+
+#|/////////////////////////////////////////|
+#|||||||||||||||||||Book||||||||||||||||||||
+#|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+book.button.back.name=戻る
+
+book.category.general.name=一般
+book.category.bodies.name=天体
+book.category.blocks.name=ブロック
+book.category.items.name=アイテム
+book.category.mechanics.name=ゲームメカニクス
+
+#|/////////////////////////////////////////|
+#||||||||||||||||Book-General|||||||||||||||
+#|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+book.page.about_addon.name=Galaxy Spaceについて
+book.page.about_addon.text=Galaxy SpaceはGalacticraftのアドオンで、膨大な量のコンテンツを追加します。!n!n開発は4年以上続いており、徐々にゲームコンテンツが増えています。!n!nすべての星系は実際のデータに基づき、Minecraftエンジンの許す限りリアルに再現されています。このアドオンは他の面でも現実的な方向性を持っています。
+book.page.actual_update.name=最新アップデート
+
+#|/////////////////////////////////////////|
+#||||||||||||Book-Celestial Bodies||||||||||
+#|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+book.page.star.sol.desc=!c_y太陽 - 黄色矮星。!c_w人類の母星。
+book.page.solarsystem.sol.asteroids=小惑星帯は太陽を周回する大量の小惑星の集まりです。多くの小惑星は豊富なミネラルを含んでいます。
+book.page.solarsystem.sol.ceres=ケレスは小惑星帯にある矮小惑星です。流星鉄とドロマイト結晶が豊富に含まれています。
+book.page.solarsystem.sol.jupiter=木星 - 多くの衛星を持つ巨大ガス惑星。衛星を探索できます。
+book.page.solarsystem.sol.callisto=カリスト - 木星で最も遠い衛星。
+
+book.page.star.barnarda_a.desc=!c_yバーナードA - オレンジ矮星。!c_w太陽に近い星。
+book.page.solarsystem.barnards.barnarda_b=バーナードB - 恒星の近くにある巨大ガス惑星。小石でできたリングを持つ。
+book.page.solarsystem.barnards.barnarda_b1=多数の小石からなる惑星の環。
+book.page.solarsystem.barnards.barnarda_c=バーナードC - 恒星の!c_gハビタブルゾーン!c_wに位置する惑星。人類が生存可能な環境を持つ。
+book.page.solarsystem.barnards.barnarda_c1=バーナードC1 - 凍った衛星。人類には寒すぎる。
+book.page.solarsystem.barnards.barnarda_c2=バーナードC2 - 未探索の衛星。
+book.page.solarsystem.barnards.barnarda_d=小惑星帯は恒星を周回する大量の小惑星の集まりです。多くの小惑星は豊富なミネラルを含んでいます。
+book.page.solarsystem.barnards.barnarda_e=バーナードE - 遠方にある巨大ガス惑星。
+
+#|/////////////////////////////////////////|
+#|||||||||||||||Book-Mechanics||||||||||||||
+#|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|
+book.page.solar_radiation.name=太陽放射
+book.page.solar_radiation.text=太陽放射はプレイヤーを徐々に死に至らしめる負の効果です。!n放射スケールが!c_r赤!c_wの境界を超えると効果が発動します。!nシェルターや地下にいると放射は蓄積されず、スケールが!c_r赤!c_wの境界を超えている場合は減少します。!n!n残留放射は!c_g抗放射線錠剤!c_wを使用することで除去できます。!n!c_o宇宙服!c_wを着用するか、!c_o磁場生成機!c_wのバブル内にいることで放射から身を守れます。
+book.page.atmosphere_pressure.name=大気圧
+book.page.atmosphere_pressure.text=大気圧は大気のある惑星を入植する際の主な問題の一つです。!n!c_r高い!c_w大気圧では、吐き気・盲目・鈍足などの負の効果が生じます。!n!nさらに!c_o高い!c_w大気圧ではHPが減少します。!n圧力スケールが!c_y最大!c_wになると即死します。!n!c_o宇宙服!c_wを着用するか、!c_o重力モジュール!c_wの範囲内にいることで大気圧から身を守れます。
+book.page.temp_on_planet.name=温度
+book.page.temp_on_planet.text=GalaxySpaceでは温度がより重要な役割を果たします。!n宇宙では作物を植えることができず、即座に枯れてしまいます。農場は環境から遮断して保護する必要があります。!n!n!nまた、真空中では!c_g缶詰食料!c_wしか使用できません。!n宇宙内の液体は惑星の温度に応じて凍結または蒸発します。
